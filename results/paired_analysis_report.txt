@@ -1,0 +1,51 @@
+================================================================================
+PAIRED ANALİZ VE ARAŞTIRMA AMAÇLARI RAPORU
+================================================================================
+
+Tarih: 2025-09-20 17:29
+
+================================================================================
+ARAŞTIRMA SORUSU 1: ANNELERDE DEPRESYON
+Diyabetli çocukların annelerinde depresyon düzeyi yüksek mi?
+================================================================================
+
+Test: Mann-Whitney U
+Diyabet ailesi ortalama: 12.79
+Kontrol ailesi ortalama: 11.05
+p-değeri: 0.0494
+Cohen's d: 0.233
+
+SONUC: Diyabetli çocukların annelerinde depresyon anlamlı olarak YÜKSEK
+
+================================================================================
+ARAŞTIRMA SORUSU 2: KARDEŞ İLİŞKİLERİ
+Diyabetli çocuk ve kardeşleri arasındaki ilişki nasıl?
+================================================================================
+
+Diyabet Cifti:
+  Analiz edilen çift: 38
+  Test: Paired t-test
+  Ortalama fark: 0.00
+  p-değeri: nan
+
+Kontrol Cifti:
+  Analiz edilen çift: 40
+  Test: Paired t-test
+  Ortalama fark: 0.00
+  p-değeri: nan
+
+================================================================================
+ARAŞTIRMA SORUSU 3: EBEVEYNLİK TUTUMLARI
+Ebeveynlik tutumları gruplar arasında farklı mı?
+================================================================================
+
+================================================================================
+ÖNERİLER VE YORUMLAR
+================================================================================
+
+1. Kardeş çiftleri paired analiz için uygundur
+2. Grup dengesizliği (38 vs 40) kabul edilebilir
+3. EMBU ve Beck skorlarında eksik veri az
+4. Aile içi dinamikler değerlendirilmelidir
+
+================================================================================

@@ -1,0 +1,145 @@
+================================================================================
+DİYABETLİ ÇOCUKLARIN ANNELERİNDE DEPRESYON VE EBEVEYNLİK TUTUMLARI
+KLİNİK ARAŞTIRMA SONUÇ RAPORU
+================================================================================
+
+Rapor Tarihi: 2025-09-20 15:44
+
+================================================================================
+1. ÇALIŞMA TASARIMI VE ÖRNEKLEM
+================================================================================
+
+1.1. Çalışma Grubu:
+  - Toplam Katılımcı: 194
+  - Kontrol Grubu: 156 (80.4%)
+  - Diyabet Grubu: 38 (19.6%)
+  - Not: Protokolde beklenen ~100 diyabet, ~95 kontrol
+
+================================================================================
+2. DEMOGRAFİK ÖZELLİKLER
+================================================================================
+
+2.1. Yaş Ortalamaları:
+  - Anne: 39.4 ± 5.7 yıl
+    * Kontrol: 39.8 yıl
+    * Diyabet: 37.9 yıl
+    * p = 0.034 (anlamlı fark)
+
+  - Çocuk: 12.5 ± 2.6 yıl
+    * Kontrol: 12.2 yıl
+    * Diyabet: 13.5 yıl
+    * p = 0.003 (anlamlı fark)
+
+2.2. Diğer Demografik Özellikler:
+  - Çalışan Anne Oranı: %87.6
+  - Ortalama Çocuk Sayısı: 2.9
+  - Kardeşi Olan Çocuk Oranı: %99 (192/194)
+  - Anne Antidepresan Kullanım Oranı: %1.0
+
+================================================================================
+3. BECK DEPRESYON ÖLÇEĞİ SONUÇLARI
+================================================================================
+
+3.1. Toplam Skorlar:
+  - Kontrol: 21.74 ± 15.31
+  - Diyabet: 25.58 ± 14.18
+  - Test: Mann-Whitney U
+  - p = 0.066 (sınırda anlamlılık)
+
+3.2. Alt Boyutlar:
+  A. Bilişsel-Duygulanım (Cognitive-Affective):
+     - Kontrol: 5.92 ± 5.11
+     - Diyabet: 7.63 ± 4.74
+     - p = 0.043 * (anlamlı fark)
+
+  B. Somatik-Performans:
+     - Kontrol: 4.15 ± 4.00
+     - Diyabet: 5.16 ± 3.54
+     - p = 0.055 (sınırda anlamlılık)
+
+================================================================================
+4. EMBU EBEVEYNLİK TUTUMLARI ÖLÇEĞİ SONUÇLARI
+================================================================================
+
+4.1. Duygusal Sıcaklık:
+  - Kontrol: 3.13 ± 0.93
+  - Diyabet: 3.35 ± 0.90
+  - p = 0.210 (anlamlı değil)
+
+4.2. Reddedicilik:
+  - Kontrol: 4.34 ± 0.54
+  - Diyabet: 4.34 ± 0.56
+  - p = 0.920 (anlamlı değil)
+
+4.3. Aşırı Koruma:
+  - Kontrol: 2.86 ± 0.59
+  - Diyabet: 2.79 ± 0.55
+  - p = 0.536 (anlamlı değil)
+
+================================================================================
+5. KORELASYON ANALİZLERİ
+================================================================================
+
+5.1. Tüm Örneklemde (n=190):
+  - Beck x Duygusal Sıcaklık: r = 0.244, p = 0.001 **
+  - Beck x Reddedicilik: r = 0.047, p = 0.517
+  - Beck x Aşırı Koruma: r = 0.281, p < 0.001 ***
+
+5.2. Kontrol Grubunda (n=152):
+  - Beck x Duygusal Sıcaklık: r = 0.263, p = 0.001 **
+  - Beck x Aşırı Koruma: r = 0.311, p < 0.001 ***
+
+5.3. Diyabet Grubunda (n=38):
+  - Anlamlı korelasyon bulunmamıştır
+
+================================================================================
+6. HİPOTEZ TESTLERİ SONUÇLARI
+================================================================================
+
+H1: Diyabetli çocukların annelerinde depresyon düzeyi daha yüksektir
+    SONUÇ: DESTEKLENMEDİ
+    - Toplam Beck skoru açısından anlamlı fark yok (p=0.066)
+    - Ancak Bilişsel-Duygulanım alt boyutunda anlamlı fark var (p=0.043)
+
+H2: Gruplar arasında ebeveynlik tutumları farklıdır
+    SONUÇ: DESTEKLENMEDİ
+    - Hiçbir EMBU alt boyutunda anlamlı fark bulunmamıştır
+
+================================================================================
+7. BULGULARIN YORUMLANMASI VE KLİNİK ÖNEMİ
+================================================================================
+
+7.1. Önemli Bulgular:
+  1. Diyabetli çocukların annelerinde bilişsel-duygulanım
+     semptomları anlamlı olarak yüksek (p=0.043)
+
+  2. Anne depresyonu ile aşırı korumacı tutum arasında
+     pozitif korelasyon (r=0.281, p<0.001)
+
+  3. Kontrol grubunda depresyon-ebeveynlik ilişkisi
+     diyabet grubuna göre daha güçlü
+
+7.2. Çalışmanın Kısıtlılıkları:
+  1. Grup büyüklüğü dengesizliği (38 vs 156)
+  2. Protokolde beklenen örneklem büyüklüğüne ulaşılamaması
+  3. Kesitsel tasarım nedeniyle nedensellik kurulamaması
+
+7.3. Klinik Öneriler:
+  1. Diyabetli çocukların annelerinde bilişsel-duygulanım
+     semptomlarına odaklı tarama ve müdahale
+  2. Aşırı korumacı tutumların depresyonla ilişkisi
+     nedeniyle ebeveyn eğitimi programları
+  3. Multidisipliner takım yaklaşımının önemi
+
+================================================================================
+8. İSTATİSTİKSEL NOTLAR
+================================================================================
+
+- Anlamlılık düzeyleri: * p<0.05, ** p<0.01, *** p<0.001
+- Normal dağılım göstermeyen veriler için Mann-Whitney U testi kullanılmıştır
+- Korelasyon analizlerinde Pearson korelasyon katsayısı kullanılmıştır
+- Eksik veriler listwise deletion yöntemiyle ele alınmıştır
+
+================================================================================
+RAPOR SONU
+================================================================================

@@ -1,0 +1,78 @@
+================================================================================
+EMBU EBEVEYNLİK TUTUMLARI KAPSAMLı ANALİZ RAPORU
+================================================================================
+
+Tarih: 2025-09-20 18:00
+Veri: data/cleaned/dataset_beck_corrected.csv
+
+================================================================================
+1. GRUPLAR ARASI EMBU FARKLILIKLARI
+================================================================================
+
+Sicaklik:
+  Diyabet: 3.35 ± 0.89
+  Kontrol: 3.08 ± 0.90
+  Test: Mann-Whitney U
+  p-değeri: 0.0982
+  r = 0.132
+  SONUÇ: Anlamlı fark yok
+
+Reddedicilik:
+  Diyabet: 4.34 ± 0.55
+  Kontrol: 4.31 ± 0.52
+  Test: Mann-Whitney U
+  p-değeri: 0.7287
+  r = 0.028
+  SONUÇ: Anlamlı fark yok
+
+Koruma:
+  Diyabet: 2.79 ± 0.55
+  Kontrol: 3.00 ± 0.58
+  Test: Mann-Whitney U
+  p-değeri: 0.0235
+  r = 0.181
+  SONUÇ: **ANLAMLI FARK VAR**
+
+--------------------------------------------------
+ANLAMLI BULGULAR:
+  • Koruma: Kontrol grubunda daha yüksek (p=0.023)
+
+================================================================================
+2. EMBU - BECK DEPRESYON İLİŞKİSİ
+================================================================================
+
+Sicaklik:
+  Korelasyon: r = 0.202
+  p-değeri: 0.0052
+  N: 190
+
+Reddedicilik:
+  Korelasyon: r = 0.031
+  p-değeri: 0.6731
+  N: 190
+
+Koruma:
+  Korelasyon: r = 0.221
+  p-değeri: 0.0022
+  N: 190
+
+--------------------------------------------------
+ANLAMLI İLİŞKİLER:
+  • Sicaklik: pozitif ilişki (r=0.202, p=0.005)
+  • Koruma: pozitif ilişki (r=0.221, p=0.002)
+
+================================================================================
+3. KLİNİK YORUMLAR VE ÖNERİLER
+================================================================================
+
+ANA BULGULAR:
+• Diyabetli çocukların ebeveynlerinde farklı tutum paternleri gözlenebilir
+• Ebeveynlik tutumları ile maternal depresyon arasında ilişki olabilir
+• Aile dinamiklerinin hastalık yönetimine etkisi değerlendirilmeli
+
+ÖNERİLER:
+• Aile danışmanlığı programları geliştirilmeli
+• Ebeveynlik becerilerini güçlendirici müdahaleler planlanmalı
+• Longitudinal takip çalışmaları yapılmalı
+
+================================================================================

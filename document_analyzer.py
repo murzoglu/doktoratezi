@@ -36,16 +36,25 @@ class DocumentAnalyzer:
             # PDF dosyaları
             if mime_type == 'application/pdf':
                 self.pdf_files.append(item)
-                print(f"  [PDF] {item['name']}")
+                try:
+                    print(f"  [PDF] {item['name']}")
+                except:
+                    print(f"  [PDF] {item['id']}")
 
             # Google Docs belgeleri
             elif mime_type == 'application/vnd.google-apps.document':
                 self.google_docs.append(item)
-                print(f"  [DOCS] {item['name']}")
+                try:
+                    print(f"  [DOCS] {item['name']}")
+                except:
+                    print(f"  [DOCS] {item['id']}")
 
             # Alt klasörleri de tara
             elif mime_type == 'application/vnd.google-apps.folder':
-                print(f"  [KLASOR] {item['name']} - alt klasor taraniyor...")
+                try:
+                    print(f"  [KLASOR] {item['name']} - alt klasor taraniyor...")
+                except:
+                    print(f"  [KLASOR] {item['id']} - alt klasor taraniyor...")
                 self.find_all_documents(item['id'])
 
     def download_pdf(self, file_id, file_name):
@@ -124,7 +133,10 @@ class DocumentAnalyzer:
         print("-"*40)
 
         for pdf in self.pdf_files:
-            print(f"\n[ISLEM] {pdf['name']}")
+            try:
+                print(f"\n[ISLEM] {pdf['name']}")
+            except:
+                print(f"\n[ISLEM] PDF - {pdf['id']}")
 
             pdf_info = {
                 'name': pdf['name'],
@@ -151,7 +163,10 @@ class DocumentAnalyzer:
         print("-"*40)
 
         for doc in self.google_docs:
-            print(f"\n[ISLEM] {doc['name']}")
+            try:
+                print(f"\n[ISLEM] {doc['name']}")
+            except:
+                print(f"\n[ISLEM] Google Doc - {doc['id']}")
 
             doc_info = {
                 'name': doc['name'],

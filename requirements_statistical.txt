@@ -1,0 +1,78 @@
+# Advanced Statistical Analysis Requirements
+# For Clinical Research and Publication
+
+# Core Statistical Packages
+scipy==1.13.0
+statsmodels==0.14.2
+pingouin==0.5.4              # User-friendly statistical functions
+scikit-posthocs==0.9.0       # Post-hoc tests for pairwise comparisons
+
+# Effect Size Calculations
+esci==0.0.51                 # Effect sizes and confidence intervals
+dabest==2024.3.29            # Data Analysis using Bootstrap-Coupled Estimation
+
+# Reliability and Validity Analysis
+factor-analyzer==0.5.1        # Factor analysis and reliability
+reliabilipy==0.0.1           # Reliability measures (Cronbach's alpha, ICC)
+
+# Advanced Regression
+sklearn==0.0                 # Scikit-learn meta-package
+scikit-learn==1.5.0
+statsmodels==0.14.2
+
+# Mixed Models and Longitudinal Analysis
+pymer4==0.8.3                # R-like mixed models in Python
+linearmodels==5.5            # Panel data models
+
+# Power Analysis
+statsmodels==0.14.2         # Includes power analysis functions
+pypower==0.1.0               # Statistical power calculations
+
+# Missing Data Handling
+missingno==0.5.2            # Missing data visualization
+fancyimpute==0.7.0          # Advanced imputation methods
+
+# Survival Analysis (if needed)
+lifelines==0.28.0           # Survival analysis
+scikit-survival==0.22.2     # Machine learning for survival analysis
+
+# Bayesian Statistics (optional but powerful)
+pymc==5.15.0                # Bayesian statistical modeling
+arviz==0.18.0               # Exploratory analysis of Bayesian models
+
+# Clinical Trial Specific
+pyclinical==0.0.1           # Clinical trial statistical functions
+
+# Meta-analysis (for systematic review)
+pymare==0.0.5               # Python Meta-Analysis & Regression Engine
+
+# Report Generation
+reportlab==4.2.2            # PDF generation
+python-docx==1.1.0          # Word document generation
+xlsxwriter==3.2.0           # Excel report generation
+
+# Visualization for Publication
+matplotlib==3.9.0
+seaborn==0.13.2
+plotly==5.22.0
+altair==5.3.0              # Declarative visualization
+
+# Table Generation
+tabulate==0.9.0            # Pretty-print tabular data
+pandas-profiling==3.6.6     # Automated EDA reports
+great-tables==0.11.0       # Publication-ready tables
+
+# Statistical Testing Helpers
+hypothesize==0.1.0         # Hypothesis testing framework
+permute==0.2.0             # Permutation tests
+
+# Data Quality
+pandas==2.3.2
+numpy==1.26.4
+pandera==0.18.0            # Data validation
+pyjanitor==0.27.0          # Data cleaning
+
+# Jupyter Extensions
+jupyter==1.0.0
+jupyterlab==4.2.3
+nbstatsmodels==0.1.2       # Statsmodels jupyter integration

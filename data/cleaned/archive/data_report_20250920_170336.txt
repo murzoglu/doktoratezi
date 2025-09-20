@@ -1,0 +1,9 @@
+Veri Temizleme Raporu
+Tarih: 2025-09-20 14:48
+============================================================
+
+Toplam katılımcı: 194
+Değişken sayısı: 76
+
+Grup dağılımı:
+  Belirtilmemiş: 194 (100.0%)

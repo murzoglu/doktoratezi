@@ -1,0 +1,21 @@
+======================================================================
+DEMOGRAFİK ANALİZ RAPORU
+======================================================================
+
+Tarih: 2025-09-20 15:29
+Toplam Katılımcı: 194
+
+GRUP DAĞILIMI:
+  Kontrol: 156 (80.4%)
+  Diyabet: 38 (19.6%)
+
+YAŞ ORTALAMALARI:
+  Anne: 39.4 yıl
+  Çocuk: 12.5 yıl
+  Kardeş: 12.7 yıl
+  Eş: 44.1 yıl
+
+Ortalama Çocuk Sayısı: 2.9
+
+Çalışan Anne Oranı: %87.6
+Anne Antidepresan Kullanım Oranı: %1.0
