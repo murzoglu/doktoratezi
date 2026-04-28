@@ -72,6 +72,9 @@ data/processed/*
 # Project archives — historical decisions, pre-canonical artifacts
 archive/
 
+# Reference books (copyright-protected; do not commit)
+docs/books/
+
 # Misc artifacts (zip bundles, temp HTML)
 carbon-html-report.zip
 *.zip
