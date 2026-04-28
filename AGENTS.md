@@ -24,7 +24,7 @@ Bu depo Quarto + R ile yazilan Tip 1 Diyabet, ebeveynlik tutumu, Beck Depresyon 
 Rscript -e 'renv::restore(prompt = FALSE)'
 Rscript -e 'renv::status()'
 
-# Targets pipeline; path/raw manifest + KISIM II-V hash kontrollu veri yukleme/skor/SES/eksik veri/Tablo 1/DAG/PS/H1/H2/H3/H4 hedefleri
+# Targets pipeline; path/raw manifest + KISIM II-XVI hash kontrollu veri yukleme/skor/SES/eksik veri/Tablo 1/DAG/PS/H1-H5/VI-XII/APA figur+tablo + yayin/risk/zaman hedefleri
 Rscript -e 'targets::tar_make()'
 
 # EMBU runner'lari yalniz dogrulama/yeniden uretim gerektiginde, sirasiyla

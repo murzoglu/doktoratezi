@@ -91,6 +91,8 @@ outputs/models/*
 !outputs/models/.gitkeep
 _targets/
 _targets.RDS
+_targets.yaml
+_freeze/
 
 # Database
 *.db

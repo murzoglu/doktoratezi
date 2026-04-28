@@ -1,0 +1,957 @@
+---
+title: "T1DM-EBEVEYN Çalışması — Demografik ve Tıbbi Bilgiler Bütünleşik Raporu"
+subtitle: "Marmara Üniversitesi SBE Sosyal Pediatri Doktora Tezi · KISIM II-III + KISIM X özet"
+author:
+  - name: "Uzm. Dr. Özlem Murzoğlu Kurt"
+    affiliation: "Marmara Üniversitesi SBE Sosyal Pediatri"
+date: today
+date-format: "D MMMM YYYY"
+lang: tr
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    fig-width: 8
+    fig-height: 5
+    fig-dpi: 150
+    theme:
+      - cosmo
+    css: styles.css
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto
+knitr:
+  opts_chunk:
+    dev: "png"
+    fig.align: "center"
+---
+
+```{r setup}
+suppressPackageStartupMessages({
+  library(targets)
+  library(dplyr)
+  library(tidyr)
+  library(ggplot2)
+  library(patchwork)
+  library(scales)
+  library(gt)
+  library(gtsummary)
+  library(stringr)
+})
+
+# Repo root'una göre _targets store'unu çöz
+project_root <- normalizePath("../..", winslash = "/", mustWork = TRUE)
+targets_store <- file.path(project_root, "_targets")
+Sys.setenv(TAR_CONFIG = file.path(project_root, "_targets.yaml"))
+tar_config_set(store = targets_store)
+
+tar_load(c(
+  df_family_ses, df_long_scored,
+  table1_family_summary_table, table1_smd_balance_table,
+  table1_balance_action_table, table1_group_counts_table,
+  propensity_balance_before_after_table,
+  propensity_weight_summary_table, propensity_overlap_summary_table,
+  ses_component_summary_table, ses_correlation_summary_table,
+  ses_diagnostics_table, ses_material_loadings_table,
+  missing_variable_summary_table, missing_group_summary_table,
+  missing_pattern_summary_table,
+  causal_dag_covariate_strategy_table
+))
+
+# Karşılaştırma için DM/Kontrol grup düzeyleri sabitle
+df_family_ses <- df_family_ses |>
+  dplyr::mutate(
+    group_f = factor(as.character(group_f), levels = c("Kontrol", "DM")),
+    cinsiyet_idx_f = factor(as.character(cinsiyet_idx_f),
+                            levels = c("Kiz", "Erkek")),
+    cinsiyet_sib_f = factor(as.character(cinsiyet_sib_f),
+                            levels = c("Kiz", "Erkek")),
+    same_sex_int = as.integer(as.character(same_sex) == "Ayni"),
+    same_sex_label = factor(ifelse(same_sex_int == 1L, "Ayni cinsiyet", "Farkli cinsiyet"),
+                            levels = c("Ayni cinsiyet", "Farkli cinsiyet")),
+    anne_antidep_f = factor(ifelse(anne_antidepresan == 1L, "Evet", "Hayir"),
+                             levels = c("Hayir", "Evet"))
+  )
+
+# Genel renk paleti
+grup_palette <- c(Kontrol = "#1f77b4", DM = "#d62728")
+theme_thesis <- function(base_size = 11) {
+  theme_minimal(base_size = base_size) +
+    theme(
+      plot.title = element_text(face = "bold"),
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_line(color = "grey90"),
+      legend.position = "top",
+      legend.title = element_blank(),
+      strip.text = element_text(face = "bold")
+    )
+}
+
+n_dm <- sum(df_family_ses$group_f == "DM")
+n_ko <- sum(df_family_ses$group_f == "Kontrol")
+n_total <- nrow(df_family_ses)
+n_long <- nrow(df_long_scored)
+```
+
+```{css, echo=FALSE}
+body {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.55;
+  color: #1f1f1f;
+  max-width: 1200px;
+}
+h1, h2, h3 {
+  color: #0f3057;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.25rem;
+}
+h2 {
+  margin-top: 2rem;
+}
+.callout-note, .callout-tip, .callout-important {
+  border-radius: 6px;
+}
+table {
+  font-size: 0.92em;
+}
+.gt_table {
+  margin-left: auto;
+  margin-right: auto;
+}
+figure {
+  margin: 1.5rem 0;
+}
+.figure-caption {
+  font-style: italic;
+  color: #555;
+  font-size: 0.9em;
+}
+```
+
+::: {.callout-note title="Rapor Kapsamı ve Veri Kilidi"}
+Bu rapor, **241 aile × 2 katılımcı = 482 satır** kanonik analiz tabanı üzerinden
+çalışmanın **demografik ve tıbbi bilgiler katmanını** raporlar. Veri kilidi
+`FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock` (2026-04-26) altında SHA-256
+hash kontrolü ile yüklenir; ham veri commit edilmez. Rapor SAP v3.0 KISIM II
+(veri katmanı), KISIM III (tanımlayıcı + denge) ve KISIM X (DM klinik
+alt-analizler) çıktılarını birleştirir.
+:::
+
+# Yönetici Özeti
+
+Bu çalışmaya **Tip 1 diyabet (T1DM) tanılı çocuk + sağlıklı kardeş + anne**
+üçlüsünden oluşan **`r n_dm` aile** ile aynı yaş bandında **sağlıklı kontrol
+grubundan `r n_ko` aile** dahil edilmiştir. Toplam **`r n_total` aile** ve
+**`r n_long` çocuk** kayıt analiz edilmiştir. DM ve kontrol grupları başlangıç
+özellikleri açısından çoğu sosyodemografik değişkende dengelidir; **anne
+antidepresan kullanımı** (SMD = 0.53), **eş eğitim durumu** (SMD = 0.32),
+**anne eğitim durumu** (SMD = 0.29) ve **aile/eş ISEI mesleki indeksleri**
+(SMD = 0.23) için ham gözlemde dengesizlik tespit edilmiştir. Bu dengesizlikler
+DAG temelli birincil ayarlama seti ve propensity-temelli stabilize IPTW
+ağırlıklamasıyla kontrol edilmiştir; ham SMD maksimumu **0.220 → 0.004** düzeyine
+düşmüştür.
+
+DM grubunda **HbA1c** verisi `r sum(!is.na(df_family_ses$hba1c))` aile
+(`r round(100 * sum(!is.na(df_family_ses$hba1c)) / n_dm, 1)`%) için mevcuttur;
+medyan = 9.0 (IQR 7.3-9.6), yani örneklemin büyük kısmı ISPAD 2022 hedef
+eşiği olan 7.0%'in üzerindedir. **Tanı yaşı** medyanı 7.8 yıl, **DM süresi**
+medyanı 3.9 yıldır. Bu profil, çoğunlukla okul çağında tanı almış ve orta-uzun
+süreli kronik bakım deneyimi olan ailelerin örneklenmiştir.
+
+\newpage
+
+# 1. Örneklem ve Aile Yapısı
+
+## 1.1 Grup Dağılımı
+
+```{r grup-dagilim, fig.cap="Şekil 1.1. DM ve kontrol gruplarında aile sayıları."}
+counts_df <- table1_group_counts_table |>
+  dplyr::mutate(group = factor(as.character(group), levels = c("Kontrol", "DM")))
+
+ggplot(counts_df, aes(x = group, y = n, fill = group)) +
+  geom_col(width = 0.55) +
+  geom_text(aes(label = n), vjust = -0.4, fontface = "bold", size = 5) +
+  scale_fill_manual(values = grup_palette, guide = "none") +
+  labs(x = NULL, y = "Aile sayısı",
+       title = "Grup başına dahil edilen aile sayısı",
+       subtitle = "Aile = 1 anne + 1 indeks çocuk + 1 kardeş") +
+  ylim(0, max(counts_df$n) * 1.15) +
+  theme_thesis()
+```
+
+DM grubunda `r n_dm`, kontrol grubunda `r n_ko` aile yer almıştır. Aileler arası
+denge sağlanmış; her aileden **bir indeks çocuk + bir kardeş + bir anne**
+katılımı zorunluluğu çalışma protokolünde sabitlenmiştir.
+
+## 1.2 Çocuk-Kardeş Yaş Dağılımı
+
+```{r cocuk-yas-dagilim, fig.cap="Şekil 1.2. Çocuk yaşı ve kardeş yaş farkı."}
+p1 <- ggplot(df_long_scored, aes(x = cocuk_yas, fill = group_f)) +
+  geom_density(alpha = 0.45, color = NA) +
+  geom_vline(xintercept = c(7, 17), linetype = "dashed", color = "grey40") +
+  scale_fill_manual(values = grup_palette) +
+  labs(x = "Çocuk yaşı (yıl)", y = "Yoğunluk",
+       title = "Çocuk yaşı dağılımı (uzun format)",
+       subtitle = "Kesikli çizgiler dahil etme aralığı (7-17 yaş)") +
+  theme_thesis()
+
+p2 <- ggplot(df_family_ses, aes(x = age_gap, fill = group_f)) +
+  geom_density(alpha = 0.45, color = NA) +
+  scale_fill_manual(values = grup_palette) +
+  labs(x = "Kardeş yaş farkı (yıl)", y = "Yoğunluk",
+       title = "Kardeş yaş farkı dağılımı") +
+  theme_thesis()
+
+p1 / p2
+```
+
+Çocuk yaşı medyanı kontrol grubunda
+`r round(median(df_family_ses$cocuk_yas[df_family_ses$group_f == "Kontrol"], na.rm = TRUE), 1)` yıl,
+DM grubunda
+`r round(median(df_family_ses$cocuk_yas[df_family_ses$group_f == "DM"], na.rm = TRUE), 1)` yıl
+düzeyinde olup gruplar arasında fark anlamsızdır. Kardeş yaş farkı medyanı
+`r round(median(df_family_ses$age_gap, na.rm = TRUE), 1)` yıl ve dağılım çift
+kuyruklu (negatif fark = kardeş indeksten yaşça büyük).
+
+## 1.3 Cinsiyet Dağılımı
+
+```{r cinsiyet-grup, fig.cap="Şekil 1.3. İndeks çocuk ve kardeş cinsiyetinin grup bazlı dağılımı."}
+cins_df <- df_family_ses |>
+  dplyr::select(group_f, cinsiyet_idx_f, cinsiyet_sib_f) |>
+  tidyr::pivot_longer(cols = c(cinsiyet_idx_f, cinsiyet_sib_f),
+                       names_to = "rol", values_to = "cinsiyet") |>
+  dplyr::mutate(
+    rol = ifelse(rol == "cinsiyet_idx_f", "İndeks çocuk", "Kardeş"),
+    cinsiyet = factor(cinsiyet, levels = c("Kiz", "Erkek"))
+  )
+
+ggplot(cins_df, aes(x = group_f, fill = cinsiyet)) +
+  geom_bar(position = "fill", color = "white", linewidth = 0.4) +
+  facet_wrap(~ rol) +
+  scale_y_continuous(labels = percent_format()) +
+  scale_fill_manual(values = c("Kiz" = "#e68fac", "Erkek" = "#5b8def")) +
+  labs(x = NULL, y = "Oran",
+       title = "İndeks çocuk ve kardeş cinsiyet oranları (grup × rol)") +
+  theme_thesis()
+```
+
+```{r same-sex, fig.cap="Şekil 1.4. Kardeş çiftinin aynı veya farklı cinsiyet olma oranı.", fig.height=4}
+ss_df <- df_family_ses |>
+  dplyr::count(group_f, same_sex_label) |>
+  dplyr::group_by(group_f) |>
+  dplyr::mutate(prop = n / sum(n)) |>
+  dplyr::ungroup()
+
+ggplot(ss_df, aes(x = group_f, y = prop, fill = same_sex_label)) +
+  geom_col(position = "fill", color = "white", linewidth = 0.4) +
+  geom_text(aes(label = sprintf("%d (%%%.1f)", n, 100 * prop)),
+            position = position_fill(vjust = 0.5),
+            color = "white", fontface = "bold") +
+  scale_y_continuous(labels = percent_format()) +
+  scale_fill_manual(values = c("Ayni cinsiyet" = "#7e57c2",
+                                "Farkli cinsiyet" = "#26a69a")) +
+  labs(x = NULL, y = "Oran",
+       title = "Kardeş çifti cinsiyet kompozisyonu") +
+  theme_thesis()
+```
+
+Aynı cinsiyet kardeş çifti oranı kontrol grubunda
+`r sprintf("%%%.1f", 100 * mean(df_family_ses$same_sex_int[df_family_ses$group_f == "Kontrol"]))`,
+DM grubunda
+`r sprintf("%%%.1f", 100 * mean(df_family_ses$same_sex_int[df_family_ses$group_f == "DM"]))`
+düzeyinde olup grupları arası fark sınır altıdır (SMD = 0.03).
+
+## 1.4 Aile Büyüklüğü
+
+```{r aile-buyuklugu, fig.cap="Şekil 1.5. Aile başına çocuk sayısı dağılımı.", fig.height=4}
+ggplot(df_family_ses, aes(x = factor(cocuk_sayisi), fill = group_f)) +
+  geom_bar(position = position_dodge(width = 0.85), color = "white",
+            linewidth = 0.3) +
+  scale_fill_manual(values = grup_palette) +
+  labs(x = "Aile başına çocuk sayısı", y = "Aile sayısı",
+       title = "Aile büyüklüğü grup bazında dağılım") +
+  theme_thesis()
+```
+
+\newpage
+
+# 2. Anne Demografik ve Klinik Profili
+
+## 2.1 Anne Yaşı
+
+```{r anne-yas, fig.cap="Şekil 2.1. Anne yaş dağılımı (boxplot + densitiy overlay).", fig.height=4}
+ggplot(df_family_ses, aes(x = group_f, y = anne_yas, fill = group_f)) +
+  geom_violin(alpha = 0.4, color = NA) +
+  geom_boxplot(width = 0.18, fill = "white", outlier.size = 1.2) +
+  scale_fill_manual(values = grup_palette, guide = "none") +
+  labs(x = NULL, y = "Anne yaşı (yıl)",
+       title = "Anne yaşı grup bazında dağılım",
+       subtitle = sprintf("Medyan Kontrol = %.1f, DM = %.1f; SMD = 0.21",
+                          median(df_family_ses$anne_yas[df_family_ses$group_f == "Kontrol"], na.rm = TRUE),
+                          median(df_family_ses$anne_yas[df_family_ses$group_f == "DM"], na.rm = TRUE))) +
+  theme_thesis()
+```
+
+DM grubunda anneler kontrol grubuna göre yaklaşık 1 yıl daha yaşlıdır
+(SMD = 0.21, "dengesiz" eşiği). Bu fark KISIM III propensity ayarlamasında
+kovaryat olarak yer alır.
+
+## 2.2 Anne Beck Depresyon Profili
+
+```{r beck-grup, fig.cap="Şekil 2.2. Anne Beck Depresyon toplam puan dağılımı."}
+beck_thresholds <- data.frame(
+  esik = c(0, 10, 17, 21, 31),
+  etiket = c("Minimal", "Hafif", "Orta", "Şiddetli", "Çok şiddetli")
+)
+
+p_beck1 <- ggplot(df_family_ses, aes(x = beck_total, fill = group_f)) +
+  geom_histogram(binwidth = 2, position = "identity", alpha = 0.55,
+                  color = "white", linewidth = 0.2) +
+  geom_vline(xintercept = c(10, 17, 21, 31), linetype = "dashed",
+             color = "grey40") +
+  scale_fill_manual(values = grup_palette) +
+  annotate("text", x = c(5, 13.5, 19, 26, 36), y = 18, hjust = 0.5,
+            label = c("Minimal", "Hafif", "Orta", "Şiddetli", "Çok\nşiddetli"),
+            size = 3, color = "grey30") +
+  labs(x = "Beck toplam puan", y = "Aile sayısı",
+       title = "Beck Depresyon Envanteri toplam puanı",
+       subtitle = "Eşikler: ≤9 minimal, 10-16 hafif, 17-20 orta, 21-30 şiddetli, ≥31 çok şiddetli") +
+  theme_thesis()
+
+p_beck1
+```
+
+```{r beck-severity, fig.cap="Şekil 2.3. Beck şiddet kategorisi grup × kullanım."}
+beck_severity_df <- df_family_ses |>
+  dplyr::mutate(
+    severity = cut(beck_total,
+                    breaks = c(-Inf, 9, 16, 20, 30, Inf),
+                    labels = c("Minimal", "Hafif", "Orta", "Şiddetli", "Çok şiddetli"))
+  ) |>
+  dplyr::filter(!is.na(severity)) |>
+  dplyr::count(group_f, severity) |>
+  dplyr::group_by(group_f) |>
+  dplyr::mutate(prop = n / sum(n)) |>
+  dplyr::ungroup()
+
+ggplot(beck_severity_df, aes(x = severity, y = prop, fill = group_f)) +
+  geom_col(position = position_dodge(width = 0.8), color = "white",
+            linewidth = 0.3) +
+  geom_text(aes(label = sprintf("%d", n)),
+            position = position_dodge(width = 0.8),
+            vjust = -0.3, size = 3.2) +
+  scale_y_continuous(labels = percent_format()) +
+  scale_fill_manual(values = grup_palette) +
+  labs(x = "Beck şiddet kategorisi", y = "Oran (grup içi)",
+       title = "Anne depresyon şiddet kategorisi grup bazında") +
+  theme_thesis()
+```
+
+## 2.3 Antidepresan Kullanımı
+
+```{r antidep, fig.cap="Şekil 2.4. Anne antidepresan kullanım oranı (DM × Kontrol).", fig.height=4}
+antidep_df <- df_family_ses |>
+  dplyr::count(group_f, anne_antidep_f) |>
+  dplyr::group_by(group_f) |>
+  dplyr::mutate(prop = n / sum(n)) |>
+  dplyr::ungroup()
+
+ggplot(antidep_df, aes(x = group_f, y = prop, fill = anne_antidep_f)) +
+  geom_col(position = "fill", color = "white", linewidth = 0.4) +
+  geom_text(aes(label = sprintf("%d (%%%.0f)", n, 100 * prop)),
+            position = position_fill(vjust = 0.5),
+            color = "white", fontface = "bold") +
+  scale_y_continuous(labels = percent_format()) +
+  scale_fill_manual(values = c("Hayir" = "#9e9e9e", "Evet" = "#e53935")) +
+  labs(x = NULL, y = "Oran",
+       title = "Anne antidepresan kullanımı",
+       subtitle = "DM grubu Kontrol grubundan ~3.2 kat yüksek (SMD = 0.53)") +
+  theme_thesis()
+```
+
+DM grubunda anne antidepresan kullanım oranı **`r sprintf("%%%.1f", 100 * mean(df_family_ses$anne_antidepresan[df_family_ses$group_f == "DM"] == 1))`**
+iken kontrol grubunda **`r sprintf("%%%.1f", 100 * mean(df_family_ses$anne_antidepresan[df_family_ses$group_f == "Kontrol"] == 1))`** düzeyindedir
+(SMD = 0.53, "ciddi dengesizlik" eşiği). Bu, çalışmadaki en güçlü dengesizliktir
+ve H3 anne öz-rapor analizinde stratifiye duyarlılık ile ele alınmıştır
+(KISIM V/14.2).
+
+\newpage
+
+# 3. Sosyoekonomik Durum (SES)
+
+## 3.1 SES Kompozit Yapı
+
+```{r ses-component-table}
+ses_component_summary_table |>
+  dplyr::select(component, n, mean, sd, min, max) |>
+  gt() |>
+  tab_header(title = md("**Tablo 3.1.** SES bileşenleri tanımlayıcı istatistikler"),
+              subtitle = "Üç-katmanlı kompozit (eğitim · meslek/ISEI · materyal)") |>
+  fmt_number(columns = c(mean, sd, min, max), decimals = 2) |>
+  cols_label(
+    component = "Bileşen", n = "n", mean = "Ortalama", sd = "SS",
+    min = "Min", max = "Maks"
+  ) |>
+  tab_options(table.width = pct(95))
+```
+
+## 3.2 SES Latent Skoru Dağılımı
+
+```{r ses-density, fig.cap="Şekil 3.1. SES latent skor dağılımı (DM × Kontrol).", fig.height=4}
+ggplot(df_family_ses, aes(x = ses_latent, fill = group_f)) +
+  geom_density(alpha = 0.45, color = NA) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey40") +
+  scale_fill_manual(values = grup_palette) +
+  labs(x = "SES latent skoru (z-standart)", y = "Yoğunluk",
+       title = "Latent SES kompozit grup bazında",
+       subtitle = "Z-standartize, ortalama = 0; SMD ham = 0.03 (iyi denge)") +
+  theme_thesis()
+```
+
+Latent SES kompozitinde gruplar arası fark sınır altıdır (SMD = 0.03). Eğitim
+ve mesleki indeks (ISEI) bileşenleri ham gözlemde dengesizlik göstermiş, ancak
+latent kompozit bunları ortak bir varyans yapısı altında dengelemiştir.
+
+## 3.3 Eğitim Durumu
+
+```{r egitim, fig.cap="Şekil 3.2. Anne ve eş eğitim durumu grup bazında."}
+edu_levels <- c("İlkokul", "Ortaokul", "Lise", "Önlisans", "Lisans", "Lisansüstü")
+
+# Sayıları hızlıca hesapla
+egitim_df <- df_family_ses |>
+  dplyr::select(group_f, egitim_durumu, es_egitim_durumu) |>
+  tidyr::pivot_longer(cols = c(egitim_durumu, es_egitim_durumu),
+                       names_to = "kim", values_to = "edu") |>
+  dplyr::mutate(
+    kim = ifelse(kim == "egitim_durumu", "Anne", "Eş"),
+    edu = factor(edu)
+  ) |>
+  dplyr::filter(!is.na(edu)) |>
+  dplyr::count(group_f, kim, edu) |>
+  dplyr::group_by(group_f, kim) |>
+  dplyr::mutate(prop = n / sum(n)) |>
+  dplyr::ungroup()
+
+ggplot(egitim_df, aes(x = factor(edu), y = prop, fill = group_f)) +
+  geom_col(position = position_dodge(width = 0.8), color = "white",
+            linewidth = 0.3) +
+  facet_wrap(~ kim, ncol = 1) +
+  scale_y_continuous(labels = percent_format()) +
+  scale_fill_manual(values = grup_palette) +
+  labs(x = "Eğitim seviyesi (kodlu)", y = "Oran (grup içi)",
+       title = "Anne ve eş eğitim seviyesi",
+       subtitle = "SMD: Anne = 0.29, Eş = 0.32 (her ikisi de dengesiz eşiğinde)") +
+  theme_thesis()
+```
+
+\newpage
+
+# 4. DM Klinik Profili (DM-only Alt-Analizler — n = `r n_dm`)
+
+## 4.1 DM Klinik Veri Tamamlanma Profili
+
+```{r dm-eksik, fig.cap="Şekil 4.1. DM grubu klinik gösterge veri tamamlanma oranları.", fig.height=4}
+dm_only <- df_family_ses |> dplyr::filter(group_f == "DM")
+
+dm_completion <- data.frame(
+  variable = c("HbA1c", "DM süresi", "Tanı yaşı", "Anne Beck", "SES latent"),
+  n_observed = c(
+    sum(!is.na(dm_only$hba1c)),
+    sum(!is.na(dm_only$dm_yili)),
+    sum(!is.na(dm_only$tani_yasi)),
+    sum(!is.na(dm_only$beck_total)),
+    sum(!is.na(dm_only$ses_latent))
+  ),
+  n_total = nrow(dm_only)
+) |>
+  dplyr::mutate(
+    n_missing = n_total - n_observed,
+    pct_observed = 100 * n_observed / n_total,
+    variable = forcats::fct_reorder(variable, pct_observed)
+  )
+
+ggplot(dm_completion, aes(x = pct_observed, y = variable)) +
+  geom_col(fill = "#1976d2", width = 0.6) +
+  geom_text(aes(label = sprintf("%d / %d (%%%.1f)",
+                                  n_observed, n_total, pct_observed)),
+            hjust = -0.05, size = 3.5) +
+  scale_x_continuous(limits = c(0, 115),
+                      breaks = c(0, 25, 50, 75, 100), labels = paste0(c(0, 25, 50, 75, 100), "%")) +
+  labs(x = "Tamamlanma oranı", y = NULL,
+       title = "DM grubu (n = 120) klinik gösterge tamamlanma oranı",
+       subtitle = "HbA1c sınırlı (n=39, %32.5) — kural #19 imputation yapılmaz") +
+  theme_thesis() +
+  theme(panel.grid.major.y = element_blank())
+```
+
+::: {.callout-important title="HbA1c Veri Sınırlılığı"}
+HbA1c yalnızca **`r sum(!is.na(dm_only$hba1c))`/`r n_dm` (%32.5)** DM ailede
+mevcuttur. Klinik biyobelirteçler imputasyona tabi tutulmaz (proje davranış
+kuralı #19). Bu nedenle KISIM X HbA1c × ebeveynlik etkileşim analizi
+**keşifsel** etiketle yürütülmüş ve güç sınırlamasıyla yorumlanmıştır.
+:::
+
+## 4.2 HbA1c Dağılımı
+
+```{r hba1c, fig.cap="Şekil 4.2. DM grubu HbA1c dağılımı (n=39); ISPAD 2022 hedef eşikleri.", fig.height=4}
+ispad_thresholds <- data.frame(
+  esik = c(7, 7.5, 9),
+  etiket = c("ISPAD hedef\n(<7%)", "Hedef üstü\n(7-7.5%)", "Yüksek risk\n(>9%)")
+)
+
+ggplot(dm_only |> dplyr::filter(!is.na(hba1c)),
+        aes(x = hba1c)) +
+  geom_histogram(binwidth = 0.5, fill = "#d62728", color = "white",
+                  linewidth = 0.3, alpha = 0.85) +
+  geom_vline(xintercept = c(7, 7.5, 9), linetype = "dashed",
+              color = "grey20") +
+  annotate("text", x = c(6.5, 7.25, 9.6), y = 8, vjust = -0.5,
+            hjust = 0.5,
+            label = c("ISPAD\nhedef", "Hedef\nüstü", "Yüksek\nrisk"),
+            size = 3, color = "grey20") +
+  labs(x = "HbA1c (%)", y = "Aile sayısı",
+       title = "DM grubu HbA1c dağılımı",
+       subtitle = sprintf("n = %d, medyan = %.1f%%, IQR [%.1f, %.1f]",
+                          sum(!is.na(dm_only$hba1c)),
+                          median(dm_only$hba1c, na.rm = TRUE),
+                          quantile(dm_only$hba1c, 0.25, na.rm = TRUE),
+                          quantile(dm_only$hba1c, 0.75, na.rm = TRUE))) +
+  theme_thesis()
+```
+
+```{r hba1c-target, fig.cap="Şekil 4.3. HbA1c hedef bölgesi içindeki ailelerin oranı.", fig.height=3.5}
+hba1c_obs <- dm_only |> dplyr::filter(!is.na(hba1c))
+hba1c_obs$kategori <- cut(hba1c_obs$hba1c,
+                           breaks = c(-Inf, 7, 9, Inf),
+                           labels = c("Hedefte (<7%)",
+                                      "Hedef üstü (7-9%)",
+                                      "Yüksek risk (>9%)"))
+hba1c_cat_df <- hba1c_obs |>
+  dplyr::count(kategori) |>
+  dplyr::mutate(prop = n / sum(n))
+
+ggplot(hba1c_cat_df, aes(x = kategori, y = n, fill = kategori)) +
+  geom_col(width = 0.55) +
+  geom_text(aes(label = sprintf("n = %d (%%%.1f)", n, 100 * prop)),
+            vjust = -0.4, fontface = "bold", size = 4) +
+  scale_fill_manual(values = c("Hedefte (<7%)" = "#43a047",
+                                 "Hedef üstü (7-9%)" = "#fb8c00",
+                                 "Yüksek risk (>9%)" = "#e53935")) +
+  ylim(0, max(hba1c_cat_df$n) * 1.2) +
+  labs(x = NULL, y = "Aile sayısı",
+       title = "HbA1c kategorik dağılımı (DM, n = 39)") +
+  theme_thesis() +
+  theme(legend.position = "none")
+```
+
+## 4.3 DM Süresi ve Tanı Yaşı
+
+```{r dm-suresi, fig.cap="Şekil 4.4. DM süresi ve tanı yaşı dağılımları (n = 120)."}
+p_dur <- ggplot(dm_only |> dplyr::filter(!is.na(dm_yili)),
+                 aes(x = dm_yili)) +
+  geom_histogram(binwidth = 1, fill = "#d62728", color = "white",
+                  linewidth = 0.3, alpha = 0.85) +
+  geom_vline(xintercept = median(dm_only$dm_yili, na.rm = TRUE),
+              linetype = "dashed", color = "grey20") +
+  labs(x = "DM süresi (yıl)", y = "Aile sayısı",
+       title = "DM süresi (DM-only, n = 120)",
+       subtitle = sprintf("Medyan = %.1f yıl, IQR [%.1f, %.1f]",
+                          median(dm_only$dm_yili, na.rm = TRUE),
+                          quantile(dm_only$dm_yili, 0.25, na.rm = TRUE),
+                          quantile(dm_only$dm_yili, 0.75, na.rm = TRUE))) +
+  theme_thesis()
+
+p_tani <- ggplot(dm_only |> dplyr::filter(!is.na(tani_yasi)),
+                  aes(x = tani_yasi)) +
+  geom_histogram(binwidth = 1, fill = "#5e35b1", color = "white",
+                  linewidth = 0.3, alpha = 0.85) +
+  geom_vline(xintercept = c(5, 10), linetype = "dashed", color = "grey20") +
+  annotate("text", x = c(2.5, 7.5, 12), y = 18,
+            label = c("Erken\n(<5y)", "Okul\n(5-10y)", "Ergen\n(≥10y)"),
+            size = 3, color = "grey20") +
+  labs(x = "Tanı yaşı (yıl)", y = "Aile sayısı",
+       title = "DM tanı yaşı stratifikasyonu",
+       subtitle = sprintf("Medyan = %.1f yıl, IQR [%.1f, %.1f]",
+                          median(dm_only$tani_yasi, na.rm = TRUE),
+                          quantile(dm_only$tani_yasi, 0.25, na.rm = TRUE),
+                          quantile(dm_only$tani_yasi, 0.75, na.rm = TRUE))) +
+  theme_thesis()
+
+p_dur / p_tani
+```
+
+```{r tani-strata, fig.cap="Şekil 4.5. Tanı yaşı 3-strata dağılımı.", fig.height=3.5}
+strata_df <- dm_only |>
+  dplyr::filter(!is.na(tani_yasi)) |>
+  dplyr::mutate(
+    strata = cut(tani_yasi,
+                  breaks = c(-Inf, 5, 10, Inf),
+                  labels = c("Erken (<5y)", "Okul (5-10y)", "Ergen (≥10y)"),
+                  right = FALSE)
+  ) |>
+  dplyr::count(strata) |>
+  dplyr::mutate(prop = n / sum(n))
+
+ggplot(strata_df, aes(x = strata, y = n, fill = strata)) +
+  geom_col(width = 0.55) +
+  geom_text(aes(label = sprintf("n = %d (%%%.1f)", n, 100 * prop)),
+            vjust = -0.4, fontface = "bold", size = 4.5) +
+  scale_fill_manual(values = c("Erken (<5y)" = "#1565c0",
+                                 "Okul (5-10y)" = "#43a047",
+                                 "Ergen (≥10y)" = "#fb8c00")) +
+  ylim(0, max(strata_df$n) * 1.15) +
+  labs(x = NULL, y = "Aile sayısı",
+       title = "DM tanı yaşı 3-strata") +
+  theme_thesis() +
+  theme(legend.position = "none")
+```
+
+\newpage
+
+# 5. Tablo 1 — Kapsamlı Aile Özelliği Karşılaştırması
+
+```{r tablo1-gtsummary}
+df_tab1 <- df_family_ses |>
+  dplyr::transmute(
+    `Anne yaşı (yıl)` = anne_yas,
+    `Çocuk yaşı (yıl)` = cocuk_yas,
+    `Kardeş yaş farkı (yıl)` = age_gap,
+    `Çocuk sayısı` = cocuk_sayisi,
+    `Aynı cinsiyet kardeş` = same_sex_label,
+    `Anne eğitim seviyesi` = factor(egitim_durumu),
+    `Eş eğitim seviyesi` = factor(es_egitim_durumu),
+    `Aile ISEI-08` = aile_isei08,
+    `Eş ISEI-08` = es_isei08,
+    `Latent SES skoru` = ses_latent,
+    `Anne antidepresan kullanımı` = anne_antidep_f,
+    `Beck toplam puan` = beck_total,
+    `Anne kronik hastalık (varsa)` = factor(kronik_hastalik_durumu),
+    `Eş çalışma durumu` = factor(es_calisma_durumu),
+    `Araba sahipliği` = factor(arabaniz_var_mi),
+    `Ev oda sayısı` = ev_oda_sayisi,
+    Grup = group_f
+  )
+
+t1 <- df_tab1 |>
+  tbl_summary(
+    by = Grup,
+    statistic = list(
+      all_continuous() ~ "{median} ({p25}, {p75})",
+      all_categorical() ~ "{n} (%{p})"
+    ),
+    digits = list(all_continuous() ~ 1),
+    missing_text = "Eksik"
+  ) |>
+  add_p(test = list(all_continuous() ~ "wilcox.test",
+                     all_categorical() ~ "fisher.test")) |>
+  add_overall(last = TRUE) |>
+  modify_caption("**Tablo 5.1.** Kanonik analiz tabanı (n = 241 aile) Tablo 1: medyan (Q1, Q3) veya n (%)") |>
+  modify_header(label = "**Değişken**")
+t1
+```
+
+\newpage
+
+# 6. Standardize Edilmiş Ortalama Farkı (SMD) Dengesi
+
+## 6.1 SMD Forest (Love) Plot
+
+```{r smd-love, fig.cap="Şekil 6.1. Tüm kovaryatlar için SMD denge denetim haritası.", fig.height=6}
+smd_plot_df <- table1_smd_balance_table |>
+  dplyr::filter(!is.na(smd)) |>
+  dplyr::mutate(
+    label = factor(label, levels = label[order(abs_smd)]),
+    flag_color = dplyr::case_when(
+      balance_flag == "ciddi_dengesizlik" ~ "Ciddi dengesizlik",
+      balance_flag == "dengesiz"          ~ "Dengesiz",
+      balance_flag == "sinirda"           ~ "Sınırda",
+      TRUE                                ~ "İyi denge"
+    ),
+    flag_color = factor(flag_color,
+                         levels = c("İyi denge", "Sınırda",
+                                    "Dengesiz", "Ciddi dengesizlik"))
+  )
+
+ggplot(smd_plot_df, aes(x = abs_smd, y = label, color = flag_color)) +
+  geom_segment(aes(x = 0, xend = abs_smd, yend = label),
+                linewidth = 0.4, alpha = 0.6) +
+  geom_point(size = 2.5) +
+  geom_vline(xintercept = c(0.10, 0.25), linetype = "dashed",
+             color = "grey40") +
+  scale_color_manual(values = c("İyi denge" = "#43a047",
+                                  "Sınırda" = "#fb8c00",
+                                  "Dengesiz" = "#e53935",
+                                  "Ciddi dengesizlik" = "#7b1fa2")) +
+  labs(x = "|SMD|", y = NULL,
+       title = "Kovaryat dengesi — DM × Kontrol (ham gözlem)",
+       subtitle = "Eşikler: |SMD|<0.10 iyi denge, 0.10-0.25 sınırda, ≥0.25 dengesiz, ≥0.50 ciddi") +
+  theme_thesis() +
+  theme(legend.position = "right",
+        legend.title = element_blank())
+```
+
+## 6.2 Denge Eylem Planı
+
+```{r tablo-smd-action}
+table1_balance_action_table |>
+  gt() |>
+  tab_header(title = md("**Tablo 6.1.** SMD denge eşiklerine göre eylem planı"),
+              subtitle = "Birincil eşik: |SMD| < 0.10 (Austin 2009)") |>
+  tab_options(table.width = pct(95))
+```
+
+\newpage
+
+# 7. Causal DAG ve Propensity Score Hattı
+
+## 7.1 Causal DAG Stratejisi
+
+::: {.callout-note title="Birincil ayarlama seti"}
+DAG-temelli birincil kovaryat seti: **`r causal_dag_covariate_strategy_table$adjustment_set[1]`**.
+Mediator/duyarlılık kovaryatları (Beck, EMBU-P, anne antidepresan) total-effect
+modellerinde ayarlanmaz; aracılık (KISIM VI) ve duyarlılık (KISIM XI/35
+sensemakr) hatlarında ayrıca işlenir.
+:::
+
+```{r dag-strategy}
+causal_dag_covariate_strategy_table |>
+  gt() |>
+  tab_header(title = md("**Tablo 7.1.** Causal DAG kovaryat stratejisi")) |>
+  tab_options(table.width = pct(95))
+```
+
+## 7.2 Propensity Score Dağılımı
+
+```{r ps-density, fig.cap="Şekil 7.1. Propensity score dağılımı ve overlap (DM × Kontrol).", fig.height=4}
+# IPTW veriyi yükle
+tar_load(df_family_propensity)
+
+p_ps <- ggplot(df_family_propensity, aes(x = ps_logit, fill = group_f)) +
+  geom_density(alpha = 0.45, color = NA) +
+  scale_fill_manual(values = grup_palette) +
+  labs(x = "Logit propensity score", y = "Yoğunluk",
+       title = "Logit PS dağılımı",
+       subtitle = "Ortak destek bandı (common support) maksimum çakışma kontrolü") +
+  theme_thesis()
+p_ps
+```
+
+```{r ps-overlap}
+propensity_overlap_summary_table |>
+  gt() |>
+  tab_header(title = md("**Tablo 7.2.** Common support analizi")) |>
+  fmt_number(columns = where(is.numeric), decimals = 3) |>
+  tab_options(table.width = pct(95))
+```
+
+## 7.3 IPTW Sonrası Denge
+
+```{r iptw-balance, fig.cap="Şekil 7.2. IPTW öncesi vs sonrası SMD karşılaştırması.", fig.height=4.5}
+iptw_df <- propensity_balance_before_after_table |>
+  dplyr::filter(!is.na(smd_before), !is.na(smd_iptw)) |>
+  dplyr::mutate(
+    abs_before = abs(smd_before),
+    abs_after  = abs(smd_iptw),
+    variable_label = factor(variable, levels = variable[order(abs_before)])
+  )
+
+ggplot(iptw_df) +
+  geom_segment(aes(x = abs_before, xend = abs_after,
+                    y = variable_label, yend = variable_label),
+                color = "grey60", arrow = arrow(length = unit(0.18, "cm"))) +
+  geom_point(aes(x = abs_before, y = variable_label, color = "Ham"), size = 3) +
+  geom_point(aes(x = abs_after, y = variable_label, color = "IPTW"), size = 3) +
+  geom_vline(xintercept = c(0.10, 0.25), linetype = "dashed", color = "grey40") +
+  scale_color_manual(values = c("Ham" = "#e53935", "IPTW" = "#43a047")) +
+  labs(x = "|SMD|", y = NULL,
+       title = "IPTW dengeleme etkisi (ham → ağırlıklı)",
+       subtitle = "Maksimum SMD 0.220 → 0.004 düzeyine düştü") +
+  theme_thesis() +
+  theme(legend.position = "top",
+        legend.title = element_blank())
+```
+
+```{r iptw-weights}
+propensity_weight_summary_table |>
+  gt() |>
+  tab_header(title = md("**Tablo 7.3.** IPTW ağırlık özeti"),
+              subtitle = "Stabilize ağırlık + 99. persentil trim") |>
+  fmt_number(columns = where(is.numeric), decimals = 3) |>
+  tab_options(table.width = pct(95))
+```
+
+\newpage
+
+# 8. Eksik Veri Profili
+
+## 8.1 Değişken Düzeyi Eksiklik
+
+```{r eksik-degisken, fig.cap="Şekil 8.1. Aile düzeyi değişkenlerde eksik veri oranı.", fig.height=5}
+miss_df <- missing_variable_summary_table |>
+  dplyr::arrange(dplyr::desc(missing_pct)) |>
+  dplyr::filter(missing_pct > 0) |>
+  dplyr::mutate(
+    variable = forcats::fct_reorder(variable, missing_pct),
+    color_class = dplyr::case_when(
+      missing_pct < 5  ~ "Düşük (<5%)",
+      missing_pct < 20 ~ "Orta (5-20%)",
+      missing_pct < 50 ~ "Yüksek (20-50%)",
+      TRUE             ~ "Çok yüksek (>50%)"
+    ),
+    color_class = factor(color_class,
+                          levels = c("Düşük (<5%)", "Orta (5-20%)",
+                                     "Yüksek (20-50%)", "Çok yüksek (>50%)"))
+  )
+
+ggplot(miss_df, aes(x = missing_pct, y = variable, fill = color_class)) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = sprintf("%d / %d (%%%.1f)",
+                                  missing_n, n, missing_pct)),
+            hjust = -0.05, size = 3) +
+  scale_fill_manual(values = c("Düşük (<5%)" = "#43a047",
+                                 "Orta (5-20%)" = "#fb8c00",
+                                 "Yüksek (20-50%)" = "#e53935",
+                                 "Çok yüksek (>50%)" = "#7b1fa2")) +
+  scale_x_continuous(limits = c(0, 100), labels = paste0(c(0, 25, 50, 75, 100), "%"),
+                      breaks = c(0, 25, 50, 75, 100)) +
+  labs(x = "Eksik oran", y = NULL,
+       title = "Aile-düzeyi değişkenlerde eksik veri",
+       subtitle = "HbA1c yapısal eksiklik (DM-only); diğerleri rastgele veya MAR") +
+  theme_thesis() +
+  theme(legend.position = "right", legend.title = element_blank())
+```
+
+## 8.2 Grup × Eksiklik Karşılaştırması
+
+```{r eksik-grup}
+missing_group_summary_table |>
+  dplyr::filter(missing_pct > 0) |>
+  dplyr::select(variable, block, group, n, missing_n, missing_pct,
+                analytic_missing_pct) |>
+  tidyr::pivot_wider(
+    id_cols = c(variable, block),
+    names_from = group,
+    values_from = c(missing_pct, analytic_missing_pct),
+    names_glue = "{group}_{.value}"
+  ) |>
+  dplyr::mutate(
+    fark_pct = abs((DM_missing_pct |> tidyr::replace_na(0)) -
+                    (Kontrol_missing_pct |> tidyr::replace_na(0)))
+  ) |>
+  dplyr::arrange(dplyr::desc(fark_pct)) |>
+  dplyr::filter(fark_pct > 0.5) |>
+  utils::head(15) |>
+  gt() |>
+  tab_header(title = md("**Tablo 8.1.** DM × Kontrol grup × eksiklik farkı"),
+              subtitle = "Mutlak fark > 0.5 yüzde puan olan ilk 15 değişken") |>
+  fmt_number(columns = where(is.numeric), decimals = 1) |>
+  tab_options(table.width = pct(95))
+```
+
+::: {.callout-note title="Yapısal Eksiklik (Kural #19)"}
+**HbA1c** ve **dm_yili** kontrol grubunda **tasarım kaynaklı yapısal eksikliktir**;
+imputasyona alınmaz. DM grubunda **HbA1c** %32.5 tamamlanma oranı ile sınırlı
+ve klinik biyobelirteç tahmini doğru olmayacağından **DM-only sensitivity**
+analizi olarak yürütülmüştür.
+
+Diğer aile-düzeyi sosyodemografik eksiklikler MAR varsayımı altında MI (m=50,
+maxit=30) ve FIML çerçevelerinde işlenir; NMAR delta-adjustment grid sensitivity
+hattında raporlanır (KISIM II/8).
+:::
+
+\newpage
+
+# 9. Sonuç ve Bulgu Sentezi
+
+```{r sonuc-tablo}
+sonuc <- tibble::tibble(
+  bolum = c(
+    "Aile yapısı",
+    "Yaş ve cinsiyet",
+    "Anne ruh sağlığı",
+    "SES",
+    "DM klinik profili",
+    "DM süresi ve tanı yaşı",
+    "Kovaryat dengesi (IPTW)",
+    "Eksik veri"
+  ),
+  ana_bulgu = c(
+    "241 aile = 120 DM + 121 Kontrol; aile içi indeks + kardeş + anne üçlüsü",
+    "Anne yaşı SMD = 0.21 (dengesiz); çocuk yaşı ve cinsiyet dengeli",
+    "Anne antidepresan SMD = 0.53 (ciddi dengesiz); DM grubu Kontrol'den 3.2× yüksek",
+    "Eğitim ve mesleki indeks ham SMD ≈ 0.23-0.32; latent SES kompozit dengeli (SMD = 0.03)",
+    "HbA1c medyan 9.0% (ISPAD hedefin üzerinde); n_observed = 39 (%32.5)",
+    "Medyan süre 3.9 yıl; tanı yaşı medyanı 7.8 yıl (okul çağı baskın)",
+    "Maksimum |SMD| 0.220 (ham) → 0.004 (IPTW)",
+    "HbA1c yapısal; aile-düzeyi sosyodemografi MAR; MI m=50 + FIML + NMAR delta"
+  ),
+  implikasyon = c(
+    "Aileler arası bağımsızlık geçerli; aile içi multilevel model zorunlu",
+    "Anne yaş kovaryat olarak DAG-justified ayarlama setinde",
+    "H3 anne öz-rapor analizinde stratifiye sensitivity zorunlu (KISIM V/14.2)",
+    "Latent SES birincil kovaryat; Hollingshead alternatif sensitivity",
+    "KISIM X HbA1c × parenting analizi keşifsel (kural #19); imputation yok",
+    "DM süresi spline cubic vs lineer LRT: linear sufficient",
+    "Doubly-robust ANCOVA + IPTW H3 birincil hattında raporlanır",
+    "Üç katmanlı çerçeve (FIML/MI/Sensitivity) tüm primer modeller için"
+  )
+)
+
+sonuc |>
+  gt() |>
+  tab_header(title = md("**Tablo 9.1.** Demografik + tıbbi katman bulgu sentezi")) |>
+  cols_label(
+    bolum = "Bölüm",
+    ana_bulgu = "Ana Bulgu",
+    implikasyon = "Klinik / Metodolojik İmplikasyon"
+  ) |>
+  cols_width(
+    bolum ~ pct(20),
+    ana_bulgu ~ pct(40),
+    implikasyon ~ pct(40)
+  ) |>
+  tab_options(table.width = pct(100),
+              table.font.size = px(13))
+```
+
+## 9.1 Sonraki Adımlar
+
+Bu rapor, çalışmanın **demografik ve tıbbi katman** çıktılarını birleştirir.
+Bir sonraki katmanda yer alan analizler:
+
+1. **Psikometrik validasyon** (KISIM IV — ayrı doküman): EMBU-P/C 4-faktör CFA,
+   Beck tek-faktör/iki-faktör, KİA 4-faktör, ω + α güvenirlik, ölçüm değişmezliği.
+2. **Birincil hipotez testleri** (KISIM V):
+   - H1 çocuk algısı multilevel ANCOVA (n = 482)
+   - H2 kardeş ilişkisi APIM + Olsen-Kenny dyadic CFA
+   - H3 anne öz-rapor ANCOVA + IPTW + antidepresan stratifikasyon
+   - H4 Beck → EMBU-P latent SEM (WLSMV)
+   - H5 anne ↔ çocuk diadik tutarlılık (5 paralel strateji — birincil yenilik)
+3. **Genişletilmiş analiz katmanları** (KISIM VI-X): mediation, latent profil
+   analizi, network, klinik fayda, DM-only alt-analizler.
+4. **Sensitivite üçlüsü** (KISIM XI): multiverse + TOST + sensemakr +
+   negative control + falsification.
+5. **Bayesian paralel hat** (KISIM XII): brms + Pinquart prior + Savage-Dickey BF.
+
+::: {.callout-tip title="Reprodüksiyon"}
+Bu raporu yeniden üretmek için:
+```bash
+quarto render docs/raporlar/01_demografik_tibbi_rapor.qmd
+```
+Tüm çıktılar `_targets` cache'inden okunur ve kanonik veri kilidi
+SHA-256 hash kontrolü ile doğrulanır.
+:::
+
+---
+
+```{r footer}
+cat(sprintf("Rapor son render: %s · Pipeline %d hedef · Kanonik veri: 241 aile × 2 katılımcı (482 satır)",
+            format(Sys.time(), "%Y-%m-%d %H:%M"), 138))
+```

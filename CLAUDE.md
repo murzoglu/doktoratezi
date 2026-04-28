@@ -8,7 +8,7 @@ Quarto + R doktora tezi: T1DM tanılı çocuklar, sağlıklı kardeşler ve anne
 # Tezi render et (chapters/ → outputs/quarto/)
 quarto render
 
-# Pipeline (targets) — path/raw manifest + KISIM II-V hash kontrollü veri yükleme/skor/SES/eksik veri/Tablo 1/DAG/PS/H1/H2/H3/H4
+# Pipeline (targets) — path/raw manifest + KISIM II-XIII hash kontrollü veri yükleme/skor/SES/eksik veri/Tablo 1/DAG/PS/H1-H5/VI-XII/APA figür+tablo
 Rscript -e 'targets::tar_make()'
 
 # EMBU stage runner'ları (sırasıyla)
@@ -29,7 +29,7 @@ Rscript -e 'renv::restore()'
 ## Mimari
 
 - `thesis.qmd` — kök Quarto belgesi, `chapters/01..05_*.qmd` dosyalarını include eder
-- `_targets.R` + `R/00_paths.R`, `R/01_io.R`, `R/07_reproducibility.R`, `R/10_derived_scores.R`, `R/11_ses_composites.R`, `R/12_missing_data_frames.R`, `R/13_table1_smd.R`, `R/14_causal_dag.R`, `R/15_propensity_score.R`, `R/16_h1_child_perception.R`, `R/17_h2_sibling_relationships.R`, `R/18_h3_parent_self_report.R`, `R/19_h4_beck_parenting_sem.R` — `targets` orkestrasyonu, hash kontrollü kanonik veri yükleme, türetilmiş skorlar, SES kompozitleri, eksik veri çerçeveleri, Tablo 1/SMD dengesi, Causal DAG stratejisi, PS/IPTW/Matching altyapısı, H1 çocuk algısı, H2 kardeş ilişkisi, H3 anne öz-rapor ve H4 Beck -> EMBU-P latent SEM analizleri
+- `_targets.R` + `R/00_paths.R`, `R/01_io.R`, `R/07_reproducibility.R`, `R/10_derived_scores.R`, `R/11_ses_composites.R`, `R/12_missing_data_frames.R`, `R/13_table1_smd.R`, `R/14_causal_dag.R`, `R/15_propensity_score.R`, `R/16_h1_child_perception.R`, `R/17_h2_sibling_relationships.R`, `R/18_h3_parent_self_report.R`, `R/19_h4_beck_parenting_sem.R`, `R/20_h5_dyadic_concordance.R`, `R/21_robustness_sensitivity.R`, `R/22_bayesian_parallel.R`, `R/23_mediation.R`, `R/24_latent_profile.R`, `R/25_clinical_utility.R`, `R/26_network_analysis.R`, `R/27_dm_subanalyses.R`, `R/28_apa_figures.R`, `R/29_apa_tables.R`, `R/30_thesis_mapping.R`, `R/31_final_plans.R` — `targets` orkestrasyonu, hash kontrollü kanonik veri yükleme, türetilmiş skorlar, SES kompozitleri, eksik veri çerçeveleri, Tablo 1/SMD dengesi, Causal DAG stratejisi, PS/IPTW/Matching altyapısı, H1-H5 analizleri, KISIM VI-XII genişletilmiş analizleri, KISIM XIII/40-42 APA figür+tablo+bölüm/yayın planı ve KISIM XV-XVI risk/zaman paketi
 - `R/` — **kütüphane** (saf fonksiyonlar, `source()` ile yüklenir, side-effect yok)
 - `scripts/R/` — **runner**'lar (R/ fonksiyonlarını çağırıp dosya yazar)
 - `tests/` — her R/ modülü için karşılık (`stopifnot` ile assertion)

@@ -21,6 +21,10 @@ source("R/24_latent_profile.R")
 source("R/25_clinical_utility.R")
 source("R/26_network_analysis.R")
 source("R/27_dm_subanalyses.R")
+source("R/28_apa_figures.R")
+source("R/29_apa_tables.R")
+source("R/30_thesis_mapping.R")
+source("R/31_final_plans.R")
 
 tar_option_set(
   packages = character()
@@ -225,5 +229,425 @@ list(
   tar_target(h5_dyadic_cfa_latent_corr_table,   h5_dyadic_concordance_results$dyadic_cfa_latent_corr_table),
   tar_target(h5_k_coefficient_table,            h5_dyadic_concordance_results$k_coefficient_table),
   tar_target(h5_inconsistency_patterns_table,   h5_dyadic_concordance_results$inconsistency_patterns_table),
-  tar_target(h5_target_summary,                 h5_dyadic_concordance_results$target_summary)
+  tar_target(h5_target_summary,                 h5_dyadic_concordance_results$target_summary),
+
+  # KISIM XI — Robustluk + Sensitivite (multiverse + TOST + sensemakr + neg ctrl + falsification)
+  tar_target(
+    robustness_results,
+    run_robustness_pipeline(df_family_ses, sesoi_d = 0.30)
+  ),
+  tar_target(robust_multiverse_spec_table,    robustness_results$multiverse_spec_table),
+  tar_target(robust_multiverse_summary_table, robustness_results$multiverse_summary_table),
+  tar_target(robust_tost_equivalence_table,   robustness_results$tost_equivalence_table),
+  tar_target(robust_sensemakr_evalue_table,   robustness_results$sensemakr_evalue_table),
+  tar_target(robust_negative_control_table,   robustness_results$negative_control_table),
+  tar_target(robust_falsification_table,      robustness_results$falsification_table),
+  tar_target(robust_target_summary,           robustness_results$target_summary),
+
+  # KISIM VI — Mediation (Beck → EMBU-P_redd → EMBU-C_redd)
+  tar_target(
+    mediation_results,
+    run_mediation_pipeline(
+      df_family_ses, df_long_scored,
+      subscale = "reddetme",
+      run_bayes = FALSE,
+      n_boot = 1000L
+    )
+  ),
+  tar_target(mediation_status_table,             mediation_results$status_table),
+  tar_target(mediation_simple_effect_table,      mediation_results$simple_effect_table),
+  tar_target(mediation_simple_fit_table,         mediation_results$simple_fit_table),
+  tar_target(mediation_multilevel_effect_table,  mediation_results$multilevel_effect_table),
+  tar_target(mediation_multilevel_fit_table,     mediation_results$multilevel_fit_table),
+  tar_target(mediation_conditional_effect_table, mediation_results$conditional_effect_table),
+  tar_target(mediation_conditional_fit_table,    mediation_results$conditional_fit_table),
+  tar_target(mediation_target_summary,           mediation_results$target_summary),
+
+  # KISIM VII — Latent değişken: LPA + LCA + Mixture Regression + Bifactor S-1
+  tar_target(
+    latent_profile_results,
+    run_latent_profile_pipeline(
+      df_family_ses, df_family_scored,
+      profile_range = 1:5,
+      lca_class_range = 1:4,
+      run_bifactor = TRUE,
+      run_lca_sensitivity = TRUE,
+      run_flexmix_sensitivity = TRUE,
+      seed = 20260428L
+    )
+  ),
+  tar_target(lpa_status_table,                latent_profile_results$status_table),
+  tar_target(lpa_fit_table,                   latent_profile_results$lpa_fit_table),
+  tar_target(lpa_classes_table,               latent_profile_results$lpa_classes_table),
+  tar_target(lpa_profile_means_table,         latent_profile_results$lpa_profile_means_table),
+  tar_target(lpa_group_distribution_table,    latent_profile_results$lpa_group_distribution),
+  tar_target(lca_indicator_audit_table,       latent_profile_results$lca_indicator_audit_table),
+  tar_target(lca_fit_table,                   latent_profile_results$lca_fit_table),
+  tar_target(lca_classes_table,               latent_profile_results$lca_classes_table),
+  tar_target(lca_item_response_prob_table,    latent_profile_results$lca_item_response_prob_table),
+  tar_target(lca_group_distribution_table,    latent_profile_results$lca_group_distribution),
+  tar_target(lca_modal_regression_table,      latent_profile_results$lca_modal_regression_table),
+  tar_target(flexmix_fit_table,               latent_profile_results$flexmix_fit_table),
+  tar_target(flexmix_coefficient_table,       latent_profile_results$flexmix_coefficient_table),
+  tar_target(flexmix_class_distribution_table, latent_profile_results$flexmix_class_distribution),
+  tar_target(flexmix_group_distribution_table, latent_profile_results$flexmix_group_distribution),
+  tar_target(bifactor_s1_fit_table,           latent_profile_results$bifactor_fit_table),
+  tar_target(bifactor_s1_loadings_table,      latent_profile_results$bifactor_loadings_table),
+
+  # KISIM VIII — Network analizi: GGM + NCT + Beck symptom
+  tar_target(
+    network_results,
+    run_network_pipeline(df_family_ses, df_family_scored, seed = 20260428L)
+  ),
+  tar_target(network_status_table,           network_results$status_table),
+  tar_target(network_edges_table,            network_results$edges_table),
+  tar_target(network_centrality_table,       network_results$centrality_table),
+  tar_target(network_nct_table,              network_results$nct_table),
+  tar_target(network_beck_centrality_table,  network_results$beck_centrality_table),
+
+  # KISIM IX — Klinik fayda: risk skor + ROC + DCA + CART + RF + NRI/IDI
+  tar_target(
+    clinical_utility_results,
+    run_clinical_utility_pipeline(df_family_ses, seed = 20260428L)
+  ),
+  tar_target(clinical_status_table,        clinical_utility_results$status_table),
+  tar_target(clinical_base_coef_table,     clinical_utility_results$base_coef_table),
+  tar_target(clinical_base_performance,    clinical_utility_results$base_performance),
+  tar_target(clinical_full_coef_table,     clinical_utility_results$full_coef_table),
+  tar_target(clinical_full_performance,    clinical_utility_results$full_performance),
+  tar_target(clinical_decision_curve_table, clinical_utility_results$decision_curve_table),
+  tar_target(clinical_cart_cp_table,       clinical_utility_results$cart_cp_table),
+  tar_target(clinical_rf_importance_table, clinical_utility_results$rf_importance_table),
+  tar_target(clinical_calibration_table,   clinical_utility_results$calibration_table),
+  tar_target(clinical_nri_idi_table,       clinical_utility_results$nri_idi_table),
+
+  # KISIM X — DM klinik alt-analizler (HbA1c × parenting, dm_yili spline, tanı yaşı strata)
+  tar_target(
+    dm_subanalyses_results,
+    run_dm_subanalyses_pipeline(df_family_ses)
+  ),
+  tar_target(dm_n_summary_table,           dm_subanalyses_results$n_summary_table),
+  tar_target(dm_hba1c_interaction_table,   dm_subanalyses_results$hba1c_interaction_table),
+  tar_target(dm_duration_spline_table,     dm_subanalyses_results$spline_duration_table),
+  tar_target(dm_strata_descriptive_table,  dm_subanalyses_results$strata_descriptive_table),
+  tar_target(dm_strata_tests_table,        dm_subanalyses_results$strata_tests_table),
+
+  # KISIM XIII / 40 — APA tablo + sekil paketi, Sprint A paketleri
+  tar_target(bayes_h1_posterior_table, utils::read.csv("outputs/tables/bayes_h1_posterior.csv", fileEncoding = "UTF-8")),
+  tar_target(bayes_h3_posterior_table, utils::read.csv("outputs/tables/bayes_h3_posterior.csv", fileEncoding = "UTF-8")),
+  tar_target(bayes_h1_diagnostics_table, utils::read.csv("outputs/tables/bayes_h1_diagnostics.csv", fileEncoding = "UTF-8")),
+  tar_target(bayes_h3_diagnostics_table, utils::read.csv("outputs/tables/bayes_h3_diagnostics.csv", fileEncoding = "UTF-8")),
+  tar_target(bayes_loo_waic_table, utils::read.csv("outputs/tables/bayes_loo_waic.csv", fileEncoding = "UTF-8")),
+  tar_target(apa_h1_forest_plot, apa_plot_h1_forest(h1_primary_fixed_effects_table)),
+  tar_target(apa_h4_sem_path_plot, apa_plot_h4_sem_path(h4_latent_sem_structural_paths_table)),
+  tar_target(apa_h5_bland_altman_plot, apa_plot_h5_bland_altman(df_family_ses)),
+  tar_target(apa_h5_rsa_surface_plot, apa_plot_h5_rsa_surface(h5_rsa_parameters_table, df_family_ses)),
+  tar_target(apa_h2_apim_path_plot, apa_plot_h2_apim_path(h2_apim_fixed_effects_table)),
+  tar_target(apa_h3_stratified_forest_plot, apa_plot_h3_stratified_forest(h3_antidepressant_stratified_group_effects_table)),
+  tar_target(apa_specification_curve_plot, apa_plot_specification_curve(robust_multiverse_spec_table)),
+  tar_target(apa_sensemakr_contour_plot, apa_plot_sensemakr_contour(robust_sensemakr_evalue_table)),
+  tar_target(apa_clinical_roc_plot, apa_plot_clinical_roc(df_family_ses, clinical_base_performance, clinical_full_performance)),
+  tar_target(apa_clinical_dca_plot, apa_plot_clinical_dca(clinical_decision_curve_table, clinical_full_performance)),
+  tar_target(apa_clinical_calibration_plot, apa_plot_clinical_calibration(clinical_calibration_table)),
+  tar_target(apa_strobe_flow_plot, apa_plot_study_flow(df_family_ses, table1_group_counts_table)),
+  tar_target(apa_causal_dag_plot, apa_plot_causal_dag(causal_dag_nodes_table, causal_dag_edges_table)),
+  tar_target(apa_smd_love_plot, apa_plot_smd_love(propensity_balance_before_after_table)),
+  tar_target(apa_propensity_overlap_plot, apa_plot_propensity_overlap(df_family_propensity, propensity_overlap_summary_table)),
+  tar_target(apa_ses_correlation_plot, apa_plot_ses_correlation(ses_correlation_summary_table)),
+  tar_target(apa_h1_three_way_emm_plot, apa_plot_h1_three_way_emm(h1_three_way_emmeans_grid_table)),
+  tar_target(apa_mediation_effects_plot, apa_plot_mediation_effects(mediation_simple_effect_table, mediation_multilevel_effect_table, mediation_conditional_effect_table)),
+  tar_target(apa_lpa_fit_plot, apa_plot_lpa_fit(lpa_fit_table)),
+  tar_target(apa_network_graph_plot, apa_plot_network_graph(network_edges_table, network_centrality_table)),
+  tar_target(apa_network_nct_plot, apa_plot_network_nct(network_nct_table)),
+  tar_target(apa_clinical_cart_rf_plot, apa_plot_clinical_cart_rf(clinical_cart_cp_table, clinical_rf_importance_table)),
+  tar_target(apa_bayesian_forest_plot, apa_plot_bayesian_forest(bayes_h1_posterior_table, bayes_h3_posterior_table)),
+  tar_target(apa_bayesian_diagnostics_plot, apa_plot_bayesian_diagnostics(bayes_h1_diagnostics_table, bayes_h3_diagnostics_table)),
+  tar_target(
+    apa_h1_forest_png,
+    save_apa_plot(apa_h1_forest_plot, "outputs/figures/h1_forest.png", width = 8.2, height = 5.1),
+    format = "file"
+  ),
+  tar_target(
+    apa_h4_sem_path_png,
+    save_apa_plot(apa_h4_sem_path_plot, "outputs/figures/h4_sem_path.png", width = 8.2, height = 5.1),
+    format = "file"
+  ),
+  tar_target(
+    apa_h5_ba_grid_png,
+    save_apa_plot(apa_h5_bland_altman_plot, "outputs/figures/h5_ba_grid.png", width = 10.5, height = 8.2),
+    format = "file"
+  ),
+  tar_target(
+    apa_h5_rsa_surface_png,
+    save_apa_plot(apa_h5_rsa_surface_plot, "outputs/figures/h5_rsa_surface.png", width = 10.5, height = 6.4),
+    format = "file"
+  ),
+  tar_target(
+    apa_h2_apim_path_png,
+    save_apa_plot(apa_h2_apim_path_plot, "outputs/figures/h2_apim_path.png", width = 8.2, height = 5.1),
+    format = "file"
+  ),
+  tar_target(
+    apa_h3_stratified_forest_png,
+    save_apa_plot(apa_h3_stratified_forest_plot, "outputs/figures/h3_stratified_forest.png", width = 8.2, height = 5.1),
+    format = "file"
+  ),
+  tar_target(
+    apa_specification_curve_png,
+    save_apa_plot(apa_specification_curve_plot, "outputs/figures/specification_curve.png", width = 8.2, height = 5.4),
+    format = "file"
+  ),
+  tar_target(
+    apa_sensemakr_contour_png,
+    save_apa_plot(apa_sensemakr_contour_plot, "outputs/figures/sensemakr_contour.png", width = 7.2, height = 5.4),
+    format = "file"
+  ),
+  tar_target(
+    apa_clinical_roc_png,
+    save_apa_plot(apa_clinical_roc_plot, "outputs/figures/clinical_roc.png", width = 6.4, height = 5.4),
+    format = "file"
+  ),
+  tar_target(
+    apa_clinical_dca_png,
+    save_apa_plot(apa_clinical_dca_plot, "outputs/figures/clinical_dca.png", width = 7.2, height = 5.2),
+    format = "file"
+  ),
+  tar_target(
+    apa_clinical_calibration_png,
+    save_apa_plot(apa_clinical_calibration_plot, "outputs/figures/clinical_calibration.png", width = 6.4, height = 5.4),
+    format = "file"
+  ),
+  tar_target(
+    apa_strobe_flow_png,
+    save_apa_plot(apa_strobe_flow_plot, "outputs/figures/strobe_flow.png", width = 7.2, height = 5.4),
+    format = "file"
+  ),
+  tar_target(
+    apa_causal_dag_png,
+    save_apa_plot(apa_causal_dag_plot, "outputs/figures/causal_dag.png", width = 9.6, height = 4.8),
+    format = "file"
+  ),
+  tar_target(
+    apa_smd_love_png,
+    save_apa_plot(apa_smd_love_plot, "outputs/figures/smd_love_plot.png", width = 7.2, height = 4.6),
+    format = "file"
+  ),
+  tar_target(
+    apa_propensity_overlap_png,
+    save_apa_plot(apa_propensity_overlap_plot, "outputs/figures/propensity_overlap.png", width = 7.2, height = 4.8),
+    format = "file"
+  ),
+  tar_target(
+    apa_ses_correlation_png,
+    save_apa_plot(apa_ses_correlation_plot, "outputs/figures/ses_correlation_heatmap.png", width = 6.8, height = 5.8),
+    format = "file"
+  ),
+  tar_target(
+    apa_h1_three_way_emm_png,
+    save_apa_plot(apa_h1_three_way_emm_plot, "outputs/figures/h1_three_way_emm.png", width = 10.2, height = 8.2),
+    format = "file"
+  ),
+  tar_target(
+    apa_mediation_effects_png,
+    save_apa_plot(apa_mediation_effects_plot, "outputs/figures/mediation_effects.png", width = 8.2, height = 6.6),
+    format = "file"
+  ),
+  tar_target(
+    apa_lpa_fit_png,
+    save_apa_plot(apa_lpa_fit_plot, "outputs/figures/lpa_fit_indices.png", width = 7.2, height = 6.2),
+    format = "file"
+  ),
+  tar_target(
+    apa_network_graph_png,
+    save_apa_plot(apa_network_graph_plot, "outputs/figures/network_graph.png", width = 7.4, height = 6.2),
+    format = "file"
+  ),
+  tar_target(
+    apa_network_nct_png,
+    save_apa_plot(apa_network_nct_plot, "outputs/figures/network_nct.png", width = 6.8, height = 4.4),
+    format = "file"
+  ),
+  tar_target(
+    apa_clinical_cart_rf_png,
+    save_apa_plot(apa_clinical_cart_rf_plot, "outputs/figures/clinical_cart_rf.png", width = 7.2, height = 6.2),
+    format = "file"
+  ),
+  tar_target(
+    apa_bayesian_forest_png,
+    save_apa_plot(apa_bayesian_forest_plot, "outputs/figures/bayesian_forest.png", width = 8.2, height = 5.8),
+    format = "file"
+  ),
+  tar_target(
+    apa_bayesian_diagnostics_png,
+    save_apa_plot(apa_bayesian_diagnostics_plot, "outputs/figures/bayesian_diagnostics.png", width = 7.2, height = 5.2),
+    format = "file"
+  ),
+  tar_target(
+    apa_sprint_a_figure_manifest_table,
+    apa_figure_manifest(c(
+      strobe_flow = apa_strobe_flow_png,
+      causal_dag = apa_causal_dag_png,
+      smd_love_plot = apa_smd_love_png,
+      propensity_overlap = apa_propensity_overlap_png,
+      ses_correlation_heatmap = apa_ses_correlation_png,
+      h1_forest = apa_h1_forest_png,
+      h1_three_way_emm = apa_h1_three_way_emm_png,
+      h4_sem_path = apa_h4_sem_path_png,
+      h5_ba_grid = apa_h5_ba_grid_png,
+      h5_rsa_surface = apa_h5_rsa_surface_png,
+      h2_apim_path = apa_h2_apim_path_png,
+      h3_stratified_forest = apa_h3_stratified_forest_png,
+      specification_curve = apa_specification_curve_png,
+      sensemakr_contour = apa_sensemakr_contour_png,
+      clinical_roc = apa_clinical_roc_png,
+      clinical_dca = apa_clinical_dca_png,
+      clinical_calibration = apa_clinical_calibration_png,
+      mediation_effects = apa_mediation_effects_png,
+      lpa_fit_indices = apa_lpa_fit_png,
+      network_graph = apa_network_graph_png,
+      network_nct = apa_network_nct_png,
+      clinical_cart_rf = apa_clinical_cart_rf_png,
+      bayesian_forest = apa_bayesian_forest_png,
+      bayesian_diagnostics = apa_bayesian_diagnostics_png
+    ))
+  ),
+  tar_target(
+    apa_table_bundle,
+    apa_build_table_bundle(
+      table1_family_summary_table = table1_family_summary_table,
+      propensity_balance_before_after_table = propensity_balance_before_after_table,
+      missing_variable_summary_table = missing_variable_summary_table,
+      propensity_model_summary_table = propensity_model_summary_table,
+      propensity_weight_summary_table = propensity_weight_summary_table,
+      propensity_overlap_summary_table = propensity_overlap_summary_table,
+      ses_component_summary_table = ses_component_summary_table,
+      ses_cfa_fit_measures_table = ses_cfa_fit_measures_table,
+      h1_primary_fixed_effects_table = h1_primary_fixed_effects_table,
+      h1_primary_anova_table = h1_primary_anova_table,
+      bayes_h1_posterior_table = bayes_h1_posterior_table,
+      bayes_h1_diagnostics_table = bayes_h1_diagnostics_table,
+      h2_family_mean_welch_tests_table = h2_family_mean_welch_tests_table,
+      h2_apim_fixed_effects_table = h2_apim_fixed_effects_table,
+      h3_primary_group_effects_table = h3_primary_group_effects_table,
+      h3_iptw_group_effects_table = h3_iptw_group_effects_table,
+      h3_antidepressant_stratified_group_effects_table = h3_antidepressant_stratified_group_effects_table,
+      bayes_h3_posterior_table = bayes_h3_posterior_table,
+      bayes_h3_diagnostics_table = bayes_h3_diagnostics_table,
+      robust_tost_equivalence_table = robust_tost_equivalence_table,
+      h4_latent_sem_fit_measures_table = h4_latent_sem_fit_measures_table,
+      h4_latent_sem_structural_paths_table = h4_latent_sem_structural_paths_table,
+      h5_icc_bland_altman_table = h5_icc_bland_altman_table,
+      h5_dyadic_cfa_latent_corr_table = h5_dyadic_cfa_latent_corr_table,
+      h5_k_coefficient_table = h5_k_coefficient_table,
+      h5_inconsistency_patterns_table = h5_inconsistency_patterns_table,
+      mediation_simple_effect_table = mediation_simple_effect_table,
+      mediation_multilevel_effect_table = mediation_multilevel_effect_table,
+      mediation_conditional_effect_table = mediation_conditional_effect_table,
+      lpa_fit_table = lpa_fit_table,
+      lca_fit_table = lca_fit_table,
+      lca_modal_regression_table = lca_modal_regression_table,
+      flexmix_fit_table = flexmix_fit_table,
+      bifactor_s1_fit_table = bifactor_s1_fit_table,
+      network_centrality_table = network_centrality_table,
+      network_nct_table = network_nct_table,
+      clinical_base_performance = clinical_base_performance,
+      clinical_full_performance = clinical_full_performance,
+      clinical_nri_idi_table = clinical_nri_idi_table,
+      dm_n_summary_table = dm_n_summary_table,
+      dm_hba1c_interaction_table = dm_hba1c_interaction_table,
+      dm_duration_spline_table = dm_duration_spline_table,
+      dm_strata_tests_table = dm_strata_tests_table,
+      robust_multiverse_summary_table = robust_multiverse_summary_table,
+      robust_sensemakr_evalue_table = robust_sensemakr_evalue_table,
+      robust_negative_control_table = robust_negative_control_table,
+      robust_falsification_table = robust_falsification_table,
+      bayes_loo_waic_table = bayes_loo_waic_table
+    )
+  ),
+  tar_target(
+    apa_sprint_a_table_files,
+    save_apa_table_bundle(apa_table_bundle, "outputs/tables"),
+    format = "file"
+  ),
+  tar_target(
+    apa_sprint_a_table_manifest_table,
+    apa_table_manifest(apa_sprint_a_table_files, apa_table_bundle)
+  ),
+  tar_target(
+    apa_sprint_a_table_manifest_csv,
+    save_apa_table_csv(apa_sprint_a_table_manifest_table, "outputs/tables/apa_sprint_a_table_manifest.csv"),
+    format = "file"
+  ),
+  tar_target(thesis_chapter_mapping_table, thesis_chapter_mapping()),
+  tar_target(thesis_html_file, "outputs/quarto/thesis.html", format = "file"),
+  tar_target(
+    thesis_mapping_checks_table,
+    thesis_mapping_checks(thesis_chapter_mapping_table, apa_sprint_a_figure_manifest_table, apa_sprint_a_table_manifest_table, thesis_html_file)
+  ),
+  tar_target(
+    thesis_mapping_manifest_table,
+    thesis_mapping_manifest(thesis_chapter_mapping_table, thesis_mapping_checks_table)
+  ),
+  tar_target(
+    thesis_mapping_checks_csv,
+    save_apa_table_csv(thesis_mapping_checks_table, "outputs/tables/thesis_mapping_checks.csv"),
+    format = "file"
+  ),
+  tar_target(
+    thesis_mapping_manifest_csv,
+    save_apa_table_csv(thesis_mapping_manifest_table, "outputs/tables/thesis_mapping_manifest.csv"),
+    format = "file"
+  ),
+  tar_target(final_publication_strategy_table, final_publication_strategy()),
+  tar_target(final_publication_evidence_map_table, final_publication_evidence_map()),
+  tar_target(final_risk_matrix_table, final_risk_matrix()),
+  tar_target(final_risk_summary_table, final_risk_summary(final_risk_matrix_table)),
+  tar_target(final_timeline_24_week_table, final_timeline_24_week()),
+  tar_target(final_timeline_summary_table, final_timeline_summary(final_timeline_24_week_table)),
+  tar_target(
+    final_planning_manifest_table,
+    final_planning_manifest(list(
+      publication_strategy = final_publication_strategy_table,
+      publication_evidence_map = final_publication_evidence_map_table,
+      risk_matrix = final_risk_matrix_table,
+      risk_summary = final_risk_summary_table,
+      timeline_24_week = final_timeline_24_week_table,
+      timeline_summary = final_timeline_summary_table
+    ))
+  ),
+  tar_target(
+    final_publication_strategy_csv,
+    save_apa_table_csv(final_publication_strategy_table, "outputs/tables/final_plan_publication_strategy.csv"),
+    format = "file"
+  ),
+  tar_target(
+    final_publication_evidence_map_csv,
+    save_apa_table_csv(final_publication_evidence_map_table, "outputs/tables/final_plan_publication_evidence_map.csv"),
+    format = "file"
+  ),
+  tar_target(
+    final_risk_matrix_csv,
+    save_apa_table_csv(final_risk_matrix_table, "outputs/tables/final_plan_risk_matrix.csv"),
+    format = "file"
+  ),
+  tar_target(
+    final_risk_summary_csv,
+    save_apa_table_csv(final_risk_summary_table, "outputs/tables/final_plan_risk_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    final_timeline_24_week_csv,
+    save_apa_table_csv(final_timeline_24_week_table, "outputs/tables/final_plan_timeline_24_week.csv"),
+    format = "file"
+  ),
+  tar_target(
+    final_timeline_summary_csv,
+    save_apa_table_csv(final_timeline_summary_table, "outputs/tables/final_plan_timeline_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    final_planning_manifest_csv,
+    save_apa_table_csv(final_planning_manifest_table, "outputs/tables/final_plan_manifest.csv"),
+    format = "file"
+  )
 )

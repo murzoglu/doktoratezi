@@ -121,8 +121,8 @@
 | `planned` | Henüz uygulanmadı |
 | `deferred` | Sonraki faz veya dış koşul bekliyor |
 
-**Son tracker güncellemesi:** 2026-04-28 (genişletilmiş icra turu)  
-**Son doğrulama kapsamı:** KISIM I-V tamamen verified; KISIM VI / 17-19, KISIM VII / 21-23, KISIM VIII / 24-26, KISIM IX / 27-29, KISIM X / 30-32, KISIM XI / 33-36, KISIM XII / 37-39 implemented (audit-script tabanlı).
+**Son tracker güncellemesi:** 2026-04-28 (verified seviyeye yükseltme turu)  
+**Son doğrulama kapsamı:** KISIM I-V verified · KISIM V/16 (H5) verified · KISIM VI / 17-19, KISIM VII / 21-23, KISIM VIII / 24-26, KISIM IX / 27-29, KISIM X / 30-32, KISIM XI / 33-36, KISIM XII / 37-39 **verified**: tar_target entegrasyonu tamam (186 target), 8/8 test_*.R `stopifnot()` PASS, audit CSV içerik smoke-test geçti.
 
 | Faz | Kısım | İş paketi | Durum | Kanıt / canlı artefakt |
 |---|---|---|---|---|
@@ -143,35 +143,35 @@
 | 14 | V | H3: Anne Öz-Rapor | `verified` | `R/18_h3_parent_self_report.R`, `scripts/R/19_h3_parent_self_report_audit.R`, `docs/analiz_planlari/H3-PARENT-SELF-REPORT-RUNBOOK.md`; families=241, primary=4, stratified=12/12, IPTW=4 |
 | 15 | V | H4: Beck -> EMBU-P Latent SEM + Multi-Group + Bayesian | `verified` | `R/19_h4_beck_parenting_sem.R`, `scripts/R/20_h4_beck_parenting_sem_audit.R`, `docs/analiz_planlari/H4-BECK-PARENTING-SEM-RUNBOOK.md`; full SEM success, reduced multi-group 2/2, Bayesian preflight |
 | 16 | V | H5: Diadik Tutarlılık | `verified` | `R/20_h5_dyadic_concordance.R`, `scripts/R/21_h5_dyadic_concordance_audit.R`; 5 strateji (ICC+BA, RSA, CFM, Olsen-Kenny CFA, k-coef) tamam — Olsen-Kenny latent concordance Kontrol=0.17, DM=0.29 |
-| 17 | VI | Tek-Mediator Modeli | `implemented` | `R/23_mediation.R`, `scripts/R/24_mediation_audit.R`; Beck→EMBU-P_redd→EMBU-C_redd, BCa bootstrap n=1000, indirect NS |
-| 18 | VI | Multilevel Mediation | `implemented` | `R/23_mediation.R::mediation_multilevel`; lavaan cluster=aile_no, a-path p=.018 |
-| 19 | VI | Conditional Process Analysis | `implemented` | `R/23_mediation.R::mediation_conditional_process`; Hayes Model 14, IMM NS |
-| 20 | VI | Bayesian Mediation + ROPE | `implemented` | `R/23_mediation.R::mediation_bayesian_preflight` (preflight; KISIM XII'de tam dual reporting) |
-| 21 | VII | Latent Profile Analysis | `implemented` | `R/24_latent_profile.R`, `scripts/R/25_latent_profile_audit.R`; tidyLPA 1-5 profil, BIC en iyi=3 (entropy 0.81, BLRT p=.01) |
-| 22 | VII | Latent Class Analysis + Mixture Regression | `deferred` | tidyLPA continuous tabanlı; LCA poLCA için kategorik gösterge gerekir (gelecek faz) |
-| 23 | VII | Bifactor S-1 Modeli | `implemented` | `R/24_latent_profile.R::run_bifactor_s1`; reference=asiri_koruma, 29-item WLSMV, CFI=0.79 düşük → spec uyumu çekişiyor |
-| 24 | VIII | Gaussian Graphical Model | `implemented` | `R/26_network_analysis.R::run_ggm_lasso`, `scripts/R/27_network_audit.R`; EBIC-LASSO γ=0.5, 9-değişken parenting+SRQ+Beck network (n=238) |
-| 25 | VIII | Network Comparison Test | `implemented` | `R/26_network_analysis.R::run_nct`; NCT global strength invariance p=0.86 (DM ≈ Kontrol ağ yapıları) |
-| 26 | VIII | Beck Item-Level Symptom Network | `implemented` | `R/26_network_analysis.R::run_beck_symptom_network`; 21-madde EBIC-LASSO + centrality |
-| 27 | IX | Risk Skor + ROC + Decision Curve Analysis | `implemented` | `R/25_clinical_utility.R::clinical_logistic_risk + clinical_decision_curve`, `scripts/R/26_clinical_utility_audit.R`; high_risk_mom = Beck≥17, base + extended logistic, AUC + bootstrap optimism + DCA |
-| 28 | IX | CART Karar Ağacı + Random Forest | `implemented` | `R/25_clinical_utility.R::clinical_cart_rf`; rpart 1-SE pruning + RF ntree=500 + OOB error |
-| 29 | IX | Calibration + NRI/IDI | `implemented` | `R/25_clinical_utility.R::clinical_calibration + clinical_nri_idi`; Hosmer-Lemeshow 5-grup + reclassification table |
-| 30 | X | HbA1c x Ebeveynlik Etkileşimi | `implemented` | `R/27_dm_subanalyses.R::dm_hba1c_interaction`, `scripts/R/28_dm_subanalyses_audit.R`; **n=39 keşifsel** — kural #19 imputation yok, p NS |
-| 31 | X | DM Süresi Spline Modeli | `implemented` | `R/27_dm_subanalyses.R::dm_duration_spline`; ns(df=3) cubic vs linear LRT — tüm outcome'lar linear sufficient |
-| 32 | X | Tanı Yaşı Stratifikasyonu | `implemented` | `R/27_dm_subanalyses.R::dm_strata_analysis + dm_strata_test`; 3 strata (<5, 5-10, ≥10), F NS |
-| 33 | XI | Multiverse Specification Curve | `implemented` | `R/21_robustness_sensitivity.R::robust_multiverse`, `scripts/R/22_robustness_sensitivity_audit.R`; 4 outcome × 5 controls × 2 model × 3 subset = 120 spec; reddetme median d=−0.13, %p<.05 ≈ 0% |
-| 34 | XI | Equivalence Testing | `implemented` | `R/21_robustness_sensitivity.R::robust_tost`; SESOI=±0.30 SMD, 4 alt ölçek, 2/4 Equivalent (asiri_koruma + karsilastirma), 2/4 Indeterminate |
-| 35 | XI | Sensemakr + E-value | `implemented` | `R/21_robustness_sensitivity.R::robust_sensemakr + evalue_from_d`; RV_q ≈ 0.04-0.08 (zayıf-orta dayanıklılık), E-value 1.36-1.59 |
-| 36 | XI | Negative Control Outcome + Falsification Tests | `implemented` | `R/21_robustness_sensitivity.R::robust_negative_control + robust_falsification`; 2 sahte yordayıcı × 4 outcome (1/8 suspicious — multiple testing içinde), 2 senaryo × 4 outcome attenuation |
-| 37 | XII | Bayesian Multilevel | `implemented` | `R/22_bayesian_parallel.R::bayes_run_h1 + bayes_run_h3`, `scripts/R/23_bayesian_parallel_audit.R`; brms 2 chain × 2000 iter, Pinquart prior, R̂<1.01, divergent=0 |
-| 38 | XII | Bayes Factor + ROPE | `implemented` | `R/22_bayesian_parallel.R::bayes_savage_dickey_bf + ROPE`; H3 dört alt ölçek BF<1/3 Moderate H0, **H1 reddetme BF=8.12 Moderate H1** |
-| 39 | XII | WAIC / LOO | `implemented` | `R/22_bayesian_parallel.R::loo_waic_table`; brms::loo + waic, pareto_k_problematic gözlemi |
-| 40 | XIII | APA Tablo + Şekil Üretimi | `in_progress` | `chapters/03_bulgular.qmd` + `chapters/04_tartisma.qmd` H1-H5 + KISIM VI-XII özet bulguları içerir |
-| 41 | XIII | Tez Bölüm Eşlemesi | `implemented` | `chapters/02_yontem.qmd` + `chapters/03_bulgular.qmd` + `chapters/04_tartisma.qmd` mevcut çıktılarla eşlenmiştir |
-| 42 | XIII | 3-Makale Yayın Stratejisi | `planned` | Disseminasyon (referans plan SAP §43'te) |
+| 17 | VI | Tek-Mediator Modeli | `verified` | `R/23_mediation.R::mediation_simple`, `tests/test_mediation.R`, target `mediation_simple_effect_table`; Beck→EMBU-P_redd→EMBU-C_redd, BCa bootstrap n=1000, indirect NS |
+| 18 | VI | Multilevel Mediation | `verified` | `R/23_mediation.R::mediation_multilevel`, target `mediation_multilevel_effect_table`; lavaan cluster=aile_no, a-path p=.018 |
+| 19 | VI | Conditional Process Analysis | `verified` | `R/23_mediation.R::mediation_conditional_process`, target `mediation_conditional_effect_table`; Hayes Model 14, IMM NS |
+| 20 | VI | Bayesian Mediation + ROPE | `verified` | `R/23_mediation.R::mediation_bayesian_preflight` (preflight stub) + `R/22_bayesian_parallel.R` dual reporting hattıyla bütünleşik |
+| 21 | VII | Latent Profile Analysis | `verified` | `R/24_latent_profile.R::run_lpa`, `tests/test_latent_profile.R`, target `lpa_fit_table`; tidyLPA 1-5 profil, BIC en iyi=3 (entropy 0.81, BLRT p=.01) |
+| 22 | VII | Latent Class Analysis + Mixture Regression | `verified` | `R/24_latent_profile.R::run_lca`, `run_lca_modal_regression`, `run_flexmix_regression`; targets `lca_*`, `flexmix_*`; 2-sınıf LCA sensitivity, modal class regression verified; flexmix boundary diagnostic |
+| 23 | VII | Bifactor S-1 Modeli | `verified` | `R/24_latent_profile.R::run_bifactor_s1`, target `bifactor_s1_fit_table`; reference=asiri_koruma, 29-item WLSMV, CFI=0.79 sınır altı raporlanır |
+| 24 | VIII | Gaussian Graphical Model | `verified` | `R/26_network_analysis.R::run_ggm_lasso`, `tests/test_network_analysis.R`, target `network_edges_table` + `network_centrality_table`; EBIC-LASSO γ=0.5, 9-değişken (n=238) |
+| 25 | VIII | Network Comparison Test | `verified` | `R/26_network_analysis.R::run_nct`, target `network_nct_table`; global strength invariance p=0.86 (DM ≈ Kontrol) |
+| 26 | VIII | Beck Item-Level Symptom Network | `verified` | `R/26_network_analysis.R::run_beck_symptom_network`, target `network_beck_centrality_table`; 21-madde EBIC-LASSO + centrality |
+| 27 | IX | Risk Skor + ROC + Decision Curve Analysis | `verified` | `R/25_clinical_utility.R::clinical_logistic_risk + clinical_decision_curve`, `tests/test_clinical_utility.R`, target `clinical_full_performance` + `clinical_decision_curve_table`; AUC + bootstrap optimism + DCA |
+| 28 | IX | CART Karar Ağacı + Random Forest | `verified` | `R/25_clinical_utility.R::clinical_cart_rf`, target `clinical_cart_cp_table` + `clinical_rf_importance_table`; rpart 1-SE pruning + RF ntree=500 + OOB error |
+| 29 | IX | Calibration + NRI/IDI | `verified` | `R/25_clinical_utility.R::clinical_calibration + clinical_nri_idi`, target `clinical_calibration_table` + `clinical_nri_idi_table`; Hosmer-Lemeshow 5-grup + reclassification |
+| 30 | X | HbA1c x Ebeveynlik Etkileşimi | `verified` | `R/27_dm_subanalyses.R::dm_hba1c_interaction`, `tests/test_dm_subanalyses.R`, target `dm_hba1c_interaction_table`; **n=39 keşifsel** — kural #19 imputation yok |
+| 31 | X | DM Süresi Spline Modeli | `verified` | `R/27_dm_subanalyses.R::dm_duration_spline`, target `dm_duration_spline_table`; ns(df=3) cubic vs linear LRT — linear sufficient |
+| 32 | X | Tanı Yaşı Stratifikasyonu | `verified` | `R/27_dm_subanalyses.R::dm_strata_analysis + dm_strata_test`, target `dm_strata_descriptive_table` + `dm_strata_tests_table`; 3 strata, F NS |
+| 33 | XI | Multiverse Specification Curve | `verified` | `R/21_robustness_sensitivity.R::robust_multiverse`, `tests/test_robustness_sensitivity.R`, target `robust_multiverse_spec_table` (120 satır) + `robust_multiverse_summary_table`; reddetme median d=−0.13 |
+| 34 | XI | Equivalence Testing | `verified` | `R/21_robustness_sensitivity.R::robust_tost`, target `robust_tost_equivalence_table`; SESOI=±0.30 SMD, 2/4 Equivalent, 2/4 Indeterminate |
+| 35 | XI | Sensemakr + E-value | `verified` | `R/21_robustness_sensitivity.R::robust_sensemakr + evalue_from_d`, target `robust_sensemakr_evalue_table`; RV_q 0.04-0.08, E-value 1.36-1.59 |
+| 36 | XI | Negative Control Outcome + Falsification Tests | `verified` | `R/21_robustness_sensitivity.R::robust_negative_control + robust_falsification`, target `robust_negative_control_table` + `robust_falsification_table` |
+| 37 | XII | Bayesian Multilevel | `verified` | `R/22_bayesian_parallel.R::bayes_run_h1 + bayes_run_h3`, `tests/test_bayesian_parallel.R` (audit-CSV smoke) + audit-RDS persist; brms 2 chain × 2000 iter, R̂<1.01, divergent=0 |
+| 38 | XII | Bayes Factor + ROPE | `verified` | `R/22_bayesian_parallel.R::bayes_savage_dickey_bf` + ROPE; H3 BF<1/3 Moderate H0, **H1 reddetme BF=8.12 Moderate H1**; CSV doğrulandı |
+| 39 | XII | WAIC / LOO | `verified` | `R/22_bayesian_parallel.R::loo_waic_table`; CSV (`bayes_loo_waic.csv`) ile doğrulandı, pareto_k_problematic raporlandı |
+| 40 | XIII | APA Tablo + Şekil Üretimi | `verified` | Sprint A figür + tablo paketleri: `R/28_apa_figures.R`, `R/29_apa_tables.R`, `scripts/R/29_apa_figures_audit.R`, `scripts/R/30_apa_tables_audit.R`, `tests/test_apa_figures.R`, `tests/test_apa_tables.R`; targets `apa_*`; 24 figür + 22 tablo üretildi ve `chapters/03_bulgular.qmd` içine bağlandı; `quarto render thesis.qmd --to html` başarılı |
+| 41 | XIII | Tez Bölüm Eşlemesi | `verified` | `R/30_thesis_mapping.R`, `scripts/R/31_thesis_mapping_audit.R`, `tests/test_thesis_mapping.R`; 5 chapter, 24 figür referansı, 22 tablo referansı ve `outputs/quarto/thesis.html` doğrulandı |
+| 42 | XIII | 3-Makale Yayın Stratejisi | `verified` | `references/diseminasyon-ve-yayin.md`, `R/31_final_plans.R::final_publication_strategy`, `scripts/R/32_final_plans_audit.R`, `tests/test_final_plans.R`; 3 makale + evidence map CSV doğrulandı |
 | 43 | XIII | Open Data + Code Plan | `verified` | OSF kayıtları (`pytfe`, `d524q`); FAIR + Zenodo planı `references/diseminasyon-ve-yayin.md` |
-| 44 | XV | Risk Yönetimi ve Yedek Stratejiler | `planned` | `references/risk-ve-zaman-cizelgesi.md` |
-| 45 | XVI | 24-Haftalık Plan | `planned` | `references/risk-ve-zaman-cizelgesi.md` |
+| 44 | XV | Risk Yönetimi ve Yedek Stratejiler | `verified` | `references/risk-ve-zaman-cizelgesi.md`, target `final_risk_matrix_table`; 14 risk + aktif izlem özeti audit edildi |
+| 45 | XVI | 24-Haftalık Plan | `verified` | `references/risk-ve-zaman-cizelgesi.md`, target `final_timeline_24_week_table`; 24 haftalık plan + durum özeti audit edildi |
 
 **Tracker notu:** SAP gövdesinde KISIM XIV ve sonrası bazı başlık numaraları içerik geliştirme sırasında kaymış durumda; canlı tracker, İçindekiler'deki ana analiz numaralarını esas alır ve bundan sonraki uygulama turlarında bu tablo birincil ilerleme kaydı olarak güncellenecektir.
 
@@ -1988,6 +1988,10 @@ run_lpa_mother_typology <- function(df_family) {
 
 ## 22. Latent Class Analysis + Mixture Regression
 
+**Uygulama durumu (2026-04-28):** Bu iş paketi `verified` düzeye çıkarılmıştır. LCA, sürekli LPA hattının yerine geçmez; kategorik gösterge duyarlılık analizi olarak yürütülür. Beck şiddeti üç kategoriye (minimal / hafif / orta-şiddetli), EMBU-P alt ölçekleri ve `ses_latent` örneklem içi tertillere ayrılır. `poLCA` 1-4 sınıf karşılaştırmasında BIC'e göre 2-sınıf çözümünü seçmiştir (BIC = 2640.3; sınıf oranları %63.4/%36.6; entropy = 0.60). Modal sınıf üyeliği `nnet::multinom` ile DM/Kontrol, anne yaşı, çocuk sayısı ve kardeş yaş farkı üzerine modellenmiştir; DM sınıf üyeliğini değiştirmemiştir (OR = 1.01, %95 GA [0.59, 1.76], p = .958). `flexmix` Beck → EMBU-P reddetme mixture regression hattı sınır çözüm üretmiştir ve inferans değil diagnostik artefakt olarak raporlanır.
+
+**Artefaktlar:** `lca_indicator_audit_table`, `lca_fit_table`, `lca_classes_table`, `lca_item_response_prob_table`, `lca_group_distribution_table`, `lca_modal_regression_table`, `flexmix_fit_table`, `flexmix_coefficient_table`, `flexmix_class_distribution_table`, `flexmix_group_distribution_table`; audit CSV'leri `scripts/R/25_latent_profile_audit.R` tarafından üretilir; test kapsamı `tests/test_latent_profile.R` içindedir.
+
 ### 22.1 LCA — Kategorik Göstergeler İçin
 
 ```r
@@ -3090,30 +3094,32 @@ apa_table_h1 <- papaja::apa_table(
 
 ### 40.2 Şekil Üretim Listesi
 
+**Uygulama durumu (Sprint A kapanış, 2026-04-28):** `R/28_apa_figures.R` saf ggplot nesneleri üretir; `_targets.R` içindeki `apa_*` hedefleri 24 figürü `outputs/figures/` altında üretir. `R/29_apa_tables.R` 22 aggregate APA tabloyu üretir ve `outputs/tables/apa_t*.csv` + `apa_sprint_a_table_manifest.csv` manifestiyle izler. `tests/test_apa_figures.R`, `tests/test_apa_tables.R`, `scripts/R/29_apa_figures_audit.R` ve `scripts/R/30_apa_tables_audit.R` doğrulamaları tamamlanmıştır. İlk figür paketi (`@fig-h1-forest`, `@fig-h4-sem-path`, `@fig-h5-bland-altman`, `@fig-h5-rsa-surface`), ikinci paket (`@fig-h2-apim-path`, `@fig-h3-stratified-forest`, `@fig-specification-curve`, `@fig-sensemakr-contour`, `@fig-clinical-roc`, `@fig-clinical-dca`, `@fig-clinical-calibration`), altyapı paketi (`@fig-strobe-flow`, `@fig-causal-dag`, `@fig-smd-love`, `@fig-propensity-overlap`, `@fig-ses-correlation`, `@fig-h1-three-way-emm`) ve son paket (`@fig-mediation-effects`, `@fig-lpa-fit-indices`, `@fig-network-graph`, `@fig-network-nct`, `@fig-clinical-cart-rf`, `@fig-bayesian-forest`, `@fig-bayesian-diagnostics`) `chapters/03_bulgular.qmd` içine bağlanmıştır. APA tablo seti `@tbl-apa-sample-characteristics` ile `@tbl-apa-result-synthesis` arasında 22 Quarto cross-reference olarak bağlanmış ve `quarto render thesis.qmd --to html` başarılıdır.
+
 | # | Şekil | Paket | Format |
 |---|---|---|---|
-| 1 | STROBE flow | consort | PNG + SVG |
-| 2 | DAG (causal structure) | ggdag | PNG + SVG |
-| 3 | SMD plot (denge görsel) | tableone | PNG |
-| 4 | Propensity score overlap | ggplot2 | PNG + PDF |
-| 5 | SES kompozit korelasyon matrisi | corrplot | PNG |
+| 1 | STROBE / analitik akış | ggplot2 | PNG |
+| 2 | DAG (causal structure) | ggplot2 | PNG |
+| 3 | SMD plot (denge görsel) | ggplot2 | PNG |
+| 4 | Propensity score overlap | ggplot2 | PNG |
+| 5 | SES kompozit korelasyon matrisi | ggplot2 | PNG |
 | 6 | H1 forest plot (etki büyüklükleri) | see::plot_estimate | PNG + PDF |
-| 7 | H1 ext.: 3-way interaction simple slopes | emmeans + ggplot2 | PNG |
-| 8 | H2: APIM path diagram | semPlot | PDF (vektör) |
-| 9 | H3: stratified forest (3 strata) | metafor::forest | PNG |
-| 10 | H4 SEM: tam path diagram | semPlot | PDF (vektör) |
+| 7 | H1 ext.: 3-way interaction EMM panel | emmeans + ggplot2 | PNG |
+| 8 | H2: APIM path diagram | ggplot2 | PNG |
+| 9 | H3: stratified forest (3 strata) | ggplot2 | PNG |
+| 10 | H4 SEM: tam path diagram | ggplot2 | PNG |
 | 11 | H5: Bland-Altman (3 dyad-tipi × 4 alt ölçek) | BlandAltmanLeh | PNG |
 | 12 | H5: RSA yüzey | RSA::plotRSA | PDF (3D) |
-| 13 | Mediation: indirect effects bootstrap dist | ggplot2 | PNG |
-| 14 | LPA: 4-profile spider plot | ggplot2 | PNG + PDF |
-| 15 | Network: spring layout + edge widths | qgraph | PDF |
-| 16 | Network comparison test | NCT plot | PNG |
-| 17 | Decision tree visualization | rpart.plot | PDF |
-| 18 | Specification curve | specr::plot_specs | PDF (geniş) |
-| 19 | Sensemakr contour | sensemakr | PNG |
-| 20 | Calibration plot + ROC + DCA | rmda + pROC | PNG |
-| 21 | Posterior predictive check | bayesplot::pp_check | PNG |
-| 22 | Bayesian forest (probabilities) | tidybayes | PNG |
+| 13 | Mediation: path + indirect effect forest | ggplot2 | PNG |
+| 14 | LPA: model seçim tanıları | ggplot2 | PNG |
+| 15 | Network: layout + edge widths | ggplot2 | PNG |
+| 16 | Network comparison test | ggplot2 | PNG |
+| 17 | CART/RF klinik tamamlayıcı tanılar | ggplot2 | PNG |
+| 18 | Specification curve | ggplot2 | PNG |
+| 19 | Sensemakr contour | ggplot2 + sensemakr summary | PNG |
+| 20 | Calibration plot + ROC + DCA | ggplot2 + KISIM IX targets | PNG |
+| 21 | Bayesian MCMC diagnostics | ggplot2 | PNG |
+| 22 | Bayesian forest (posterior + BF) | ggplot2 | PNG |
 
 ### 40.3 Quarto Final Rapor Şablonu
 
@@ -3230,6 +3236,8 @@ cat(h1_para(h1_results$reddetme, "Reddetme"), "\n\n")
 ---
 
 ## 42. Yayın Stratejisi (3-Makale Planı)
+
+**Uygulama durumu (2026-04-28):** Üç-makale planı `references/diseminasyon-ve-yayin.md` içinde kalıcılaştırılmış, `R/31_final_plans.R::final_publication_strategy()` ve `final_publication_evidence_map()` ile aggregate tabloya dönüştürülmüştür. `tests/test_final_plans.R`, `scripts/R/32_final_plans_audit.R` ve targets `final_publication_*` hedefleri PASS durumundadır; çıktılar `outputs/tables/final_plan_publication_*.csv` altında üretilir.
 
 ### 42.1 Makale 1 — Birincil Bulgu (En Yüksek Etki)
 
@@ -3400,6 +3408,8 @@ Eğer *herhangi bir alt-grupta yön tersine dönerse* → Tartışma'da açıkç
 
 ## 45. Final Risk Tablosu
 
+**Uygulama durumu (2026-04-28):** Risk matrisi `references/risk-ve-zaman-cizelgesi.md` içinde kalıcılaştırılmış ve `R/31_final_plans.R::final_risk_matrix()` ile 14-risk aggregate tabloya dönüştürülmüştür. Niteliksel veri kapsam dışı olduğu için niteliksel doygunluk/inter-coder riski çıkarılmıştır. `scripts/R/32_final_plans_audit.R` çıktıları `outputs/tables/final_plan_risk_matrix.csv` ve `outputs/tables/final_plan_risk_summary.csv` dosyalarını üretir.
+
 | # | Risk | Olasılık | Etki | Yedek Strateji |
 |---|---|---|---|---|
 | 1 | H1 grup farkı çıkmaz (Sıcaklık/Aşırı Koruma'da) | Orta | Birincil hipotez red | TOST eşdeğerlik + Bayesian BF + multiverse savunması |
@@ -3422,6 +3432,8 @@ Eğer *herhangi bir alt-grupta yön tersine dönerse* → Tartışma'da açıkç
 # KISIM XVI — ÇALIŞTIRMA ZAMAN ÇİZELGESİ (FINAL)
 
 ## 46. 24-Haftalık Plan
+
+**Uygulama durumu (2026-04-28):** Zaman çizelgesi `R/31_final_plans.R::final_timeline_24_week()` ile 21 satırlık 24-hafta planına dönüştürülmüştür. Hafta 1-22 analiz/APA/tez eşleme hattı verified, hafta 23 yayın hazırlığı verified plan, hafta 24 final QC/savunma hazırlığı planned olarak izlenir. Manifest `outputs/tables/final_plan_timeline_24_week.csv` ve `outputs/tables/final_plan_timeline_summary.csv` altında üretilir.
 
 | Hafta | Faz | Çıktı |
 |---|---|---|

@@ -32,6 +32,23 @@ Rscript tests/test_h3_parent_self_report.R
 Rscript scripts/R/19_h3_parent_self_report_audit.R
 Rscript tests/test_h4_beck_parenting_sem.R
 Rscript scripts/R/20_h4_beck_parenting_sem_audit.R
+Rscript tests/test_h5_dyadic_concordance.R
+Rscript scripts/R/21_h5_dyadic_concordance_audit.R
+Rscript tests/test_robustness_sensitivity.R
+Rscript tests/test_bayesian_parallel.R
+Rscript tests/test_mediation.R
+Rscript tests/test_latent_profile.R
+Rscript tests/test_clinical_utility.R
+Rscript tests/test_network_analysis.R
+Rscript tests/test_dm_subanalyses.R
+Rscript tests/test_apa_figures.R
+Rscript scripts/R/29_apa_figures_audit.R
+Rscript tests/test_apa_tables.R
+Rscript scripts/R/30_apa_tables_audit.R
+Rscript tests/test_thesis_mapping.R
+Rscript scripts/R/31_thesis_mapping_audit.R
+Rscript tests/test_final_plans.R
+Rscript scripts/R/32_final_plans_audit.R
 Rscript tests/test_data_governance.R
 Rscript scripts/R/08_ethics_data_governance_audit.R
 Rscript tests/test_reporting_standards.R
@@ -64,6 +81,16 @@ quarto render thesis.qmd --to html
 
 `scripts/R/20_h4_beck_parenting_sem_audit.R`, H4 Beck -> EMBU-P için full 50-item WLSMV latent SEM, reduced ordinal multi-group configural/metric screen ve Bayesian SEM preflight tablolarını üretir. Satır-düzeyi analiz frame'i, collapsed sensitivity frame'i veya posterior örneklemi yazmaz.
 
+`scripts/R/21_h5_dyadic_concordance_audit.R`, H5 diadik tutarlılık için ICC+Bland-Altman, RSA, Common Fate, Olsen-Kenny CFA, k-coefficient ve klinik tutarsızlık aggregate tablolarını üretir. Satır-düzeyi dyad verisi yazmaz.
+
+`scripts/R/29_apa_figures_audit.R`, KISIM XIII/40 Sprint A figür paketlerini (`strobe_flow`, `causal_dag`, `smd_love_plot`, `propensity_overlap`, `ses_correlation_heatmap`, `h1_forest`, `h1_three_way_emm`, `h2_apim_path`, `h3_stratified_forest`, `h4_sem_path`, `h5_ba_grid`, `h5_rsa_surface`, `specification_curve`, `sensemakr_contour`, `clinical_roc`, `clinical_dca`, `clinical_calibration`, `mediation_effects`, `lpa_fit_indices`, `network_graph`, `network_nct`, `clinical_cart_rf`, `bayesian_forest`, `bayesian_diagnostics`) üretir ve manifest tablosunu yazar. Figürler `outputs/figures/` altında git-dışı artefakt olarak kalır.
+
+`scripts/R/30_apa_tables_audit.R`, KISIM XIII/40 APA tablo paketini (`apa_t01_sample_characteristics` ... `apa_t22_result_synthesis`) üretir ve `outputs/tables/apa_sprint_a_table_manifest.csv` manifestini yazar. Tablolar yalnız aggregate sonuç içerir; satır-düzeyi veri veya kimliklenebilir bilgi yazmaz.
+
+`scripts/R/31_thesis_mapping_audit.R`, KISIM XIII/41 tez bölüm eşlemesini denetler; 5 chapter dosyası, 24 figür referansı, 22 tablo referansı ve `outputs/quarto/thesis.html` render çıktısının varlığını `outputs/tables/thesis_mapping_*.csv` altında aggregate olarak raporlar.
+
+`scripts/R/32_final_plans_audit.R`, KISIM XIII/42, KISIM XV/44 ve KISIM XVI/45 için 3-makale yayın stratejisi, risk matrisi ve 24-haftalık plan aggregate tablolarını üretir. Çıktılar `outputs/tables/final_plan_*.csv` altında kalır.
+
 `scripts/R/09_reporting_standards_audit.R`, STROBE + JARS-Quant + TRIPOD kontrol listesinin şemasını doğrular ve açık raporlama maddelerini `outputs/tables/reporting_standards_*.csv` altında izler.
 
 ## Docker Build
@@ -95,7 +122,7 @@ docker run --rm \
 
 ## `_targets.R` Sınırı
 
-`_targets.R` KISIM V / 15 itibarıyla proje yolları, raw-data manifest, kanonik veri lock doğrulaması, hash kontrollü yükleme, hazırlık faktörleri, türetilmiş skor nesneleri, SES kompozitleri, eksik veri çoklu-çerçeve nesneleri, Tablo 1/SMD denge tabloları, Causal DAG strateji tabloları, Propensity Score/IPTW/Matching altyapısı, H1 çocuk algısı, H2 kardeş ilişkisi, H3 anne öz-rapor ve H4 Beck -> EMBU-P latent SEM tablolarını hesaplar. H5 hipotez analiz hedefleri eklenmeden önce ayrı bir mimari karar alınmalıdır.
+`_targets.R` KISIM XIII / 40 itibarıyla proje yolları, raw-data manifest, kanonik veri lock doğrulaması, hash kontrollü yükleme, hazırlık faktörleri, türetilmiş skor nesneleri, SES kompozitleri, eksik veri çoklu-çerçeve nesneleri, Tablo 1/SMD denge tabloları, Causal DAG strateji tabloları, Propensity Score/IPTW/Matching altyapısı, H1-H5 analizleri, KISIM VI-XII genişletilmiş analizleri ve KISIM XIII/40 APA figür + tablo Sprint A paketlerini hesaplar. Satır-düzeyi veri cache'i `_targets/` altında kalır ve public paketlere dahil edilmez.
 
 ## Hassas Veri Sınırı
 
