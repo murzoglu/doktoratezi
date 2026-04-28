@@ -1,0 +1,22 @@
+project:
+  type: default
+  output-dir: outputs/quarto
+
+lang: tr
+bibliography: references/references.bib
+csl: references/apa.csl
+
+format:
+  html:
+    toc: true
+    number-sections: true
+    theme: cosmo
+  docx:
+    toc: true
+    number-sections: true
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto

@@ -1,0 +1,21 @@
+# Giriş
+
+Tip 1 diyabet (T1DM), çocukluk çağında en sık görülen kronik metabolik hastalıklardan biridir ve hem hasta çocuk hem de aile sistemi üzerinde uzun-erimli psikososyal etkiler yaratır. Türkiye Cumhuriyeti Sağlık Bakanlığı 2023 verileri ve ISPAD 2022 konsensüs bildirimi T1DM tanılı çocuk ailelerinde anne depresyon prevalansının genel popülasyondan iki kat fazla olduğunu raporlamış, fakat ebeveynlik tutum örüntülerinin DM bağlamında nasıl şekillendiğini Türk örnekleminde inceleyen sistematik bir çalışma bulunmamaktadır. Bu doktora tezi söz konusu boşluğu kapatmak amacıyla hem çocuk algısı hem anne öz-raporu düzleminde, kardeş ilişkisi ve anne-çocuk diadik tutarlılığını birlikte ele alan çoklu-kaynaklı, aile düzeyinde nesteli bir araştırma sunmaktadır.
+
+## Çalışmanın Amacı
+
+Tez beş birincil amaca odaklanmıştır. Birinci amaç, T1DM tanılı çocuklar ve sağlıklı kardeşlerinin algıladığı ebeveynlik tutumlarını sağlıklı kontrol grubuyla karşılaştırmaktır (H1). İkinci amaç, kardeşler arasındaki ilişki niteliğini sıcaklık, statü, çatışma ve rekabet boyutlarında DM ve kontrol grupları arasında karşılaştırmaktır (H2). Üçüncü amaç, annelerin kendi ebeveynlik tutumlarını öz-rapor düzleminde grup karşılaştırmasıyla incelemektir (H3). Dördüncü amaç, anne depresyon belirti düzeyinin EMBU-P alt ölçekleri üzerindeki latent etkisini yapısal eşitlik modellemesiyle test etmektir (H4). Beşinci amaç, anne öz-raporu ile çocuk algısı arasındaki diadik tutarlılığı beş paralel strateji ile sayısallaştırmaktır (H5).
+
+## Teorik Çerçeve
+
+Tezin teorik çerçevesi üç katmanlıdır. Birinci katman ekolojik gelişim teorisi (Bronfenbrenner 1979) doğrultusunda T1DM ailesini mikro-sistem (anne-çocuk-kardeş ilişki örüntüleri), mezo-sistem (klinik bakım ekibi etkileşimi) ve egzo-sistem (sosyoekonomik kaynaklar) düzeylerinde okumaktadır. İkinci katman aile sistemleri yaklaşımı (Cameron 2007; Streisand & Monaghan 2014) DM tanısını aile sistemine yönelik kalıcı bir stres uyaranı olarak ele alır ve anne savunmacılığı, aşırı koruma, ayrımcı muamele örüntülerinin sistemik koruyucu ve risk faktörü çift-kutuplu rolünü öngörür. Üçüncü katman gelişimsel psikopatoloji çerçevesi (Cicchetti & Toth 2009) ebeveyn-çocuk algı tutarsızlığını çocuk gelişiminin kalitatif bir yordayıcısı olarak konumlandırır.
+
+## Literatür Boşluğu ve Tezin Yenilik Katkısı
+
+Pinquart (2013) meta-analizi kronik hastalık × ebeveynlik tutumu literatüründe ortalama d ≈ 0.20 düzeyinde küçük-orta etki büyüklüğü gözlemlendiğini raporlamıştır; ancak bu meta-analiz büyük ölçüde tek-bilgi-kaynaklı (anne öz-rapor) çalışmalara dayanmaktadır. Türk T1DM ailelerinde anne öz-rapor ↔ çocuk algısı diadik tutarlılığını sayısallaştıran bir çalışma literatürde mevcut değildir. Bu boşluğu kapatmak amacıyla tezin H5 hipotezi (diadik tutarlılık) birincil yenilik katkısı olarak kurulmuş ve beş paralel strateji (ICC + Bland-Altman, RSA, Common Fate Model, Olsen-Kenny dyadic CFA, Kenny k-katsayısı) ile yürütülmüştür.
+
+İkinci yenilik katkısı, sınır altı psikometrik iç tutarlılık (EMBU-P Reddetme α = 0.45) ve küçük-orta etki büyüklüğü beklentisi koşullarında Multiverse + TOST + Sensemakr + Bayesian dual reporting üçlüsünün null bulguları kesin yorumlamak için zorunlu olduğunu göstermesidir. Bu metodolojik gözlem, gelişimsel psikoloji ve psikometri sahalarında giderek artan robustluk-sensitivite analizi standardı tartışmasına Türkçe akademik yazına özgün bir katkı sunmaktadır.
+
+## Tez Yapısı
+
+Tez beş bölümden oluşmaktadır. **Yöntem** bölümü açık bilim ve veri yönetimi, kanonik analiz tabanı, türetilmiş skor ekosistemi, eksik veri yönetimi (FIML + MI + NMAR delta), Tablo 1 + SMD dengeleme, Causal DAG, propensity score hattı ve beş hipotez analizinin ayrıntılarını sunar; ayrıca KISIM XI sensitivite üçlüsü ve KISIM XII Bayesian paralel hat protokollerini açıklar. **Bulgular** bölümü H1-H5 sonuçlarını ve KISIM VI-X genişletilmiş analiz katmanlarını raporlar. **Tartışma** bölümü bulguların literatür ve klinik bağlamla sentezini, sınırlılıkları ve klinik/araştırma çıkarımlarını sunar. **Sonuç** bölümü tezin ana mesajını özetler ve gelecek faz önerilerini listeler.

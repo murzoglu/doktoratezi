@@ -1,0 +1,26 @@
+{
+  "editor.formatOnSave": true,
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "markdown.validate.enabled": true,
+  "quarto.render.previewType": "internal",
+  "r.bracketedPaste": true,
+  "r.plot.useHttpgd": true,
+  "cSpell.language": "en,tr",
+  "cSpell.words": [
+    "Baumrind",
+    "Beck",
+    "Better BibTeX",
+    "EMBU",
+    "KIA",
+    "Likert",
+    "Quarto",
+    "Sümer",
+    "Zotero",
+    "httpgd",
+    "janitor",
+    "renv",
+    "targets"
+  ],
+  "ltex.language": "tr-TR"
+}

@@ -29,7 +29,10 @@ include/
 pip-selfcheck.json
 
 # IDE
-.vscode/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
 .idea/
 *.swp
 *.swo
@@ -39,6 +42,10 @@ pip-selfcheck.json
 # Credentials - VERY IMPORTANT!
 dr-murzoglu-doktora.json
 *.json
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!renv/settings.json
 credentials/
 .env
 .env.local
@@ -54,6 +61,34 @@ downloaded_test_file.txt
 # Logs
 *.log
 
+# Research data boundaries
+data/raw/
+data/identified/
+data/backup/
+data/cleaned/
+data/processed/*
+!data/processed/.gitkeep
+
+# Project archives — historical decisions, pre-canonical artifacts
+archive/
+
+# Misc artifacts (zip bundles, temp HTML)
+carbon-html-report.zip
+*.zip
+outputs/*
+!outputs/.gitkeep
+!outputs/tables/
+outputs/tables/*
+!outputs/tables/.gitkeep
+!outputs/figures/
+outputs/figures/*
+!outputs/figures/.gitkeep
+!outputs/models/
+outputs/models/*
+!outputs/models/.gitkeep
+_targets/
+_targets.RDS
+
 # Database
 *.db
 *.sqlite
@@ -62,3 +97,86 @@ downloaded_test_file.txt
 # Cache
 .cache/
 *.cache
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Frontend Build
+frontend/dist/
+frontend/build/
+frontend/.vite/
+frontend/.turbo/
+
+# Environment variables
+.env.*
+!.env.example
+.env.backend
+.env.backend.OLD
+.env.frontend
+.env.development
+.env.production
+.env.test
+
+# Backend service-specific env files
+backend/.env
+backend/**/.env
+!backend/**/.env.example
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# Uploads and temp files
+uploads/
+temp/
+tmp/
+*.tmp
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Testing
+coverage/
+.nyc_output/
+*.coverage
+
+# Backend
+backend/**/node_modules/
+backend/**/__pycache__/
+backend/**/*.pyc
+backend/**/dist/
+
+# MongoDB
+mongo_data/
+
+# PostgreSQL
+postgres_data/
+
+# Redis
+redis_data/
+/.quarto/
+
+# Quarto / LaTeX transient output
+/_book/
+/_site/
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fls
+*.fdb_latexmk
+*.lof
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc

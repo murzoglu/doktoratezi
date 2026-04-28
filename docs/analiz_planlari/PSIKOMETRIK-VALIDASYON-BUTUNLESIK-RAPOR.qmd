@@ -1,0 +1,762 @@
+---
+title: "Psikometrik Validasyon Bütünleşik Raporu"
+subtitle: "EMBU-P / EMBU-C, Beck Depresyon Envanteri ve KIA/SRQ sonuçları"
+author: "Özlem Murzoğlu Kurt"
+date: today
+date-format: "D MMMM YYYY"
+format:
+  pdf:
+    pdf-engine: xelatex
+    toc: true
+    number-sections: true
+    papersize: a4
+    geometry:
+      - top=18mm
+      - bottom=18mm
+      - left=17mm
+      - right=17mm
+    mainfont: "Fraunces 9pt"
+    sansfont: "Fraunces 9pt"
+    monofont: "DejaVu Sans Mono"
+    colorlinks: true
+    include-in-header:
+      text: |
+        \usepackage{booktabs}
+        \usepackage{longtable}
+        \usepackage{array}
+        \usepackage{float}
+        \usepackage{caption}
+        \usepackage{xcolor}
+        \captionsetup{font=small,labelfont=normalfont}
+        \definecolor{ReportBlue}{HTML}{4059AD}
+        \definecolor{ReportTeal}{HTML}{2F9C95}
+        \definecolor{ReportWine}{HTML}{8B1E3F}
+        \definecolor{ReportBoxBg}{HTML}{F7FAF9}
+        \setkomafont{title}{\normalfont\LARGE}
+        \setkomafont{subtitle}{\normalfont\large}
+        \setkomafont{author}{\normalfont\normalsize}
+        \setkomafont{date}{\normalfont\normalsize}
+        \setkomafont{disposition}{\normalfont}
+        \setkomafont{section}{\normalfont\large}
+        \setkomafont{subsection}{\normalfont\normalsize}
+        \setkomafont{sectionentry}{\normalfont}
+        \setlength{\emergencystretch}{4em}
+        \setlength{\parskip}{0.48\baselineskip}
+        \setlength{\parindent}{0pt}
+        \renewcommand{\arraystretch}{1.14}
+        \clubpenalty=10000
+        \widowpenalty=10000
+        \displaywidowpenalty=10000
+        \raggedbottom
+        \makeatletter
+        \newcommand{\Needspace}[1]{%
+          \par\begingroup\dimen@=#1\relax
+          \vskip\z@ plus\dimen@
+          \penalty -100\vskip\z@ plus-\dimen@
+          \vskip\dimen@\penalty 9999\vskip-\dimen@
+          \vskip\z@skip\endgroup}
+        \makeatother
+        \newcommand{\methodbox}[2]{%
+          \par\smallskip\noindent
+          \begingroup
+          \setlength{\fboxsep}{7pt}%
+          \fcolorbox{ReportTeal}{ReportBoxBg}{%
+          \begin{minipage}{0.94\linewidth}
+          \textcolor{ReportTeal}{#1}\par\smallskip\small #2
+          \end{minipage}}%
+          \endgroup\par\smallskip
+        }
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+knitr::opts_chunk$set(
+  dev = "ragg_png",
+  dpi = 220,
+  fig.align = "center",
+  fig.pos = "H",
+  fig.width = 7.2,
+  fig.height = 4.2,
+  out.width = "100%"
+)
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(dplyr)
+  library(tidyr)
+  library(scales)
+  library(knitr)
+})
+
+input_path <- knitr::current_input()
+base_dir <- if (!is.null(input_path)) dirname(normalizePath(input_path)) else getwd()
+project_root <- normalizePath(file.path(base_dir, "..", ".."), mustWork = FALSE)
+if (!file.exists(file.path(project_root, "outputs", "tables", "psychval_summary_metrics.csv"))) {
+  project_root <- normalizePath(getwd(), mustWork = FALSE)
+}
+
+table_path <- function(file_name) file.path(project_root, "outputs", "tables", file_name)
+read_table <- function(file_name) read.csv(table_path(file_name), check.names = FALSE, stringsAsFactors = FALSE)
+read_optional <- function(file_name) {
+  if (file.exists(table_path(file_name))) read_table(file_name) else data.frame()
+}
+
+fmt <- function(x, digits = 3) {
+  ifelse(is.na(x), "NA", formatC(as.numeric(x), format = "f", digits = digits))
+}
+
+fmt_p <- function(x) {
+  ifelse(is.na(x), "NA", ifelse(as.numeric(x) < .001, "<.001", formatC(as.numeric(x), format = "f", digits = 3)))
+}
+
+metric_value <- function(metrics, metric) {
+  as.numeric(metrics$value[metrics$metric == metric])
+}
+
+short_text <- function(x, width = 90) {
+  x <- gsub("\\s+", " ", ifelse(is.na(x), "", x))
+  ifelse(nchar(x) > width, paste0(substr(x, 1, width), "..."), x)
+}
+
+nice_item_set <- function(x) {
+  recode(
+    x,
+    all_29_items = "29 madde",
+    q12_excluded_28_items = "q12siz 28",
+    q12_excluded_7_rejection_items_binary_1_vs_gt1 = "Reddetme binary",
+    all_29_items_binary_1_vs_gt1 = "29 madde binary",
+    all_29_items_original_4cat = "29 madde 4 kategori",
+    .default = x
+  )
+}
+
+nice_form <- function(x) {
+  recode(
+    x,
+    `EMBU-P q12siz Reddetme binary` = "EMBU-P q12siz",
+    `EMBU-C binary` = "EMBU-C bin.",
+    .default = x
+  )
+}
+
+nice_scheme <- function(x) {
+  recode(
+    x,
+    binary_1_vs_gt1 = "1/>1",
+    original_4cat = "4 kat.",
+    .default = x
+  )
+}
+
+nice_subscale <- c(
+  sicaklik = "Sıcaklık",
+  asiri_koruma = "Aşırı koruma",
+  reddetme = "Reddetme",
+  karsilastirma = "Karşılaştırma"
+)
+
+nice_srq <- c(
+  srq_total_mean = "SRQ toplam",
+  sicaklik_yakinlik_mean = "SRQ Sıcaklık/Yakınlık",
+  statu_guc_mean = "SRQ Statü/Güç",
+  catisma_mean = "SRQ Çatışma",
+  rekabet_mean = "SRQ Rekabet"
+)
+
+theme_set(
+  theme_minimal(base_family = "Fraunces 9pt", base_size = 10) +
+    theme(
+      panel.grid.minor = element_blank(),
+      panel.grid.major = element_line(color = "#e8e8e8", linewidth = .35),
+      strip.text = element_text(face = "plain", size = 9.5),
+      legend.key.height = unit(4.5, "mm"),
+      legend.key.width = unit(5.5, "mm"),
+      plot.margin = margin(7, 9, 7, 9)
+    )
+)
+
+data_audit <- read_table("psychval_data_audit.csv")
+summary_metrics <- read_table("psychval_summary_metrics.csv")
+reliability <- read_table("psychval_reliability.csv")
+item_total <- read_table("psychval_item_total.csv")
+item_desc_p <- read_table("psychval_item_descriptives_embu_p.csv")
+item_desc_c <- read_table("psychval_item_descriptives_embu_c.csv")
+efa_summary <- read_table("psychval_efa_summary.csv")
+cfa_fit <- read_table("psychval_cfa_fit.csv")
+cluster_cfa <- read_optional("psychval_cluster_cfa_sensitivity.csv")
+mod_indices <- read_optional("psychval_modification_indices.csv")
+invariance <- read_table("psychval_measurement_invariance.csv")
+category_audit <- read_optional("psychval_invariance_category_audit.csv")
+icc <- read_table("psychval_icc_embu_c.csv")
+concordance <- read_table("psychval_within_family_concordance.csv")
+validity <- read_table("psychval_validity_correlations.csv")
+multiverse <- read_table("psychval_rejection_multiverse.csv")
+tost <- read_table("psychval_rejection_tost.csv")
+bsem_status <- read_optional("psychval_bsem_status.csv")
+bsem_fit <- read_optional("psychval_bsem_fit_measures.csv")
+bsem_conv <- read_optional("psychval_bsem_convergence.csv")
+bsem_group <- read_optional("psychval_bsem_latent_group_comparison.csv")
+
+family_rows <- metric_value(summary_metrics, "family_rows")
+long_rows <- metric_value(summary_metrics, "long_rows")
+p_rej_alpha <- metric_value(summary_metrics, "embu_p_reddetme_alpha_raw")
+c_rej_alpha <- metric_value(summary_metrics, "embu_c_reddetme_alpha_raw")
+dyad_rej_icc <- metric_value(summary_metrics, "index_sibling_reddetme_icc_2_1")
+
+rel_value <- function(form_value, subscale_value, column) {
+  reliability |>
+    filter(form == form_value, subscale == subscale_value) |>
+    pull({{ column }}) |>
+    dplyr::first()
+}
+
+p_rej_omega <- rel_value("EMBU-P", "reddetme", omega_total)
+c_rej_omega <- rel_value("EMBU-C", "reddetme", omega_total)
+
+tbl <- function(x, caption = NULL, digits = 3, longtable = FALSE, size = "\\small", tabcolsep = "4pt", needspace = "7\\baselineskip") {
+  out <- kable(x, format = "latex", booktabs = TRUE, longtable = longtable, digits = digits)
+  if (!is.null(caption)) {
+    out <- paste0("\\noindent\\textcolor{ReportTeal}{", caption, "}\\par\\smallskip\n", out)
+  }
+  out <- paste0("\\Needspace{", needspace, "}\n\\begingroup\n", size, "\n\\setlength{\\tabcolsep}{", tabcolsep, "}\n", out, "\n\\endgroup")
+  knitr::asis_output(out)
+}
+```
+
+# Yönetici Özeti
+
+Bu rapor, kilitli final referans veri üzerinde üretilen psikometrik validasyon sonuçlarını tek PDF yüzeyinde birleştirir. Analiz tabanı `r family_rows` aile ve `r long_rows` çocuk satırıdır; ham veri veya kimliklenebilir alan kullanılmamıştır.
+
+Raporun amacı tek bir "geçti/kaldı" kararı üretmek değil, EMBU-P ve EMBU-C formlarının bu örneklemde hangi kanıt türlerinde güçlü, hangi kanıt türlerinde kırılgan davrandığını açık biçimde göstermektir. Bu nedenle sonuçlar güvenilirlik, madde dağılımı, faktör yapısı, ölçüm değişmezliği, aile içi bağımlılık, nomolojik ağ ve duyarlılık analizleri olarak ayrı ayrı sunulmuş, son bölümde ise raporlama kararı birlikte tartılmıştır.
+
+```{r}
+summary_table <- data.frame(
+  Alan = c(
+    "EMBU-P Reddetme güvenilirliği",
+    "EMBU-C Reddetme güvenilirliği",
+    "İndeks-kardeş Reddetme uyumu",
+    "BSEM full model PPP",
+    "Cluster duyarlılık CFA",
+    "Yaş/cinsiyet binary MI"
+  ),
+  Bulgu = c(
+    paste0("alpha = ", fmt(p_rej_alpha)),
+    paste0("alpha = ", fmt(c_rej_alpha)),
+    paste0("ICC(2,1) = ", fmt(dyad_rej_icc)),
+    if (nrow(bsem_fit) > 0) paste0("PPP = ", fmt(bsem_fit$value[bsem_fit$analysis == "EMBU-P four_factor BSEM full_29" & bsem_fit$measure == "ppp"][1])) else "BSEM çıktısı yok",
+    if (nrow(cluster_cfa) > 0) paste0("CFI = ", fmt(cluster_cfa$cfi_robust[1]), ", RMSEA = ", fmt(cluster_cfa$rmsea_robust[1]), ", SRMR = ", fmt(cluster_cfa$srmr[1])) else "Yok",
+    "Binary MI raporlanabilir"
+  )
+)
+tbl(summary_table, "Ana sonuçların kısa yorumu", digits = 3)
+```
+
+Ana bulgu örüntüsü nettir: EMBU-C, özellikle Reddetme ve Karşılaştırma eksenlerinde daha kullanılabilir psikometrik sinyal verirken EMBU-P Reddetme alt ölçeği düşük iç tutarlılık ve yoğun taban etkisi nedeniyle metodolojik ekte sınırlılık olarak ele alınmalıdır. BSEM duyarlılığı, klasik toplam puan sonuçlarını tamamlayan latent değişken kontrolü olarak sunulmuştur.
+
+```{=latex}
+\Needspace{10\baselineskip}
+```
+
+# Veri Kilidi ve Kapsam
+
+Kanonik veri kilidi, bu rapordaki sayısal sonuçların hangi analiz tabanından üretildiğini doğrular. `family CSV` aile düzeyindeki tekil satırları, `long CSV` ise indeks çocuk ve kardeş satırlarını taşır. SHA-256 uyumunun `TRUE` olması, sonuçların kilitli final referans dosyalarına bağlı kaldığını gösterir.
+
+```{=latex}
+\methodbox{İstatistik yöntem kutusu: analiz birimi ve veri kilidi}{Bu rapordaki temel analiz birimi soruya göre değişir. Aile düzeyi sonuçlarda 241 ailelik family tabanı, çocuk ve kardeş algılarını içeren psikometrik sonuçlarda 482 satırlık long taban kullanılır. Kardeş satırları aynı aileden geldiği için bağımsızlık varsayımı sınırlıdır; bu nedenle aile içi ICC, indeks-kardeş konkordansı ve cluster duyarlılık analizleri ayrıca raporlanır. SHA-256 kilidi, sonuçların aynı final referans veri üzerinden hesaplandığını gösteren teknik doğrulamadır.}
+```
+
+```{r}
+audit_show <- data_audit |>
+  transmute(
+    Dosya = ifelse(grepl("family", file), "family CSV", "long CSV"),
+    Satır = rows,
+    Kolon = columns,
+    `SHA-256 uyumu` = hash_ok
+  )
+tbl(audit_show, "Kanonik veri kilidi doğrulaması")
+```
+
+Bu kapsam, kardeşli tasarımın iki düzeyli yapısını korur: aile düzeyi karşılaştırmalar `family CSV` üzerinden, çocuk/kardeş düzeyi psikometrik ve konkordans bulguları `long CSV` üzerinden okunmalıdır. Bu ayrım özellikle EMBU-C, SRQ/KIA ve aile içi ICC yorumlarında bağımsız gözlem varsayımını gereksiz yere güçlendirmemek için önemlidir.
+
+```{=latex}
+\Needspace{14\baselineskip}
+```
+
+# Güvenilirlik ve Madde Davranışı
+
+Güvenilirlik bölümü iki tamamlayıcı soruya yanıt verir. Birincisi, alt ölçek puanlarının iç tutarlılığı kabul edilebilir düzeyde mi; ikincisi, madde yanıt dağılımları bu iç tutarlılığı destekleyecek kadar varyans içeriyor mu? Bu nedenle alpha ve omega katsayıları madde düzeyi taban etkisiyle birlikte yorumlanmıştır.
+
+```{=latex}
+\methodbox{İstatistik yöntem kutusu: alpha, omega ve taban etkisi}{Cronbach alpha maddelerin ortak varyansını klasik test kuramı içinde özetler; McDonald omega ise faktör yüklerine dayalı daha esnek bir iç tutarlılık ölçüsüdür. Alpha ve omega birlikte düşükse sorun yalnız alpha varsayımlarından değil, madde havuzunun zayıf ortak sinyal üretmesinden kaynaklanabilir. Taban etkisi, yanıtların en düşük kategoride yığılmasını gösterir; yüksek taban etkisi korelasyonları, grup farklarını ve CFA yüklerini aşağı çekebilir.}
+```
+
+```{r}
+#| label: fig-reliability
+#| fig-cap: "Cronbach alpha ve McDonald omega toplam değerleri"
+rel_plot <- reliability |>
+  filter(form %in% c("EMBU-P", "EMBU-C")) |>
+  mutate(
+    subscale = recode(subscale, !!!nice_subscale),
+    form = factor(form, levels = c("EMBU-P", "EMBU-C"))
+  ) |>
+  select(form, subscale, alpha_raw, omega_total) |>
+  pivot_longer(c(alpha_raw, omega_total), names_to = "metric", values_to = "value") |>
+  mutate(metric = recode(metric, alpha_raw = "Cronbach alpha", omega_total = "McDonald omega"))
+
+ggplot(rel_plot, aes(x = subscale, y = value, fill = form)) +
+  geom_col(position = position_dodge(width = .72), width = .62, color = "white", linewidth = .2) +
+  geom_hline(yintercept = .70, linetype = "dashed", color = "#8b1e3f", linewidth = .35) +
+  facet_wrap(~ metric, ncol = 1) +
+  scale_y_continuous(limits = c(0, 1), labels = number_format(accuracy = .1)) +
+  scale_fill_manual(values = c("EMBU-P" = "#4059ad", "EMBU-C" = "#2f9c95")) +
+  labs(x = NULL, y = "Katsayı", fill = NULL) +
+  theme(legend.position = "top", panel.grid.major.x = element_blank())
+```
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Kesikli çizgi `.70` eşiğini gösterir; bu çizginin üstü tek başına "geçerli ölçek" anlamına gelmez, ancak iç tutarlılık için pratik bir uyarı düzeyi sağlar. EMBU-C Reddetme için alpha `r fmt(c_rej_alpha)` ve omega `r fmt(c_rej_omega)` iken EMBU-P Reddetme için alpha `r fmt(p_rej_alpha)` ve omega `r fmt(p_rej_omega)` düzeyindedir. Bu ayrışma, reddedici ebeveynlik içeriğinin çocuk bildiriminde daha tutarlı yakalandığını, anne öz-bildiriminde ise aynı madde havuzunun daha zayıf sinyal ürettiğini düşündürür.
+
+```{r}
+#| label: fig-floor
+#| fig-cap: "EMBU-P ve EMBU-C madde düzeyi taban etkisi"
+item_floor <- bind_rows(item_desc_p, item_desc_c) |>
+  mutate(
+    item_no = as.integer(gsub(".*q", "", item)),
+    subscale = recode(subscale, !!!nice_subscale),
+    form = factor(form, levels = c("EMBU-P", "EMBU-C"))
+  )
+
+ggplot(item_floor, aes(x = item_no, y = floor_pct, color = subscale)) +
+  geom_hline(yintercept = 60, linetype = "dashed", color = "grey45", linewidth = .25) +
+  geom_hline(yintercept = 80, linetype = "dotted", color = "grey45", linewidth = .25) +
+  geom_point(size = 1.65, alpha = .9) +
+  geom_line(alpha = .35, linewidth = .35) +
+  facet_wrap(~ form, ncol = 1) +
+  scale_x_continuous(breaks = seq(1, 29, by = 2)) +
+  scale_y_continuous(labels = label_percent(scale = 1), limits = c(0, 100)) +
+  scale_color_manual(values = c("Sıcaklık" = "#2f9c95", "Aşırı koruma" = "#d28b26", "Reddetme" = "#8b1e3f", "Karşılaştırma" = "#4059ad")) +
+  labs(x = "Madde numarası", y = "Taban etkisi", color = "Alt ölçek") +
+  theme(legend.position = "bottom")
+```
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Taban etkisi, bir maddenin en düşük yanıtta yığılma oranını gösterir; yüksek taban etkisi özellikle olumsuz ebeveynlik maddelerinde varyansı daraltır ve korelasyon, CFA yükü ve grup farkı tahminlerini zayıflatabilir. Grafikteki yüzde 60 ve yüzde 80 referans çizgileri madde havuzunun hangi bölgelerinde yanıtların sıkıştığını görünür kılar. Toplam `r sum(item_floor$floor_pct >= 80, na.rm = TRUE)` madde-form noktası yüzde 80 veya üzerinde taban etkisi göstermektedir; bu nedenle Reddetme sonuçları yalnız toplam puan düzeyinde değil, madde dağılımı düzeyinde de temkinli okunmalıdır.
+
+```{r}
+rel_show <- reliability |>
+  filter(form %in% c("EMBU-P", "EMBU-C")) |>
+  transmute(
+    Form = form,
+    `Alt ölçek` = recode(subscale, !!!nice_subscale),
+    alpha = alpha_raw,
+    omega = omega_total,
+    `omega_h` = omega_h
+)
+tbl(rel_show, "Ana güvenilirlik katsayıları")
+```
+
+Tablo, grafik özetini sayısal olarak tamamlar. Omega değerleri alpha ile aynı yönlü olduğu için düşük Reddetme bulgusunu yalnız alpha varsayımlarına bağlamak doğru değildir; sorun daha temel olarak madde havuzunun bu örneklemde ürettiği varyans ve faktör homojenliğiyle ilişkilidir.
+
+```{=latex}
+\Needspace{14\baselineskip}
+```
+
+# Faktör Yapısı ve Model Uyumu
+
+Faktör yapısı bölümünde tek faktör, dört faktör ve bifaktör çözümler karşılaştırılmıştır. Dört faktör çözümü teorik alt ölçek yapısını temsil eder; bifaktör çözüm genel ebeveynlik tonu ile alt boyutların aynı anda taşınıp taşınamadığını sınar. EMBU-C için ayrıca aile kümelenmesine duyarlı sürekli-MLR CFA duyarlılığı rapora eklenmiştir.
+
+```{=latex}
+\methodbox{İstatistik yöntem kutusu: CFA ve uyum indeksleri}{Doğrulayıcı faktör analizi, maddelerin kuramsal alt ölçeklere ne ölçüde uyduğunu sınar. CFI gözlenen modelin bağımsız modele göre göreli uyumunu, RMSEA yaklaşık model hatasını, SRMR ise standartlaştırılmış artıkların büyüklüğünü özetler. Bu raporda CFI için daha yüksek, RMSEA ve SRMR için daha düşük değerler olumlu kabul edilir; eşikler kesin karar çizgisi değil, model uyumunu yorumlamak için pratik referanslardır. Cluster duyarlılık CFA, kardeşlerin aynı aile içinde kümelenmesini dikkate alan ek bir sağlamlık kontrolüdür.}
+```
+
+```{r}
+#| label: fig-cfa
+#| fig-cap: "Klasik CFA ve cluster duyarlılığı için temel uyum göstergeleri"
+cfa_plot <- cfa_fit |>
+  filter(model %in% c("one_factor", "four_factor", "bifactor")) |>
+  mutate(
+    model = recode(model, one_factor = "Tek faktör", four_factor = "Dört faktör", bifactor = "Bifaktör"),
+    source = form
+  ) |>
+  transmute(source, model, CFI = cfi_scaled, RMSEA = rmsea_scaled, SRMR = srmr)
+
+if (nrow(cluster_cfa) > 0) {
+  cfa_plot <- bind_rows(
+    cfa_plot,
+    data.frame(source = "EMBU-C cluster MLR", model = "Dört faktör", CFI = cluster_cfa$cfi_robust[1], RMSEA = cluster_cfa$rmsea_robust[1], SRMR = cluster_cfa$srmr[1])
+  )
+}
+
+cfa_long <- cfa_plot |>
+  pivot_longer(c(CFI, RMSEA, SRMR), names_to = "metric", values_to = "value") |>
+  filter(!is.na(value))
+
+ggplot(cfa_long, aes(x = value, y = model, color = source)) +
+  geom_vline(data = data.frame(metric = c("CFI", "RMSEA", "SRMR"), ref = c(.90, .06, .08)),
+             aes(xintercept = ref), inherit.aes = FALSE, linetype = "dashed", color = "grey45", linewidth = .3) +
+  geom_point(size = 2.1, alpha = .92) +
+  facet_wrap(~ metric, scales = "free_x", nrow = 1) +
+  scale_color_manual(values = c("EMBU-P" = "#4059ad", "EMBU-C" = "#2f9c95", "EMBU-C cluster MLR" = "#d28b26")) +
+  labs(x = "Uyum değeri", y = NULL, color = NULL) +
+  theme(legend.position = "bottom")
+```
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} CFI için daha yüksek değerler, RMSEA ve SRMR için daha düşük değerler daha iyi uyumu gösterir; dikey kesikli çizgiler pratik yorum eşiklerini işaretler. Tek faktör çözümlerinin düşük CFI değerleri ölçeğin tek boyutlu okunmasını desteklemez. Dört faktör çözümü EMBU-P ve EMBU-C için daha anlamlıdır, ancak EMBU-P'de SRMR'nin yüksek kalması ve EMBU-C'de CFI'nin sınırda seyretmesi sonuçların "tam doğrulanmış model" yerine "kullanılabilir ama sınırlı faktör kanıtı" olarak raporlanmasını gerektirir.
+
+```{r}
+cfa_show <- cfa_fit |>
+  filter(model %in% c("one_factor", "four_factor", "bifactor")) |>
+  transmute(
+    Form = form,
+    Model = recode(model, one_factor = "Tek faktör", four_factor = "Dört faktör", bifactor = "Bifaktör"),
+    CFI = cfi_scaled,
+    RMSEA = rmsea_scaled,
+    SRMR = srmr
+  )
+tbl(cfa_show, "CFA model karşılaştırmaları")
+```
+
+```{r}
+if (nrow(cluster_cfa) > 0) {
+  cluster_show <- cluster_cfa |>
+    transmute(
+      Yöntem = method,
+      `n gözlem` = n_obs,
+      `n aile` = n_clusters,
+      CFI = cfi_robust,
+      RMSEA = rmsea_robust,
+      SRMR = srmr,
+      Yakınsadı = converged
+    )
+  tbl(cluster_show, "Aile-kümelenmesi için sürekli-MLR duyarlılık CFA")
+}
+```
+
+Cluster duyarlılık sonucu, aile içi bağımlılığın tamamen görmezden gelinmediğini gösteren tamamlayıcı bir kontroldür. Bu model klasik ordinal CFA'nın yerini almaktan çok, kardeşli tasarımda model uyumunun aile kümelenmesine ne kadar duyarlı olduğunu göstermek için eklenmiştir.
+
+```{=latex}
+\Needspace{14\baselineskip}
+```
+
+# Ölçüm Değişmezliği
+
+Ölçüm değişmezliği analizleri, aynı madde setinin gruplar arasında benzer ölçüm anlamı taşıyıp taşımadığını sınar. Bu raporda configural, metric ve scalar düzeyler birlikte izlenmiştir; scalar düzey özellikle grup ortalaması karşılaştırmalarının daha savunulabilir olmasını sağlar. Yaş ve cinsiyet analizlerinde özgün dört kategorili yanıt yapısının seyrek hücre ürettiği durumlar ayrıca denetlenmiştir.
+
+```{=latex}
+\methodbox{İstatistik yöntem kutusu: ölçüm değişmezliği}{Configural düzey aynı faktör yapısının gruplarda kurulabildiğini, metric düzey madde yüklerinin benzerliğini, scalar düzey ise eşik veya intercept benzerliğini sınar. Scalar düzey sağlanmadan grup ortalamalarını doğrudan karşılaştırmak daha zayıf bir kanıta dayanır. Bu raporda scalar CFI ve Delta CFI birlikte izlenmiştir. Kategori seyrekliği olduğunda model tahmini teknik olarak bozulabileceği için yaş ve cinsiyet duyarlılıklarında 1 ve 1'den büyük yanıtları ayıran binary kodlama ayrıca denenmiştir.}
+```
+
+```{r}
+#| label: fig-invariance
+#| fig-cap: "Ölçüm değişmezliği duyarlılıklarında scalar CFI"
+inv_scalar <- invariance |>
+  filter(level == "scalar", is.na(error) | error == "") |>
+  mutate(
+    analysis = paste(form, group_var, item_set, sep = " | "),
+    analysis = gsub("all_29_items_binary_1_vs_gt1", "binary 1 vs >1", analysis)
+  )
+
+ggplot(inv_scalar, aes(x = cfi_scaled, y = reorder(analysis, cfi_scaled), fill = group_var)) +
+  geom_col(width = .62) +
+  geom_vline(xintercept = .90, linetype = "dashed", color = "grey35", linewidth = .35) +
+  scale_x_continuous(limits = c(0, 1), labels = number_format(accuracy = .01)) +
+  scale_fill_manual(values = c(group = "#4059ad", family_role = "#2f9c95", age_cat = "#d28b26", sex_group = "#8b1e3f")) +
+  labs(x = "Scalar CFI", y = NULL, fill = "Gruplama") +
+  theme(legend.position = "bottom")
+```
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Scalar CFI değerleri, grup karşılaştırmalarında madde eşiklerinin ne kadar istikrarlı kaldığını özetler. DM-Kontrol ve aile rolü eksenindeki EMBU-C modelleri raporlanabilir bir çizgi verirken, yaş ve cinsiyet için özgün dört kategorili yanıt yapısı bazı maddelerde boş hücre ürettiği için doğrudan kullanılamaz. Binary 1/>1 daraltması bu seyrekliği azaltır; bu nedenle yaş/cinsiyet duyarlılıkları birincil sonuç değil, metodolojik destek analizi olarak ele alınmalıdır.
+
+```{r}
+if (nrow(category_audit) > 0) {
+  audit_show <- category_audit |>
+    group_by(group_var, item_set, scheme) |>
+    summarise(
+      Set = nice_item_set(item_set[1]),
+      `Boş madde` = sum(has_empty_cell, na.rm = TRUE),
+      `Boş hücre` = sum(empty_cell_count, na.rm = TRUE),
+      `Min hücre` = min(min_cell, na.rm = TRUE),
+      .groups = "drop"
+    ) |>
+    transmute(Grup = group_var, Set, Şema = nice_scheme(scheme), `Boş madde`, `Boş hücre`, `Min hücre`)
+  tbl(audit_show, "Yaş/cinsiyet MI için kategori seyrekliği denetimi", tabcolsep = "3pt")
+}
+```
+
+```{r}
+inv_success <- invariance |>
+  filter(is.na(error) | error == "") |>
+  transmute(
+    Form = nice_form(form),
+    Grup = group_var,
+    Set = nice_item_set(item_set),
+    Düzey = level,
+    CFI = cfi_scaled,
+    RMSEA = rmsea_scaled,
+    SRMR = srmr,
+    `Delta CFI` = delta_cfi
+  )
+tbl(inv_success, "Başarılı ölçüm değişmezliği modelleri", longtable = TRUE, size = "\\scriptsize", tabcolsep = "3pt")
+```
+
+```{r}
+inv_failures <- invariance |>
+  filter(!is.na(error) & error != "") |>
+  distinct(form, group_var, item_set, error) |>
+  transmute(
+    Form = nice_form(form),
+    Grup = group_var,
+    Set = nice_item_set(item_set),
+    Hata = short_text(error, 58)
+  )
+tbl(inv_failures, "Tahmin edilemeyen ölçüm değişmezliği modelleri", size = "\\scriptsize", tabcolsep = "3pt")
+```
+
+Başarısız modellerin çoğu teorik uyumsuzluktan çok kategori seyrekliği ve bazı yanıt düzeylerinin küçük alt gruplarda hiç gözlenmemesiyle ilişkilidir. Bu nedenle raporda "ölçüm değişmezliği yok" gibi genel bir yargı yerine, hangi grup ve hangi madde kodlamasında tahminin mümkün olduğu açıkça ayrıştırılmalıdır.
+
+```{=latex}
+\Needspace{14\baselineskip}
+```
+
+# Aile İçi Yapı ve Kardeş Konkordansı
+
+Kardeşli tasarım, her çocuk satırını bağımsız kabul etmeyi uygun kılmaz. Bu bölüm aile içi benzerliğin ve indeks-kardeş anlaşmasının alt ölçeklere göre ne kadar değiştiğini gösterir. ICC değerleri yüksek bir mutlak seviye beklemekten çok, hangi alt ölçeklerin aile içinde daha ortak algılandığını görmek için kullanılmıştır.
+
+```{=latex}
+\methodbox{İstatistik yöntem kutusu: ICC ve LoA}{Intraclass correlation coefficient, aynı aile içindeki ya da indeks-kardeş çiftindeki puanların ne kadar benzer olduğunu özetler. ICC(2,1), tek ölçüm düzeyinde mutlak anlaşmaya odaklanan iki yönlü rastgele etkiler yaklaşımıdır. Bland-Altman limits of agreement ise kardeşler arasındaki farkların pratik aralığını verir; ortalama fark küçük olsa bile LoA genişse bireysel ailelerde belirgin ayrışma olabilir.}
+```
+
+```{r}
+#| label: fig-icc
+#| fig-cap: "EMBU-C aile içi ICC ve indeks-kardeş anlaşması"
+icc_plot <- icc |>
+  mutate(subscale = recode(gsub("_mean", "", score), !!!nice_subscale)) |>
+  transmute(subscale, metric = "Aile içi ICC", value = icc_adjusted) |>
+  bind_rows(
+    concordance |>
+      mutate(subscale = recode(subscale, !!!nice_subscale)) |>
+      transmute(subscale, metric = "İndeks-kardeş ICC(2,1)", value = icc_2_1_agreement)
+  )
+
+ggplot(icc_plot, aes(x = subscale, y = value, fill = metric)) +
+  geom_col(position = position_dodge(width = .72), width = .62, color = "white", linewidth = .2) +
+  scale_y_continuous(limits = c(0, .6), labels = number_format(accuracy = .1)) +
+  scale_fill_manual(values = c("Aile içi ICC" = "#2f9c95", "İndeks-kardeş ICC(2,1)" = "#4059ad")) +
+  labs(x = NULL, y = "ICC", fill = NULL) +
+  theme(legend.position = "top", panel.grid.major.x = element_blank())
+```
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Sıcaklık en yüksek, Reddetme ise en düşük indeks-kardeş anlaşması veren alt ölçek olarak görünmektedir. Reddetme için ICC(2,1) `r fmt(dyad_rej_icc)` düzeyindedir; bu düşük değer, aynı ailedeki iki çocuğun reddedilme algısının tam olarak örtüşmediğini ve parental differential treatment yorumuna alan açtığını gösterir. Bu bulgu, EMBU-C'nin yalnız bireysel algıyı değil, aile içi farklılaşmayı da taşıyabildiğini destekler.
+
+```{r}
+concordance_show <- concordance |>
+  transmute(
+    `Alt ölçek` = recode(subscale, !!!nice_subscale),
+    `n çift` = n_pairs,
+    `ICC(2,1)` = icc_2_1_agreement,
+    `Ortalama fark` = mean_difference_idx_minus_sib,
+    `LoA alt` = loa_lower,
+    `LoA üst` = loa_upper
+  )
+tbl(concordance_show, "İndeks-kardeş konkordansı")
+```
+
+LoA aralıklarının genişliği, kardeşler arasındaki farkların bazı ailelerde klinik olarak anlamlı olabilecek ölçüde açılabildiğini gösterir. Bu yüzden indeks-kardeş karşılaştırmaları yalnız ortalama fark üzerinden değil, anlaşma ve dağılım genişliği üzerinden de raporlanmalıdır.
+
+```{=latex}
+\Needspace{14\baselineskip}
+```
+
+# Nomolojik Ağ: Beck ve SRQ/KIA
+
+Nomolojik ağ bölümü, EMBU alt ölçeklerinin beklenen dış ölçütlerle aynı yönde ilişki verip vermediğini sınar. Beck Depresyon toplamı anne bildirimiyle, SRQ/KIA alt boyutları ise kardeş ilişkisi alanıyla bağlanmıştır. Bu bölümde p-değerleri yalnız işaretleyici olarak kullanılmış, yorumun ana ekseni etki yönü ve büyüklüğü olmuştur.
+
+```{=latex}
+\methodbox{İstatistik yöntem kutusu: Spearman korelasyonu ve nomolojik ağ}{Spearman rho, değişkenler arasındaki monoton ilişkiyi sıra bilgisi üzerinden ölçer ve Likert temelli ya da çarpık dağılımlı puanlarda Pearson korelasyonuna göre daha dayanıklı bir özet sağlar. Nomolojik ağ yaklaşımında amaç yalnız p-değeri üretmek değildir; kuramsal olarak ilişkili olması beklenen alanların beklenen yönde ve makul büyüklükte ilişki verip vermediği değerlendirilir.}
+```
+
+```{r}
+#| label: fig-validity
+#| fig-cap: "Beklenen yönlü geçerlik korelasyonları"
+validity_plot <- validity |>
+  mutate(
+    axis = case_when(
+      analysis == "EMBU-P vs Beck total" ~ paste0("EMBU-P ", recode(gsub("_mean", "", x), !!!nice_subscale), " x Beck"),
+      grepl("EMBU-P comparison", analysis) ~ paste0("EMBU-P Karşılaştırma x ", recode(y, !!!nice_srq)),
+      grepl("EMBU-C comparison", analysis) ~ paste0("EMBU-C Karşılaştırma x ", recode(y, !!!nice_srq)),
+      TRUE ~ paste(x, y, sep = " x ")
+    ),
+    family = case_when(
+      grepl("EMBU-C", axis) ~ "EMBU-C",
+      grepl("EMBU-P", axis) ~ "EMBU-P",
+      TRUE ~ "Diğer"
+    ),
+    significant = p_value < .05
+  )
+
+ggplot(validity_plot, aes(x = spearman_rho, y = reorder(axis, spearman_rho), color = family, shape = significant)) +
+  geom_vline(xintercept = 0, color = "grey45", linewidth = .3) +
+  geom_point(size = 2.1) +
+  scale_x_continuous(limits = c(-.35, .35), labels = number_format(accuracy = .1)) +
+  scale_color_manual(values = c("EMBU-P" = "#4059ad", "EMBU-C" = "#2f9c95", "Diğer" = "grey40")) +
+  scale_shape_manual(values = c(`TRUE` = 16, `FALSE` = 1), labels = c(`TRUE` = "p < .05", `FALSE` = "p >= .05")) +
+  labs(x = "Spearman rho", y = NULL, color = NULL, shape = NULL) +
+  theme(legend.position = "bottom")
+```
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Noktaların sıfır çizgisinden uzaklığı ilişkinin büyüklüğünü, dolu noktalar p < .05 düzeyindeki sonuçları gösterir. Beklenen örüntü büyük ölçüde korunmaktadır: EMBU-P Karşılaştırma ve Reddetme Beck ile pozitif, Sıcaklık Beck ile negatif ilişkilidir; EMBU-C Karşılaştırma ise SRQ Çatışma ve Rekabet ile pozitif, SRQ Sıcaklık/Yakınlık ile negatif ilişki verir. Bu yönsel tutarlılık, özellikle EMBU-C Karşılaştırma boyutunun kardeş ilişkisi bağlamında nomolojik geçerlik sinyali taşıdığını gösterir.
+
+```{r}
+validity_show <- validity |>
+  mutate(
+    Karşılaştırma = case_when(
+      analysis == "EMBU-P vs Beck total" ~ paste0("EMBU-P ", recode(gsub("_mean", "", x), !!!nice_subscale), " x Beck"),
+      grepl("EMBU-P comparison", analysis) ~ paste0("EMBU-P Karşılaştırma x ", recode(y, !!!nice_srq)),
+      grepl("EMBU-C comparison", analysis) ~ paste0("EMBU-C Karşılaştırma x ", recode(y, !!!nice_srq)),
+      TRUE ~ paste(x, y, sep = " x ")
+    )
+  ) |>
+  transmute(Karşılaştırma = short_text(Karşılaştırma, 42), n, rho = spearman_rho, p = p_value)
+tbl(validity_show, "Kriter ve eşzamanlı geçerlik korelasyonları", longtable = TRUE)
+```
+
+Korelasyon büyüklükleri çoğunlukla küçük-orta aralıktadır; bu psikososyal ölçeklerde beklenen bir durumdur ve tek başına zayıflık olarak yorumlanmamalıdır. Daha önemli olan, teorik olarak beklenen işaretlerin korunması ve aynı örüntünün anne depresyonu ile kardeş ilişkisi alanlarında ayrışabilir biçimde görünmesidir.
+
+```{=latex}
+\Needspace{14\baselineskip}
+```
+
+# Reddetme Multiverse, TOST ve BSEM Duyarlılığı
+
+Bu bölüm, EMBU-P Reddetme bulgusunun tek bir skor kodlamasına bağlı olup olmadığını sınar. Multiverse analizinde madde sayısı, kategori daraltma, düşük corrected item-total correlation çıkarımı ve BSEM latent faktör tahmini aynı eksende karşılaştırılmıştır. TOST eşdeğerlik analizi ise DM-Kontrol farkının pratik olarak ihmal edilebilir aralıkta kabul edilip edilemeyeceğini test eder.
+
+```{=latex}
+\methodbox{İstatistik yöntem kutusu: multiverse, TOST ve BSEM}{Multiverse analiz, aynı araştırma sorusunu makul alternatif skor kodlamalarıyla tekrar ederek sonucun analitik kararlara bağımlılığını gösterir. TOST eşdeğerlik testi, anlamlı fark bulunmamasından farklıdır; önceden belirlenen pratik eşdeğerlik bandı içinde kalındığını ayrıca sınar. Bayesian SEM ise küçük çapraz yükler ya da artık korelasyonlar için zayıf önsel bilgi kullanarak klasik CFA'nın katı sıfır kısıtlarını yumuşatır; bu raporda BSEM duyarlılığı latent değişken temelli tamamlayıcı kanıt olarak değerlendirilmiştir.}
+```
+
+```{r}
+#| label: fig-multiverse
+#| fig-cap: "EMBU-P Reddetme DM-Kontrol farkı için multiverse eğrisi"
+multi_plot <- multiverse |>
+  mutate(
+    strategy = recode(
+      strategy,
+      S1_full_8_item_4_category = "8 madde / 4 kategori",
+      S2_collapsed_3_category = "8 madde / 3 kategori",
+      S3_low_citc_removed_4_item = "Düşük CITC çıkarılmış",
+      BSEM_latent_factor = "BSEM latent faktör"
+    ),
+    ci_low = estimate_dm_minus_kontrol - 1.96 * se,
+    ci_high = estimate_dm_minus_kontrol + 1.96 * se
+  )
+
+ggplot(multi_plot, aes(x = estimate_dm_minus_kontrol, y = reorder(strategy, estimate_dm_minus_kontrol))) +
+  geom_vline(xintercept = 0, color = "grey45", linewidth = .3) +
+  geom_errorbarh(aes(xmin = ci_low, xmax = ci_high), height = .18, color = "#4059ad") +
+  geom_point(size = 2.2, color = "#8b1e3f") +
+  labs(x = "DM - Kontrol farkı", y = NULL) +
+  theme(panel.grid.major.y = element_blank())
+```
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Tüm stratejilerde DM-Kontrol tahmini negatif yöndedir, ancak güven aralıkları sıfırı kesmektedir. Bu, EMBU-P Reddetme için tutarlı ve güçlü bir grup farkı kanıtı olmadığını gösterir. BSEM latent faktör tahmininin de aynı genel bölgede kalması, sonucun yalnız klasik toplam puan kodlamasına bağlı olmadığını düşündürür.
+
+```{r}
+multi_show <- multiverse |>
+  mutate(
+    strategy = recode(
+      strategy,
+      S1_full_8_item_4_category = "8 madde/4 kat.",
+      S2_collapsed_3_category = "8 madde/3 kat.",
+      S3_low_citc_removed_4_item = "Düşük CITC çıkar.",
+      BSEM_latent_factor = "BSEM latent"
+    )
+  ) |>
+  transmute(
+    Strateji = strategy,
+    n,
+    `DM-Kontrol` = estimate_dm_minus_kontrol,
+    SE = se,
+    p = p_value,
+    `Cohen d` = cohens_d_dm_minus_kontrol
+  )
+tbl(multi_show, "Reddetme multiverse sonuçları")
+```
+
+```{r}
+tost_show <- tost |>
+  mutate(
+    strategy = recode(
+      strategy,
+      S1_full_8_item_4_category = "8 madde/4 kat.",
+      S2_collapsed_3_category = "8 madde/3 kat.",
+      S3_low_citc_removed_4_item = "Düşük CITC çıkar.",
+      .default = strategy
+    )
+  ) |>
+  transmute(
+    Strateji = strategy,
+    `n DM/K` = paste0(n_dm, "/", n_kontrol),
+    g = hedges_g,
+    `90% CI` = paste0("[", fmt(g_ci_lower_90), ", ", fmt(g_ci_upper_90), "]"),
+    `p alt` = tost_lower_p,
+    `p üst` = tost_upper_p,
+    Eşd = ifelse(equivalent_at_smd_030, "Evet", "Hayır")
+  )
+tbl(tost_show, "TOST eşdeğerlik duyarlılığı", size = "\\scriptsize", tabcolsep = "3pt")
+```
+
+TOST sonuçlarında eşdeğerlik kararı `Hayır` kalmaktadır; yani grup farkı anlamlı bulunmamakla birlikte, bu farkın önceden tanımlanan pratik eşdeğerlik bandı içinde kaldığı da güçlü biçimde gösterilememiştir. Bu ayrım önemlidir: "anlamlı fark yok" sonucu, otomatik olarak "gruplar eşdeğer" sonucuna çevrilmemelidir.
+
+```{r}
+if (nrow(bsem_status) > 0 && nrow(bsem_conv) > 0) {
+  bsem_diag <- bsem_status |>
+    select(analysis, item_set, status, n_chains, burnin, sample, seed) |>
+    left_join(bsem_conv, by = c("analysis", "item_set")) |>
+    transmute(
+      Analiz = ifelse(grepl("q12", analysis), "q12siz BSEM", "full BSEM"),
+      Set = nice_item_set(item_set),
+      Durum = status,
+      Chain = n_chains,
+      Burnin = burnin,
+      Sample = sample,
+      Seed = seed,
+      `Max Rhat` = max_rhat,
+      `Min ESS` = min_neff
+    )
+  tbl(bsem_diag, "BSEM yakınsama özeti")
+}
+```
+
+Yakınsama özeti, BSEM tahminlerinin teknik olarak kullanılabilir olduğunu gösterir: Rhat değerleri 1'e çok yakındır ve etkili örneklem büyüklükleri raporlanabilir düzeydedir. Bununla birlikte posterior predictive p-value değerlerinin sınırda kalması, BSEM'in EMBU-P Reddetme sorununu tamamen çözmediğini gösterir.
+
+```{r}
+if (nrow(bsem_fit) > 0) {
+  bsem_fit_show <- bsem_fit |>
+    filter(measure %in% c("ppp", "dic", "waic", "looic")) |>
+    transmute(
+      Analiz = ifelse(grepl("q12", analysis), "q12siz BSEM", "full BSEM"),
+      Set = nice_item_set(item_set),
+      Ölçüt = toupper(measure),
+      Değer = value
+    )
+  tbl(bsem_fit_show, "BSEM fit ve bilgi ölçütleri", needspace = "12\\baselineskip")
+}
+```
+
+```{=latex}
+\Needspace{12\baselineskip}
+```
+
+# Yorum ve Raporlama Kararı
+
+Bu psikometrik validasyon, EMBU-P ve EMBU-C formlarının aynı kavramsal alanı eşit güçte taşımadığını göstermektedir. En güçlü ve tutarlı kanıt, çocuk bildirimi üzerinden elde edilen EMBU-C sonuçlarında toplanmaktadır: Reddetme ve Karşılaştırma alt ölçekleri kabul edilebilir iç tutarlılık üretmekte, madde dağılımları anne formuna göre daha kullanılabilir varyans sunmakta, nomolojik ağ bulguları beklenen yönde seyretmekte ve kardeşli tasarım içinde aile içi farklılaşmayı yakalayabilmektedir. Bu nedenle ana analiz metninde EMBU-C, ebeveynlik algısı ve kardeşler arası farklılaşma için birincil psikometrik kaynak olarak konumlandırılmalıdır.
+
+EMBU-P için daha sınırlı ve seçici bir raporlama dili gereklidir. Özellikle Reddetme alt ölçeği, düşük alpha/omega değerleri, yoğun taban etkisi, CFA/MI kırılganlığı ve multiverse/BSEM duyarlılıklarında zayıf grup farkı sinyali nedeniyle bu örneklemde güçlü bir yapı geçerliği kanıtı üretmemektedir. Bu bulgu "anne formu geçersizdir" ya da "reddetme kavramı yoktur" şeklinde yorumlanmamalıdır. Daha doğru ifade, anne öz-bildiriminde reddedici ebeveynlik maddelerinin bu örneklemde düşük varyans ürettiği ve mevcut madde havuzunun Reddetme boyutunu ayırt etmekte sınırlı kaldığıdır. EMBU-P'nin Sıcaklık, Aşırı Koruma ve Karşılaştırma alt ölçekleri betimleyici ve tamamlayıcı analizlerde kullanılabilir; ancak Reddetme alt ölçeği ana hipotez taşıyıcısı yapılmamalıdır.
+
+Grup karşılaştırmaları açısından sonuçlar iki ayrı ilkeyle raporlanmalıdır. Birincisi, anlamlı fark bulunmaması grupların eşdeğer olduğu anlamına gelmez; TOST sonuçları EMBU-P Reddetme için pratik eşdeğerliği güçlü biçimde göstermemektedir. İkincisi, ölçüm değişmezliği kanıtı olmayan ya da kategori seyrekliği nedeniyle tahmin edilemeyen modellerde grup ortalaması yorumları sınırlı tutulmalıdır. Bu nedenle DM-Kontrol karşılaştırmalarında, ölçüm değişmezliği desteklenen EMBU-C sonuçları daha güvenli raporlama zemini sağlar; yaş ve cinsiyet duyarlılıkları ise binary kategori daraltmasıyla destekleyici analiz olarak sunulmalıdır.
+
+Kardeşli tasarımın en önemli katkısı, aile içindeki çocukların ebeveynlik algılarının tamamen örtüşmediğini göstermesidir. Düşük-orta indeks-kardeş ICC değerleri, özellikle Reddetme ve Karşılaştırma alanlarında parental differential treatment çerçevesiyle uyumludur. Bu sonuç, aileyi tek bir homojen çevre olarak ele alan yorumların yetersiz kalabileceğini, çocuk düzeyi algının ayrı bir psikolojik bilgi taşıdığını düşündürür. Bu nedenle tez ve makale yazımında aile içi kümelenme, konkordans ve kardeş farkı analizleri yalnız teknik düzeltme olarak değil, çalışmanın kuramsal katkısının parçası olarak ele alınmalıdır.
+
+Metodolojik ekin ana mesajı, anne bildirimi ve çocuk bildirimi arasındaki psikometrik performans farkı olmalıdır. Ek bölümde EMBU-P Reddetme alt ölçeğinin sınırlılıkları açıkça belgelenmeli; taban etkisi, düşük iç tutarlılık, model uyumu ve duyarlılık analizleri birlikte sunulmalıdır. Psikometrik adaptasyon makalesinin pozitif katkısı ise EMBU-C'nin Türkçe örneklemde kardeşli ve dyadic tasarımlarda kullanılabilirliğini göstermesidir. Sonuç cümlesi şu eksende kurulabilir: EMBU-C, bu örneklemde ebeveynlik algısı ve kardeşler arası farklılaşmayı değerlendirmek için daha güçlü ve yorumlanabilir bir araçtır; EMBU-P ise özellikle Reddetme boyutunda temkinli, sınırlılık odaklı ve destekleyici düzeyde raporlanmalıdır.

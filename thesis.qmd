@@ -1,0 +1,14 @@
+---
+title: "Tip 1 Diyabet Tanılı Çocuklar, Sağlıklı Kardeşleri ve Annelerinde Ebeveynlik Tutumu Algısı"
+author: "Özlem Murzoğlu Kurt"
+---
+
+{{< include chapters/01_giris.qmd >}}
+
+{{< include chapters/02_yontem.qmd >}}
+
+{{< include chapters/03_bulgular.qmd >}}
+
+{{< include chapters/04_tartisma.qmd >}}
+
+{{< include chapters/05_sonuc.qmd >}}

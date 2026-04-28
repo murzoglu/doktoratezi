@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    "quarto.quarto",
+    "REditorSupport.r",
+    "ms-python.python",
+    "ms-toolsai.jupyter",
+    "James-Yu.latex-workshop",
+    "mblode.zotero",
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-turkish",
+    "ltex-plus.vscode-ltex-plus",
+    "GitHub.vscode-pull-request-github",
+    "eamodio.gitlens",
+    "redhat.vscode-yaml",
+    "EditorConfig.EditorConfig",
+    "DavidAnson.vscode-markdownlint",
+    "mechatroner.rainbow-csv"
+  ]
+}

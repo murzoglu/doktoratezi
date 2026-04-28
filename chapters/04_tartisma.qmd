@@ -1,0 +1,61 @@
+# Tartışma
+
+Bu bölüm beş hipotezin sentezini Tip 1 diyabet ve ebeveynlik literatürü, gelişimsel psikoloji teorileri ve psikometrik kısıtlar bağlamında tartışmaktadır. Yorum kararları yedi tedbir prensibine (devstats KISIM XV) uygun yürütülmüş, etki büyüklüğü ve güven aralığı baskın yorum aracı olarak kullanılmış, "p < .05" tek-başına anlamlılık kanıtı sayılmamış ve nedensellik dili gözlemsel verinin sınırları içinde tutulmuştur (kural #15).
+
+## Sosyal İstenirlik ve Diadik Kopukluk
+
+Tezin ana çerçevesi, anne öz-rapor (EMBU-P) ile çocuk algısı (EMBU-C) arasında bir kopukluk olduğunu göstermektedir. H3 birincil bulgusu DM × Kontrol grup farkını anne öz-raporda anlamlı bulgulamamış (BF₁₀ = 0.17-0.25, ROPE %61-92, multiverse %p<.05 = 0%, TOST 2/4 Equivalent), oysa H1 ve H5 birlikte DM çocuklarının daha yüksek reddetme algısına sahip olduğunu ve anne ↔ çocuk diadik tutarlılığının düşük kaldığını ortaya koymuştur. Bu örüntü Streisand & Monaghan (2014) kronik hastalık ailelerinde anne savunmacılığı hipoteziyle uyumludur; DM tanılı çocuk annelerinin sosyal istenirlik baskısı altında "iyi anne" temsiliyeti güçlüdür ve öz-rapor düzlemi bunu yansıtmaktadır. KISIM XII Bayesian dual reporting H3 için "moderate H0" kanıtı vererek bu yorumu istatistiksel olarak sağlamlaştırmakta, KISIM XI multiverse ve TOST sonuçları ise spesifikasyon değişkenliğine karşı bulguların dayanıklılığını göstermektedir.
+
+Bu kopukluğun klinik yorumlanması iki düzlemdedir. Birinci düzlemde anne raporu klinik karar vericilerin (pediatrik endokrinolog, psikiyatrist) ana bilgi kaynağı olamaz; çocuk-tarafından raporlanan EMBU-C ve diadik konkordans ölçümleri zorunlu tamamlayıcılardır. İkinci düzlemde anne savunmacılığının kendisi bir psikoeğitim hedefidir; anne-çocuk uyum çalışmaları ve birlikte aile-temelli müdahaleler (Family-Based Behavioral Therapy, Anderson 2003) bu kopukluğu azaltma kapasitesine sahiptir.
+
+## Anne Depresyonunun Latent Etkisi
+
+H4 latent SEM modeli, Beck depresyon skoru ile EMBU-P sıcaklık (β = -0.30), reddetme (β = +0.36) ve karşılaştırma (β = +0.31) alt ölçekleri arasında orta-büyüklükte ve istatistiksel olarak anlamlı bağlantılar raporlamıştır. Bu örüntü Goodman & Gotlib (1999) maternal depresyon → ebeveynlik tutumu meta-analizinin gözlemiyle uyumludur ve KISIM VI mediation analizinde Beck → EMBU-P_reddetme yolunun (a) anlamlı çıkmasını mantıken destekler. Ancak EMBU-P → EMBU-C yolunun (b) anlamsız kalması, anne depresyon belirti düzeyinin çocuk algısına doğrudan değil dolaylı (anne davranışı + çocuk yorumlaması filtreleri üzerinden) yansıdığını düşündürmektedir.
+
+Multi-group invariance taraması metric düzeyde DM ve Kontrol grupları için ölçüm modelinin kabul edilebilir olduğunu göstermiş, scalar düzeyde grup-spesifik boş ordinal kategoriler nedeniyle açık item collapse yapılmıştır; bu duyarlılık kararı PRE-REGISTRATION-DEVIATION-TABLE'da raporlanmıştır.
+
+## Çocuk Algısının Aile-İçi Ayrımı (H1)
+
+H1 multilevel ANCOVA modeli ve KISIM XII Bayesian dual reporting birlikte DM çocuklarının kontrol çocuklarından 0.16 SD yüksek reddetme algısı raporladığını (BF₁₀ = 8.12, "moderate H1") göstermiştir. Bu fark Pinquart (2013) meta-analizinde kronik hastalık çocukları için raporlanan tipik d ≈ 0.13-0.30 aralığının alt sınırındadır ve klinik anlamlılık Cohen küçük etki kategorisinde kalmaktadır. Aile-içi ICC ≈ 0.14 düzeyi multilevel rastgele aile-kesişim modelinin zorunluluğunu doğrulamış (Hox 2018 eşiği 0.05); birey düzeyi modeller standart hata yanlılığını şişiremezdi.
+
+EMBU-C sıcaklık alt ölçeğinde grup farkı bulunmaması ("moderate H0"), DM çocuklarının "anne sıcaklığını" kontrol çocuklarıyla benzer düzeyde algıladığını fakat reddetme yorumlamada farklılaştığını gösterir; bu örüntü Cameron (2007) kronik hastalık aile sistemleri çerçevesinde anne aşırı denetim ve çocuk reddetme algısı bağlantısıyla uyumludur.
+
+## Kardeş İlişkisi Bulgusunun Yorumu (H2)
+
+H2 SRQ alt ölçeklerinin dördünde de DM × Kontrol grup farkı bulgulanmamış olması, T1DM ailelerinde kardeş ilişkisinin temel özelliklerinin (sıcaklık, statü, çatışma, rekabet) hastalık varlığından bağımsız olarak korunduğunu düşündürmektedir. Bu sonuç Stuart & Hodges (2003) kardeş kronik hastalık literatürünün karma sonuçlarıyla tutarlıdır: bazı çalışmalar artmış çatışma raporlarken, bazıları artmış destek raporlamıştır. Mevcut tezin null bulgusu klinik olarak "kardeş ilişkisi sağlam kalmış" yorumuna işaret eder; ancak APIM benzeri karma model TIP I hata kontrolü için yeterli güç sergilememiş olabilir, simr post-hoc analizleri gelecek faz için planlanmıştır.
+
+## Diadik Tutarsızlık Bulgusunun Klinik Önemi (H5)
+
+H5 birincil yenilik katkısı olarak kurulmuştur ve beş paralel strateji ile DM ailelerinde anne ↔ çocuk algısı arasındaki tutarlılığın sistematik biçimde düşük kaldığını göstermiştir. ICC değerleri "fakir-zayıf" Cicchetti (1994) bandında, Olsen-Kenny dyadic CFA latent konkordansı havuzlanmış r = 0.19 ve klinik tutarsızlık örüntüleri %33-48 oranında raporlanmıştır.
+
+DM grubunda Olsen-Kenny latent konkordansının (r = 0.29) Kontrol grubundan (r = 0.17) marjinal yüksek olması ilk bakışta beklenmeyen bir sonuçtur; ancak H1 reddetme bulgusu ile birleştirildiğinde anlamlı hale gelir: DM çocukları daha yüksek reddetme algısı raporlarken, anneler kendi reddetmelerini benzer-düşük seviyede raporlamaktadır; latent konkordans yüksekse de bu konkordans iki tarafın da düşük puan verme eğiliminden değil, ortak bir altta yatan algı yapısının varlığından gelmektedir. Bu çelişki, ölçüm hatasını dışlayan latent dyadic CFA'nın gözlenen ölçek puanlarının ötesinde bir bilgi katmanı sağladığının kanıtıdır ve psikometrik adaptasyon çalışmalarının diadik analizler için neden kritik olduğunu gösterir.
+
+Kenny k-katsayısının bootstrap güven aralıklarının geniş olması (k = -0.19 ile +1.01 arasında) örneklem büyüklüğünün diadik APIM bootstrap için sınırda olduğunu doğrulamıştır; Kenny et al. (2006) k yorumlaması için gereken n ≥ 200 dyad eşiğinde olmamıza rağmen aile-içi bağımlılık nedeniyle bootstrap gücü düşmüştür. Bu sınırlılık tezde açıkça raporlanmış ve k yorumu teorik ankraj olarak verilmiştir.
+
+## Tipoloji ve Network Analizinin Katkısı
+
+KISIM VII LPA 3-profil çözümünü en uygun model olarak seçmiş ve "Adapte / Tükenmiş / Standart" temel klinik tipolojisini önermiştir. Bu profillerin klinik karar değerini değerlendirmek için ileri faz dış validasyon çalışması gereklidir; mevcut bulgu betimsel bir öneri-düzeyi olarak rapor edilmektedir. Bifactor S-1 modelinin sınır altı uyumu (CFI = 0.79, SRMR = 0.14), EMBU-P 29-madde mimarisinin tek genel + üç spesifik faktör ayrımı için tam destek vermediğini göstermektedir; gelecek psikometrik adaptasyon çalışmaları madde havuzunu güçlendirmelidir.
+
+KISIM VIII network analizi DM ve Kontrol gruplarının ağ yapılarını NCT global strength invariance p = 0.86 ile değişmediğini göstermiş, bu da H1-H4 düzeyinde grup farklarının lokalize (alt ölçek-spesifik) olduğunu, sistemik bir ağ farklılığının olmadığını desteklemektedir.
+
+## Klinik Karar Aracı Olarak Anne Risk Skoru
+
+KISIM IX yüksek-riskli anne sınıflandırması (Beck ≥ 17) için iç-validasyonlu lojistik risk skoru üretmiştir. Genişletilmiş model dört EMBU-P alt ölçeğini eklediğinde temel modelden NRI/IDI metriklerinde marjinal bir iyileşme göstermiş, ancak bu iyileşme Vickers-Elkin DCA net benefit eğrisinde 0.10-0.30 risk eşiği aralığında klinik olarak anlamlı bir kazanım sağlamamıştır. Bulgu, EMBU-P alt ölçeklerinin Beck depresyon riski için bağımsız bilgi katmanı sağlamadığını, çünkü Beck ile EMBU-P arasındaki H4 SEM bağlantılarının yapısal olarak ortak varyans paylaştığını göstermektedir.
+
+Sonuçlar dış validasyon çalışmasıyla doğrulanmadan klinik karar aracı olarak kullanılmamalıdır (kural #18).
+
+## DM Klinik Heterojenliği
+
+KISIM X DM-only alt-analizler HbA1c × parenting etkileşiminin (n = 39 keşifsel) anlamlı olmadığını, DM süresinin spline ile cubic non-linear yorumun lineer modelden istatistiksel iyileşme sağlamadığını ve tanı yaşı 3-strata farklarının F < 2.05 ile sınır altı kaldığını raporlamıştır. Bu örüntü iki alternatif yorumla okunabilir: birincisi DM klinik heterojenliği bu örneklem büyüklüğünde ebeveynlik tutum yordamasında ayrımlaştırıcı değildir; ikincisi düşük HbA1c veri tamamlanma oranı (%32.5) yorumlanan etkilerin gerçek etkilerden ziyade rastgele dalgalanma içinde gizli kalmasına yol açıyor olabilir. Kural #19 uyarınca HbA1c için imputation yapılmamış ve bulgu güç sınırlamasıyla birlikte raporlanmıştır.
+
+## Sınırlılıklar ve Sapma Şeffaflığı
+
+Çalışmanın temel sınırlılıkları şunlardır: (a) örneklem büyüklüğü (n = 482 satır = 241 aile) bazı multilevel ve diadik analizler için sınırda kalmıştır; (b) HbA1c veri tamamlanma oranı düşüktür ve KISIM X bulgusunun yorumu güç-sınırlı yapılmıştır; (c) EMBU-P Reddetme alt ölçeğinde α = 0.45 sınır altı iç tutarlılığı gözlemlenmiş ve bu KISIM XI sensitivite hattıyla raporlanmıştır; (d) Kenny k-katsayısı bootstrap güven aralıkları geniş kalmış, gelecek faz n artışı veya Bayesian k preflighti önerilmektedir; (e) çalışma yalnızca nicel ölçüm aracıyla yürütülmüş, çocuk ve anne deneyim narratifi sayısal modeller dışında kalmıştır; (f) ön-kayıt prospektif/reflective hibrit olarak kabul edilmiştir, OSF d524q (validasyon) ve pytfe (H1-H5 confirmatory) ayrımı PRE-REGISTRATION-DEVIATION-TABLE'da izlenmektedir.
+
+KISIM XI sensitivite üçlüsü (multiverse + TOST + sensemakr) bu sınırlılıkların etkilerini sayısallaştırmıştır: spesifikasyon değişkenliğine karşı bulgular dayanıklı, eşdeğerlik bandı 2/4 alt ölçekte kesin (Equivalent), ölçülmemiş karıştırıcı duyarlılığı RV_q ≈ 0.04-0.08 ile zayıf-orta düzeydedir.
+
+## Klinik ve Araştırma İçin Çıkarımlar
+
+Bulguların klinik önerileri şunlardır: (a) T1DM tanılı çocuk ailelerinde anne öz-raporu tek-başına klinik karar bilgi kaynağı olarak yetersizdir, çocuk algısı ölçümü zorunlu tamamlayıcıdır; (b) anne depresyonu ebeveynlik tutum yordayıcısı olarak büyük etki sergilemektedir, perinatal psikiyatri tarama programları DM bakım hizmetine entegre edilmelidir; (c) anne ↔ çocuk diadik tutarsızlık örüntüleri (anne savunmacılığı, ayrımcı muamele) klinik psikoeğitim hedefleridir; (d) kardeş ilişkisi DM aile sistemlerinde sağlam kalmıştır, fakat kardeş-spesifik müdahale fırsatları mevcuttur.
+
+Araştırma için öneriler: (a) Türk T1DM ailelerinde EMBU-C ve diadik konkordans ölçümleri ileri psikometrik adaptasyon çalışmasıyla güçlendirilmelidir; (b) prospektif boylamsal tasarım Beck → EMBU-P → EMBU-C zincirinin nedensel yapısını test etmek için gereklidir; (c) dış örneklem validasyon çalışması KISIM IX risk skorunun klinik karar değerini doğrulamak için zorunludur; (d) sosyal istenirlik kompansasyonunun derinlemesine incelenmesi ayrı bir niteliksel/karma yöntem araştırma projesi olarak yürütülmelidir (bu tezin kapsamı dışındadır).

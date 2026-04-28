@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "R: renv restore",
+      "type": "shell",
+      "command": "Rscript -e 'renv::restore(prompt = FALSE)'",
+      "problemMatcher": []
+    },
+    {
+      "label": "R: targets make",
+      "type": "shell",
+      "command": "Rscript -e 'targets::tar_make()'",
+      "problemMatcher": []
+    },
+    {
+      "label": "Quarto: check",
+      "type": "shell",
+      "command": "quarto check",
+      "problemMatcher": []
+    },
+    {
+      "label": "Quarto: render thesis",
+      "type": "shell",
+      "command": "quarto render thesis.qmd",
+      "problemMatcher": []
+    }
+  ]
+}
