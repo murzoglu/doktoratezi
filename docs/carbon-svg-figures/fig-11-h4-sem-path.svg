@@ -1,0 +1,56 @@
+<svg data-carbon-style="IBM Carbon Design System v11" data-carbon-charts-source="carbon-design-system/carbon-charts packages/core/scss" data-font="IBM Plex Sans" data-chart-palette="@carbon/charts white 14" data-figma-technical-diagram-library="RtZDc7pMQt8HcgYTiitspr" data-technical-diagram-role="Large node + Connector line ending + Label text" xmlns="http://www.w3.org/2000/svg" width="1240" height="700" viewBox="0 0 1240 700" role="img" aria-labelledby="title desc">
+<defs>
+<style type="text/css"><![CDATA[
+.carbon-note{font-family:'IBM Plex Sans', sans-serif;}
+.tdl-node,.tdl-connector,.tdl-label-pill,.tdl-flow-number{vector-effect:non-scaling-stroke;}
+.tdl-connector{fill:none;}
+]]></style>
+<marker id="tdl-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M 0 0 L 12 6 L 0 12 z" fill="#8d8d8d"/>
+</marker>
+<marker id="tdl-arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M 0 0 L 12 6 L 0 12 z" fill="#0f62fe"/>
+</marker>
+<marker id="tdl-arrow-red" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M 0 0 L 12 6 L 0 12 z" fill="#da1e28"/>
+</marker>
+</defs>
+<title id="title">H4 Beck depresyonu → EMBU-P latent ebeveynlik yolları</title>
+<desc id="desc">WLSMV SEM; katsayılar standardize β, * FDR p &lt; .05</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="32.0" y="40.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="32.0" y="40.0">H4 Beck depresyonu → EMBU-P latent ebeveynlik yolları</tspan></text>
+<text x="32.0" y="72.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="32.0" y="72.0">WLSMV SEM; katsayılar standardize β, * FDR p &lt; .05</tspan></text>
+<rect class="tdl-node" x="92.0" y="315.0" width="270.0" height="96.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="92.0" y="315.0" width="6.0" height="96.0" rx="3" fill="#0f62fe"/>
+<text x="230.0" y="364.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="20" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="230.0" y="339.0">Beck</tspan><tspan x="230.0" y="364.0">depresyon</tspan><tspan x="230.0" y="389.0">latent</tspan></text>
+<rect class="tdl-node" x="920.0" y="129.0" width="250.0" height="62.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="920.0" y="129.0" width="6.0" height="62.0" rx="3" fill="#8d8d8d"/>
+<text x="1048.0" y="161.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1048.0" y="161.0">Sıcaklık</tspan></text>
+<rect class="tdl-node" x="920.0" y="255.0" width="250.0" height="62.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="920.0" y="255.0" width="6.0" height="62.0" rx="3" fill="#8d8d8d"/>
+<text x="1048.0" y="287.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1048.0" y="287.0">Aşırı koruma</tspan></text>
+<rect class="tdl-node" x="920.0" y="381.0" width="250.0" height="62.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="920.0" y="381.0" width="6.0" height="62.0" rx="3" fill="#8d8d8d"/>
+<text x="1048.0" y="413.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1048.0" y="413.0">Reddetme</tspan></text>
+<rect class="tdl-node" x="920.0" y="507.0" width="250.0" height="62.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="920.0" y="507.0" width="6.0" height="62.0" rx="3" fill="#8d8d8d"/>
+<text x="1048.0" y="539.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1048.0" y="539.0">Karşılaştırma</tspan></text>
+<path class="tdl-connector" d="M 362 363 C 550 363 650 160.0 920 160.0" fill="none" stroke="#da1e28" stroke-width="4.81" marker-end="url(#tdl-arrow-red)" opacity="0.90" stroke-linecap="round"/>
+<path class="tdl-connector" d="M 362 363 C 550 363 650 286.0 920 286.0" fill="none" stroke="#8d8d8d" stroke-width="2.39" marker-end="url(#tdl-arrow)" opacity="0.90" stroke-linecap="round"/>
+<path class="tdl-connector" d="M 362 363 C 550 363 650 412.0 920 412.0" fill="none" stroke="#0f62fe" stroke-width="5.35" marker-end="url(#tdl-arrow-blue)" opacity="0.90" stroke-linecap="round"/>
+<path class="tdl-connector" d="M 362 363 C 550 363 650 538.0 920 538.0" fill="none" stroke="#0f62fe" stroke-width="4.82" marker-end="url(#tdl-arrow-blue)" opacity="0.90" stroke-linecap="round"/>
+<rect class="tdl-label-pill" x="615.0" y="121.0" width="98.0" height="30.0" rx="2" fill="#ffffff" stroke="#da1e28" stroke-width="1"/>
+<text x="664.0" y="137.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#da1e28" text-anchor="middle" ><tspan x="664.0" y="137.0">β = -0.28*</tspan></text>
+<rect class="tdl-label-pill" x="573.0" y="247.0" width="98.0" height="30.0" rx="2" fill="#ffffff" stroke="#8d8d8d" stroke-width="1"/>
+<text x="622.0" y="263.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#8d8d8d" text-anchor="middle" ><tspan x="622.0" y="263.0">β = 0.08</tspan></text>
+<rect class="tdl-label-pill" x="573.0" y="373.0" width="98.0" height="30.0" rx="2" fill="#ffffff" stroke="#0f62fe" stroke-width="1"/>
+<text x="622.0" y="389.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#0f62fe" text-anchor="middle" ><tspan x="622.0" y="389.0">β = 0.33*</tspan></text>
+<rect class="tdl-label-pill" x="573.0" y="499.0" width="98.0" height="30.0" rx="2" fill="#ffffff" stroke="#0f62fe" stroke-width="1"/>
+<text x="622.0" y="515.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#0f62fe" text-anchor="middle" ><tspan x="622.0" y="515.0">β = 0.28*</tspan></text>
+<rect class="tdl-label-pill" x="434.0" y="589.0" width="112.0" height="30.0" rx="2" fill="#ffffff" stroke="#8d8d8d" stroke-width="1"/>
+<text x="490.0" y="605.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#525252" text-anchor="middle" ><tspan x="490.0" y="605.0">WLSMV SEM</tspan></text>
+<rect class="tdl-label-pill" x="584.0" y="589.0" width="132.0" height="30.0" rx="2" fill="#ffffff" stroke="#8d8d8d" stroke-width="1"/>
+<text x="650.0" y="605.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#525252" text-anchor="middle" ><tspan x="650.0" y="605.0">* FDR p &lt; .05</tspan></text>
+<text x="838.0" y="604.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="838.0" y="604.0">Aşırı koruma yolu FDR sonrası anlamlı değildir.</tspan></text>
+<text x="32.0" y="670.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#6f6f6f" text-anchor="start" ><tspan x="32.0" y="670.0">Not. Aşırı koruma yolu FDR sonrası anlamlı değildir; diğer üç yol anlamlıdır.</tspan></text>
+</svg>

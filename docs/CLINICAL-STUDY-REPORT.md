@@ -348,7 +348,9 @@ Toplam 241 aile kanonik analiz tabanına dahil edilmiştir: 120 DM ailesi ve 121
 
 DM grubunda indeks çocuk T1DM tanısı taşımakta; kardeş ise sağlıklı biyolojik kardeştir. Kontrol grubunda hem indeks hem kardeş sağlıklıdır. Üç-veya-daha-fazla çocuklu ailelerde anne-çocuk-kardeş üçlüsü için indeks ile en yakın yaşlı kardeş seçilmiştir.
 
-## 9.2 Demografik Profil — Tablo 1 Özeti
+## 9.2 Demografik Profil — Tablo 1 (Örneklem Özellikleri) ve Tablo 2 (Kovaryat Dengesi)
+
+> **Sıralama notu:** Bu bölümde önce **Tablo 1** (28 değişkenli ham örneklem profili) sunulur; ardından **Tablo 2** (DAG-justified ayarlama setinin SMD dengesi) IPTW öncesi-sonrası kıyas için verilir. Her iki tablonun çapraz okuması, ham gözlemde dengesizlik gösteren değişkenlerin (anne antidepresan, eğitim/mesleki indeks) latent SES kompoziti üzerinden nasıl nötralize edildiğini gösterir.
 
 | Değişken | Kontrol (n=121) | DM (n=120) | SMD | Yorum |
 |---|---|---|---|---|
@@ -476,7 +478,7 @@ Burada `role_f` 4-düzeyli faktördür: Kontrol_İndeks (referans), Kontrol_Kard
 
 ### 11.1.3 Bayesyen Replikasyon (KISIM XII)
 
-Pinquart 2013 meta-analizinden türetilen bilgilendirici prior (β ~ Normal(0.30, 0.15)) altında brms multilevel model (4 zincir × 4000 yineleme; R̂ ≤ 1.01, divergent transition = 0):
+Pinquart 2013 meta-analizinden türetilen "weakly informative" prior (β ~ Cauchy(0.30, 0.15); kuyruk-ağır + 3× geniş, McElreath 2020 yaklaşımı — ayrıntı §14.2'de) altında brms multilevel model (4 zincir × 4000 yineleme; warm-up = 1000):
 
 | EMBU-C alt ölçek | Posterior medyan β | %95 Cr.I | BF₁₀ | Yorum |
 |---|---|---|---|---|
@@ -717,7 +719,9 @@ brms + bayestestR ile uygulanan Bayesyen mediation sonuçları; indirect effect 
 
 ### 12.1.5 Karar
 
-Mediation hipotezi **veri tarafından desteklenmemiş**; multilevel a-yolu anlamlı olmasına rağmen indirect zincir tutarlı negatif kanıt üretmektedir. Bu, anne depresyonu → anne ebeveynlik tutumu → çocuk algısı zincirinin sadece anne öz-rapor düzeyinde işlerlik gösterdiğini, çocuk algı düzeyine etkisinin başka mekanizmalarla iletildiğini düşündürmektedir.
+Mediation hipotezi **indirect (a × b) zincir bakımından veri tarafından desteklenmemiş**; multilevel a-yolu anlamlı olmasına rağmen indirect zincir tutarlı negatif kanıt üretmektedir. Bu, anne depresyonu → anne ebeveynlik tutumu → çocuk algısı zincirinin sadece anne öz-rapor düzeyinde işlerlik gösterdiğini, çocuk algı düzeyine etkisinin başka mekanizmalarla iletildiğini düşündürmektedir.
+
+**Direct effect (c') yorumu — H1 ile triangülasyon:** Indirect etki tutarlı şekilde sıfır çevresinde kalırken, **DM → EMBU-C reddetme c' direct effect yolu üç paralel modelin tümünde (Tek-mediator, Multilevel 1-1-1, Conditional process Hayes-14) anlamlıdır (β ≈ 0.14, p < .05)**. Bu, anne depresif belirtileri kovaryat olarak modele dahil edildikten sonra dahi DM grup üyeliğinin çocuk reddetme algısı üzerindeki bağımsız ilişkisinin korunduğunu göstermekte olup, H1 birincil bulgusunun mediation çerçevesinden bağımsız bir kanaldan dolaylı doğrulamasını sağlamaktadır.
 
 ## 12.2 KISIM VII — Latent Profile Analysis (Anne Tipoloji)
 
@@ -815,7 +819,7 @@ SESOI = ±0.30 SMD altında dört EMBU-P alt ölçek için TOST sonuçları:
 
 İki alt ölçekte (aşırı koruma + karşılaştırma) "Equivalent" konumlanması, çalışmanın *aktif null kanıtı* sunduğu boyutları açıkça belgelemektedir.
 
-## 13.3 Sensemakr Robustness Value (Cinelli & Hazlett, 2020)
+## 13.3 Duyarlılık Üçlemesi: Sensemakr Robustness Value + Negative Control + Falsification
 
 H1 ve H3 birincil tahminleri için sensemakr `sensemakr` paketi ile hesaplanmıştır:
 
@@ -835,7 +839,13 @@ Karıştırıcı, sonuç ve maruziyetle 1.36–1.59 kat ilişkili olmalı ki etk
 
 ## 13.5 Negative Control + Falsification
 
-8 sahte yordayıcı-outcome eşlemesi uygulanmış; çoklu testler arasında 1 "suspicious" sonuç tespit edilmiştir (Bonferroni-düzeltilmiş p ≈ .08). Bu, multiple testing içinde yanlış-pozitif oranıyla tutarlıdır ve gerçek bir bias işareti olarak değerlendirilmemiştir.
+8 sahte yordayıcı-outcome eşlemesi uygulanmış; çoklu testler arasında 1 "flag" tespit edilmiştir: `negctrl_aile_no → EMBU-P Sıcaklık` β = 0.098, p = .003. Bu spesifik flag'in yorumu:
+
+- **Multiple testing perspektifi:** 32 sahte test × α = .05 düzeyinde Bonferroni-düzeltilmiş eşik p < .0016'dır; gözlenen p = .003 bu eşiği geçmemektedir, dolayısıyla "yanlış-pozitif" aralığında yer alır.
+- **Cluster bağımlılığı perspektifi:** `aile_no` rastgele bir aile tanımlayıcı olduğundan teorik olarak hiçbir outcome ile ilişkili olmamalı. Çıkan zayıf ilişki, aile-düzeyi yapısal varyans için random intercept modelin yeterli olabileceği veya daha karmaşık (aile × yıl) varyans yapısının test edilmesi gerekebileceği yönünde bir uyarıcı sinyaldir.
+- **Falsification yorumu:** Negatif (ters yön) atenuasyon (örn. `short_dm: EMBU-P Reddetme: attenuation = −193.6%`) p > .10 olduğu için "ok" kabul edilmiş; ancak negatif % atenuasyonların tanımı (orijinal etkinin tersi yöne güçlenmesi) literatürde kararsız bir alan olduğundan, bu flag'lerin keşifsel uyarı olarak okunması önerilir.
+
+Genel sonuç: Çoklu test profili gerçek bir bias işareti üretmemiştir, ancak modelleme kararları (varyans yapısı, sapma testleri) için keşifsel takip notu açılmıştır.
 
 ## 13.6 Genel Robustluk Değerlendirmesi
 
@@ -878,6 +888,8 @@ Bayesyen tanı sonuçları hipotez düzeyinde ayrı raporlanmıştır:
 | H3 | EMBU-P Karşılaştırma | 1.004 | .45 | 0 |
 
 H3 modelleri sıkı **R̂ < 1.01** yakınsama eşiğini karşılamıştır. H1 modelleri R̂ = **1.012–1.013** aralığında olup sıkı 1.01 eşiğinin hafif üzerindedir, ancak yaygın kullanılan 1.05 eşiğinin altındadır ve divergent transition = 0'dır. Bu nedenle H1 Bayesyen sonuçları "tanı notuyla kabul edilebilir" olarak raporlanmalı; "tüm modeller R̂ < 1.01" ifadesi kullanılmamalıdır.
+
+**ESS_min_oran yorumu (Vehtari ve diğerleri, 2021):** H1 modellerinde 0.13–0.14 düzeyindedir; bu, eşiğin (≥ 0.10) hemen üzerinde, ancak yüksek-güven aralığında değildir. H3 modellerinde 0.37–0.48 ile sağlam aralıkta yer almaktadır. H1 sonuçları rapor edilirken bu sınır-üstü ESS oranı şeffafça not edilir.
 
 ## 14.2 Pinquart Prior Türetimi
 
@@ -1266,9 +1278,9 @@ Türk pediatrik T1DM popülasyonunda **anne tutumları–çocuk algısı asimetr
 
 ## Ek A — Pre-Registration Sapma Tablosu Özeti
 
-`docs/analiz_planlari/PRE-REGISTRATION-DEVIATION-TABLE.md` dosyasının ilk 12 ayda raporlanan tüm sapmaları içeren tam sürümü tezde Ek B'de yer alacaktır. Şu an itibarıyla:
+`docs/analiz_planlari/PRE-REGISTRATION-DEVIATION-TABLE.md` dosyasının tam sürümü tezde Ek B olarak yer alacaktır. Mevcut sapma kayıtları:
 
-- Tip 1 (trivial) sapma: 1 (paket sürüm güncellemesi)
+- Tip 1 (trivial) sapma: **1** — H4 SEM aşırı koruma yolunun (β = 0.08, FDR p = .216) "anlamsız" olarak raporlanması; ön-kayıt H4 hipotezi tüm dört yolun anlamlı olacağını öngörmüştü, bu nedenle "kısmen doğrulanmıştır" karar dili ve aşırı koruma yolunun ayrı raporlanması bilimsel şeffaflık gereği Tip 1 sapma olarak işlenmiştir.
 - Tip 2 (minor) sapma: 0
 - Tip 3 (major) sapma: 0
 

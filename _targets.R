@@ -25,6 +25,21 @@ source("R/28_apa_figures.R")
 source("R/29_apa_tables.R")
 source("R/30_thesis_mapping.R")
 source("R/31_final_plans.R")
+# Faz II SAP (KISIM XIX-XXXV) — [KESIFSEL · POST-HOC]
+source("R/32_trifactor_model.R")
+source("R/33_informant_discrepancy.R")
+source("R/34_cross_informant_network.R")
+source("R/35_floor_aware_irt.R")
+source("R/36_reliability_generalization.R")
+source("R/37_esem_embu.R")
+source("R/38_antidepressant_pathway.R")
+source("R/39_h5_extensions.R")
+source("R/40_hba1c_joint.R")
+source("R/41_causal_mediation.R")
+source("R/42_dag_pc_fci.R")
+source("R/43_distributional.R")
+source("R/44_multiverse_extension.R")
+source("R/45_bayesian_meta.R")
 
 tar_option_set(
   packages = character()
@@ -648,6 +663,801 @@ list(
   tar_target(
     final_planning_manifest_csv,
     save_apa_table_csv(final_planning_manifest_table, "outputs/tables/final_plan_manifest.csv"),
+    format = "file"
+  ),
+
+  # ============================================================================
+  # FAZ II POST-HOC ANALIZLERI — [KESIFSEL · POST-HOC]
+  # docs/analiz_planlari/STATISTICAL-ANALYSIS-PLAN-PHASE-2.md v1.0
+  # docs/analiz_planlari/OSF-LAYER3-AMENDMENT.md
+  # PRE-REGISTRATION-DEVIATION-TABLE.md sapma satiri #1 (Tip 3)
+  # ============================================================================
+
+  # KISIM XX/50 — Trifactor T-CFA (CT-C(M-1) Eid 2008 / Masse 2020)
+  tar_target(
+    phase2_trifactor_results,
+    run_trifactor_pipeline(
+      df_family_scored = df_family_scored,
+      df_long_scored = df_long_scored,
+      fit_models = TRUE
+    )
+  ),
+  tar_target(phase2_trifactor_coverage_table, phase2_trifactor_results$coverage),
+  tar_target(phase2_trifactor_syntax_table, phase2_trifactor_results$syntax),
+  tar_target(phase2_trifactor_status_table, phase2_trifactor_results$status),
+  tar_target(phase2_trifactor_fit_indices_table, phase2_trifactor_results$fit_indices),
+  tar_target(phase2_trifactor_loadings_table, phase2_trifactor_results$loadings),
+  tar_target(phase2_trifactor_variance_table, phase2_trifactor_results$variance),
+  tar_target(phase2_trifactor_method_correlation_table, phase2_trifactor_results$method_correlation),
+  tar_target(phase2_trifactor_target_summary_table, phase2_trifactor_results$target_summary),
+  tar_target(
+    phase2_trifactor_coverage_csv,
+    save_apa_table_csv(phase2_trifactor_coverage_table, "outputs/tables/phase2_trifactor_coverage.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_trifactor_status_csv,
+    save_apa_table_csv(phase2_trifactor_status_table, "outputs/tables/phase2_trifactor_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_trifactor_fit_indices_csv,
+    save_apa_table_csv(phase2_trifactor_fit_indices_table, "outputs/tables/phase2_trifactor_fit_indices.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_trifactor_loadings_csv,
+    save_apa_table_csv(phase2_trifactor_loadings_table, "outputs/tables/phase2_trifactor_loadings.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_trifactor_variance_csv,
+    save_apa_table_csv(phase2_trifactor_variance_table, "outputs/tables/phase2_trifactor_variance.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_trifactor_method_correlation_csv,
+    save_apa_table_csv(phase2_trifactor_method_correlation_table, "outputs/tables/phase2_trifactor_method_correlation.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_trifactor_target_summary_csv,
+    save_apa_table_csv(phase2_trifactor_target_summary_table, "outputs/tables/phase2_trifactor_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XX/51-52 — Latent Informant Discrepancy SEM + LDS
+  tar_target(
+    phase2_disc_results,
+    run_informant_discrepancy_pipeline(
+      df_family_ses = df_family_ses,
+      df_long_scored = df_long_scored,
+      include_predictors = TRUE,
+      fit_lds = TRUE
+    )
+  ),
+  tar_target(phase2_disc_coverage_table, phase2_disc_results$coverage),
+  tar_target(phase2_disc_scaling_table, phase2_disc_results$scaling),
+  tar_target(phase2_disc_status_table, phase2_disc_results$status),
+  tar_target(phase2_disc_fit_indices_table, phase2_disc_results$fit_indices),
+  tar_target(phase2_disc_latent_correlation_table, phase2_disc_results$latent_correlation),
+  tar_target(phase2_disc_variance_table, phase2_disc_results$variance),
+  tar_target(phase2_disc_predictor_paths_table, phase2_disc_results$predictor_paths),
+  tar_target(phase2_disc_target_summary_table, phase2_disc_results$target_summary),
+  tar_target(
+    phase2_disc_coverage_csv,
+    save_apa_table_csv(phase2_disc_coverage_table, "outputs/tables/phase2_disc_coverage.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_disc_status_csv,
+    save_apa_table_csv(phase2_disc_status_table, "outputs/tables/phase2_disc_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_disc_fit_indices_csv,
+    save_apa_table_csv(phase2_disc_fit_indices_table, "outputs/tables/phase2_disc_fit_indices.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_disc_latent_correlation_csv,
+    save_apa_table_csv(phase2_disc_latent_correlation_table, "outputs/tables/phase2_disc_latent_correlation.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_disc_variance_csv,
+    save_apa_table_csv(phase2_disc_variance_table, "outputs/tables/phase2_disc_variance.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_disc_predictor_paths_csv,
+    save_apa_table_csv(phase2_disc_predictor_paths_table, "outputs/tables/phase2_disc_predictor_paths.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_disc_target_summary_csv,
+    save_apa_table_csv(phase2_disc_target_summary_table, "outputs/tables/phase2_disc_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XX/53 — Cross-Informant GGM
+  tar_target(
+    phase2_xinfo_results,
+    run_cross_informant_network_pipeline(
+      df_family_ses = df_family_ses,
+      df_long_scored = df_long_scored,
+      gamma = 0.5,
+      correlation = "spearman",
+      group_split = TRUE
+    )
+  ),
+  tar_target(phase2_xinfo_nodes_table, phase2_xinfo_results$nodes),
+  tar_target(phase2_xinfo_coverage_table, phase2_xinfo_results$coverage),
+  tar_target(phase2_xinfo_status_table, phase2_xinfo_results$status),
+  tar_target(phase2_xinfo_edges_table, phase2_xinfo_results$edges),
+  tar_target(phase2_xinfo_centrality_table, phase2_xinfo_results$centrality),
+  tar_target(phase2_xinfo_summary_table, phase2_xinfo_results$cross_informant_summary),
+  tar_target(phase2_xinfo_target_summary_table, phase2_xinfo_results$target_summary),
+  tar_target(
+    phase2_xinfo_nodes_csv,
+    save_apa_table_csv(phase2_xinfo_nodes_table, "outputs/tables/phase2_xinfo_nodes.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_xinfo_status_csv,
+    save_apa_table_csv(phase2_xinfo_status_table, "outputs/tables/phase2_xinfo_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_xinfo_edges_csv,
+    save_apa_table_csv(phase2_xinfo_edges_table, "outputs/tables/phase2_xinfo_edges.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_xinfo_centrality_csv,
+    save_apa_table_csv(phase2_xinfo_centrality_table, "outputs/tables/phase2_xinfo_centrality.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_xinfo_summary_csv,
+    save_apa_table_csv(phase2_xinfo_summary_table, "outputs/tables/phase2_xinfo_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_xinfo_target_summary_csv,
+    save_apa_table_csv(phase2_xinfo_target_summary_table, "outputs/tables/phase2_xinfo_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXI/54 — Floor-Aware IRT (Tobit motivasyonlu)
+  tar_target(
+    phase2_floor_irt_results,
+    run_floor_aware_irt_pipeline(
+      df_family_scored = df_family_scored,
+      df_long_scored = df_long_scored,
+      subscales = c("reddetme", "asiri_koruma"),
+      informants = c("anne", "indeks")
+    )
+  ),
+  tar_target(phase2_floor_irt_floor_summary_table, phase2_floor_irt_results$floor_summary),
+  tar_target(phase2_floor_irt_status_table, phase2_floor_irt_results$status),
+  tar_target(phase2_floor_irt_item_parameters_table, phase2_floor_irt_results$item_parameters),
+  tar_target(phase2_floor_irt_theta_comparison_table, phase2_floor_irt_results$theta_comparison),
+  tar_target(phase2_floor_irt_group_delta_table, phase2_floor_irt_results$group_delta),
+  tar_target(phase2_floor_irt_target_summary_table, phase2_floor_irt_results$target_summary),
+  tar_target(
+    phase2_floor_irt_floor_summary_csv,
+    save_apa_table_csv(phase2_floor_irt_floor_summary_table, "outputs/tables/phase2_floor_irt_floor_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_floor_irt_status_csv,
+    save_apa_table_csv(phase2_floor_irt_status_table, "outputs/tables/phase2_floor_irt_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_floor_irt_item_parameters_csv,
+    save_apa_table_csv(phase2_floor_irt_item_parameters_table, "outputs/tables/phase2_floor_irt_item_parameters.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_floor_irt_theta_comparison_csv,
+    save_apa_table_csv(phase2_floor_irt_theta_comparison_table, "outputs/tables/phase2_floor_irt_theta_comparison.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_floor_irt_group_delta_csv,
+    save_apa_table_csv(phase2_floor_irt_group_delta_table, "outputs/tables/phase2_floor_irt_group_delta.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_floor_irt_target_summary_csv,
+    save_apa_table_csv(phase2_floor_irt_target_summary_table, "outputs/tables/phase2_floor_irt_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXI/55-56 — Reliability Generalization (omega_h, ECV) + Beck bifactor
+  tar_target(
+    phase2_omegah_results,
+    run_reliability_generalization_pipeline(
+      df_family_scored = df_family_scored,
+      df_long_scored = df_long_scored,
+      reference_subscale = "asiri_koruma"
+    )
+  ),
+  tar_target(phase2_omegah_status_table, phase2_omegah_results$status),
+  tar_target(phase2_omegah_fit_indices_table, phase2_omegah_results$fit_indices),
+  tar_target(phase2_omegah_loadings_table, phase2_omegah_results$loadings),
+  tar_target(phase2_omegah_metrics_summary_table, phase2_omegah_results$metrics_summary),
+  tar_target(phase2_omegah_subscale_metrics_table, phase2_omegah_results$omega_hs),
+  tar_target(phase2_omegah_target_summary_table, phase2_omegah_results$target_summary),
+  tar_target(
+    phase2_omegah_status_csv,
+    save_apa_table_csv(phase2_omegah_status_table, "outputs/tables/phase2_omegah_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_omegah_fit_indices_csv,
+    save_apa_table_csv(phase2_omegah_fit_indices_table, "outputs/tables/phase2_omegah_fit_indices.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_omegah_loadings_csv,
+    save_apa_table_csv(phase2_omegah_loadings_table, "outputs/tables/phase2_omegah_loadings.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_omegah_metrics_summary_csv,
+    save_apa_table_csv(phase2_omegah_metrics_summary_table, "outputs/tables/phase2_omegah_metrics_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_omegah_subscale_metrics_csv,
+    save_apa_table_csv(phase2_omegah_subscale_metrics_table, "outputs/tables/phase2_omegah_subscale_metrics.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_omegah_target_summary_csv,
+    save_apa_table_csv(phase2_omegah_target_summary_table, "outputs/tables/phase2_omegah_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXI/57 — ESEM (Exploratory SEM) EMBU-P/C
+  tar_target(
+    phase2_esem_results,
+    run_esem_embu_pipeline(
+      df_family_scored = df_family_scored,
+      df_long_scored = df_long_scored,
+      n_factors = 4L,
+      rotation = "geomin"
+    )
+  ),
+  tar_target(phase2_esem_status_table, phase2_esem_results$status),
+  tar_target(phase2_esem_fit_indices_table, phase2_esem_results$fit_indices),
+  tar_target(phase2_esem_loadings_table, phase2_esem_results$loadings),
+  tar_target(phase2_esem_cross_loading_summary_table, phase2_esem_results$cross_loading_summary),
+  tar_target(phase2_esem_target_summary_table, phase2_esem_results$target_summary),
+  tar_target(
+    phase2_esem_status_csv,
+    save_apa_table_csv(phase2_esem_status_table, "outputs/tables/phase2_esem_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_esem_fit_indices_csv,
+    save_apa_table_csv(phase2_esem_fit_indices_table, "outputs/tables/phase2_esem_fit_indices.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_esem_loadings_csv,
+    save_apa_table_csv(phase2_esem_loadings_table, "outputs/tables/phase2_esem_loadings.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_esem_cross_loading_summary_csv,
+    save_apa_table_csv(phase2_esem_cross_loading_summary_table, "outputs/tables/phase2_esem_cross_loading_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_esem_target_summary_csv,
+    save_apa_table_csv(phase2_esem_target_summary_table, "outputs/tables/phase2_esem_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXII/58-60 — Antidepresan kullanim hatti (mediator + moderator + Beck x AD)
+  tar_target(
+    phase2_ad_results,
+    run_ad_pathway_pipeline(
+      df_family_ses = df_family_ses,
+      df_long_scored = df_long_scored,
+      bootstrap_n = 1000L
+    )
+  ),
+  tar_target(phase2_ad_family_summary_table, phase2_ad_results$family_summary),
+  tar_target(phase2_ad_mediator_status_table, phase2_ad_results$mediator_status),
+  tar_target(phase2_ad_mediator_estimates_table, phase2_ad_results$mediator_estimates),
+  tar_target(phase2_ad_mediator_sensitivity_table, phase2_ad_results$mediator_sensitivity),
+  tar_target(phase2_ad_moderation_h1_status_table, phase2_ad_results$moderation_h1_status),
+  tar_target(phase2_ad_moderation_h1_fixed_effects_table, phase2_ad_results$moderation_h1_fixed_effects),
+  tar_target(phase2_ad_moderation_h4_status_table, phase2_ad_results$moderation_h4_status),
+  tar_target(phase2_ad_moderation_h4_fixed_effects_table, phase2_ad_results$moderation_h4_fixed_effects),
+  tar_target(phase2_ad_moderation_h5_stratified_table,
+    phase2_ad_results$moderation_h5_stratified_correlations),
+  tar_target(phase2_ad_beck_interaction_status_table, phase2_ad_results$beck_interaction_status),
+  tar_target(phase2_ad_beck_interaction_fixed_effects_table,
+    phase2_ad_results$beck_interaction_fixed_effects),
+  tar_target(phase2_ad_target_summary_table, phase2_ad_results$target_summary),
+  tar_target(
+    phase2_ad_family_summary_csv,
+    save_apa_table_csv(phase2_ad_family_summary_table, "outputs/tables/phase2_ad_family_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_ad_mediator_status_csv,
+    save_apa_table_csv(phase2_ad_mediator_status_table, "outputs/tables/phase2_ad_mediator_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_ad_mediator_estimates_csv,
+    save_apa_table_csv(phase2_ad_mediator_estimates_table, "outputs/tables/phase2_ad_mediator_estimates.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_ad_mediator_sensitivity_csv,
+    save_apa_table_csv(phase2_ad_mediator_sensitivity_table, "outputs/tables/phase2_ad_mediator_sensitivity.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_ad_moderation_h1_status_csv,
+    save_apa_table_csv(phase2_ad_moderation_h1_status_table, "outputs/tables/phase2_ad_moderation_h1_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_ad_moderation_h1_fixed_effects_csv,
+    save_apa_table_csv(phase2_ad_moderation_h1_fixed_effects_table,
+      "outputs/tables/phase2_ad_moderation_h1_fixed_effects.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_ad_moderation_h4_status_csv,
+    save_apa_table_csv(phase2_ad_moderation_h4_status_table, "outputs/tables/phase2_ad_moderation_h4_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_ad_moderation_h4_fixed_effects_csv,
+    save_apa_table_csv(phase2_ad_moderation_h4_fixed_effects_table,
+      "outputs/tables/phase2_ad_moderation_h4_fixed_effects.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_ad_moderation_h5_stratified_csv,
+    save_apa_table_csv(phase2_ad_moderation_h5_stratified_table,
+      "outputs/tables/phase2_ad_moderation_h5_stratified.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_ad_beck_interaction_status_csv,
+    save_apa_table_csv(phase2_ad_beck_interaction_status_table,
+      "outputs/tables/phase2_ad_beck_interaction_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_ad_beck_interaction_fixed_effects_csv,
+    save_apa_table_csv(phase2_ad_beck_interaction_fixed_effects_table,
+      "outputs/tables/phase2_ad_beck_interaction_fixed_effects.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_ad_target_summary_csv,
+    save_apa_table_csv(phase2_ad_target_summary_table, "outputs/tables/phase2_ad_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXIII/61-64 — H5 Diadik Tutarlilik Genisletmesi
+  tar_target(
+    phase2_h5ext_results,
+    run_h5_extensions_pipeline(
+      df_family_ses = df_family_ses,
+      df_long_scored = df_long_scored,
+      df_family_scored = df_family_scored,
+      bootstrap_n = 1000L,
+      brms_chains = 2L,
+      brms_iter = 2000L,
+      run_mtmm = TRUE,
+      run_pooling = TRUE
+    )
+  ),
+  tar_target(phase2_h5ext_mtmm_status_table, phase2_h5ext_results$mtmm_status),
+  tar_target(phase2_h5ext_mtmm_fit_indices_table, phase2_h5ext_results$mtmm_fit_indices),
+  tar_target(phase2_h5ext_mtmm_variance_table, phase2_h5ext_results$mtmm_variance),
+  tar_target(phase2_h5ext_beck_moderation_status_table,
+    phase2_h5ext_results$beck_moderation_status),
+  tar_target(phase2_h5ext_beck_moderation_coefficients_table,
+    phase2_h5ext_results$beck_moderation_coefficients),
+  tar_target(phase2_h5ext_beck_moderation_bootstrap_ci_table,
+    phase2_h5ext_results$beck_moderation_bootstrap_ci),
+  tar_target(phase2_h5ext_sibling_icc_table, phase2_h5ext_results$sibling_icc),
+  tar_target(phase2_h5ext_strategy_estimates_table, phase2_h5ext_results$strategy_estimates),
+  tar_target(phase2_h5ext_strategy_pooled_table, phase2_h5ext_results$strategy_pooled_summary),
+  tar_target(phase2_h5ext_target_summary_table, phase2_h5ext_results$target_summary),
+  tar_target(
+    phase2_h5ext_mtmm_status_csv,
+    save_apa_table_csv(phase2_h5ext_mtmm_status_table,
+      "outputs/tables/phase2_h5ext_mtmm_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_h5ext_mtmm_fit_indices_csv,
+    save_apa_table_csv(phase2_h5ext_mtmm_fit_indices_table,
+      "outputs/tables/phase2_h5ext_mtmm_fit_indices.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_h5ext_mtmm_variance_csv,
+    save_apa_table_csv(phase2_h5ext_mtmm_variance_table,
+      "outputs/tables/phase2_h5ext_mtmm_variance.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_h5ext_beck_moderation_status_csv,
+    save_apa_table_csv(phase2_h5ext_beck_moderation_status_table,
+      "outputs/tables/phase2_h5ext_beck_moderation_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_h5ext_beck_moderation_coefficients_csv,
+    save_apa_table_csv(phase2_h5ext_beck_moderation_coefficients_table,
+      "outputs/tables/phase2_h5ext_beck_moderation_coefficients.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_h5ext_beck_moderation_bootstrap_ci_csv,
+    save_apa_table_csv(phase2_h5ext_beck_moderation_bootstrap_ci_table,
+      "outputs/tables/phase2_h5ext_beck_moderation_bootstrap_ci.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_h5ext_sibling_icc_csv,
+    save_apa_table_csv(phase2_h5ext_sibling_icc_table,
+      "outputs/tables/phase2_h5ext_sibling_icc.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_h5ext_strategy_estimates_csv,
+    save_apa_table_csv(phase2_h5ext_strategy_estimates_table,
+      "outputs/tables/phase2_h5ext_strategy_estimates.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_h5ext_strategy_pooled_csv,
+    save_apa_table_csv(phase2_h5ext_strategy_pooled_table,
+      "outputs/tables/phase2_h5ext_strategy_pooled.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_h5ext_target_summary_csv,
+    save_apa_table_csv(phase2_h5ext_target_summary_table,
+      "outputs/tables/phase2_h5ext_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXIV/65, 66, 68 — HbA1c klinik stratifikasyon (DM-only)
+  tar_target(
+    phase2_hba1c_results,
+    run_hba1c_joint_pipeline(
+      df_family_ses = hba1c_ensure_group_dm(df_family_ses),
+      brms_chains = 2L,
+      brms_iter = 2000L,
+      run_bayesian = TRUE,
+      df_spline = 3L
+    )
+  ),
+  tar_target(phase2_hba1c_dm_summary_table, phase2_hba1c_results$dm_summary),
+  tar_target(phase2_hba1c_bayesian_status_table, phase2_hba1c_results$bayesian_status),
+  tar_target(phase2_hba1c_bayesian_posterior_table, phase2_hba1c_results$bayesian_posterior),
+  tar_target(phase2_hba1c_spline_table, phase2_hba1c_results$spline_table),
+  tar_target(phase2_hba1c_ispad_table, phase2_hba1c_results$ispad_table),
+  tar_target(phase2_hba1c_target_summary_table, phase2_hba1c_results$target_summary),
+  tar_target(
+    phase2_hba1c_dm_summary_csv,
+    save_apa_table_csv(phase2_hba1c_dm_summary_table,
+      "outputs/tables/phase2_hba1c_dm_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_hba1c_bayesian_status_csv,
+    save_apa_table_csv(phase2_hba1c_bayesian_status_table,
+      "outputs/tables/phase2_hba1c_bayesian_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_hba1c_bayesian_posterior_csv,
+    save_apa_table_csv(phase2_hba1c_bayesian_posterior_table,
+      "outputs/tables/phase2_hba1c_bayesian_posterior.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_hba1c_spline_csv,
+    save_apa_table_csv(phase2_hba1c_spline_table,
+      "outputs/tables/phase2_hba1c_spline.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_hba1c_ispad_csv,
+    save_apa_table_csv(phase2_hba1c_ispad_table,
+      "outputs/tables/phase2_hba1c_ispad_logistic.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_hba1c_target_summary_csv,
+    save_apa_table_csv(phase2_hba1c_target_summary_table,
+      "outputs/tables/phase2_hba1c_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXV/69, 71 — Imai-Keele sensitivity + c' triangulation
+  tar_target(
+    phase2_imai_results,
+    run_causal_mediation_pipeline(
+      df_family_ses = df_family_ses,
+      df_long_scored = df_long_scored
+    )
+  ),
+  tar_target(phase2_imai_status_table, phase2_imai_results$imai_status),
+  tar_target(phase2_imai_summary_table, phase2_imai_results$imai_summary),
+  tar_target(phase2_imai_sensitivity_grid_table,
+    phase2_imai_results$imai_sensitivity_grid),
+  tar_target(phase2_cprime_triangulation_table,
+    phase2_imai_results$cprime_triangulation),
+  tar_target(phase2_imai_target_summary_table,
+    phase2_imai_results$target_summary),
+  tar_target(
+    phase2_imai_status_csv,
+    save_apa_table_csv(phase2_imai_status_table,
+      "outputs/tables/phase2_imai_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_imai_summary_csv,
+    save_apa_table_csv(phase2_imai_summary_table,
+      "outputs/tables/phase2_imai_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_imai_sensitivity_grid_csv,
+    save_apa_table_csv(phase2_imai_sensitivity_grid_table,
+      "outputs/tables/phase2_imai_sensitivity_grid.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_cprime_triangulation_csv,
+    save_apa_table_csv(phase2_cprime_triangulation_table,
+      "outputs/tables/phase2_cprime_triangulation.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_imai_target_summary_csv,
+    save_apa_table_csv(phase2_imai_target_summary_table,
+      "outputs/tables/phase2_imai_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXV/70, 72 — DAG CI tests + 3-level varyans
+  tar_target(
+    phase2_dag_results,
+    run_dag_pc_fci_pipeline(
+      df_family_ses = dag_ensure_group_dm(df_family_ses),
+      df_long_scored = df_long_scored
+    )
+  ),
+  tar_target(phase2_dag_implied_ci_table,
+    phase2_dag_results$implied_conditional_independencies),
+  tar_target(phase2_dag_ci_tests_table, phase2_dag_results$ci_test_results),
+  tar_target(phase2_dag_three_level_table, phase2_dag_results$three_level_table),
+  tar_target(phase2_dag_target_summary_table, phase2_dag_results$target_summary),
+  tar_target(
+    phase2_dag_implied_ci_csv,
+    save_apa_table_csv(phase2_dag_implied_ci_table,
+      "outputs/tables/phase2_dag_implied_ci.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_dag_ci_tests_csv,
+    save_apa_table_csv(phase2_dag_ci_tests_table,
+      "outputs/tables/phase2_dag_ci_tests.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_dag_three_level_csv,
+    save_apa_table_csv(phase2_dag_three_level_table,
+      "outputs/tables/phase2_dag_three_level.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_dag_target_summary_csv,
+    save_apa_table_csv(phase2_dag_target_summary_table,
+      "outputs/tables/phase2_dag_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXVI/73, 74, 75 — Distribusyonel + kuantil yaklasimlar
+  tar_target(
+    phase2_dist_results,
+    run_distributional_pipeline(
+      df_family_ses = dist_ensure_group_dm(df_family_ses),
+      df_long_scored = df_long_scored,
+      taus = c(0.50, 0.75, 0.90),
+      bootstrap_R = 5000L,
+      run_distributional = TRUE,
+      brms_chains = 2L,
+      brms_iter = 2000L
+    )
+  ),
+  tar_target(phase2_dist_quantile_table, phase2_dist_results$quantile_table),
+  tar_target(phase2_dist_distributional_status_table,
+    phase2_dist_results$distributional_status),
+  tar_target(phase2_dist_distributional_posterior_table,
+    phase2_dist_results$distributional_posterior),
+  tar_target(phase2_dist_beta_table, phase2_dist_results$beta_table),
+  tar_target(phase2_dist_target_summary_table, phase2_dist_results$target_summary),
+  tar_target(
+    phase2_dist_quantile_csv,
+    save_apa_table_csv(phase2_dist_quantile_table,
+      "outputs/tables/phase2_dist_quantile.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_dist_distributional_status_csv,
+    save_apa_table_csv(phase2_dist_distributional_status_table,
+      "outputs/tables/phase2_dist_distributional_status.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_dist_distributional_posterior_csv,
+    save_apa_table_csv(phase2_dist_distributional_posterior_table,
+      "outputs/tables/phase2_dist_distributional_posterior.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_dist_beta_csv,
+    save_apa_table_csv(phase2_dist_beta_table,
+      "outputs/tables/phase2_dist_beta.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_dist_target_summary_csv,
+    save_apa_table_csv(phase2_dist_target_summary_table,
+      "outputs/tables/phase2_dist_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXVII/76, 77, 78, 79 — Multiverse genisletme
+  tar_target(
+    phase2_multi_results,
+    run_multiverse_pipeline(
+      df_family_ses = multi_ensure_group_dm(df_family_ses),
+      df_long_scored = df_long_scored,
+      df_family_scored = multi_ensure_group_dm(df_family_scored),
+      h1_n_spec = 120L,
+      h4_n_spec = 16L,
+      n_perm = 5000L
+    )
+  ),
+  tar_target(phase2_multi_h1_spec_grid_table, phase2_multi_results$h1_spec_grid),
+  tar_target(phase2_multi_h1_spec_results_table, phase2_multi_results$h1_spec_results),
+  tar_target(phase2_multi_h1_curve_summary_table, phase2_multi_results$h1_curve_summary),
+  tar_target(phase2_multi_h4_spec_results_table, phase2_multi_results$h4_spec_results),
+  tar_target(phase2_multi_h4_summary_table, phase2_multi_results$h4_summary),
+  tar_target(phase2_multi_bma_table, phase2_multi_results$bma),
+  tar_target(phase2_multi_sca_inferential_table, phase2_multi_results$sca_inferential),
+  tar_target(phase2_multi_target_summary_table, phase2_multi_results$target_summary),
+  tar_target(
+    phase2_multi_h1_spec_grid_csv,
+    save_apa_table_csv(phase2_multi_h1_spec_grid_table,
+      "outputs/tables/phase2_multi_h1_spec_grid.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_multi_h1_spec_results_csv,
+    save_apa_table_csv(phase2_multi_h1_spec_results_table,
+      "outputs/tables/phase2_multi_h1_spec_results.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_multi_h1_curve_summary_csv,
+    save_apa_table_csv(phase2_multi_h1_curve_summary_table,
+      "outputs/tables/phase2_multi_h1_curve_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_multi_h4_spec_results_csv,
+    save_apa_table_csv(phase2_multi_h4_spec_results_table,
+      "outputs/tables/phase2_multi_h4_spec_results.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_multi_h4_summary_csv,
+    save_apa_table_csv(phase2_multi_h4_summary_table,
+      "outputs/tables/phase2_multi_h4_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_multi_bma_csv,
+    save_apa_table_csv(phase2_multi_bma_table,
+      "outputs/tables/phase2_multi_bma.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_multi_sca_inferential_csv,
+    save_apa_table_csv(phase2_multi_sca_inferential_table,
+      "outputs/tables/phase2_multi_sca_inferential.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_multi_target_summary_csv,
+    save_apa_table_csv(phase2_multi_target_summary_table,
+      "outputs/tables/phase2_multi_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXVIII/80, 81, 82 — Bayesian meta-pooling + PPC + EB shrinkage
+  tar_target(
+    phase2_meta_results,
+    run_bayesian_meta_pipeline(
+      df_family_ses = meta_ensure_group_dm(df_family_ses),
+      df_long_scored = df_long_scored,
+      outcomes = c("reddetme", "asiri_koruma", "sicaklik", "karsilastirma"),
+      brms_chains = 2L,
+      brms_iter = 2000L,
+      ppc_replicates = 1000L
+    )
+  ),
+  tar_target(phase2_meta_combined_studies_table, phase2_meta_results$combined_studies),
+  tar_target(phase2_meta_pooling_summary_table, phase2_meta_results$pooling_summary),
+  tar_target(phase2_meta_pooling_shrunk_table, phase2_meta_results$pooling_shrunk_estimates),
+  tar_target(phase2_meta_ppc_summary_table, phase2_meta_results$ppc_summary),
+  tar_target(phase2_meta_eb_shrunk_table, phase2_meta_results$eb_shrunk_estimates),
+  tar_target(phase2_meta_eb_outlier_summary_table, phase2_meta_results$eb_outlier_summary),
+  tar_target(phase2_meta_target_summary_table, phase2_meta_results$target_summary),
+  tar_target(
+    phase2_meta_combined_studies_csv,
+    save_apa_table_csv(phase2_meta_combined_studies_table,
+      "outputs/tables/phase2_meta_combined_studies.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_meta_pooling_summary_csv,
+    save_apa_table_csv(phase2_meta_pooling_summary_table,
+      "outputs/tables/phase2_meta_pooling_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_meta_pooling_shrunk_csv,
+    save_apa_table_csv(phase2_meta_pooling_shrunk_table,
+      "outputs/tables/phase2_meta_pooling_shrunk.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_meta_ppc_summary_csv,
+    save_apa_table_csv(phase2_meta_ppc_summary_table,
+      "outputs/tables/phase2_meta_ppc_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_meta_eb_shrunk_csv,
+    save_apa_table_csv(phase2_meta_eb_shrunk_table,
+      "outputs/tables/phase2_meta_eb_shrunk.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_meta_eb_outlier_summary_csv,
+    save_apa_table_csv(phase2_meta_eb_outlier_summary_table,
+      "outputs/tables/phase2_meta_eb_outlier_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_meta_target_summary_csv,
+    save_apa_table_csv(phase2_meta_target_summary_table,
+      "outputs/tables/phase2_meta_target_summary.csv"),
     format = "file"
   )
 )

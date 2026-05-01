@@ -1,0 +1,88 @@
+<svg data-carbon-style="IBM Carbon Design System v11" data-carbon-charts-source="carbon-design-system/carbon-charts packages/core/scss" data-font="IBM Plex Sans" data-chart-palette="@carbon/charts white 14" data-figma-technical-diagram-library="RtZDc7pMQt8HcgYTiitspr" data-technical-diagram-role="Large node + Connector line ending + Label text" xmlns="http://www.w3.org/2000/svg" width="1260" height="720" viewBox="0 0 1260 720" role="img" aria-labelledby="title desc">
+<defs>
+<style type="text/css"><![CDATA[
+.carbon-note{font-family:'IBM Plex Sans', sans-serif;}
+.tdl-node,.tdl-connector,.tdl-label-pill,.tdl-flow-number{vector-effect:non-scaling-stroke;}
+.tdl-connector{fill:none;}
+]]></style>
+<marker id="tdl-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M 0 0 L 12 6 L 0 12 z" fill="#8d8d8d"/>
+</marker>
+<marker id="tdl-arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M 0 0 L 12 6 L 0 12 z" fill="#0f62fe"/>
+</marker>
+<marker id="tdl-arrow-red" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M 0 0 L 12 6 L 0 12 z" fill="#da1e28"/>
+</marker>
+</defs>
+<title id="title">H2 kardeş ilişkisi: APIM yol katsayıları</title>
+<desc id="desc">Etiketlenen ana yollar DM ana etkisi ve DM × kardeş rolü etkileşimidir; kovaryatlar modelde tutulmuştur</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="32.0" y="40.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="32.0" y="40.0">H2 kardeş ilişkisi: APIM yol katsayıları</tspan></text>
+<text x="32.0" y="72.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="32.0" y="72.0">Etiketlenen ana yollar DM ana etkisi ve DM × kardeş rolü etkileşimidir; kovaryatlar modelde tutulmuştur</tspan></text>
+<rect class="tdl-label-pill" x="103.0" y="107.0" width="154.0" height="30.0" rx="2" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<text x="180.0" y="123.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="180.0" y="123.0">APIM terimleri</tspan></text>
+<rect class="tdl-label-pill" x="441.0" y="107.0" width="138.0" height="30.0" rx="2" fill="#edf5ff" stroke="#0f62fe" stroke-width="1"/>
+<text x="510.0" y="123.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#002d9c" text-anchor="middle" ><tspan x="510.0" y="123.0">DM ana etki</tspan></text>
+<rect class="tdl-label-pill" x="631.0" y="107.0" width="118.0" height="30.0" rx="2" fill="#edf5ff" stroke="#0f62fe" stroke-width="1"/>
+<text x="690.0" y="123.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#002d9c" text-anchor="middle" ><tspan x="690.0" y="123.0">DM × rol</tspan></text>
+<rect class="tdl-label-pill" x="959.0" y="107.0" width="142.0" height="30.0" rx="2" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<text x="1030.0" y="123.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1030.0" y="123.0">SRQ çıktıları</tspan></text>
+<rect class="tdl-node" x="90.0" y="182.0" width="250.0" height="74.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="90.0" y="182.0" width="6.0" height="74.0" rx="3" fill="#0f62fe"/>
+<text x="218.0" y="220.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="218.0" y="220.0">DM grup</tspan></text>
+<rect class="tdl-node" x="90.0" y="500.0" width="250.0" height="74.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="90.0" y="500.0" width="6.0" height="74.0" rx="3" fill="#0f62fe"/>
+<text x="218.0" y="538.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="218.0" y="538.0">DM × kardeş rolü</tspan></text>
+<rect class="tdl-node" x="90.0" y="326.0" width="250.0" height="62.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="90.0" y="326.0" width="6.0" height="62.0" rx="3" fill="#8d8d8d"/>
+<text x="218.0" y="358.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="218.0" y="358.0">Kardeş rolü</tspan></text>
+<rect class="tdl-node" x="90.0" y="408.0" width="250.0" height="62.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="90.0" y="408.0" width="6.0" height="62.0" rx="3" fill="#8d8d8d"/>
+<text x="218.0" y="440.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="218.0" y="440.0">Yaş farkı</tspan></text>
+<path class="tdl-connector" d="M 340 219 C 404 219 420 196 458 196" fill="none" stroke="#0f62fe" stroke-width="1.40" marker-end="url(#tdl-arrow-blue)" opacity="1.00" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 340 537 C 404 537 420 196 638 196" fill="none" stroke="#0f62fe" stroke-width="1.10" marker-end="url(#tdl-arrow-blue)" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 340 219 C 404 219 420 562 458 562" fill="none" stroke="#0f62fe" stroke-width="1.10" marker-end="url(#tdl-arrow-blue)" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 340 537 C 404 537 420 562 638 562" fill="none" stroke="#0f62fe" stroke-width="1.40" marker-end="url(#tdl-arrow-blue)" opacity="1.00" stroke-linecap="round" stroke-linejoin="round"/>
+<rect class="tdl-label-pill" x="37.0" y="621.0" width="366.0" height="30.0" rx="2" fill="#ffffff" stroke="#c6c6c6" stroke-width="1"/>
+<text x="220.0" y="637.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#525252" text-anchor="middle" ><tspan x="220.0" y="637.0">Kardeş rolü ve yaş farkı kovaryat olarak tutuldu</tspan></text>
+<line class="tdl-connector" x1="330" y1="196.0" x2="1080" y2="196.0" stroke="#e0e0e0" stroke-width="1"/>
+<rect class="tdl-label-pill" x="458.0" y="181.0" width="104.0" height="30.0" rx="2" fill="#ffffff" stroke="#da1e28" stroke-width="1"/>
+<text x="510.0" y="197.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#da1e28" text-anchor="middle" ><tspan x="510.0" y="197.0">b = -0.09</tspan></text>
+<rect class="tdl-label-pill" x="638.0" y="181.0" width="104.0" height="30.0" rx="2" fill="#ffffff" stroke="#0f62fe" stroke-width="1"/>
+<text x="690.0" y="197.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#0f62fe" text-anchor="middle" ><tspan x="690.0" y="197.0">b = 0.06</tspan></text>
+<line class="tdl-connector" x1="742.0" y1="196.0" x2="890.0" y2="196.0" fill="none" stroke="#da1e28" stroke-width="2.78" marker-end="url(#tdl-arrow-red)" opacity="1.00"/>
+<rect class="tdl-node" x="890.0" y="165.0" width="280.0" height="62.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="890.0" y="165.0" width="6.0" height="62.0" rx="3" fill="#6929c4"/>
+<text x="1033.0" y="197.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1033.0" y="197.0">Kardeş sıcaklığı</tspan></text>
+<line class="tdl-connector" x1="330" y1="318.0" x2="1080" y2="318.0" stroke="#e0e0e0" stroke-width="1"/>
+<rect class="tdl-label-pill" x="458.0" y="303.0" width="104.0" height="30.0" rx="2" fill="#ffffff" stroke="#8d8d8d" stroke-width="1"/>
+<text x="510.0" y="319.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#8d8d8d" text-anchor="middle" ><tspan x="510.0" y="319.0">b = 0.01</tspan></text>
+<rect class="tdl-label-pill" x="638.0" y="303.0" width="104.0" height="30.0" rx="2" fill="#ffffff" stroke="#8d8d8d" stroke-width="1"/>
+<text x="690.0" y="319.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#8d8d8d" text-anchor="middle" ><tspan x="690.0" y="319.0">b = -0.00</tspan></text>
+<line class="tdl-connector" x1="742.0" y1="318.0" x2="890.0" y2="318.0" fill="none" stroke="#8d8d8d" stroke-width="1.76" marker-end="url(#tdl-arrow)" opacity="1.00"/>
+<rect class="tdl-node" x="890.0" y="287.0" width="280.0" height="62.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="890.0" y="287.0" width="6.0" height="62.0" rx="3" fill="#6929c4"/>
+<text x="1033.0" y="319.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1033.0" y="319.0">Kardeş statüsü</tspan></text>
+<line class="tdl-connector" x1="330" y1="440.0" x2="1080" y2="440.0" stroke="#e0e0e0" stroke-width="1"/>
+<rect class="tdl-label-pill" x="458.0" y="425.0" width="104.0" height="30.0" rx="2" fill="#ffffff" stroke="#da1e28" stroke-width="1"/>
+<text x="510.0" y="441.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#da1e28" text-anchor="middle" ><tspan x="510.0" y="441.0">b = -0.06</tspan></text>
+<rect class="tdl-label-pill" x="638.0" y="425.0" width="104.0" height="30.0" rx="2" fill="#ffffff" stroke="#0f62fe" stroke-width="1"/>
+<text x="690.0" y="441.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#0f62fe" text-anchor="middle" ><tspan x="690.0" y="441.0">b = 0.09</tspan></text>
+<line class="tdl-connector" x1="742.0" y1="440.0" x2="890.0" y2="440.0" fill="none" stroke="#0f62fe" stroke-width="2.78" marker-end="url(#tdl-arrow-blue)" opacity="1.00"/>
+<rect class="tdl-node" x="890.0" y="409.0" width="280.0" height="62.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="890.0" y="409.0" width="6.0" height="62.0" rx="3" fill="#6929c4"/>
+<text x="1033.0" y="441.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1033.0" y="441.0">Kardeş çatışması</tspan></text>
+<line class="tdl-connector" x1="330" y1="562.0" x2="1080" y2="562.0" stroke="#e0e0e0" stroke-width="1"/>
+<rect class="tdl-label-pill" x="458.0" y="547.0" width="104.0" height="30.0" rx="2" fill="#ffffff" stroke="#da1e28" stroke-width="1"/>
+<text x="510.0" y="563.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#da1e28" text-anchor="middle" ><tspan x="510.0" y="563.0">b = -0.08</tspan></text>
+<rect class="tdl-label-pill" x="638.0" y="547.0" width="104.0" height="30.0" rx="2" fill="#ffffff" stroke="#0f62fe" stroke-width="1"/>
+<text x="690.0" y="563.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#0f62fe" text-anchor="middle" ><tspan x="690.0" y="563.0">b = 0.07</tspan></text>
+<line class="tdl-connector" x1="742.0" y1="562.0" x2="890.0" y2="562.0" fill="none" stroke="#da1e28" stroke-width="2.69" marker-end="url(#tdl-arrow-red)" opacity="1.00"/>
+<rect class="tdl-node" x="890.0" y="531.0" width="280.0" height="62.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="890.0" y="531.0" width="6.0" height="62.0" rx="3" fill="#6929c4"/>
+<text x="1033.0" y="563.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="16" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1033.0" y="563.0">Kardeş rekabeti</tspan></text>
+<text x="474.0" y="636.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="474.0" y="636.0">Her satır bir SRQ çıktısını; iki pill ana raporlanan katsayıları gösterir.</tspan></text>
+<text x="890.0" y="636.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="890.0" y="636.0">Kırmızı: negatif  Mavi: pozitif  Gri: yaklaşık sıfır</tspan></text>
+<text x="32.0" y="690.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#6f6f6f" text-anchor="start" ><tspan x="32.0" y="690.0">Not. Yaş farkı kovaryatı modelde tutulmuştur. Etiketler DM ana etkisi ve DM × kardeş rolü etkileşimi için verilmiştir.</tspan></text>
+</svg>

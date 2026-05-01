@@ -1,0 +1,85 @@
+<svg data-carbon-style="IBM Carbon Design System v11" data-carbon-charts-source="carbon-design-system/carbon-charts packages/core/scss" data-font="IBM Plex Sans" data-chart-palette="@carbon/charts white 14" data-figma-technical-diagram-library="RtZDc7pMQt8HcgYTiitspr" data-technical-diagram-role="Large node + Connector + Legend" xmlns="http://www.w3.org/2000/svg" width="1320" height="700" viewBox="0 0 1320 700" role="img" aria-labelledby="title desc">
+<defs>
+<style type="text/css"><![CDATA[
+.carbon-note{font-family:'IBM Plex Sans', sans-serif;}
+.tdl-node,.tdl-connector,.tdl-label-pill,.tdl-flow-number{vector-effect:non-scaling-stroke;}
+.tdl-connector{fill:none;}
+]]></style>
+<marker id="tdl-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M 0 0 L 12 6 L 0 12 z" fill="#8d8d8d"/>
+</marker>
+<marker id="tdl-arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M 0 0 L 12 6 L 0 12 z" fill="#0f62fe"/>
+</marker>
+<marker id="tdl-arrow-red" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M 0 0 L 12 6 L 0 12 z" fill="#da1e28"/>
+</marker>
+</defs>
+<title id="title">Causal DAG: total-effect ayarlama stratejisi</title>
+<desc id="desc">SES, kardeş yaş farkı ve aile büyüklüğü baseline/design karıştırıcıları olarak sabitlenmiştir</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="32.0" y="40.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="32.0" y="40.0">Causal DAG: total-effect ayarlama stratejisi</tspan></text>
+<text x="32.0" y="72.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="32.0" y="72.0">SES, kardeş yaş farkı ve aile büyüklüğü baseline/design karıştırıcıları olarak sabitlenmiştir</tspan></text>
+<rect x="44" y="128" width="300" height="366" rx="4" fill="#ffffff" stroke="#c6c6c6" stroke-width="1"/>
+<text x="64.0" y="158.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="64.0" y="148.6">Baseline/design</tspan><tspan x="64.0" y="167.4">ayarlama seti</tspan></text>
+<rect class="tdl-node" x="80.0" y="196.0" width="228.0" height="56.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="80.0" y="196.0" width="6.0" height="56.0" rx="3" fill="#0f62fe"/>
+<text x="197.0" y="225.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="197.0" y="225.0">SES</tspan></text>
+<rect class="tdl-node" x="80.0" y="282.0" width="228.0" height="56.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="80.0" y="282.0" width="6.0" height="56.0" rx="3" fill="#0f62fe"/>
+<text x="197.0" y="311.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="197.0" y="311.0">Kardeş yaş farkı</tspan></text>
+<rect class="tdl-node" x="80.0" y="368.0" width="228.0" height="56.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="80.0" y="368.0" width="6.0" height="56.0" rx="3" fill="#0f62fe"/>
+<text x="197.0" y="397.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="197.0" y="397.0">Aile büyüklüğü</tspan></text>
+<rect class="tdl-node" x="80.0" y="510.0" width="228.0" height="56.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="80.0" y="510.0" width="6.0" height="56.0" rx="3" fill="#8d8d8d"/>
+<text x="197.0" y="539.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="197.0" y="539.0">Genetik yatkınlık</tspan></text>
+<rect class="tdl-node" x="430.0" y="300.0" width="230.0" height="72.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="430.0" y="300.0" width="6.0" height="72.0" rx="3" fill="#0f62fe"/>
+<text x="548.0" y="337.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="548.0" y="337.0">T1DM durumu</tspan></text>
+<rect class="tdl-node" x="720.0" y="180.0" width="245.0" height="64.0" rx="3" fill="#fcf4d6" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="720.0" y="180.0" width="6.0" height="64.0" rx="3" fill="#f1c21b"/>
+<text x="845.5" y="213.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="845.5" y="213.0">Anne antidepresan</tspan></text>
+<rect class="tdl-node" x="720.0" y="300.0" width="245.0" height="64.0" rx="3" fill="#d9fbfb" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="720.0" y="300.0" width="6.0" height="64.0" rx="3" fill="#009d9a"/>
+<text x="845.5" y="333.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="845.5" y="333.0">Beck depresyon</tspan></text>
+<rect class="tdl-node" x="720.0" y="420.0" width="245.0" height="64.0" rx="3" fill="#d9fbfb" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="720.0" y="420.0" width="6.0" height="64.0" rx="3" fill="#009d9a"/>
+<text x="845.5" y="453.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="845.5" y="453.0">Ebeveynlik tutumu</tspan></text>
+<rect class="tdl-node" x="1040.0" y="258.0" width="230.0" height="64.0" rx="3" fill="#fff1f1" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="1040.0" y="258.0" width="6.0" height="64.0" rx="3" fill="#fa4d56"/>
+<text x="1158.0" y="291.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1158.0" y="291.0">Çocuk algısı</tspan></text>
+<rect class="tdl-node" x="1040.0" y="400.0" width="230.0" height="64.0" rx="3" fill="#e8daff" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="1040.0" y="400.0" width="6.0" height="64.0" rx="3" fill="#6929c4"/>
+<text x="1158.0" y="433.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1158.0" y="433.0">Kardeş ilişkisi</tspan></text>
+<path class="tdl-connector" d="M 308 224 C 365 224 365 336 430 336" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 308 310 C 365 310 365 336 430 336" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 308 396 C 365 396 365 336 430 336" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 308 538 C 365 538 365 336 430 336" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+<line class="tdl-connector" x1="660.0" y1="336.0" x2="720.0" y2="212.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00"/>
+<line class="tdl-connector" x1="660.0" y1="336.0" x2="720.0" y2="332.0" fill="none" stroke="#8d8d8d" stroke-width="1.50" marker-end="url(#tdl-arrow)" opacity="1.00"/>
+<line class="tdl-connector" x1="660.0" y1="336.0" x2="720.0" y2="452.0" fill="none" stroke="#8d8d8d" stroke-width="1.50" marker-end="url(#tdl-arrow)" opacity="1.00"/>
+<line class="tdl-connector" x1="965.0" y1="212.0" x2="1040.0" y2="290.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.80"/>
+<line class="tdl-connector" x1="965.0" y1="212.0" x2="720.0" y2="332.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00"/>
+<line class="tdl-connector" x1="965.0" y1="212.0" x2="720.0" y2="452.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00"/>
+<line class="tdl-connector" x1="965.0" y1="332.0" x2="1040.0" y2="290.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.80"/>
+<line class="tdl-connector" x1="965.0" y1="332.0" x2="720.0" y2="452.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00"/>
+<line class="tdl-connector" x1="965.0" y1="452.0" x2="1040.0" y2="290.0" fill="none" stroke="#8d8d8d" stroke-width="1.50" marker-end="url(#tdl-arrow)" opacity="1.00"/>
+<line class="tdl-connector" x1="1270.0" y1="290.0" x2="1270.0" y2="432.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.80"/>
+<line class="tdl-connector" x1="660.0" y1="336.0" x2="1040.0" y2="290.0" fill="none" stroke="#0f62fe" stroke-width="2.00" marker-end="url(#tdl-arrow-blue)" opacity="1.00"/>
+<line class="tdl-connector" x1="660.0" y1="336.0" x2="1040.0" y2="432.0" fill="none" stroke="#0f62fe" stroke-width="2.00" marker-end="url(#tdl-arrow-blue)" opacity="1.00"/>
+<rect class="tdl-label-pill" x="454.0" y="121.0" width="112.0" height="30.0" rx="2" fill="#edf5ff" stroke="#0f62fe" stroke-width="1"/>
+<text x="510.0" y="137.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#002d9c" text-anchor="middle" ><tspan x="510.0" y="137.0">exposure</tspan></text>
+<rect class="tdl-label-pill" x="745.0" y="533.0" width="190.0" height="30.0" rx="2" fill="#ffffff" stroke="#8d8d8d" stroke-width="1"/>
+<text x="840.0" y="549.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#525252" text-anchor="middle" ><tspan x="840.0" y="549.0">mediator / sensitivity</tspan></text>
+<rect class="tdl-label-pill" x="1070.0" y="533.0" width="170.0" height="30.0" rx="2" fill="#ffffff" stroke="#8d8d8d" stroke-width="1"/>
+<text x="1155.0" y="549.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#525252" text-anchor="middle" ><tspan x="1155.0" y="549.0">downstream outcome</tspan></text>
+<text x="56.0" y="626.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="56.0" y="626.0">Kenar kodu</tspan></text>
+<line class="tdl-connector" x1="164.0" y1="622.0" x2="230.0" y2="622.0" fill="none" stroke="#0f62fe" stroke-width="2.00" marker-end="url(#tdl-arrow-blue)" opacity="1.00"/>
+<text x="242.0" y="627.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="242.0" y="627.0">total-effect ana yol</tspan></text>
+<line class="tdl-connector" x1="408.0" y1="622.0" x2="474.0" y2="622.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00"/>
+<text x="486.0" y="627.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="486.0" y="627.0">model yolu</tspan></text>
+<line class="tdl-connector" x1="610.0" y1="622.0" x2="676.0" y2="622.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="1.00"/>
+<text x="688.0" y="627.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="688.0" y="627.0">arka plan / sensitivite</tspan></text>
+<text x="32.0" y="670.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#6f6f6f" text-anchor="start" ><tspan x="32.0" y="670.0">Not. Beck ve antidepresan kullanımı total-effect modellerinde ana ayarlama setine alınmaz; sensitivite katmanında izlenir.</tspan></text>
+</svg>

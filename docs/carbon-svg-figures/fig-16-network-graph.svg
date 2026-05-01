@@ -1,0 +1,67 @@
+<svg data-carbon-style="IBM Carbon Design System v11" data-carbon-charts-source="carbon-design-system/carbon-charts packages/core/scss" data-font="IBM Plex Sans" data-chart-palette="@carbon/charts white 14" data-figma-technical-diagram-library="RtZDc7pMQt8HcgYTiitspr" data-technical-diagram-role="Small node + Connector + Legend" xmlns="http://www.w3.org/2000/svg" width="1240" height="800" viewBox="0 0 1240 800" role="img" aria-labelledby="title desc">
+<defs>
+<style type="text/css"><![CDATA[
+.carbon-note{font-family:'IBM Plex Sans', sans-serif;}
+.tdl-node,.tdl-connector,.tdl-label-pill,.tdl-flow-number{vector-effect:non-scaling-stroke;}
+.tdl-connector{fill:none;}
+]]></style>
+<marker id="tdl-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M 0 0 L 12 6 L 0 12 z" fill="#8d8d8d"/>
+</marker>
+<marker id="tdl-arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M 0 0 L 12 6 L 0 12 z" fill="#0f62fe"/>
+</marker>
+<marker id="tdl-arrow-red" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
+<path d="M 0 0 L 12 6 L 0 12 z" fill="#da1e28"/>
+</marker>
+</defs>
+<title id="title">KISIM VIII GGM network haritası</title>
+<desc id="desc">EBIC-LASSO havuzlanmış ağ; kenar kalınlığı |partial r|, düğüm boyutu strength merkeziyetidir</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="32.0" y="40.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="32.0" y="40.0">KISIM VIII GGM network haritası</tspan></text>
+<text x="32.0" y="72.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="32.0" y="72.0">EBIC-LASSO havuzlanmış ağ; kenar kalınlığı |partial r|, düğüm boyutu strength merkeziyetidir</tspan></text>
+<line class="tdl-connector" x1="462.5" y1="161.5" x2="861.3" y2="516.1" fill="none" stroke="#0f62fe" stroke-width="2.17" opacity="0.68"/>
+<line class="tdl-connector" x1="935.0" y1="365.0" x2="861.3" y2="516.1" fill="none" stroke="#da1e28" stroke-width="1.72" opacity="0.68"/>
+<line class="tdl-connector" x1="935.0" y1="365.0" x2="861.3" y2="213.9" fill="none" stroke="#0f62fe" stroke-width="1.01" opacity="0.68"/>
+<line class="tdl-connector" x1="861.3" y1="213.9" x2="462.5" y2="161.5" fill="none" stroke="#0f62fe" stroke-width="2.50" opacity="0.68"/>
+<line class="tdl-connector" x1="674.7" y1="133.6" x2="462.5" y2="161.5" fill="none" stroke="#0f62fe" stroke-width="3.73" opacity="0.68"/>
+<line class="tdl-connector" x1="861.3" y1="213.9" x2="674.7" y2="133.6" fill="none" stroke="#0f62fe" stroke-width="2.62" opacity="0.68"/>
+<line class="tdl-connector" x1="324.0" y1="284.6" x2="462.5" y2="568.5" fill="none" stroke="#0f62fe" stroke-width="3.59" opacity="0.68"/>
+<line class="tdl-connector" x1="324.0" y1="445.4" x2="462.5" y2="568.5" fill="none" stroke="#0f62fe" stroke-width="2.39" opacity="0.68"/>
+<line class="tdl-connector" x1="462.5" y1="568.5" x2="674.7" y2="596.4" fill="none" stroke="#0f62fe" stroke-width="2.12" opacity="0.68"/>
+<line class="tdl-connector" x1="324.0" y1="284.6" x2="674.7" y2="596.4" fill="none" stroke="#0f62fe" stroke-width="2.91" opacity="0.68"/>
+<line class="tdl-connector" x1="324.0" y1="445.4" x2="674.7" y2="596.4" fill="none" stroke="#0f62fe" stroke-width="2.24" opacity="0.68"/>
+<line class="tdl-connector" x1="935.0" y1="365.0" x2="324.0" y2="445.4" fill="none" stroke="#0f62fe" stroke-width="0.97" opacity="0.68"/>
+<line class="tdl-connector" x1="324.0" y1="284.6" x2="324.0" y2="445.4" fill="none" stroke="#0f62fe" stroke-width="2.65" opacity="0.68"/>
+<circle class="tdl-node" cx="861.3" cy="516.1" r="20.8" fill="#f4f4f4" stroke="#262626" stroke-width="1.2"/>
+<text x="915.3" y="550.1" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="915.3" y="550.1">Beck</tspan></text>
+<circle class="tdl-node" cx="861.3" cy="213.9" r="25.0" fill="#a6c8ff" stroke="#262626" stroke-width="1.2"/>
+<text x="927.3" y="185.9" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="927.3" y="185.9">P aşırı kor.</tspan></text>
+<circle class="tdl-node" cx="462.5" cy="161.5" r="31.4" fill="#0f62fe" stroke="#262626" stroke-width="1.2"/>
+<text x="390.5" y="125.5" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="end" ><tspan x="390.5" y="125.5">P karşı.</tspan></text>
+<circle class="tdl-node" cx="674.7" cy="133.6" r="27.8" fill="#78a9ff" stroke="#262626" stroke-width="1.2"/>
+<text x="708.7" y="91.6" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="708.7" y="91.6">P reddetme</tspan></text>
+<circle class="tdl-node" cx="935.0" cy="365.0" r="18.1" fill="#ffd7d9" stroke="#262626" stroke-width="1.2"/>
+<text x="993.0" y="365.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="993.0" y="365.0">P sıcaklık</tspan></text>
+<circle class="tdl-node" cx="462.5" cy="568.5" r="30.6" fill="#78a9ff" stroke="#262626" stroke-width="1.2"/>
+<text x="378.5" y="610.5" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="end" ><tspan x="378.5" y="610.5">SRQ çatışma</tspan></text>
+<circle class="tdl-node" cx="674.7" cy="596.4" r="28.2" fill="#78a9ff" stroke="#262626" stroke-width="1.2"/>
+<text x="720.7" y="620.4" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="720.7" y="620.4">SRQ rekabet</tspan></text>
+<circle class="tdl-node" cx="324.0" cy="445.4" r="28.9" fill="#78a9ff" stroke="#262626" stroke-width="1.2"/>
+<text x="240.0" y="463.4" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="end" ><tspan x="240.0" y="463.4">SRQ statü</tspan></text>
+<circle class="tdl-node" cx="324.0" cy="284.6" r="33.6" fill="#0f62fe" stroke="#262626" stroke-width="1.2"/>
+<text x="228.0" y="266.6" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="end" ><tspan x="228.0" y="266.6">SRQ sıcaklık</tspan></text>
+<rect x="74" y="640" width="1090" height="72" rx="4" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
+<text x="96.0" y="670.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="96.0" y="670.0">Legend</tspan></text>
+<line class="tdl-connector" x1="176.0" y1="666.0" x2="244.0" y2="666.0" fill="none" stroke="#0f62fe" stroke-width="4.00" opacity="1.00"/>
+<text x="258.0" y="671.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="258.0" y="671.0">pozitif partial r</tspan></text>
+<line class="tdl-connector" x1="400.0" y1="666.0" x2="468.0" y2="666.0" fill="none" stroke="#da1e28" stroke-width="3.00" opacity="1.00"/>
+<text x="482.0" y="671.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="482.0" y="671.0">negatif partial r</tspan></text>
+<circle cx="666" cy="666" r="14" fill="#a6c8ff" stroke="#262626" stroke-width="1"/>
+<circle cx="710" cy="666" r="24" fill="#78a9ff" stroke="#262626" stroke-width="1"/>
+<text x="746.0" y="671.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="746.0" y="671.0">düğüm boyutu = strength</tspan></text>
+<circle cx="942" cy="666" r="17" fill="#f4f4f4" stroke="#262626" stroke-width="1"/>
+<circle cx="988" cy="666" r="17" fill="#0f62fe" stroke="#262626" stroke-width="1"/>
+<text x="1020.0" y="671.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="1020.0" y="671.0">dolgu = expected influence</tspan></text>
+<text x="32.0" y="770.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#6f6f6f" text-anchor="start" ><tspan x="32.0" y="770.0">Not. Network koşullu bağımlılık haritasıdır; nedensel yön olarak yorumlanmaz.</tspan></text>
+</svg>
