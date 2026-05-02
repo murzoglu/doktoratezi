@@ -1,5 +1,15 @@
 # İSTATİSTİKSEL ANALİZ PLANI — FAZ II (POST-HOC ZENGİNLEŞTİRME)
 
+> **Kapsam Revizyonu (2026-05-02):** Yeni veri toplama gerektiren tüm aşamalar bu plandan çıkarılmıştır. Aşağıdaki 4 hedef kapsam dışında bırakılmıştır:
+> - **F2-19** (Glycemic trajectory pilot) — longitudinal Faz III veri
+> - **F2-35** (TRIPOD-Cluster hazırlık çerçevesi) — dış-validasyon Faz III veri
+> - **F2-38** (Risk skor recalibration) — dış validasyon verisi gerektirir
+> - **F2-42** (Çok-merkezli replikasyon protokolü) — yeni veri toplama
+>
+> İlgili iki doküman silinmiştir: `TRIPOD-CLUSTER-HAZIRLIK.md`, `REPLICATION-PROTOCOL-DRAFT.md`.
+>
+> **Faz II yalnızca mevcut Faz I kanonik baz** (`FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock`, n=241 aile / 482 satır) **üzerinde çalışan 41 hedef ile sınırlandırılmıştır**. Tüm hedefler tamamlanmış ve `verified` durumundadır.
+
 **T1DM-EBEVEYN Çalışması** — Çalışma-Sonu Verilerle Hipotez-Üretici Analiz Hattı
 *Tip 1 Diyabet Tanılı Çocuklar, Sağlıklı Kardeşleri ve Annelerinin Ebeveynlik Tutumlarına Yönelik Algılarının Sağlıklı Kontrol Grubu ile Karşılaştırılarak İncelenmesi ve Kardeşler Arası İlişkilerin Değerlendirilmesi*
 
@@ -142,7 +152,7 @@ Faz II SAP'sının tek bir analizi bile **doğrulayıcı (confirmatory) kanıt**
 | F2-16 | XXIII/64 | H5 Bayesian strateji pooling | `planned` | `R/39_h5_extensions.R` | `outputs/tables/h5_bayesian_pooling.csv` |
 | F2-17 | XXIV/65 | HbA1c × parenting Bayesian joint | `planned` | `R/40_hba1c_joint.R` | `outputs/models/hba1c_parenting_joint.rds` |
 | F2-18 | XXIV/66 | Tanı yaşı × parenting spline | `planned` | `R/40_hba1c_joint.R` | `outputs/figures/dx_age_spline.pdf` |
-| F2-19 | XXIV/67 | Glycemic trajectory pilot | `deferred` | `R/40_hba1c_joint.R` | `[Faz III veri toplama bekleyen]` |
+| ~~F2-19~~ | ~~XXIV/67~~ | ~~Glycemic trajectory pilot~~ | **`removed`** | — | **Yeni veri gerektirdiği için Faz II'den çıkarıldı** |
 | F2-20 | XXIV/68 | ISPAD < 7.0% ikili sonuç | `planned` | `R/40_hba1c_joint.R` | `outputs/tables/ispad_logistic.csv` |
 | F2-21 | XXV/69 | Imai-Keele causal mediation sens | `planned` | `R/41_causal_mediation.R` | `outputs/tables/imai_keele_rho.csv` |
 | F2-22 | XXV/70 | PC algorithm + FCI DAG validation | `planned` | `R/42_dag_pc_fci.R` | `outputs/figures/dag_pc_estimated.pdf` |
@@ -158,14 +168,14 @@ Faz II SAP'sının tek bir analizi bile **doğrulayıcı (confirmatory) kanıt**
 | F2-32 | XXVIII/80 | Bayesian meta-analytic pooling | `planned` | `R/45_bayesian_meta.R` | `outputs/tables/bayes_meta_pooling.csv` |
 | F2-33 | XXVIII/81 | Posterior predictive replication | `planned` | `R/45_bayesian_meta.R` | `outputs/figures/ppc_replication.pdf` |
 | F2-34 | XXVIII/82 | Empirical Bayes shrinkage | `planned` | `R/45_bayesian_meta.R` | `outputs/tables/eb_shrinkage.csv` |
-| F2-35 | XXIX/83 | TRIPOD-Cluster hazırlık çerçevesi | `planned` | dış-validasyon protokolü | `docs/analiz_planlari/TRIPOD-CLUSTER-HAZIRLIK.md` |
+| ~~F2-35~~ | ~~XXIX/83~~ | ~~TRIPOD-Cluster hazırlık çerçevesi~~ | **`removed`** | — | **Yeni (dış-validasyon) veri gerektirdiği için çıkarıldı** |
 | F2-36 | XXIX/84 | sNB genişletmesi | `planned` | `R/46_clinical_dx_extension.R` | `outputs/tables/snb_extended.csv` |
 | F2-37 | XXIX/85 | DCA threshold heatmap | `planned` | `R/46_clinical_dx_extension.R` | `outputs/figures/dca_threshold_heatmap.pdf` |
-| F2-38 | XXIX/86 | Risk skor recalibration | `planned` | `R/46_clinical_dx_extension.R` | `outputs/tables/recalibration_intercept_slope.csv` |
+| ~~F2-38~~ | ~~XXIX/86~~ | ~~Risk skor recalibration~~ | **`removed`** | — | **Dış validasyon verisi gerektirdiği için çıkarıldı** |
 | F2-39 | XXX/87 | simr multilevel power | `planned` | `R/47_power_replication.R` | `outputs/tables/simr_power_grid.csv` |
 | F2-40 | XXX/88 | APIM sample size (Ackerman 2016) | `planned` | `R/47_power_replication.R` | `outputs/tables/apim_sample_size.csv` |
 | F2-41 | XXX/89 | Bayesian sample size determ. | `planned` | `R/47_power_replication.R` | `outputs/tables/bayes_ssd.csv` |
-| F2-42 | XXX/90 | Çok-merkezli replikasyon plan | `planned` | doküman | `docs/analiz_planlari/REPLICATION-PROTOCOL-DRAFT.md` |
+| ~~F2-42~~ | ~~XXX/90~~ | ~~Çok-merkezli replikasyon plan~~ | **`removed`** | — | **Yeni veri toplama gerektirdiği için çıkarıldı** |
 | F2-43 | XXXII/93 | Faz II APA tablo + şekil paketi | `planned` | `R/48_phase2_apa_outputs.R` | `outputs/tables/phase2_*.csv` |
 | F2-44 | XXXII/94 | Tez ek-bölüm eşlemesi | `planned` | `R/49_phase2_thesis_mapping.R` | `chapters/06_post_hoc_genisleme.qmd` |
 | F2-45 | XXXII/95 | Makale 4-6 plan | `planned` | doküman | `references/diseminasyon-ve-yayin.md` (ekleme) |
@@ -891,11 +901,9 @@ LRT vs lineer model; visualization ggeffects ile.
 - `outputs/figures/phase2_dx_age_spline.pdf` (4 alt ölçek × tanı yaşı spline)
 - "Tanı yaşı 5–7 yaş arasında reddetme algısının yükselen örüntü gösterip 7 yaş üstünde plato yapması, **gelişimsel pencereye-duyarlı bir parenting reorganizasyonu** hipotezini açar."
 
-## 67. Glycemic-Parenting Latent Trajectory (Pilot, Deferred)
+## 67. ~~Glycemic-Parenting Latent Trajectory~~ (Çıkarıldı)
 
-**Statü:** `deferred` — Faz III longitudinal veri toplaması beklenen pilot.
-
-**Plan:** İleride 6/12/24-aylık follow-up HbA1c + EMBU yeniden uygulamasıyla **growth curve** + **time-varying parenting predictor** modeli (Bauer & Curran 2003).
+**Statü:** `removed` — Yeni longitudinal veri toplama gerektirdiği için Faz II kapsamından çıkarılmıştır.
 
 ## 68. ISPAD Eşiği (HbA1c < 7.0%) İkili Sonuç Ek-Analiz
 
@@ -1264,28 +1272,11 @@ Aile-spesifik etkilerin %95 CI'ları sıfırı içermiyorsa **outlier aile tanı
 
 ---
 
-# KISIM XXIX — KLİNİK KARAR MODELİ DIŞ VALİDASYON HAZIRLIĞI
+# KISIM XXIX — KLİNİK KARAR MODELİ İÇ-VALİDASYON GENİŞLETMESİ
 
-## 83. TRIPOD-Cluster Hazırlık Çerçevesi
+## 83. ~~TRIPOD-Cluster Hazırlık Çerçevesi~~ (Çıkarıldı)
 
-### 83.1 Boşluk
-
-CSR §12.4.6 yüksek-risk anne sınıflandırma modeli **iç-validasyonlu** (optimism-corrected AUC = 0.73). Dış validasyon Türkiye'nin başka pediatrik T1DM merkezlerinde planlanmış ancak protokol henüz yok.
-
-### 83.2 Yöntem (Riley et al. 2024 TRIPOD+AI + Vickers 2019 TRIPOD-Cluster)
-
-**Hazırlık çerçevesi (`docs/analiz_planlari/TRIPOD-CLUSTER-HAZIRLIK.md` ayrı doküman):**
-
-1. Sample size hesabı: TRIPOD-Cluster Riley formülü (target n = 200 yeni örnek; cluster k ≥ 4 merkez).
-2. Recalibration prosedürü: intercept-only → calibration slope → full re-estimation.
-3. Decision threshold sensitivity: 0.20 (CSR optimal) ± 0.05 ölçek band.
-4. Heterogeneity assessment: between-cluster I² hesabı için meta-regression.
-5. Equity gözetim: SES strata × AUC ayrımı.
-
-### 83.3 Çıktı
-
-- `docs/analiz_planlari/TRIPOD-CLUSTER-HAZIRLIK.md` (Faz II içinde alt-doküman)
-- "Bu çerçeve, gelecek çok-merkezli replication çalışmasının (3 yıl içinde planlanan) Faz I tezi savunması sırasında ön-protokol olarak savunulmasına olanak verir."
+**Statü:** `removed` — Yeni dış-validasyon verisi gerektirdiği için Faz II kapsamından çıkarılmıştır. CSR §12.4'teki iç-validasyonlu model raporlaması (AUC=.703) tezde mevcut hâliyle kalır; dış-validasyon ileride bağımsız bir araştırma projesinin parçası olur.
 
 ## 84. Standardized Net Benefit (sNB) Genişletmesi
 
@@ -1323,22 +1314,13 @@ ggplot(nb_grid, aes(threshold, cost_ratio, fill = nb)) + geom_tile()
 
 - `outputs/figures/phase2_dca_threshold_heatmap.pdf`
 
-## 86. Risk Skoru Recalibration
+## 86. ~~Risk Skoru Recalibration~~ (Çıkarıldı)
 
-### 86.1 Yöntem (Steyerberg & Vergouwe 2014)
-
-```r
-recalib_intercept <- glm(outcome ~ offset(linear_predictor) - 1, family = binomial)
-recalib_slope <- glm(outcome ~ linear_predictor, family = binomial)
-```
-
-### 86.2 Çıktı
-
-- `outputs/tables/phase2_recalibration_intercept_slope.csv` (placeholder; gerçek değerler dış validation veri ile)
+**Statü:** `removed` — Recalibration için dış-validasyon verisi gerektiği için Faz II kapsamından çıkarılmıştır.
 
 ---
 
-# KISIM XXX — POWER VE REPLİKASYON PLANLAMA
+# KISIM XXX — MEVCUT ÖRNEK GÜÇ KARAKTERİZASYONU
 
 ## 87. simr Multilevel Power Simülasyonu
 
@@ -1387,17 +1369,9 @@ bssd_grid <- expand.grid(n = seq(100, 500, 50)) |>
 
 - `outputs/tables/phase2_bayes_ssd.csv`
 
-## 90. Çok-Merkezli Replikasyon Tasarımı
+## 90. ~~Çok-Merkezli Replikasyon Tasarımı~~ (Çıkarıldı)
 
-### 90.1 Plan İskeleti
-
-`docs/analiz_planlari/REPLICATION-PROTOCOL-DRAFT.md` (Faz II içinde alt-doküman):
-
-1. **Hedef merkezler:** İstanbul (Marmara — replikasyon değil dış-validasyon), Ankara (Hacettepe), İzmir (Ege), Trabzon (KTÜ), Diyabet Vakfı periferik klinikler.
-2. **Sample size:** Toplam 600 aile (300 DM + 300 Kontrol), merkez başına ≥ 100 aile.
-3. **Veri toplama:** Aynı ölçek bataryası (EMBU-P/C, Beck, KİA), aynı kanonik veri yapısı.
-4. **Pre-registration:** OSF Layer 4 (replication preregistration), Faz II veri analizi sonrası.
-5. **Analiz çerçevesi:** TRIPOD-Cluster + multilevel meta-analysis (`metafor`).
+**Statü:** `removed` — Yeni veri toplama gerektirdiği için Faz II kapsamından çıkarılmıştır. KISIM XXX'ün geri kalan üç bileşeni (87 multilevel power, 88 APIM SS, 89 Bayesian SSD) **mevcut n=241 örneklemini güç-karakterizasyonu için** kullanır; replikasyon kararı ve protokolü gelecek bağımsız çalışmaya bırakılmıştır.
 
 ---
 

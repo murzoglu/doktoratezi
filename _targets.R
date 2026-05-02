@@ -40,6 +40,10 @@ source("R/42_dag_pc_fci.R")
 source("R/43_distributional.R")
 source("R/44_multiverse_extension.R")
 source("R/45_bayesian_meta.R")
+source("R/46_clinical_dx_extension.R")
+source("R/47_power_replication.R")
+source("R/48_phase2_apa_outputs.R")
+source("R/49_phase2_thesis_mapping.R")
 
 tar_option_set(
   packages = character()
@@ -1458,6 +1462,175 @@ list(
     phase2_meta_target_summary_csv,
     save_apa_table_csv(phase2_meta_target_summary_table,
       "outputs/tables/phase2_meta_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXIX/83-86 — Klinik karar modeli dis-validasyon hazirligi
+  tar_target(
+    phase2_clinical_results,
+    run_clinical_dx_extension_pipeline(
+      df_family_ses = cdx_ensure_group_dm(df_family_ses),
+      thresholds = seq(0.05, 0.50, by = 0.05),
+      cost_ratios = seq(1, 10, by = 1),
+      high_risk_threshold = cdx_high_risk_threshold
+    )
+  ),
+  tar_target(phase2_clinical_prepared_summary_table,
+    phase2_clinical_results$prepared_summary),
+  tar_target(phase2_clinical_fit_summary_table,
+    phase2_clinical_results$fit_summary),
+  tar_target(phase2_clinical_snb_table, phase2_clinical_results$snb_table),
+  tar_target(phase2_clinical_dca_heatmap_table,
+    phase2_clinical_results$dca_heatmap),
+  tar_target(phase2_clinical_target_summary_table,
+    phase2_clinical_results$target_summary),
+  tar_target(
+    phase2_clinical_prepared_summary_csv,
+    save_apa_table_csv(phase2_clinical_prepared_summary_table,
+      "outputs/tables/phase2_clinical_prepared_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_clinical_fit_summary_csv,
+    save_apa_table_csv(phase2_clinical_fit_summary_table,
+      "outputs/tables/phase2_clinical_fit_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_clinical_snb_csv,
+    save_apa_table_csv(phase2_clinical_snb_table,
+      "outputs/tables/phase2_clinical_snb.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_clinical_dca_heatmap_csv,
+    save_apa_table_csv(phase2_clinical_dca_heatmap_table,
+      "outputs/tables/phase2_clinical_dca_heatmap.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_clinical_target_summary_csv,
+    save_apa_table_csv(phase2_clinical_target_summary_table,
+      "outputs/tables/phase2_clinical_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXX/87-90 — Power + Replikasyon
+  tar_target(
+    phase2_power_results,
+    run_power_replication_pipeline(
+      n_aile_grid = c(100, 150, 200, 241, 300, 400, 500),
+      apim_rs = c(0.10, 0.15, 0.20, 0.25, 0.30, 0.40),
+      apim_powers = c(0.80, 0.90),
+      bssd_n_grid = c(100, 150, 200, 241, 300, 400, 500),
+      multilevel_n_sim = 200L,
+      bssd_n_sim = 200L,
+      d_target = 0.20,
+      icc_aile = 0.20,
+      d_assumed_bayesian = 0.16
+    )
+  ),
+  tar_target(phase2_power_multilevel_table, phase2_power_results$multilevel_power),
+  tar_target(phase2_power_apim_table, phase2_power_results$apim_sample_size),
+  tar_target(phase2_power_bayesian_ssd_table, phase2_power_results$bayesian_ssd),
+  tar_target(phase2_power_target_summary_table,
+    phase2_power_results$target_summary),
+  tar_target(
+    phase2_power_multilevel_csv,
+    save_apa_table_csv(phase2_power_multilevel_table,
+      "outputs/tables/phase2_power_multilevel.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_power_apim_csv,
+    save_apa_table_csv(phase2_power_apim_table,
+      "outputs/tables/phase2_power_apim.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_power_bayesian_ssd_csv,
+    save_apa_table_csv(phase2_power_bayesian_ssd_table,
+      "outputs/tables/phase2_power_bayesian_ssd.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_power_target_summary_csv,
+    save_apa_table_csv(phase2_power_target_summary_table,
+      "outputs/tables/phase2_power_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXXII/93 — Faz II APA cikti paketi (figur + ozet tablo)
+  tar_target(
+    phase2_apa_outputs_results,
+    run_phase2_apa_outputs_pipeline(
+      trifactor_loadings_table = phase2_trifactor_loadings_table,
+      trifactor_fit_indices_table = phase2_trifactor_fit_indices_table,
+      disc_latent_correlation_table = phase2_disc_latent_correlation_table,
+      xinfo_summary_table = phase2_xinfo_summary_table,
+      floor_irt_group_delta_table = phase2_floor_irt_group_delta_table,
+      omegah_metrics_summary_table = phase2_omegah_metrics_summary_table,
+      h5ext_strategy_pooled_table = phase2_h5ext_strategy_pooled_table,
+      ad_h5_stratified_table = phase2_ad_moderation_h5_stratified_table,
+      hba1c_bayesian_posterior_table = phase2_hba1c_bayesian_posterior_table,
+      multi_h1_spec_results_table = phase2_multi_h1_spec_results_table,
+      multi_h1_curve_summary_table = phase2_multi_h1_curve_summary_table,
+      multi_sca_inferential_table = phase2_multi_sca_inferential_table,
+      meta_combined_studies_table = phase2_meta_combined_studies_table,
+      meta_pooling_summary_table = phase2_meta_pooling_summary_table,
+      clinical_fit_summary_table = phase2_clinical_fit_summary_table,
+      output_dir = "outputs/figures"
+    )
+  ),
+  tar_target(phase2_apa_summary_table_target,
+    phase2_apa_outputs_results$summary_table),
+  tar_target(phase2_apa_target_summary_table,
+    phase2_apa_outputs_results$target_summary),
+  tar_target(
+    phase2_apa_summary_csv,
+    save_apa_table_csv(phase2_apa_summary_table_target,
+      "outputs/tables/phase2_apa_summary_table.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_apa_target_summary_csv,
+    save_apa_table_csv(phase2_apa_target_summary_table,
+      "outputs/tables/phase2_apa_target_summary.csv"),
+    format = "file"
+  ),
+
+  # KISIM XXXII/94, 95 — Tez Bolum 6 + Makale 4-6 yayin plan
+  tar_target(phase2_thesis_results, run_phase2_thesis_mapping_pipeline()),
+  tar_target(phase2_thesis_chapter_mapping_table,
+    phase2_thesis_results$chapter_mapping),
+  tar_target(phase2_thesis_publication_plan_table,
+    phase2_thesis_results$publication_plan),
+  tar_target(phase2_thesis_paragraph_seeds_summary_table,
+    phase2_thesis_results$paragraph_seeds_summary),
+  tar_target(phase2_thesis_target_summary_table,
+    phase2_thesis_results$target_summary),
+  tar_target(
+    phase2_thesis_chapter_mapping_csv,
+    save_apa_table_csv(phase2_thesis_chapter_mapping_table,
+      "outputs/tables/phase2_thesis_chapter06_mapping.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_thesis_publication_plan_csv,
+    save_apa_table_csv(phase2_thesis_publication_plan_table,
+      "outputs/tables/phase2_thesis_publication_plan.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_thesis_paragraph_seeds_summary_csv,
+    save_apa_table_csv(phase2_thesis_paragraph_seeds_summary_table,
+      "outputs/tables/phase2_thesis_paragraph_seeds_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    phase2_thesis_target_summary_csv,
+    save_apa_table_csv(phase2_thesis_target_summary_table,
+      "outputs/tables/phase2_thesis_target_summary.csv"),
     format = "file"
   )
 )

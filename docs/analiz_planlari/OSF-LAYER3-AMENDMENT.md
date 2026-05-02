@@ -46,7 +46,7 @@ Aşağıdaki tablo, çalışma-sonu CSR'larında belgelenen ve Faz II'yi tetikle
 | 10 | H1 Bayesian R̂=1.012-1.013 sıkı 1.01 eşiğinin hafif üzerinde — reparametrize gerekiyor | CSR §14.1 | **XXVII** + **XXVIII** — H1 multiverse + posterior predictive replication |
 | 11 | Multi-informant trifactor / latent discrepancy SEM uygulanmadı; De Los Reyes 2023 Operations Triad teorik düzeyde kaldı | CSR §15.1.2 | **XX** — Trifactor T-CFA, latent discrepancy SEM, LDS, cross-informant network |
 | 12 | Pinquart 2013 + Lovejoy 2000 ile formal Bayesian meta-analytic pooling yok | CSR §15.1.1, §15.4.2 | **XXVIII** — Bayesian random-effects meta-pooling |
-| 13 | Yüksek-risk anne klinik tahmin modeli iç-validasyonlu; dış-validasyon protokolü yok | CSR §12.4.6, §17.4 | **XXIX** — TRIPOD-Cluster hazırlık + sNB + DCA threshold heatmap |
+| 13 | Yüksek-risk anne klinik tahmin modeli iç-validasyonlu (dış-validasyon Faz II kapsamı dışı) | CSR §12.4.6 | **XXIX** — sNB + DCA threshold heatmap (iç-validasyon raporu) |
 
 ---
 
@@ -64,8 +64,8 @@ Aşağıdaki tablo, çalışma-sonu CSR'larında belgelenen ve Faz II'yi tetikle
 - **KISIM XXVI** — Distribüsyonel yaklaşımlar (3 analiz: quantile, distributional, beta regression)
 - **KISIM XXVII** — Multiverse genişletme (4 analiz: H1 240-spec, H4 SEM multiverse, BMA, SCA inferential)
 - **KISIM XXVIII** — Meta-analitik birleştirme (3 analiz: Bayesian pooling, PPC replication, EB shrinkage)
-- **KISIM XXIX** — Klinik karar modeli dış validasyon hazırlığı (4 analiz: TRIPOD-Cluster, sNB, DCA heatmap, recalibration)
-- **KISIM XXX** — Power ve replikasyon planlaması (4 analiz: simr, APIM SS, Bayesian SSD, replication protocol)
+- **KISIM XXIX** — Klinik karar modeli iç-validasyon genişletmesi (2 analiz: sNB, DCA threshold heatmap)
+- **KISIM XXX** — Mevcut örnek güç karakterizasyonu (3 analiz: simr/MC power, APIM SS, Bayesian SSD)
 - **KISIM XXXI** — Karma yöntem (koşullu; kantitatif convergence joint display)
 - **KISIM XXXII** — Çıktı entegrasyonu (12 yeni APA tablo + 8 figür + tez Bölüm 6 + Makale 4-6)
 - **KISIM XXXIII–XXXV** — Risk matrisi, 12 hafta sprint plan, uygulama tracker'ı
@@ -86,15 +86,9 @@ Faz II analizleri kanonik veri kilidinin bütünlüğünü **tehlikeye atmaz**; 
 
 ---
 
-## 5. Replikasyon Zorunluluğu
+## 5. Replikasyon Zorunluluğu (Tartışma Düzeyinde)
 
-Faz II'den çıkacak hiçbir bulgu, **bağımsız bir Türk kohortunda dış-validasyon yapılmadan** klinik öneri seviyesine yükseltilmez. Faz II ile birlikte planlanan dış-validasyon protokolü:
-
-- **Hedef merkezler:** Hacettepe Üniversitesi (Ankara), Ege Üniversitesi (İzmir), Karadeniz Teknik Üniversitesi (Trabzon), Diyabet Vakfı periferik klinikleri
-- **Sample size:** Toplam 600 aile (300 DM + 300 Kontrol), merkez başına ≥ 100 aile
-- **Pre-registration:** OSF Layer 4 (replication preregistration), Faz II veri analizi sonrası
-- **Analiz çerçevesi:** TRIPOD-Cluster + multilevel meta-analysis (`metafor`)
-- **Plan iskeleti:** `docs/analiz_planlari/REPLICATION-PROTOCOL-DRAFT.md` (Faz II içinde alt-doküman)
+Faz II'den çıkacak hiçbir bulgu, **bağımsız bir Türk kohortunda dış-validasyon yapılmadan** klinik öneri seviyesine yükseltilmez. Faz II'nin **kapsamı yalnızca mevcut Faz I kanonik baz** (n=241 aile / 482 satır) **ile sınırlandırılmıştır**: yeni veri toplama gerektiren çok-merkezli replikasyon protokolü, longitudinal trajectory ve dış-validasyon hedefleri Faz II SAP'sinden çıkarılmıştır. Bu konular tezin Tartışma bölümünde **gelecek bağımsız araştırma önerisi** olarak konumlandırılır.
 
 ---
 
@@ -154,4 +148,4 @@ Tetikleyici tarih: **2026-05-01**. Planlı bitiş: **2026-07-24**.
 
 ---
 
-**Tek cümlelik özet:** Bu amendment, T1DM-EBEVEYN çalışmasının çalışma-sonu verileri ışığında belirlenen 13 bilimsel boşluğu kapatmak amacıyla `STATISTICAL-ANALYSIS-PLAN-PHASE-2.md` v1.0'da tanımlı 45 post-hoc keşifsel analiz hedefini OSF Layer 3 olarak şeffaflaştırır; tüm bulgular `[KEŞİFSEL · POST-HOC]` etiketi altında, kanonik veri kilidi bütünlüğüyle ve dış-validasyon zorunluluğu beyanıyla raporlanır.
+**Tek cümlelik özet:** Bu amendment, T1DM-EBEVEYN çalışmasının çalışma-sonu verileri ışığında belirlenen bilimsel boşlukları kapatmak amacıyla `STATISTICAL-ANALYSIS-PLAN-PHASE-2.md` v1.0'da tanımlı **41 post-hoc keşifsel analiz hedefini** (yeni veri gerektiren 4 hedef hariç) OSF Layer 3 olarak şeffaflaştırır; tüm bulgular `[KEŞİFSEL · POST-HOC]` etiketi altında, **mevcut Faz I kanonik veri kilidi üzerinde** raporlanır.

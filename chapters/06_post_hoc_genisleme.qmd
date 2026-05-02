@@ -1,0 +1,84 @@
+---
+lang: tr
+---
+
+# Bölüm 6 — Post-Hoc Genişleme {#sec-post-hoc-genisleme}
+
+> **\[KEŞİFSEL · POST-HOC\]** — Bu bölümün tüm bulguları çalışma-sonu verileri ışığında ortaya çıkan bilimsel boşlukları kapatmak amacıyla yürütülen Faz II Statistical Analysis Plan'ın (`STATISTICAL-ANALYSIS-PLAN-PHASE-2.md`) kapsamındadır. Tüm analizler Tip 3 (major) sapma kategorisinde olup OSF Layer 3 amendment (`OSF-LAYER3-AMENDMENT.md`) altında ön-kayıtlanmıştır. Birincil sonuçlar (Bölüm 5) DEĞİŞMEZ; bu bölümün bulguları **hipotez-üretici** niteliktedir ve bağımsız bir Türk kohortunda dış-validasyon olmadan klinik öneri seviyesine yükseltilmez.
+
+## 6.1 Faz II'nin Epistemik Statüsü ve Sapma Disiplini
+
+Faz II analizleri ana SAP'nin (KISIM I-XVIII) kapsamı dışında kalan, çalışma-sonu verilerinden tetiklenen 13 bilimsel boşluğu kapatmak amacıyla yürütülmüştür. Tüm bulgular **\[KEŞİFSEL · POST-HOC\]** etiketi ile raporlanır; OSF Layer 3 amendment kapsamında kayıtlanmış ve replikasyon zorunluluğu ile birlikte konumlandırılmıştır. Bu bölüm, Faz II'nin 16 yeni R modülü ve 200+ targets ile üretilen 39+ doğrulanmış post-hoc analizinin sentezini sunar.
+
+## 6.2 Multi-İnformant Yapısal Genişletme (KISIM XX)
+
+Multi-informant analiz katmanında **Trifactor T-CFA modeli** (Mâsse 2020 / Eid 2008 CT-C(M-1)) anne-indeks-kardeş ortak ölçüm yapısını test etmiş; çocuk method varyansı **%60.7** olarak gözlemlenmiştir (anne reference). **Latent informant discrepancy SEM**'de reddetme alt ölçeğinde anne-çocuk latent korelasyonu r = .025 (CSR §11.5.6 manifest ICC zayıflığının latent doğrulayıcısı); LDS varyans dekompozisyonu 4/4 alt ölçekte discrepancy ratio > .50 ('dominant') sergilemiştir. **Cross-informant GGM** 16 edge'in yalnız 1'i (%6.3) cross-informant olarak kestirilmiştir.
+
+Şekil F2-F01 (`outputs/figures/phase2_f01_trifactor.png`) trifactor yüklemelerini, Şekil F2-F02 (`outputs/figures/phase2_f02_xinfo.png`) cross-informant edge dağılımını sunar.
+
+## 6.3 Psikometrik Robustleştirme (KISIM XXI)
+
+Psikometrik robustleştirme katmanında EMBU-P reddetme item kümesinde 7/8 madde > %80 floor effect doğrulanmış; **floor-aware Tobit IRT** (mirt empiricalhist) altında EMBU-C reddetme indeks Cohen's d = **+0.37** (manifest mean d=0.16'nın 2.3 katı). **Bifactor S-1 reliability generalization** analizi EMBU-P için ω_h = .660, ECV = .409 — multidimensional yapı; en kritik bulgu EMBU-C reddetme alt-ölçek-spesifik **ω_h_s = .009** (pratik sıfır): reddetme alt skoru psikometrik olarak ayrı kullanım için savunulamaz.
+
+Şekil F2-F03 (`outputs/figures/phase2_f03_floor_irt.png`) floor-aware d büyüklüklerini gösterir.
+
+## 6.4 Antidepresan ve Mental Sağlık Yükü (KISIM XXII)
+
+Anne antidepresan kullanım hattı analizleri (n=241; AD-var=46) AD'nin DM grup üyeliği ile parenting tutumları arasında mediator rolü oluşturmadığını göstermiştir (4/4 outcome için BCa indirect %95 GA sıfırı içerir). H1 multilevel modelde group_dm:ad_bin etkileşimi tüm 4 outcome için NS — H1 reddetme bulgusu **AD-strata bağımsız**. Beck × AD sıcaklık alışkanlığı sınırda anlamlı (β=-.166, p=.107) — **Klein-Moosbrugger tedavi-aracılı uncoupling ön-sinyali**. H5 stratified Pearson r reddetme: DM/AD-var=+.147 vs DM/AD-yok=-.091.
+
+Şekil F2-F04 (`outputs/figures/phase2_f04_h5_strat.png`) H5 stratified diadik korelasyonu gösterir.
+
+## 6.5 H5 Diadik Tutarlılık Genişletmesi (KISIM XXIII)
+
+H5 diadik tutarlılık genişletmesinde **MTMM CT-C(M-1)** çocuk method varyansı %60.7 doğrulamış; Beck × grup moderation reddetme alt ölçeğinde sınırda anlamlı (β=+.122, %95 boot CI[-.004, +.249]); **sibling-pair concordance ICC** reddetme alt ölçeğinde **DM=0** (tam ortagonal) vs Kontrol=.322 (orta uyum) — **McHale 2000 PDT (parental differential treatment) hipotezinin güçlü ampirik karşılığı**; H5 strateji-düzeyi metafor REML pooling DM = +.179 [+.097, +.260], heterogeneity τ=.073.
+
+## 6.6 Klinik Stratifikasyon (KISIM XXIV)
+
+DM-only HbA1c klinik stratifikasyonunda (n=39) **Bayesian joint model** Pinquart 2018 + Anderson 2002 informative prior (Normal(0.16, 0.10)) altında sıcaklık (pd=.944) ve karşılaştırma (pd=.946) outcome'larında HbA1c ile pozitif yön — frequentist NS ama Bayesian probability of direction yüksek. Tanı yaşı cubic spline 4/4 outcome'da 'linear sufficient' (CSR §12.5.2 doğrulayıcı). ISPAD <%7 logistic n_events=8 yetersiz güç; OR yön karşılaştırma=2.27 (anlamsız ama ters yön dikkati).
+
+## 6.7 Nedensel Aracılık Sensitivitesi (KISIM XXV)
+
+Nedensel aracılık sensitivitesi modülü **Imai-Keele-Tingley (2010)** manuel ρ_critical formülü ile uygulanmış; tüm 4 outcome için ρ_critical < 0.05 ('very_fragile_to_unmeasured_confounding') — sequential ignorability kırılganlığı çok yüksek. **c' direct effect triangulation** 3 paralel mediation modelinde 3/3 reddetme ve 3/3 aşırı koruma yolunun anlamlı kalması (β = +.146-.198) **H1 birincil bulgusunun mediation-bağımsız doğrulayıcısıdır**. PC algoritması yerine dagitty conditional independence implications ile manuel partial correlation testi: **12/12 test 'consistent'** — DAG yapısı veri ile uyumlu. **3-level varyans modelinde** sıcaklık alt ölçeğinde ICC_year=.154 (LRT p<.001); group_dm 2-level → 3-level geçişinde sıcaklık yön değiştirir (+.124 → -.078) — **CSR §13.5 negctrl flag'inin yapısal yanıtı**.
+
+## 6.8 Distribüsyonel Yaklaşımlar (KISIM XXVI)
+
+Distribüsyonel yaklaşımlar kuyruk-bağımlı heterojenite ortaya koymuştur: **quantile regression** reddetme τ=0.75 β=+.250 (medyan etkinin 1.7 katı); **distributional regression** σ posterior 3/4 outcome için sıfırın üstünde (DM grubunda hem ortalama hem varyans yukarı yönlü kayma); **beta regression** bounded outcome reddetme β=+0.462 (p<10⁻⁶, log-odds ölçeğinde manifest mean'in 3 katı).
+
+## 6.9 Multiverse Genişletme (KISIM XXVII)
+
+**H1 multiverse** 120 spec random subset analizi: 120/120 ok, medyan β=+0.134, **%75 spec'inde p<.05**, %100'ünde pozitif yön. **SCA inferential test** 5000 permutation altında observed t=4.084, **perm p=.0002** — H1 reddetme bulgusu spec curve toplu inferential test'inde null hipotezini reddediyor. CSR §13.6'da raporlanan H1 vs H3 multiverse paradoksunun yapısal çözümü: iki ayrı veri seti (çocuk vs anne perspektifleri).
+
+Şekil F2-F05 (`outputs/figures/phase2_f05_h1_spec_curve.png`) spec curve'ünü gösterir.
+
+## 6.10 Meta-Analitik Birleştirme (KISIM XXVIII)
+
+**Bayesian meta-analytic pooling** 4 prior meta-analiz (Pinquart 2013, Pinquart 2018, Lovejoy 2000, Vermaes 2012) + bu çalışmanın 4 outcome estimate'i metafor REML fallback ile birleştirilmiş: **pooled = +0.139 [+0.049, +0.230]**, τ=0.106 — sıfırı net olarak dışarda, **bu çalışmanın bulgusu 8-study meta-pool merkezinde**. **Posterior predictive replication** 4/4 outcome 'ppc_consistent'; **empirical Bayes shrinkage** 4/4 outcome 'expected_random_outlier_rate' — Bayesian validation katmanları triangüle.
+
+Şekil F2-F06 (`outputs/figures/phase2_f06_meta_forest.png`) 8-study forest plot'unu gösterir.
+
+## 6.11 Klinik Karar Modeli İç-Validasyon Raporu (KISIM XXIX/84-85)
+
+Yüksek-risk anne sınıflandırma modeli (BDI≥17) extended logistic **AUC=.703** (n=238) CSR §12.4 ile birebir tutarlı; **standardized net benefit** (Kerr 2016) threshold 0.05'te sNB=.86; **DCA threshold-sensitivity** 10×10 heatmap (threshold ∈ [0.05, 0.50] × cost_ratio ∈ [1, 10]) mevcut örnek üzerinde Vickers 2006 net-benefit eğrisini sunmuştur. Modelin iç-validasyonlu raporlamasıdır.
+
+## 6.12 Mevcut Örnek Güç Karakterizasyonu (KISIM XXX/87-89)
+
+Manuel Monte Carlo multilevel power simülasyonu (200 sim) d=0.20 ICC=0.20 altında n_aile=241 için **power=.535** — CSR'ın mevcut H1 bulgusu güç-sınırı altında pozitif sinyal yakalayabilmiştir. **APIM sample size** r=0.20'de n_dyad=165, **Bayesian SSD** ROPE=±0.10 SD altında HDI=.20 hedefi için n≥500 referansı raporlanmıştır. Bu güç karakterizasyonu mevcut örneklemdeki bulguların güvenilirlik aralığını ortaya koyar.
+
+## 6.13 Genel Sonuç ve Tezin Sınırlılıkları (Faz II Lensi)
+
+**Faz II'nin sentezi:** H1 reddetme birincil bulgusu (CSR §11.1: β=0.16, BF₁₀=8.12) **\[KEŞİFSEL · POST-HOC\]** çerçevede çoklu-katmanlı triangulation ile güçlendirilmiştir:
+
+- Trifactor T-CFA latent yapısal doğrulama (KISIM XX/50)
+- Floor-aware IRT 2.3× amplification (KISIM XXI/54)
+- Multiverse %75 spec anlamlı (KISIM XXVII/76)
+- SCA inferential perm p=.0002 (KISIM XXVII/79)
+- Bayesian meta-pool merkezde (KISIM XXVIII/80)
+- c' direct triangulation 3/3 anlamlı (KISIM XXV/71)
+- PPC ppc_consistent (KISIM XXVIII/81)
+- EB outlier expected (KISIM XXVIII/82)
+
+CSR'da raporlanan ana sonuçların hiçbiri **DEĞİŞMEZ**; Faz II bulguları **mevcut Faz I kanonik baz** üzerinde tamamlanmıştır. Yeni veri toplama gerektiren ileri-faz analizler (longitudinal trajectory, dış-validasyon, çok-merkezli replikasyon) bu çalışmanın **kapsamı dışında** bırakılmıştır; Faz II'den üreyen yeni hipotezler (sibling PDT, AD-aracılı pathway, distribüsyonel heterojenite) tartışmada **gelecek araştırma önerisi** olarak sunulur.
+
+Faz II'nin kapsadığı 8 reference dosya (`references/`) ve 3 yeni doküman (`OSF-LAYER3-AMENDMENT.md`, `STATISTICAL-ANALYSIS-PLAN-PHASE-2.md`, güncellenmiş `PRE-REGISTRATION-DEVIATION-TABLE.md` Tip 3 satırı #1) açık-bilim zincirini OSF Layer 1+2+3 üzerinden korumaktadır.
+
+> **Tek cümlelik özet:** Faz II analizleri CSR'ın H1 reddetme birincil bulgusunu mevcut n=241 kanonik baz üzerinde çoklu-katmanlı yapısal, distribüsyonel, sensitivite, multiverse, Bayesian meta ve iç-validasyonlu klinik karar modeli mercekleriyle güçlendirmiş; multi-informant ayrışmasının yapısal kaynaklarını (çocuk method varyansı, sibling PDT, floor effect amplification) ortaya çıkarmış ve yeni hipotez setini tartışma bölümüne taşımıştır.
