@@ -434,7 +434,7 @@ run_trifactor_pipeline <- function(df_family_scored, df_long_scored,
       n_subscales_fit = if (fit_models) length(status_rows) else 0L,
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XX/50)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       stringsAsFactors = FALSE
     )
   )

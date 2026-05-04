@@ -71,7 +71,7 @@ phase2_thesis_chapter06_mapping <- function() {
       "Sentez: H1 reddetme bulgusunun multi-katmanli triangulation"
     ),
     deviation_label = "[KESIFSEL - POST-HOC]",
-    osf_reference = "Layer 3 amendment (OSF-LAYER3-AMENDMENT.md)",
+    osf_reference = "Layer 3 amendment (05-osf-layer3-faz2-amendment.md)",
     stringsAsFactors = FALSE
   )
 }
@@ -163,7 +163,7 @@ run_phase2_thesis_mapping_pipeline <- function() {
       n_publications_planned = nrow(publication_plan),
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XXXII/94, 95)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       quarto_chapter = "chapters/06_post_hoc_genisleme.qmd",
       stringsAsFactors = FALSE
     )

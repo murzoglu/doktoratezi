@@ -55,11 +55,31 @@ ad_scale_vector <- function(x) {
   (x - m) / s
 }
 
+ad_ensure_group_dm <- function(df) {
+  if (!"group_dm" %in% names(df)) {
+    group_source <- NULL
+    if ("group_f" %in% names(df)) {
+      group_source <- df$group_f
+    } else if ("grup" %in% names(df)) {
+      group_source <- df$grup
+    } else if ("group" %in% names(df)) {
+      group_source <- df$group
+    }
+
+    if (!is.null(group_source)) {
+      group_text <- as.character(group_source)
+      df$group_dm <- as.integer(grepl("DM", group_text, ignore.case = TRUE))
+    }
+  }
+  df
+}
+
 ad_subscale_outcomes <- function() {
   c("sicaklik", "asiri_koruma", "reddetme", "karsilastirma")
 }
 
 ad_prepare_family_frame <- function(df_family_ses) {
+  df_family_ses <- ad_ensure_group_dm(df_family_ses)
   required <- c("aile_no", "group_dm", "anne_antidepresan", "beck_total",
     "ses_latent", "anne_yas",
     paste0("embu_p_", ad_subscale_outcomes(), "_mean"))
@@ -497,7 +517,7 @@ run_ad_pathway_pipeline <- function(df_family_ses, df_long_scored,
       bootstrap_n = bootstrap_n,
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XXII/58-60)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       mediation_paketi_kullanildi = "FALSE — lavaan tabanli BCa bootstrap fallback",
       stringsAsFactors = FALSE
     )

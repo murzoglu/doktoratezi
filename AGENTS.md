@@ -52,8 +52,8 @@ quarto render thesis.qmd
 ## Dokumani Kopyalama, Bagla
 
 - Genel proje ozeti, komutlar ve aktif analiz durumu: [CLAUDE.md](CLAUDE.md)
-- Kanonik EMBU-P formu: [docs/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md](docs/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md)
-- Kanonik EMBU-C formu: [docs/KANONIK_KISALTILMIS_EMBU_COCUK.md](docs/KANONIK_KISALTILMIS_EMBU_COCUK.md)
-- Final referans veri haritasi: [docs/FINAL_REFERENCE_VERI_HARITASI.md](docs/FINAL_REFERENCE_VERI_HARITASI.md)
+- Kanonik EMBU-P formu: [docs/protokol/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md](docs/protokol/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md)
+- Kanonik EMBU-C formu: [docs/protokol/KANONIK_KISALTILMIS_EMBU_COCUK.md](docs/protokol/KANONIK_KISALTILMIS_EMBU_COCUK.md)
+- Final referans veri haritasi: [docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md](docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md)
 - Kanonik analiz baz kilidi: [data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock](data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock)
 - Kanonik form oncesi karar gecmisi ve CSV raporlari: [archive/2026-04-26_pre_canonical_embu/README.md](archive/2026-04-26_pre_canonical_embu/README.md)

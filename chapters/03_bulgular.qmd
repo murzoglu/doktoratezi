@@ -31,19 +31,19 @@ Kanonik analiz tabanı 241 aile × 2 katılımcı = 482 satır olarak kilitlenmi
 
 Causal DAG temelli birincil ayarlama seti (`SES`, kardeş yaş farkı, aile büyüklüğü) ham gözlemde maksimum SMD 0.220 düzeyinden propensity score temelli stabilize IPTW ağırlıklamasıyla 0.004'e düşmüştür; bu denge KISIM III propensity score hattında raporlanmaktadır. HbA1c (n=39) ve dm_yili kontrol grubunda tasarım kaynaklı yapısal eksikliktir ve imputasyona alınmamıştır (kural #19).
 
-![Analitik örneklem akış diyagramı. Kilitlenmiş kanonik veri tabanından aile-düzeyi analiz tabanına, DM/Kontrol gruplarına ve DM klinik alt-analiz katmanına geçiş gösterilmiştir.](outputs/figures/strobe_flow.png){#fig-strobe-flow width="82%" fig-align="center"}
+![Analitik örneklem akış diyagramı. Kilitlenmiş kanonik veri tabanından aile-düzeyi analiz tabanına, DM/Kontrol gruplarına ve DM klinik alt-analiz katmanına geçiş gösterilmiştir.](docs/assets/figures/carbon/primary/fig-01-strobe-flow.svg){#fig-strobe-flow width="82%" fig-align="center"}
 
-![Causal DAG ve total-effect ayarlama stratejisi. SES, kardeş yaş farkı ve aile büyüklüğü baseline/design karıştırıcıları olarak; Beck ve antidepresan kullanımı ise mediator/sensitivite düğümleri olarak izlenmiştir.](outputs/figures/causal_dag.png){#fig-causal-dag width="94%" fig-align="center"}
+![Causal DAG ve total-effect ayarlama stratejisi. SES, kardeş yaş farkı ve aile büyüklüğü baseline/design karıştırıcıları olarak; Beck ve antidepresan kullanımı ise mediator/sensitivite düğümleri olarak izlenmiştir.](docs/assets/figures/carbon/primary/fig-02-causal-dag.svg){#fig-causal-dag width="94%" fig-align="center"}
 
-![Propensity dengeleme SMD love plot. Ağırlık öncesi, IPTW sonrası ve matching sonrası standardize ortalama farkları birincil ayarlama seti için gösterilmiştir.](outputs/figures/smd_love_plot.png){#fig-smd-love width="84%" fig-align="center"}
+![Propensity dengeleme SMD love plot. Ağırlık öncesi, IPTW sonrası ve matching sonrası standardize ortalama farkları birincil ayarlama seti için gösterilmiştir.](docs/assets/figures/carbon/primary/fig-03-smd-love-plot.svg){#fig-smd-love width="84%" fig-align="center"}
 
-![Propensity score overlap. DM ve Kontrol ailelerinin propensity dağılımları ile ortak destek aralığı gösterilmiştir.](outputs/figures/propensity_overlap.png){#fig-propensity-overlap width="84%" fig-align="center"}
+![Propensity score overlap. DM ve Kontrol ailelerinin propensity dağılımları ile ortak destek aralığı gösterilmiştir.](docs/assets/figures/carbon/primary/fig-04-propensity-overlap.svg){#fig-propensity-overlap width="84%" fig-align="center"}
 
-![SES kompozit doğrulama korelasyon matrisi. Latent SES göstergesi eğitim, mesleki statü ve materyal bileşenlerle korelasyon yapısı üzerinden denetlenmiştir.](outputs/figures/ses_correlation_heatmap.png){#fig-ses-correlation width="74%" fig-align="center"}
+![SES kompozit doğrulama korelasyon matrisi. Latent SES göstergesi eğitim, mesleki statü ve materyal bileşenlerle korelasyon yapısı üzerinden denetlenmiştir.](docs/assets/figures/carbon/primary/fig-05-ses-correlation-heatmap.svg){#fig-ses-correlation width="74%" fig-align="center"}
 
 ## Psikometrik Durum
 
-Kısaltılmış EMBU-P 4-faktör WLSMV CFA modeli kabul edilebilir sınır uyumla raporlanmıştır; ωₕ ve ω-katsayıları her alt ölçek için PSIKOMETRIK-VALIDASYON-BUTUNLESIK-RAPOR'da sunulmuştur. EMBU-P Reddetme alt ölçeğinde α = 0.45 (sınır altı) ve madde-düzeyi floor effect 7/8 maddede %60'ın üzerindedir; bu ölçüm kırılganlığı KISIM XI sensitivite hattında ve H3 Bayesian dual reporting'inde açık biçimde işlenmiştir. EMBU-C için 4-faktör multilevel CFA başarıyla yakınsamış ve ölçüm değişmezliği configural ve metric düzeylerde kabul edilebilir sınırda kalmıştır. Beck Depresyon Envanteri tek-faktör + iki-faktör (somatik / bilişsel) modelleri benzer uyum vermiş ve birincil analiz toplam puana dayanmıştır.
+Kısaltılmış EMBU-P 4-faktör WLSMV CFA modeli kabul edilebilir sınır uyumla raporlanmıştır; ωₕ ve ω-katsayıları her alt ölçek için 22-psikometrik-validasyon-butunlesik-rapor'da sunulmuştur. EMBU-P Reddetme alt ölçeğinde α = 0.45 (sınır altı) ve madde-düzeyi floor effect 7/8 maddede %60'ın üzerindedir; bu ölçüm kırılganlığı KISIM XI sensitivite hattında ve H3 Bayesian dual reporting'inde açık biçimde işlenmiştir. EMBU-C için 4-faktör multilevel CFA başarıyla yakınsamış ve ölçüm değişmezliği configural ve metric düzeylerde kabul edilebilir sınırda kalmıştır. Beck Depresyon Envanteri tek-faktör + iki-faktör (somatik / bilişsel) modelleri benzer uyum vermiş ve birincil analiz toplam puana dayanmıştır.
 
 ## H1 — Çocuk Algısı (EMBU-C)
 
@@ -51,9 +51,9 @@ H1 multilevel ANCOVA modeli `role_f + cocuk_yas_z + cinsiyet_f + ses_latent_z + 
 
 KISIM XII Bayesian paralel hat sonuçları H1 EMBU-C reddetme alt ölçeği için DM grubu ortalamasının kontrol grubundan 0.16 SD yüksek olduğunu (95% güvenilir aralık [0.05, 0.26], pd = 0.999, ROPE içi pay = 12.7%, BF₁₀ = 8.12, "moderate H1") raporlamaktadır. EMBU-C sıcaklık alt ölçeğinde ise BF₁₀ = 0.29 ("moderate H0") ile sıfır etki lehine kanıt baskın çıkmıştır. R̂ < 1.01 ve divergent transition = 0 ile MCMC konverjansı tatmin edicidir.
 
-![H1 çocuk algısı multilevel ANCOVA katsayıları için forest plot. Referans kategori Kontrol indeks çocuktur; yatay çizgiler %95 güven aralıklarını gösterir.](outputs/figures/h1_forest.png){#fig-h1-forest width="92%" fig-align="center"}
+![H1 çocuk algısı multilevel ANCOVA katsayıları için forest plot. Referans kategori Kontrol indeks çocuktur; yatay çizgiler %95 güven aralıklarını gösterir.](docs/assets/figures/carbon/primary/fig-07-h1-forest.svg){#fig-h1-forest width="92%" fig-align="center"}
 
-![H1 role × yaş × cinsiyet estimated marginal mean paneli. Üçlü etkileşim FDR sonrası anlamlı değildir; panel yalnız görsel tanı ve olası örüntüleri göstermek için sunulmuştur.](outputs/figures/h1_three_way_emm.png){#fig-h1-three-way-emm width="96%" fig-align="center"}
+![H1 role × yaş × cinsiyet estimated marginal mean paneli. Üçlü etkileşim FDR sonrası anlamlı değildir; panel yalnız görsel tanı ve olası örüntüleri göstermek için sunulmuştur.](docs/assets/figures/carbon/primary/fig-08-h1-three-way-emm.svg){#fig-h1-three-way-emm width="96%" fig-align="center"}
 
 ## H2 — Kardeş İlişkisi (KİA / SRQ)
 
@@ -61,7 +61,7 @@ H2 üç paralel strateji ile yürütülmüştür. Aile-düzeyi Welch t-testleri 
 
 Aile-mean lineer modelinde aynı cinsiyet × yaş farkı moderasyonu da anlamlı düzeye ulaşmamıştır. Bu sonuç H2 hipotezi açısından "fark kanıtı yetersiz" düzeyine işaret eder; H5 diadik tutarlılık analizi sosyal istenirlik kompansasyonunu doğrudan ele alarak burada tartışılmaktadır.
 
-![H2 APIM yol katsayıları. Sol blok model terimlerini, sağ blok SRQ çıktılarının dört alt ölçeğini gösterir; ok rengi katsayı yönünü, kalınlık mutlak büyüklüğü temsil eder.](outputs/figures/h2_apim_path.png){#fig-h2-apim-path width="90%" fig-align="center"}
+![H2 APIM yol katsayıları. Sol blok model terimlerini, sağ blok SRQ çıktılarının dört alt ölçeğini gösterir; ok rengi katsayı yönünü, kalınlık mutlak büyüklüğü temsil eder.](docs/assets/figures/carbon/primary/fig-09-h2-apim-path.svg){#fig-h2-apim-path width="90%" fig-align="center"}
 
 ## H3 — Anne Öz-Rapor (EMBU-P)
 
@@ -69,7 +69,7 @@ H3 birincil ANCOVA modeli `group_f + anne_yas_z + ses_latent_z + age_gap_z + coc
 
 Antidepresan kullanımı total-effect modelinde kovaryat yapılmamış, fakat AD kullanmayan ve kullanan strata duyarlılık analizleri hem alt-grupta hem de bütünde yön ve etki büyüklüğünü değiştirmemiştir. IPTW versiyonu (stabilize ağırlık + 99. persentil trim, HC3 robust SE) aynı yön ve büyüklüğü desteklemiştir. Bayesian dual reporting (KISIM XII) dört alt ölçeğin tamamında BF₁₀ ≈ 0.17-0.25 ile "moderate H0" kanıtı vermiş, ROPE içi pay sıcaklıkta %68, aşırı korumada %61, reddetmede %92 ve karşılaştırmada %69 olarak raporlanmıştır. KISIM XI TOST sonuçları SESOI = ±0.30 SMD altında aşırı koruma ve karşılaştırmada "Equivalent" (kesin eşdeğerlik kanıtı), sıcaklık ve reddetmede "Indeterminate" kararını vermiştir. Sensemakr Robustness Value RV_q ≈ 0.04-0.08 ve VanderWeele E-value 1.36-1.59 aralığı, anne öz-rapor düzleminin görece güçsüz dayanıklılığını ve H5 diadik tutarlılık analiziyle birleştirilmesi gerektiğini göstermektedir.
 
-![H3 antidepresan katmanlı forest plot. Noktalar standardize β, yatay çizgiler %95 güven aralığıdır; katmanlar tüm örneklem, antidepresan kullanmayanlar ve kullananlar olarak ayrılmıştır.](outputs/figures/h3_stratified_forest.png){#fig-h3-stratified-forest width="90%" fig-align="center"}
+![H3 antidepresan katmanlı forest plot. Noktalar standardize β, yatay çizgiler %95 güven aralığıdır; katmanlar tüm örneklem, antidepresan kullanmayanlar ve kullananlar olarak ayrılmıştır.](docs/assets/figures/carbon/primary/fig-10-h3-stratified-forest.svg){#fig-h3-stratified-forest width="90%" fig-align="center"}
 
 ## H4 — Beck → EMBU-P Latent SEM
 
@@ -77,7 +77,7 @@ H4 50 ordinal item üzerinde WLSMV SEM modelini başarıyla yakınsamış ve dö
 
 Multi-group invariance taraması azaltılmış ordinal item setiyle (12 EMBU madde + 6 Beck madde) configural ve metric düzeylerde başarıyla yakınsamıştır; metric model ΔCFI ve ΔRMSEA eşikleri içinde configural'a karşı kabul edilmiştir, scalar düzeyde ise grup-spesifik boş ordinal kategoriler nedeniyle açık mapping ile collapse uygulanmıştır. Bayesian SEM `blavaan` model/prior/sampler preflight planı olarak tutulmuş, posterior sampling yapılmamıştır.
 
-![H4 Beck depresyon latent faktöründen EMBU-P latent ebeveynlik faktörlerine giden standardize yollar. Yıldız FDR p < .05 anlamlılığını gösterir.](outputs/figures/h4_sem_path.png){#fig-h4-sem-path width="88%" fig-align="center"}
+![H4 Beck depresyon latent faktöründen EMBU-P latent ebeveynlik faktörlerine giden standardize yollar. Yıldız FDR p < .05 anlamlılığını gösterir.](docs/assets/figures/carbon/primary/fig-11-h4-sem-path.svg){#fig-h4-sem-path width="88%" fig-align="center"}
 
 ## H5 — Diadik Tutarlılık (Birincil Yenilik Katkısı)
 
@@ -89,15 +89,15 @@ Dördüncü strateji Olsen-Kenny dyadic CFA reddetme alt ölçeği üzerinde yü
 
 Klinik tutarsızlık örüntü oranları (eşik > 0.5 SD): "anne sıcak / çocuk düşük (savunmacılık)" Kontrol = %37, DM = %33; "anne reddetme düşük / çocuk reddetme yüksek (öz-eleştiri yokluğu)" Kontrol = %17, DM = %25; "indeks ↔ kardeş ayrımcı muamele (DPT)" Kontrol = %45, DM = %48. Bu örüntü Streisand & Monaghan (2014) kronik hastalık ailelerinde anne savunmacılığı hipoteziyle uyumlu yön sergilemektedir.
 
-![H5 Bland-Altman tutarlılık haritası. Paneller dört EMBU alt ölçeği ve üç dyad tipini; renkler DM ve Kontrol gruplarını gösterir.](outputs/figures/h5_ba_grid.png){#fig-h5-bland-altman width="96%" fig-align="center"}
+![H5 Bland-Altman tutarlılık haritası. Paneller dört EMBU alt ölçeği ve üç dyad tipini; renkler DM ve Kontrol gruplarını gösterir.](docs/assets/figures/carbon/primary/fig-12-h5-ba-grid.svg){#fig-h5-bland-altman width="96%" fig-align="center"}
 
-![H5 Response Surface Analysis yüzeyleri. Noktalı çizgi anne ve indeks çocuk algısının eşit olduğu uyum hattını gösterir.](outputs/figures/h5_rsa_surface.png){#fig-h5-rsa-surface width="96%" fig-align="center"}
+![H5 Response Surface Analysis yüzeyleri. Noktalı çizgi anne ve indeks çocuk algısının eşit olduğu uyum hattını gösterir.](docs/assets/figures/carbon/primary/fig-13-h5-rsa-surface.svg){#fig-h5-rsa-surface width="96%" fig-align="center"}
 
 ## KISIM VI — Mediation
 
 Beck → EMBU-P reddetme → EMBU-C reddetme zinciri üç katmanda test edilmiştir. Tek-mediator BCa bootstrap (n = 1000) modelinde a-yolu β = 0.0056 (p = .033) anlamlı, b-yolu β = 0.091 (p = .19) anlamsız ve indirect etki β = 0.0005 [-0.0001, 0.0025] sıfırı içermektedir. Multilevel mediation aile-düzeyi mediator ve uzun-format çocuk outcome'u ile a-yolunun anlamlılığını desteklemiş (β = 0.0055, p = .018), fakat indirect etki yine anlamsız kalmıştır. Hayes Model 14 conditional process modeli a-yolunun grup tarafından moderasyonunu (a3 = 0.046, p = .22) ve moderate mediation indeksini (IMM = 0.004, p = .37) anlamlı bulmamıştır. Bu örüntü Beck → EMBU-P köprüsünün varlığına karşın EMBU-P → EMBU-C kopukluğunu açıkça raporlamakta ve H5 diadik tutarsızlık tezini desteklemektedir.
 
-![KISIM VI mediation yol ve indirect etki özeti. Tek-mediator, multilevel ve conditional process modellerinde yol katsayıları ve indirect etkiler %95 güven aralığıyla gösterilmiştir.](outputs/figures/mediation_effects.png){#fig-mediation-effects width="88%" fig-align="center"}
+![KISIM VI mediation yol ve indirect etki özeti. Tek-mediator, multilevel ve conditional process modellerinde yol katsayıları ve indirect etkiler %95 güven aralığıyla gösterilmiştir.](docs/assets/figures/carbon/primary/fig-14-mediation-effects.svg){#fig-mediation-effects width="88%" fig-align="center"}
 
 ## KISIM VII — Latent Profile Analizi
 
@@ -107,7 +107,7 @@ Buna paralel olarak KISIM VII/22 için kategorik gösterge duyarlılık hattı t
 
 Bifactor S-1 modeli reference faktör olarak aşırı koruma alt ölçeği seçilerek 29-madde EMBU-P üzerine kurulmuştur. WLSMV uyumu CFI = 0.79, TLI = 0.76, RMSEA = 0.055 ve SRMR = 0.14 olarak raporlanmıştır; bu değerler tek genel + üç spesifik faktör ayrımı için sınır altı uyumdur ve bu nedenle tezde "öneri-düzeyi keşifsel" olarak işaretlenmiştir.
 
-![KISIM VII LPA model seçim tanıları. BIC, entropy ve BLRT p değerleri profil sayısına göre gösterilmiştir; BIC minimumu 3-profil çözümünü işaret eder.](outputs/figures/lpa_fit_indices.png){#fig-lpa-fit-indices width="78%" fig-align="center"}
+![KISIM VII LPA model seçim tanıları. BIC, entropy ve BLRT p değerleri profil sayısına göre gösterilmiştir; BIC minimumu 3-profil çözümünü işaret eder.](docs/assets/figures/carbon/primary/fig-15-lpa-fit-indices.svg){#fig-lpa-fit-indices width="78%" fig-align="center"}
 
 ## KISIM VIII — Network Analizi
 
@@ -115,9 +115,9 @@ Dokuz değişken (4 EMBU-P alt ölçek + 4 SRQ-HO alt ölçek + Beck total) üze
 
 Kural #15 uyarınca koşullu bağımlılık nedensellik olarak yorumlanmamış, network bulgular yalnız değişken-arası birlikte değişim haritası olarak sunulmuştur.
 
-![KISIM VIII EBIC-LASSO Gaussian Graphical Model. Kenar kalınlığı mutlak kısmi korelasyonu, düğüm boyutu strength merkeziyetini gösterir.](outputs/figures/network_graph.png){#fig-network-graph width="82%" fig-align="center"}
+![KISIM VIII EBIC-LASSO Gaussian Graphical Model. Kenar kalınlığı mutlak kısmi korelasyonu, düğüm boyutu strength merkeziyetini gösterir.](docs/assets/figures/carbon/primary/fig-16-network-graph.svg){#fig-network-graph width="82%" fig-align="center"}
 
-![Network Comparison Test sonuçları. Network invariance ve global strength p-değerleri DM ve Kontrol ağlarının anlamlı düzeyde ayrışmadığını göstermektedir.](outputs/figures/network_nct.png){#fig-network-nct width="72%" fig-align="center"}
+![Network Comparison Test sonuçları. Network invariance ve global strength p-değerleri DM ve Kontrol ağlarının anlamlı düzeyde ayrışmadığını göstermektedir.](docs/assets/figures/carbon/primary/fig-17-network-nct.svg){#fig-network-nct width="72%" fig-align="center"}
 
 ## KISIM IX — Klinik Fayda
 
@@ -125,13 +125,13 @@ Yüksek-riskli anne (Beck total ≥ 17, "moderate depresyon" eşiği) sınıflan
 
 Sonuçlar dış validasyon bekleyen iç-validasyonlu skor olarak raporlanmıştır (kural #18).
 
-![Klinik yüksek Beck riski sınıflandırması için ROC eğrisi. Temel model demografi/SES değişkenlerini, geniş model EMBU-P alt ölçeklerini de içerir.](outputs/figures/clinical_roc.png){#fig-clinical-roc width="78%" fig-align="center"}
+![Klinik yüksek Beck riski sınıflandırması için ROC eğrisi. Temel model demografi/SES değişkenlerini, geniş model EMBU-P alt ölçeklerini de içerir.](docs/assets/figures/carbon/primary/fig-18-clinical-roc.svg){#fig-clinical-roc width="78%" fig-align="center"}
 
-![Klinik karar eğrisi analizi. Geniş risk skoru, treat all ve treat none stratejileri eşik olasılığına göre net benefit düzeyinde karşılaştırılmıştır.](outputs/figures/clinical_dca.png){#fig-clinical-dca width="86%" fig-align="center"}
+![Klinik karar eğrisi analizi. Geniş risk skoru, treat all ve treat none stratejileri eşik olasılığına göre net benefit düzeyinde karşılaştırılmıştır.](docs/assets/figures/carbon/primary/fig-19-clinical-dca.svg){#fig-clinical-dca width="86%" fig-align="center"}
 
-![Geniş klinik risk skoru kalibrasyon grafiği. Kesikli diagonal ideal kalibrasyonu, noktalar tahmin edilen ve gözlenen risk binlerini gösterir.](outputs/figures/clinical_calibration.png){#fig-clinical-calibration width="78%" fig-align="center"}
+![Geniş klinik risk skoru kalibrasyon grafiği. Kesikli diagonal ideal kalibrasyonu, noktalar tahmin edilen ve gözlenen risk binlerini gösterir.](docs/assets/figures/carbon/primary/fig-20-clinical-calibration.svg){#fig-clinical-calibration width="78%" fig-align="center"}
 
-![Klinik model tamamlayıcıları. CART cross-validated error profili ve Random Forest değişken önemleri birlikte raporlanmıştır.](outputs/figures/clinical_cart_rf.png){#fig-clinical-cart-rf width="82%" fig-align="center"}
+![Klinik model tamamlayıcıları. CART cross-validated error profili ve Random Forest değişken önemleri birlikte raporlanmıştır.](docs/assets/figures/carbon/primary/fig-21-clinical-cart-rf.svg){#fig-clinical-cart-rf width="82%" fig-align="center"}
 
 ## KISIM X — DM Klinik Alt-Analizler
 
@@ -143,17 +143,17 @@ Bu örüntü DM-spesifik klinik göstergelerin (HbA1c, dm_yili, tanı yaşı) an
 
 Multiverse spesifikasyon eğrisi 120 spesifikasyon (4 outcome × 5 kovaryat seti × 2 model × 3 alt-örneklem) üretmiş ve dört EMBU-P alt ölçeğinin tamamında "p < .05 spec oranı = 0%" raporlamıştır; reddetme alt ölçeğinde median d = -0.13 [-0.19, -0.06] aralığında tutarlı zayıf negatif yön sergilemiştir. TOST kararları SESOI = ±0.30 SMD altında 4 alt ölçek için: aşırı koruma ve karşılaştırma "Equivalent" (kesin eşdeğerlik), sıcaklık ve reddetme "Indeterminate" (belirsizlik). Sensemakr RV_q 0.04-0.08 ve E-value 1.36-1.59 aralığı zayıf-orta dayanıklılık göstermektedir. Negatif kontrol testi 8 sahte yordayıcı-outcome bağlantısının yalnızca 1'inde p < .05 (`negctrl_aile_no` × `embu_p_sicaklik_mean`, p = .003) raporlamış; bu oran çoklu test rastgele false-positive beklentisi (1/20 ≈ %5) içinde kalmaktadır. Falsifikasyon testi DM süresi <1 yıl ve HbA1c ≤ 7.5 senaryolarında attenuation pattern göstermiş ve birincil etki kalitatif yönünü değiştirmemiştir.
 
-![KISIM XI specification curve. Her panelde multiverse spesifikasyonları Cohen d büyüklüğüne göre sıralanmıştır; nominal anlamlılık renk ile gösterilir.](outputs/figures/specification_curve.png){#fig-specification-curve width="90%" fig-align="center"}
+![KISIM XI specification curve. Her panelde multiverse spesifikasyonları Cohen d büyüklüğüne göre sıralanmıştır; nominal anlamlılık renk ile gösterilir.](docs/assets/figures/carbon/primary/fig-22-specification-curve.svg){#fig-specification-curve width="90%" fig-align="center"}
 
-![Sensemakr duyarlılık konturu. Noktalar EMBU-P alt ölçekleri için tedavi kısmi R² ve RVq kesişimini, arka plan ortak karıştırıcı gücü konturlarını gösterir.](outputs/figures/sensemakr_contour.png){#fig-sensemakr-contour width="80%" fig-align="center"}
+![Sensemakr duyarlılık konturu. Noktalar EMBU-P alt ölçekleri için tedavi kısmi R² ve RVq kesişimini, arka plan ortak karıştırıcı gücü konturlarını gösterir.](docs/assets/figures/carbon/primary/fig-23-sensemakr-contour.svg){#fig-sensemakr-contour width="80%" fig-align="center"}
 
 ## KISIM XII — Bayesian Paralel Hat Özeti
 
 H3 dört EMBU-P alt ölçeği için brms multilevel modeli (Pinquart 2013 prior, 2 chain × 2000 iter) BF₁₀ = 0.17-0.25 aralığında "moderate H0" kanıtı vermiş; pd değerleri 0.78-0.90 aralığında ve ROPE içi pay 0.61-0.92 düzeyindedir. H1 EMBU-C iki alt ölçeği için sıcaklıkta BF₁₀ = 0.29 ("moderate H0"), reddetmede BF₁₀ = 8.12 ("moderate H1") ile dual reporting H1 birincil bulgusu için frequentist multilevel sonucunu güçlü biçimde desteklemektedir. MCMC R̂ < 1.01, divergent transition = 0 ve Pareto-k tanı eşikleri tüm modeller için kabul edilebilir sınırda kalmıştır.
 
-![KISIM XII Bayesian forest. H1 ve H3 posterior ortalama etkileri, %95 güvenilir aralıklar ve Bayes factor sınıfları birlikte gösterilmiştir.](outputs/figures/bayesian_forest.png){#fig-bayesian-forest width="86%" fig-align="center"}
+![KISIM XII Bayesian forest. H1 ve H3 posterior ortalama etkileri, %95 güvenilir aralıklar ve Bayes factor sınıfları birlikte gösterilmiştir.](docs/assets/figures/carbon/primary/fig-24-bayesian-forest.svg){#fig-bayesian-forest width="86%" fig-align="center"}
 
-![Bayesian MCMC tanı paneli. Maksimum R-hat ve minimum ESS oranları gösterilmiş; divergent transition tüm modellerde 0 olarak doğrulanmıştır.](outputs/figures/bayesian_diagnostics.png){#fig-bayesian-diagnostics width="78%" fig-align="center"}
+![Bayesian MCMC tanı paneli. Maksimum R-hat ve minimum ESS oranları gösterilmiş; divergent transition tüm modellerde 0 olarak doğrulanmıştır.](docs/assets/figures/carbon/primary/fig-25-bayesian-diagnostics.svg){#fig-bayesian-diagnostics width="78%" fig-align="center"}
 
 ## APA Tablo Seti
 

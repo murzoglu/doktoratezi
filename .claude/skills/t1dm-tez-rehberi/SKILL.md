@@ -167,6 +167,7 @@ Sorgunun tipini belirle ve ilgili reference dosyasını oku:
 | Multiverse, TOST, Bayesian ROPE, sensemakr, E-value, negative control, falsification | `references/robustluk-ve-sensitivite.md` |
 | brms multilevel, BF Savage-Dickey, WAIC/LOO, model stacking, blavaan | `references/bayesci-paralel-hat.md` |
 | RTA (Braun-Clarke), joint display, convergence, Gwet AC1 | `references/karma-yontem.md` |
+| **Niteliksel kol uçtan uca** — RTA 6 faz derinlemesine, anne+çocuk dyadik görüşme tasarımı, COREQ/SRQR/JARS-Qual, KVKK + child assent, refleksif günlük, IRR (κ/Krippendorff α/Gwet AC1), LLM-destekli kodlama, jüri savunma, dyadic uyumun **"neden/nasıl"** yorumu | → ayrı **`niteliksel-arastirma-rehberi-t1dm`** skill'i (daha derin; bu skill'in karma yöntem kapsamına ek) |
 
 #### Tezde sunum (KISIM XIV-XVII)
 
@@ -382,7 +383,7 @@ katmanıdır.
 | `references/dm-klinik-altanalizler.md` | KISIM X DM-only: HbA1c × ebeveynlik (n=39 keşifsel, ISPAD eşik), DM süresi cubic spline (knots quartile, LRT), tanı yaşı 3-strata (<5, 5-10, ≥10), gelişim penceresi yorumu |
 | `references/robustluk-ve-sensitivite.md` | KISIM XI: specr multiverse (1800 spec EMBU-P Reddetme), Simonsohn inferential test, Lakens TOST + ROPE üçlü karar matrisi (Trivial/EQ/Meaningful/IND), sensemakr RV + E-value, Lipsitch negative control, Hernán-Robins falsification |
 | `references/bayesci-paralel-hat.md` | KISIM XII: brms multilevel + Pinquart prior (zayıf bilgi verici 3× geniş), R̂/ESS/divergent kontrolü, PPC, ROPE + pd, Savage-Dickey BF (Jeffreys), WAIC + LOO + Pareto-k, Yao stacking, blavaan SEM + Frequentist+Bayesian dual reporting |
-| `references/karma-yontem.md` | KISIM XIII: Braun-Clarke 2022 RTA 6-faz, Gwet AC1 inter-coder güvenirlik, tema-frekans + ggalluvial, Creswell convergent parallel design, joint display tablosu (8 satır), discrepant bulgu yorumu (sosyal istenirlik kompansasyonu) |
+| `references/karma-yontem.md` | KISIM XIII: Braun-Clarke 2022 RTA 6-faz, Gwet AC1 inter-coder güvenirlik, tema-frekans + ggalluvial, Creswell convergent parallel design, joint display tablosu (8 satır), discrepant bulgu yorumu (sosyal istenirlik kompansasyonu). **Niteliksel kolun uçtan uca derinleşmesi (RTA 6-faz tek tek, dyadik görüşme protokolü, COREQ/JARS-Qual, KVKK + child assent, refleksif günlük, jüri savunma) için ayrı `niteliksel-arastirma-rehberi-t1dm` skill'ine devir; karma yöntem entegrasyonu (joint display, GRAMMS, MMAT) bu skill'de kalır.** |
 
 ### Diseminasyon ve sunum (KISIM XIV-XVII)
 

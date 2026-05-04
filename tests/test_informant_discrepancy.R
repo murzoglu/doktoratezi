@@ -57,6 +57,13 @@ stopifnot(all(disc_cocuk_item_columns(items) %in% names(paired)))
 stopifnot(all(c("beck_total_z", "ses_latent_z", "cocuk_yas_z", "group_dm") %in% names(paired)))
 stopifnot(!is.null(attr(paired, "disc_scaling")))
 
+family_group_f <- family
+family_group_f$group_f <- factor(ifelse(family_group_f$group_dm == 1L, "DM", "Kontrol"),
+  levels = c("Kontrol", "DM"))
+family_group_f$group_dm <- NULL
+paired_group_f <- disc_prepare_paired_data(family_group_f, long, items, include_predictors = TRUE)
+stopifnot(identical(paired_group_f$group_dm, family$group_dm))
+
 # 5) Two-factor syntax
 syntax_2f <- disc_two_factor_syntax(items, "reddetme")
 stopifnot(grepl("F_anne_reddetme =~ embu_p_q05", syntax_2f, fixed = TRUE))

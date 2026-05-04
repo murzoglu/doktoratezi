@@ -12,9 +12,17 @@ if (!file.exists(file.path(repo_root, "_targets.R"))) {
 }
 setwd(repo_root)
 
-out_dir <- file.path(repo_root, "docs", "carbon-svg-figures")
+out_dir <- file.path(repo_root, "docs", "assets", "figures", "carbon")
+primary_dir <- file.path(out_dir, "primary")
+psychometric_dir <- file.path(out_dir, "psychometric")
+demographic_dir <- file.path(out_dir, "demographic")
+audit_dir <- file.path(out_dir, "audits")
 tmp_dir <- file.path(repo_root, "tmp", "carbon-svg-render")
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
+dir.create(primary_dir, recursive = TRUE, showWarnings = FALSE)
+dir.create(psychometric_dir, recursive = TRUE, showWarnings = FALSE)
+dir.create(demographic_dir, recursive = TRUE, showWarnings = FALSE)
+dir.create(audit_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(tmp_dir, recursive = TRUE, showWarnings = FALSE)
 
 prepare_ibm_plex <- function() {
@@ -850,7 +858,7 @@ rendered <- list()
 for (i in seq_len(nrow(main_figures))) {
   row <- main_figures[i, ]
   svg_name <- sprintf("fig-%02d-%s.svg", row$order, gsub("_", "-", row$id))
-  svg_path <- file.path(out_dir, svg_name)
+  svg_path <- file.path(primary_dir, svg_name)
   if (!is.na(row$target)) {
     plot <- targets::tar_read_raw(row$target)
   } else {
@@ -905,7 +913,7 @@ demo_render <- render_quarto_svg(
 )
 
 psych_render <- render_quarto_svg(
-  "docs/analiz_planlari/PSIKOMETRIK-VALIDASYON-BUTUNLESIK-RAPOR.qmd",
+  "docs/analiz_planlari/22-psikometrik-validasyon-butunlesik-rapor.qmd",
   "psikometrik_validasyon_svg.qmd",
   list(
     list(pattern = 'dev = "ragg_png"', replacement = 'dev = "svg"'),
@@ -918,7 +926,7 @@ psych_render <- render_quarto_svg(
   "psikometri"
 )
 
-copy_quarto_svgs <- function(rows, render_dir, prefix, source_doc) {
+copy_quarto_svgs <- function(rows, render_dir, prefix, source_doc, dest_dir) {
   copied <- list()
   figure_dir <- list.dirs(render_dir, recursive = TRUE, full.names = TRUE)
   figure_dir <- figure_dir[grepl("figure-html$", figure_dir)]
@@ -933,7 +941,7 @@ copy_quarto_svgs <- function(rows, render_dir, prefix, source_doc) {
       stop(sprintf("Expected rendered SVG not found: %s", src), call. = FALSE)
     }
     svg_name <- sprintf("%s-%02d-%s.svg", prefix, row$order, row$id)
-    dst <- file.path(out_dir, svg_name)
+    dst <- file.path(dest_dir, svg_name)
     file.copy(src, dst, overwrite = TRUE)
     carbonize_svg_file(dst)
     copied[[length(copied) + 1L]] <- data.frame(
@@ -961,7 +969,7 @@ psych_rows <- data.frame(
   id = c("reliability", "floor", "cfa", "invariance", "icc", "validity", "multiverse"),
   order = 1:7,
   rendered_name = c("fig-reliability-1.svg", "fig-floor-1.svg", "fig-cfa-1.svg", "fig-invariance-1.svg", "fig-icc-1.svg", "fig-validity-1.svg", "fig-multiverse-1.svg"),
-  original_png = file.path("_freeze/docs/analiz_planlari/PSIKOMETRIK-VALIDASYON-BUTUNLESIK-RAPOR/figure-pdf", c("fig-reliability-1.png", "fig-floor-1.png", "fig-cfa-1.png", "fig-invariance-1.png", "fig-icc-1.png", "fig-validity-1.png", "fig-multiverse-1.png")),
+  original_png = file.path("_freeze/docs/analiz_planlari/22-psikometrik-validasyon-butunlesik-rapor/figure-pdf", c("fig-reliability-1.png", "fig-floor-1.png", "fig-cfa-1.png", "fig-invariance-1.png", "fig-icc-1.png", "fig-validity-1.png", "fig-multiverse-1.png")),
   chapter_ref = paste0("@fig-", c("reliability", "floor", "cfa", "invariance", "icc", "validity", "multiverse")),
   related_analysis = c("Psikometrik güvenirlik", "Madde taban etkisi", "CFA uyum göstergeleri", "Ölçüm değişmezliği", "Aile içi ICC", "Geçerlik korelasyonları", "Reddetme multiverse"),
   title = c(
@@ -1021,8 +1029,8 @@ demo_rows <- data.frame(
   stringsAsFactors = FALSE
 )
 
-psych_manifest <- copy_quarto_svgs(psych_rows, psych_render$render_dir, "psychval", "docs/analiz_planlari/PSIKOMETRIK-VALIDASYON-BUTUNLESIK-RAPOR.qmd")
-demo_manifest <- copy_quarto_svgs(demo_rows, demo_render$render_dir, "demo", "docs/raporlar/01_demografik_tibbi_rapor.qmd")
+psych_manifest <- copy_quarto_svgs(psych_rows, psych_render$render_dir, "psychval", "docs/analiz_planlari/22-psikometrik-validasyon-butunlesik-rapor.qmd", psychometric_dir)
+demo_manifest <- copy_quarto_svgs(demo_rows, demo_render$render_dir, "demo", "docs/raporlar/01_demografik_tibbi_rapor.qmd", demographic_dir)
 
 manifest <- do.call(rbind, c(rendered, list(psych_manifest, demo_manifest)))
 manifest$source_png_exists <- file.exists(file.path(repo_root, manifest$original_png))
@@ -1109,10 +1117,10 @@ manifest_public <- manifest[, c(
   "non_carbon_hex_count", "non_carbon_rgb_count", "chart_palette_hits",
   "text_primary_hits", "text_secondary_hits", "grid_hits"
 )]
-utils::write.csv(manifest_public, file.path(out_dir, "manifest.csv"), row.names = FALSE, fileEncoding = "UTF-8")
+utils::write.csv(manifest_public, file.path(audit_dir, "manifest.csv"), row.names = FALSE, fileEncoding = "UTF-8")
 utils::write.csv(
   manifest_public[, c("id", "mode", "original_png", "svg_file", "fidelity_status", "carbon_style_status", "non_carbon_hex_count")],
-  file.path(out_dir, "fidelity-audit.csv"),
+  file.path(audit_dir, "fidelity-audit.csv"),
   row.names = FALSE,
   fileEncoding = "UTF-8"
 )
@@ -1121,7 +1129,7 @@ utils::write.csv(
     "id", "svg_file", "carbon_aesthetic_status", "non_carbon_hex_count", "non_carbon_rgb_count",
     "chart_palette_hits", "text_primary_hits", "text_secondary_hits", "grid_hits"
   )],
-  file.path(out_dir, "carbon-aesthetic-audit.csv"),
+  file.path(audit_dir, "carbon-aesthetic-audit.csv"),
   row.names = FALSE,
   fileEncoding = "UTF-8"
 )
@@ -1129,13 +1137,16 @@ utils::write.csv(
   manifest_public[manifest_public$technical_diagram_status != "N/A", c(
     "id", "svg_file", "technical_diagram_role", "technical_native_status", "technical_diagram_status", "carbon_aesthetic_status"
   )],
-  file.path(out_dir, "technical-diagram-audit.csv"),
+  file.path(audit_dir, "technical-diagram-audit.csv"),
   row.names = FALSE,
   fileEncoding = "UTF-8"
 )
 
-make_link <- function(path, label = basename(path)) {
-  href <- ifelse(dirname(path) == "docs/carbon-svg-figures", basename(path), path)
+make_link <- function(path, label = basename(path), from_audit = FALSE) {
+  href <- sub("^docs/assets/figures/carbon/", "", path)
+  if (isTRUE(from_audit)) {
+    href <- file.path("..", href)
+  }
   sprintf("[%s](%s)", label, href)
 }
 
@@ -1162,7 +1173,7 @@ aesthetic_rows <- function(df) {
   )
   paste0(
     "| ", df$id,
-    " | ", make_link(df$svg_file),
+    " | ", make_link(df$svg_file, from_audit = TRUE),
     " | ", df$carbon_aesthetic_status,
     " | ", df$chart_palette_hits,
     " | ", df$text_primary_hits,
@@ -1201,7 +1212,7 @@ markdown <- c(
   "- Flow/diagram figürleri Figma IBM Technical Diagram Library (`RtZDc7pMQt8HcgYTiitspr`) rollerine göre özel SVG renderer ile yeniden çizildi: Large node, Small node, Connector, Connector line ending, Label text, Label pill, Flow number ve Legend. Bu figürlerde generic chart grid/axis/raster katmanı yoktur; connector stroke'ları Carbon border tokenlarına çekildi.",
   "- Final SVG'ler raster-wrapper değildir. Ancak heatmap, missingness map, RSA surface, sensemakr contour ve bazı ağ/surface panelleri ggplot tarafından SVG içinde raster katman olarak temsil edilebilir; bu durum audit notu olarak işaretlenir.",
   "",
-  "Ayrıntılı makine-okunur kayıtlar: [manifest.csv](manifest.csv), [fidelity-audit.csv](fidelity-audit.csv), [carbon-aesthetic-audit.csv](carbon-aesthetic-audit.csv) ve [technical-diagram-audit.csv](technical-diagram-audit.csv).",
+  "Ayrıntılı makine-okunur kayıtlar: [manifest.csv](audits/manifest.csv), [fidelity-audit.csv](audits/fidelity-audit.csv), [carbon-aesthetic-audit.csv](audits/carbon-aesthetic-audit.csv) ve [technical-diagram-audit.csv](audits/technical-diagram-audit.csv).",
   "",
   "## Aktif Bulgular / CSR ve Tez Bölümü Figürleri",
   "",
@@ -1235,17 +1246,17 @@ markdown <- c(
   "Rscript scripts/R/39_export_carbon_svg_figures.R",
   "```",
   "",
-  "Bu komut `_targets` store'u ve mevcut `outputs/tables` özetlerini kullanır; ham/kimliklenebilir veri okumaz. Quarto kaynakları geçici kopyalarla render edilir ve final SVG'ler yalnız `docs/carbon-svg-figures/` altında toplanır."
+  "Bu komut `_targets` store'u ve mevcut `outputs/tables` özetlerini kullanır; ham/kimliklenebilir veri okumaz. Quarto kaynakları geçici kopyalarla render edilir ve final SVG'ler yalnız `docs/assets/figures/carbon/` altında toplanır."
 )
 
-writeLines(markdown, file.path(out_dir, "INDEX.md"), useBytes = TRUE)
+writeLines(markdown, file.path(out_dir, "README.md"), useBytes = TRUE)
 
 aesthetic_markdown <- c(
   "# Carbon Charts Estetik Audit",
   "",
   sprintf("Üretim zamanı: `%s`", format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z")),
   "",
-  "Bu audit, `docs/carbon-svg-figures/` altındaki 52 SVG'nin IBM Carbon Charts estetik ilkelerine göre yeniden taranmış durumunu verir. Referans zinciri: Carbon Charts repo `packages/core/scss` uygulama stilleri, yerel Figma source-of-truth Carbon Charts Library envanteri ve Carbon HTML Report chart palette referansı.",
+  "Bu audit, `docs/assets/figures/carbon/` altındaki SVG'lerin IBM Carbon Charts estetik ilkelerine göre yeniden taranmış durumunu verir. Referans zinciri: Carbon Charts repo `packages/core/scss` uygulama stilleri, yerel Figma source-of-truth Carbon Charts Library envanteri ve Carbon HTML Report chart palette referansı.",
   "",
   "Kaynaklar: resmi Carbon Charts repo (`carbon-design-system/carbon-charts`, `packages/core/scss/_type.scss`, `_color-palette.scss`, `components/_axis.scss`, `components/_grid.scss`, `components/_legend.scss`, `components/_title.scss`), Carbon data visualization chart anatomy, axes/labels ve legends rehberleri.",
   "",
@@ -1282,13 +1293,13 @@ aesthetic_markdown <- c(
   "- `text_primary`, `text_secondary` ve `grid` hitleri, Carbon Charts'ın başlık/axis/grid rollerinin SVG içinde gerçekten üretildiğini gösteren mekanik sinyallerdir."
 )
 
-writeLines(aesthetic_markdown, file.path(out_dir, "CARBON-AESTHETIC-AUDIT.md"), useBytes = TRUE)
+writeLines(aesthetic_markdown, file.path(audit_dir, "CARBON-AESTHETIC-AUDIT.md"), useBytes = TRUE)
 
 technical_manifest <- manifest_public[manifest_public$technical_diagram_status != "N/A", , drop = FALSE]
 technical_rows <- function(df) {
   paste0(
     "| ", df$id,
-    " | ", make_link(df$svg_file),
+    " | ", make_link(df$svg_file, from_audit = TRUE),
     " | ", df$technical_diagram_role,
     " | ", df$technical_native_status,
     " | ", df$technical_diagram_status,
@@ -1331,7 +1342,7 @@ technical_markdown <- c(
   "- Veri yoğun forest plot, ROC/DCA, heatmap, density ve demografik bar/violin grafikleri technical diagram sınıfına alınmadı; bunlar Carbon Charts estetiğiyle bırakıldı."
 )
 
-writeLines(technical_markdown, file.path(out_dir, "TECHNICAL-DIAGRAM-AUDIT.md"), useBytes = TRUE)
+writeLines(technical_markdown, file.path(audit_dir, "TECHNICAL-DIAGRAM-AUDIT.md"), useBytes = TRUE)
 
 failures <- manifest_public[!grepl("^PASS", manifest_public$fidelity_status), ]
 if (nrow(failures)) {

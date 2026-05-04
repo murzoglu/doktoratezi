@@ -64,6 +64,25 @@ disc_normalize_role <- function(role_value) {
   )
 }
 
+disc_ensure_group_dm <- function(df) {
+  if (!"group_dm" %in% names(df)) {
+    group_source <- NULL
+    if ("group_f" %in% names(df)) {
+      group_source <- df$group_f
+    } else if ("grup" %in% names(df)) {
+      group_source <- df$grup
+    } else if ("group" %in% names(df)) {
+      group_source <- df$group
+    }
+
+    if (!is.null(group_source)) {
+      group_text <- as.character(group_source)
+      df$group_dm <- as.integer(grepl("DM", group_text, ignore.case = TRUE))
+    }
+  }
+  df
+}
+
 disc_predictor_columns <- function() {
   c(
     "group_dm" = "group_dm",
@@ -75,6 +94,7 @@ disc_predictor_columns <- function() {
 
 disc_prepare_paired_data <- function(df_family_ses, df_long_scored, items,
                                      include_predictors = TRUE) {
+  df_family_ses <- disc_ensure_group_dm(df_family_ses)
   anne_cols <- disc_anne_item_columns(items)
   cocuk_cols <- disc_cocuk_item_columns(items)
 
@@ -517,7 +537,7 @@ run_informant_discrepancy_pipeline <- function(df_family_ses, df_long_scored,
       estimator = estimator,
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XX/51-52)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       stringsAsFactors = FALSE
     )
   )

@@ -631,7 +631,7 @@ run_h5_extensions_pipeline <- function(df_family_ses, df_long_scored,
       brms_iter = brms_iter,
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XXIII/61-64)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       stringsAsFactors = FALSE
     )
   )

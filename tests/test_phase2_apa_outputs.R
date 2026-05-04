@@ -36,6 +36,31 @@ xinfo_summary <- data.frame(
   stringsAsFactors = FALSE
 )
 
+xinfo_edges <- data.frame(
+  group_label = c("all", "all", "DM", "Kontrol"),
+  from = c("embu_c_reddetme_mean", "embu_c_karsilastirma_mean",
+    "embu_p_reddetme_mean", "srq_ho_warmth_mean"),
+  to = c("embu_c_karsilastirma_mean", "beck_total",
+    "embu_p_karsilastirma_mean", "srq_ho_status_mean"),
+  from_informant = c("cocuk_indeks", "cocuk_indeks", "anne", "cocuk_indeks"),
+  to_informant = c("cocuk_indeks", "anne", "anne", "cocuk_indeks"),
+  cross_informant = c(FALSE, TRUE, FALSE, FALSE),
+  weight = c(0.39, 0.06, 0.08, 0.08),
+  sign = c("positive", "positive", "positive", "positive"),
+  stringsAsFactors = FALSE
+)
+
+xinfo_centrality <- data.frame(
+  group_label = rep("all", 4L),
+  variable = c("embu_c_reddetme_mean", "embu_c_karsilastirma_mean",
+    "beck_total", "srq_ho_status_mean"),
+  strength = c(0.53, 0.56, 0.19, 0.60),
+  expected_influence = c(0.26, 0.41, 0.10, 0.44),
+  betweenness = c(24, 60, 62, 36),
+  closeness = c(0.004, 0.004, 0.003, 0.003),
+  stringsAsFactors = FALSE
+)
+
 floor_irt_delta <- data.frame(
   subscale = rep(c("reddetme", "asiri_koruma"), each = 2L),
   informant = rep(c("anne", "indeks"), 2L),
@@ -82,6 +107,78 @@ hba1c_bayes <- data.frame(
   stringsAsFactors = FALSE
 )
 
+hba1c_spline <- data.frame(
+  outcome_subscale = c("sicaklik", "asiri_koruma", "reddetme", "karsilastirma"),
+  status = "ok",
+  n_used = 39L,
+  df_spline = 3L,
+  spline_r_squared = c(0.21, 0.25, 0.20, 0.19),
+  linear_r_squared = c(0.11, 0.25, 0.12, 0.14),
+  lrt_f = c(2.20, 0.02, 1.53, 0.93),
+  lrt_p = c(0.127, 0.982, 0.232, 0.403),
+  aic_linear = c(74.3, 93.5, 21.8, 60.8),
+  aic_spline = c(73.3, 97.5, 22.2, 62.5),
+  decision = "linear_sufficient",
+  error_message = NA_character_,
+  stringsAsFactors = FALSE
+)
+
+imai_grid <- expand.grid(
+  mediator_subscale = c("sicaklik", "asiri_koruma", "reddetme", "karsilastirma"),
+  rho = seq(-0.5, 0.5, by = 0.25),
+  stringsAsFactors = FALSE
+)
+imai_grid$adjusted_acme <- 0.005 - 0.12 * imai_grid$rho
+
+imai_summary <- data.frame(
+  mediator_subscale = c("sicaklik", "asiri_koruma", "reddetme", "karsilastirma"),
+  n_used = 241L,
+  a_path = c(0.08, 0.07, -0.04, 0.05),
+  b_path = c(0.10, 0.07, 0.02, 0.11),
+  cprime_direct = c(0.08, 0.19, 0.16, 0.12),
+  total_effect = c(0.09, 0.20, 0.16, 0.12),
+  acme = c(0.008, 0.005, -0.001, 0.005),
+  acme_boot_lower = c(-0.008, -0.009, -0.012, -0.013),
+  acme_boot_upper = c(0.036, 0.028, 0.007, 0.031),
+  sigma_M_resid = c(0.51, 0.70, 0.28, 0.53),
+  sigma_Y_resid = c(0.57, 0.55, 0.42, 0.67),
+  rho_critical = c(0.026, 0.013, -0.006, 0.014),
+  interpretation = "very_fragile_to_unmeasured_confounding",
+  stringsAsFactors = FALSE
+)
+
+dag_ci <- data.frame(
+  subscale = rep(c("sicaklik", "asiri_koruma", "reddetme", "karsilastirma"), each = 3L),
+  X = rep(c("AnneYas", "AgeGap", "FamilySize"), 4L),
+  Y = rep(c("Group", "AnneYas", "AnneYas"), 4L),
+  conditioning_set = rep(c("SES", "", ""), 4L),
+  partial_r = c(0.108, 0.029, 0.028),
+  n = 241L,
+  p_value = rep(c(0.093, 0.649, 0.664), 4L),
+  ci_implication = "consistent",
+  stringsAsFactors = FALSE
+)
+
+dag_three_level <- data.frame(
+  outcome_subscale = c("sicaklik", "asiri_koruma", "reddetme", "karsilastirma"),
+  status = "ok",
+  n_used = 482L,
+  n_year_levels = 3L,
+  icc_family_2level = c(0.29, 0.17, 0.14, 0.20),
+  icc_family_3level = c(0.20, 0.16, 0.12, 0.17),
+  icc_year_3level = c(0.15, 0.02, 0.03, 0.05),
+  group_dm_2level = c(0.12, 0.19, 0.14, 0.14),
+  group_dm_se_2level = c(0.06, 0.06, 0.04, 0.07),
+  group_dm_3level = c(-0.08, 0.13, 0.10, 0.03),
+  group_dm_se_3level = c(0.07, 0.07, 0.04, 0.08),
+  se_inflation_pct = c(14.4, 14.8, 15.7, 17.1),
+  lrt_chisq = c(20.58, 0.30, 0.84, 4.29),
+  lrt_p = c(0.000006, 0.583, 0.359, 0.038),
+  decision = c("year_clustering_relevant", "year_clustering_negligible",
+    "year_clustering_negligible", "year_clustering_relevant"),
+  stringsAsFactors = FALSE
+)
+
 multi_h1_spec <- data.frame(
   spec_id = 1:30,
   outcome_subscale = sample(c("sicaklik", "reddetme"), 30, replace = TRUE),
@@ -117,11 +214,39 @@ meta_pooling <- data.frame(
   tau = 0.106, stringsAsFactors = FALSE
 )
 
+meta_ppc <- data.frame(
+  outcome_subscale = c("reddetme", "asiri_koruma", "sicaklik", "karsilastirma"),
+  observed_t = c(4.08, 3.30, 2.38, 2.25),
+  n_replicates_used = 1000L,
+  replicate_t_mean = c(4.08, 3.31, 2.31, 2.26),
+  replicate_t_sd = c(1.33, 1.25, 1.19, 1.23),
+  replicate_t_2_5 = c(1.66, 0.98, -0.07, -0.10),
+  replicate_t_97_5 = c(6.73, 5.78, 4.64, 4.71),
+  ppc_quantile = c(0.493, 0.499, 0.477, 0.501),
+  ppc_decision = "ppc_consistent",
+  n_used = 482L,
+  rhat_max = c(1.007, 1.010, 1.007, 1.008),
+  stringsAsFactors = FALSE
+)
+
 clinical_fit <- data.frame(
   model_type = c("baseline", "extended"),
   auc = c(0.586, 0.703),
   stringsAsFactors = FALSE
 )
+
+clinical_dca_heatmap <- expand.grid(
+  threshold = seq(0.05, 0.50, by = 0.05),
+  cost_ratio = 1:10,
+  stringsAsFactors = FALSE
+)
+clinical_dca_heatmap$TP <- 65L
+clinical_dca_heatmap$FP <- 173L
+clinical_dca_heatmap$n <- 238L
+clinical_dca_heatmap$prevalence <- 0.273
+clinical_dca_heatmap$net_benefit <- 0.30 -
+  clinical_dca_heatmap$threshold * 1.2 -
+  clinical_dca_heatmap$cost_ratio * 0.035
 
 # 3) APA summary table
 summary_tbl <- phase2_apa_summary_table(
@@ -149,22 +274,35 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
     trifactor_loadings_table = trifactor_loadings,
     trifactor_fit_indices_table = trifactor_fit,
     xinfo_summary_table = xinfo_summary,
+    xinfo_edges_table = xinfo_edges,
+    xinfo_centrality_table = xinfo_centrality,
     floor_irt_group_delta_table = floor_irt_delta,
     omegah_metrics_summary_table = omegah_metrics,
     h5ext_strategy_pooled_table = h5ext_pooled,
     ad_h5_stratified_table = ad_h5_strat,
     hba1c_bayesian_posterior_table = hba1c_bayes,
+    hba1c_spline_table = hba1c_spline,
+    imai_sensitivity_grid_table = imai_grid,
+    imai_summary_table = imai_summary,
+    dag_ci_tests_table = dag_ci,
+    dag_three_level_table = dag_three_level,
     multi_h1_spec_results_table = multi_h1_spec,
     multi_h1_curve_summary_table = multi_h1_curve,
     multi_sca_inferential_table = multi_sca,
     meta_combined_studies_table = meta_combined,
     meta_pooling_summary_table = meta_pooling,
+    meta_ppc_summary_table = meta_ppc,
     clinical_fit_summary_table = clinical_fit,
+    clinical_dca_heatmap_table = clinical_dca_heatmap,
     output_dir = tempfile("phase2_figs_")
   )
   stopifnot(grepl("KESIFSEL", result$target_summary$kanit_kategorisi, fixed = TRUE))
-  stopifnot(length(result$figures) == 6L)
-  stopifnot(length(result$figure_paths) == 6L)
+  stopifnot(length(result$figures) == 12L)
+  stopifnot(length(result$figure_paths) == 12L)
+  stopifnot(length(result$figure_svg_paths) == 12L)
+  svg_header <- readLines(result$figure_svg_paths[[1L]], n = 3L, warn = FALSE)
+  stopifnot(any(grepl("data-carbon-style=\"IBM Carbon Design System v11\"", svg_header, fixed = TRUE)))
+  stopifnot(any(grepl("data-figma-carbon-charts-library=", svg_header, fixed = TRUE)))
 }
 
 cat("PASS: tests/test_phase2_apa_outputs.R\n")

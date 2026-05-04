@@ -12,7 +12,7 @@ Bu kopukluğun klinik yorumlanması iki düzlemdedir. Birinci düzlemde anne rap
 
 H4 latent SEM modeli, Beck depresyon skoru ile EMBU-P sıcaklık (β = -0.30), reddetme (β = +0.36) ve karşılaştırma (β = +0.31) alt ölçekleri arasında orta-büyüklükte ve istatistiksel olarak anlamlı bağlantılar raporlamıştır. Bu örüntü Goodman & Gotlib (1999) maternal depresyon → ebeveynlik tutumu meta-analizinin gözlemiyle uyumludur ve KISIM VI mediation analizinde Beck → EMBU-P_reddetme yolunun (a) anlamlı çıkmasını mantıken destekler. Ancak EMBU-P → EMBU-C yolunun (b) anlamsız kalması, anne depresyon belirti düzeyinin çocuk algısına doğrudan değil dolaylı (anne davranışı + çocuk yorumlaması filtreleri üzerinden) yansıdığını düşündürmektedir.
 
-Multi-group invariance taraması metric düzeyde DM ve Kontrol grupları için ölçüm modelinin kabul edilebilir olduğunu göstermiş, scalar düzeyde grup-spesifik boş ordinal kategoriler nedeniyle açık item collapse yapılmıştır; bu duyarlılık kararı PRE-REGISTRATION-DEVIATION-TABLE'da raporlanmıştır.
+Multi-group invariance taraması metric düzeyde DM ve Kontrol grupları için ölçüm modelinin kabul edilebilir olduğunu göstermiş, scalar düzeyde grup-spesifik boş ordinal kategoriler nedeniyle açık item collapse yapılmıştır; bu duyarlılık kararı 02-sapma-tablosu'da raporlanmıştır.
 
 ## Çocuk Algısının Aile-İçi Ayrımı (H1)
 
@@ -50,7 +50,7 @@ KISIM X DM-only alt-analizler HbA1c × parenting etkileşiminin (n = 39 keşifse
 
 ## Sınırlılıklar ve Sapma Şeffaflığı
 
-Çalışmanın temel sınırlılıkları şunlardır: (a) örneklem büyüklüğü (n = 482 satır = 241 aile) bazı multilevel ve diadik analizler için sınırda kalmıştır; (b) HbA1c veri tamamlanma oranı düşüktür ve KISIM X bulgusunun yorumu güç-sınırlı yapılmıştır; (c) EMBU-P Reddetme alt ölçeğinde α = 0.45 sınır altı iç tutarlılığı gözlemlenmiş ve bu KISIM XI sensitivite hattıyla raporlanmıştır; (d) Kenny k-katsayısı bootstrap güven aralıkları geniş kalmış, gelecek faz n artışı veya Bayesian k preflighti önerilmektedir; (e) çalışma yalnızca nicel ölçüm aracıyla yürütülmüş, çocuk ve anne deneyim narratifi sayısal modeller dışında kalmıştır; (f) ön-kayıt prospektif/reflective hibrit olarak kabul edilmiştir, OSF d524q (validasyon) ve pytfe (H1-H5 confirmatory) ayrımı PRE-REGISTRATION-DEVIATION-TABLE'da izlenmektedir.
+Çalışmanın temel sınırlılıkları şunlardır: (a) örneklem büyüklüğü (n = 482 satır = 241 aile) bazı multilevel ve diadik analizler için sınırda kalmıştır; (b) HbA1c veri tamamlanma oranı düşüktür ve KISIM X bulgusunun yorumu güç-sınırlı yapılmıştır; (c) EMBU-P Reddetme alt ölçeğinde α = 0.45 sınır altı iç tutarlılığı gözlemlenmiş ve bu KISIM XI sensitivite hattıyla raporlanmıştır; (d) Kenny k-katsayısı bootstrap güven aralıkları geniş kalmış, gelecek faz n artışı veya Bayesian k preflighti önerilmektedir; (e) çalışma yalnızca nicel ölçüm aracıyla yürütülmüş, çocuk ve anne deneyim narratifi sayısal modeller dışında kalmıştır; (f) ön-kayıt prospektif/reflective hibrit olarak kabul edilmiştir, OSF d524q (validasyon) ve pytfe (H1-H5 confirmatory) ayrımı 02-sapma-tablosu'da izlenmektedir.
 
 KISIM XI sensitivite üçlüsü (multiverse + TOST + sensemakr) bu sınırlılıkların etkilerini sayısallaştırmıştır: spesifikasyon değişkenliğine karşı bulgular dayanıklı, eşdeğerlik bandı 2/4 alt ölçekte kesin (Equivalent), ölçülmemiş karıştırıcı duyarlılığı RV_q ≈ 0.04-0.08 ile zayıf-orta düzeydedir.
 

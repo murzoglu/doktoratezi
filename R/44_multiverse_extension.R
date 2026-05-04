@@ -650,7 +650,7 @@ run_multiverse_pipeline <- function(df_family_ses, df_long_scored, df_family_sco
       n_perm = n_perm,
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XXVII/76, 77, 78, 79)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       stringsAsFactors = FALSE
     )
   )

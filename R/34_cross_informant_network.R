@@ -317,7 +317,7 @@ run_cross_informant_network_pipeline <- function(df_family_ses, df_long_scored,
       correlation_method = correlation,
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XX/53)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       stringsAsFactors = FALSE
     )
   )

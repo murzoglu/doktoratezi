@@ -672,9 +672,9 @@ list(
 
   # ============================================================================
   # FAZ II POST-HOC ANALIZLERI — [KESIFSEL · POST-HOC]
-  # docs/analiz_planlari/STATISTICAL-ANALYSIS-PLAN-PHASE-2.md v1.0
-  # docs/analiz_planlari/OSF-LAYER3-AMENDMENT.md
-  # PRE-REGISTRATION-DEVIATION-TABLE.md sapma satiri #1 (Tip 3)
+  # docs/analiz_planlari/04-sap-faz2-posthoc.md v1.0
+  # docs/analiz_planlari/05-osf-layer3-faz2-amendment.md
+  # 02-sapma-tablosu.md sapma satiri #1 (Tip 3)
   # ============================================================================
 
   # KISIM XX/50 — Trifactor T-CFA (CT-C(M-1) Eid 2008 / Masse 2020)

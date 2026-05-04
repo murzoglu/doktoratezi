@@ -42,7 +42,7 @@ Rscript -e 'renv::restore()'
 ## Kritik domain bilgisi
 
 - **Veri yapısı:** 482 satır = **241 aile × 2 katılımcı** (1 indeks çocuk + 1 kardeş). DM indeks aile 120, kontrol indeks aile 121. Her satır bağımsız değildir → multilevel/aile-içi ICC zorunlu.
-- **EMBU formları:** Final kanonda 29 P-soru + 29 C-soru vardır; `q01-q29` ebeveyn ve çocuk formunda aynı semantik sırayı temsil eder. Kanonik formlar için bkz. [`docs/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md`](docs/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md) ve [`docs/KANONIK_KISALTILMIS_EMBU_COCUK.md`](docs/KANONIK_KISALTILMIS_EMBU_COCUK.md).
+- **EMBU formları:** Final kanonda 29 P-soru + 29 C-soru vardır; `q01-q29` ebeveyn ve çocuk formunda aynı semantik sırayı temsil eder. Kanonik formlar için bkz. [`docs/protokol/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md`](docs/protokol/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md) ve [`docs/protokol/KANONIK_KISALTILMIS_EMBU_COCUK.md`](docs/protokol/KANONIK_KISALTILMIS_EMBU_COCUK.md).
 - **Kanonik form öncesi EMBU karar geçmişi arşivdedir.** Eski madde mimarisi, standardizasyon/refinement notları ve Stage 1-3 CSV raporları [`archive/2026-04-26_pre_canonical_embu/`](archive/2026-04-26_pre_canonical_embu/) altına taşınmıştır.
 - **Likert standardı:** Final kanonik CSV'lerde EMBU-P ve EMBU-C itemları 4'lü Likert standardındadır.
 - **Geçerli aralık dışı değerler** (ör. tipo `14`, `21`) Stage 1'de NA'ya çevrilir; kanonik form öncesi outlier raporları arşivdedir.
@@ -51,7 +51,7 @@ Rscript -e 'renv::restore()'
 
 ## Aktif analiz durumu (2026-04-26 itibarıyla)
 
-- **Kanonik analiz baz kilidi yürürlükte.** Final CSV üzerinde herhangi bir değişiklikten önce [`data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock`](data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock), kanonik P/C formları ve [`docs/FINAL_REFERENCE_VERI_HARITASI.md`](docs/FINAL_REFERENCE_VERI_HARITASI.md) okunmalıdır.
+- **Kanonik analiz baz kilidi yürürlükte.** Final CSV üzerinde herhangi bir değişiklikten önce [`data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock`](data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock), kanonik P/C formları ve [`docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md`](docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md) okunmalıdır.
 - Kanonik form öncesi dokümantasyon aktif karar kaynağı değildir; yalnız karar geçmişi olarak arşivde tutulur.
 - **Paralel ilerleyen:** Beck Depresyon ve KİA (Kardeş İlişkileri Anketi).
 - Yöntem kararlarının arşivi: [`docs/method_archive/`](docs/method_archive/).

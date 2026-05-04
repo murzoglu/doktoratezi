@@ -404,7 +404,7 @@ run_hba1c_joint_pipeline <- function(df_family_ses,
       df_spline = df_spline,
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XXIV/65, 66, 68)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       kural_19 = "HbA1c imputasyon yok; complete-case DM-only",
       stringsAsFactors = FALSE
     )

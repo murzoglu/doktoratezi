@@ -12,3 +12,5 @@ author: "Özlem Murzoğlu Kurt"
 {{< include chapters/04_tartisma.qmd >}}
 
 {{< include chapters/05_sonuc.qmd >}}
+
+{{< include chapters/06_post_hoc_genisleme.qmd >}}

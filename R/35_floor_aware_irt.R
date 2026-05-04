@@ -340,7 +340,7 @@ run_floor_aware_irt_pipeline <- function(df_family_scored, df_long_scored,
       floor_threshold = floor_threshold,
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XXI/54)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       stringsAsFactors = FALSE
     )
   )

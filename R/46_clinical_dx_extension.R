@@ -245,7 +245,7 @@ run_clinical_dx_extension_pipeline <- function(df_family_ses,
       n_cost_ratios = length(cost_ratios),
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XXIX/84-85)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       stringsAsFactors = FALSE
     )
   )

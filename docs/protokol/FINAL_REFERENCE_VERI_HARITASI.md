@@ -181,8 +181,8 @@ Teorik toplam aralıkları:
 
 | Doküman | İşlev |
 |---|---|
-| `docs/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md` | Final EMBU-P anket maddeleri, Likert ve puanlama notları |
-| `docs/KANONIK_KISALTILMIS_EMBU_COCUK.md` | Final EMBU-C anket maddeleri, Likert ve puanlama notları |
-| `docs/KANONIK_BECK_DEPRESYON_ENVANTERI.md` | Final Beck item alanları, analizde üretilecek toplam puan ve yapısal `NA` standardı |
-| `docs/KANONIK_KARDES_ILISKILERI_ANKETI.md` | Final KIA/SRQ item alanları, Likert ve analizde üretilecek skor standardı |
-| `docs/KANONIK_DEMOGRAFIK_VE_TIBBI_BILGILER.md` | Final demografik ve tıbbi alanlar, kodlar, tarih/yaş ve yapısal `NA` standardı |
+| `docs/protokol/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md` | Final EMBU-P anket maddeleri, Likert ve puanlama notları |
+| `docs/protokol/KANONIK_KISALTILMIS_EMBU_COCUK.md` | Final EMBU-C anket maddeleri, Likert ve puanlama notları |
+| `docs/protokol/KANONIK_BECK_DEPRESYON_ENVANTERI.md` | Final Beck item alanları, analizde üretilecek toplam puan ve yapısal `NA` standardı |
+| `docs/protokol/KANONIK_KARDES_ILISKILERI_ANKETI.md` | Final KIA/SRQ item alanları, Likert ve analizde üretilecek skor standardı |
+| `docs/protokol/KANONIK_DEMOGRAFIK_VE_TIBBI_BILGILER.md` | Final demografik ve tıbbi alanlar, kodlar, tarih/yaş ve yapısal `NA` standardı |

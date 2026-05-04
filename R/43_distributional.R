@@ -482,7 +482,7 @@ run_distributional_pipeline <- function(df_family_ses, df_long_scored,
       brms_iter = brms_iter,
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XXVI/73, 74, 75)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       betareg_used = requireNamespace("betareg", quietly = TRUE),
       stringsAsFactors = FALSE
     )

@@ -509,7 +509,7 @@ run_bayesian_meta_pipeline <- function(df_family_ses, df_long_scored,
       ppc_replicates = ppc_replicates,
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XXVIII/80, 81, 82)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       stringsAsFactors = FALSE
     )
   )

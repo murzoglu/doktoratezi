@@ -1,6 +1,0 @@
-"id","svg_file","technical_diagram_role","technical_native_status","technical_diagram_status","carbon_aesthetic_status"
-"strobe_flow","docs/carbon-svg-figures/fig-01-strobe-flow.svg","Flow shape + Flow number + Connector + Label pill","PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer","PASS: full Figma Technical Diagram Library SVG","PASS: Carbon Charts"
-"causal_dag","docs/carbon-svg-figures/fig-02-causal-dag.svg","Large node + Connector + Legend","PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer","PASS: full Figma Technical Diagram Library SVG","PASS: Carbon Charts"
-"h2_apim_path","docs/carbon-svg-figures/fig-09-h2-apim-path.svg","Large node + Connector line ending + Label text","PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer","PASS: full Figma Technical Diagram Library SVG","PASS: Carbon Charts"
-"h4_sem_path","docs/carbon-svg-figures/fig-11-h4-sem-path.svg","Large node + Connector line ending + Label text","PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer","PASS: full Figma Technical Diagram Library SVG","PASS: Carbon Charts"
-"network_graph","docs/carbon-svg-figures/fig-16-network-graph.svg","Small node + Connector + Legend","PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer","PASS: full Figma Technical Diagram Library SVG","PASS: Carbon Charts"

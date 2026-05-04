@@ -1,0 +1,53 @@
+"id","svg_file","carbon_aesthetic_status","non_carbon_hex_count","non_carbon_rgb_count","chart_palette_hits","text_primary_hits","text_secondary_hits","grid_hits"
+"strobe_flow","docs/assets/figures/carbon/primary/fig-01-strobe-flow.svg","PASS: Carbon Charts",0,0,0,0,0,0
+"causal_dag","docs/assets/figures/carbon/primary/fig-02-causal-dag.svg","PASS: Carbon Charts",0,0,0,0,0,0
+"smd_love_plot","docs/assets/figures/carbon/primary/fig-03-smd-love-plot.svg","PASS: Carbon Charts",0,0,8,2,13,9
+"propensity_overlap","docs/assets/figures/carbon/primary/fig-04-propensity-overlap.svg","PASS: Carbon Charts",0,0,123,4,135,8
+"ses_correlation_heatmap","docs/assets/figures/carbon/primary/fig-05-ses-correlation-heatmap.svg","PASS: Carbon Charts; raster/gradient istisnası notlandı",0,14,0,38,18,12
+"missing_pattern_primary","docs/assets/figures/carbon/primary/fig-06-missing-pattern-primary.svg","PASS: Carbon Charts; raster/gradient istisnası notlandı",0,1,0,2,47,43
+"h1_forest","docs/assets/figures/carbon/primary/fig-07-h1-forest.svg","PASS: Carbon Charts",0,0,23,3,11,7
+"h1_three_way_emm","docs/assets/figures/carbon/primary/fig-08-h1-three-way-emm.svg","PASS: Carbon Charts",0,0,67,10,27,70
+"h2_apim_path","docs/assets/figures/carbon/primary/fig-09-h2-apim-path.svg","PASS: Carbon Charts",0,0,0,0,0,0
+"h3_stratified_forest","docs/assets/figures/carbon/primary/fig-10-h3-stratified-forest.svg","PASS: Carbon Charts",0,0,46,6,15,8
+"h4_sem_path","docs/assets/figures/carbon/primary/fig-11-h4-sem-path.svg","PASS: Carbon Charts",0,0,0,0,0,0
+"h5_ba_grid","docs/assets/figures/carbon/primary/fig-12-h5-ba-grid.svg","PASS: Carbon Charts",0,0,0,11,27,91
+"h5_rsa_surface","docs/assets/figures/carbon/primary/fig-13-h5-rsa-surface.svg","PASS: Carbon Charts; raster/gradient istisnası notlandı",0,481,0,16,26,53
+"mediation_effects","docs/assets/figures/carbon/primary/fig-14-mediation-effects.svg","PASS: Carbon Charts",0,0,0,5,22,34
+"lpa_fit_indices","docs/assets/figures/carbon/primary/fig-15-lpa-fit-indices.svg","PASS: Carbon Charts",0,0,0,5,22,31
+"network_graph","docs/assets/figures/carbon/primary/fig-16-network-graph.svg","PASS: Carbon Charts",0,0,0,0,0,0
+"network_nct","docs/assets/figures/carbon/primary/fig-17-network-nct.svg","PASS: Carbon Charts",0,0,0,2,8,7
+"clinical_roc","docs/assets/figures/carbon/primary/fig-18-clinical-roc.svg","PASS: Carbon Charts",0,0,0,4,13,10
+"clinical_dca","docs/assets/figures/carbon/primary/fig-19-clinical-dca.svg","PASS: Carbon Charts",0,0,0,3,12,8
+"clinical_calibration","docs/assets/figures/carbon/primary/fig-20-clinical-calibration.svg","PASS: Carbon Charts",0,0,0,4,16,10
+"clinical_cart_rf","docs/assets/figures/carbon/primary/fig-21-clinical-cart-rf.svg","PASS: Carbon Charts",0,0,0,21,23,24
+"specification_curve","docs/assets/figures/carbon/primary/fig-22-specification-curve.svg","PASS: Carbon Charts",0,0,0,8,26,36
+"sensemakr_contour","docs/assets/figures/carbon/primary/fig-23-sensemakr-contour.svg","PASS: Carbon Charts; raster/gradient istisnası notlandı",0,0,0,7,21,8
+"bayesian_forest","docs/assets/figures/carbon/primary/fig-24-bayesian-forest.svg","PASS: Carbon Charts",0,0,0,5,13,18
+"bayesian_diagnostics","docs/assets/figures/carbon/primary/fig-25-bayesian-diagnostics.svg","PASS: Carbon Charts",0,0,15,3,12,9
+"reliability","docs/assets/figures/carbon/psychometric/psychval-01-reliability.svg","PASS: Carbon Charts",0,0,20,2,14,10
+"floor","docs/assets/figures/carbon/psychometric/psychval-02-floor.svg","PASS: Carbon Charts",0,0,136,2,25,40
+"cfa","docs/assets/figures/carbon/psychometric/psychval-03-cfa.svg","PASS: Carbon Charts",0,0,48,3,18,24
+"invariance","docs/assets/figures/carbon/psychometric/psychval-04-invariance.svg","PASS: Carbon Charts",0,0,9,0,11,10
+"icc","docs/assets/figures/carbon/psychometric/psychval-05-icc.svg","PASS: Carbon Charts",0,0,10,0,8,4
+"validity","docs/assets/figures/carbon/psychometric/psychval-06-validity.svg","PASS: Carbon Charts",0,0,18,0,17,17
+"multiverse","docs/assets/figures/carbon/psychometric/psychval-07-multiverse.svg","PASS: Carbon Charts",0,0,20,0,8,4
+"grup-dagilim","docs/assets/figures/carbon/demographic/demo-01-grup-dagilim.svg","PASS: Carbon Charts",0,0,2,0,5,5
+"cocuk-yas-dagilim","docs/assets/figures/carbon/demographic/demo-02-cocuk-yas-dagilim.svg","PASS: Carbon Charts",0,0,8,0,16,16
+"cinsiyet-grup","docs/assets/figures/carbon/demographic/demo-03-cinsiyet-grup.svg","PASS: Carbon Charts",0,0,10,2,9,14
+"same-sex","docs/assets/figures/carbon/demographic/demo-04-same-sex.svg","PASS: Carbon Charts",0,0,6,0,7,7
+"aile-buyuklugu","docs/assets/figures/carbon/demographic/demo-05-aile-buyuklugu.svg","PASS: Carbon Charts",0,0,14,0,13,13
+"anne-yas","docs/assets/figures/carbon/demographic/demo-06-anne-yas.svg","PASS: Carbon Charts",0,0,2,0,7,7
+"beck-grup","docs/assets/figures/carbon/demographic/demo-07-beck-grup.svg","PASS: Carbon Charts",0,0,36,0,15,9
+"beck-severity","docs/assets/figures/carbon/demographic/demo-08-beck-severity.svg","PASS: Carbon Charts",0,0,12,0,10,10
+"antidep","docs/assets/figures/carbon/demographic/demo-09-antidep.svg","PASS: Carbon Charts",0,0,3,0,7,7
+"ses-density","docs/assets/figures/carbon/demographic/demo-10-ses-density.svg","PASS: Carbon Charts",0,0,4,0,11,11
+"egitim","docs/assets/figures/carbon/demographic/demo-11-egitim.svg","PASS: Carbon Charts",0,0,25,2,14,20
+"dm-eksik","docs/assets/figures/carbon/demographic/demo-12-dm-eksik.svg","PASS: Carbon Charts",0,0,5,0,10,5
+"hba1c","docs/assets/figures/carbon/demographic/demo-13-hba1c.svg","PASS: Carbon Charts",0,0,15,0,9,9
+"hba1c-target","docs/assets/figures/carbon/demographic/demo-14-hba1c-target.svg","PASS: Carbon Charts",0,0,3,0,8,8
+"dm-suresi","docs/assets/figures/carbon/demographic/demo-15-dm-suresi.svg","PASS: Carbon Charts",0,0,31,0,16,16
+"tani-strata","docs/assets/figures/carbon/demographic/demo-16-tani-strata.svg","PASS: Carbon Charts",0,0,3,0,8,8
+"smd-love","docs/assets/figures/carbon/demographic/demo-17-smd-love.svg","PASS: Carbon Charts",0,0,66,0,21,21
+"ps-density","docs/assets/figures/carbon/demographic/demo-18-ps-density.svg","PASS: Carbon Charts",0,0,4,0,8,8
+"iptw-balance","docs/assets/figures/carbon/demographic/demo-19-iptw-balance.svg","PASS: Carbon Charts",0,0,16,0,9,9
+"eksik-degisken","docs/assets/figures/carbon/demographic/demo-20-eksik-degisken.svg","PASS: Carbon Charts",0,0,8,0,10,10

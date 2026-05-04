@@ -8,7 +8,7 @@ authors:
 date: "1 Mayıs 2026"
 study_protocol: "MÜTF-KAEK 09.2023.201"
 report_standards: "STROBE · JARS-Quant · TRIPOD"
-language: tr
+lang: tr
 ---
 
 \newpage
@@ -56,6 +56,8 @@ Birincil hipotez ailesi beş başlık altında ön-kayda alınmıştır: H1 çoc
 | **H3** Anne öz-bildirimi | Dört EMBU-P alt ölçeğinde DM × Kontrol farkı için kanıt yetersiz; FDR-düzeltilmiş p > .50 | \|d\| < 0.17 | BF₁₀ = 0.17–0.25 (orta düzey H0 lehine); ROPE içi pay reddetmede %92 | **Üç-katmanlı negatif kanıt** (kanıt + eşdeğerlik + Bayesçi) |
 | **H4** Beck → EMBU-P (yapısal model) | Üç yapısal yol anlamlı (sıcaklık β = −0.28, reddetme β = 0.33, karşılaştırma β = 0.28; tümü FDR p < .001); aşırı koruma yolu anlamlı değil (β = 0.08, FDR p = .22) | Orta-büyük (anlamlı yollar) | brms preflight tamam; multi-grup invaryans configural ve metric düzeyde sağlandı | **Kısmen doğrulandı** (üç boyutta; aşırı korumada doğrulanmadı) |
 | **H5** Diadik tutarlılık | Manifest ICC zayıf-fakir bantta (Kontrol 0.03–0.20, DM −0.01–0.08); latent uyum DM grubunda marjinal yüksek (Kontrol r = 0.17, DM r = 0.29) | Küçük | Yön düzeyinde üç strateji uyumlu | **Metodolojik triangülasyonla zayıf-orta yön kanıtı** (güçlü bulgu olarak ilan edilmemektedir) |
+
+İkinci tur / Faz II post-hoc genişletme, bu beş birincil hipotezin kararlarını değiştirmek için değil; çalışma-sonu verilerinden doğan psikometrik, multi-informant, dağılımsal, duyarlılık ve replikasyon sorularını ayrı bir keşifsel katmanda kapatmak için yürütülmüştür. Faz II hattı 113 CSV tablo ailesi, 12 PNG + 12 SVG Carbon figürü ve Bölüm 18'de özetlenen 12 alt-analiz ailesi üretmiştir; tüm bulgular **[KEŞİFSEL · POST-HOC]** etiketiyle yorumlanır ve dış-validasyon olmadan klinik öneri seviyesine çıkarılmaz.
 
 ## 2.4 Genel Yargı
 
@@ -155,6 +157,8 @@ Doğrudan tanımlayıcı kolonlar standardizasyon aşamasında veri tabanından 
 ## 4.4 Ön-Kayıt ve Şeffaflık
 
 Çalışma, iki katmanlı bir ön-kayıt mimarisi içinde yürütülmüştür. Birinci katman, ölçüm araçlarının psikometrik doğrulamasına ilişkin reflektif (yansıtıcı) kayıt; ikinci katman, beş birincil hipotez (H1–H5) için ikincil veri ön-kayıtıdır. Psikometrik validasyon kaydı `d524q`, H1–H5 ikincil veri ön-kaydı `pytfe`, proje şemsiye kaydı ise `vqrt5` olarak belgelenmiştir. Ön-kayıtlı plandan yapılan herhangi bir değişiklik, ayrıntılı bir sapma kaydında sınıflandırılmaktadır.
+
+İkinci tur / Faz II post-hoc genişletme bu ana ön-kayıtların yerine geçmez. Çalışma-sonu verileri görüldükten sonra eklenen analizler Tip 3 sapma bloğu olarak `docs/analiz_planlari/02-sapma-tablosu.md`, Faz II SAP olarak `docs/analiz_planlari/04-sap-faz2-posthoc.md` ve OSF Layer 3 amendment hazırlığı olarak `docs/analiz_planlari/05-osf-layer3-faz2-amendment.md` altında izlenir. Bu nedenle Faz II bulguları raporda doğrulayıcı sonuç dilinden ayrı tutulur.
 
 \newpage
 
@@ -1034,11 +1038,242 @@ Bu çalışma, Tip 1 Diabetes Mellitus tanılı 7-17 yaş çocukların ve annele
 
 \newpage
 
-# 18. YAYIN VE DİSEMİNASYON STRATEJİSİ
+# 18. İKİNCİ TUR ANALİZLERİ: FAZ II POST-HOC GENİŞLETME
 
-Çalışma kapsamından üç hakemli dergi yayını hedeflenmektedir. Yayın stratejisi, hipotez odağı ve metodolojik özgünlük temelinde dergi-eşleştirmesi ile yapılandırılmıştır. Tüm yayınlar APA 7. baskı, ICMJE yazarlık kriterleri ve TÜBİTAK ULAKBİM yayın etiği yönergeleriyle uyumlu olarak hazırlanacaktır.
+> **[KEŞİFSEL · POST-HOC]** Bu bölüm, ana SAP ve H1-H5 birincil kararlarını değiştirmez. Faz II analizleri çalışma-sonu verileri ışığında ortaya çıkan psikometrik sınırlılıklar, bilgi-veren ayrışması, dağılımsal heterojenite, klinik stratifikasyon ve replikasyon gücü sorularını disiplinli biçimde kapatmak için yürütülmüştür. Tüm sonuçlar hipotez-üretici olarak konumlandırılır; bağımsız bir Türk kohortunda dış-validasyon yapılmadan klinik öneri seviyesine yükseltilmez.
 
-## 18.1 Makale 1: Diferansiyel Ebeveynlik ve Çift-Perspektifli Diadik Uyum
+## 18.1 Statü, Kapsam ve Reprodüksiyon Zinciri
+
+Faz II hattı aynı kanonik analiz kilidi üzerinde çalışmıştır: 241 aile, 482 çocuk satırı ve değişmemiş `FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock`. Bu aşamada ham veri, ölçek puanlama kuralı veya birincil hipotez kararları değiştirilmemiştir. Ek analizler `docs/analiz_planlari/04-sap-faz2-posthoc.md` altında SAP'ye bağlanmış, `docs/analiz_planlari/02-sapma-tablosu.md` içinde Tip 3 sapma bloğu olarak sınıflandırılmış ve `docs/analiz_planlari/05-osf-layer3-faz2-amendment.md` ile OSF Layer 3 amendment hazırlığına bağlanmıştır.
+
+Yeniden üretim hattı `R/32_trifactor_model.R` ile `R/49_phase2_thesis_mapping.R` arasındaki Faz II modülleri, `_targets.R` içindeki `phase2_*` hedefleri ve `scripts/R/49_phase2_apa_outputs_audit.R` ile `scripts/R/50_phase2_thesis_mapping_audit.R` denetimleri üzerinden yürütülmüştür. Çıktı paketi 113 `phase2_*.csv` tablo artefaktı, 12 PNG ve 12 SVG figürden oluşur. Figürlerin Carbon/Figma eşlemesi `docs/analiz_planlari/40-faz2-carbon-sekil-tablo-haritasi.md` içinde kanonik harita olarak tutulur.
+
+## 18.2 Faz II Yönetici Özeti
+
+**Tablo 18.1. [KEŞİFSEL · POST-HOC] Faz II yönetici kanıt matrisi.** Kaynak: `../outputs/tables/phase2_apa_summary_table.csv`.
+
+| Kısım | Analiz ailesi | Ana metrik | CSR yorumu |
+|---|---|---|---|
+| XX/50 | Trifactor T-CFA | CFI medyanı = 0,90; RMSEA medyanı = 0,047 | Anne, indeks çocuk ve kardeş raporları aynı ölçek yüzeyinde ama farklı method varyansı kaynaklarıyla çalışır. |
+| XX/51 | Latent informant discrepancy SEM | Reddetme latent r = 0,025 [%95 GA −0,134, 0,185] | Anne-çocuk reddetme algısı pratik olarak ortogonaldir; manifest ICC zayıflığı latent düzeyde doğrulanır. |
+| XXI/54 | Floor-aware IRT | İndeks çocuk reddetme Cohen d = 0,372 | Taban etkisi, H1 reddetme sinyalini manifest ortalama farkına göre maskelemiş olabilir. |
+| XXI/55 | Reliability generalization | EMBU-P ω_h = 0,660; ECV = 0,409 | EMBU-P çok-boyutlu yapıdadır; özellikle reddetme alt ölçeği tek başına güçlü psikometrik zemin taşımaz. |
+| XXIII/64 | H5 strateji pooling | DM pooled = 0,179 [%95 GA 0,097, 0,260] | Beş strateji birlikte DM grubunda zayıf-orta diadik uyum yönü üretir; grup farkı güçlü kanıt olarak sunulmaz. |
+| XXIV/65 | HbA1c × ebeveynlik Bayesian | Sıcaklık pd = 0,944; karşılaştırma pd = 0,946; n = 39 | DM-only klinik sinyal hipotez-üreticidir; küçük complete-case örneklem nedeniyle replikasyon gerekir. |
+| XXVII/76 | H1 multiverse | 120/120 başarılı spesifikasyon; medyan β = 0,134; p < .05 payı = 0,75 | H1 reddetme yönü model kararlarına duyarlı görünmemektedir. |
+| XXVII/79 | Specification curve inferential test | t = 4,084; permütasyon p = .0002 | H1 spesifikasyon eğrisi toplu testte null hipotezini reddeder. |
+| XXVIII/80 | Meta-analitik pooling | Pooled = 0,139 [%95 GA 0,049, 0,230]; τ = 0,106 | Bu çalışmanın H1 yönü, literatür önseliyle birleştiğinde küçük ama sıfırdan ayrışan bir etki merkezine oturur. |
+| XXIX/84-85 | Klinik karar modeli | Extended AUC = 0,703; sNB = 0,86 (eşik 0,05) | İç-validasyon düzeyinde karar modeli sinyali vardır; dış-validasyon olmadan klinik uygulama aracı değildir. |
+
+## 18.3 Multi-İnformant Yapısal Genişletme
+
+Trifactor T-CFA, anne, indeks çocuk ve kardeş raporlarının tek bir genel ebeveynlik tutumu boyutuna indirgenemeyeceğini göstermiştir. Alt ölçekler arasında uyum makul düzeyde kalsa da method varyansı, özellikle çocuk perspektifinde belirgin bir ayrışma yaratmaktadır. Bu bulgu De Los Reyes'in çoklu-bilgi-veren yaklaşımıyla uyumludur: anne ve çocuk raporları aynı davranış alanını değil, farklı operasyonel gerçeklikleri ölçer.
+
+Latent informant discrepancy SEM reddetme alt ölçeğinde anne-çocuk latent korelasyonunun r = 0,025 düzeyinde kaldığını göstermiştir. Bu değer, Bölüm 11.5'teki zayıf manifest diadik tutarlılık sonucunun yalnızca ölçüm gürültüsüyle açıklanamayacağını, bilgi-veren perspektifleri arasında gerçek bir ayrışma bulunduğunu düşündürür. Cross-informant GGM ağında 16 kenardan yalnızca 1'i cross-informant olarak kestirilmiş; ağın çoğu bilgi-veren içinde kapanmıştır.
+
+**Tablo 18.2. [KEŞİFSEL · POST-HOC] Multi-informant yapı özeti.** Kaynak: `../outputs/tables/phase2_trifactor_fit_indices.csv`, `../outputs/tables/phase2_disc_latent_correlation.csv`, `../outputs/tables/phase2_xinfo_summary.csv`.
+
+| Analiz | Ana metrik | Faz II yorumu |
+|---|---:|---|
+| Trifactor T-CFA | CFI medyanı = 0,90; RMSEA medyanı = 0,047 | Çoklu-bilgi-veren mimarisi kabul edilebilir ama method varyansı belirgindir. |
+| Reddetme latent discrepancy | r = 0,025 [%95 GA −0,134, 0,185] | Anne-çocuk reddetme algısı latent düzeyde pratik olarak ortogonaldir. |
+| Karşılaştırma latent discrepancy | r = 0,180 [%95 GA 0,011, 0,349] | Bilgi-veren örtüşmesi alt ölçeklere göre heterojendir. |
+| Cross-informant GGM | 16 toplam kenar; 1 cross-informant kenar | Ağ yapısı büyük ölçüde bilgi-veren içinde kapanır. |
+
+![Şekil 18.1. Trifactor modelinde anne, indeks çocuk ve kardeş raporlarının faktör yükleri](assets/figures/carbon/phase2/phase2_f01_trifactor.svg)
+
+**Şekil 18.1. [KEŞİFSEL · POST-HOC] Trifactor T-CFA yükleme paneli.** Kaynak: `phase2_trifactor_loadings.csv`, `phase2_trifactor_fit_indices.csv`. Yorum: anne, indeks çocuk ve kardeş göstergeleri aynı kavramsal alana bağlansa da bilgi-veren method yükleri tek-boyutlu bir ebeveynlik puanı varsayımını zayıflatır.
+
+![Şekil 18.2. Cross-informant ağında bilgi-veren içi ve bilgi-verenler arası kenar oranları](assets/figures/carbon/phase2/phase2_f02_xinfo.svg)
+
+**Şekil 18.2. [KEŞİFSEL · POST-HOC] Cross-informant edge oranı.** Kaynak: `phase2_xinfo_edges.csv`, `phase2_xinfo_summary.csv`. Yorum: toplam ağın büyük kısmı bilgi-veren içinde kapanmış; cross-informant bağlantılar sınırlı kalmıştır.
+
+![Şekil 18.3. Cross-informant GGM ağında kenar ağırlıkları ve bilgi-veren kümeleri](assets/figures/carbon/phase2/phase2_f07_xinfo_network.svg)
+
+**Şekil 18.3. [KEŞİFSEL · POST-HOC] Cross-informant GGM ağ haritası.** Kaynak: `phase2_xinfo_edges.csv`, `phase2_xinfo_nodes.csv`. Yorum: ayrıntılı ağ görünümü, anne-çocuk raporlarının aynı düğüm uzayında bulunsa bile güçlü biçimde bilgi-veren kümeleri içinde organize olduğunu gösterir.
+
+## 18.4 Psikometrik Robustleştirme
+
+Faz II psikometrik katmanı, ana rapordaki EMBU reddetme sınırlılığını daha kesin biçimde tanımlamıştır. EMBU-P reddetme madde kümesinde yaygın taban etkisi vardır; floor-aware IRT altında indeks çocuk reddetme farkı Cohen d = 0,372 düzeyine yükselmiştir. Bu değer ana manifest etkiyi büyütmek için değil, taban etkisinin sinyali bastırma olasılığını göstermek için raporlanır.
+
+Bifactor S-1 reliability generalization sonuçları EMBU-P için ω_h = 0,660 ve ECV = 0,409 üretmiştir; bu profil genel faktörün tek başına baskın olmadığını, alt ölçeklerin çok-boyutlu bir yapı içinde yorumlanması gerektiğini gösterir. EMBU-C reddetme alt ölçek-spesifik omega değerinin pratik sıfıra yakın olması, reddetme alt ölçeğinin tek başına klinik karar puanı olarak kullanılmaması gerektiğini destekler.
+
+**Tablo 18.3. [KEŞİFSEL · POST-HOC] Psikometrik robustleştirme özeti.** Kaynak: `../outputs/tables/phase2_floor_irt_group_delta.csv`, `../outputs/tables/phase2_omegah_metrics_summary.csv`, `../outputs/tables/phase2_esem_fit_indices.csv`.
+
+| Analiz | Ana metrik | Faz II yorumu |
+|---|---:|---|
+| Floor-aware IRT, çocuk reddetme | Cohen d = 0,372 | Taban etkisi H1 reddetme sinyalini manifest ortalama farkına göre maskelemiş olabilir. |
+| Floor-aware IRT, çocuk aşırı koruma | Cohen d = 0,543 | Çocuk perspektifinde latent theta farkları manifest ölçeklerden daha güçlü görünür. |
+| EMBU-P bifactor | ω_h = 0,660; ECV = 0,409 | Genel faktör baskın değildir; alt ölçek yorumu korunmalıdır. |
+| EMBU-C bifactor | ω_h = 0,541; ECV = 0,510 | Çocuk formunda genel faktör daha zayıf ve çok-boyutlu yorum daha gereklidir. |
+| Beck bifactor | ω_h = 0,887; ECV = 0,783 | Beck ölçeği Faz II karşılaştırmalı psikometrik kontrol olarak daha tek-boyutlu çalışır. |
+
+![Şekil 18.4. Floor-aware IRT theta farkları ve manifest farkların karşılaştırması](assets/figures/carbon/phase2/phase2_f03_floor_irt.svg)
+
+**Şekil 18.4. [KEŞİFSEL · POST-HOC] Floor-aware IRT duyarlılığı.** Kaynak: `phase2_floor_irt_group_delta.csv`, `phase2_floor_irt_theta_comparison.csv`. Yorum: reddetme ve aşırı koruma sinyalleri çocuk perspektifinde latent theta düzeyinde daha görünürdür; bu sonuç ölçek ortalamalarını değiştirmez, psikometrik sınırlılığı açıklar.
+
+## 18.5 Antidepresan ve Anne Mental Sağlık Yükü
+
+Anne antidepresan kullanım hattı, DM grup üyeliği ile ebeveynlik sonuçları arasında bağımsız bir aracı mekanizma kanıtı üretmemiştir. Dört outcome için bootstrap dolaylı etki güven aralıkları sıfırı içermiştir. Buna karşılık antidepresan kullanımı, anne mental sağlık yükünün klinik göstergesi olarak önemlidir ve H1/H5 yorumlarında strata duyarlılığı gerektirir.
+
+H1 multilevel modellerinde grup × antidepresan etkileşimleri anlamlı değildir; bu nedenle çocuk-algısı reddetme bulgusu antidepresan strata ile açıklanamaz. H5 strata analizinde reddetme korelasyonları yön bakımından ayrışmıştır; ancak bu ayrışma tedavi etkisi olarak yorumlanamaz, çünkü antidepresan başlangıç zamanı ve endikasyon yapısı bu kesitsel veri içinde ayrıştırılamaz.
+
+**Tablo 18.4. [KEŞİFSEL · POST-HOC] Antidepresan ve anne mental sağlık yükü özeti.** Kaynak: `../outputs/tables/phase2_ad_family_summary.csv`, `../outputs/tables/phase2_ad_mediator_status.csv`, `../outputs/tables/phase2_ad_moderation_h5_stratified.csv`.
+
+| Analiz | Ana metrik | Faz II yorumu |
+|---|---:|---|
+| Antidepresan aile dağılımı | 46/241 aile AD var; DM içinde 35/120 | AD yükü DM grubunda belirgin klinik eşlik değişkenidir. |
+| Mediation durumu | 4/4 outcome bootstrap ile tamamlandı | Dolaylı etki GA'ları sıfırı içerir; bağımsız aracılık kanıtı yoktur. |
+| Reddetme H5 strata, DM AD-yok | r = −0,091 [%95 GA −0,298, 0,125] | H5 korelasyonu AD strata ile yön değiştirebilir, fakat belirsizdir. |
+| Reddetme H5 strata, DM AD-var | r = 0,147 [%95 GA −0,196, 0,458] | Strata n küçüktür; tedavi etkisi olarak yorumlanmaz. |
+
+![Şekil 18.5. H5 diadik tutarlılık korelasyonlarının grup ve antidepresan strata dağılımı](assets/figures/carbon/phase2/phase2_f04_h5_strat.svg)
+
+**Şekil 18.5. [KEŞİFSEL · POST-HOC] H5 antidepresan strata duyarlılığı.** Kaynak: `phase2_ad_moderation_h5_stratified.csv`. Yorum: korelasyonların yön ve genişlikleri anne mental sağlık yükünün H5 yorumlarında strata duyarlılığı gerektirdiğini, fakat mevcut örneklemin nedensel tedavi yorumu taşımadığını gösterir.
+
+## 18.6 H5 Diadik Tutarlılık Genişletmesi
+
+H5 Faz II genişletmesi, anne-çocuk uyumunun tek bir ICC değeriyle özetlenemeyeceğini göstermiştir. Sibling-pair concordance analizinde reddetme alt ölçeği için DM grubunda ICC = 0, Kontrol grubunda ICC = 0,322 bulunmuştur. Bu desen, T1DM bağlamında kardeşler arasında ebeveyn davranışının algılanma biçiminde farklılaşma olabileceğini düşündürür ve parental differential treatment hipotezi için güçlü bir hipotez-üretici sinyal üretir.
+
+Beş stratejinin REML pooling sonucu DM için 0,179 [%95 GA 0,097, 0,260], Kontrol için 0,130 [%95 GA 0,081, 0,180] olarak kestirilmiştir. Grup farkı 0,047 [%95 GA −0,023, 0,117] ile belirsizdir; bu nedenle Faz II, H5'i "güçlü grup farkı" olarak değil, "yönteme duyarlı zayıf-orta uyum yönü" olarak konumlandırır.
+
+**Tablo 18.5. [KEŞİFSEL · POST-HOC] H5 diadik genişletme özeti.** Kaynak: `../outputs/tables/phase2_h5ext_sibling_icc.csv`, `../outputs/tables/phase2_h5ext_strategy_pooled.csv`, `../outputs/tables/phase2_h5ext_mtmm_variance.csv`.
+
+| Analiz | Ana metrik | Faz II yorumu |
+|---|---:|---|
+| Reddetme sibling ICC, tüm örneklem | ICC = 0,160 [%95 GA 0,034, 0,280] | Kardeşler arası uyum zayıf ama sıfırdan ayrışır. |
+| Reddetme sibling ICC, DM | ICC = 0,000 [%95 GA −0,179, 0,179] | DM bağlamında kardeş algıları daha ayrışmış görünür. |
+| Reddetme sibling ICC, Kontrol | ICC = 0,322 [%95 GA 0,153, 0,473] | Kontrol grubunda kardeş algısı daha tutarlıdır. |
+| Beş strateji pooled, DM | 0,179 [%95 GA 0,097, 0,260] | Zayıf-orta diadik uyum yönü vardır. |
+| Beş strateji pooled grup farkı | 0,047 [%95 GA −0,023, 0,117] | Grup farkı belirsizdir; H5 kararı değişmez. |
+
+## 18.7 Klinik Stratifikasyon ve HbA1c
+
+DM-only HbA1c alt analizleri yalnız 39 tam gözlem üzerinde çalışmıştır. Bayesian joint model, sıcaklık ve karşılaştırma outcome'larında HbA1c ile pozitif yön olasılığı üretmiştir (sıcaklık pd = 0,944; karşılaştırma pd = 0,946). Güven aralıklarının sıfırı içermesi ve örneklem büyüklüğünün düşük olması nedeniyle bu sonuçlar yalnızca gelecek DM kohortu için hipotez üretir.
+
+Tanı yaşı spline analizleri dört alt ölçekte lineer modele anlamlı üstünlük göstermemiştir. ISPAD <%7 ikili outcome modeli olay sayısı nedeniyle güçsüzdür. Bu nedenle Faz II klinik stratifikasyon sonucu, mevcut CSR'ın klinik önerilerini genişletmez; yalnızca HbA1c ve tanı yaşı değişkenlerinin sonraki prospektif tasarımda daha güçlü örneklemle ele alınması gerektiğini gösterir.
+
+**Tablo 18.6. [KEŞİFSEL · POST-HOC] Klinik stratifikasyon özeti.** Kaynak: `../outputs/tables/phase2_hba1c_bayesian_posterior.csv`, `../outputs/tables/phase2_hba1c_spline.csv`, `../outputs/tables/phase2_hba1c_ispad_logistic.csv`.
+
+| Analiz | Ana metrik | Faz II yorumu |
+|---|---:|---|
+| HbA1c × sıcaklık | posterior medyan = 0,123; pd = 0,944; n = 39 | Pozitif yön olasılığı var, GA sıfırı içerir. |
+| HbA1c × karşılaştırma | posterior medyan = 0,137; pd = 0,946; n = 39 | Hipotez-üretici klinik sinyal; dış-validasyon gerekir. |
+| HbA1c × reddetme | posterior medyan = 0,067; pd = 0,800; n = 39 | Reddetme için klinik sinyal zayıftır. |
+| Tanı yaşı spline | 4/4 outcome `linear_sufficient` | Non-lineer spline üstünlüğü gösterilmemiştir. |
+| ISPAD <%7 lojistik | 8 olay / 39 gözlem | Olay sayısı klinik sınıflandırma için yetersizdir. |
+
+![Şekil 18.6. Tanı yaşı spline eğrileri ve doğrusal model karşılaştırması](assets/figures/carbon/phase2/phase2_f08_dx_age_spline.svg)
+
+**Şekil 18.6. [KEŞİFSEL · POST-HOC] Tanı yaşı spline kontrolü.** Kaynak: `phase2_hba1c_spline.csv`, `phase2_hba1c_dm_summary.csv`. Yorum: tanı yaşı için spline formu lineer modele belirgin üstünlük sağlamaz; klinik stratifikasyon sonuçları mevcut CSR önerilerini genişletmez.
+
+## 18.8 Nedensel Aracılık, DAG ve Dağılımsal Yaklaşımlar
+
+Imai-Keele-Tingley duyarlılık hattı, aracılık yorumlarının ölçülmemiş karıştırıcıya çok kırılgan olduğunu göstermiştir; tüm outcome'larda kritik ρ < 0,05 düzeyindedir. Bu nedenle Faz II'de dolaylı etki dili sınırlanmış, doğrudan etki triangülasyonu ana yorum düzlemi olarak kullanılmıştır. `c'` doğrudan etki triangülasyonu reddetme ve aşırı koruma yollarında H1 yönünün aracılık modelinden bağımsız kaldığını göstermiştir.
+
+DAG implied conditional independence testleri 12/12 tutarlı sonuç vermiştir; bu bulgu DAG'ın veriyle açıkça çelişmediğini gösterir, nedensel doğrulama anlamına gelmez. Üç düzeyli yıl-kümelenme modeli, bazı alt ölçeklerde ölçüm yılı düzeyinde varyans olduğunu göstermiş ve negatif kontrol bulgusunun yapısal yanıtını sağlamıştır.
+
+Dağılımsal modeller, H1 reddetme etkisinin üst kuyrukta güçlendiğini göstermiştir: quantile regression τ = 0,75 için β = +0,250; beta regression reddetme modeli p < 10^-6 düzeyinde yön üretmiştir. Bu desen ortalama farkının ötesinde, algılanan reddetme dağılımının üst ucunda klinik dikkat gerektiren bir yığılma olabileceğini düşündürür.
+
+**Tablo 18.7. [KEŞİFSEL · POST-HOC] Aracılık, DAG ve dağılımsal model özeti.** Kaynak: `../outputs/tables/phase2_imai_summary.csv`, `../outputs/tables/phase2_cprime_triangulation.csv`, `../outputs/tables/phase2_dag_ci_tests.csv`, `../outputs/tables/phase2_dist_quantile.csv`, `../outputs/tables/phase2_dist_beta.csv`.
+
+| Analiz | Ana metrik | Faz II yorumu |
+|---|---:|---|
+| Imai duyarlılık | tüm outcome'larda kritik ρ < 0,05 | Dolaylı etki yorumu ölçülmemiş karıştırıcıya çok kırılgandır. |
+| Reddetme c' triangülasyonu | 3/3 modelde pozitif ve anlamlı | H1 yönü aracılık varsayımına bağımlı değildir. |
+| DAG CI testleri | 12/12 test tutarlı | DAG veriyle açıkça çelişmez; nedensel doğrulama değildir. |
+| Reddetme quantile τ = 0,75 | β = 0,250 [%95 GA 0,116, 0,384] | H1 sinyali üst kuyrukta güçlenir. |
+| Reddetme beta regression | β = 0,462 [%95 GA 0,288, 0,636] | Dağılımsal model ortalama dışı sinyali destekler. |
+
+![Şekil 18.7. Imai aracılık duyarlılık eğrileri ve kritik rho eşikleri](assets/figures/carbon/phase2/phase2_f09_imai_sensitivity.svg)
+
+**Şekil 18.7. [KEŞİFSEL · POST-HOC] Aracılık duyarlılığı.** Kaynak: `phase2_imai_summary.csv`, `phase2_imai_sensitivity_grid.csv`. Yorum: dolaylı etkilerin küçük ölçülmemiş karıştırıcılarla değişebilmesi, Faz II metninde aracılık dilinin sınırlandırılmasını gerektirir.
+
+![Şekil 18.8. DAG implied conditional independence testleri ve yıl-kümelenme kontrolü](assets/figures/carbon/phase2/phase2_f10_dag_validation.svg)
+
+**Şekil 18.8. [KEŞİFSEL · POST-HOC] DAG doğrulama ve negatif kontrol paneli.** Kaynak: `phase2_dag_ci_tests.csv`, `phase2_dag_three_level.csv`. Yorum: conditional independence testleri tutarlı görünür; yıl-kümelenme paneli ölçüm yılı varyansını görünür kılar ancak nedensel kesinlik üretmez.
+
+## 18.9 Multiverse ve Meta-Analitik Birleştirme
+
+H1 multiverse analizinde 120/120 spesifikasyon başarılı çalışmış; tüm spesifikasyonlarda yön pozitif, %75'inde p < .05 bulunmuştur. Medyan etki β = 0,134 [%95 aralık 0,082, 0,188] düzeyindedir. Specification curve inferential test 5000 permütasyonda t = 4,084 ve p = .0002 üretmiştir. Bu sonuç, H1 reddetme bulgusunun tek bir model kararına bağımlı olmadığını gösterir.
+
+Bayesian/meta-analitik pooling, bu çalışmadaki dört outcome kestirimini ilgili literatür etkileriyle birleştirdiğinde pooled etkiyi 0,139 [%95 GA 0,049, 0,230] olarak kestirmiştir. Posterior predictive replication dört outcome için de `ppc_consistent` kararı vermiştir. Bu meta-analitik katman, H1 yönünü literatürle uyumlu küçük etki olarak konumlandırır; etkiyi büyük veya klinik olarak tek başına belirleyici göstermemelidir.
+
+**Tablo 18.8. [KEŞİFSEL · POST-HOC] Multiverse ve meta-analitik özet.** Kaynak: `../outputs/tables/phase2_multi_h1_curve_summary.csv`, `../outputs/tables/phase2_multi_sca_inferential.csv`, `../outputs/tables/phase2_meta_pooling_summary.csv`, `../outputs/tables/phase2_meta_ppc_summary.csv`.
+
+| Analiz | Ana metrik | Faz II yorumu |
+|---|---:|---|
+| H1 multiverse | 120/120 başarılı; medyan β = 0,134 | H1 yönü model kararlarına duyarlı görünmez. |
+| Pozitif yön payı | 1,00 | Tüm spesifikasyonlarda yön pozitiftir. |
+| p < .05 payı | 0,75 | İstatistiksel karar spesifikasyona bağlı ama çoğunlukla pozitiftir. |
+| Specification curve test | t = 4,084; permütasyon p = .0002 | Toplu eğri null hipotezinden ayrışır. |
+| Meta-analitik pooling | pooled = 0,139 [%95 GA 0,049, 0,230]; τ = 0,106 | Literatürle uyumlu küçük etki merkezi vardır. |
+| Posterior predictive replication | 4/4 outcome `ppc_consistent` | Çalışma kestirimleri literatür önseliyle uyumludur. |
+
+![Şekil 18.9. H1 multiverse specification curve boyunca etki yönleri](assets/figures/carbon/phase2/phase2_f05_h1_spec_curve.svg)
+
+**Şekil 18.9. [KEŞİFSEL · POST-HOC] H1 specification curve.** Kaynak: `phase2_multi_h1_spec_results.csv`, `phase2_multi_h1_curve_summary.csv`. Yorum: 120 analitik kararın tamamında yön pozitiftir; bu desen H1 reddetme sonucunun tek modele bağımlı olmadığını gösterir.
+
+![Şekil 18.10. Literatür ve çalışma kestirimlerinin meta-analitik forest görünümü](assets/figures/carbon/phase2/phase2_f06_meta_forest.svg)
+
+**Şekil 18.10. [KEŞİFSEL · POST-HOC] Meta-analitik forest paneli.** Kaynak: `phase2_meta_pooling_summary.csv`, `phase2_meta_combined_studies.csv`. Yorum: pooled etki küçük ama sıfırdan ayrışan bir merkezde konumlanır; heterojenlik etki büyüklüğünün abartılmamasını gerektirir.
+
+![Şekil 18.11. Posterior predictive replication panelinde çalışma kestirimlerinin literatür önseliyle uyumu](assets/figures/carbon/phase2/phase2_f11_ppc_replication.svg)
+
+**Şekil 18.11. [KEŞİFSEL · POST-HOC] Posterior predictive replication.** Kaynak: `phase2_meta_ppc_summary.csv`, `phase2_meta_pooling_summary.csv`. Yorum: dört outcome için de posterior predictive kontrol tutarlıdır; sonuçlar replikasyon hipotezi üretir, kesin dış-validasyon yerine geçmez.
+
+## 18.10 Klinik Karar Modeli ve Replikasyon Gücü
+
+Yüksek-risk anne sınıflandırma modeli için extended logistic model AUC = 0,703 üretmiştir; baseline model AUC = 0,586 düzeyindedir. Standartlaştırılmış net benefit, düşük eşiklerde anlamlı görünmekte; eşik ve maliyet oranı yükseldikçe fayda hızlı biçimde azalmaktadır. Bu sonuç iç-validasyon düzeyinde bir modelleme sinyalidir ve bağımsız dış-validasyon olmadan klinik tarama aracı olarak kullanılamaz.
+
+Mevcut örneklem gücü karakterizasyonu, d = 0,20 ve aile ICC = 0,20 varsayımı altında n = 241 aile için power = 0,535 üretmiştir. Bu bulgu H1 pozitif sinyalinin düşük-orta güç koşullarında yakalandığını, negatif veya belirsiz bulguların ise özellikle küçük etki düzeylerinde güç sınırlamasıyla birlikte yorumlanması gerektiğini gösterir. APIM ve Bayesian sample-size hesapları, dış-validasyon/replikasyon hattı için daha büyük ve çok-merkezli örneklem gereksinimini destekler.
+
+**Tablo 18.9. [KEŞİFSEL · POST-HOC] Klinik karar modeli ve güç özeti.** Kaynak: `../outputs/tables/phase2_clinical_fit_summary.csv`, `../outputs/tables/phase2_clinical_snb.csv`, `../outputs/tables/phase2_power_multilevel.csv`, `../outputs/tables/phase2_power_apim.csv`.
+
+| Analiz | Ana metrik | Faz II yorumu |
+|---|---:|---|
+| Baseline risk modeli | AUC = 0,586 | Demografik/temel model sınırlı ayrım gücü taşır. |
+| Extended risk modeli | AUC = 0,703 | İç-validasyon düzeyinde sinyal vardır; dış-validasyon gerekir. |
+| Standardized net benefit | eşik 0,05 için sNB = 0,860 | Fayda düşük eşiklerde görünür, eşik yükseldikçe azalır. |
+| Multilevel power | n = 241; d = 0,20; ICC = 0,20; power = 0,535 | Küçük etki için mevcut çalışma orta-alt güçtedir. |
+| APIM replikasyon ihtiyacı | r = 0,20 için %80 güçte 165 düad | Dış-validasyon daha büyük düad örneklem gerektirir. |
+
+![Şekil 18.12. Klinik karar eğrisi standardize net benefit ısı haritası](assets/figures/carbon/phase2/phase2_f12_dca_heatmap.svg)
+
+**Şekil 18.12. [KEŞİFSEL · POST-HOC] Klinik karar modeli DCA ısı haritası.** Kaynak: `phase2_clinical_snb.csv`, `phase2_clinical_fit_summary.csv`. Yorum: extended model düşük eşiklerde iç-validasyon sinyali verir; bu panel klinik uygulama aracı değil, dış-validasyon tasarımı için karar-eşik duyarlılığıdır.
+
+## 18.11 Şekil ve Tablo Haritası
+
+Bu bölümdeki figürler ilk ilgili alt bölümde tek kez gömülmüştür. Tam artefakt ve veri ailesi izlenebilirliği Ek F'de verilmiştir; 18.11 yalnız hızlı navigasyon indeksidir.
+
+| ID | CSR yeri | Carbon SVG | Ana gövde tablosu |
+|---|---|---|---|
+| F2-F01 | 18.3 Multi-informant yapı | `assets/figures/carbon/phase2/phase2_f01_trifactor.svg` | Tablo 18.2 |
+| F2-F02 | 18.3 Multi-informant yapı | `assets/figures/carbon/phase2/phase2_f02_xinfo.svg` | Tablo 18.2 |
+| F2-F03 | 18.4 Psikometrik robustleştirme | `assets/figures/carbon/phase2/phase2_f03_floor_irt.svg` | Tablo 18.3 |
+| F2-F04 | 18.5 Antidepresan / H5 strata | `assets/figures/carbon/phase2/phase2_f04_h5_strat.svg` | Tablo 18.4-18.5 |
+| F2-F05 | 18.9 Multiverse / meta | `assets/figures/carbon/phase2/phase2_f05_h1_spec_curve.svg` | Tablo 18.8 |
+| F2-F06 | 18.9 Multiverse / meta | `assets/figures/carbon/phase2/phase2_f06_meta_forest.svg` | Tablo 18.8 |
+| F2-F07 | 18.3 Multi-informant yapı | `assets/figures/carbon/phase2/phase2_f07_xinfo_network.svg` | Tablo 18.2 |
+| F2-F08 | 18.7 Klinik stratifikasyon | `assets/figures/carbon/phase2/phase2_f08_dx_age_spline.svg` | Tablo 18.6 |
+| F2-F09 | 18.8 Aracılık / DAG / dağılımsal | `assets/figures/carbon/phase2/phase2_f09_imai_sensitivity.svg` | Tablo 18.7 |
+| F2-F10 | 18.8 Aracılık / DAG / dağılımsal | `assets/figures/carbon/phase2/phase2_f10_dag_validation.svg` | Tablo 18.7 |
+| F2-F11 | 18.9 Multiverse / meta | `assets/figures/carbon/phase2/phase2_f11_ppc_replication.svg` | Tablo 18.8 |
+| F2-F12 | 18.10 Klinik karar modeli | `assets/figures/carbon/phase2/phase2_f12_dca_heatmap.svg` | Tablo 18.9 |
+
+## 18.12 Faz II Kanonik Kararı
+
+Faz II'nin nihai katkısı, CSR'ın birincil bulgularını yeniden sınıflandırmak değil, H1 reddetme bulgusunun neden anne öz-bildirimi düzleminde değil çocuk algısı düzleminde ortaya çıktığını açıklayan çok-katmanlı bir kanıt çerçevesi sağlamaktır. Trifactor, latent discrepancy, floor-aware IRT, multiverse, specification curve inferential test ve meta-analitik pooling aynı yöne işaret eder: çocuk-algısı reddetme sinyali küçük ama yöntem kararlarına dirençli bir post-hoc keşifsel bulgudur.
+
+H2, H3, H4 ve H5 için Faz II, ana kararları değiştirmez. H3 anne öz-bildirim negatif kanıtı korunur; H4 anne depresyonu ile ebeveynlik tutumu arasındaki yapısal yol zinciri korunur; H5 için uyum yönü zayıf-orta ve yönteme duyarlı kalır. Faz II'den doğan yeni hipotezler üç başlıkta izlenmelidir: çocuk method varyansı ve Diverging Operations, floor-aware reddetme ölçümü, anne mental sağlık/antidepresan yükünün diadik tutarlılıkla etkileşimi.
+
+\newpage
+
+# 19. YAYIN VE DİSEMİNASYON STRATEJİSİ
+
+Çalışma kapsamından üç ana tez makalesi ve Faz II post-hoc genişletmeden üç ek metodolojik/klinik makale hedeflenmektedir. Yayın stratejisi, hipotez odağı, metodolojik özgünlük ve açık-bilim katmanı temelinde dergi-eşleştirmesi ile yapılandırılmıştır. Tüm yayınlar APA 7. baskı, ICMJE yazarlık kriterleri ve TÜBİTAK ULAKBİM yayın etiği yönergeleriyle uyumlu olarak hazırlanacaktır.
+
+## 19.1 Makale 1: Diferansiyel Ebeveynlik ve Çift-Perspektifli Diadik Uyum
 
 **Hedef dergiler (öncelik sırasıyla):** *Pediatric Diabetes* (IF ≈ 4,2; Q1) → *Journal of Pediatric Psychology* (IF ≈ 3,3; Q1) → *Journal of Clinical Psychology in Medical Settings* (IF ≈ 2,1; Q2).
 
@@ -1046,7 +1281,7 @@ Bu çalışma, Tip 1 Diabetes Mellitus tanılı 7-17 yaş çocukların ve annele
 
 **Önerilen anahtar mesaj:** Anne ile çocuğun ebeveynlik tutumu algısı, T1DM bağlamında beklenenden daha az örtüşmektedir; reddetme boyutunda DM grubunda tek-yönlü çocuk-algısı yükselmesi, klinikte çocuk perspektifinin paralel olarak alınması gereğine işaret etmektedir.
 
-## 18.2 Makale 2: Anne Psikopatolojisi-Ebeveynlik Tutumu Aktarımı
+## 19.2 Makale 2: Anne Psikopatolojisi-Ebeveynlik Tutumu Aktarımı
 
 **Hedef dergiler:** *Diabetic Medicine* (IF ≈ 3,5; Q1) → *Journal of Family Psychology* (IF ≈ 3,4; Q1) → *Health Psychology* (IF ≈ 4,2; Q1).
 
@@ -1054,7 +1289,7 @@ Bu çalışma, Tip 1 Diabetes Mellitus tanılı 7-17 yaş çocukların ve annele
 
 **Önerilen anahtar mesaj:** T1DM tanılı çocukların annelerinde gözlenen yüksek depresyon profili, ebeveynlik tutumunu boyut-spesifik şekilde etkilemektedir; sıcaklığı azaltan, reddetme ve karşılaştırmayı artıran ancak aşırı korumayı sistematik olarak tetiklemeyen bir aktarım örüntüsü mevcuttur.
 
-## 18.3 Makale 3: Türkçe Psikometrik Adaptasyon
+## 19.3 Makale 3: Türkçe Psikometrik Adaptasyon
 
 **Hedef dergiler:** *Methods in Psychology* (CiteScore ≈ 5,8; Q1) → *European Journal of Psychological Assessment* (IF ≈ 2,9; Q2) → *Psychological Assessment* (IF ≈ 5,1; Q1).
 
@@ -1062,7 +1297,17 @@ Bu çalışma, Tip 1 Diabetes Mellitus tanılı 7-17 yaş çocukların ve annele
 
 **Önerilen anahtar mesaj:** s-EMBU-P kısa-formunun reddetme alt ölçeği, Türkiye pediatrik T1DM klinik örnekleminde sınır altı güvenilirlik profili sergilemekte; çoklu yöntem (IRT + Bayesçi SEM) çapraz doğrulama, ölçek revizyonu için ampirik temel sağlamaktadır.
 
-## 18.4 Diğer Diseminasyon Faaliyetleri
+## 19.4 Faz II Ek Makale Hattı
+
+| Makale | Kapsam | Ana bulgu | Hedef dergi | Veri durumu |
+|---|---|---|---|---|
+| **Makale 4** | Multi-informant discrepancy: Trifactor + LDS + sibling concordance | Çocuk method varyansı yaklaşık %60; reddetme latent r = 0,025; sibling reddetme ICC DM = 0 vs Kontrol = 0,322 | *Journal of Child Psychology and Psychiatry* / *Psychological Methods* | Mevcut kanonik baz yeterli; yeni veri gerekmez |
+| **Makale 5** | Floor-aware IRT ve EMBU reddetme ölçümü | Floor-aware indeks reddetme d = 0,372; manifest farktan belirgin yüksek; reddetme alt skorunun bağımsız kullanımı sınırlı | *Psychometrika* / *Educational and Psychological Measurement* | Mevcut kanonik baz yeterli; yeni veri gerekmez |
+| **Makale 6** | Anne antidepresan/mental sağlık yükü ve diadik tutarlılık | AD mediator kanıtı yok; H1 AD-strata bağımsız; H5 reddetme strata örüntüsü hipotez-üretici | *Pediatric Diabetes* / *Journal of Pediatric Psychology* | Mevcut kanonik baz yeterli; yeni veri gerekmez |
+
+Bu üç Faz II makalesi, doğrulayıcı H1-H5 makale hattından ayrı tutulacaktır. Başlıklarda ve yöntem bölümlerinde **post-hoc exploratory** statüsü açık yazılacak, OSF Layer 3 amendment ve Tip 3 sapma tablosu bağlantısı korunacaktır.
+
+## 19.5 Diğer Diseminasyon Faaliyetleri
 
 - **Ulusal kongreler:** Türk Pediatrik Endokrinoloji ve Diyabet Derneği (ÇEDD) yıllık ulusal kongresi sözel sunum başvurusu; Türk Psikiyatri Derneği yıllık kongresi poster başvurusu.
 - **Uluslararası kongreler:** ISPAD (International Society for Pediatric and Adolescent Diabetes) yıllık kongresi sözel/poster başvurusu; ESCAP (European Society for Child and Adolescent Psychiatry) bienal kongresi poster başvurusu.
@@ -1071,11 +1316,11 @@ Bu çalışma, Tip 1 Diabetes Mellitus tanılı 7-17 yaş çocukların ve annele
 
 \newpage
 
-# 19. ÇEKİRDEK REFERANSLAR
+# 20. ÇEKİRDEK REFERANSLAR
 
 Aşağıda çalışmanın kavramsal, metodolojik ve klinik temellerini oluşturan çekirdek referans seti APA 7. baskı formatında sunulmaktadır. Tam kaynakça doktora tez dosyasında yer almaktadır.
 
-## 19.1 Kuramsal ve Klinik Çerçeve
+## 20.1 Kuramsal ve Klinik Çerçeve
 
 American Diabetes Association. (2026). 14. Children and adolescents: Standards of Care in Diabetes—2026. *Diabetes Care*, 49(Suppl. 1), S260–S272.
 
@@ -1113,7 +1358,7 @@ Vuralli, D., Gönç, E. N., Bircan, R., & Özon, A. (2024). Parenting attitudes 
 
 Yeşilkayalı, E., & Başal, H. A. (2017). Anne-baba tutumlarının çocukların duygusal-davranışsal gelişimine etkileri: Sistematik bir derleme. *Çocuk Sağlığı ve Hastalıkları Dergisi*, 60(3), 95–104.
 
-## 19.2 Metodolojik Çerçeve
+## 20.2 Metodolojik Çerçeve
 
 Bürkner, P.-C. (2017). brms: An R package for Bayesian multilevel models using Stan. *Journal of Statistical Software*, 80(1), 1–28.
 
@@ -1141,7 +1386,25 @@ VanderWeele, T. J., & Ding, P. (2017). Sensitivity analysis in observational res
 
 Vickers, A. J., & Elkin, E. B. (2006). Decision curve analysis: A novel method for evaluating prediction models. *Medical Decision Making*, 26(6), 565–574.
 
-## 19.3 Türkiye-Özgü Klinik Referanslar
+## 20.3 Faz II Metodolojik Ek Kaynakları
+
+Eid, M. (2008). Multitrait-multimethod analysis. In *Handbook of Multivariate Statistics*.
+
+Higgins, J. P. T., Whitehead, A., & Simmonds, M. (2009). Sequential methods for random-effects meta-analysis. *Statistics in Medicine*, 28(25), 3049–3082.
+
+Imai, K., Keele, L., & Tingley, D. (2010). A general approach to causal mediation analysis. *Psychological Methods*, 15(4), 309–334.
+
+Koenker, R., & Bassett, G. (1978). Regression quantiles. *Econometrica*, 46(1), 33–50.
+
+Marsh, H. W., Morin, A. J. S., Parker, P. D., & Kaur, G. (2014). Exploratory structural equation modeling. *Annual Review of Clinical Psychology*, 10, 85–110.
+
+Reise, S. P. (2012). The rediscovery of bifactor measurement models. *Multivariate Behavioral Research*, 47(5), 667–696.
+
+Spirtes, P., Glymour, C. N., & Scheines, R. (2000). *Causation, Prediction, and Search* (2nd ed.). MIT Press.
+
+Steegen, S., Tuerlinckx, F., Gelman, A., & Vanpaemel, W. (2016). Increasing transparency through a multiverse analysis. *Perspectives on Psychological Science*, 11(5), 702–712.
+
+## 20.4 Türkiye-Özgü Klinik Referanslar
 
 Bassi, G., Mancinelli, E., Dell'Arciprete, G., Rizzi, S., Gabrielli, S., & Salcuni, S. (2020). Parental stress, anxiety and depression symptoms associated with self-efficacy in pediatric type 1 diabetes: A literature review. *International Journal of Environmental Research and Public Health*, 18(1), 152.
 
@@ -1154,7 +1417,7 @@ Stuart, J., & Hodges, J. K. (2003). Parenting style and adjustment in chronic il
 Wysocki, T., Harris, M. A., Buckloh, L. M., Mertlich, D., Lochrie, A. S., Taylor, A., Sadler, M., & White, N. H. (2008). Randomized, controlled trial of behavioral family systems therapy for diabetes: Maintenance and generalization of effects on parent-adolescent communication. *Behavior Therapy*, 39(1), 33–46.
 
 \newpage
-# 20. EKLER
+# 21. EKLER
 
 ## Ek A — Psikometrik Validasyon Özeti
 
@@ -1244,9 +1507,56 @@ Pipeline çalıştırma deterministik olarak yeniden üretilebilir; rastgele say
 
 **KVKK uyumluluğu:** 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında, sağlık verisi özel nitelikli veri olarak işlenmiş; veri işleme amacı, saklama süresi ve veri silme prosedürü etik kurul protokolünde tanımlanmıştır.
 
+## Ek F — Faz II Carbon Figür ve Veri Tablosu Atlası
+
+Bu atlas, Bölüm 18'de Markdown içine gömülen Carbon-render edilmiş Faz II figürlerinin ve `phase2_*.csv` veri ailesinin izlenebilirliğini sağlar. CSV dosyalarının tam içerikleri rapora basılmamıştır; ana gövdede karar taşıyan kompakt tablolar verilmiş, tam artefaktlar `../outputs/tables/` altında korunmuştur.
+
+### Ek F.1 Carbon Figür Atlası
+
+| ID | Carbon SVG | Kaynak CSV | CSR bölümü | Ana mesaj |
+|---|---|---|---|---|
+| F2-F01 | `assets/figures/carbon/phase2/phase2_f01_trifactor.svg` | `phase2_trifactor_loadings.csv`; `phase2_trifactor_fit_indices.csv` | 18.3 | Trifactor yükleri bilgi-veren method ayrışmasını gösterir. |
+| F2-F02 | `assets/figures/carbon/phase2/phase2_f02_xinfo.svg` | `phase2_xinfo_summary.csv`; `phase2_xinfo_edges.csv` | 18.3 | Cross-informant edge oranı düşüktür. |
+| F2-F03 | `assets/figures/carbon/phase2/phase2_f03_floor_irt.svg` | `phase2_floor_irt_group_delta.csv`; `phase2_floor_irt_theta_comparison.csv` | 18.4 | Floor-aware theta, çocuk reddetme/aşırı koruma sinyalini görünür kılar. |
+| F2-F04 | `assets/figures/carbon/phase2/phase2_f04_h5_strat.svg` | `phase2_ad_moderation_h5_stratified.csv` | 18.5-18.6 | H5 strata korelasyonları grup ve AD düzeyinde ayrışır. |
+| F2-F05 | `assets/figures/carbon/phase2/phase2_f05_h1_spec_curve.svg` | `phase2_multi_h1_spec_results.csv`; `phase2_multi_h1_curve_summary.csv` | 18.9 | H1 yönü 120 spesifikasyonda pozitiftir. |
+| F2-F06 | `assets/figures/carbon/phase2/phase2_f06_meta_forest.svg` | `phase2_meta_combined_studies.csv`; `phase2_meta_pooling_summary.csv` | 18.9 | Pooled etki küçük ama sıfırdan ayrışır. |
+| F2-F07 | `assets/figures/carbon/phase2/phase2_f07_xinfo_network.svg` | `phase2_xinfo_edges.csv`; `phase2_xinfo_nodes.csv` | 18.3 | Ağ ayrıntısı edge-ağırlığı ve cross-informant ayrımını gösterir. |
+| F2-F08 | `assets/figures/carbon/phase2/phase2_f08_dx_age_spline.svg` | `phase2_hba1c_spline.csv`; `phase2_hba1c_dm_summary.csv` | 18.7 | Tanı yaşı spline, lineer modele üstün değildir. |
+| F2-F09 | `assets/figures/carbon/phase2/phase2_f09_imai_sensitivity.svg` | `phase2_imai_summary.csv`; `phase2_imai_sensitivity_grid.csv` | 18.8 | Dolaylı etkiler ölçülmemiş karıştırıcıya kırılgandır. |
+| F2-F10 | `assets/figures/carbon/phase2/phase2_f10_dag_validation.svg` | `phase2_dag_ci_tests.csv`; `phase2_dag_three_level.csv` | 18.8 | DAG implied CI testleri tutarlıdır; yıl kümelenmesi görünürdür. |
+| F2-F11 | `assets/figures/carbon/phase2/phase2_f11_ppc_replication.svg` | `phase2_meta_ppc_summary.csv`; `phase2_meta_pooling_summary.csv` | 18.9 | 4/4 outcome posterior predictive replication ile uyumludur. |
+| F2-F12 | `assets/figures/carbon/phase2/phase2_f12_dca_heatmap.svg` | `phase2_clinical_snb.csv`; `phase2_clinical_fit_summary.csv` | 18.10 | Net benefit eşik ve cost-ratio ile azalır. |
+
+### Ek F.2 Veri Tablosu Aile Atlası
+
+| Veri ailesi | Dosya sayısı | Satır sayısı | Ana kullanım yeri | CSR statüsü |
+|---|---:|---:|---|---|
+| `phase2_apa_*` | 2 | 11 | Faz II yönetici kanıt matrisi | Ana gövde + Ek F |
+| `phase2_trifactor_*` | 8 | 273 | Multi-informant yapı | Ana gövde + Ek F |
+| `phase2_disc_*` | 8 | 69 | Latent informant discrepancy | Ana gövde + Ek F |
+| `phase2_xinfo_*` | 7 | 95 | Cross-informant ağ | Ana gövde + Ek F |
+| `phase2_floor_*` | 6 | 107 | Floor-aware IRT | Ana gövde + Ek F |
+| `phase2_omegah_*` | 6 | 162 | Reliability generalization | Ana gövde + Ek F |
+| `phase2_esem_*` | 5 | 9 | Psikometrik çapraz-yük kontrolü | Ana gövde + Ek F |
+| `phase2_ad_*` | 13 | 174 | Antidepresan / anne mental sağlık yükü | Ana gövde + Ek F |
+| `phase2_h5ext_*` | 10 | 85 | H5 diadik genişletme | Ana gövde + Ek F |
+| `phase2_hba1c_*` | 6 | 18 | Klinik stratifikasyon | Ana gövde + Ek F |
+| `phase2_imai_*` | 4 | 93 | Aracılık duyarlılığı | Ana gövde + Ek F |
+| `phase2_dag_*` | 4 | 23 | DAG ve negatif kontrol | Ana gövde + Ek F |
+| `phase2_dist_*` | 5 | 29 | Dağılımsal modelleme | Ana gövde + Ek F |
+| `phase2_cprime_*` | 1 | 12 | Doğrudan etki triangülasyonu | Ana gövde + Ek F |
+| `phase2_multi_*` | 8 | 262 | Multiverse / specification curve | Ana gövde + Ek F |
+| `phase2_meta_*` | 8 | 991 | Meta-analitik pooling ve PPC | Ana gövde + Ek F |
+| `phase2_clinical_*` | 5 | 124 | Klinik karar modeli | Ana gövde + Ek F |
+| `phase2_power_*` | 4 | 27 | Replikasyon güç planı | Ana gövde + Ek F |
+| `phase2_thesis_*` | 4 | 30 | Tez/CSR paragraf ve yayın eşlemesi | Kaynak artefakt + Ek F |
+
+Toplam Faz II tablo paketi 113 CSV dosyası ve 2.594 veri satırı içerir. Ana gövdedeki dokuz kompakt tablo karar taşıyan özetleri verir; ayrıntılı dosyalar analiz reprodüksiyonu ve açık-bilim paketlemesi için kaynak artefakt olarak saklanır.
+
 \newpage
 
-# 21. ONAY VE İMZA
+# 22. ONAY VE İMZA
 
 Bu Klinik Çalışma Raporu, Marmara Üniversitesi Sağlık Bilimleri Enstitüsü Çocuk Sağlığı ve Hastalıkları Anabilim Dalı Sosyal Pediatri Bilim Dalı doktora tezi kapsamında hazırlanmıştır.
 

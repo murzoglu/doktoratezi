@@ -27,6 +27,13 @@ stopifnot(all(c("ad_bin", "ad_f", "beck_total_z", "ses_latent_z", "anne_yas_z") 
 stopifnot(all(frame$ad_bin %in% c(0L, 1L, NA_integer_)))
 stopifnot(identical(levels(frame$ad_f), c("Yok", "Var")))
 
+family_group_f <- family
+family_group_f$group_f <- factor(ifelse(family_group_f$group_dm == 1L, "DM", "Kontrol"),
+  levels = c("Kontrol", "DM"))
+family_group_f$group_dm <- NULL
+frame_group_f <- ad_prepare_family_frame(family_group_f)
+stopifnot(identical(frame_group_f$group_dm, family$group_dm))
+
 # 3) Long fixture
 long <- data.frame(
   aile_no = rep(seq_len(n), each = 2L),

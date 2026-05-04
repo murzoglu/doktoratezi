@@ -53,7 +53,7 @@ dag_canonical_specification <- function() {
   if (!requireNamespace("dagitty", quietly = TRUE)) {
     return(NULL)
   }
-  # CSR §8.8 + CAUSAL-DAG-RUNBOOK.md based DAG
+  # CSR §8.8 + 15-nedensel-dag-runbook.md based DAG
   dag_str <- 'dag {
     Group [exposure]
     AnneRed [outcome]
@@ -366,7 +366,7 @@ run_dag_pc_fci_pipeline <- function(df_family_ses, df_long_scored,
       dagitty_used = requireNamespace("dagitty", quietly = TRUE),
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XXV/70, 72)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       pc_algoritma_notu = "pcalg yoksa dagitty implications + manuel partial correlation",
       stringsAsFactors = FALSE
     )

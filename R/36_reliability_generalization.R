@@ -430,7 +430,7 @@ run_reliability_generalization_pipeline <- function(df_family_scored, df_long_sc
       reference_subscale = reference_subscale,
       kanit_kategorisi = "[KESIFSEL - POST-HOC]",
       sapma_tipi = "Tip 3 (Faz II SAP KISIM XXI/55-56)",
-      reference_doc = "STATISTICAL-ANALYSIS-PLAN-PHASE-2.md",
+      reference_doc = "04-sap-faz2-posthoc.md",
       stringsAsFactors = FALSE
     )
   )
