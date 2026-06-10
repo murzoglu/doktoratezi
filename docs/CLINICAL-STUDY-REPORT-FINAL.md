@@ -277,7 +277,7 @@ Kısa s-EMBU çocuk formu, ebeveyn formunun semantik paraleli olarak 29 madde ve
 
 ### 8.3.3 Beck Depresyon Envanteri (BDI)
 
-Annenin son iki haftadaki depresif belirtileri 21 madde, 0–3 Likert ölçeği üzerinden değerlendirilmiştir. Türk uyarlaması Hisli (1989) tarafından yapılmıştır; Türkiye normunda 17 ve üzeri puan en az hafif depresyon, 21 ve üzeri orta depresyon, 30 ve üzeri ağır depresyon olarak yorumlanmaktadır. Toplam puan, 21 maddenin tamamı eksiksiz olduğunda hesaplanmıştır; tek bir maddenin eksikliği toplamı eksik (NA) bırakmıştır. Bu disiplin, Beck literatürünün klinik yorum standardına uyumlu, eksik-tolerans uygulanmayan kesin bir kuraldır.
+Annenin son iki haftadaki depresif belirtileri 21 madde, 0–3 Likert ölçeği üzerinden değerlendirilmiştir. Türk uyarlaması Hisli (1989) tarafından yapılmıştır; Toplam puan kanonik skorlama bantlarına göre minimal (0–9), hafif (10–16), orta (17–29) ve şiddetli (≥30) olarak sınıflandırılmış; klinik anlamlı depresif belirti eşiği 17 ve üzeri (Hisli, 1989) olarak alınmıştır. Toplam puan, 21 maddenin tamamı eksiksiz olduğunda hesaplanmıştır; tek bir maddenin eksikliği toplamı eksik (NA) bırakmıştır. Bu disiplin, Beck literatürünün klinik yorum standardına uyumlu, eksik-tolerans uygulanmayan kesin bir kuraldır.
 
 ### 8.3.4 Kardeş İlişkileri Anketi (KİA / SRQ)
 
@@ -450,7 +450,7 @@ Aşağıdaki tablo, dahil edilen 241 ailenin sosyodemografik, anne mental sağl�
 |---|---|---|---|---|
 | Anne antidepresan kullanımı (%) | %9 | %29 | **0,53** | **Ciddi dengesiz** |
 | Anne kronik hastalık varlığı | %29 | %24 | 0,11 | Sınırda |
-| Beck total ortalama puan | 6,8 | 6,8 | < 0,10 | İyi denge |
+| Beck total ortalama puan | 12,4 | 13,2 | 0,11 | Sınırda |
 | Beck şiddet kategorisi (mod) | Minimal (%40,5) | Hafif (%35,9) | 0,11 | Sınırda |
 | Eş çalışma durumu (% çalışan) | %95,9 | %92,5 | 0,14 | Sınırda |
 
@@ -798,7 +798,7 @@ Beck madde-düzeyi belirti ağı 21 madde üzerinde tahmin edilmiş ve madde-dü
 
 > **Yöntem kutusu — Klinik fayda hattı.** İstatistiksel anlamlılık ile klinik kullanılabilirlik aynı şey değildir. Bir tahmin modelinin klinik değeri üç soruya yanıt arar: (1) ROC AUC: model riskleri ne kadar iyi ayırıyor? (2) Karar eğrisi analizi (DCA, Vickers): belirli risk eşiklerinde "herkesi tedavi et" veya "kimseyi tedavi etme" stratejilerine göre net fayda var mı? (3) Kalibrasyon: tahmin edilen risk olasılıkları gerçek risk oranlarıyla örtüşüyor mu?
 
-Yüksek-riskli anne (Beck total ≥ 17; Hisli 1989 Türkiye normunda klinik anlamlı, en az hafif depresif belirti eşiği) sınıflandırması için iki lojistik tahmin modeli geliştirilmiştir.
+Yüksek-riskli anne (Beck total ≥ 17; Hisli 1989 Türkiye normunda orta-ve-üzeri, klinik anlamlı depresif belirti eşiği) sınıflandırması için iki lojistik tahmin modeli geliştirilmiştir.
 
 - **Temel model:** DM grup üyeliği + anne yaşı + latent SES + aile çocuk sayısı.
 - **Genişletilmiş model:** Temel model + dört EMBU-P alt ölçeği.
