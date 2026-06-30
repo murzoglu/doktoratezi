@@ -44,6 +44,7 @@ source("R/46_clinical_dx_extension.R")
 source("R/47_power_replication.R")
 source("R/48_phase2_apa_outputs.R")
 source("R/49_phase2_thesis_mapping.R")
+source("R/50_statistical_audit.R")
 
 tar_option_set(
   packages = character()
@@ -667,6 +668,50 @@ list(
   tar_target(
     final_planning_manifest_csv,
     save_apa_table_csv(final_planning_manifest_table, "outputs/tables/final_plan_manifest.csv"),
+    format = "file"
+  ),
+  tar_target(
+    statistical_audit_results,
+    run_statistical_audit(
+      df_family = df_family_ses,
+      df_long = df_long_scored,
+      result_tables = list(
+        h1_primary_fixed_effects = h1_primary_fixed_effects_table,
+        h1_primary_anova = h1_primary_anova_table,
+        h1_role_pairwise = h1_primary_role_pairwise_table,
+        h1_three_way_tests = h1_three_way_tests_table,
+        h2_family_mean_welch = h2_family_mean_welch_tests_table,
+        h2_apim_fixed = h2_apim_fixed_effects_table,
+        h2_age_gap_moderation_fixed = h2_age_gap_moderation_fixed_effects_table,
+        h2_age_gap_moderation_anova = h2_age_gap_moderation_anova_table,
+        h3_primary_group = h3_primary_group_effects_table,
+        h3_iptw_group = h3_iptw_group_effects_table,
+        h3_antidepressant_stratified = h3_antidepressant_stratified_group_effects_table,
+        h4_latent_sem_structural_paths = h4_latent_sem_structural_paths_table,
+        h5_icc_bland_altman = h5_icc_bland_altman_table,
+        h5_k_coefficient = h5_k_coefficient_table,
+        robustness_multiverse = robust_multiverse_summary_table,
+        robustness_tost = robust_tost_equivalence_table
+      )
+    )
+  ),
+  tar_target(statistical_audit_findings_table, statistical_audit_results$findings),
+  tar_target(statistical_audit_summary_table, statistical_audit_results$summary),
+  tar_target(statistical_audit_tool_registry_table, statistical_audit_results$tool_registry),
+  tar_target(statistical_audit_ok, assert_statistical_audit_ok(statistical_audit_findings_table)),
+  tar_target(
+    statistical_audit_findings_csv,
+    save_apa_table_csv(statistical_audit_findings_table, "outputs/tables/statistical_audit_findings.csv"),
+    format = "file"
+  ),
+  tar_target(
+    statistical_audit_summary_csv,
+    save_apa_table_csv(statistical_audit_summary_table, "outputs/tables/statistical_audit_summary.csv"),
+    format = "file"
+  ),
+  tar_target(
+    statistical_audit_tool_registry_csv,
+    save_apa_table_csv(statistical_audit_tool_registry_table, "outputs/tables/statistical_audit_tool_registry.csv"),
     format = "file"
   ),
 

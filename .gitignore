@@ -50,6 +50,10 @@ credentials/
 .env
 .env.local
 
+# Plugin per-project settings/state (kullanici-local, commit edilmez)
+.claude/*.local.md
+.claude/*.local.json
+
 # Test files
 test_file.txt
 downloaded_test_file.txt
@@ -79,6 +83,10 @@ docs/books/
 carbon-html-report.zip
 *.zip
 docs/**/*_files/
+CSR-FINAL-render.qmd
+CSR-FINAL-render_cache/
+CSR-FINAL-render_files/
+*.bak-precorrection.md
 outputs/*
 !outputs/.gitkeep
 !outputs/tables/

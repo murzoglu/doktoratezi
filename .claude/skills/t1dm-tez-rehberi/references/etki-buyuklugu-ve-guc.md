@@ -4,6 +4,11 @@
 yaparken, simr veya pwrss ile güç hesabı yaparken, Pinquart 2013 prior'ı türetirken, SESOI
 (Smallest Effect Size of Interest) belirlerken.
 
+> **Dış kanıt köprüsü:** Pinquart 2013 benchmark'ını **doğrulamak/güncellemek** veya güncel
+> meta-analiz etki büyüklüğü aramak için → [`literatur-kanit-evidentia.md`](literatur-kanit-evidentia.md)
+> (psikososyal kapsamla `evidentia`). Literatürden türetilen confirmatory prior'ın **ön-kayıt
+> zamanlama kuralına** dikkat (HARKing tuzağı).
+
 **Kaynaklar:** Cohen (1988); Schäfer & Schwarz (2019); Funder & Ozer (2019); Lakens (2017);
 Green & MacLeod (2016) — simr; Pinquart (2013) meta-analizi (parenting → child outcome);
 Gelman, Hill & Vehtari (2021) Ch. 4 (design analysis, winner's curse).

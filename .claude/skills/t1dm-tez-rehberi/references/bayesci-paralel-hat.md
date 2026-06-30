@@ -4,6 +4,11 @@
 > brms multilevel + Bayes Factor + WAIC/LOO + model stacking. **[KISMEN AKTİF]** —
 > H1 preflight için brms zaten kullanılıyor; tüm hipotezler için genişletilmesi gerekir.
 
+> **Dış kanıt köprüsü:** Pinquart-temelli prior'ın **literatür dağılımını** `evidentia` ile
+> türetmek için → [`literatur-kanit-evidentia.md`](literatur-kanit-evidentia.md). **KRİTİK:**
+> confirmatory (H1–H4) prior'lar **veriyi görmeden, ön-kayıt anında** sabitlenir; evidentia ile
+> sonradan prior güçlendirmek **HARKing**'tir (yalnız `[KEŞİFSEL]` duyarlılık olarak denenebilir).
+
 ## Niye Bayesian Paralel?
 
 Tezin savunmasında jüri sorabilir:

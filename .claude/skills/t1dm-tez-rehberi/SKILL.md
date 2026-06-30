@@ -28,8 +28,14 @@ description: >
   bifactor S-1, GGM, EBIC-LASSO, NCT, network comparison, symptom network, ROC, DCA, CART, random
   forest, NRI, IDI, calibration, HbA1c, spline, tanı yaşı, joint display, RTA, Braun-Clarke,
   Gwet AC1, papaja, apaquarto, JARS-Mixed, STROBE, OSF, ön-kayıt, FAIR, Zenodo, türetilmiş skor,
-  kanonik kilit, _targets, Pinquart, simr, multiverse, falsification, negative control. Şüphede
-  mutlaka KULLAN.
+  kanonik kilit, _targets, Pinquart, simr, multiverse, falsification, negative control. **Dış
+  literatür kanıtı, alanyazın taraması, kanıt sentezi, Giriş/Tartışma literatürü, benchmark
+  doğrulama, Bayesian prior türetimi, psikometrik referans, T1DM epidemiyoloji, references.bib /
+  citation audit, KOL/hakem haritası, tam-metin getirme, sistematik derleme gerektiğinde
+  `evidentia` plug-in'i ile entegre çalış** (anahtar kelimeler: evidentia, medical-research,
+  literatür sentezi, PubMed, EuropePMC, Consensus, YÖK Tez, OpenAlex, Semantic Scholar,
+  PsyArXiv, OSF registrations/preregistration, tam metin, evidence-synthesizer, kaynak doğrulama).
+  Şüphede mutlaka KULLAN.
 ---
 
 # T1DM Doktora Tezi — Analiz ve Yazım Rehberi
@@ -185,7 +191,67 @@ Sorgunun tipini belirle ve ilgili reference dosyasını oku:
 | Hangi kitapta hangi konu? Kaynak gösterimi | `references/kaynak-kitaplar-haritasi.md` |
 | Bu sorgu hangi reference + cached target + paragraf akışına eşler? | `references/ornek-senaryolar.md` |
 
+#### Dış literatür kanıtı (evidentia entegrasyonu)
+
+| Sorgu Tipi | Önce Oku |
+|------------|----------|
+| Alanyazın taraması, Giriş/Tartışma literatürü, benchmark doğrulama, Bayesian prior türetimi, psikometrik referans, T1DM epidemiyoloji, references.bib/citation audit, KOL/hakem haritası, tam-metin | `references/literatur-kanit-evidentia.md` → sonra `evidentia` |
+
 **Birden fazla dosya gerekiyorsa hepsini oku** (devstats progressive disclosure pattern).
+
+### Faz 1.5 — Dış Literatür Kanıtı mı? (evidentia'ya Delegasyon)
+
+Bu repoda **ana gate her zaman bu skill'dir**. Evidentia, ana gate'i bypass etmez; yalnız
+`t1dm-tez-rehberi` kapsam/OSF/PII/artefakt kararından sonra dış-kanıt, bağlam yönetimi, derinlik
+kontrolü ve tam-metin çıkarımı için çağrılır.
+
+**Sorulması gereken ayrım:** Bu soru **iç-veri analizi** mi (kendi 482-satır verimiz → bu skill'de
+kal) yoksa **dış literatür kanıtı** mı (dünyadan gelen kanıt → `evidentia` plug-in'ine delege et)?
+
+Soru **dış-kanıt** içeriyorsa — Giriş/Tartışma literatürü, benchmark doğrulama (Pinquart vb.),
+Bayesian prior'ın literatür temeli, psikometrik karşılaştırma değerleri (tarihsel α/ω, faktör
+yapısı), T1DM epidemiyoloji (insidans/prevalans), `references.bib` doğrulama, KOL/hakem haritası
+veya tam-metin endpoint çıkarma — **önce [`references/literatur-kanit-evidentia.md`](references/literatur-kanit-evidentia.md)
+köprü protokolünü oku**, sonra çalışma yüzeyine göre doğru evidentia giriş noktasını seç:
+
+| Çalışma yüzeyi | Ne kullanılır |
+|----------------|---------------|
+| Claude Code plugin | `/evidentia:*` komutları + `medical-research` skill |
+| Codex | `evidentia-skills` MCP ile `medical-research` talimatları + doğrudan MCP'ler (`pubmed-epmc`, `openalex`, `semantic-scholar`, `psyarxiv-osf`, `yoktez-mcp`, `anamnesis`, `annas-reader`) |
+
+**Codex'te slash-command bekleme.** Aynı karar ağacı prompt/araç orkestrasyonu olarak yürütülür:
+önce `evidentia-skills`/`medical-research` protokolü okunur, sonra gerekli native MCP'ler çağrılır.
+YÖK Tez işleri için `yoktez-mcp` birincildir; `YÖK Akademik` yalnız KOL/akademisyen ağı içindir.
+
+| Giriş | Ne zaman |
+|-------|----------|
+| `/evidentia <soru>` | Tek konu/benchmark/odaklı tarama |
+| `/evidentia-synthesize` | Çok-belge derin sentez (graph-RAG) |
+| `/evidentia-fulltext <DOI>` | Kritik makaleden sayısal endpoint |
+| `/evidentia-kol <alan>` | Jüri/hakem/ortak-yazar/alan otoritesi |
+| `evidence-synthesizer` (alt-ajan) | Ağır fan-out (Giriş'in tamamı vb. — izole derin semantik değerlendirme) |
+| `academic-archival-distiller` (alt-ajan) | TR psikoloji/gelişim tezleri (YÖK), arşiv literatürü; Codex'te yoksa `yoktez-mcp` doğrudan akışı |
+
+**Üç bağlayıcı kural** (detay köprü dosyasında):
+1. **KAPSAM KAPISI** — bu tez psikososyal; evidentia tüm araç katmanlarını önce `coverage_set`
+   düzeyinde değerlendirir. Akademik çekirdek + tam-metin + KOL + epidemiyoloji varsayılan yüksek
+   önceliktir; onko/heme/ilaç-pipeline/TİTCK-geri ödeme/HTA/DDI katmanları yalnız açık sinyal varsa
+   maksimum derinlikte açılır, ilgisizse gerekçeli `gap_log` olarak kalır.
+2. **PRIOR/HARKing TUZAĞI** — literatürden türetilen confirmatory (H1–H4) prior'lar **veriyi
+   görmeden, ön-kayıt anında** sabitlenir; evidentia ile sonradan prior güçlendirmek HARKing'tir
+   (yalnız `[KEŞİFSEL]` duyarlılık olarak denenebilir). Tartışma literatürü sonradan serbesttir.
+3. **UYDURMA REFERANS YASAĞI** — `references.bib`'e giren her künye evidentia-doğrulamalı gerçek
+   PMID/DOI/NCT/YÖK-ID'ye iz sürer; doğrulanamayan eklenmez ("VERİ BULUNAMADI").
+
+Dönen kanıt **tedbir denetiminden** (tek meta-analiz mutlak değildir; etki büyüklüğü + GA; yayın
+yanlılığı; popülasyon transferi; korelasyon ≠ nedensellik) geçer, APA 7'ye çevrilip `references.bib`
+ve ilgili `.qmd`/reference dosyasına işlenir. Her dış-kanıt koşumu tam izlenebilir bir
+`evidence_packet` ile kapanır: `soru`, `preflight`, `coverage_set`, `depth_decision`,
+`kullanılan_connectorlar`, `source_ids` (PMID/DOI/NCT/YÖK-ID/OpenAlex-ID/PsyArXiv-ID/OSF-registration-ID), `canonical_artifacts`,
+`candidate_sources`, `fulltext_extracts`, `claim_ledger`, `semantic_adjudication`,
+`validation_gates`, `tez_artefakti`, `bibtex_durumu`. Tüm Evidentia araç/skill/MCP katmanları
+önce coverage-set düzeyinde değerlendirilir; ilgili katmanlar maksimum derinlikte çalıştırılır,
+ilgisiz veya erişilemeyen katmanlar gerekçeli `gap_log` olarak kalır.
 
 ### Faz 2 — Yürütme
 
@@ -401,6 +467,12 @@ katmanıdır.
 | `references/kaynak-kitaplar-haritasi.md` | 14 kitap → bölüm → projedeki uygulama haritası (Brown CFA → H4 ölçüm modeli; Kline → SEM raporlama; Enders → MI; McElreath → brms preflight; Hayes → mediation; DeVellis → ω; Hox → ICC; Field → keşif; vs.) |
 | `references/ornek-senaryolar.md` | 12 yaygın sorgu için uçtan uca akış (test seçimi → cached target → yorumlama → raporlama paragrafı), hızlı karar tablosu, "yapma sinyalleri", sık komutlar |
 
+### Dış literatür kanıtı (evidentia köprüsü)
+
+| Dosya | İçerik |
+|-------|--------|
+| `references/literatur-kanit-evidentia.md` | `t1dm-tez-rehberi` (iç-veri/yazım) ↔ `evidentia` `medical-research` v8.5.0 / plugin v1.7.0 (dış-kanıt/sentez) köprü protokolü: görev ayrımı (iç-veri vs. dış-kanıt), evidentia giriş noktaları (`/evidentia`, `-synthesize`, `-fulltext`, `-kol`, `evidence-synthesizer` alt-ajan, `academic-archival-distiller`), **KAPSAM KAPISI** (`coverage_set` tabanlı tüm katman değerlendirmesi; ilgisiz/auth eksik katmanlar gerekçeli `gap_log`), tez-artefaktı besleme haritası (Giriş/Tartışma/benchmark/prior/psikometri/epidemiyoloji/citation audit), kanıt akışı 7-adım, **prior/HARKing açık-bilim kuralı**, APA 7 ↔ references.bib köprüsü, uydurma referans yasağı, tipik senaryolar |
+
 ## Davranış Kuralları (Çiğnemediğin)
 
 1. **Asla** kanonik CSV'yi doğrudan değiştirme. Tüm türetilmiş skorlar `R/10_derived_scores.R`
@@ -444,6 +516,12 @@ katmanıdır.
     etiketi vurgulanır.
 19. **Asla** HbA1c (n=39, %32.5) için imputation yap. Klinik biyobelirteç tahmin edilemez;
     DM-only sensitivite analizi olarak yürütülür ve **n_hba1c** açıkça raporlanır.
+20. **Asla** `references.bib`'e evidentia ile doğrulanmamış künye ekle veya literatür iddiasını
+    hafızadan uydur. Dış-kanıt soruları `evidentia` plug-in'ine (`references/literatur-kanit-evidentia.md`
+    köprüsüyle, psikososyal kapsam kapısıyla) delege edilir; her künye gerçek PMID/DOI/NCT/YÖK-ID'ye
+    iz sürer. **Asla** literatürden türetilen confirmatory (H1–H4) prior'ı veriyi gördükten sonra
+    evidentia ile "güçlendir" — bu HARKing'tir; sonradan getirilen kanıt yalnız `[KEŞİFSEL]`
+    duyarlılık veya Tartışma yorumu olur.
 
 ## Hızlı Komutlar
 
@@ -468,6 +546,20 @@ Rscript scripts/R/09_reporting_standards_audit.R
 
 # Etik / veri yönetimi denetimi
 Rscript scripts/R/08_ethics_data_governance_audit.R
+```
+
+### Dış literatür kanıtı (evidentia — T1DM coverage_set ile)
+
+```text
+# Önce köprü protokolünü oku: references/literatur-kanit-evidentia.md
+
+/evidentia "type 1 diabetes parenting overprotection child adjustment"   # odaklı tarama
+/evidentia "parenting behavior child internalizing meta-analysis effect size"  # benchmark doğrula
+/evidentia-synthesize "maternal depression parenting behavior" [DOI'ler]  # derin çok-belge sentez
+/evidentia-fulltext 10.xxxx/...   # kritik makaleden sayısal endpoint
+/evidentia-kol "parenting attitudes child development EMBU"   # jüri/hakem/alan otoritesi
+# Ağır fan-out (Giriş'in tamamı): evidence-synthesizer alt-ajanı
+# TR psikoloji/gelişim tezleri: academic-archival-distiller; Codex'te yoktez-mcp search → details → markdown
 ```
 
 ## Diller ve Terim Sözlüğü Hızlı Referans

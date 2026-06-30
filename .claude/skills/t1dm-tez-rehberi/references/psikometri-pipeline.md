@@ -4,6 +4,10 @@
 yapılırken, ölçüm değişmezliği test edilirken, IRT preflight planlanırken, EMBU/Beck/KİA
 ile ilgili her psikometrik karar.
 
+> **Dış kanıt köprüsü:** EMBU tarihsel α/ω benchmark'ları (.49–.69), kısaltılmış-form faktör
+> yapısı ve ölçüm değişmezliği önceki çalışmaları için → [`literatur-kanit-evidentia.md`](literatur-kanit-evidentia.md)
+> (psikososyal kapsamla `evidentia`; gerekirse `/evidentia-fulltext` ile sayısal değer çıkarımı).
+
 **Kaynaklar:** Brown (2015) *Confirmatory Factor Analysis for Applied Research*; DeVellis &
 Thorpe (2022) *Scale Development*; Kline (2023) *Principles and Practice of SEM*; Lord & Novick
 (klasik); Sümer (s-EMBU TR adaptasyonu); Furman & Buhrmester (1985); Apalaçi (1996, KİA TR

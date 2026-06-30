@@ -4,7 +4,7 @@ subtitle: "Klinik Çalışma Raporu — ICH E3 Uyumlu Bütünleşik Rapor"
 authors:
   - "Uzm. Dr. Özlem Murzoğlu Kurt (Doktora öğrencisi / Birincil araştırıcı)"
   - "Prof. Dr. Eren Özek (Tez danışmanı)"
-  - "Doç. Dr. Belma Haliloğlu (Yardımcı araştırıcı)"
+  - "Prof. Dr. Belma Haliloğlu (Yardımcı araştırıcı)"
 date: "1 Mayıs 2026"
 study_protocol: "MÜTF-KAEK 09.2023.201"
 report_standards: "STROBE · JARS-Quant · TRIPOD"
@@ -24,8 +24,8 @@ lang: tr
 | Çalışma tipi | Tek-merkezli, gözlemsel, vaka-kontrol, kesitsel, çok-bilgi-veren tasarımlı, aile-içi düad yapılı psikososyal araştırma |
 | Yürütücü kurum | Marmara Üniversitesi Sağlık Bilimleri Enstitüsü, Sosyal Pediatri Doktora Programı |
 | Birincil araştırıcı | Uzm. Dr. Özlem Murzoğlu Kurt |
-| Tez danışmanı | Prof. Dr. Eren Özek (MÜTF Neonatoloji) |
-| Yardımcı araştırıcı | Doç. Dr. Belma Haliloğlu (MÜTF Pediatrik Endokrinoloji) |
+| Tez danışmanı | Prof. Dr. Eren Özek (Acıbadem Üniv. Neonatoloji) |
+| Yardımcı araştırıcı | Prof. Dr. Belma Haliloğlu (MÜTF Pediatrik Endokrinoloji) |
 | Tez İzleme Komitesi | Prof. Dr. Perran Boran; Prof. Dr. Nalan Karabayır |
 | Veri toplama dönemi | Ocak 2023 – Eylül 2025 |
 | Raporlama standardı | STROBE (gözlemsel) + JARS-Quant (APA) + TRIPOD (klinik tahmin modeli) |
@@ -168,10 +168,10 @@ Doğrudan tanımlayıcı kolonlar standardizasyon aşamasında veri tabanından 
 | Rol | Kişi | Kurum |
 |---|---|---|
 | Birincil araştırıcı / doktora öğrencisi | Uzm. Dr. Özlem Murzoğlu Kurt | Marmara Üniversitesi SBE Sosyal Pediatri |
-| Tez danışmanı | Prof. Dr. Eren Özek | Marmara Üniversitesi Tıp Fakültesi Neonatoloji |
-| Yardımcı araştırıcı (klinik) | Doç. Dr. Belma Haliloğlu | MÜTF Pediatrik Endokrinoloji |
+| Tez danışmanı | Prof. Dr. Eren Özek | Acıbadem Üniversitesi Tıp Fakültesi Neonatoloji |
+| Yardımcı araştırıcı (klinik) | Prof. Dr. Belma Haliloğlu | MÜTF Pediatrik Endokrinoloji |
 | Tez İzleme Komitesi | Prof. Dr. Perran Boran | MÜTF Sosyal Pediatri |
-| Tez İzleme Komitesi | Prof. Dr. Nalan Karabayır | MÜTF Sosyal Pediatri |
+| Tez İzleme Komitesi | Prof. Dr. Nalan Karabayır | İstanbul Medipol Üniversitesi Tıp Fakültesi Sosyal Pediatri |
 
 İstatistiksel analiz hattı; R 4.5.3, Quarto 1.6, `targets`, `renv` ve Stan 2.32 yığınında, açık kaynak yazılım ve git ile izlenen kod tabanı üzerinde, deterministik ve yeniden üretilebilir biçimde yürütülmüştür.
 
@@ -191,7 +191,7 @@ International Society for Pediatric and Adolescent Diabetes (ISPAD) 2024 Klinik 
 
 ## 6.3 Çoklu-İnformant Çerçevenin Kuramsal Temeli
 
-De Los Reyes ve diğerlerinin (2015) *Psychological Bulletin* dergisinde 341 araştırmayı havuzlayan meta-analizinde, anne–çocuk algı korelasyonlarının ortalaması içselleştirme alanında r = 0,25, dışsallaştırma alanında r = 0,30 ve toplam alanda r = 0,29 olarak bildirilmiştir. De Los Reyes ve diğerlerinin (2023) Operations Triad Modeli, bilgi-veren uyumsuzluğunu üç desende ele almaktadır:
+De Los Reyes ve diğerlerinin (2015) *Psychological Bulletin* dergisinde 341 araştırmayı havuzlayan meta-analizinde, anne–çocuk algı korelasyonlarının ortalaması içselleştirme alanında r = 0,25, dışsallaştırma alanında r = 0,30 ve toplam alanda r = 0,29 olarak bildirilmiştir. De Los Reyes ve diğerlerinin (2015) Operations Triad Modeli, bilgi-veren uyumsuzluğunu üç desende ele almaktadır:
 
 - **Yakınsayan operasyonlar (converging):** İki bilgi vereni aynı yapıyı benzer biçimde değerlendirir; uyumlu rapor tutarlı bir gerçeği yansıtır.
 - **Ayrışan operasyonlar (diverging):** Bilgi verenler farklı kanallarda farklı bilgilere erişir; uyumsuzluk anlamlı, bağlam-spesifik gerçek farklılığı yansıtır.
@@ -442,7 +442,7 @@ Aşağıdaki tablo, dahil edilen 241 ailenin sosyodemografik, anne mental sağl�
 | İndeks çocuk Kız oranı | %48 | %52 | < 0,10 | İyi denge |
 | Kardeş Kız oranı | %50 | %48 | < 0,10 | İyi denge |
 | Aynı cinsiyet kardeş çifti oranı | %42 | %44 | 0,03 | İyi denge |
-| Kardeş yaş farkı (yıl, medyan) | 3,0 | 3,0 | < 0,10 | İyi denge |
+| Kardeş yaş farkı (yıl, medyan) | 2,7 | 3,0 | 0,22 | Sınırda dengesiz |
 
 ### Tablo 1C — Anne Mental Sağlık ve Klinik Göstergeler
 
@@ -532,7 +532,7 @@ EMBU-P/C alt ölçekleri, Beck total ve SRQ alt ölçekleri arasında 14 paralel
 
 ## 10.6 Genel Psikometrik Karar
 
-EMBU-P, EMBU-C ve BDI ölçeklerinin Türk T1DM örnekleminde **kullanılabilir ancak sınırlı geçerlik kanıtı** sergilediği sonucuna varılmıştır. Reddetme alt ölçeğinin görece zayıf psikometrik profili (özellikle EMBU-P'de), bu boyutta gözlenen birincil hipotez bulgularının yorumlanmasında dikkatli olunmasını gerektirmektedir; bu nedenle H1 reddetme bulgusu ek olarak madde-yanıt teorisi (graded response model) latent θ skorları ve Bayesçi paralel hat ile çapraz doğrulanmıştır (Bölüm 11.1.4).
+EMBU-P, EMBU-C ve BDI ölçeklerinin Türk T1DM örnekleminde **kullanılabilir ancak sınırlı geçerlik kanıtı** sergilediği sonucuna varılmıştır. Reddetme alt ölçeğinin görece zayıf psikometrik profili (özellikle EMBU-P'de), bu boyutta gözlenen birincil hipotez bulgularının yorumlanmasında dikkatli olunmasını gerektirmektedir; bu nedenle H1 reddetme bulgusu ek olarak madde-yanıt teorisi (graded response model) latent θ skorları ve Bayesçi paralel hat ile çapraz doğrulanmıştır (Bölüm 11.1.2–11.1.3).
 
 \newpage
 
@@ -622,9 +622,9 @@ Antidepresan kullanan (n = 46) ve kullanmayan (n = 195) annelere kısıtlı stra
 | EMBU-P alt ölçek | BF₁₀ | ROPE içi pay (% 95 güvenilir aralık) | Yorum |
 |---|---|---|---|
 | Sıcaklık | 0,22 | %68 | Orta düzey H0 lehine |
-| Aşırı Koruma | 0,20 | %61 | Orta düzey H0 lehine |
+| Aşırı Koruma | 0,25 | %61 | Orta düzey H0 lehine |
 | **Reddetme** | 0,17 | **%92** | **Orta-güçlü H0 lehine** |
-| Karşılaştırma | 0,25 | %69 | Orta düzey H0 lehine |
+| Karşılaştırma | 0,22 | %69 | Orta düzey H0 lehine |
 
 ### 11.3.5 Eşdeğerlik testi sonuçları
 
@@ -758,7 +758,7 @@ Aşağıdaki bölüm, birincil hipotezleri tamamlayan yedi genişletilmiş anali
 
 Beck → EMBU-P reddetme → EMBU-C reddetme zinciri üç paralel katmanda test edilmiştir.
 
-- **Tek-aracı modeli (BCa bootstrap, n = 1000):** a-yolu (Beck → EMBU-P reddetme) β = 0,0056, p = .025 düzeyinde anlamlı; b-yolu (EMBU-P reddetme → EMBU-C reddetme) β = 0,091, p = .14 düzeyinde anlamsız; dolaylı (indirect) etki β = 0,0005, %95 GA [−0,0001; 0,0025] sıfırı içermekte.
+- **Tek-aracı modeli (BCa bootstrap, n = 1000):** a-yolu (Beck → EMBU-P reddetme) β = 0,0056, p = .025 düzeyinde anlamlı; b-yolu (EMBU-P reddetme → EMBU-C reddetme) β = 0,091, p = .14 düzeyinde anlamsız; dolaylı (indirect) etki β = 0,0005, %95 GA [−0,0001; 0,0020] sıfırı içermekte.
 - **Çok-düzeyli aracılık modeli:** Aile düzeyi aracı ve uzun-format çocuk outcome'u ile a-yolu anlamlı (β = 0,0055, p = .018); ancak dolaylı etki anlamsız.
 - **Koşullu süreç modeli (Hayes Model 14):** a-yolunun grup tarafından moderasyonu (a3 = 0,046, p = .22) ve moderate aracılık indeksi (IMM = 0,004, p = .37) anlamlı bulunmamıştır.
 
@@ -829,7 +829,7 @@ Bu örüntü, T1DM klinik göstergelerinin anne öz-bildirim ebeveynlik tutumlar
 
 ## 13.1 Çoklu Evren Analizi (Specification Curve, Simonsohn ve diğerleri, 2020)
 
-120 spesifikasyondan oluşan çoklu evren analizi uygulanmıştır. Spesifikasyon boyutları: dört EMBU-P alt ölçeği × beş kovaryat seti × iki tahmin yöntemi (sıradan en küçük kareler ve robust M-tahmincisi) × üç alt-örneklem (tüm örneklem, geniş aile, küçük aile).
+120 spesifikasyondan oluşan çoklu evren analizi uygulanmıştır. Spesifikasyon boyutları: dört EMBU-P alt ölçeği × beş kovaryat seti × iki tahmin yöntemi (sıradan en küçük kareler ve robust M-tahmincisi) × üç alt-örneklem (tüm örneklem, 2+ çocuklu aile, antidepresan kullanmayan).
 
 **Sonuç:** 120 spesifikasyonun **% 0**'ında p < .05 elde edilmiştir. Reddetme alt ölçeğinde median Cohen d = −0,13 (%5–%95 spec aralığı [−0,185; −0,058]; tüm spesifikasyonlar negatif yöndedir) düzeyinde tutarlı zayıf-negatif bir örüntü sergilemiştir. Diğer üç alt ölçek tümüyle pozitif yöndedir (sıcaklık median d = 0,13 [0,09; 0,14]; aşırı koruma 0,10 [0,05; 0,14]; karşılaştırma 0,09 [0,07; 0,11]). Permütasyon temelli inferential test (n_perm = 5000) Z_median ve Z_share değerlerinde anlamlılık üretmemiştir. Bu sonuç, EMBU-P alt ölçek fark etkilerinin model spesifikasyonu seçimi, kovaryat seti, alt örneklem tanımı veya etki tahmincisi değişikliklerinden bağımsız olarak — hiçbir spesifikasyonda anlamlılığa ulaşmadan — pratik açıdan ihmal edilebilir kaldığını göstermektedir.
 
@@ -876,10 +876,10 @@ Pinquart (2013) meta-analizinden türetilen zayıf bilgi verici prior altında, 
 |---|---|---|---|---|---|---|
 | H1 reddetme (DM-İndeks vs Kontrol-İndeks) | 0,16 | [0,05; 0,26] | 0,999 | %12,7 | **8,12** | Orta düzey H1 lehine |
 | H1 sıcaklık | 0,09 | [−0,05; 0,22] | 0,90 | %55 | 0,29 | Orta düzey H0 lehine |
-| H3 sıcaklık | 0,07 | [−0,07; 0,20] | 0,82 | %68 | 0,22 | Orta düzey H0 lehine |
-| H3 aşırı koruma | 0,06 | [−0,12; 0,24] | 0,78 | %61 | 0,20 | Orta düzey H0 lehine |
-| H3 reddetme | −0,05 | [−0,12; 0,03] | 0,89 | **%92** | **0,17** | **Orta-güçlü H0 lehine** |
-| H3 karşılaştırma | 0,06 | [−0,08; 0,20] | 0,80 | %69 | 0,25 | Orta düzey H0 lehine |
+| H3 sıcaklık | 0,07 | [−0,06; 0,19] | 0,83 | %68 | 0,22 | Orta düzey H0 lehine |
+| H3 aşırı koruma | 0,07 | [−0,11; 0,25] | 0,78 | %61 | 0,25 | Orta düzey H0 lehine |
+| H3 reddetme | −0,05 | [−0,12; 0,03] | 0,90 | **%92** | **0,17** | **Orta-güçlü H0 lehine** |
+| H3 karşılaştırma | 0,06 | [−0,07; 0,20] | 0,82 | %69 | 0,22 | Orta düzey H0 lehine |
 
 ## 14.2 MCMC Yakınsama Tanıları
 
@@ -1450,7 +1450,7 @@ s-EMBU-P (Türkçe; anne formu, 29 madde, 4'lü Likert) ve s-EMBU-C (çocuk form
 | Aşırı koruma | EMBU-C (Çocuk) | 7 | 0,62 | 0,64 | — | — | — | <%10 |
 | Karşılaştırma | EMBU-C (Çocuk) | 5 | 0,79 | 0,80 | — | — | — | <%15 |
 
-**Doğrulayıcı faktör analizi (4-faktör çözümü, anne formu):** CFI = 0,887; RMSEA = 0,062 (90% GA: 0,054–0,069); SRMR = 0,075. Sınır altı CFI değerleri ölçeğin Türkçe T1DM örnekleminde yapısal düzeyde tam doğrulanma vermediğine işaret etmektedir.
+**Doğrulayıcı faktör analizi (4-faktör çözümü, anne formu):** CFI = 0,877; RMSEA = 0,040 (90% GA: 0,032–0,049); SRMR = 0,132. Sınır altı CFI değerleri ölçeğin Türkçe T1DM örnekleminde yapısal düzeyde tam doğrulanma vermediğine işaret etmektedir.
 
 **Çok-grup ölçüm değişmezliği:** Configural ve metric invariance sağlanmış; scalar invariance sınır düzeyde kabul edilmiştir (ΔCFI = −0,012; ΔRMSEA = +0,008). Gruplar arası ortalama karşılaştırmaları metrik düzeyde yorumlanmış; tam scalar varsayımına dayalı yorumlardan kaçınılmıştır.
 
@@ -1579,9 +1579,9 @@ Bu Klinik Çalışma Raporu, Marmara Üniversitesi Sağlık Bilimleri Enstitüs�
 | Rol | Ad-Soyad | Kurum / Görev | Tarih | İmza |
 |-----|----------|---------------|-------|------|
 | Doktora Adayı | Uzm. Dr. Özlem Murzoğlu Kurt | Marmara Üniv. SBE Sosyal Pediatri | ___/___/____ | __________ |
-| Tez Danışmanı | Prof. Dr. Eren Özek | Marmara Üniv. Tıp Fak. Çocuk Sağlığı | ___/___/____ | __________ |
-| Yardımcı Araştırıcı | Doç. Dr. Belma Haliloğlu | Marmara Üniv. Tıp Fak. Pediatrik Endokrinoloji | ___/___/____ | __________ |
+| Tez Danışmanı | Prof. Dr. Eren Özek | Acıbadem Üniv. Tıp Fak. Neonatoloji | ___/___/____ | __________ |
+| Yardımcı Araştırıcı | Prof. Dr. Belma Haliloğlu | Marmara Üniv. Tıp Fak. Pediatrik Endokrinoloji | ___/___/____ | __________ |
 | TİK Üyesi | Prof. Dr. Perran Boran | Marmara Üniv. Tıp Fak. Sosyal Pediatri | ___/___/____ | __________ |
-| TİK Üyesi | Prof. Dr. Nalan Karabayır | İstanbul Atlas Üniv. Tıp Fak. Çocuk Sağlığı | ___/___/____ | __________ |
+| TİK Üyesi | Prof. Dr. Nalan Karabayır | İstanbul Medipol Üniv. Tıp Fak. Sosyal Pediatri | ___/___/____ | __________ |
 
 *Bu rapor; uluslararası raporlama standartları (ICH E3, GPP3, APA 7) ile metodolojik şeffaflık prensipleri (TRIPOD, STROBE, CONSORT, COSMIN) çerçevesinde hazırlanmış; tüm istatistiksel sonuçlar ön-kayıtlı analiz planına uygun olarak raporlanmıştır. Raporda yer alan tüm karar metni, sonuç eki ve klinik önerinin altyapısı analiz dosyalarında izlenebilir biçimde saklanmaktadır.*

@@ -4,6 +4,11 @@
 > (EMBU-C-sib) algıları arasındaki **uyum/uyumsuzluk yapısı**. 5 stratejinin **paralel** çalıştırılması
 > zorunlu — herhangi biri yedek değildir, hepsi farklı bir bilgi katmanı verir.
 
+> **Dış kanıt köprüsü:** Streisand & Monaghan **beklenen diadik örüntüsünü** ve ebeveyn-çocuk algı
+> uyumsuzluğu literatürünü `evidentia` ile çekmek/güncellemek için →
+> [`literatur-kanit-evidentia.md`](literatur-kanit-evidentia.md) (psikososyal kapsamla). Bulgu-literatür
+> karşılaştırması Tartışma'da yapılır (sosyal istenirlik kompansasyonu yorumu).
+
 ## Niye 5 strateji paralel?
 
 | Strateji | Soruyu yanıtlar | Sınırlılığı | Birincil/Yedek |
