@@ -62,6 +62,27 @@ stopifnot(any(contract_findings$check_id == "long_family_pair_count" & contract_
 stopifnot(any(contract_findings$check_id == "hba1c_structural_missingness" & contract_findings$severity == "critical"))
 stopifnot(any(contract_findings$check_id == "long_group_consistency" & contract_findings$severity == "critical"))
 
+family_hba1c_edge <- data.frame(
+  aile_no = 10,
+  group = "DM",
+  hba1c = 15.1,
+  stringsAsFactors = FALSE
+)
+long_hba1c_edge <- data.frame(
+  aile_no = c(10, 10),
+  group = c("DM", "DM"),
+  family_role = c("index", "sibling"),
+  role = c("DM_Hasta_Indeks", "DM_Hasta_Kardes"),
+  stringsAsFactors = FALSE
+)
+edge_findings <- audit_data_contract(family_hba1c_edge, long_hba1c_edge)
+stopifnot(!any(edge_findings$check_id == "hba1c_plausibility_range"))
+
+family_hba1c_bad <- family_hba1c_edge
+family_hba1c_bad$hba1c <- 18.1
+range_findings <- audit_data_contract(family_hba1c_bad, long_hba1c_edge)
+stopifnot(any(range_findings$check_id == "hba1c_plausibility_range" & range_findings$severity == "review"))
+
 result_bad <- result_ok
 result_bad$statistic <- 1.25
 result_bad$p_value <- 0.90
@@ -77,6 +98,20 @@ stopifnot(inherits(
   try(assert_statistical_audit_ok(table_findings), silent = TRUE),
   "try-error"
 ))
+
+tahmin_table <- data.frame(
+  tahmin = -0.069370226,
+  se = 0.07958393,
+  std_beta = -0.10910828,
+  t = -0.8716613,
+  df = 237,
+  p = 2 * stats::pt(abs(-0.8716613), df = 237, lower.tail = FALSE),
+  ci_alt = -0.22615588,
+  ci_ust = 0.087415428,
+  stringsAsFactors = FALSE
+)
+tahmin_findings <- audit_result_table_consistency(tahmin_table, table_id = "tahmin_table")
+stopifnot(!any(tahmin_findings$check_id == "statistic_recalculation"))
 
 summary_bad <- summarize_statistical_audit(table_findings)
 stopifnot(summary_bad$total_findings[[1L]] >= 4L)

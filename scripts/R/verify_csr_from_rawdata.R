@@ -68,7 +68,7 @@ om <- tapply(fam$ev_oda_sayisi, g, mean, na.rm=TRUE); chk("ev oda mean Kontrol",
 csm <- tapply(fam$cocuk_sayisi, g, median, na.rm=TRUE); chk("cocuk sayisi medyan Kontrol", csm[["Kontrol"]], 3.0, 0.01, "%.1f"); chk("cocuk sayisi medyan DM", csm[["DM"]], 3.0, 0.01, "%.1f")
 
 cat("================ BECK ================\n")
-bm <- tapply(fams$beck_total, g, mean, na.rm=TRUE); chk("beck_total mean Kontrol", bm[["Kontrol"]], 6.8, 0.5, "%.1f"); chk("beck_total mean DM", bm[["DM"]], 6.8, 0.5, "%.1f")
+bm <- tapply(fams$beck_total, g, mean, na.rm=TRUE); chk("beck_total mean Kontrol", bm[["Kontrol"]], 12.4, 0.5, "%.1f"); chk("beck_total mean DM", bm[["DM"]], 13.2, 0.5, "%.1f")
 sev_k <- as.character(names(sort(table(fams$beck_severity[g=="Kontrol"]), decreasing=TRUE))[1])
 sev_d <- as.character(names(sort(table(fams$beck_severity[g=="DM"]), decreasing=TRUE))[1])
 chk("beck severity mod Kontrol", sev_k, "Minimal", fmt="%s"); chk("beck severity mod DM", sev_d, "Hafif", fmt="%s")

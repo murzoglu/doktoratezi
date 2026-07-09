@@ -45,6 +45,24 @@ source("R/47_power_replication.R")
 source("R/48_phase2_apa_outputs.R")
 source("R/49_phase2_thesis_mapping.R")
 source("R/50_statistical_audit.R")
+# Faz III SAP (KISIM XXXVI-XLI) — [KESIFSEL · POST-HOC]
+# Kanonik bazda mevcut ama modele hic girmemis degisken bloklarinin kesif analizi.
+# Yeni veri yok; kanonik kilit degismez; H1-H4 confirmatory cekirdek degismez.
+source("R/51_pdt_effect.R")
+source("R/52_social_stratification.R")
+source("R/53_maternal_comorbidity.R")
+source("R/54_family_structure_sibship.R")
+source("R/55_dm_exposure_intensity.R")
+# Faz IV SAP (KISIM XLII-XLIX, §116-135) — [KESIFSEL · POST-HOC], OSF Layer 5
+# Kanonik bazin son artik degisken yuzeyleri + secilim/batch gecerlik denetimleri.
+# Yeni veri yok; kanonik kilit degismez; H1-H5 confirmatory cekirdek degismez.
+source("R/56_directional_sibship.R")
+source("R/57_child_level_moderators.R")
+source("R/58_onset_metabolic_context.R")
+source("R/59_family_health_validity.R")
+source("R/60_derived_structural.R")
+source("R/61_maternal_mh_child_plane.R")
+source("R/62_selection_batch_validity.R")
 
 tar_option_set(
   packages = character()
@@ -1677,5 +1695,118 @@ list(
     save_apa_table_csv(phase2_thesis_target_summary_table,
       "outputs/tables/phase2_thesis_target_summary.csv"),
     format = "file"
+  ),
+
+  # ---- Faz III SAP (KISIM XXXVI-XLI) — [KESIFSEL · POST-HOC] ----
+  # Her hedef, kanonik kilitli baza (df_family_ses / df_long_scored / df_family_scored
+  # → family_csv/long_csv format="file" hash capasi) bagimlidir; yeni veri girmez.
+  # CSV artefaktlari scripts/R/52-56_phase3_*_audit.R runner'lari tarafindan
+  # outputs/tables/phase3_*.csv altina yazilir (Faz II audit-runner deseni).
+  tar_target(
+    phase3_pdt_effect_results,
+    run_phase3_pdt_effect_pipeline(
+      df_family_ses = df_family_ses,
+      df_long_scored = df_long_scored,
+      n_boot = 1000L,
+      sesoi_r = 0.10,
+      seed = 20260708L
+    )
+  ),
+  tar_target(
+    phase3_social_stratification_results,
+    run_phase3_social_stratification_pipeline(
+      df_family_ses = df_family_ses,
+      df_long_scored = df_long_scored,
+      df_family_scored = df_family_scored,
+      boot_n = 1000L,
+      seed = 20260708L
+    )
+  ),
+  tar_target(
+    phase3_maternal_comorbidity_results,
+    run_phase3_maternal_comorbidity_pipeline(
+      df_family_ses = df_family_ses,
+      df_long_scored = df_long_scored,
+      mediation_boot = 1000L,
+      sesoi_r = 0.10,
+      seed = 20260708L
+    )
+  ),
+  tar_target(
+    phase3_family_structure_results,
+    run_phase3_family_structure_pipeline(
+      df_family_scored = df_family_scored,
+      df_long_scored = df_long_scored,
+      sesoi_r = 0.10
+    )
+  ),
+  tar_target(
+    phase3_dm_exposure_results,
+    run_phase3_dm_exposure_pipeline(
+      df_family_scored = df_family_ses,
+      sesoi_r = 0.10
+    )
+  ),
+
+  # ---- Faz IV SAP (KISIM XLII-XLIX, §116-135) — [KESIFSEL · POST-HOC], OSF Layer 5 ----
+  # Her hedef kanonik kilitli baza (df_family_ses / df_long_scored / df_family_scored
+  # → family_csv/long_csv format="file" hash capasi) bagimlidir; YENI VERI GIRMEZ;
+  # H1-H5 confirmatory cekirdek DEGISMEZ. §125 es_yas_supplement dosya-hedefi ile.
+  # CSV artefaktlari scripts/R/57-63_phase4_*_audit.R runner'lari tarafindan
+  # outputs/tables/phase4_*.csv altina yazilir (Faz III audit-runner deseni).
+  tar_target(es_yas_supplement_path,
+    "data/processed/SUPPLEMENT__es_yas_recovered.csv", format = "file"),
+  tar_target(es_yas_supplement, utils::read.csv(es_yas_supplement_path,
+    stringsAsFactors = FALSE)),
+  tar_target(
+    phase4_selection_batch_results,
+    run_phase4_selection_batch_pipeline(
+      df_family_ses = df_family_ses,
+      year_col = "anket_tarihi",
+      replication_year = 2023L,
+      ipw_trunc_q = 0.95
+    )
+  ),
+  tar_target(
+    phase4_maternal_mh_results,
+    run_phase4_maternal_mh_pipeline(
+      df_long_scored = df_long_scored,
+      df_family_ses = df_family_ses,
+      lca_class_range = 1:4,
+      seed = 20260708L
+    )
+  ),
+  tar_target(
+    phase4_directional_sibship_results,
+    run_phase4_directional_sibship_pipeline(
+      df_long_scored = df_long_scored,
+      df_family_scored = df_family_scored
+    )
+  ),
+  tar_target(
+    phase4_child_moderators_results,
+    run_phase4_child_moderators_pipeline(
+      df_long_scored = df_long_scored,
+      df_family_ses = df_family_ses
+    )
+  ),
+  tar_target(
+    phase4_onset_metabolic_results,
+    run_phase4_onset_metabolic_pipeline(
+      df_family_ses = df_family_ses
+    )
+  ),
+  tar_target(
+    phase4_family_health_results,
+    run_phase4_family_health_pipeline(
+      df_family_ses = df_family_ses
+    )
+  ),
+  tar_target(
+    phase4_derived_structural_results,
+    run_phase4_derived_structural_pipeline(
+      df_family_ses = df_family_ses,
+      supplement = es_yas_supplement
+    )
   )
 )

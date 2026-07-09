@@ -7474,6 +7474,12 @@
       "RemoteRef": "HEAD",
       "RemoteSha": "3fd0c8596a096a4b8f4a882350f400cc878440c4"
     },
+    "gnm": {
+      "Package": "gnm",
+      "Version": "1.1-5",
+      "Source": "Repository",
+      "Repository": "cran.r-universe.dev"
+    },
     "googledrive": {
       "Package": "googledrive",
       "Version": "2.1.2",
@@ -13881,6 +13887,12 @@
       "Maintainer": "Christophe Dervieux <cderv@posit.co>",
       "Repository": "CRAN"
     },
+    "qvcalc": {
+      "Package": "qvcalc",
+      "Version": "1.0.4",
+      "Source": "Repository",
+      "Repository": "cran.r-universe.dev"
+    },
     "ragg": {
       "Package": "ragg",
       "Version": "1.5.2",
@@ -14286,6 +14298,12 @@
       "Author": "Ben Bolker [aut, cre] (ORCID: <https://orcid.org/0000-0002-2127-0443>), Anna Ly [ctb] (ORCID: <https://orcid.org/0000-0002-0210-0342>)",
       "Maintainer": "Ben Bolker <bolker@mcmaster.ca>",
       "Repository": "CRAN"
+    },
+    "relimp": {
+      "Package": "relimp",
+      "Version": "1.0-5",
+      "Source": "Repository",
+      "Repository": "cran.r-universe.dev"
     },
     "rematch": {
       "Package": "rematch",

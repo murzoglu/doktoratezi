@@ -3,14 +3,33 @@ title: "Tip 1 Diyabet Tanılı Çocuklar, Sağlıklı Kardeşleri ve Annelerinde
 author: "Özlem Murzoğlu Kurt"
 ---
 
-{{< include chapters/01_giris.qmd >}}
+<!-- ÖN BÖLÜMLER (Marmara sırası §5): Tez Onayı → Beyan → Teşekkür → İçindekiler(oto) → Kısaltmalar → Şekiller(oto) → Tablolar(oto) → Özet → Summary -->
 
-{{< include chapters/02_yontem.qmd >}}
+{{< include chapters/00a_on_bolumler.qmd >}}
 
-{{< include chapters/03_bulgular.qmd >}}
+{{< include chapters/00b_kisaltmalar.qmd >}}
 
-{{< include chapters/04_tartisma.qmd >}}
+{{< include chapters/00c_ozet_summary.qmd >}}
 
-{{< include chapters/05_sonuc.qmd >}}
+<!-- GÖVDE BÖLÜMLERİ -->
 
-{{< include chapters/06_post_hoc_genisleme.qmd >}}
+{{< include chapters/01_giris_ve_amac.qmd >}}
+
+{{< include chapters/02_genel_bilgiler.qmd >}}
+
+{{< include chapters/03_gerec_ve_yontem.qmd >}}
+
+{{< include chapters/04_bulgular.qmd >}}
+
+{{< include chapters/05_tartisma_ve_sonuc.qmd >}}
+
+<!-- ARKA BÖLÜMLER (Marmara sırası): Kaynaklar → Özgeçmiş → Bilimsel Faaliyetler → Ekler -->
+
+# KAYNAKLAR {.unnumbered}
+
+::: {#refs}
+:::
+
+{{< include chapters/06_ozgecmis_faaliyetler.qmd >}}
+
+{{< include chapters/07_ekler.qmd >}}

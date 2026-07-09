@@ -1,0 +1,47 @@
+<!--
+ÖZET / SUMMARY — Marmara §3.2: bir sayfayı aşmaz, kaynak verilmez, girintisiz.
+Yapı: Amaç → Gereç ve Yöntem → Bulgular (yorumsuz) → Sonuç. Anahtar sözcük ≤ 5.
+Sayısal değerlerde ondalık ayırıcı virgüldür. Bulgular kesinleştikçe güncellenir.
+-->
+
+# ÖZET {.unnumbered}
+
+**Tezin Başlığı:** Tip 1 Diyabet Tanılı Çocuklar, Sağlıklı Kardeşleri ve Annelerinde Ebeveynlik Tutumu Algısı
+
+**Öğrenci:** Uzm. Dr. Özlem Murzoğlu Kurt
+
+**Danışman:** Prof. Dr. Eren Özek
+
+**Program:** Marmara Üniversitesi Sağlık Bilimleri Enstitüsü, Sosyal Pediatri Doktora Programı
+
+**Amaç:** Bu çalışmanın amacı, Tip 1 diyabet (T1DM) tanılı çocuğu olan aileler ile sağlıklı kontrol ailelerinde ebeveynlik tutumu, anne depresif belirtileri ve kardeş ilişkilerini; anne, T1DM tanılı çocuk ve sağlıklı kardeş bakış açılarını aynı aile içinde birlikte değerlendirerek incelemektir.
+
+**Gereç ve Yöntem:** Araştırma, aile düzeyinde eşleştirilmiş bir olgu–kontrol kesitsel tasarımını iç içe yerleşen bir nitel bileşenle birleştiren karma yöntemle yürütülmüştür. Nicel örneklem 241 aileden (482 çocuk gözlemi); nitel örneklem yedi aile triadından (21 bireysel görüşme) oluşmuştur. Çocuğun algıladığı ve annenin öz-bildirdiği ebeveynlik tutumu Kısaltılmış Ebeveyn Tutumları Ölçeği'nin çocuk ve ebeveyn formlarıyla, kardeş ilişkisi Kardeş İlişkileri Anketi'yle, anne depresif belirti düzeyi Beck Depresyon Envanteri'yle ölçülmüştür. Ebeveyn öz-bildirim formu ve Türkçe uyarlamaya özgü Karşılaştırma alt ölçeği için çalışma-içi psikometrik değerlendirme yapılmıştır. Nicel veriler çok düzeyli modeller, ordinal yapısal eşitlik modeli ve diadik tutarlılık çözümlemeleriyle; nitel veriler refleksif tematik analizle değerlendirilmiştir.
+
+**Bulgular:** Çocuk bildiriminde T1DM tanılı çocuklar kontrol grubuna göre yaklaşık 0,16 standart sapma daha yüksek reddetme algısı bildirmiş; anne öz-bildiriminde gruplar arası anlamlı fark bulunmamıştır. Anne depresif belirti düzeyi, ebeveynlik tutumu alt ölçekleriyle anlamlı ilişkiler göstermiştir. Anne ile çocuk algısı arasındaki diadik tutarlılık düşük düzeyde kalmıştır. Kardeş ilişkisi boyutlarında gruplar arası fark saptanmamıştır. Nitel bulgular dört makro temada toplanmıştır: sağlıklı kardeşin görünmeyen yükü, annenin tıbbi bakıcı rolüne kayması, çocuğun hastalığı içeriden deneyimi ve aynı evde üç farklı deneyim.
+
+**Sonuç:** Bulgular, T1DM'nin aile içinde role göre farklılaşan bir deneyim ürettiğini; anne öz-bildiriminin tek başına yeterli olmadığını, çocuk algısı ile anne–çocuk diadik tutarlılık ölçümlerinin klinik değerlendirmede tamamlayıcı olduğunu göstermektedir.
+
+**Anahtar Sözcükler:** Tip 1 diabetes mellitus, ebeveynlik tutumu, kardeş ilişkileri, maternal depresyon, karma yöntem
+
+{{< pagebreak >}}
+
+# SUMMARY {.unnumbered}
+
+**Title of Thesis:** Perception of Parenting Attitudes in Children with Type 1 Diabetes, Their Healthy Siblings and Mothers
+
+**Student:** Özlem Murzoğlu Kurt, MD
+
+**Supervisor:** Prof. Eren Özek, MD
+
+**Program:** Marmara University Institute of Health Sciences, Doctoral Programme in Social Pediatrics
+
+**Objective:** This study aimed to examine parenting attitudes, maternal depressive symptoms and sibling relationships in families of children with Type 1 diabetes mellitus (T1DM) compared with healthy control families, by jointly evaluating the perspectives of the mother, the child with T1DM and the healthy sibling within the same family.
+
+**Material and Method:** A mixed-methods design was used, combining a family-level matched case–control cross-sectional study with a nested qualitative component. The quantitative sample comprised 241 families (482 child observations) and the qualitative sample comprised seven family triads (21 individual interviews). Child-perceived and mother-reported parenting attitudes were measured with the child and parent forms of the Short-EMBU, sibling relationships with the Sibling Relationship Questionnaire, and maternal depressive symptoms with the Beck Depression Inventory. A within-study psychometric evaluation was conducted for the parent self-report form and the Comparison subscale specific to the Turkish adaptation. Quantitative data were analysed with multilevel models, ordinal structural equation modelling and dyadic concordance analyses; qualitative data were analysed with reflexive thematic analysis.
+
+**Results:** By child report, children with T1DM reported approximately 0,16 standard deviations higher perceived rejection than controls, whereas no significant group difference emerged in mother self-report. Maternal depressive symptom level was significantly associated with parenting subscales. Mother–child dyadic concordance remained low. No group differences were found across sibling relationship dimensions. Qualitative findings were organised into four macro-themes: the invisible burden of the healthy sibling, the mother's shift toward a medical-caregiver role, the child's experience of the illness from within, and three different experiences within the same home.
+
+**Conclusion:** The findings indicate that T1DM produces a role-differentiated family experience; maternal self-report alone is insufficient, and child perception together with mother–child dyadic concordance measures are complementary for clinical assessment.
+
+**Keywords:** Type 1 diabetes mellitus, parenting attitudes, sibling relationships, maternal depression, mixed methods

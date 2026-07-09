@@ -4,6 +4,13 @@
 papaja kullanımı, JARS-Mixed/STROBE checklist denetimi, Türkçe terim sözlüğü, kaynak
 gösterimi, bölüm yapısı (Yöntem, Bulgular, Tartışma, Sonuç).
 
+**2026 resmi kılavuz override:** Final tez yazımı, bölüm sırası, kapak/ön bölümler, özet/summary,
+tablo/şekil yerleşimi, ondalık virgül ve kaynak listesi biçiminde önce repo kökü
+`tez-yazim/README.md`, `tez-yazim/00_kaynak-kurallari/format-kontrati.md` ve
+`docs/tez-kilavuz/` altındaki Marmara Üniversitesi resmi dosyaları kullanılır. Bu dosyadaki
+APA 7, ondalık nokta veya farklı margin örnekleri final tez formatında resmi kılavuzun altında
+kalan tarihsel/teknik notlardır.
+
 **Kaynaklar:** APA Publication Manual (7th ed., 2020); JARS-Quant + JARS-Mixed; STROBE
 ve CONSORT-Mixed; Xie, Dervieux & Riederer (2021) *R Markdown Cookbook*; Aust & Barth (2024)
 papaja paketi; Türk Psikologlar Derneği yazım kılavuzu (TPD).

@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dm-niteliksel-toolkit"
+version = "0.1.0"
+description = "Local privacy-preserving toolkit for T1DM qualitative research workflows."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+dmnitel = "dm_niteliksel_toolkit.cli:main"

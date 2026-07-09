@@ -2,6 +2,8 @@
 
 Quarto + R doktora tezi: T1DM tanılı çocuklar, sağlıklı kardeşler ve annelerinde EMBU / Beck / KİA ölçek analizleri.
 
+**Tez yazımı zorunlu talimatname:** [`tez-yazim/00_kaynak-kurallari/talimatname-claude-code.md`](tez-yazim/00_kaynak-kurallari/talimatname-claude-code.md) — tez yazım, bölüm, format, referans veya karma sentez içeren her işte bağlayıcıdır.
+
 ## Komutlar
 
 ```bash
@@ -56,7 +58,24 @@ Rscript -e 'renv::restore()'
 - **Paralel ilerleyen:** Beck Depresyon ve KİA (Kardeş İlişkileri Anketi).
 - Yöntem kararlarının arşivi: [`docs/method_archive/`](docs/method_archive/).
 
+## Claude Code katmanı (zorunlu)
+
+- Deterministik zorlama devrededir: `.claude/settings.json` `permissions.deny`
+  (`data/raw|identified|cleaned|backup/**` tam kapalı; `data/processed` +
+  `outputs` satır-düzeyi formatları kapalı, `.lock`/veri-haritası metadata
+  okunabilir; `_targets/**` ve credential dosyaları kapalı) ve `.claude/hooks/`
+  beşlisi (SessionStart CONVENTIONS+talimatname enjeksiyonu, prompt sır
+  taraması, Bash deny-list, çıktı incelemesi, kaynaksız-sayı Stop kapısı).
+- Codex ikizi `.codex/hooks/`'tur; politika değişirse iki ağaç +
+  `tests/test_claude_hooks.py` + plugin regresyonu birlikte güncellenir.
+- Slash komutlar: `/tez-oturum` (oturum ritüeli), `/bolum-sertifika`
+  (Kapı 0–5 sertifikasyonu), `/referans-kapisi` (6-adımlı citation kapısı),
+  `/tez-dogrulama` (kapanış doğrulama paketi).
+
 ## Yazım & dil
 
 - Tez ana dili **Türkçe** (`lang: tr`); kod yorumları ve commit mesajları da Türkçe tercih edilir
+- Resmi tez yazım, format, bölüm sırası, özet/summary, tablo/şekil ve kaynakça kararları için
+  önce [`tez-yazim/README.md`](tez-yazim/README.md) ve [`docs/tez-kilavuz/`](docs/tez-kilavuz/)
+  kullanılır; bu kaynaklar eski stil notlarına üstündür.
 - Quarto exec defaults: `echo: false`, `warning: false`, `message: false`, `freeze: auto`

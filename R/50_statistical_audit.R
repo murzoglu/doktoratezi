@@ -147,7 +147,9 @@ audit_data_contract <- function(df_family, df_long) {
           message = "HbA1c is structurally missing outside the DM index stratum."
         )
       }
-      out_of_range_hba1c <- !is.na(hba1c) & (hba1c < 4 | hba1c > 15)
+      hba1c_min <- 4.5
+      hba1c_max <- 18.0
+      out_of_range_hba1c <- !is.na(hba1c) & (hba1c < hba1c_min | hba1c > hba1c_max)
       if (any(out_of_range_hba1c, na.rm = TRUE)) {
         findings[[length(findings) + 1L]] <- stat_audit_finding(
           domain = "data_contract",
@@ -157,8 +159,8 @@ audit_data_contract <- function(df_family, df_long) {
           row_index = which(out_of_range_hba1c)[1L],
           column = "hba1c",
           observed = hba1c[out_of_range_hba1c],
-          expected = "4 <= hba1c <= 15",
-          message = "HbA1c value is outside the pragmatic plausibility range."
+          expected = sprintf("%.1f <= hba1c <= %.1f", hba1c_min, hba1c_max),
+          message = "HbA1c value is outside the canonical clinical plausibility range."
         )
       }
     }
@@ -225,13 +227,13 @@ audit_result_table_consistency <- function(table, table_id = "result_table",
   }
 
   findings <- list()
-  estimate_col <- stat_audit_first_col(table, c("estimate", "est", "std_beta", "std.all"))
+  estimate_col <- stat_audit_first_col(table, c("estimate", "est", "tahmin", "std_beta", "std.all"))
   se_col <- stat_audit_first_col(table, c("std_error", "se", "SE", "Std..Error", "Std. Error"))
   stat_col <- stat_audit_first_col(table, c("statistic", "t", "z", "t.value", "t_value", "z_value"))
   p_col <- stat_audit_first_col(table, c("p_value", "pvalue", "p.value", "p"))
   df_col <- stat_audit_first_col(table, c("df_residual", "df", "df_error", "DF", "Df"))
-  ci_low_col <- stat_audit_first_col(table, c("ci_low", "ci.lower", "std_beta_ci_low", "lower.CL", "asymp.LCL"))
-  ci_high_col <- stat_audit_first_col(table, c("ci_high", "ci.upper", "std_beta_ci_high", "upper.CL", "asymp.UCL"))
+  ci_low_col <- stat_audit_first_col(table, c("ci_low", "ci_alt", "alt_ga", "ci.lower", "std_beta_ci_low", "lower.CL", "asymp.LCL"))
+  ci_high_col <- stat_audit_first_col(table, c("ci_high", "ci_ust", "ust_ga", "ci.upper", "std_beta_ci_high", "upper.CL", "asymp.UCL"))
   has_adjusted_p <- "adjust" %in% names(table) &&
     any(nzchar(as.character(table$adjust)) &
       !tolower(as.character(table$adjust)) %in% c("none", "raw", "unadjusted"), na.rm = TRUE)

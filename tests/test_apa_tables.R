@@ -121,4 +121,12 @@ stopifnot(all(manifest$exists))
 stopifnot(all(manifest$bytes > 0))
 stopifnot(all(file.exists(paths)))
 
+empty_path <- save_apa_table_csv(data.frame(), file.path(tmp_dir, "empty_result.csv"))
+empty_table <- utils::read.csv(empty_path, fileEncoding = "UTF-8")
+stopifnot(
+  nrow(empty_table) == 1L,
+  identical(names(empty_table), "note"),
+  grepl("empty result", empty_table$note[[1L]], fixed = TRUE)
+)
+
 cat("[PASS] APA tables Sprint A bundle\n")

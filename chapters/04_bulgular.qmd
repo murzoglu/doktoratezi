@@ -1,0 +1,582 @@
+# BULGULAR
+
+Bu bölüm, çalışmanın nicel (H1–H5 birincil hipotezler ile genişletilmiş keşifsel
+katmanlar) ve nitel (dört makro tema) kollarının bulgularını, amaç ve hipotez
+sırasına uygun biçimde, **yorumsuz** olarak sunar. Yorum, literatür karşılaştırması
+ve karma bütünleştirme dili *Tartışma ve Sonuç* bölümüne bırakılmıştır. Ondalık
+değerler virgülle yazılmış; tanımlayıcılarda bir, test istatistiği ve oranlarda iki,
+`p` değerlerinde üç ondalık basamak kullanılmıştır. Etki büyüklükleri %95 güven
+aralığı (GA) veya Bayesçi %95 güvenilir aralık ile birlikte verilmiştir. Birincil
+hipotez ailelerinde (H1–H4) çoklu karşılaştırma için Benjamini-Hochberg yanlış
+keşif oranı (FDR) düzeltmesi uygulanmıştır. Sayısal bulguların tümü repo aggregate
+çıktılarına (`outputs/tables/apa_t*.csv`) izlenebilir; satır düzeyi veri veya
+kimliklenebilir bilgi raporlanmamıştır.
+
+<!--
+BÖLÜM MİMARİSİ (dedup / kaynak notu):
+- Katsayı/parametre tahminleri tek gösterimle raporlanır: "APA Tablo Seti"
+  (apa_t01–t22) kanonik tablo kaydıdır. Bu nedenle katsayı-forest ve yol
+  şekilleri (eski fig-07/08/09/10/11/24/25) çıkarılmış; anlatı, tabloya numarayla
+  atıf yapar. Görsel-özgü bilgi taşıyan şekiller (dağılım, yüzey, eğri, ağ, denge)
+  korunmuştur (Marmara §1.6/1.7 "aynı bulgu hem tablo hem şekil değil").
+- Nicel sayı kaynağı: docs/CLINICAL-STUDY-REPORT-FINAL.md §9–14.
+- Nitel kaynak: docs/niteliksel/qualitative_canonical_results_report.md §7–10.
+- Kural otoritesi: tez-yazim/00_kaynak-kurallari/marmara-tez-formati-talimatnamesi.md
+  (§7 nitel, §8 istatistik, §12 sayısal biçim), tez-yazim/03_bolum-hazirlik/04_bulgular.md.
+-->
+
+```{r}
+#| label: apa-table-helpers
+#| include: false
+apa_read_table <- function(id) {
+  path <- file.path("outputs", "tables", paste0("apa_", id, ".csv"))
+  utils::read.csv(path, check.names = FALSE, fileEncoding = "UTF-8")
+}
+
+# Ondalık ayırıcıyı Türkçe biçime çevirir (Marmara §1.4 / §12: ondalık virgül,
+# virgülden önce daima sıfır). İki adımda: (1) rakam-arası nokta -> virgül
+# (0.16 -> 0,16); (2) baştaki/sınırdaki ondalık nokta -> "0," (.216 -> 0,216;
+# <.001 -> <0,001). Rakamla başlamayan diğer noktalar (.gov vb.) korunur.
+apa_tr_decimal <- function(x) {
+  x <- as.character(x)
+  x <- gsub("(?<=[0-9])\\.(?=[0-9])", ",", x, perl = TRUE)
+  gsub("(?<![0-9])\\.(?=[0-9])", "0,", x, perl = TRUE)
+}
+
+apa_render_table <- function(id) {
+  table <- apa_read_table(id)
+  table[] <- lapply(table, apa_tr_decimal)
+  if (requireNamespace("gt", quietly = TRUE)) {
+    gt::gt(table) |>
+      gt::tab_options(
+        table.font.size = gt::px(10),
+        data_row.padding = gt::px(3),
+        heading.align = "left"
+      )
+  } else {
+    knitr::kable(table)
+  }
+}
+```
+
+## Örneklem ve Tanımlayıcı Bulgular
+
+Çalışmaya 241 aile dâhil edilmiştir: 120 diyabet (DM) ailesi ve 121 kontrol ailesi.
+Her aileden anne, indeks çocuk ve sağlıklı kardeş katılımıyla uzun-format analiz
+tabanına 482 çocuk satırı yazılmıştır. Dört çocuk-rolü hücresi dengelidir:
+DM-indeks 120, DM-kardeş 120, kontrol-indeks 121, kontrol-kardeş 121. DM grubunda
+indeks çocuk Tip 1 diyabet tanısı taşımakta, kardeş sağlıklı biyolojik kardeştir;
+kontrol grubunda hem indeks hem kardeş sağlıklıdır. Taranan ve reddeden ailelerin
+saha akışı kanonik analiz kilidinde izlenebilir olmadığından, doğrulanabilir analiz
+seti akışı raporlanmış, tarama öncesi akış raporlama sınırlılığı olarak belirtilmiştir.
+
+Tablo 1 aile düzeyi sosyodemografik, anne mental sağlık, klinik ve psikolojik
+göstergeleri DM ve kontrol grupları arasında karşılaştırmakta; dengesizlik
+standardize ortalama farkı (SMD) ile Austin (2009) eşiklerine göre denetlenmiştir
+(|SMD| < 0,10 iyi denge; 0,10–0,25 sınırda; 0,25–0,50 dengesiz; ≥ 0,50 ciddi
+dengesizlik). Ham gözlemde dört değişkende dengesizlik saptanmıştır: anne
+antidepresan kullanımı (DM %29, kontrol %9; SMD = 0,53), anne eğitim düzeyi
+(SMD = 0,29), eş eğitim düzeyi (SMD = 0,32) ve aile mesleki indeksi (ISEI-08,
+SMD = 0,23). Anne yaşı sınırda dengesizdir (medyan DM 38,5 yıl, kontrol 37,3 yıl;
+SMD = 0,21). Üç sosyoekonomik bileşen latent SES kompozitinde dengelenmiştir
+(SMD = 0,03). Nedensel yönlü asiklik graf temelli birincil ayarlama seti (latent
+SES, kardeş yaş farkı, aile çocuk sayısı) ham gözlemde maksimum |SMD| = 0,220
+düzeyinden, stabilize ters-olasılık ağırlıklandırması (IPTW) sonrası 0,004 düzeyine
+indirilmiştir.
+
+DM klinik profili yalnız DM grubunda raporlanmıştır: HbA1c verisi 39/120 çocukta
+mevcuttur (%32,5); HbA1c medyanı %9,0 (ortalama %8,97; en düşük–en yüksek
+%5,8–%15,1). Tanı yaşı medyanı 7,8 yıl (çeyrekler arası 5,7–9,3), DM süresi medyanı
+3,9 yıl (çeyrekler arası 2,0–6,2). Tanı yaşı üç strataya ayrıldığında erken (< 5 yaş)
+24, okul (5–10 yaş) 69 ve ergen (≥ 10 yaş) 27 aile yer almaktadır. Eksik veri profili
+düşüktür; en yüksek eksiklik ISEI-08 mesleki indeksindedir (%9,1). Kontrol grubunda
+HbA1c ve DM-spesifik değişkenler tasarım kaynaklı yapısal eksikliktir ve imputasyona
+alınmamıştır. Ayrıntılı sosyodemografik ve klinik betimleyiciler Tablo 1'de (`apa_t01`),
+kovaryat dengesi Tablo 2'de (`apa_t02`) ve eksik veri özeti Tablo 3'te (`apa_t03`)
+sunulmuştur.
+
+![Analitik örneklem akış diyagramı. Kilitlenmiş kanonik veri tabanından aile düzeyi analiz tabanına, DM ve kontrol gruplarına ve DM klinik alt-analiz katmanına geçiş gösterilmiştir.](docs/assets/figures/carbon/primary/fig-01-strobe-flow.svg){#fig-strobe-flow width="82%" fig-align="center"}
+
+![Nedensel yönlü asiklik graf ve toplam-etki ayarlama stratejisi. Latent SES, kardeş yaş farkı ve aile çocuk sayısı baseline/tasarım karıştırıcıları; Beck ve antidepresan kullanımı aracı/duyarlılık düğümleridir.](docs/assets/figures/carbon/primary/fig-02-causal-dag.svg){#fig-causal-dag width="94%" fig-align="center"}
+
+![Eğilim skoru ortak destek dağılımı. DM ve kontrol ailelerinin eğilim dağılımları ile ortak destek aralığı gösterilmiştir.](docs/assets/figures/carbon/primary/fig-04-propensity-overlap.svg){#fig-propensity-overlap width="84%" fig-align="center"}
+
+![Latent SES kompozit doğrulama korelasyon matrisi. Latent SES göstergesinin eğitim, mesleki statü ve materyal bileşenlerle korelasyon yapısı gösterilmiştir.](docs/assets/figures/carbon/primary/fig-05-ses-correlation-heatmap.svg){#fig-ses-correlation width="74%" fig-align="center"}
+
+## Ölçek ve Veri Kalitesi (Psikometrik Bulgular)
+
+EMBU-P reddetme alt ölçeğinde iç tutarlılık düşüktür (Cronbach α = 0,45; %95 GA
+[0,34; 0,55]; McDonald ω = 0,48; madde-arası ortalama r = 0,10; n = 241); EMBU-C
+reddetme alt ölçeğinde daha yüksektir (α = 0,72; %95 GA [0,68; 0,75]; ω = 0,75;
+r = 0,27; n = 479). EMBU-P reddetme alt ölçeğinin 8 maddesinden 7'sinde %80'in
+üzerinde taban etkisi gözlenmiştir (madde düzeyi taban aralığı %62,2–%95,9);
+EMBU-C reddetme alt ölçeğinde 8 maddenin 3'ünde %80'in üzerinde taban etkisi
+bulunmuştur (%39,8–%84,4).
+
+Dört-faktör çözümü EMBU ölçeklerinin teorik yapısını temsil etmiş; Hu ve Bentler'in
+(1999) birleşik kriteri (CFI ≥ 0,95 ve SRMR ≤ 0,08) her iki form için de
+karşılanmamış, dört-faktör çözümü "kabul edilebilir ancak sınırlı" yapısal kanıt
+olarak değerlendirilmiştir. Ölçüm değişmezliği taramasında configural ve metric
+düzeyler büyük ölçüde sağlanmış (Cheung ve Rensvold, 2002; ΔCFI < 0,010,
+ΔRMSEA < 0,015), scalar düzey sınırda kabul edilmiştir. EMBU-P/C alt ölçekleri,
+Beck total ve SRQ alt ölçekleri arasında 14 paralel korelasyonluk kriter geçerliği
+testi FDR düzeltmesiyle uygulanmıştır. Genel psikometrik karar, ölçeklerin bu Türk
+T1DM örnekleminde kullanılabilir ancak sınırlı geçerlik kanıtı sergilediği; reddetme
+alt ölçeğinin görece zayıf profili nedeniyle H1 reddetme bulgusunun madde-yanıt
+teorisi ve Bayesçi hatla çapraz doğrulandığı yönündedir. Güvenirlik ve faktör
+göstergeleri Tablo 5'te (`apa_t05`) özetlenmiştir.
+
+## Birincil Hipotez Bulguları (H1–H5)
+
+### H1 — Çocuk Algısı (EMBU-C)
+
+Dört EMBU-C alt ölçeği için aile düzeyi rastgele kesişim içeren çok-düzeyli
+kovaryans analizi 482 çocuk satırı üzerinde tahmin edilmiştir (sabit etkiler: dört
+düzeyli rol, çocuk yaşı, çocuk cinsiyeti, latent SES, kardeş yaş farkı, aile çocuk
+sayısı). Reddetme alt ölçeğinde DM çocukları kontrol referans grubuna kıyasla
+β = 0,16 SD (%95 GA [0,05; 0,26]) düzeyinde daha yüksek reddetme algısı bildirmiştir
+(FDR p < 0,010). Sıcaklık, aşırı koruma ve karşılaştırma alt ölçeklerinde DM × kontrol
+farkı için kanıt yetersizdir (FDR p > 0,150). Samejima graded response modeli latent
+θ skorları üzerinden reddetme farkını β = 0,14 SD (%95 GA [0,04; 0,25]) düzeyinde
+doğrulamış; aile içi sınıf-içi korelasyon yaklaşık 0,14 düzeyindedir. Rol × yaş ×
+cinsiyet üçlü etkileşimi FDR p > 0,200 düzeyinde kalmıştır. Bayesçi paralel hatta
+reddetme için posterior medyan β = 0,16 SD (%95 güvenilir aralık [0,05; 0,26];
+yön olasılığı pd = 0,999; BF₁₀ = 8,12), sıcaklık için β = 0,09 (%95 GA [−0,05; 0,22];
+BF₁₀ = 0,29) bulunmuştur. Sabit etki tahminleri Tablo 6'da (`apa_t06`), Bayesçi
+paralel katman Tablo 7'de (`apa_t07`) sunulmuştur.
+
+### H2 — Kardeş İlişkisi (KİA / SRQ)
+
+Kardeş İlişkileri Anketi (KİA / SRQ) dört alt ölçeği üç paralel strateji ile
+incelenmiştir. Aile-ortalama Welch testlerinde sıcaklık, statü, çatışma ve rekabet
+alt ölçeklerinin tamamında etki büyüklüğü d < 0,20 düzeyinde kalmıştır. Aktör-partner
+karşılıklı bağımlılık modelinde (APIM) grup, rol ve grup × rol etkileri için
+FDR-düzeltilmiş p > 0,350 düzeyindedir. Olsen-Kenny ayırt edilebilir düad doğrulayıcı
+faktör analizi kavga-temelli madde seti üzerinde uyum sağlamış; indeks–kardeş latent
+korelasyonu r = 0,27 olarak raporlanmıştır. Aynı cinsiyet × yaş farkı moderasyonu
+anlamlı düzeye ulaşmamıştır. TOST eşdeğerlik testi ön-kayıtlı planda yer almadığından
+uygulanmamış; dört alt ölçek için bulgu "farkın varlığına ilişkin kanıt yetersizdir"
+biçiminde raporlanmıştır (Lakens, 2017). Aile-ortalama testleri Tablo 8'de (`apa_t08`),
+APIM sabit etkileri Tablo 9'da (`apa_t09`) sunulmuştur.
+
+### H3 — Anne Öz-Bildirimi (EMBU-P)
+
+Dört EMBU-P alt ölçeği için kovaryans analizi 241 anne üzerinde tahmin edilmiştir.
+Ham (standardize olmayan) grup katsayıları sıcaklık β = 0,06 (%95 GA [−0,07; 0,20]),
+aşırı koruma β = 0,06 (%95 GA [−0,12; 0,24]), reddetme β = −0,05 (%95 GA [−0,12; 0,02])
+ve karşılaştırma β = 0,06 (%95 GA [−0,08; 0,20]) düzeyindedir; dört alt ölçeğin
+tamamında FDR-düzeltilmiş p > 0,500 ve standardize etki |β| < 0,17 (en büyük mutlak
+değer reddetmede, −0,16). Stabilize trimlenmiş IPTW ve heteroskedastisite-tutarlı
+standart hata ile tekrarlanan modelde katsayılar −0,04 ile 0,05 arasında,
+FDR p > 0,550 düzeyinde kalmıştır. Antidepresan kullanan (n = 46) ve kullanmayan
+(n = 195) annelerde stratifiye modeller yön ve büyüklük olarak bütün örneklemden
+farklılaşmamıştır. Bayesçi paralel hatta BF₁₀ değerleri 0,17–0,25 aralığında ("orta
+düzey H0"), ROPE içi pay sıcaklıkta %68, aşırı korumada %61, reddetmede %92 ve
+karşılaştırmada %69 düzeyindedir. Önceden tanımlı en küçük ilgilenilen etki büyüklüğü
+(±0,30 SD) altında TOST kararları aşırı koruma ve karşılaştırma için "Equivalent",
+sıcaklık ve reddetme için "Indeterminate"tir. Birincil ve IPTW grup etkileri
+Tablo 10'da (`apa_t10`), duyarlılık ve Bayesçi/TOST katmanı Tablo 11'de (`apa_t11`)
+sunulmuştur.
+
+### H4 — Anne Depresyonu → EMBU-P Latent Yapısal Eşitlik Modeli
+
+Elli ordinal madde (21 Beck + 29 EMBU-P) üzerinde WLSMV kestirimcisiyle yapısal
+eşitlik modeli yakınsamıştır (CFI = 0,887; TLI = 0,890; RMSEA = 0,027; SRMR = 0,127).
+Dört yapısal yoldan üçü FDR-düzeltilmiş olarak anlamlıdır: Beck → sıcaklık
+β = −0,28 (%95 GA [−0,45; −0,15]; FDR p < 0,001), Beck → reddetme β = 0,33
+(%95 GA [0,19; 0,53]; FDR p < 0,001) ve Beck → karşılaştırma β = 0,28
+(%95 GA [0,14; 0,49]; FDR p < 0,001). Beck → aşırı koruma yolu pozitif yöndedir
+ancak anlamlı değildir (β = 0,08; FDR p = 0,220). Reduced ordinal madde setiyle
+(12 EMBU-P + 6 Beck) DM × kontrol çok-grup değişmezlik taraması configural ve metric
+düzeylerde yakınsamış (ΔCFI < 0,010, ΔRMSEA < 0,015); scalar düzeyde grup-spesifik
+boş kategoriler nedeniyle açık madde birleştirmesi uygulanmıştır. Standardize yollar
+Tablo 12'de (`apa_t12`) sunulmuştur.
+
+### H5 — Diadik Tutarlılık
+
+H5, anne EMBU-P puanı ile aynı ailedeki indeks çocuk EMBU-C puanı arasındaki uyum
+için beş paralel strateji ile incelenmiştir.
+
+**Strateji 1 (ICC + Bland-Altman).** Anne ↔ indeks çocuk düadında dört alt ölçek
+için sınıf-içi korelasyon (ICC) değerleri kontrol grubunda 0,03–0,20, DM grubunda
+−0,01–0,08 ve havuzlanmış örneklemde 0,00–0,11 aralığındadır; bu düzey Cicchetti
+(1994) eşiklerinde "fakir-zayıf" uyum bandına denk gelmektedir. Alt ölçek bazında
+manifest ICC dört boyutun tamamında kontrol > DM yönündedir (sıcaklık kontrol 0,145 /
+DM 0,027; aşırı koruma kontrol 0,204 / DM 0,009; reddetme kontrol 0,029 / DM −0,006;
+karşılaştırma kontrol 0,103 / DM 0,084). Bland-Altman uyum sınırlarında ortalama fark
+sıfıra yakın, limit aralığı geniştir.
+
+**Strateji 2 (Edwards-Parry yanıt yüzeyi analizi).** Yalnız sıcaklık ve reddetme alt
+ölçeklerinde tahmin edilmiştir. Reddetme tutarsızlık ekseninde (a4) havuzlanmış
+−13,96 (p = 0,012), kontrol −15,93 (p = 0,064) ve DM −7,07 (p = 0,430) değerleri
+raporlanmıştır; analiz tekil bir grup uyum skoru üretmemektedir.
+
+**Strateji 3 (ortak yazgı modeli).** Reddetme alt ölçeği modeli yakınsamamıştır
+(uygunsuz çözüm) ve yorumlanmamıştır. Yakınsayan üç alt ölçekte ortak ebeveynlik
+latentinin DM etkisi sıcaklıkta +0,03 (p = 0,490), aşırı korumada +0,19 (p = 0,044)
+ve karşılaştırmada +0,10 (p = 0,260) düzeyindedir.
+
+**Strateji 4 (Olsen-Kenny latent düad doğrulayıcı faktör analizi).** Reddetme alt
+ölçeği için latent korelasyon havuzlanmış r = 0,19, kontrol r = 0,17 ve DM r = 0,29
+düzeyindedir (DM − kontrol farkı 0,12 birim). DM-grubu modelinin uyumu zayıftır
+(RMSEA = 0,120; SRMR = 0,254; CFI = 0,984; χ²(15) = 40,81; p < 0,001).
+
+**Strateji 5 (Kenny k-katsayısı).** Yalnız havuzlanmış örneklemde tahmin edilmiş
+k-katsayıları sıcaklık 1,01 (%95 GA [−7,03; 22,53]), aşırı koruma −0,16
+([−0,95; 1,16]), reddetme −0,19 ([−0,82; 1,68]) ve karşılaştırma 0,08 ([−3,20; 11,86])
+düzeyinde, sıfırı içeren geniş aralıklardadır.
+
+Klinik tutarsızlık örüntülerinin oranları (eşik > 0,5 SD): anne sıcak / çocuk düşük
+kontrol %37, DM %33; anne reddetme düşük / çocuk reddetme yüksek kontrol %17, DM %25;
+indeks ↔ kardeş ayrımcı muamele kontrol %45, DM %48. Ön-kayıtlı "en az üç stratejinin
+yön düzeyinde uyuşması" triangülasyon şartı karşılanmamıştır: baskın ve çok-alt-ölçekli
+manifest kanıt (Strateji 1) dört boyutun tamamında kontrol > DM yönündeyken (0/4
+DM > kontrol), DM > kontrol yönündeki tek sinyal Strateji 4'te (yalnız reddetme, zayıf
+model uyumu) gözlenmektedir; Strateji 2 ve 5 gruba ayrılmış bir yön oyu üretmemekte,
+Strateji 3'te reddetme yakınsamamaktadır. Diadik tutarlılık stratejilerinin özet
+çıktıları Tablo 13'te (`apa_t13`) sunulmuştur.
+
+![H5 Bland-Altman tutarlılık haritası. Paneller dört EMBU alt ölçeği ile üç düad tipini, renkler DM ve kontrol gruplarını göstermektedir.](docs/assets/figures/carbon/primary/fig-12-h5-ba-grid.svg){#fig-h5-bland-altman width="96%" fig-align="center"}
+
+![H5 yanıt yüzeyi analizi yüzeyleri. Noktalı çizgi anne ve indeks çocuk algısının eşit olduğu uyum hattını göstermektedir.](docs/assets/figures/carbon/primary/fig-13-h5-rsa-surface.svg){#fig-h5-rsa-surface width="96%" fig-align="center"}
+
+## [KEŞİFSEL] Genişletilmiş Analiz Katmanları
+
+Aşağıdaki bulgular ön-kayıtlı planın ikincil amaçlar bölümünde yer alan keşifsel
+katmanlardır; doğrulayıcı sonuç olarak yorumlanmaz ve dış-validasyon olmadan klinik
+öneri düzeyine çıkarılmaz.
+
+**[KEŞİFSEL] Aracılık.** Beck → EMBU-P reddetme → EMBU-C reddetme zinciri üç katmanda
+test edilmiştir. Tek-aracı modelinde (BCa bootstrap, n = 1000) a-yolu β = 0,0056
+(p = 0,025) anlamlı, b-yolu β = 0,091 (p = 0,140) anlamsız, dolaylı etki β = 0,0005
+(%95 GA [−0,0001; 0,0020]) sıfırı içermektedir. Çok-düzeyli modelde a-yolu anlamlı
+(β = 0,0055; p = 0,018), dolaylı etki anlamsızdır. Koşullu süreç modelinde (Hayes
+Model 14) grup moderasyonu (a3 = 0,046; p = 0,220) ve moderate aracılık indeksi
+(IMM = 0,004; p = 0,370) anlamlı değildir. Aracılık sonuçları Tablo 14'te (`apa_t14`)
+sunulmuştur.
+
+**[KEŞİFSEL] Latent profil ve sınıf analizi.** Beck total, dört EMBU-P alt ölçeği ve
+latent SES üzerinde tidyLPA ile 1–5 profil karşılaştırmasında BIC en uygun modeli
+3-profil çözümü olarak seçmiştir (BIC = 3951; BLRT p = 0,010; entropy = 0,81).
+Kategorik göstergeli poLCA analizinde BIC 2-sınıf çözümünü desteklemiştir
+(BIC = 2640,3; sınıf oranları %63,4 ve %36,6; entropy = 0,60); modal sınıf
+regresyonunda DM grubu sınıf üyeliğini anlamlı değiştirmemiştir (OR = 1,01;
+%95 GA [0,59; 1,76]; p = 0,958). Bifaktör S-1 modeli sınır altı uyumla "öneri-düzeyi
+keşifsel" işaretlenmiştir. Model seçim tanıları Tablo 15'te (`apa_t15`) sunulmuştur.
+
+![[KEŞİFSEL] Latent profil analizi model seçim tanıları. BIC, entropy ve BLRT p değerleri profil sayısına göre gösterilmiştir; BIC minimumu 3-profil çözümünü işaret etmektedir.](docs/assets/figures/carbon/primary/fig-15-lpa-fit-indices.svg){#fig-lpa-fit-indices width="78%" fig-align="center"}
+
+**[KEŞİFSEL] Ağ analizi.** Dokuz değişken (dört EMBU-P + dört SRQ alt ölçeği + Beck
+total) üzerinde EBIC-LASSO Gauss grafik modeli (γ = 0,5) tahmin edilmiştir. Havuzlanmış
+ağda (n = 238) en yüksek strength merkeziyeti SRQ sıcaklık (0,58), EMBU-P karşılaştırma
+(0,51) ve SRQ çatışma (0,49) düğümlerindedir. Ağ Karşılaştırma Testi (200 permütasyon)
+DM (n = 117) ve kontrol (n = 121) ağları arasında global strength invaryans p = 0,860
+ve maksimum kenar farkı p = 0,770 değerlerini vermiştir. Beck madde-düzeyi belirti ağı
+21 madde üzerinde tahmin edilmiştir. Koşullu bağımlılık nedensellik olarak
+yorumlanmamıştır. Ağ merkeziyet ve karşılaştırma sonuçları Tablo 16'da (`apa_t16`)
+sunulmuştur.
+
+![[KEŞİFSEL] EBIC-LASSO Gauss grafik modeli. Kenar kalınlığı mutlak kısmi korelasyonu, düğüm boyutu strength merkeziyetini göstermektedir.](docs/assets/figures/carbon/primary/fig-16-network-graph.svg){#fig-network-graph width="82%" fig-align="center"}
+
+![[KEŞİFSEL] Ağ Karşılaştırma Testi sonuçları. Ağ invaryans ve global strength p değerleri DM ve kontrol ağlarının anlamlı düzeyde ayrışmadığını göstermektedir.](docs/assets/figures/carbon/primary/fig-17-network-nct.svg){#fig-network-nct width="72%" fig-align="center"}
+
+**[KEŞİFSEL] Klinik fayda.** Yüksek-riskli anne (Beck total ≥ 17) sınıflandırması için
+temel model (DM grup üyeliği + anne yaşı + latent SES + aile çocuk sayısı) ve
+genişletilmiş model (temel + dört EMBU-P alt ölçeği) karşılaştırılmıştır. İç-validasyonlu
+optimizm-düzeltilmiş bootstrap (B = 1000) ile temel modelde AUC = 0,58
+(%95 GA [0,50; 0,67]; optimizm-düzeltilmiş 0,61), genişletilmiş modelde AUC = 0,70
+(%95 GA [0,63; 0,78]; optimizm-düzeltilmiş 0,73) bulunmuştur. Youden indeksiyle optimal
+eşik 0,22; sensitivite 0,75; spesifite 0,61; PPV 0,42; NPV 0,87 düzeyindedir. Karar
+eğrisi analizi 0,10–0,40 eşik aralığında genişletilmiş modelin net fayda sağladığını,
+kalibrasyon eğrisi kabul edilebilir profil (intercept ≈ 0, slope ≈ 1) göstermiştir.
+Model dış-validasyon bekleyen prototip olarak konumlandırılmıştır. Performans
+göstergeleri Tablo 17'de (`apa_t17`) sunulmuştur.
+
+![[KEŞİFSEL] Yüksek Beck riski sınıflandırması için ROC eğrisi. Temel model demografi/SES, geniş model EMBU-P alt ölçeklerini içermektedir.](docs/assets/figures/carbon/primary/fig-18-clinical-roc.svg){#fig-clinical-roc width="78%" fig-align="center"}
+
+![[KEŞİFSEL] Klinik karar eğrisi analizi. Geniş risk skoru, "herkesi tara" ve "kimseyi tarama" stratejileriyle eşik olasılığına göre net fayda düzeyinde karşılaştırılmıştır.](docs/assets/figures/carbon/primary/fig-19-clinical-dca.svg){#fig-clinical-dca width="86%" fig-align="center"}
+
+![[KEŞİFSEL] Geniş klinik risk skoru kalibrasyon grafiği. Kesikli diagonal ideal kalibrasyonu, noktalar tahmin edilen ve gözlenen risk binlerini göstermektedir.](docs/assets/figures/carbon/primary/fig-20-clinical-calibration.svg){#fig-clinical-calibration width="78%" fig-align="center"}
+
+![[KEŞİFSEL] Klinik model tamamlayıcıları. CART çapraz-doğrulanmış hata profili ve Random Forest değişken önemleri birlikte gösterilmiştir.](docs/assets/figures/carbon/primary/fig-21-clinical-cart-rf.svg){#fig-clinical-cart-rf width="82%" fig-align="center"}
+
+**[KEŞİFSEL] DM klinik alt-analizler.** DM grubu içinde HbA1c × ebeveynlik etkileşimi
+(n = 39; imputasyon uygulanmamıştır) dört EMBU-P alt ölçeğinde p > 0,400 ve R² < 0,25
+düzeyinde kalmıştır. DM süresi cubic spline ile lineer regresyon karşılaştırması dört
+outcome için "lineer yeterli" sonucunu vermiştir. Tanı yaşı üç strata analizinde hiçbir
+outcome F testi anlamlılığına ulaşmamış (en büyük F = 2,05; p = 0,130); η²-partial < 0,04
+düzeyindedir. n = 39 düzeyindeki HbA1c örneklemi küçük-orta etki büyüklükleri için
+yetersiz güçtedir (power < 0,50). DM klinik alt-analizleri Tablo 18'de (`apa_t18`)
+sunulmuştur.
+
+## Robustluk ve Bayesçi Doğrulama
+
+**Çoklu evren (specification curve).** 120 spesifikasyon (dört EMBU-P alt ölçeği × beş
+kovaryat seti × iki tahmin yöntemi × üç alt-örneklem) üretilmiş; spesifikasyonların
+%0'ında p < 0,05 elde edilmiştir. Reddetme alt ölçeğinde medyan Cohen d = −0,13
+(%5–%95 spec aralığı [−0,185; −0,058]; tüm spesifikasyonlar negatif); sıcaklık 0,13,
+aşırı koruma 0,10 ve karşılaştırma 0,09 medyan d ile pozitif yöndedir. Permütasyon
+temelli test (n = 5000) anlamlılık üretmemiştir.
+
+**Eşdeğerlik (TOST).** ±0,30 SD altında aşırı koruma ve karşılaştırma "Equivalent",
+sıcaklık ve reddetme "Indeterminate"tir.
+
+**Ölçülmemiş karıştırıcı dayanıklılığı.** H3 birincil tahminleri için Robustness Value
+RV_q = 0,04–0,08 ve E-değeri 1,36–1,59 aralığında raporlanmıştır (zayıf-orta
+dayanıklılık). **Negatif kontrol ve falsifikasyon.** Sekiz sahte yordayıcı-outcome
+eşlemesinden 1'i şüpheli çıkmış (çoklu test yanlış-pozitif beklentisi ≈ %5 içinde);
+iki falsifikasyon senaryosu (DM süresi < 1 yıl; HbA1c ≤ 7,5) attenuation göstermiş,
+birincil etkinin kalitatif yönünü değiştirmemiştir. Robustluk ve duyarlılık özetleri
+Tablo 19 (`apa_t19`) ve Tablo 20'de (`apa_t20`) sunulmuştur.
+
+![Çoklu evren spesifikasyon eğrisi. Her panelde spesifikasyonlar Cohen d büyüklüğüne göre sıralanmış; nominal anlamlılık renkle gösterilmiştir.](docs/assets/figures/carbon/primary/fig-22-specification-curve.svg){#fig-specification-curve width="90%" fig-align="center"}
+
+![Ölçülmemiş karıştırıcı duyarlılık konturu. Noktalar EMBU-P alt ölçekleri için tedavi kısmi R² ve RV_q kesişimini, arka plan ortak karıştırıcı gücü konturlarını göstermektedir.](docs/assets/figures/carbon/primary/fig-23-sensemakr-contour.svg){#fig-sensemakr-contour width="80%" fig-align="center"}
+
+**Bayesçi paralel hat.** Pinquart (2013) meta-analizinden türetilen zayıf bilgi verici
+prior altında H1 iki ve H3 dört alt ölçeği için brms çok-düzeyli modelleri tahmin
+edilmiştir. H1 reddetme için BF₁₀ = 8,12 ("orta düzey H1 lehine"; posterior medyan
+β = 0,16; pd = 0,999; ROPE içi pay %12,7), H1 sıcaklık için BF₁₀ = 0,29. H3 dört alt
+ölçeğinde BF₁₀ 0,17–0,25 aralığında; reddetmede ROPE içi pay %92 ile "orta-güçlü H0
+lehine"dir. MCMC tanıları: H3 için R̂ ≤ 1,01, H1 için R̂ 1,012–1,013; tüm modellerde
+divergent transition = 0; Pareto-k < 0,7; ESS > 1000. Bayesçi çift raporlama ve tanılar
+Tablo 21'de (`apa_t21`) sunulmuştur.
+
+## APA Tablo Seti
+
+Bu alt bölüm, KISIM XIII kapsamında üretilen 22 aggregate APA tablosunu teze bağlar.
+Tablolar `outputs/tables/apa_t*.csv` dosyalarından okunur; ondalık ayırıcı Türkçe
+biçime (virgül) çevrilerek gösterilir. Tablolar satır düzeyi veya kimliklenebilir bilgi
+içermez.
+
+```{r}
+#| label: tbl-apa-sample-characteristics
+#| tbl-cap: "Örneklem özellikleri."
+apa_render_table("t01_sample_characteristics")
+```
+
+```{r}
+#| label: tbl-apa-covariate-balance
+#| tbl-cap: "Kovaryat dengesi."
+apa_render_table("t02_covariate_balance")
+```
+
+```{r}
+#| label: tbl-apa-missing-data
+#| tbl-cap: "Eksik veri özeti."
+apa_render_table("t03_missing_data")
+```
+
+```{r}
+#| label: tbl-apa-propensity-model
+#| tbl-cap: "Eğilim skoru modeli ve ortak destek."
+apa_render_table("t04_propensity_model")
+```
+
+```{r}
+#| label: tbl-apa-ses-composite
+#| tbl-cap: "SES kompozit bileşenleri."
+apa_render_table("t05_ses_composite")
+```
+
+```{r}
+#| label: tbl-apa-h1-primary
+#| tbl-cap: "H1 çok-düzeyli kovaryans analizi sabit etkileri."
+apa_render_table("t06_h1_primary")
+```
+
+```{r}
+#| label: tbl-apa-h1-bayesian
+#| tbl-cap: "H1 Bayesçi çift raporlama."
+apa_render_table("t07_h1_bayesian")
+```
+
+```{r}
+#| label: tbl-apa-h2-family-mean
+#| tbl-cap: "H2 aile-ortalama Welch testleri."
+apa_render_table("t08_h2_family_mean")
+```
+
+```{r}
+#| label: tbl-apa-h2-apim
+#| tbl-cap: "H2 APIM sabit etkileri."
+apa_render_table("t09_h2_apim")
+```
+
+```{r}
+#| label: tbl-apa-h3-primary-iptw
+#| tbl-cap: "H3 birincil ve IPTW grup etkileri."
+apa_render_table("t10_h3_primary_iptw")
+```
+
+```{r}
+#| label: tbl-apa-h3-sensitivity
+#| tbl-cap: "H3 duyarlılık ve çift raporlama."
+apa_render_table("t11_h3_sensitivity")
+```
+
+```{r}
+#| label: tbl-apa-h4-sem
+#| tbl-cap: "H4 Beck → EMBU-P latent yapısal eşitlik modeli."
+apa_render_table("t12_h4_sem")
+```
+
+```{r}
+#| label: tbl-apa-h5-concordance
+#| tbl-cap: "H5 diadik tutarlılık stratejileri."
+apa_render_table("t13_h5_concordance")
+```
+
+```{r}
+#| label: tbl-apa-mediation
+#| tbl-cap: "Aracılık ve koşullu süreç sonuçları."
+apa_render_table("t14_mediation")
+```
+
+```{r}
+#| label: tbl-apa-lpa-bifactor
+#| tbl-cap: "Latent profil, latent sınıf ve Bifaktör S-1 model seçim tanıları."
+apa_render_table("t15_lpa_bifactor")
+```
+
+```{r}
+#| label: tbl-apa-network
+#| tbl-cap: "Ağ merkeziyet ve Ağ Karşılaştırma Testi."
+apa_render_table("t16_network")
+```
+
+```{r}
+#| label: tbl-apa-clinical
+#| tbl-cap: "Klinik risk skoru performansı."
+apa_render_table("t17_clinical")
+```
+
+```{r}
+#| label: tbl-apa-dm-clinical
+#| tbl-cap: "DM klinik alt-analizleri."
+apa_render_table("t18_dm_clinical")
+```
+
+```{r}
+#| label: tbl-apa-robustness
+#| tbl-cap: "Robustluk: çoklu evren ve TOST."
+apa_render_table("t19_robustness")
+```
+
+```{r}
+#| label: tbl-apa-sensitivity
+#| tbl-cap: "Ölçülmemiş karıştırıcı ve falsifikasyon duyarlılığı."
+apa_render_table("t20_sensitivity")
+```
+
+```{r}
+#| label: tbl-apa-bayesian-global
+#| tbl-cap: "Bayesçi çift raporlama ve MCMC tanıları."
+apa_render_table("t21_bayesian_global")
+```
+
+```{r}
+#| label: tbl-apa-result-synthesis
+#| tbl-cap: "Genel bulgu sentezi."
+apa_render_table("t22_result_synthesis")
+```
+
+## Niteliksel Kol Bulguları
+
+### Niteliksel Örneklem ve Analitik Çerçeve
+
+Niteliksel kol, Tip 1 diyabet tanılı çocuk, sağlıklı kardeş ve anneden oluşan yedi
+aile triadıyla (011, 014, 019, 020, 026, 201, 202) yürütülen 21 bireysel yarı
+yapılandırılmış görüşmeye dayanmaktadır. Analiz, Braun ve Clarke'ın refleksif tematik
+analiz yaklaşımıyla, çoklu bilgi verici aile tasarımına uygun biçimde yürütülmüş;
+bulgular tezde dört makro tema hâlinde sunulmuştur. Aşağıda her makro tema için ana
+sonuç, alt tema örüntüleri ve triadik rol karşılaştırması verilmiş; alıntı bütünlüğü
+kimliksizleştirilmiş quote ID ankrajlarıyla korunmuş, ham görüşme metni raporlanmamıştır.
+
+### Tema 1. Sağlıklı Kardeşin Görünmeyen Yükü
+
+Sağlıklı kardeş, tanının doğrudan biyomedikal öznesi olmasa da aile rutinlerindeki
+değişimi ve ebeveyn ilgisinin yeniden dağılımını gündelik yaşamında taşımaktadır. Bu
+deneyim açık şikâyetten çok gönüllü vazgeçme, kendini geri çekme, bakım sorumluluğunu
+normalleştirme ve adalet gerilimini örtük taşıma biçiminde görünmektedir. Alt tema
+örüntüleri gönüllü mahrumiyet ve vekâleten üzüntü, erken olgunlaşma ve nöbetçi kardeş
+rolü, ilgi asimetrisi, önleyici sağlık baskısı, sosyal kıyaslanma ve hastalığın güç
+aracı olarak kullanımını kapsamaktadır. Sınırlayıcı örüntü olarak, kardeş ilgi
+dağılımındaki farkı çoğu zaman hastalığın gereği olarak kabul etmekte, ancak bu kabul
+adalet duygusunun zedelenmesini ortadan kaldırmamaktadır (quote ID ankrajları:
+`019_healthy_sibling_q001`, `026_healthy_sibling_q001`, `026_healthy_sibling_q002`;
+öne çıkan kodlar: `KARDES_GORUNMEZ_YUK`, `OFKE_ADALETSIZLIK`, `AILE_ICI_ADALET`).
+
+### Tema 2. Annenin Tıbbi Bakıcı Rolüne Kayması
+
+Tanı sonrası annelik, duygusal bakım veren ebeveynlik pozisyonundan sürekli ölçüm,
+izlem, risk önleme ve karar verme sorumluluğu taşıyan tıbbi bakım koordinatörlüğüne
+kaymaktadır. Anne anlatılarında suçluluk, kaybetme korkusu, sürekli tetikte olma,
+ergenlikte kontrol-özerklik çatışması ve sağlıklı kardeşe adil davranma ikilemi
+birlikte görünmektedir. Alt tema örüntüleri tanı sonrası suçluluk döngüsü, tıbbi
+bakıcıya evrilen annelik, kaybetme korkusu, ergenlikle kesişen yönetim zorlukları,
+mahremiyetin geri çekilişi ve adalet ikilemini kapsamaktadır. Sınırlayıcı örüntü
+olarak anne, tıbbi bakıcı rolünü içselleştirip normal ebeveynlik görevi gibi
+sunabilmekte; öz-raporlarda görülen sınırlı fark yükün yokluğu anlamına
+gelmemektedir (quote ID ankrajları: `014_mother_q001`, `019_mother_q001`,
+`020_mother_q001`, `026_mother_q001`; öne çıkan kodlar: `TANI_SOK_KORKU`, `SUCLULUK`,
+`ANNE_HIPERVIJILANS`, `RUTIN_TAKIP`).
+
+### Tema 3. T1DM Tanılı Çocuğun İçeriden Deneyimi
+
+Tip 1 diyabet tanılı çocuklar hastalığı hem gündelik yaşamın olağan parçası hâline
+getirmeye çalışmakta hem de tedavi yükü, bedensel müdahale, sosyal görünürlük,
+damgalanma ve aile içi kontrol üzerinden somut bir sınır olarak deneyimlemektedir.
+Alt tema örüntüleri normalleştirme ve avantaja çevirme, somut kısıtlılıklar ve tedavi
+yükü, utanç ve sosyal damgalanma, korunma-kontrol ve kardeşlik ilişkilerini
+kapsamaktadır. Sınırlayıcı örüntü olarak çocuk anlatısındaki "normal" söylemi yük
+yokluğu değil, çoğu zaman bağımsızlık, akranlara benzeme ve aile kontrolünü yönetme
+stratejisi biçiminde görünmektedir (quote ID ankrajları: `026_t1dm_child_q001`,
+`202_t1dm_child_q001`, `201_t1dm_child_q001`; öne çıkan kodlar: `KABULLENME_NORMALLESME`,
+`OKUL_SOSYAL_UYUM`, `COCUK_OZERKLIK_OZBAKIM`).
+
+### Tema 4. Aynı Evde Üç Farklı Deneyim
+
+Triadik okuma, T1DM'nin ailede tek bir ortak anlatı üretmediğini; aynı olayın anne,
+hasta çocuk ve sağlıklı kardeş tarafından farklı sorumluluk, risk ve adalet
+çerçeveleriyle anlamlandırıldığını göstermektedir. Anne düzen ve güvenlik dilini,
+hasta çocuk beden-özerklik ve sosyal görünürlük dilini, sağlıklı kardeş ise
+kısıtlanma-gözetmenlik ve adalet dilini öne çıkarmaktadır. Alt tema örüntüleri
+diyabetik düzenin gündelik hayatı yeniden kurması, sürekli tetikte olma, ilgi-adalet-
+kontrol gerilimi ve küçük bakıcılar / hasta otoritesini kapsamaktadır. Bu tema, üç
+rolün quote ID ankrajlarıyla ayrı kanıt türü olarak taşınmaktadır: anne
+(`011_mother_q006`, `020_mother_q009`, `026_mother_q008`), T1DM tanılı çocuk
+(`011_t1dm_child_q004`, `020_t1dm_child_q001`, `026_t1dm_child_q008`) ve sağlıklı
+kardeş (`011_healthy_sibling_q001`, `020_healthy_sibling_q001`,
+`019_healthy_sibling_q002`). Sınırlayıcı örüntü olarak Aile 201'de bazı rol alanları
+düşük temsil düzeyinde kalmıştır.
+
+## Karma Bulgulara Köprü (Joint Display)
+
+Aşağıdaki birleşik gösterim, her birincil hipotez için nicel bulguyu (yön ve
+belirsizlik) ve ilgili niteliksel temayı yan yana getirmekte; kanıt türleri
+karıştırılmadan ilişki türü (uyum / tamamlayıcılık / ayrışma / açıklayıcı genişleme)
+etiketlenmektedir. İlişki türü yorumu ve karma meta-çıkarım *Tartışma ve Sonuç*
+bölümüne bırakılmıştır.
+
+| Araştırma odağı | Nicel bulgu (yön + belirsizlik) | Niteliksel tema / örüntü | İlişki türü |
+|---|---|---|---|
+| H1 · Çocuk algısı (EMBU-C) | DM çocuklarında reddetme algısı daha yüksek (β = 0,16 SD [0,05; 0,26]; BF₁₀ = 8,12); diğer üç alt ölçekte kanıt yetersiz | Tema 3: hastalığın normalleştirme ve sosyal görünürlük arasında müzakere edilmesi | Açıklayıcı genişleme |
+| H2 · Kardeş ilişkisi (KİA) | Dört alt ölçekte grup farkı için kanıt yetersiz (d < 0,20; FDR p > 0,350) | Tema 1 ve 4: kardeş yükünün ilişki puanından çok bakım rutinleri ve adalet algısına gömülü olması | Tamamlayıcılık |
+| H3 · Anne öz-bildirimi (EMBU-P) | Dört alt ölçekte fark yok; aşırı koruma ve karşılaştırma TOST "Equivalent"; reddetme ROPE %92 | Tema 2: tıbbi bakıcı rolünün normal ebeveynlik gibi içselleştirilmesi | Açıklayıcı genişleme |
+| H4 · Beck → EMBU-P (SEM) | Üç yol anlamlı (sıcaklık −0,28; reddetme 0,33; karşılaştırma 0,28); aşırı koruma anlamsız (0,08) | Tema 2: suçluluk, tetikte olma ve kaybetme korkusunun anne ruhsal yüküyle örülü deneyim alanları | Uyum |
+| H5 · Diadik tutarlılık | Manifest anne ↔ çocuk uyumu düşük ve dört boyutta kontrol > DM; ön-kayıtlı triangülasyon şartı karşılanmadı | Tema 4: aynı aile olayının anne, hasta çocuk ve kardeş tarafından farklı görev/risk/adalet çerçeveleriyle taşınması | Açıklayıcı genişleme |
+
+## Genel Bulgu Sentezi
+
+Birincil hipotezlerin bulgu düzeyindeki özeti şudur: (a) anne öz-bildirimi düzleminde
+DM × kontrol grup farkı için kanıt bulunmamış, aşırı koruma ve karşılaştırma alt
+ölçekleri TOST ile eşdeğer konumlanmıştır (H3; Bayesçi H0 ve çoklu evren %0 anlamlılık
+ile uyumlu); (b) çocuk algısı düzleminde DM çocukları reddetme alt ölçeğinde daha
+yüksek puan bildirmiştir (H1; β = 0,16 SD; BF₁₀ = 8,12); (c) anne depresyonunun
+ebeveynlik tutumlarına latent etkisi dört yoldan üçünde anlamlıdır (H4; |β| = 0,28–0,33);
+(d) kardeş ilişkisi düzleminde grup farkı için kanıt yetersizdir (H2); (e) anne ↔ çocuk
+diadik tutarlılığı manifest düzeyde düşüktür ve ön-kayıtlı triangülasyon şartı
+karşılanmamıştır (H5). Niteliksel kolda dört makro tema, bu nicel örüntülerin
+deneyimsel bağlamını üç aile rolünün ayrı konumlarından belgelemektedir. Bu bulguların
+kuramsal ve klinik yorumu *Tartışma ve Sonuç* bölümünde ele alınmaktadır.

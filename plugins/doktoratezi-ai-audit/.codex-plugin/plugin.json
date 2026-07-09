@@ -1,0 +1,24 @@
+{
+  "name": "doktoratezi-ai-audit",
+  "version": "0.1.0",
+  "description": "Repo-aware AI reliability audit plugin for the doktoratezi Quarto/R thesis repository.",
+  "author": {
+    "name": "Mahir Kurt"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Doktoratezi AI Audit",
+    "shortDescription": "Repo-safe AI reliability gates for the thesis repo.",
+    "longDescription": "Adds a doktoratezi-aware Codex skill and bundled reliability scaffold for source grounding, secret scanning, destructive-command guardrails, claim verification, and promptfoo regression cases without exposing raw thesis data.",
+    "developerName": "Mahir Kurt",
+    "category": "Research",
+    "capabilities": [
+      "Write",
+      "Local"
+    ],
+    "defaultPrompt": [
+      "Use $doktoratezi-ai-audit to audit this thesis repo.",
+      "Use $doktoratezi-ai-audit to dry-run reliability gate installation."
+    ]
+  }
+}

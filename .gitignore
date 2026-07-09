@@ -6,6 +6,7 @@ __pycache__/
 .Python
 env/
 venv/
+.venv-tr-sciaudit/
 ENV/
 build/
 develop-eggs/
@@ -38,6 +39,7 @@ pip-selfcheck.json
 *.swo
 *~
 .DS_Store
+.serena/
 
 # Credentials - VERY IMPORTANT!
 dr-murzoglu-doktora.json
@@ -46,13 +48,29 @@ dr-murzoglu-doktora.json
 !.vscode/settings.json
 !.vscode/tasks.json
 !renv/settings.json
+!.claude/settings.json
 credentials/
 .env
 .env.local
+*.env
 
 # Plugin per-project settings/state (kullanici-local, commit edilmez)
 .claude/*.local.md
 .claude/*.local.json
+
+# Repo-bundled Codex plugins (manifest JSON files are intentional)
+!.codex/
+!.codex/hooks/
+!.codex/hooks.json
+!.agents/
+!.agents/plugins/
+!.agents/plugins/marketplace.json
+!plugins/
+!plugins/doktoratezi-ai-audit/
+!plugins/doktoratezi-ai-audit/**
+plugins/**/otel.env
+plugins/**/__pycache__/
+plugins/**/*.py[cod]
 
 # Test files
 test_file.txt
@@ -64,8 +82,12 @@ downloaded_test_file.txt
 
 # Logs
 *.log
+.playwright-cli/
+.playwright-mcp/
 
 # Research data boundaries
+data/*.csv
+data/*.xlsx
 data/raw/
 data/identified/
 data/backup/
@@ -194,3 +216,8 @@ redis_data/
 *.run.xml
 *.synctex.gz
 *.toc
+
+# Serena code-navigation MCP: commit project.yml only; ignore runtime state
+.serena/cache/
+.serena/logs/
+.serena/memories/

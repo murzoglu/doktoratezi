@@ -1,0 +1,17 @@
+# Layer 2 verification + Layer 5 observability Python deps.
+# (promptfoo is Node/npx — handled in setup.sh / CI, not here.)
+
+# Claim verification
+ragas>=0.2
+datasets>=2.19
+
+# Optional NLI backend for semantic entropy clustering (uncomment to enable):
+# transformers>=4.44
+# torch>=2.3
+
+# OpenTelemetry (GenAI semantic conventions)
+opentelemetry-sdk>=1.27
+opentelemetry-exporter-otlp>=1.27
+
+# JSON Schema validation for structured-output gate
+jsonschema>=4.22

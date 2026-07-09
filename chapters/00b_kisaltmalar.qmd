@@ -1,0 +1,56 @@
+<!--
+KISALTMALAR — Marmara §2.5: alfabetik sıra, kısaltma : açıklama.
+Sık kullanılan çok sözcüklü terimler listelenir; yaygın birim kısaltmaları (cm, kg) eklenmez.
+Metinde ilk geçtiği yerde açık ad + parantez içinde kısaltma verilir; sonrasında yalnız kısaltma.
+Bu liste render öncesinde tez metniyle karşılıklı denetlenmelidir (kullanılmayan kısaltma çıkarılır).
+ŞEKİLLER ve TABLOLAR listeleri bu bölümden sonra render aşamasında otomatik üretilir (lof / lot).
+-->
+
+# KISALTMALAR {.unnumbered}
+
+| Kısaltma | Açıklama |
+|---|---|
+| APIM | Aktör–Partner Karşılıklı Bağımlılık Modeli (*Actor–Partner Interdependence Model*) |
+| AVE | Ortalama Açıklanan Varyans (*Average Variance Extracted*) |
+| BSEM | Bayesçi Yapısal Eşitlik Modeli (*Bayesian Structural Equation Modeling*) |
+| CFA | Doğrulayıcı Faktör Analizi (*Confirmatory Factor Analysis*) |
+| CFI | Karşılaştırmalı Uyum İndeksi (*Comparative Fit Index*) |
+| COREQ | Nitel Araştırma Raporlama Ölçütleri (*Consolidated Criteria for Reporting Qualitative Research*) |
+| COSMIN | Sağlık Ölçme Araçları Seçim Standartları (*COnsensus-based Standards for the selection of health Measurement INstruments*) |
+| CR | Bileşik Güvenirlik (*Composite Reliability*) |
+| DAG | Yönlü Asiklik Çizge (*Directed Acyclic Graph*) |
+| EFA | Keşfedici Faktör Analizi (*Exploratory Factor Analysis*) |
+| EMBU | Algılanan Ebeveyn Tutumları Ölçeği (*Egna Minnen Beträffande Uppfostran*) |
+| FDR | Yanlış Keşif Oranı (*False Discovery Rate*) |
+| FIML | Tam Bilgi Maksimum Olabilirlik (*Full Information Maximum Likelihood*) |
+| GRAMMS | Karma Yöntem Çalışması Raporlama Ölçütleri (*Good Reporting of A Mixed Methods Study*) |
+| HbA1c | Glikozile Hemoglobin |
+| ICC | Sınıf-İçi Korelasyon Katsayısı (*Intraclass Correlation Coefficient*) |
+| IPTW | Ters Olasılık Ağırlıklandırma (*Inverse Probability of Treatment Weighting*) |
+| ISEI | Uluslararası Sosyoekonomik İndeks (*International Socio-Economic Index*) |
+| JARS | Dergi Makalesi Raporlama Standartları (*Journal Article Reporting Standards*) |
+| KAEK | Klinik Araştırmalar Etik Kurulu |
+| KİA | Kardeş İlişkileri Anketi |
+| KMO | Kaiser-Meyer-Olkin ölçütü |
+| KVKK | Kişisel Verilerin Korunması Kanunu |
+| MAR | Rastgele Eksiklik (*Missing At Random*) |
+| MCAR | Tamamen Rastgele Eksiklik (*Missing Completely At Random*) |
+| MMAT | Karma Yöntem Değerlendirme Aracı (*Mixed Methods Appraisal Tool*) |
+| NMAR | Rastgele Olmayan Eksiklik (*Not Missing At Random*) |
+| OSF | Açık Bilim Çerçevesi (*Open Science Framework*) |
+| RMSEA | Yaklaşık Hata Kareler Ortalamasının Karekökü (*Root Mean Square Error of Approximation*) |
+| RTA | Refleksif Tematik Analiz |
+| s-EMBU-C | Kısaltılmış EMBU – Çocuk Formu |
+| s-EMBU-P | Kısaltılmış EMBU – Ebeveyn Formu |
+| SES | Sosyoekonomik Durum (*Socioeconomic Status*) |
+| SMD | Standardize Edilmiş Ortalama Fark (*Standardized Mean Difference*) |
+| SRMR | Standardize Artık Kareler Ortalamasının Karekökü (*Standardized Root Mean Square Residual*) |
+| SRQ | Kardeş İlişkileri Anketi (*Sibling Relationship Questionnaire*) |
+| SRQR | Nitel Araştırma Raporlama Standartları (*Standards for Reporting Qualitative Research*) |
+| STROBE | Gözlemsel Çalışmaların Raporlanmasının Güçlendirilmesi (*Strengthening the Reporting of Observational Studies in Epidemiology*) |
+| T1DM | Tip 1 Diabetes Mellitus |
+| TİK | Tez İzleme Komitesi |
+| TLI | Tucker-Lewis İndeksi |
+| TOST | İki Tek-Yönlü Test (*Two One-Sided Tests*) |
+| TRIPOD | Çok Değişkenli Öngörü Modeli Raporlama Ölçütleri (*Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis*) |
+| WLSMV | Ağırlıklı En Küçük Kareler – Ortalama ve Varyans Ayarlı (*Weighted Least Squares Mean and Variance adjusted*) |

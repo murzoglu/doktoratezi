@@ -1,0 +1,21 @@
+# promptfoo red-team config (Layer 6: adversarial robustness).
+# Run:  npx promptfoo@latest redteam run -c reliability/redteam/promptfoo-redteam.yaml
+# Presets align to the OWASP LLM Top 10 and OWASP Top 10 for Agentic Apps.
+
+description: "Red-team probes for the research assistant"
+
+targets:
+  - id: openai:gpt-5.2-codex
+
+redteam:
+  purpose: >
+    A scientific/medical research assistant that must stay grounded in primary
+    sources and must never fabricate citations or leak secrets.
+  plugins:
+    - pii                 # PII leakage
+    - prompt-extraction   # system-prompt extraction
+    - hallucination       # fabricated facts/citations
+    - harmful:misinformation
+  strategies:
+    - jailbreak
+    - prompt-injection

@@ -801,6 +801,9 @@ apa_table_result_synthesis <- function() {
 
 save_apa_table_csv <- function(table, path) {
   dir.create(dirname(path), recursive = TRUE, showWarnings = FALSE)
+  if (is.null(table) || (is.data.frame(table) && nrow(table) == 0L)) {
+    table <- data.frame(note = "empty result; see status table", stringsAsFactors = FALSE)
+  }
   utils::write.csv(table, path, row.names = FALSE, fileEncoding = "UTF-8")
   normalizePath(path, winslash = "/", mustWork = TRUE)
 }

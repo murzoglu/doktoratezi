@@ -48,6 +48,13 @@ SEM'e, eksik veri imputasyonundan duyarlılık analizine, etki büyüklüğü ta
 APA 7 raporlamasına ve Quarto tez bölümlerine kadar — kanıt-temelli, projeye-özgü, tek-tutarlı
 kararlar üretmek.
 
+## Resmi Tez Yazım Kaynağı Override
+
+Tez yazımı, format, bölüm sırası, özet/summary, tablo/şekil, ondalık yazım ve kaynakça
+işlerinde önce repo kökündeki `tez-yazim/README.md` ve `docs/tez-kilavuz/` altındaki resmi
+Marmara Üniversitesi kaynakları kullanılır. Bu resmi kaynaklar eski APA 7, ondalık nokta
+veya alternatif Quarto format notlarıyla çakışırsa final tez biçiminde resmi kılavuz üstündür.
+
 ## Çalışmanın Kimliği (Sabit Veriler)
 
 Bu skill aşağıdaki sabitler üzerine kuruludur. **Hepsi referans modeldir; bir sapma görürsen
@@ -179,7 +186,7 @@ Sorgunun tipini belirle ve ilgili reference dosyasını oku:
 
 | Sorgu Tipi | Önce Oku |
 |------------|----------|
-| `.qmd` düzenleme, Quarto YAML, papaja, lang:tr | `references/tez-yazim-rehberi.md` |
+| `.qmd` düzenleme, Quarto YAML, papaja, lang:tr | Önce repo kökü `tez-yazim/README.md` ve `docs/tez-kilavuz/`, sonra `references/tez-yazim-rehberi.md` |
 | papaja/apaquarto, 22 şekil kataloğu, 3-makale plan, FAIR/Zenodo | `references/diseminasyon-ve-yayin.md` |
 | Türkçe APA 7 results paragrafı, gtsummary, Tablo 1 | `references/raporlama-sablonlari.md` |
 | Risk matrisi, 24-haftalık plan, sprint kontrol | `references/risk-ve-zaman-cizelgesi.md` |
@@ -211,17 +218,22 @@ kal) yoksa **dış literatür kanıtı** mı (dünyadan gelen kanıt → `eviden
 Soru **dış-kanıt** içeriyorsa — Giriş/Tartışma literatürü, benchmark doğrulama (Pinquart vb.),
 Bayesian prior'ın literatür temeli, psikometrik karşılaştırma değerleri (tarihsel α/ω, faktör
 yapısı), T1DM epidemiyoloji (insidans/prevalans), `references.bib` doğrulama, KOL/hakem haritası
-veya tam-metin endpoint çıkarma — **önce [`references/literatur-kanit-evidentia.md`](references/literatur-kanit-evidentia.md)
+veya tam-metin endpoint çıkarma; okul/eğitim/akademik uyum sorularında ERIC taraması —
+**önce [`references/literatur-kanit-evidentia.md`](references/literatur-kanit-evidentia.md)
 köprü protokolünü oku**, sonra çalışma yüzeyine göre doğru evidentia giriş noktasını seç:
 
 | Çalışma yüzeyi | Ne kullanılır |
 |----------------|---------------|
 | Claude Code plugin | `/evidentia:*` komutları + `medical-research` skill |
-| Codex | `evidentia-skills` MCP ile `medical-research` talimatları + doğrudan MCP'ler (`pubmed-epmc`, `openalex`, `semantic-scholar`, `psyarxiv-osf`, `yoktez-mcp`, `anamnesis`, `annas-reader`) |
+| Codex | `evidentia-skills` MCP ile `medical-research` talimatları + doğrudan MCP'ler (`pubmed-epmc`, `paper-search`, `openalex`, `semantic-scholar`, `psyarxiv-osf`, `yoktez-mcp`, `anamnesis`, `evidentia-kb`, `annas-reader`) |
 
 **Codex'te slash-command bekleme.** Aynı karar ağacı prompt/araç orkestrasyonu olarak yürütülür:
 önce `evidentia-skills`/`medical-research` protokolü okunur, sonra gerekli native MCP'ler çağrılır.
 YÖK Tez işleri için `yoktez-mcp` birincildir; `YÖK Akademik` yalnız KOL/akademisyen ağı içindir.
+Globalde kurulu ama tez dış-kanıt kaskadına ait olmayan araçlar (`firebase`, `supabase`, `figma`,
+`chrome-devtools`, `brave-search`, `cloudflare-api`, geniş `filesystem`, `github`) açık
+repo/platform/UI/web otomasyon sinyali yoksa çağrılmaz. MCP roster kontrolü gerekiyorsa ham
+`codex mcp list` yerine `python3 .codex/tools/codex_mcp_roster_redacted.py` kullanılır.
 
 | Giriş | Ne zaman |
 |-------|----------|
@@ -233,10 +245,12 @@ YÖK Tez işleri için `yoktez-mcp` birincildir; `YÖK Akademik` yalnız KOL/aka
 | `academic-archival-distiller` (alt-ajan) | TR psikoloji/gelişim tezleri (YÖK), arşiv literatürü; Codex'te yoksa `yoktez-mcp` doğrudan akışı |
 
 **Üç bağlayıcı kural** (detay köprü dosyasında):
-1. **KAPSAM KAPISI** — bu tez psikososyal; evidentia tüm araç katmanlarını önce `coverage_set`
-   düzeyinde değerlendirir. Akademik çekirdek + tam-metin + KOL + epidemiyoloji varsayılan yüksek
-   önceliktir; onko/heme/ilaç-pipeline/TİTCK-geri ödeme/HTA/DDI katmanları yalnız açık sinyal varsa
-   maksimum derinlikte açılır, ilgisizse gerekçeli `gap_log` olarak kalır.
+1. **KAPSAM KAPISI** — bu tez psikososyal; evidentia önce `.claude/evidentia.local.md` repo-router'ını
+   uygular. Varsayılan aktif çekirdek PubMed/EPMC, Paper Search, OpenAlex, Semantic Scholar,
+   PsyArXiv/OSF, YÖK Tez, anamnesis, evidentia-kb ve annas-reader'dır. Onko/heme/ilaç-pipeline,
+   TİTCK/Mevzuat, HTA/DDI, terminoloji, PopHIVE, ClinicalTrials ve ERIC katmanları yalnız açık
+   sinyal varsa maksimum derinlikte açılır; tetiklenmemiş pasif connector yokluğu preflight hatası
+   değildir.
 2. **PRIOR/HARKing TUZAĞI** — literatürden türetilen confirmatory (H1–H4) prior'lar **veriyi
    görmeden, ön-kayıt anında** sabitlenir; evidentia ile sonradan prior güçlendirmek HARKing'tir
    (yalnız `[KEŞİFSEL]` duyarlılık olarak denenebilir). Tartışma literatürü sonradan serbesttir.
@@ -246,12 +260,12 @@ YÖK Tez işleri için `yoktez-mcp` birincildir; `YÖK Akademik` yalnız KOL/aka
 Dönen kanıt **tedbir denetiminden** (tek meta-analiz mutlak değildir; etki büyüklüğü + GA; yayın
 yanlılığı; popülasyon transferi; korelasyon ≠ nedensellik) geçer, APA 7'ye çevrilip `references.bib`
 ve ilgili `.qmd`/reference dosyasına işlenir. Her dış-kanıt koşumu tam izlenebilir bir
-`evidence_packet` ile kapanır: `soru`, `preflight`, `coverage_set`, `depth_decision`,
+`evidence_packet` ile kapanır: `soru`, `preflight`, `router_decision`, `coverage_set`, `depth_decision`,
 `kullanılan_connectorlar`, `source_ids` (PMID/DOI/NCT/YÖK-ID/OpenAlex-ID/PsyArXiv-ID/OSF-registration-ID), `canonical_artifacts`,
 `candidate_sources`, `fulltext_extracts`, `claim_ledger`, `semantic_adjudication`,
-`validation_gates`, `tez_artefakti`, `bibtex_durumu`. Tüm Evidentia araç/skill/MCP katmanları
-önce coverage-set düzeyinde değerlendirilir; ilgili katmanlar maksimum derinlikte çalıştırılır,
-ilgisiz veya erişilemeyen katmanlar gerekçeli `gap_log` olarak kalır.
+`validation_gates`, `tez_artefakti`, `bibtex_durumu`. Evidentia önce repo-router ile aktif ve
+koşullu connector'ları ayırır; ilgili katmanlar maksimum derinlikte çalıştırılır, tetiklenmemiş
+pasif katmanlar çağrılmaz, tetiklenip erişilemeyen katmanlar gerekçeli `gap_log` olarak kalır.
 
 ### Faz 2 — Yürütme
 
@@ -471,7 +485,7 @@ katmanıdır.
 
 | Dosya | İçerik |
 |-------|--------|
-| `references/literatur-kanit-evidentia.md` | `t1dm-tez-rehberi` (iç-veri/yazım) ↔ `evidentia` `medical-research` v8.5.0 / plugin v1.7.0 (dış-kanıt/sentez) köprü protokolü: görev ayrımı (iç-veri vs. dış-kanıt), evidentia giriş noktaları (`/evidentia`, `-synthesize`, `-fulltext`, `-kol`, `evidence-synthesizer` alt-ajan, `academic-archival-distiller`), **KAPSAM KAPISI** (`coverage_set` tabanlı tüm katman değerlendirmesi; ilgisiz/auth eksik katmanlar gerekçeli `gap_log`), tez-artefaktı besleme haritası (Giriş/Tartışma/benchmark/prior/psikometri/epidemiyoloji/citation audit), kanıt akışı 7-adım, **prior/HARKing açık-bilim kuralı**, APA 7 ↔ references.bib köprüsü, uydurma referans yasağı, tipik senaryolar |
+| `references/literatur-kanit-evidentia.md` | `t1dm-tez-rehberi` (iç-veri/yazım) ↔ `evidentia` `medical-research` v8.5.0 / plugin v1.7.0 (dış-kanıt/sentez) köprü protokolü: görev ayrımı (iç-veri vs. dış-kanıt), evidentia giriş noktaları (`/evidentia`, `-synthesize`, `-fulltext`, `-kol`, `evidence-synthesizer` alt-ajan, `academic-archival-distiller`), **KAPSAM KAPISI** (`.claude/evidentia.local.md` repo-router + `coverage_set`; varsayılan akademik/RAG/tam-metin çekirdeği, koşullu medikal/farma/mevzuat/terminoloji/ERIC connector'ları), tez-artefaktı besleme haritası (Giriş/Tartışma/benchmark/prior/psikometri/epidemiyoloji/okul-eğitim bağlamı/citation audit), kanıt akışı 7-adım, **prior/HARKing açık-bilim kuralı**, APA 7 ↔ references.bib köprüsü, uydurma referans yasağı, tipik senaryolar |
 
 ## Davranış Kuralları (Çiğnemediğin)
 
@@ -560,6 +574,7 @@ Rscript scripts/R/08_ethics_data_governance_audit.R
 /evidentia-kol "parenting attitudes child development EMBU"   # jüri/hakem/alan otoritesi
 # Ağır fan-out (Giriş'in tamamı): evidence-synthesizer alt-ajanı
 # TR psikoloji/gelişim tezleri: academic-archival-distiller; Codex'te yoktez-mcp search → details → markdown
+# Okul/eğitim/akademik uyum: ERIC MCP koşullu eric_search → eric_get_record → eric_get_full_text
 ```
 
 ## Diller ve Terim Sözlüğü Hızlı Referans

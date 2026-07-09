@@ -35,9 +35,10 @@ write_csv(results$calibration_table,    "clinical_calibration")
 write_csv(results$nri_idi_table,        "clinical_nri_idi")
 
 cat("\n=== Performance: base vs full ===\n")
+performance_cols <- c("n", "n_events", "auc", "auc_ci_lo", "auc_ci_hi", "auc_corrected")
 print(rbind(
-  cbind(model = "base", results$base_performance),
-  cbind(model = "full", results$full_performance)
+  data.frame(model = "base", results$base_performance[, performance_cols, drop = FALSE], check.names = FALSE),
+  data.frame(model = "full", results$full_performance[, performance_cols, drop = FALSE], check.names = FALSE)
 ))
 cat("\n=== Random Forest variable importance ===\n")
 print(results$rf_importance_table)

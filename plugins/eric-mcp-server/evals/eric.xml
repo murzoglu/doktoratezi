@@ -1,0 +1,22 @@
+<evaluation>
+  <qa_pair>
+    <question>Using ERIC, retrieve the record EJ1444884. What is the name of the journal (source) it was published in?</question>
+    <answer>Scientific Studies of Reading</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>For ERIC record ED659153, does ERIC host a full-text PDF (yes/no)?</question>
+    <answer>yes</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Search ERIC for peer-reviewed records on 'executive function'. Is the total number of matches greater than 10000? (yes/no)</question>
+    <answer>yes</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Using ERIC, retrieve ED659153. What is the source?</question>
+    <answer>Region 18 Comprehensive Center</answer>
+  </qa_pair>
+  <qa_pair>
+    <question>Search ERIC for title:"Bi/Multilingual Programs". What ERIC ID is returned?</question>
+    <answer>ED659153</answer>
+  </qa_pair>
+</evaluation>

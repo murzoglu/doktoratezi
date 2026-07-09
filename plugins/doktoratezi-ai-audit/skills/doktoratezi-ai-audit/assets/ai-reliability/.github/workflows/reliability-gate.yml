@@ -1,0 +1,53 @@
+name: reliability-gate
+
+# Layer 4 + Layer 6: block merges that regress on grounding/faithfulness.
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  eval-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python deps
+        run: pip install -r requirements.txt
+
+      - name: Lint hooks (syntax must compile)
+        run: python -m py_compile .codex/hooks/*.py reliability/verify/*.py
+
+      - name: Unit-check the claim verifier (fail-closed on unsourced claims)
+        run: python reliability/verify/claim_check.py
+
+      - name: promptfoo regression eval (quality gate)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          npx --yes promptfoo@latest eval \
+            -c reliability/evals/promptfooconfig.yaml \
+            --no-cache
+        # promptfoo exits non-zero if assertions fail -> PR is blocked.
+
+  redteam:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'   # run on demand / schedule
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: promptfoo red-team (prompt-injection / jailbreak presets)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          npx --yes promptfoo@latest redteam run \
+            -c reliability/redteam/promptfoo-redteam.yaml || true

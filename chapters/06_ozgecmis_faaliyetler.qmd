@@ -1,0 +1,47 @@
+<!--
+ÖZGEÇMİŞ (Marmara §3.8): tek sayfa, şablon formatında; kişisel bilgiler öğrenci tarafından tamamlanır.
+BİLİMSEL FAALİYETLER (Marmara §3.9): kayıt tarihinden itibaren proje/toplantı/patent/makale;
+kaynak yazım formatında. Mezuniyet koşulu yayınların tam metinleri teze eklenmez, ayrı portfolyo
+olarak enstitüye teslim edilir. {…} alanları öğrenci tarafından doldurulur.
+-->
+
+# ÖZGEÇMİŞ {.unnumbered}
+
+**Ad Soyad:** Özlem Murzoğlu Kurt
+
+**Unvan:** Uzman Doktor (Çocuk Sağlığı ve Hastalıkları)
+
+**Doğum Yeri ve Tarihi:** {Doğum yeri}, {gg.aa.yyyy}
+
+**Öğrenim Durumu:**
+
+| Derece | Alan / Program | Kurum | Yıl |
+|---|---|---|---|
+| Doktora | Sosyal Pediatri | Marmara Üniv. Sağlık Bilimleri Enstitüsü | {devam ediyor} |
+| Tıpta Uzmanlık | Çocuk Sağlığı ve Hastalıkları | {Kurum} | {Yıl} |
+| Lisans (Tıp) | Tıp | {Üniversite} | {Yıl} |
+
+**Yabancı Dil:** {İngilizce vb.}
+
+**Çalıştığı Kurum(lar):** {Kurum, görev, yıl}
+
+**İletişim:** {Kurumsal e-posta}
+
+{{< pagebreak >}}
+
+# BİLİMSEL FAALİYETLER {.unnumbered}
+
+Aşağıda, tez konusuyla ilişkili ve doktora kayıt tarihinden itibaren gerçekleştirilen bilimsel faaliyetler kaynak yazım biçiminde listelenmiştir. Kesinleşen künyeler (dergi, cilt, sayı, sayfa, doi; kongre adı, yer, tarih) yayımlanma/sunum aşamasında tamamlanır.
+
+## Makaleler {.unnumbered}
+
+1. {Yazar(lar). Makale başlığı. Dergi Adı. Yıl;Cilt(Sayı):Sayfa aralığı. doi} — *tez birincil (nicel) makalesi (hazırlanıyor).*
+2. {Yazar(lar). Makale başlığı. Dergi Adı. Yıl;Cilt(Sayı):Sayfa aralığı. doi} — *tez nitel kol makalesi (hazırlanıyor).*
+
+## Bildiriler {.unnumbered}
+
+1. {Yazar(lar). Bildiri başlığı. Kongre/Sempozyum Adı; Tarih; Yer.}
+
+## Projeler {.unnumbered}
+
+Tez çalışması dış kaynaklı bir proje kapsamında desteklenmemiştir.

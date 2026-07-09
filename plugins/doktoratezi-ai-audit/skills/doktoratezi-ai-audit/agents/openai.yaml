@@ -1,0 +1,7 @@
+interface:
+  display_name: "Doktoratezi AI Audit"
+  short_description: "Repo-aware AI reliability audit"
+  default_prompt: "Use $doktoratezi-ai-audit to audit this thesis repo with repo-safe reliability gates."
+
+policy:
+  allow_implicit_invocation: true

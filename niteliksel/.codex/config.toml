@@ -1,0 +1,27 @@
+# =============================================================================
+# Codex CLI configuration - T1DM Niteliksel AI reliability scaffold
+# Repo-local layer. Keep global config changes out of this repo.
+# =============================================================================
+
+# Pin the model explicitly so audit/verifier runs are reproducible.
+model = "gpt-5.2-codex"
+
+# Tool routing is repo-local: dmnitel local checks first, Evidentia only for
+# external evidence, sci-audit only for manuscript forensic/Turkish-writing gates,
+# life-science-research only for biomedical data/entity lanes, Zotero only for
+# local reference-library/BibTeX work, and t1dm-tez-rehberi only for the paired
+# quantitative repo.
+# The session hook injects CONVENTIONS.md, which is the operational source.
+#
+# Bridge/context checks:
+#   ./dmnitel ai-context
+#   ./dmnitel route-tool --query "<soru>"
+#   python3 .codex/tools/codex_mcp_roster_redacted.py
+# Raw `codex mcp list` is blocked because stdio server args may contain tokens.
+
+[features]
+hooks = true
+
+[model_reasoning]
+# Lower variance for verification / regression work.
+effort = "medium"

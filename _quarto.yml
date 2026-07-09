@@ -9,10 +9,12 @@ csl: references/apa.csl
 format:
   html:
     toc: true
+    toc-title: "İÇİNDEKİLER"
     number-sections: true
     theme: cosmo
   docx:
     toc: true
+    toc-title: "İÇİNDEKİLER"
     number-sections: true
 
 execute:

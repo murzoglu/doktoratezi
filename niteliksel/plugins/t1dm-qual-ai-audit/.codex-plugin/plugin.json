@@ -1,0 +1,24 @@
+{
+  "name": "t1dm-qual-ai-audit",
+  "version": "0.1.0",
+  "description": "Repo-aware AI reliability audit plugin for the T1DM qualitative thesis repository.",
+  "author": {
+    "name": "Mahir Kurt"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "T1DM Qual AI Audit",
+    "shortDescription": "Repo-safe AI reliability gates for the qualitative T1DM arm.",
+    "longDescription": "Adds a T1DM qualitative-repo-aware Codex skill for source grounding, privacy boundaries, Evidentia routing, MCP roster checks, and toolkit validation without exposing raw interview data.",
+    "developerName": "Mahir Kurt",
+    "category": "Research",
+    "capabilities": [
+      "Write",
+      "Local"
+    ],
+    "defaultPrompt": [
+      "Use $t1dm-qual-ai-audit to audit this qualitative thesis repo.",
+      "Use $t1dm-qual-ai-audit to check qualitative repo AI/privacy gates."
+    ]
+  }
+}

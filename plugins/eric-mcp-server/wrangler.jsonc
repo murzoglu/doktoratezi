@@ -1,0 +1,20 @@
+{
+  "name": "eric-mcp",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-06-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "durable_objects": {
+    "bindings": [{ "name": "MCP_OBJECT", "class_name": "EricMCP" }]
+  },
+  "kv_namespaces": [
+    {
+      "binding": "OAUTH_KV",
+      "id": "dcda31edaa9f4ee08c52791a8032a256"
+    }
+  ],
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["EricMCP"] }],
+  "observability": { "enabled": true },
+  "vars": {
+    "ERIC_CONTACT_EMAIL": ""
+  }
+}

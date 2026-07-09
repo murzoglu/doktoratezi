@@ -1,0 +1,7 @@
+interface:
+  display_name: "T1DM Qual AI Audit"
+  short_description: "Repo-safe AI reliability audit for T1DM qualitative research"
+  default_prompt: "Use $t1dm-qual-ai-audit to audit this qualitative thesis repo with privacy-safe gates."
+
+policy:
+  allow_implicit_invocation: true

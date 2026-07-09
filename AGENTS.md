@@ -5,6 +5,9 @@ Bu depo Quarto + R ile yazilan Tip 1 Diyabet, ebeveynlik tutumu, Beck Depresyon 
 ## Calisma Oncelikleri
 
 - Tez, metin, kod yorumlari ve commit mesajlari icin tercih edilen dil Turkcedir; `_quarto.yml` `lang: tr` kullanir.
+- Tez yazimi, format, bolum sirasi, ozet/summary, tablo/sekil ve kaynakca islerinde once
+  [tez-yazim/README.md](tez-yazim/README.md) ve [docs/tez-kilavuz/](docs/tez-kilavuz/) resmi
+  Marmara kaynaklari kullanilir; bu kaynaklar eski stil notlarina ustundur.
 - EMBU veri mimarisi v2.0 yururluktedir ve aktif calisma hattidir. CSV basligi hatali, PDF kanonik karari kesinlesmistir ve saha dogrulama fazi gereksizdir.
 - Beck Depresyon ve KIA analizleri EMBU ile paralel ilerler.
 - Ham veri ve kimliklenebilir bilgi sinirlarina dikkat et: `data/raw/`, `data/cleaned/`, `data/identified/`, `data/backup/`, uretilmis `data/processed/*`, `outputs/*`, `_targets/` ve credential JSON dosyalari git disinda kalmalidir.
@@ -15,6 +18,7 @@ Bu depo Quarto + R ile yazilan Tip 1 Diyabet, ebeveynlik tutumu, Beck Depresyon 
 - [scripts/R/](scripts/R/) runner katmanidir: [R/](R/) fonksiyonlarini cagirir ve `data/processed/` ile `outputs/` altina dosya yazar.
 - [tests/](tests/) `stopifnot()` tabanli dogrulama testlerini icerir; sessiz cikis PASS kabul edilir.
 - [chapters/](chapters/) Quarto bolumleridir; kok belge [thesis.qmd](thesis.qmd) tarafindan include edilir.
+- [tez-yazim/](tez-yazim/) resmi kilavuz merkezli yazim mimarisi, sablonlar, kalite kontrol ve iki-repo entegrasyon katmanidir; gercek tez uretim dosyalarinin yerine gecmez.
 - Kök [docs/](docs/) altındaki kanonik belgeler ve `data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock` aktif karar kaynağıdır. `docs/veri-duzenleme/` veya arşiv kopyaları tarihsel bağlamdır.
 
 ## Komutlar
@@ -52,6 +56,8 @@ quarto render thesis.qmd
 ## Dokumani Kopyalama, Bagla
 
 - Genel proje ozeti, komutlar ve aktif analiz durumu: [CLAUDE.md](CLAUDE.md)
+- Resmi kilavuz merkezli tez yazim mimarisi: [tez-yazim/README.md](tez-yazim/README.md)
+- Marmara resmi tez kilavuzu ve sablonlari: [docs/tez-kilavuz/](docs/tez-kilavuz/)
 - Kanonik EMBU-P formu: [docs/protokol/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md](docs/protokol/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md)
 - Kanonik EMBU-C formu: [docs/protokol/KANONIK_KISALTILMIS_EMBU_COCUK.md](docs/protokol/KANONIK_KISALTILMIS_EMBU_COCUK.md)
 - Final referans veri haritasi: [docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md](docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md)

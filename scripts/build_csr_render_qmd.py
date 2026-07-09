@@ -66,7 +66,7 @@ author:
     affiliation: "Marmara Üniversitesi SBE, Sosyal Pediatri Doktora Programı"
   - name: "Prof. Dr. Eren Özek"
     affiliation: "Tez danışmanı — MÜTF Neonatoloji"
-  - name: "Doç. Dr. Belma Haliloğlu"
+  - name: "Prof. Dr. Belma Haliloğlu"
     affiliation: "Yardımcı araştırıcı — MÜTF Pediatrik Endokrinoloji"
 date: "1 Mayıs 2026"
 keywords: ["Tip 1 Diyabet", "ebeveynlik tutumu", "çoklu-informant", "diadik tutarlılık", "vaka-kontrol"]
@@ -157,20 +157,20 @@ def main():
         # orijinal govdedeki phase2 gomme yollarini root-qmd icin onar
         stripped = stripped.replace("](assets/figures/", "](docs/assets/figures/")
 
-        # --- §20 gercek bibliyografya blogu ---
-        if stripped.startswith("# 20. "):
+        # --- §21 gercek bibliyografya blogu (tek-kosum renumber sonrasi) ---
+        if stripped.startswith("# 21. "):
             out_lines.append(stripped)
             refs_section = True
             continue
         if refs_section:
-            if stripped.startswith("# ") and not stripped.startswith("# 20"):
+            if stripped.startswith("# ") and not stripped.startswith("# 21"):
                 if refs_open:
                     out_lines.append(":::")
                     out_lines.append("")
                     refs_open = False
                 refs_section = False
-                # asagidaki normal islemeye dus (or. # 21. EKLER)
-            elif stripped.startswith("## 20."):
+                # asagidaki normal islemeye dus (or. # 22. EKLER)
+            elif stripped.startswith("## 21."):
                 parts = stripped.split(" ", 2)
                 title = parts[2] if len(parts) > 2 else stripped
                 if not refs_open:

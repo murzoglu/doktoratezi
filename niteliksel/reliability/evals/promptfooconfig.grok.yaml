@@ -1,0 +1,20 @@
+# Grok-backed Layer 4 reasoning gate.
+# Uses GROK_API_KEY, XAI_API_KEY, or X_AI_API_KEY from .env or the process environment.
+# Run locally:
+# npx promptfoo@latest eval -c reliability/evals/promptfooconfig.grok.yaml
+
+description: "T1DM Niteliksel repo Grok AI reliability reasoning gate"
+
+providers:
+  - id: file://providers/grok_reasoning_provider.py
+    config:
+      model: grok-4.3
+      temperature: 0
+      topP: 0.1
+      maxOutputTokens: 768
+      apiTimeoutSeconds: 120
+
+prompts:
+  - "{{query}}"
+
+tests: file://golden/dataset.yaml

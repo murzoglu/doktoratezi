@@ -1,0 +1,25 @@
+# promptfoo evaluation config (Layer 4: pre-deploy regression gate)
+# CI-native, no hosted account required. Docs: https://promptfoo.dev
+# Run locally:  npx promptfoo@latest eval -c reliability/evals/promptfooconfig.yaml
+# Run in CI:    see .github/workflows/reliability-gate.yml
+
+description: "T1DM Niteliksel repo AI reliability regression gate"
+
+# Repo-local provider: deterministic, offline, and safe for CI without API keys.
+# Replace with a real Codex/OpenAI/HTTP provider only when credentials are
+# intentionally configured for model-in-the-loop evaluation.
+providers:
+  - id: file://providers/t1dm_qual_policy_provider.py
+    config:
+      temperature: 0        # determinism lever (Layer 1)
+
+prompts:
+  - "{{query}}"
+
+# Golden cases live in golden/dataset.yaml (kept separate so non-engineers can
+# extend it). Each row carries the expected grounding behavior.
+tests: file://golden/dataset.yaml
+
+# Fail the run (and the CI gate) if the pass-rate drops below threshold.
+# promptfoo exits non-zero when assertions fail; the workflow turns that into a
+# blocked deployment.

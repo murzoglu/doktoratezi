@@ -56,4 +56,14 @@ stopifnot(
   nrow(results$nri_idi_table) == 6L
 )
 
+performance_cols <- c("n", "n_events", "auc", "auc_ci_lo", "auc_ci_hi", "auc_corrected")
+combined_performance <- rbind(
+  data.frame(model = "base", results$base_performance[, performance_cols, drop = FALSE], check.names = FALSE),
+  data.frame(model = "full", results$full_performance[, performance_cols, drop = FALSE], check.names = FALSE)
+)
+stopifnot(
+  nrow(combined_performance) == 2L,
+  identical(names(combined_performance), c("model", performance_cols))
+)
+
 cat("[PASS] KISIM IX Clinical utility (logistic + ROC + DCA + CART + RF + NRI/IDI)\n")
