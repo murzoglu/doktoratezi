@@ -52,16 +52,16 @@ Birincil hipotez ailesi beş başlık altında ön-kayda alınmıştır: H1 çoc
 | Hipotez | Birincil bulgu | Etki büyüklüğü | Bayesçi destek | Karar |
 |---|---|---|---|---|
 | **H1** Çocuk algısı | DM çocukları reddetme alt ölçeğinde Kontrol'den anlamlı düzeyde yüksek puan vermiştir (β = 0,16 SD, %95 GA [0,05, 0,26], pd = 0,999) | Küçük-tutarlı | BF₁₀ = 8,12 (orta düzey H1 lehine) | **Doğrulanan birincil olumlu bulgu** |
-| **H2** Kardeş ilişkisi | Dört SRQ alt ölçeğinin tamamında DM × Kontrol farkı kanıtı yetersiz; FDR-düzeltilmiş p > .35 | \|d\| < 0,20 | – (eşdeğerlik testi bu ailede yapılmadı) | **Belirsiz** (kanıt yetersizliği; aktif eşdeğerlik kanıtı değil) |
-| **H3** Anne öz-bildirimi | Dört EMBU-P alt ölçeğinde DM × Kontrol farkı için kanıt yetersiz; FDR-düzeltilmiş p > .50 | \|d\| < 0,17 | BF₁₀ = 0,17–0,25 (orta düzey H0 lehine); ROPE içi pay reddetmede %92 | **Üç-katmanlı negatif kanıt** (kanıt + eşdeğerlik + Bayesçi) |
-| **H4** Beck → EMBU-P (yapısal model) | Üç yapısal yol anlamlı (sıcaklık β = −0,28, reddetme β = 0,33, karşılaştırma β = 0,28; tümü FDR p < .001); aşırı koruma yolu anlamlı değil (β = 0,08, FDR p = .22) | Orta-büyük (anlamlı yollar) | brms preflight tamam; multi-grup invaryans configural ve metric düzeyde sağlandı | **Kısmen doğrulandı** (üç boyutta; aşırı korumada doğrulanmadı) |
+| **H2** Kardeş ilişkisi | Dört SRQ alt ölçeğinin tamamında DM × Kontrol farkı kanıtı yetersiz; FDR-düzeltilmiş p > 0,35 | \|d\| < 0,20 | – (eşdeğerlik testi bu ailede yapılmadı) | **Belirsiz** (kanıt yetersizliği; aktif eşdeğerlik kanıtı değil) |
+| **H3** Anne öz-bildirimi | Dört EMBU-P alt ölçeğinde DM × Kontrol farkı için kanıt yetersiz; FDR-düzeltilmiş p > 0,50 | \|d\| < 0,17 | BF₁₀ = 0,17–0,25 (orta düzey H0 lehine); ROPE içi pay reddetmede %92 | **Üç-katmanlı negatif kanıt** (kanıt + eşdeğerlik + Bayesçi) |
+| **H4** Beck → EMBU-P (yapısal model) | Üç yapısal yol anlamlı (sıcaklık β = −0,28, reddetme β = 0,33, karşılaştırma β = 0,28; tümü FDR p < 0,001); aşırı koruma yolu anlamlı değil (β = 0,08, FDR p = 0,22) | Orta-büyük (anlamlı yollar) | brms preflight tamam; multi-grup invaryans configural ve metric düzeyde sağlandı | **Kısmen doğrulandı** (üç boyutta; aşırı korumada doğrulanmadı) |
 | **H5** Diadik tutarlılık | Manifest ICC anne–çocuk uyumunda dört alt ölçeğin tamamında Kontrol > DM (Kontrol 0,03–0,20, DM −0,01–0,08); latent DM > Kontrol asimetrisi yalnız reddetme alt ölçeğinde ve zayıf DM-grubu uyumu altında (r = 0,17 vs. 0,29) | Küçük | Beş stratejiden en fazla biri DM > Kontrol; "≥3 strateji" şartı sağlanmadı | **Triangülasyon şartı karşılanmadı — tek-strateji/tek-alt-ölçek sinyal** (güçlü bulgu olarak ilan edilmemektedir) |
 
 Doğrulayıcı çekirdeğin yanı sıra, çalışma verisinden doğan psikometrik, çok-informant, dağılımsal, duyarlılık ve replikasyon sorularını ve sosyodemografik-klinik bağlamsal değişkenleri inceleyen bir dizi keşifsel/ikincil çözümleme de yürütülmüştür. Bu bulgular beş birincil hipotezin kararlarını değiştirmez; tümü **[KEŞİFSEL · İKİNCİL]** etiketiyle yorumlanır ve dış-validasyon olmadan klinik öneri düzeyine çıkarılmaz.
 
 ## 2.4 Genel Yargı
 
-Bulgular, Türk pediatrik T1DM ailelerinde anne öz-bildirimi düzleminde sistematik bir grup farkı olmadığını; çocuk perspektifi düzleminde ise reddetme algısında DM lehine küçük-tutarlı bir yükselme bulunduğunu göstermektedir. Anne depresyonu ile ebeveynlik tutumları arasındaki orta-büyük yapısal yollar DM ve Kontrol gruplarında benzer kalmıştır; bu nedenle çalışma, grup-spesifik bir nedensel aktarım modelinden çok çoklu-informant algı ayrışmasına işaret etmektedir. Bu desen, ISPAD 2022 psikolojik bakım kılavuzu, ADA 2026 çocuk-ergen standardı ve ADA psikososyal bakım pozisyon bildirgesinin çift-perspektifli/aile-merkezli psikososyal değerlendirme çerçevesiyle uyumludur. Etki büyüklükleri Cohen küçük etki kategorisindedir; bulgular randomize müdahale kanıtı değil, kesitsel ve gözlemsel pilot kanıt olarak yorumlanmalıdır.
+Bulgular, Türk pediatrik T1DM ailelerinde anne öz-bildirimi düzleminde sistematik bir grup farkı olmadığını; çocuk perspektifi düzleminde ise reddetme algısında DM lehine küçük-tutarlı bir yükselme bulunduğunu göstermektedir. Anne depresyonu ile ebeveynlik tutumları arasındaki orta-büyük yapısal yollar DM ve Kontrol gruplarında benzer kalmıştır. Bu nedenle çalışma, grup-spesifik bir nedensel aktarım modelinden çok, çoklu-informant algı ayrışmasına işaret etmektedir. Yorum çerçevesi ISPAD 2022 psikolojik bakım kılavuzu ve ADA 2016 psikososyal bakım pozisyon bildirgesinin çift-perspektifli/aile-merkezli değerlendirme yaklaşımıyla uyumludur; ADA 2026 çocuk-ergen standardı ise güncel standart arka planı olarak anılmıştır. Etki büyüklükleri Cohen'in küçük etki kategorisindedir; bulgular randomize müdahale kanıtı değil, kesitsel ve gözlemsel pilot kanıt olarak yorumlanmalıdır.
 
 \newpage
 
@@ -190,7 +190,7 @@ Ne var ki bu havuzlanmış bulguların Türk pediatrik T1DM örnekleminde sistem
 
 ## 6.2 Klinik Kılavuzların Çağrısı: Çift-Perspektifli Aile Değerlendirmesi
 
-ISPAD 2022 psikolojik bakım kılavuzu, ADA 2016 psikososyal bakım pozisyon bildirgesi ve ADA 2026 çocuk-ergen standardı, pediatrik diyabet bakımında psikososyal gereksinimlerin, bakım veren iyilik halinin, aile işlevselliğinin, gelişimsel sorumluluk geçişinin ve aile katılımının rutin değerlendirme içinde ele alınmasını önermektedir (de Wit ve diğerleri, 2022; Young-Hyman ve diğerleri, 2016; American Diabetes Association Professional Practice Committee for Diabetes, 2026). NICE Guideline NG18 aynı doğrultuda aile-merkezli bakımı, ergen-bağımsızlık geçişini ve davranış sağlığı uzmanlarının pediatrik takıma entegrasyonunu vurgulamaktadır.
+ISPAD 2022 psikolojik bakım kılavuzu ve ADA 2016 psikososyal bakım pozisyon bildirgesi, pediatrik diyabet bakımında psikososyal gereksinimlerin, bakım veren iyilik halinin, aile işlevselliğinin, gelişimsel sorumluluk geçişinin ve aile katılımının rutin değerlendirme içinde ele alınmasını önermektedir (de Wit ve diğerleri, 2022; Young-Hyman ve diğerleri, 2016). ADA 2026 çocuk-ergen standardı bu raporda güncel standart kaydı olarak korunmuş; ancak güvenilir tam metin eşleşmesi tamamlanmadığı için özgül öneri ayrıntıları ISPAD 2022 ve ADA 2016 kaynakları üzerinden kurulmuştur (American Diabetes Association Professional Practice Committee for Diabetes, 2026). NICE Guideline NG18 aynı doğrultuda aile-merkezli bakımı, ergen-bağımsızlık geçişini ve davranış sağlığı uzmanlarının pediatrik takıma entegrasyonunu vurgulamaktadır.
 
 Bu kılavuz çerçevesi, çalışma sorusunun yöntemsel biçimini de belirlemektedir: aile işlevselliği yalnız anne öz-bildirimiyle değil, çocuk algısı ve kardeş ilişkisi bağlamıyla birlikte değerlendirilmelidir. Mevcut çalışma bu nedenle, *çift-perspektifli aile değerlendirmesi* yaklaşımını Türk pediatrik T1DM popülasyonunda gözlemsel ve çoklu-informant bir tasarımla operasyonelleştirmektedir.
 
@@ -386,7 +386,7 @@ Stratejiler birbirinin yedeği değildir; her biri farklı bir bilgi katmanı sa
 
 ## 8.10 Çoklu Karşılaştırma Disiplini
 
-Yanlış pozitif bulgu riskini sınırlamak için her hipotez ailesi içinde Benjamini-Hochberg yanlış keşif oranı (FDR) uygulanmıştır (q = .05; Benjamini ve Hochberg, 1995). Düzeltme beş ailede ayrı ayrı yürütülmüştür: H1 ailesi (4 EMBU-C alt ölçeği), H2 ailesi (4 SRQ alt ölçeği), H3 ailesi (4 EMBU-P alt ölçeği), H4 ailesi (Beck'ten 4 EMBU-P latent boyutuna giden yapısal yollar) ve H5 ailesi (3 düad tipi × 4 alt ölçek için ICC ve RSA testleri). Aileler arası FDR uygulanmamış; her aile kendi doğrulayıcı soru seti içinde değerlendirilmiştir.
+Yanlış pozitif bulgu riskini sınırlamak için her hipotez ailesi içinde Benjamini-Hochberg yanlış keşif oranı (FDR) uygulanmıştır (q = 0,05; Benjamini ve Hochberg, 1995). Düzeltme beş ailede ayrı ayrı yürütülmüştür: H1 ailesi (4 EMBU-C alt ölçeği), H2 ailesi (4 SRQ alt ölçeği), H3 ailesi (4 EMBU-P alt ölçeği), H4 ailesi (Beck'ten 4 EMBU-P latent boyutuna giden yapısal yollar) ve H5 ailesi (3 düad tipi × 4 alt ölçek için ICC ve RSA testleri). Aileler arası FDR uygulanmamış; her aile kendi doğrulayıcı soru seti içinde değerlendirilmiştir.
 
 ## 8.11 Sensitivite Üçlüsü
 
@@ -408,7 +408,7 @@ Birincil hipotezler için Bayesçi paralel raporlama yapılmıştır. Pinquart (
 
 ## 8.13 Sayısal Hassasiyet ve Negatif Bulgu Disiplini
 
-Tüm Cohen d, ICC, η², ω, α değerleri 2 ondalık basamak ile %95 güven aralığı eşliğinde raporlanmıştır. p-değerleri APA 7 standardına uygun olarak verilmiş; .001 eşiğinin altı `p < .001` formuyla yazılmıştır. Yüzdeler 1 ondalık ile, BF₁₀ değerleri 2 ondalık ile raporlanmıştır.
+Tüm Cohen d, ICC, η², ω, α değerleri 2 ondalık basamak ile %95 güven aralığı eşliğinde raporlanmıştır. p-değerleri Türkçe bilimsel yazım standardına uygun olarak virgüllü ondalık biçimde verilmiş; 0,001 eşiğinin altı `p < 0,001` formuyla yazılmıştır. Yüzdeler 1 ondalık ile, BF₁₀ değerleri 2 ondalık ile raporlanmıştır.
 
 Negatif bulgular için üç-katmanlı raporlama disiplini benimsenmiştir: (i) klasik test sonucu (test istatistiği, sd, p, FDR p), (ii) etki büyüklüğü ile %95 GA, (iii) Bayes faktörü ile ROPE içi pay. Üç katmanın da hizalı olduğu durumlarda "H0 lehine kanıt" ifadesi kullanılmıştır; bir ya da daha fazla katman tutarsızsa "indeterminate" terimi tercih edilmiştir.
 
@@ -582,9 +582,9 @@ EMBU-P, EMBU-C ve BDI ölçeklerinin Türk T1DM örnekleminde **kullanılabilir 
 
 Dört EMBU-C alt ölçeği için aile düzeyi rastgele kesişim içeren çok-düzeyli kovaryans analizi (n = 482 çocuk) tahmin edilmiştir. Sabit etkiler arasında dört düzeyli rol değişkeni, çocuk yaşı, çocuk cinsiyeti, latent SES, kardeş yaş farkı ve aile çocuk sayısı yer almıştır.
 
-**EMBU-C Reddetme:** DM çocukları (DM-İndeks ve DM-Kardeş birlikte), Kontrol referans grubuna kıyasla **β = 0,16 SD** (%95 GA: 0,05; 0,26) düzeyinde daha yüksek reddetme algısı bildirmiştir. Bayesçi yaklaşımda posterior medyan β = 0,16 SD (%95 güvenilir aralık [0,05; 0,26]) ve yön olasılığı pd = 0,999 değeriyle DM lehine etki güçlü biçimde desteklenmektedir. FDR-düzeltilmiş p < .01.
+**EMBU-C Reddetme:** DM çocukları (DM-İndeks ve DM-Kardeş birlikte), Kontrol referans grubuna kıyasla **β = 0,16 SD** (%95 GA: 0,05; 0,26) düzeyinde daha yüksek reddetme algısı bildirmiştir. Bayesçi yaklaşımda posterior medyan β = 0,16 SD (%95 güvenilir aralık [0,05; 0,26]) ve yön olasılığı pd = 0,999 değeriyle DM lehine etki güçlü biçimde desteklenmektedir. FDR-düzeltilmiş p < 0,01.
 
-**EMBU-C Sıcaklık, Aşırı Koruma, Karşılaştırma:** Üç alt ölçekte DM × Kontrol farkı için kanıt yetersiz (FDR-düzeltilmiş p > .15). Sıcaklık alt ölçeği için Bayesçi posterior medyan β = 0,09 (%95 GA [−0,05; 0,22]) düzeyinde olup güvenilir aralık sıfırı içermekte ve BF₁₀ = 0,29 ile "moderate H0" lehine kanıt sergilemektedir.
+**EMBU-C Sıcaklık, Aşırı Koruma, Karşılaştırma:** Üç alt ölçekte DM × Kontrol farkı için kanıt yetersiz (FDR-düzeltilmiş p > 0,15). Sıcaklık alt ölçeği için Bayesçi posterior medyan β = 0,09 (%95 GA [−0,05; 0,22]) düzeyinde olup güvenilir aralık sıfırı içermekte ve BF₁₀ = 0,29 ile "moderate H0" lehine kanıt sergilemektedir.
 
 ### 11.1.2 Bayesçi paralel kanıt katmanı
 
@@ -603,11 +603,11 @@ EMBU-C reddetme alt ölçeği için Samejima graded response modeli ile latent �
 
 ### 11.1.4 Üçlü etkileşim (yaş × cinsiyet × rol)
 
-Üçlü etkileşim modelinde rol × yaş × cinsiyet etkileşimi FDR-düzeltilmiş p > .20 düzeyinde kalmıştır; reddetme bulgusu yaş × cinsiyet alt grupları arasında homojendir.
+Üçlü etkileşim modelinde rol × yaş × cinsiyet etkileşimi FDR-düzeltilmiş p > 0,20 düzeyinde kalmıştır; reddetme bulgusu yaş × cinsiyet alt grupları arasında homojendir.
 
 ### 11.1.5 H1 Karar Kutusu
 
-H1 reddetme alt ölçeğinde kanıt zinciri dört düzeyde aynı yöne işaret etmektedir: klasik test FDR-düzeltilmiş olarak anlamlıdır (p < .01), Bayes faktörü orta düzey H1 desteği verir (BF₁₀ = 8,12), madde-yanıt teorisiyle yeniden tahmin edilen latent fark korunur (β = 0,14 SD) ve aile-içi sınıf-içi korelasyon (yaklaşık 0,14) çok-düzeyli modelleme kararını destekler. Bu bütünlük, **DM çocuklarının kontrol çocuklarına kıyasla reddetme algısını küçük ama tutarlı biçimde daha yüksek bildirdiği** sonucunu desteklemektedir. Etki büyüklüğü, Funder ve Ozer (2019) ile Schäfer ve Schwarz'ın (2019) küçük etkilerin bağlama bağlı ve birikimli anlam taşıyabileceğini vurgulayan psikoloji çerçevesi içinde okunmalıdır; bu büyüklük klinik olarak büyük bir etki anlamına gelmez. β = 0,16 SD'lik farkın mertebesi, Pinquart'ın (2013) kronik hastalık ailelerinde ebeveyn–çocuk ilişkisi için özet düzeyde bildirdiği g = −0,16 değeriyle örtüşmektedir. Bu bulguda kuramsal olarak kritik olan nokta, sinyalin annenin davranış öz-bildiriminde değil çocuğun algı düzleminde belirmesidir. Bu düzlem-özgüllüğü, bilgi-veren uyuşmazlığını ölçüm hatası değil geçerli bir perspektif bilgisi olarak konumlandıran çerçeveyle tutarlıdır (De Los Reyes ve Kazdin, 2005); kesitsel tasarım nedeniyle yorum nedensel değil betimseldir.
+H1 reddetme alt ölçeğinde kanıt zinciri dört düzeyde aynı yöne işaret etmektedir: klasik test FDR-düzeltilmiş olarak anlamlıdır (p < 0,01), Bayes faktörü orta düzey H1 desteği verir (BF₁₀ = 8,12), madde-yanıt teorisiyle yeniden tahmin edilen latent fark korunur (β = 0,14 SD) ve aile-içi sınıf-içi korelasyon (yaklaşık 0,14) çok-düzeyli modelleme kararını destekler. Bu bütünlük, **DM çocuklarının kontrol çocuklarına kıyasla reddetme algısını küçük ama tutarlı biçimde daha yüksek bildirdiği** sonucunu desteklemektedir. Etki büyüklüğü, Funder ve Ozer (2019) ile Schäfer ve Schwarz'ın (2019) küçük etkilerin bağlama bağlı ve birikimli anlam taşıyabileceğini vurgulayan psikoloji çerçevesi içinde okunmalıdır; bu büyüklük klinik olarak büyük bir etki anlamına gelmez. β = 0,16 SD'lik farkın mertebesi, Pinquart'ın (2013) kronik hastalık ailelerinde ebeveyn–çocuk ilişkisi için özet düzeyde bildirdiği g = −0,16 değeriyle örtüşmektedir. Bu bulguda kuramsal olarak kritik olan nokta, sinyalin annenin davranış öz-bildiriminde değil çocuğun algı düzleminde belirmesidir. Bu düzlem-özgüllüğü, bilgi-veren uyuşmazlığını ölçüm hatası değil geçerli bir perspektif bilgisi olarak konumlandıran çerçeveyle tutarlıdır (De Los Reyes ve Kazdin, 2005); kesitsel tasarım nedeniyle yorum nedensel değil betimseldir.
 
 
 <!-- ═══════════ FİGÜR-RENDER-TALİMATI ═══════════
@@ -637,10 +637,10 @@ uygulama_notu: R ggplot2 + base svg() cihazı; geom_errorbarh + geom_point + geo
 
 | SRQ alt ölçek | Welch d (aile-ortalama) | APIM grup × rol etkisi p | FDR p (aile içinde) |
 |---|---|---|---|
-| Sıcaklık / Yakınlık | < 0,20 | > .30 | > .35 |
-| Statü / Güç | < 0,20 | > .30 | > .35 |
-| Çatışma | < 0,20 | > .30 | > .35 |
-| Rekabet | < 0,20 | > .30 | > .35 |
+| Sıcaklık / Yakınlık | < 0,20 | > 0,30 | > 0,35 |
+| Statü / Güç | < 0,20 | > 0,30 | > 0,35 |
+| Çatışma | < 0,20 | > 0,30 | > 0,35 |
+| Rekabet | < 0,20 | > 0,30 | > 0,35 |
 
 Dört SRQ alt ölçeğinin tamamında DM × Kontrol farkı için kanıt yetersiz olarak değerlendirilmiştir. Aktör-partner karşılıklı bağımlılık modelinin dört modeli de yakınsamış; Olsen-Kenny ayırt edilebilir düad doğrulayıcı faktör analizi kavga-temelli madde seti üzerinde uyum sağlamış ve indeks-kardeş latent korelasyonu **r = 0,27** olarak raporlanmıştır.
 
@@ -684,16 +684,16 @@ uygulama_notu: H2 için mevcut APIM yol diyagramı (h2_apim_path) ayrıca §11.2
 
 | EMBU-P alt ölçek | β (ham, standardize olmayan) | %95 GA (ham) | FDR p |
 |---|---|---|---|
-| Sıcaklık | 0,06 | [−0,07; 0,20] | > .50 |
-| Aşırı Koruma | 0,06 | [−0,12; 0,24] | > .50 |
-| Reddetme | −0,05 | [−0,12; 0,02] | > .50 |
-| Karşılaştırma | 0,06 | [−0,08; 0,20] | > .50 |
+| Sıcaklık | 0,06 | [−0,07; 0,20] | > 0,50 |
+| Aşırı Koruma | 0,06 | [−0,12; 0,24] | > 0,50 |
+| Reddetme | −0,05 | [−0,12; 0,02] | > 0,50 |
+| Karşılaştırma | 0,06 | [−0,08; 0,20] | > 0,50 |
 
-Dört alt ölçeğin tamamında FDR-düzeltilmiş p > .50 düzeyinde kalmıştır. Tabloda ham (standardize olmayan) regresyon katsayıları verilmiştir; standardize etki büyüklüklerinde |β_std| < 0,17 (en büyük mutlak değer reddetmede, β_std = −0,16) aralığında kalınmıştır.
+Dört alt ölçeğin tamamında FDR-düzeltilmiş p > 0,50 düzeyinde kalmıştır. Tabloda ham (standardize olmayan) regresyon katsayıları verilmiştir; standardize etki büyüklüklerinde |β_std| < 0,17 (en büyük mutlak değer reddetmede, β_std = −0,16) aralığında kalınmıştır.
 
 ### 11.3.2 Ters-olasılık ağırlıklandırması ve robust SE doğrulaması
 
-Stabilize trimlenmiş eğilim skoru ağırlıkları ve heteroskedastisite-tutarlı standart hata ile aynı dört alt ölçek için tahminler yenilenmiştir. IPTW modelinde dört alt ölçek için β değerleri −0,04 ile 0,05 arasında, FDR-düzeltilmiş p değerleri ise > .55 düzeyinde kalmıştır. Bu sonuç, birincil kovaryans analizi ile yön ve büyüklük açısından örtüşmektedir.
+Stabilize trimlenmiş eğilim skoru ağırlıkları ve heteroskedastisite-tutarlı standart hata ile aynı dört alt ölçek için tahminler yenilenmiştir. IPTW modelinde dört alt ölçek için β değerleri −0,04 ile 0,05 arasında, FDR-düzeltilmiş p değerleri ise > 0,55 düzeyinde kalmıştır. Bu sonuç, birincil kovaryans analizi ile yön ve büyüklük açısından örtüşmektedir.
 
 ### 11.3.3 Antidepresan-katmanlı duyarlılık analizleri
 
@@ -723,7 +723,7 @@ Antidepresan kullanan (n = 46) ve kullanmayan (n = 195) annelere kısıtlı stra
 
 ### 11.3.6 H3 Karar Kutusu
 
-Dört EMBU-P alt ölçeği için **üç-katmanlı negatif kanıt zinciri**, anne öz-bildirimi düzleminde DM × Kontrol farkı bulunmadığını tutarlı biçimde desteklemektedir: (i) klasik testlerde FDR p > .50; (ii) standardize etkilerde |d| < 0,17; (iii) Bayes faktörlerinde 0,17–0,25 aralığında orta düzey H0 desteği. Aşırı koruma ve karşılaştırma alt ölçekleri ayrıca TOST ile **kesin eşdeğer** konumundadır. Reddetme alt ölçeğinde ROPE-içi payın %92'ye ulaşması ve dört alt ölçekte etkilerin küçük kalması, anne öz-bildirimi düzlemindeki negatif sonucu yalnız güç yetersizliği açıklamasından uzaklaştırır. Bu sonuç, T1DM annelerinin ölçek üzerinde sistematik olarak farklı ebeveynlik tutumu puanları bildirdiği varsayımının bu örneklemde sınırlı ampirik destek taşıdığını gösterir; ancak gözlemsel ebeveynlik davranışının doğrudan ölçüldüğü anlamına gelmez. Bulgudaki homojenlik, pediatrik T1DM ailelerinde ebeveyn-bildirimli psikolojik kontrolde kontrol grubuna göre fark bulunmadığını, buna karşılık çocuk algısı düzleminde ayrışma görülebildiğini raporlayan Van Gampelaere ve diğerleriyle (2020) yapısal olarak örtüşür. Bu nedenle H3, H1 ile birlikte okunduğunda, öz-bildirim ve çocuk algısı düzlemlerinin sistematik olarak ayrışabileceğini vurgulayan uyuşmazlık literatürüyle uyumludur (De Los Reyes ve Kazdin, 2005).
+Dört EMBU-P alt ölçeği için **üç-katmanlı negatif kanıt zinciri**, anne öz-bildirimi düzleminde DM × Kontrol farkı bulunmadığını tutarlı biçimde desteklemektedir: (i) klasik testlerde FDR p > 0,50; (ii) standardize etkilerde |d| < 0,17; (iii) Bayes faktörlerinde 0,17–0,25 aralığında orta düzey H0 desteği. Aşırı koruma ve karşılaştırma alt ölçekleri ayrıca TOST ile **kesin eşdeğer** konumundadır. Reddetme alt ölçeğinde ROPE-içi payın %92'ye ulaşması ve dört alt ölçekte etkilerin küçük kalması, anne öz-bildirimi düzlemindeki negatif sonucu yalnız güç yetersizliği açıklamasından uzaklaştırır. Bu sonuç, T1DM annelerinin ölçek üzerinde sistematik olarak farklı ebeveynlik tutumu puanları bildirdiği varsayımının bu örneklemde sınırlı ampirik destek taşıdığını gösterir; ancak gözlemsel ebeveynlik davranışının doğrudan ölçüldüğü anlamına gelmez. Bulgudaki homojenlik, pediatrik T1DM ailelerinde ebeveyn-bildirimli psikolojik kontrolde kontrol grubuna göre fark bulunmadığını, buna karşılık çocuk algısı düzleminde ayrışma görülebildiğini raporlayan Van Gampelaere ve diğerleriyle (2020) yapısal olarak örtüşür. Bu nedenle H3, H1 ile birlikte okunduğunda, öz-bildirim ve çocuk algısı düzlemlerinin sistematik olarak ayrışabileceğini vurgulayan uyuşmazlık literatürüyle uyumludur (De Los Reyes ve Kazdin, 2005).
 
 
 <!-- ═══════════ FİGÜR-RENDER-TALİMATI ═══════════
@@ -763,12 +763,12 @@ Yapısal yorumlar uyum indekslerinin **mutlak değil göreli iyileşme** sergile
 
 | Yapısal yol | Standardize β (std.all) | %95 GA (standardize olmayan) | p | FDR p (H4 ailesinde) |
 |---|---|---|---|---|
-| Beck → Sıcaklık | **−0,28** | [−0,45; −0,15] | < .001 | < .001 |
-| Beck → Aşırı Koruma | 0,08 | [−0,05; 0,24] | .22 | **.22 (anlamlı değil)** |
-| Beck → Reddetme | **0,33** | [0,19; 0,53] | < .001 | < .001 |
-| Beck → Karşılaştırma | **0,28** | [0,14; 0,49] | < .001 | < .001 |
+| Beck → Sıcaklık | **−0,28** | [−0,45; −0,15] | < 0,001 | < 0,001 |
+| Beck → Aşırı Koruma | 0,08 | [−0,05; 0,24] | 0,22 | **0,22 (anlamlı değil)** |
+| Beck → Reddetme | **0,33** | [0,19; 0,53] | < 0,001 | < 0,001 |
+| Beck → Karşılaştırma | **0,28** | [0,14; 0,49] | < 0,001 | < 0,001 |
 
-**Dört yapısal yoldan üçü** FDR-düzeltilmiş olarak istatistiksel anlamlıdır: Beck depresyon yüksekliği sıcaklık latent faktörüyle negatif, reddetme ve karşılaştırma latent faktörleriyle pozitif ilişkilidir. **Aşırı koruma yolu yön olarak pozitif (β = 0,08); ancak FDR p = .22 ile anlamlı değildir.** Bu desen, anne depresif belirti yükü ile ebeveynlik tutumu alt boyutları arasında **alt-boyut-spesifik bir kesitsel SEM örüntüsü** bulunduğunu; aşırı koruma kanalının ise aynı düzeyde ayrışmadığını düşündürmektedir.
+**Dört yapısal yoldan üçü** FDR-düzeltilmiş olarak istatistiksel anlamlıdır: Beck depresyon yüksekliği sıcaklık latent faktörüyle negatif, reddetme ve karşılaştırma latent faktörleriyle pozitif ilişkilidir. **Aşırı koruma yolu yön olarak pozitif (β = 0,08); ancak FDR p = 0,22 ile anlamlı değildir.** Bu desen, anne depresif belirti yükü ile ebeveynlik tutumu alt boyutları arasında **alt-boyut-spesifik bir kesitsel SEM örüntüsü** bulunduğunu; aşırı koruma kanalının ise aynı düzeyde ayrışmadığını düşündürmektedir.
 
 ### 11.4.3 Multi-grup invaryans
 
@@ -778,7 +778,7 @@ Multi-grup invaryans bulgusu, Beck depresyonu ile EMBU-P yapısal yollarının D
 
 ### 11.4.4 H4 Karar Kutusu
 
-H4 hipotezi ön-kayıtlı yönde **kısmen doğrulanmıştır**. Anne depresif belirti yükü dört EMBU-P alt ölçeğinden üçünde anlamlı yapısal yollar üretmiştir: sıcaklık yönünde negatif, reddetme ve karşılaştırma yönünde pozitif ilişki gözlenmiştir (anlamlı yollar için |std. β| = 0,28–0,33). Aşırı koruma yolu aynı yönde pozitif olmakla birlikte FDR-düzeltilmiş anlamlılığa ulaşmamıştır (β = 0,08, FDR p = .22). Bu büyüklükler, Lovejoy ve diğerlerinin (2000) maternal depresyon ile olumsuz ebeveynlik davranışı arasındaki meta-analitik ilişkiyi özetleyen d = 0,40 bulgusuyla yön ve mertebe bakımından uyumludur. Bu karşılaştırma ayrıntılı moderatör veya tablo iddiası değil, kesitsel yol katsayılarının bağlamsal büyüklük kalibrasyonu olarak kullanılmaktadır.
+H4 hipotezi ön-kayıtlı yönde **kısmen doğrulanmıştır**. Anne depresif belirti yükü dört EMBU-P alt ölçeğinden üçünde anlamlı yapısal yollar üretmiştir: sıcaklık yönünde negatif, reddetme ve karşılaştırma yönünde pozitif ilişki gözlenmiştir (anlamlı yollar için |std. β| = 0,28–0,33). Aşırı koruma yolu aynı yönde pozitif olmakla birlikte FDR-düzeltilmiş anlamlılığa ulaşmamıştır (β = 0,08, FDR p = 0,22). Bu büyüklükler, Lovejoy ve diğerlerinin (2000) maternal depresyon ile olumsuz ebeveynlik davranışı arasındaki meta-analitik ilişkiyi özetleyen d = 0,40 bulgusuyla yön ve mertebe bakımından uyumludur. Bu karşılaştırma ayrıntılı moderatör veya tablo iddiası değil, kesitsel yol katsayılarının bağlamsal büyüklük kalibrasyonu olarak kullanılmaktadır.
 
 
 <!-- ═══════════ FİGÜR-RENDER-TALİMATI ═══════════
@@ -820,11 +820,11 @@ Bland-Altman uyum sınırları (mean ± 1,96 × SD) düad çiftlerinde ortalama 
 
 ### 11.5.2 Strateji 2: Yanıt Yüzeyi Analizi (Edwards-Parry RSA)
 
-Polinom regresyon yüzeyi (anne² + çocuk² + anne × çocuk terimleri) yalnızca **sıcaklık ve reddetme** alt ölçeklerinde DM, Kontrol ve havuzlanmış olarak tahmin edilmiştir (aşırı koruma ve karşılaştırma alt ölçekleri için RSA yürütülmemiştir; n: havuzlanmış 238, Kontrol 121, DM 117). Tam parametre seti **a1–a5 ve b0–b5**'tir. Reddetme alt ölçeğinde tutarsızlık ekseni (a4) havuzlanmış −13,96 (p = .012), Kontrol −15,93 (p = .064) ve DM −7,07 (p = .43) düzeyindedir. RSA, tekil bir "DM > Kontrol uyum skoru" üretmez — parametreler bir polinom yüzeyin eğim ve eğrilik terimleridir; bu nedenle bu strateji grup yön karşılaştırmasında tek başına bir "yön kanıtı" olarak sayılamaz.
+Polinom regresyon yüzeyi (anne² + çocuk² + anne × çocuk terimleri) yalnızca **sıcaklık ve reddetme** alt ölçeklerinde DM, Kontrol ve havuzlanmış olarak tahmin edilmiştir (aşırı koruma ve karşılaştırma alt ölçekleri için RSA yürütülmemiştir; n: havuzlanmış 238, Kontrol 121, DM 117). Tam parametre seti **a1–a5 ve b0–b5**'tir. Reddetme alt ölçeğinde tutarsızlık ekseni (a4) havuzlanmış −13,96 (p = 0,012), Kontrol −15,93 (p = 0,064) ve DM −7,07 (p = 0,43) düzeyindedir. RSA, tekil bir "DM > Kontrol uyum skoru" üretmez — parametreler bir polinom yüzeyin eğim ve eğrilik terimleridir; bu nedenle bu strateji grup yön karşılaştırmasında tek başına bir "yön kanıtı" olarak sayılamaz.
 
 ### 11.5.3 Strateji 3: Ortak Yazgı Modeli (CFM)
 
-Dört alt ölçek için birer CFM modeli çalıştırılmıştır; ancak **reddetme alt ölçeği modeli yakınsamamıştır** (uygunsuz/Heywood çözüm: grup yordayıcısı katsayısı β = −0,05 olmasına karşın standart hata ve p-değeri tanımsız, tüm uyum indeksleri NA) ve bu nedenle yorumlanmamalıdır. Yakınsayan üç alt ölçekte ortak ebeveynlik latent yapısının grup (DM) etkisi: sıcaklık +0,03 (p = .49), **aşırı koruma +0,19 (p = .044; tek anlamlı yol)** ve karşılaştırma +0,10 (p = .26). CFM, yalnızca aşırı koruma boyutunda anlamlı bir DM etkisi vermektedir; reddetme tahmini geçersizdir.
+Dört alt ölçek için birer CFM modeli çalıştırılmıştır; ancak **reddetme alt ölçeği modeli yakınsamamıştır** (uygunsuz/Heywood çözüm: grup yordayıcısı katsayısı β = −0,05 olmasına karşın standart hata ve p-değeri tanımsız, tüm uyum indeksleri NA) ve bu nedenle yorumlanmamalıdır. Yakınsayan üç alt ölçekte ortak ebeveynlik latent yapısının grup (DM) etkisi: sıcaklık +0,03 (p = 0,49), **aşırı koruma +0,19 (p = 0,044; tek anlamlı yol)** ve karşılaştırma +0,10 (p = 0,26). CFM, yalnızca aşırı koruma boyutunda anlamlı bir DM etkisi vermektedir; reddetme tahmini geçersizdir.
 
 ### 11.5.4 Strateji 4: Olsen-Kenny Ayırt Edilebilir Düad Doğrulayıcı Faktör Analizi
 
@@ -836,7 +836,7 @@ Reddetme alt ölçeği üzerinde yürütülmüş latent korelasyon değerleri:
 | Kontrol | **0,17** |
 | DM | **0,29** |
 
-DM grubunda anne ↔ indeks çocuk reddetme algısının latent uyumu, Kontrol grubundan görece daha yüksektir (DM−Kontrol farkı 0,12 birim). **Ancak bu tek "DM > Kontrol" sinyali iki önemli kısıtla okunmalıdır:** (i) yalnızca tek bir alt ölçekten (reddetme) gelir ve (ii) DM-grubu modelinin uyumu zayıftır (RMSEA = 0,120; SRMR = 0,254; CFI = 0,984; χ²(15) = 40,81, p < .001) — bu profil, latent korelasyonun aşırı-uyum/kırılganlık riski taşıdığını göstermektedir. Değerler Kenny ve diğerlerinin (2006) "düşük-orta non-bağımsızlık" aralığına denk düşmektedir. Reddetme boyutunda latent uyumun DM grubunda (r = 0,29) Kontrol'den (r = 0,17) görece yüksek çıkması, manifest ICC örüntüsüne ters yönde tek bir asimetri sinyalidir; ancak DM-grubu modelinin zayıf uyumu (RMSEA = 0,120; SRMR = 0,254) bu değeri kırılgan kılmaktadır. Latent uyuşmazlık modellemesinin T1DM bağlamında yorumlanabilir sonuçlar üretebildiği, Butner ve diğerlerinin (2009) 185 ergen-anne-baba düadında ebeveynlerin ergeni kendisinden daha olumsuz değerlendirdiğini gösteren latent discrepancy çalışmasıyla belgelenmiştir; bu yöntemsel paralellik, tek-alt-ölçekli sinyalin replikasyonla sınanması gereken bir hipotez üretme değeri taşıdığını, doğrulayıcı bir kanıt oluşturmadığını düşündürmektedir.
+DM grubunda anne ↔ indeks çocuk reddetme algısının latent uyumu, Kontrol grubundan görece daha yüksektir (DM−Kontrol farkı 0,12 birim). **Ancak bu tek "DM > Kontrol" sinyali iki önemli kısıtla okunmalıdır:** (i) yalnızca tek bir alt ölçekten (reddetme) gelir ve (ii) DM-grubu modelinin uyumu zayıftır (RMSEA = 0,120; SRMR = 0,254; CFI = 0,984; χ²(15) = 40,81, p < 0,001) — bu profil, latent korelasyonun aşırı-uyum/kırılganlık riski taşıdığını göstermektedir. Değerler Kenny ve diğerlerinin (2006) "düşük-orta non-bağımsızlık" aralığına denk düşmektedir. Reddetme boyutunda latent uyumun DM grubunda (r = 0,29) Kontrol'den (r = 0,17) görece yüksek çıkması, manifest ICC örüntüsüne ters yönde tek bir asimetri sinyalidir; ancak DM-grubu modelinin zayıf uyumu (RMSEA = 0,120; SRMR = 0,254) bu değeri kırılgan kılmaktadır. Latent uyuşmazlık modellemesinin T1DM bağlamında yorumlanabilir sonuçlar üretebildiği, Butner ve diğerlerinin (2009) 185 ergen-anne-baba düadında ebeveynlerin ergeni kendisinden daha olumsuz değerlendirdiğini gösteren latent discrepancy çalışmasıyla belgelenmiştir; bu yöntemsel paralellik, tek-alt-ölçekli sinyalin replikasyonla sınanması gereken bir hipotez üretme değeri taşıdığını, doğrulayıcı bir kanıt oluşturmadığını düşündürmektedir.
 
 ### 11.5.5 Strateji 5: Kenny k-katsayısı
 
@@ -904,9 +904,9 @@ MacKinnon, Fairchild ve Fritz (2007), Preacher (2015), Rijnhart ve diğerleri (2
 
 Beck → EMBU-P reddetme → EMBU-C reddetme zinciri üç paralel katmanda test edilmiştir.
 
-- **Tek-aracı modeli (BCa bootstrap, n = 1000):** a-yolu (Beck → EMBU-P reddetme) β = 0,0056, p = .025 düzeyinde anlamlı; b-yolu (EMBU-P reddetme → EMBU-C reddetme) β = 0,091, p = .14 düzeyinde anlamsız; dolaylı (indirect) etki β = 0,0005, %95 GA [−0,0001; 0,0020] sıfırı içermekte.
-- **Çok-düzeyli aracılık modeli:** Aile düzeyi aracı ve uzun-format çocuk outcome'u ile a-yolu anlamlı (β = 0,0055, p = .018); ancak dolaylı etki anlamsız.
-- **Koşullu süreç modeli (Hayes Model 14):** a-yolunun grup tarafından moderasyonu (a3 = 0,046, p = .22) ve moderate aracılık indeksi (IMM = 0,004, p = .37) anlamlı bulunmamıştır.
+- **Tek-aracı modeli (BCa bootstrap, n = 1000):** a-yolu (Beck → EMBU-P reddetme) β = 0,0056, p = 0,025 düzeyinde anlamlı; b-yolu (EMBU-P reddetme → EMBU-C reddetme) β = 0,091, p = 0,14 düzeyinde anlamsız; dolaylı (indirect) etki β = 0,0005, %95 GA [−0,0001; 0,0020] sıfırı içermekte.
+- **Çok-düzeyli aracılık modeli:** Aile düzeyi aracı ve uzun-format çocuk outcome'u ile a-yolu anlamlı (β = 0,0055, p = 0,018); ancak dolaylı etki anlamsız.
+- **Koşullu süreç modeli (Hayes Model 14):** a-yolunun grup tarafından moderasyonu (a3 = 0,046, p = 0,22) ve moderate aracılık indeksi (IMM = 0,004, p = 0,37) anlamlı bulunmamıştır.
 
 Üç model birlikte değerlendirildiğinde, **Beck → EMBU-P köprüsünün varlığına karşın EMBU-P → EMBU-C aktarımı desteklenmemiştir**. H4 yapısal modelinde Beck → EMBU-P yolları anlamlıdır (β = 0,28–0,33); ancak b-yolunun ve dolaylı etkinin sıfırı içermesi, bu ilişkinin çocuk algısı düzlemine sistematik biçimde taşındığını göstermemektedir.
 
@@ -916,7 +916,7 @@ Bu nedenle aracılık hipotezi bu kesitsel modelde desteklenmemiş; klinik anlam
 
 > **Yöntem kutusu — Latent profil analizi.** Latent profil analizi, sürekli ölçeklerden yola çıkarak örneklem içinde benzer yanıt örüntülerine sahip gizli alt grupları arar. Bu çalışmada Beck, EMBU-P ve latent SES değişkenleri kullanılmış; profil sayısı BIC, entropy ve BLRT göstergeleri birlikte değerlendirilerek belirlenmiştir.
 
-Beck total, dört EMBU-P alt ölçeği ve latent SES değişkenleri üzerinde tidyLPA `estimate_profiles` fonksiyonu ile 1–5 profil çözümü karşılaştırılmıştır. BIC en uygun model olarak **3-profil çözümünü** seçmiştir (BIC = 3951; 2 profile karşı 1 profile BLRT p = .01; 3 profile karşı 2 profile BLRT p = .01; entropy = 0,81). Nylund, Asparouhov ve Muthén'in (2007) sınıf sayısı karşılaştırma literatürü ve `tidyLPA` yazılım çerçevesi, bu raporlama biçimini destekler; ancak BIC/BLRT kararları tek başına klinik sınıf geçerliği veya replikasyon kanıtı değildir.
+Beck total, dört EMBU-P alt ölçeği ve latent SES değişkenleri üzerinde tidyLPA `estimate_profiles` fonksiyonu ile 1–5 profil çözümü karşılaştırılmıştır. BIC en uygun model olarak **3-profil çözümünü** seçmiştir (BIC = 3951; 2 profile karşı 1 profile BLRT p = 0,01; 3 profile karşı 2 profile BLRT p = 0,01; entropy = 0,81). Nylund, Asparouhov ve Muthén'in (2007) sınıf sayısı karşılaştırma literatürü ve `tidyLPA` yazılım çerçevesi, bu raporlama biçimini destekler; ancak BIC/BLRT kararları tek başına klinik sınıf geçerliği veya replikasyon kanıtı değildir.
 
 Üç profil ortalama özellikleri kabaca şu şekilde yorumlanabilir:
 
@@ -926,7 +926,7 @@ Beck total, dört EMBU-P alt ölçeği ve latent SES değişkenleri üzerinde ti
 
 Bu etiketler betimseldir ve klinik tanı ya da tedavi önerisi olarak kullanılmamaktadır. Profil adları veri güdümlü keşifsel isimlerdir; bağımsız örneklemde sınıf geçerliği, sınıflandırma güvenilirliği ve dışsal ölçütlerle replikasyon gösterilmeden "doğal sınıf" veya klinik tipoloji olarak okunmamalıdır.
 
-Buna paralel olarak kategorik göstergeli latent sınıf analizi (poLCA) Beck şiddeti üç kategoriye (minimal / hafif / orta-şiddetli), EMBU-P alt ölçekleri ve latent SES örneklem içi tertillere ayrılarak yürütülmüş; BIC en iyi 2-sınıf çözümünü desteklemiştir (BIC = 2640,3; sınıf oranları %63,4 ve %36,6; entropy = 0,60). Modal sınıf regresyonunda DM grubu sınıf üyeliğini anlamlı biçimde değiştirmemiştir (OR = 1,01, %95 GA [0,59; 1,76], p = .958).
+Buna paralel olarak kategorik göstergeli latent sınıf analizi (poLCA) Beck şiddeti üç kategoriye (minimal / hafif / orta-şiddetli), EMBU-P alt ölçekleri ve latent SES örneklem içi tertillere ayrılarak yürütülmüş; BIC en iyi 2-sınıf çözümünü desteklemiştir (BIC = 2640,3; sınıf oranları %63,4 ve %36,6; entropy = 0,60). Modal sınıf regresyonunda DM grubu sınıf üyeliğini anlamlı biçimde değiştirmemiştir (OR = 1,01, %95 GA [0,59; 1,76], p = 0,958).
 
 Bifaktör S-1 modeli reddetme alt ölçeği reference faktör olarak seçilerek 29-madde EMBU-P üzerine kurulmuştur; uyum sınır altı düzeyde kalmış ve "öneri-düzeyi keşifsel" olarak işaretlenmiştir.
 
@@ -944,7 +944,7 @@ Dokuz değişken (dört EMBU-P alt ölçeği + dört SRQ alt ölçeği + Beck to
 - EMBU-P karşılaştırma (strength = 0,51)
 - SRQ çatışma (strength = 0,49)
 
-Ağ Karşılaştırma Testi (200 permütasyon) DM (n = 117) ve Kontrol (n = 121) ağları arasında global strength invaryans p = .86 ve maksimum kenar farkı p = .77 değerleriyle anlamlı grup farkı üretmemiştir. Bu sonuç "ağlar eşdeğerdir" anlamına gelmez; yalnızca bu örneklem, bu permütasyon sayısı ve bu ağ kurulumunda grup ağlarının farklılaştığına dair kanıt üretilemediğini gösterir.
+Ağ Karşılaştırma Testi (200 permütasyon) DM (n = 117) ve Kontrol (n = 121) ağları arasında global strength invaryans p = 0,86 ve maksimum kenar farkı p = 0,77 değerleriyle anlamlı grup farkı üretmemiştir. Bu sonuç "ağlar eşdeğerdir" anlamına gelmez; yalnızca bu örneklem, bu permütasyon sayısı ve bu ağ kurulumunda grup ağlarının farklılaştığına dair kanıt üretilemediğini gösterir.
 
 Beck madde-düzeyi belirti ağı 21 madde üzerinde tahmin edilmiş ve madde-düzeyi merkeziyet indeksleri raporlanmıştır.
 
@@ -967,15 +967,15 @@ Performans göstergeleri (iç-validasyonlu, optimizm-düzeltilmiş bootstrap, B 
 - Karar eğrisi analizi 0,10–0,40 risk eşik aralığında, bu iç-validasyonlu prototipte genişletilmiş modelin "herkesi tara" ve "kimseyi tarama" stratejilerine göre daha yüksek net fayda eğrisi verdiğini göstermiştir; klinik kullanım için dış-validasyon gereklidir.
 - Kalibrasyon eğrisi intercept ≈ 0 ve slope ≈ 1 düzeyine yakın kabul edilebilir kalibrasyon profili sergilemiştir.
 
-Bu model, **dış-validasyon bekleyen** bir prototip olarak konumlandırılmıştır. İç-validasyon, optimizm düzeltmesi ve karar eğrisi bulguları model geliştirme aşamasındaki sinyali gösterir; modelin klinik iş akışına alınması için bağımsız dış-validasyon, yeniden kalibrasyon ve uygulanabilirlik/risk-of-bias değerlendirmesi ayrıca gereklidir. Bağımsız Türk merkezlerinde TRIPOD-Cluster çerçevesinde dış validasyon, gelecek araştırma gündeminin önceliklerinden biridir.
+Bu model, **dış-validasyon bekleyen** bir prototip olarak konumlandırılmıştır. İç-validasyon, optimizm düzeltmesi ve karar eğrisi bulguları model geliştirme aşamasındaki sinyali gösterir; modelin klinik iş akışına alınması için bağımsız dış-validasyon, yeniden kalibrasyon ve uygulanabilirlik/yanlılık-riski değerlendirmesi ayrıca gereklidir. Bağımsız Türk merkezlerinde TRIPOD-Cluster çerçevesinde dış validasyon, gelecek araştırma gündeminin önceliklerinden biridir.
 
 ## 12.5 DM Klinik Alt-Analizler
 
 DM grubu içinde HbA1c × ebeveynlik etkileşimi (n = 39 keşifsel; HbA1c'in yapısal eksikliğe dahil olmayan kayıp paterni nedeniyle imputasyon uygulanmamıştır), DM süresi spline ve tanı yaşı strata analizleri gerçekleştirilmiştir.
 
-- **HbA1c × ebeveynlik:** Dört EMBU-P alt ölçeğinde HbA1c × DM süresi etkileşim p > .40 ve R² < 0,25 düzeyinde kalmış; non-linear örüntü gözlenmemiştir.
+- **HbA1c × ebeveynlik:** Dört EMBU-P alt ölçeğinde HbA1c × DM süresi etkileşim p > 0,40 ve R² < 0,25 düzeyinde kalmış; non-linear örüntü gözlenmemiştir.
 - **DM süresi spline:** Cubic spline ile lineer regresyon karşılaştırmasında dört outcome için "lineer yeterli" sonucu üretilmiş; DM süresinin ebeveynlik tutumu yordayıcısı olarak doğrusal işlerlik sergilediği bulunmuştur.
-- **Tanı yaşı strata analizi (3 strata: < 5 yaş, 5–10 yaş, ≥ 10 yaş):** Hiçbir outcome'da F testi anlamlılığa ulaşmamış; en büyük F = 2,05 (p = .13, sıcaklık alt ölçeğinde); η²-partial < 0,04.
+- **Tanı yaşı strata analizi (3 strata: < 5 yaş, 5–10 yaş, ≥ 10 yaş):** Hiçbir outcome'da F testi anlamlılığa ulaşmamış; en büyük F = 2,05 (p = 0,13, sıcaklık alt ölçeğinde); η²-partial < 0,04.
 
 Bu örüntü, T1DM klinik göstergelerinin anne öz-bildirim ebeveynlik tutumlarıyla bu örneklemde non-linear bir bağlantı sergilemediğini düşündürmektedir. Ancak HbA1c alt-örneklemi hem küçüktür hem de seçilmiş görünmektedir. **n = 39 düzeyi**, küçük-orta etki büyüklüklerini tespit etmek için açıkça yetersiz güç sağlar (Cohen, 1988 standardında power < 0,50).
 
@@ -989,7 +989,7 @@ Eksik veri literatürünün MCAR/MAR/MNAR ayrımına ilişkin uyarıları (Peder
 
 120 spesifikasyondan oluşan çoklu evren analizi uygulanmıştır. Spesifikasyon boyutları: dört EMBU-P alt ölçeği × beş kovaryat seti × iki tahmin yöntemi (sıradan en küçük kareler ve robust M-tahmincisi) × üç alt-örneklem (tüm örneklem, 2+ çocuklu aile, antidepresan kullanmayan).
 
-**Sonuç:** 120 spesifikasyonun **% 0**'ında p < .05 elde edilmiştir. Reddetme alt ölçeğinde median Cohen d = −0,13 (%5–%95 spec aralığı [−0,185; −0,058]) düzeyinde tutarlı zayıf-negatif bir örüntü gözlenmiş; tüm reddetme spesifikasyonları negatif yönde kalmıştır. Diğer üç alt ölçekte etki dağılımları küçük ve pozitif yöndedir: sıcaklık median d = 0,13 [0,09; 0,14], aşırı koruma 0,10 [0,05; 0,14], karşılaştırma 0,09 [0,07; 0,11]. Permütasyon temelli inferential test (n_perm = 5000) Z_median ve Z_share değerlerinde anlamlılık üretmemiştir.
+**Sonuç:** 120 spesifikasyonun **% 0**'ında p < 0,05 elde edilmiştir. Reddetme alt ölçeğinde median Cohen d = −0,13 (%5–%95 spec aralığı [−0,185; −0,058]) düzeyinde tutarlı zayıf-negatif bir örüntü gözlenmiş; tüm reddetme spesifikasyonları negatif yönde kalmıştır. Diğer üç alt ölçekte etki dağılımları küçük ve pozitif yöndedir: sıcaklık median d = 0,13 [0,09; 0,14], aşırı koruma 0,10 [0,05; 0,14], karşılaştırma 0,09 [0,07; 0,11]. Permütasyon temelli inferential test (n_perm = 5000) Z_median ve Z_share değerlerinde anlamlılık üretmemiştir.
 
 Bu desen, H3/EMBU-P grup farklarının tanımlanmış ve makul spesifikasyon evreni içinde pratik olarak küçük kaldığını gösterir. Specification curve yaklaşımı araştırmacı serbestliğini görünür kılar; ancak bu bulgu "tüm olası modellerde evrensel sağlamlık" veya "bias yokluğu" kanıtı değildir.
 
@@ -999,16 +999,16 @@ id: fig-13-1
 baslik: H3 çoklu evren (specification curve) — 120 spesifikasyon etki dağılımı
 yerlesim: §13.1 sonuna
 grafik_turu: Specification curve (üst: sıralı etki + GA; alt: spesifikasyon kararları matrisi)
-veri_kaynagi: §13.1: H3/EMBU-P için 120/120 başarılı spesifikasyon; 0/120 p<.05; reddetme medyan d=-0,13 [%5-%95: -0,185, -0,058]; diğer alt ölçeklerde küçük pozitif ama anlamsız etki dağılımları.
+veri_kaynagi: §13.1: H3/EMBU-P için 120/120 başarılı spesifikasyon; 0/120 p < 0,05; reddetme medyan d=-0,13 [%5-%95: -0,185, -0,058]; diğer alt ölçeklerde küçük pozitif ama anlamsız etki dağılımları.
 mevcut_dosya: yok (yeni üretilecek; veri: multiverse spec sonuç tablosu)
 kodlama: üst panel: x=sıralı spesifikasyon indeksi, y=β + %95 GA; alt panel: spesifikasyon kararları (kovaryat setleri) ikili matris
-renk_haritasi: p<.05 spesifikasyonlar Blue, p≥.05 Gray; medyan çizgisi Teal
+renk_haritasi: p < 0,05 spesifikasyonlar Blue, p ≥ 0,05 Gray; medyan çizgisi Teal
 referans_cizgileri: y=0 yatay kesikli; medyan-β yatay Teal çizgi
 dogrudan_etiketler: Medyan β ve pozitif-oran anotasyonu
 stil: Carbon Design System v11 paleti — Blue #0f62fe, Red #da1e28, Teal #007d79, Purple #8a3ffc, Magenta #d02670, Gray #8d8d8d; ink #161616, ikincil-ink #525252, ızgara #e0e0e0, sıfır-çizgisi #a8a8a8 (kesikli). IBM Plex Sans. Resesif ızgara (yalnız gereken eksende major). İnce işaretler, ≥8px nokta / 2px çizgi. A4-baskı, SVG (R base svg() cihazı veya matplotlib). Doğrudan değer etiketleri seçici.
 onerilen_cikti_dosyasi: docs/assets/figures/carbon/robustness/h3_embu_p_spec_curve.svg
 render_sonrasi_embed_satiri: ![Şekil 13.1. H3 çoklu evren spesifikasyon eğrisi](assets/figures/carbon/robustness/h3_embu_p_spec_curve.svg)
-caption_bloku: **Şekil 13.1. H3 anne öz-bildirimi etkilerinin 120 analitik spesifikasyon boyunca dağılımı (specification curve).** Yorum: hiçbir spesifikasyonda p<.05 yok; H3/EMBU-P grup farkları tanımlı spesifikasyon evreninde pratik olarak küçük kalır.
+caption_bloku: **Şekil 13.1. H3 anne öz-bildirimi etkilerinin 120 analitik spesifikasyon boyunca dağılımı (specification curve).** Yorum: hiçbir spesifikasyonda p < 0,05 yok; H3/EMBU-P grup farkları tanımlı spesifikasyon evreninde pratik olarak küçük kalır.
 uygulama_notu: specr::plot_curve mantığı; base svg().
 ═══════════ /FİGÜR-RENDER-TALİMATI ═══════════ -->
 
@@ -1138,7 +1138,7 @@ Tüm modellerde:
 
 Bayesçi sonuçlar frequentist analizlerle genel olarak hizalanmakta ve **yorum belirsizliklerini** tamamlayıcı bir kanıt katmanıyla netleştirmektedir. Bu katman, kullanılan prior, model ailesi ve ROPE bandına bağlıdır; Bayes faktörü veya ROPE, NHST ya da TOST kararlarının yerine geçen mutlak hüküm olarak okunmamıştır (Makowski ve diğerleri, 2019).
 
-- **H1 reddetme** için BF₁₀ = 8,12 ("orta düzey H1 lehine kanıt") frequentist sonuçla (FDR p < .01) aynı yöne işaret etmektedir.
+- **H1 reddetme** için BF₁₀ = 8,12 ("orta düzey H1 lehine kanıt") frequentist sonuçla (FDR p < 0,01) aynı yöne işaret etmektedir.
 - **H3 reddetme** için BF₁₀ = 0,17 ve ROPE içi pay %92, klasik testin "anlamsız" sonucunu **"bu model ve prior altında sıfır lehine güçlü kanıt"** olarak yeniden yorumlamayı mümkün kılmaktadır. Böylece bu boyutta "kanıt yetersizliği" ile "aktif sıfır kanıtı" ayrımı daha açık kurulabilmektedir.
 
 \newpage
@@ -1162,9 +1162,9 @@ Bu çözümlemeler, birincil hipotezlerle aynı kilitli veri seti üzerinde — 
 | Floor-aware IRT | İndeks çocuk reddetme Cohen d = 0,372 | Taban etkisi, H1 reddetme sinyalini manifest ortalama farkına göre maskelemiş olabilir. |
 | Reliability generalization | EMBU-P ω_h = 0,660; ECV = 0,409 | EMBU-P çok-boyutlu yapıdadır; özellikle reddetme alt ölçeği tek başına güçlü psikometrik zemin taşımaz. |
 | H5 strateji pooling | DM pooled = 0,179 [%95 GA 0,097, 0,260] | DM grup-içi pooled büyüklük 0,179; ön-kayıtlı triangülasyon (≥3 strateji) karşılanmadığından bu bir uyum-yönü/grup-farkı kanıtı değil, tek-strateji/tek-alt-ölçek sinyalin büyüklük bağlamıdır (bkz. §19.2). |
-| HbA1c × ebeveynlik Bayesian | Sıcaklık pd = 0,944; karşılaştırma pd = 0,946; n = 39 | DM-only klinik sinyal hipotez-üreticidir; küçük complete-case örneklem nedeniyle replikasyon gerekir. |
-| H1 multiverse | 120/120 başarılı spesifikasyon; medyan β = 0,134; p < .05 payı = 0,75 | H1 reddetme yönü model kararlarına duyarlı görünmemektedir. |
-| Specification curve inferential test | t = 4,084; permütasyon p = .0002 | H1 spesifikasyon eğrisi toplu testte null hipotezini reddeder. |
+| HbA1c × ebeveynlik Bayesçi model | Sıcaklık pd = 0,944; karşılaştırma pd = 0,946; n = 39 | Yalnız DM alt-örneklemindeki klinik sinyal hipotez-üreticidir; küçük tam-gözlem örneklemi nedeniyle replikasyon gerekir. |
+| H1 multiverse | 120/120 başarılı spesifikasyon; medyan β = 0,134; p < 0,05 payı = 0,75 | H1 reddetme yönü model kararlarına duyarlı görünmemektedir. |
+| Specification curve inferential test | t = 4,084; permütasyon p = 0,0002 | H1 spesifikasyon eğrisi toplu testte null hipotezini reddeder. |
 | Meta-analitik pooling | Pooled = 0,139 [%95 GA 0,049, 0,230]; τ = 0,106 | Bu çalışmanın H1 yönü, literatür önseliyle birleştiğinde küçük ama sıfırdan ayrışan bir etki merkezine oturur. |
 | Klinik karar modeli | Extended AUC = 0,703; sNB = 0,86 (eşik 0,05) | İç-validasyon düzeyinde karar modeli sinyali vardır; dış-validasyon olmadan klinik uygulama aracı değildir. |
 
@@ -1254,7 +1254,7 @@ Beş stratejinin REML pooling sonucu DM için 0,179 [%95 GA 0,097, 0,260], Kontr
 
 ## 15.7 Klinik Stratifikasyon ve HbA1c
 
-DM-only HbA1c alt analizleri yalnız 39 tam gözlem üzerinde çalışmıştır. Bayesian joint model, sıcaklık ve karşılaştırma outcome'larında HbA1c ile pozitif yön olasılığı üretmiştir (sıcaklık pd = 0,944; karşılaştırma pd = 0,946). Güven aralıklarının sıfırı içermesi ve örneklem büyüklüğünün düşük olması nedeniyle bu sonuçlar yalnızca gelecek DM kohortu için hipotez üretir.
+Yalnız DM grubunda yürütülen HbA1c alt analizleri 39 tam gözlem üzerinde çalışmıştır. Bayesçi ortak model, sıcaklık ve karşılaştırma çıktılarında HbA1c ile pozitif yön olasılığı üretmiştir (sıcaklık pd = 0,944; karşılaştırma pd = 0,946). Güven aralıklarının sıfırı içermesi ve örneklem büyüklüğünün düşük olması nedeniyle bu sonuçlar yalnızca gelecek DM kohortu için hipotez üretir.
 
 Tanı yaşı spline analizleri dört alt ölçekte lineer modele anlamlı üstünlük göstermemiştir. ISPAD <%7 ikili outcome modeli olay sayısı nedeniyle güçsüzdür. Bu nedenle ikincil klinik stratifikasyon sonucu, mevcut CSR'ın klinik önerilerini genişletmez; yalnızca HbA1c ve tanı yaşı değişkenlerinin sonraki prospektif tasarımda daha güçlü örneklemle ele alınması gerektiğini gösterir.
 
@@ -1300,7 +1300,7 @@ Dağılımsal modeller, H1 reddetme etkisinin üst kuyrukta güçlendiğini gös
 
 ## 15.9 Multiverse ve Meta-Analitik Birleştirme
 
-H1 multiverse analizinde 120/120 spesifikasyon başarılı çalışmış; tüm spesifikasyonlarda yön pozitif, %75'inde p < .05 bulunmuştur. Medyan etki β = 0,134 [%95 aralık 0,082, 0,188] düzeyindedir. Specification curve inferential test 5000 permütasyonda t = 4,084 ve p = .0002 üretmiştir. Bu sonuç, H1 reddetme bulgusunun tek bir model kararına bağımlı olmadığını gösterir.
+H1 multiverse analizinde 120/120 spesifikasyon başarılı çalışmış; tüm spesifikasyonlarda yön pozitif, %75'inde p < 0,05 bulunmuştur. Medyan etki β = 0,134 [%95 aralık 0,082, 0,188] düzeyindedir. Specification curve inferential test 5000 permütasyonda t = 4,084 ve p = 0,0002 üretmiştir. Bu sonuç, H1 reddetme bulgusunun tek bir model kararına bağımlı olmadığını gösterir.
 
 Bayesian/meta-analitik pooling, bu çalışmadaki dört outcome kestirimini ilgili literatür etkileriyle birleştirdiğinde pooled etkiyi 0,139 [%95 GA 0,049, 0,230] olarak kestirmiştir. Posterior predictive replication dört outcome için de `ppc_consistent` kararı vermiştir. Bu meta-analitik çözümleme, H1 yönünü literatürle uyumlu küçük etki olarak konumlandırır; etkiyi büyük veya klinik olarak tek başına belirleyici göstermemelidir.
 
@@ -1310,8 +1310,8 @@ Bayesian/meta-analitik pooling, bu çalışmadaki dört outcome kestirimini ilgi
 |---|---:|---|
 | H1 multiverse | 120/120 başarılı; medyan β = 0,134 | H1 yönü model kararlarına duyarlı görünmez. |
 | Pozitif yön payı | 1,00 | Tüm spesifikasyonlarda yön pozitiftir. |
-| p < .05 payı | 0,75 | İstatistiksel karar spesifikasyona bağlı ama çoğunlukla pozitiftir. |
-| Specification curve test | t = 4,084; permütasyon p = .0002 | Toplu eğri null hipotezinden ayrışır. |
+| p < 0,05 payı | 0,75 | İstatistiksel karar spesifikasyona bağlı ama çoğunlukla pozitiftir. |
+| Specification curve test | t = 4,084; permütasyon p = 0,0002 | Toplu eğri null hipotezinden ayrışır. |
 | Meta-analitik pooling | pooled = 0,139 [%95 GA 0,049, 0,230]; τ = 0,106 | Literatürle uyumlu küçük etki merkezi vardır. |
 | Posterior predictive replication | 4/4 outcome `ppc_consistent` | Çalışma kestirimleri literatür önseliyle uyumludur. |
 
@@ -1375,11 +1375,11 @@ Bu çözümlemeler de birincil hipotezlerle aynı kilitli veri seti üzerinde �
 | Sosyal tabakalaşma | EGP-3 gradyanı Holm sonrası anlamsız; ISEI/SIOPS/EGP ağır kolinear (AIC en iyi ISEI); FSM zinciri yön-tutarlı ama zayıf | Ebeveynlik prestij-puanına indirgenemeyen sınıf gradyanı bu örneklemde ayrışmıyor; materyal facet prestij bloğu üzerine ek varyans getirmiyor. |
 | Anne komorbidite / distres | Komorbid ≥1 → Beck d = 0,293 (Holm ns); antidepresan DM %29,2 vs Kontrol %9,1 (χ² = 14,45; V = 0,248) | Otoimmün diatez test edilemez (n = 1); antidepresan yükünün belirgin grup-asimetrisi bağımsız raporlanabilir bulgu. |
 | Aile yapısı / kardeş konstelasyonu | Diadik karşılıklılık r = 0,177–0,384 (tümü sıfırdan ayrı); düad simetrik | Tek-ebeveyn (n = 3) betimsel; kardeşler ebeveyn davranışını orta-düşük ama pozitif mütekabiliyetle algılar; doğum-sırası etkileri minik. |
-| DM-spesifik maruziyet yoğunluğu | 9 focal testin 0'ı Holm-anlamlı; tek maruziyet operasyonelizasyonu üstün değil | Doğrulanmamış "yaşam-oranı" metriği duyarlılık katmanı; kanonik alternatiflerle yan yana, hiçbiri baskın değil. |
+| DM-spesifik maruziyet yoğunluğu | 9 odak testin 0'ı Holm-anlamlı; tek maruziyet operasyonelizasyonu üstün değil | Doğrulanmamış "yaşam-oranı" metriği duyarlılık katmanı; kanonik alternatiflerle yan yana, hiçbiri baskın değil. |
 | Anne mental sağlık → çocuk/kardeş düzlemi | Güncel distres (Beck ≥ 17) → EMBU-C reddetme b = 0,134 (p = 0,004; DM ve antidepresandan bağımsız); LCA riskli sınıf → reddetme-uyuşmazlığı p < 0,001 ve kardeş çatışması p = 0,006 | En değerli keşifsel köprü: *güncel* anne şiddeti çocuk algı düzlemine bağlanır (antidepresan = tedavi göstergesi, bağlanmaz); Goodman-Gotlib mekanizmasıyla uyumlu. |
 | Yönlü kardeş-ilişki mimarisi | Yön-asimetrisi 0/3 grup etkisi; 14-faset 0/14 FDR-anlamlı | Yön/faset topografisi DM sinyaline ek katkı getirmiyor; kardeş mimarisi yöne duyarsız ve gruplar arası paylaşılan. |
 | Çocuk-düzeyi moderatörler | Cinsiyet × grup 0/8 Holm-anlamlı; anne yaşı → aşırı koruma doğrusal b = −0,026/yıl (p = 0,004) | Cinsiyet-diferansiyel ebeveynlik yok; ileri anne yaşı ↔ daha az aşırı koruma (Camberis yönüyle uyumlu). |
-| Seçilim ve batch geçerlik denetimi | HbA1c MNAR seçilim OR = 4,56 (p = 0,000466); yıl × grup V = 0,585 (p ≈ 2,9 × 10⁻²⁰) | Yeni ilişki değil, geçerlik denetimi: HbA1c seçilmiş alt-örneklem; H1 çocuk-reddetme farkı 2023-only'de zayıflar → batch temkini. |
+| Seçilim ve alım-dönemi geçerlik denetimi | HbA1c MNAR seçilim OR = 4,56 (p = 0,000466); yıl × grup V = 0,585 (p ≈ 2,9 × 10⁻²⁰) | Yeni ilişki değil, geçerlik denetimi: HbA1c seçilmiş alt-örneklem; H1 çocuk-reddetme farkı 2023-only'de zayıflar → dönem temkini. |
 
 ## 16.3 Diferansiyel Ebeveynlik Etki Modellemesi
 
@@ -1412,7 +1412,7 @@ Yön (DM grubu, n = 120, işaretli Δ) dört alt ölçekte Holm sonrası anlaml�
 > **Yöntem kutusu — ISEI, SIOPS, EGP ve Diagonal Referans Modeli:** Sosyoekonomik konum tek boyutlu değildir: ISEI mesleğin sürekli prestij-kaynak skorunu, SIOPS toplumsal prestij algısını, EGP ise ilişkisel sınıf konumunu (hizmet/ara/işçi) yakalar. Diagonal Referans Modeli (DRM), bir sonucun köken ve varış konumlarının göreli ağırlığını ayrıştırır. Bu ölçütler ağır kolineer olduğundan hangisinin ek açıklayıcı güç taşıdığı ampirik olarak sınanır.
 
 
-EGP-3 sınıf gradyanı (hizmet n = 23 / ara n = 86 / işçi-rutin n = 110; 22 yapısal NA) hiçbir EMBU-P alt ölçeğinde Holm sonrası anlamlı değildir (aşırı-koruma ham p = 0,047, Holm = 0,377; long lme4 LRT χ²(2) ≤ 4,26, p ≥ 0,119). **Simpson denetimi zorunludur:** aşırı-koruma "işçi-rutin > hizmet" sıralaması havuzda ve DM'de görülürken Kontrol'de düzleşir; EGP grupla ağır karıştırılmış (confounded) olduğundan (sınıf-7 Kontrol-, sınıf-6 DM-ağırlıklı) havuz gradyanı gruba-bağımlı okunmamalıdır. Ölçüm-yarışında (ISEI vs SIOPS vs EGP-3, ortak varyans (commonality) + AIC) üç ölçü ağır kolineardır; en güçlü sinyalde (aşırı-koruma) ortak varyans (0,027) eşsiz katkıları (≤ 0,0035) baskılar, AIC en iyi tek-ölçü ISEI'dir, hiçbiri Holm sonrası ayırt edici değildir (Ganzeboom-Treiman ile uyumlu). Eğitim-ekseni Diagonal Reference Model (meslek ekseninde model kimliklenemediğinden eğitim eksenine taşınmıştır) EMBU-C sıcaklık/reddetme için sınır/dejenere çözüm verir (kimliklenemez etiketi); yalnız çatışmada iç-çözüm elde edilir (anne-eğitim ağırlığı w = 0,729; %95 GA [−0,048, 1,506], hem 0'ı hem 1'i kapsar) → n = 241 bir DRM için yetersiz.
+EGP-3 sınıf gradyanı (hizmet n = 23 / ara n = 86 / işçi-rutin n = 110; 22 yapısal NA) hiçbir EMBU-P alt ölçeğinde Holm sonrası anlamlı değildir (aşırı-koruma ham p = 0,047, Holm = 0,377; uzun-format lme4 LRT χ²(2) ≤ 4,26, p ≥ 0,119). **Simpson denetimi zorunludur:** aşırı-koruma "işçi-rutin > hizmet" sıralaması havuzda ve DM'de görülürken Kontrol'de düzleşir; EGP grupla ağır karıştığı için (sınıf-7 Kontrol-, sınıf-6 DM-ağırlıklı) havuz gradyanı gruba-bağımlı okunmamalıdır. Ölçüm-yarışında (ISEI vs SIOPS vs EGP-3, ortak varyans + AIC) üç ölçü ağır kolineardır; en güçlü sinyalde (aşırı-koruma) ortak varyans (0,027) eşsiz katkıları (≤ 0,0035) baskılar, AIC en iyi tek-ölçü ISEI'dir, hiçbiri Holm sonrası ayırt edici değildir (Ganzeboom-Treiman ile uyumlu). Eğitim-ekseni Diagonal Reference Model (meslek ekseninde model kimliklenemediğinden eğitim eksenine taşınmıştır) EMBU-C sıcaklık/reddetme için sınır/dejenere çözüm verir (kimliklenemez etiketi); yalnız çatışmada iç-çözüm elde edilir (anne-eğitim ağırlığı w = 0,729; %95 GA [−0,048, 1,506], hem 0'ı hem 1'i kapsar) → n = 241 bir DRM için yetersiz.
 
 Materyal yoksunluk faceti (blok-1 = edu_z + isei_z; blok-2 = material_z; çift-sayım önlemek için `ses_latent` blok-1'de kullanılmadı) prestij bloğu üzerine anlamlı ek varyans getirmez (ΔR² ≤ 0,0063; tüm p ≥ 0,244; VIF ≤ 1,47). Beck-aracı Aile-Stres-Modeli (deprivation = −material_z → beck_total → EMBU-P; lavaan + 1000 BCa bootstrap) yön-tutarlı ama zayıftır: a yolu = 1,021 (yoksunluk↑ → depresyon↑; p = 0,032); sıcaklık dolaylı etkisi = −0,0161 (BCa %95 GA [−0,0386, −0,0028], bootstrap-SE p = 0,065, Holm = 0,130); reddetme dolaylı = +0,0062 (BCa [0,0010, 0,0177], bootstrap-SE p = 0,104, Holm = 0,130). Dolaylı etkilerin BCa GA'ları sıfırı dışlarken bootstrap-SE p'leri > 0,05 ve Holm sonrası anlamsızdır → FSM zinciri doğrulayıcı değil, yön-tutarlı zayıf sinyaldir. Anne istihdamı × grup moderasyonunda aile-düzeyi etkileşimler null; long modelde yalnız sıcaklık etkileşimi sınırdadır (b = 0,294; p = 0,015; Holm = 0,059 → anlamsız).
 
@@ -1421,7 +1421,7 @@ Materyal yoksunluk faceti (blok-1 = edu_z + isei_z; blok-2 = material_z; çift-s
 | Analiz | Ana metrik | İkincil yorum |
 |---|---|---|
 | EGP-3 gradyanı | aşırı-koruma ham p = 0,047 → Holm = 0,377 | Sınıf gradyanı Holm sonrası anlamsız; SES = baba-sınıfı okuması. |
-| Simpson denetimi | EGP grupla confound (sınıf-7 Kontrol-, sınıf-6 DM-ağırlıklı) | Havuz gradyanı gruba-bağımlı; ekolojik yanılgı riski. |
+| Simpson denetimi | EGP grupla karışmış (sınıf-7 Kontrol-, sınıf-6 DM-ağırlıklı) | Havuz gradyanı gruba-bağımlı; ekolojik yanılgı riski. |
 | Ölçüm-yarışı (ISEI/SIOPS/EGP) | AIC en iyi ISEI; ortak varyans baskın; hiçbiri Holm sonrası ayırt edici değil | Üç ölçü büyük ölçüde aynı varyansı taşır (kolinear). |
 | Eğitim-DRM | çatışma w = 0,729 [−0,048, 1,506]; diğerleri kimliklenemez | n = 241 DRM için yetersiz; anne/baba eğitim ağırlığı ayırt edilemiyor. |
 | Materyal facet (hiyerarşik) | ΔR² ≤ 0,0063; p ≥ 0,244; VIF ≤ 1,47 | Materyal facet prestij bloğu üzerine ek varyans getirmiyor. |
@@ -1459,7 +1459,7 @@ uygulama_notu: R base svg(); phase3_pdt_rho_dd.csv okunur, long formata çevrili
 
 ## 16.5 Anne Somatik Komorbidite ve Aile Sağlık Yükü
 
-Anne otoimmün komorbidite fizibilite denetiminde test edilemez olarak sınıflanır: DM 0/120 (%0,0) vs Kontrol 1/118 (%0,85), Fisher p = 0,496 (Malcová taban-oranı ~%2 ile tutarlı; öz-bildirim formu klinik otoimmün panel değildir → "confounder yok" değil "örneklemde ölçülemedi"). İkili yeniden-çerçevelenen komorbidite (anne_hastalik_kategori_sayisi ≥ 1; n = 61) Beck depresyonuyla küçük-orta ilişki gösterir (d = 0,293; %95 GA [−0,002, 0,587]; Welch p = 0,059; Holm = 0,295); basit aracılıkta komorbidite → Beck → EMBU-P dolaylı etkileri yön-tutarlıdır (sıcaklık dolaylı = −0,0362, BCa [−0,0995, −0,0004]; reddetme dolaylı = +0,0140, BCa [0,0002, 0,0429]; Lovejoy/Pinquart yönüyle uyumlu). Maternal distres yakınsamasında antidepresan kullanımı belirgin grup-asimetrisi taşır: DM 35/120 (%29,17) vs Kontrol 11/121 (%9,09); χ²(1) = 14,45; p = 0,00014; Cramér's V = 0,248 — bu başlı başına raporlanabilir bir bulgudur (Van Gampelaere ile tutarlı). Antidepresan kullanımındaki bu grup-asimetrisi (yaklaşık 3,2 kat) Cramér V = 0,248 ile küçük-orta büyüklükte bir ilişkiye karşılık gelir; keşifsel çerçevede dahi, T1DM'li çocuk annelerinde artmış psikiyatrik bakım yükünün bağlamsal bir göstergesi olarak klinik dikkat çekicidir. Bu örüntü, T1DM'li çocuk ebeveynlerinin genel popülasyona kıyasla daha yüksek ebeveyn distresi bildirdiğini gösteren kontrollü karşılaştırmalarla (Van Gampelaere ve diğerleri, 2020) ve anne diyabet distresinin anne depresif belirtileriyle ilişkilendiği bulgularla (Rumburg ve diğerleri, 2017) yön bakımından tutarlıdır. Kesitsel tasarım nedeniyle antidepresan başlangıç zamanı ve endikasyonu ayrıştırılamadığından, bu asimetri nedensel değil, aile sağlık-yükünün betimsel bir belirteci olarak konumlandırılmalıdır. Antidepresan ile Beck toplamı negatif ilişkilidir (r = −0,149; AD+ ortalama Beck 10,44 vs AD− 13,34) → tedavi/güncel-durum ile geçmiş-yük ayrışması; iki gösterge de anne öz-bildirimi olduğundan ortak-yöntem varyansı uyarısı korunur (formatif etiket). Negatif kontrolde babanın somatik hastalığının çocuğun anne-algısına (EMBU-C) etkisi büyük ölçüde nulldur (yalnız karşılaştırma marjinal: p = 0,072; Holm = 0,288) → Lipsitch negatif-kontrol beklentisiyle tutarlı.
+Anne otoimmün komorbidite fizibilite denetiminde test edilemez olarak sınıflanır: DM 0/120 (%0,0) vs Kontrol 1/118 (%0,85), Fisher p = 0,496 (Malcová taban-oranı ~%2 ile tutarlı; öz-bildirim formu klinik otoimmün panel değildir → "karıştırıcı yok" değil "örneklemde ölçülemedi"). İkili yeniden-çerçevelenen komorbidite (anne_hastalik_kategori_sayisi ≥ 1; n = 61) Beck depresyonuyla küçük-orta ilişki gösterir (d = 0,293; %95 GA [−0,002, 0,587]; Welch p = 0,059; Holm = 0,295); basit aracılıkta komorbidite → Beck → EMBU-P dolaylı etkileri yön-tutarlıdır (sıcaklık dolaylı = −0,0362, BCa [−0,0995, −0,0004]; reddetme dolaylı = +0,0140, BCa [0,0002, 0,0429]; Lovejoy/Pinquart yönüyle uyumlu). Maternal distres yakınsamasında antidepresan kullanımı belirgin grup-asimetrisi taşır: DM 35/120 (%29,17) vs Kontrol 11/121 (%9,09); χ²(1) = 14,45; p = 0,00014; Cramér's V = 0,248 — bu başlı başına raporlanabilir bir bulgudur (Van Gampelaere ile tutarlı). Antidepresan kullanımındaki bu grup-asimetrisi (yaklaşık 3,2 kat) Cramér V = 0,248 ile küçük-orta büyüklükte bir ilişkiye karşılık gelir; keşifsel çerçevede dahi, T1DM'li çocuk annelerinde artmış psikiyatrik bakım yükünün bağlamsal bir göstergesi olarak klinik dikkat çekicidir. Bu örüntü, T1DM'li çocuk ebeveynlerinin genel popülasyona kıyasla daha yüksek ebeveyn distresi bildirdiğini gösteren kontrollü karşılaştırmalarla (Van Gampelaere ve diğerleri, 2020) ve anne diyabet distresinin anne depresif belirtileriyle ilişkilendiği bulgularla (Rumburg ve diğerleri, 2017) yön bakımından tutarlıdır. Kesitsel tasarım nedeniyle antidepresan başlangıç zamanı ve endikasyonu ayrıştırılamadığından, bu asimetri nedensel değil, aile sağlık-yükünün betimsel bir belirteci olarak konumlandırılmalıdır. Antidepresan ile Beck toplamı negatif ilişkilidir (r = −0,149; AD+ ortalama Beck 10,44 vs AD− 13,34) → tedavi/güncel-durum ile geçmiş-yük ayrışması; iki gösterge de anne öz-bildirimi olduğundan ortak-yöntem varyansı uyarısı korunur (formatif etiket). Negatif kontrolde babanın somatik hastalığının çocuğun anne-algısına (EMBU-C) etkisi büyük ölçüde nulldur (yalnız karşılaştırma marjinal: p = 0,072; Holm = 0,288) → Lipsitch negatif-kontrol beklentisiyle tutarlı.
 
 **Tablo 16.4. [KEŞİFSEL · İKİNCİL] Anne komorbidite ve aile sağlık yükü özeti.**
 
@@ -1519,7 +1519,7 @@ caption_bloku: **Şekil 16.8. [KEŞİFSEL · İKİNCİL] Doğum sırası farkın
 uygulama_notu: R base svg(); within-family fark-skoru forest.
 ═══════════ /FİGÜR-RENDER-TALİMATI ═══════════ -->
 
-**Betimsel ek — doğum sırası × cinsiyet konstelasyonu.** Artık-değişken doygunluk denetiminin (§16.15) *yalnız betimsel* düzeyde sunulmaya değer bulduğu tek yüzey, indeks çocuğun doğum sırası (ilk çocuk vs sonra doğan) ile cinsiyetinin çaprazlanmasıdır. Hücreler dengelidir (ilk-Kız 73, ilk-Erkek 30, sonra-Kız 75, sonra-Erkek 61; her biri n ≥ 30) ve dört hücrede anne-raporu aşırı koruma (2,11–2,33), anne-raporu reddetme (1,16–1,26) ve çocuk-algılanan reddetme (1,39–1,45) ortalamaları birbirine çok yakındır; belirgin bir konstelasyon deseni görülmez. Bu 2 × 2 **bilinçli olarak yalnız betimsel** sunulur — çıkarımsal etkileşim testi yapılmamıştır (kuramsal değeri düşük; ayrıca §108 within-family doğum sırası ve §16.10 cinsiyet moderasyonu zaten koşulmuş olduğundan, doğum-sırası × cinsiyet etkileşimini ayrıca çıkarımsal test etmek keşifsel forking riski taşırdı, §16.15).
+**Betimsel ek — doğum sırası × cinsiyet konstelasyonu.** Artık-değişken doygunluk denetiminin (§16.15) *yalnız betimsel* düzeyde sunulmaya değer bulduğu tek yüzey, indeks çocuğun doğum sırası (ilk çocuk vs sonra doğan) ile cinsiyetinin çaprazlanmasıdır. Hücreler dengelidir (ilk-Kız 73, ilk-Erkek 30, sonra-Kız 75, sonra-Erkek 61; her biri n ≥ 30) ve dört hücrede anne-raporu aşırı koruma (2,11–2,33), anne-raporu reddetme (1,16–1,26) ve çocuk-algılanan reddetme (1,39–1,45) ortalamaları birbirine çok yakındır; belirgin bir konstelasyon deseni görülmez. Bu 2 × 2 **bilinçli olarak yalnız betimsel** sunulur — çıkarımsal etkileşim testi yapılmamıştır (kuramsal değeri düşük; ayrıca §16.6 within-family doğum sırası ve §16.10 cinsiyet moderasyonu zaten koşulmuş olduğundan, doğum-sırası × cinsiyet etkileşimini ayrıca çıkarımsal test etmek keşifsel forking riski taşırdı, §16.15).
 
 **Tablo 16.14. [KEŞİFSEL · İKİNCİL] Doğum sırası × cinsiyet betimsel 2 × 2 (indeks çocuk; çıkarımsal test yok).**
 
@@ -1534,16 +1534,20 @@ Kaynak: `outputs/tables/phase4_clmod_birthorder_sex_descriptive.csv`.
 
 ## 16.7 DM-Spesifik Maruziyet Yoğunluğu
 
-Bu KISIM yalnız DM alt-örnekleminde (indeks aile n = 120) yürür; imputation yapılmaz. Yaşam-oranı maruziyet metriği (illness_life_ratio = dm_yili / cocuk_yas), 2026-07-08 PI form-teyitli veri-bütünlük düzeltmesi (sapma tablosu #3) sonrası geçerlilik denetiminde **mantıksal-imkânsız değer içermez** (önceki sürümde 5 aile "dm_yili > cocuk_yas" nedeniyle dışlanıyordu; bu ailelerin tanı tarihleri orijinal formlardan düzeltildi); tüm 120 DM ailesi analitik örnekleme girer (ort = 0,364; medyan = 0,319; sd = 0,242). Metrik pediatrik kronik hastalıkta doğrulanmamış olduğundan (hedefli literatür taraması karşılık bulmadı) birincil estimand olarak sunulmaz; üç maruziyet parametrizasyonu (oran; süre + yaş kovaryat; tanı-yaşı × güncel-yaş etkileşimi) yan yana raporlanır. Dokuz focal testten **yalnız biri** Holm sonrası anlamlıdır — embu_c_idx aşırı-koruma çıktısında tanı-yaşı × güncel-yaş etkileşimi (kısmi r = −0,269; p = 0,004; p_Holm = 0,032); diğer sekizinin tamamı anlamsızdır (p_Holm ≥ 0,98). ⚠️ Bu tek sinyal (i) **doğrulanmamış** oran/tanı-yaşı metriğine dayanır, (ii) doğrudan düzeltilen 5 ailenin `tani_yasi` değerine **duyarlıdır** (bu değişken düzeltilen `dm_yili`'den türetilir), (iii) çoklu-çıktı içinde tek testtir → yalnızca **hipotez-üretici**, confirmatory değil. En iyi-AIC parametrizasyon çıktıya göre değişir (embu_c_idx aşırı-koruma → etkileşim; embu_p aşırı-koruma → oran; srq çatışma → süre) → tek bir maruziyet operasyonelizasyonu üstün değildir. Prikken (2019) düzeltmesi gereği psikolojik-kontrol proxy'siyle (reddetme + karşılaştırma) yan-analiz n = 120 üzerinde eşdeğerlik testinde üç parametrizasyonun da kararı belirsizdir (ne anlamlı ne eşdeğer). Kardeş tanı-gelişim penceresi yalnız betimsel eskiz olarak sunulur (çıkarımsal test yok): geçerli n = 120 bandları <0 (tanıdan sonra doğdu) n = 1, 0-5 n = 38, 5-10 n = 55, ≥10 n = 26; band-bazlı kardeş SRQ/EMBU-C ortalamaları yalnız gelecek-tasarım sinyalidir.
+Bu bölüm yalnız DM alt-örnekleminde yürütülmüştür (indeks aile n = 120); imputasyon uygulanmamıştır. Yaşam-oranı maruziyet metriği (`illness_life_ratio = dm_yili / cocuk_yas`), 2026-07-08 tarihli PI form-teyitli veri-bütünlük düzeltmesinden (sapma tablosu #3) sonra mantıksal-imkânsız değer içermemektedir. Önceki sürümde "dm_yili > cocuk_yas" nedeniyle dışlanan 5 ailenin tanı tarihleri orijinal formlardan düzeltilmiş ve tüm 120 DM ailesi analitik örnekleme alınmıştır (ort = 0,364; medyan = 0,319; sd = 0,242). Bu metrik pediatrik kronik hastalıkta doğrulanmış bir ölçüt olmadığından birincil estimand olarak kullanılmamış; oran, süre + yaş kovaryatı ve tanı yaşı × güncel yaş etkileşimi olmak üzere üç parametrizasyon yan yana raporlanmıştır.
 
-**Tablo 16.6. [KEŞİFSEL · İKİNCİL] DM-spesifik maruziyet yoğunluğu özeti (DM-only).**
+Dokuz odak testten yalnız biri Holm düzeltmesi sonrası anlamlıdır: EMBU-C indeks aşırı koruma çıktısında tanı yaşı × güncel yaş etkileşimi (kısmi r = −0,269; p = 0,004; p_Holm = 0,032). Diğer sekiz test anlamsızdır (p_Holm ≥ 0,98). Bu tek sinyal, doğrulanmamış oran/tanı-yaşı metriğine dayanması, doğrudan düzeltilen 5 ailenin `tani_yasi` değerine duyarlı olması ve çoklu-çıktı içinde tek başına belirmesi nedeniyle yalnız **hipotez-üretici** düzeyde tutulmuştur. En iyi-AIC parametrizasyonu çıktıya göre değişmektedir (EMBU-C indeks aşırı koruma → etkileşim; EMBU-P aşırı koruma → oran; SRQ çatışma → süre); bu nedenle tek bir maruziyet operasyonelizasyonu diğerlerine üstün kabul edilmemiştir.
+
+Prikken ve diğerleri (2019), T1DM bağlamında psikolojik kontrol ve aşırı koruma alanının genç uyumu, tedaviye uyum ve metabolik bağlamla ilişkilendirilebileceğini destekleyen bağlamsal bir kaynaktır; ancak `illness_life_ratio` metriğini veya hastalık-yaşam-oranı yaklaşımını doğrulamaz. Bu nedenle reddetme + karşılaştırma psikolojik-kontrol proxy'siyle yürütülen yan analiz yalnız duyarlılık/hipotez üretme katmanında tutulmuştur; n = 120 üzerinde üç parametrizasyonun da eşdeğerlik testi kararı belirsizdir (ne anlamlı ne eşdeğer). Kardeş tanı-gelişim penceresi de çıkarımsal test yapılmadan betimsel olarak sunulmuştur: geçerli n = 120 bandları <0 (tanıdan sonra doğdu) n = 1, 0-5 n = 38, 5-10 n = 55, ≥10 n = 26; band-bazlı kardeş SRQ/EMBU-C ortalamaları yalnız gelecek tasarım için sinyal niteliğindedir.
+
+**Tablo 16.6. [KEŞİFSEL · İKİNCİL] DM-spesifik maruziyet yoğunluğu özeti (yalnız DM).**
 
 | Analiz | Ana metrik | İkincil yorum |
 |---|---|---|
 | Yaşam-oranı geçerliliği | Düzeltme sonrası 0 mantıksal-imkânsız; n = 120; ort = 0,364; medyan = 0,319 | Metrik doğrulanmamış; birincil estimand değil, duyarlılık katmanı. |
-| Üç parametrizasyon (Holm) | 9 focal test; **1/9 Holm-anlamlı**: embu_c_idx aşırı-koruma × tanı-yaşı×yaş etkileşimi (kısmi r = −0,269; p_Holm = 0,032); diğer 8: p_Holm ≥ 0,98 | Tek sinyal düzeltilen 5 aileye duyarlı + doğrulanmamış metrik → hipotez-üretici, confirmatory değil. |
+| Üç parametrizasyon (Holm) | 9 odak test; **1/9 Holm-anlamlı**: embu_c_idx aşırı-koruma × tanı-yaşı×yaş etkileşimi (kısmi r = −0,269; p_Holm = 0,032); diğer 8: p_Holm ≥ 0,98 | Tek sinyal düzeltilen 5 aileye duyarlı + doğrulanmamış metrik → hipotez-üretici, doğrulayıcı değil. |
 | En iyi-AIC operasyonelizasyon | çıktıya göre değişir (etkileşim / oran / süre) | Tek bir maruziyet ölçütü üstün değil. |
-| Psikolojik-kontrol yan-analiz | 3/3 parametrizasyon TOST'ta belirsiz (n = 120) | Ne anlamlı ne eşdeğer; güç yetersiz. |
+| Psikolojik-kontrol yan analiz | 3/3 parametrizasyon TOST'ta belirsiz (n = 120) | Prikken hattı psikolojik-kontrol bağlamını destekler; `illness_life_ratio` metriğini doğrulamaz; ne anlamlı ne eşdeğer. |
 | Kardeş penceresi | betimsel: <0 n=1 / 0-5 n=38 / 5-10 n=55 / ≥10 n=26 | Yalnız gelecek-tasarım sinyali; çıkarımsal test yok. |
 
 
@@ -1559,15 +1563,15 @@ Bu çözümleme, CSR'da yalnız anne öz-bildirim düzlemine (H3; §16.5) bağla
 
 Anne–çocuk **bilgi-veren uyuşmazlığı** (informant discrepancy; anne EMBU-P ile çocuk EMBU-C arasındaki işaretli fark) betimsel olarak tutarlı bir yön sergiler (n = 238): reddetme (−0,210), aşırı koruma (−0,320) ve karşılaştırma (−0,251) boyutlarında *çocuk* anneden daha fazla olumsuz davranış bildirirken, sıcaklıkta (+0,277) *anne* çocuktan daha fazla sıcaklık bildirir. Güncel anne distresinin bu uyuşmazlığı yordadığı tek boyut sıcaklıktır (Beck ≥ 17: b = −0,268; p = 0,014); ancak Holm düzeltmesi sonrası sınırda kalır (p_Holm = 0,058) → yön-tutarlı ama doğrulayıcı değil. Uyuşmazlığın büyüklüğü (mutlak anne–çocuk farkı) kardeş ilişki niteliğine taşındığında, reddetme-algısı uyuşmazlığı yalnız kardeş **rekabetiyle** ilişkilidir (b = 0,094; %95 GA [0,011, 0,178]; p = 0,027; p_Holm = 0,082 — Holm sonrası sınırda); çatışma ve sıcaklık boyutları nulldur. Baba davranışı bu tasarımda doğrudan ölçülmediğinden, bu ilişki "çocuğun ebeveynlik-algı uyuşmazlığı" olarak etiketlenir ve nedensel dille okunmaz; bulgu, bilgi-veren uyuşmazlıklarının ölçüm hatası değil aile işleyişine ilişkin geçerli bilgi taşıdığı çerçeveyle (De Los Reyes ve diğerleri, 2015) kavramsal olarak uyumludur.
 
-> **Yöntem kutusu — Latent sınıf dışsal doğrulaması (LCA distal-outcome):** Anne Beck-semptom tipolojisi (§12.2) gözlenmeyen (latent) sınıflara ayrıştırılmıştır; en iyi model **iki sınıflıdır** (adaptif n = 152, %64: düşük Beck/yüksek sıcaklık; riskli n = 86, %36: yüksek Beck/düşük sıcaklık). Sınıfların çocuk/kardeş düzlemindeki çıktılarla ilişkisi *dışsal geçerlik* testidir. Her ailenin sınıf-üyeliği **modal atamayla** (en yüksek arka-olasılıklı [posterior] sınıf) belirlenir; atama belirsizliği iki ölçüyle raporlanır: genel **entropy** (0 = tam belirsiz, 1 = tam ayrık; burada 0,602 = orta) ve ortalama en-yüksek arka-olasılık (0,884). Modal atama sınıflandırma hatasını *düzeltmez*; ideal yaklaşım hata-düzeltmeli 3-adım/BCH yöntemidir (Lanza, Tan ve Bray, 2013). Orta entropy nedeniyle sonuçlar ihtiyatla, hipotez-üretici düzeyde okunur.
+> **Yöntem kutusu — Latent sınıf dışsal doğrulaması:** Anne Beck-semptom tipolojisi (§12.2) gözlenmeyen (latent) sınıflara ayrıştırılmıştır; en iyi model **iki sınıflıdır** (adaptif n = 152, %64: düşük Beck/yüksek sıcaklık; riskli n = 86, %36: yüksek Beck/düşük sıcaklık). Sınıfların çocuk/kardeş düzlemindeki çıktılarla ilişkisi *dışsal geçerlik* testidir. Her ailenin sınıf-üyeliği **modal atamayla** (en yüksek arka-olasılıklı [posterior] sınıf) belirlenir; atama belirsizliği iki ölçüyle raporlanır: genel **entropy** (0 = tam belirsiz, 1 = tam ayrık; burada 0,602 = orta) ve ortalama en-yüksek arka-olasılık (0,884). Modal atama sınıflandırma hatasını *düzeltmez*; ideal yaklaşım hata-düzeltmeli 3-adım/BCH türü yöntemlerdir (Lanza, Tan ve Bray, 2013; Bakk ve Kuha, 2021). Orta entropy nedeniyle sonuçlar ihtiyatla, hipotez-üretici düzeyde okunur.
 
-Latent sınıflar dışsal olarak geçerlidir: "riskli" anne semptom sınıfı, anne–çocuk **reddetme uyuşmazlığını** güçlü biçimde yordar (b = 0,415; %95 GA [0,292, 0,538]; p < 0,001; p_Holm < 0,001; ortalama uyuşmazlık adaptif −0,362'ye karşı riskli +0,058) ve kardeş **çatışmasıyla** ilişkilidir (b = 0,214; %95 GA [0,062, 0,366]; p = 0,006; ortalama 3,01'e karşı 3,22). Buna karşın riskli sınıf antidepresan kullanımını *artırmaz* — tersine, adaptif sınıfta antidepresan oranı daha yüksektir (%22,4'e karşı %12,8; OR = 0,51; %95 GA [0,22, 1,11]; p = 0,085) → bu, anne semptom-tipolojisinin (güncel yük) antidepresan kullanımından (tedavi/temas) ayrı bir eksen olduğu yorumunu iç-tutarlı biçimde tekrar doğrular. Bütün olarak §16.8, CSR'ın merkezî örüntüsüne — sinyalin neden anne öz-bildirim düzleminde (H3) değil çocuk algı düzleminde (H1) belirdiğine (§17.7) — mekanizma-düzeyinde bir köprü ekler: *güncel* anne distresi, çocuğun algıladığı reddetme/karşılaştırmaya ve kardeş rekabet/çatışmasına yön-tutarlı biçimde bağlanır; ancak tüm ilişkiler küçük-orta bandda, korelasyoneldir ve bağımsız Türk kohortunda dış-validasyon olmadan yükseltilmez.
+Latent sınıf dışsal doğrulaması aynı ayrımı desteklemektedir. "Riskli" anne semptom sınıfı, anne–çocuk **reddetme uyuşmazlığını** güçlü biçimde yordar (b = 0,415; %95 GA [0,292, 0,538]; p < 0,001; p_Holm < 0,001; ortalama uyuşmazlık adaptif −0,362'ye karşı riskli +0,058) ve kardeş **çatışmasıyla** ilişkilidir (b = 0,214; %95 GA [0,062, 0,366]; p = 0,006; ortalama 3,01'e karşı 3,22). Buna karşın riskli sınıf antidepresan kullanımını artırmaz; tersine, adaptif sınıfta antidepresan oranı daha yüksektir (%22,4'e karşı %12,8; OR = 0,51; %95 GA [0,22, 1,11]; p = 0,085). Bu desen, güncel semptom yükü ile tedavi/temas göstergesinin aynı psikososyal ekseni temsil etmediğini gösterir. Bütün olarak §16.8, sinyalin neden anne öz-bildirim düzleminde (H3) değil çocuk algı düzleminde (H1) belirdiğine (§17.7) mekanizma-düzeyi bir köprü ekler: *güncel* anne distresi, çocuğun algıladığı reddetme/karşılaştırma ve kardeş rekabet/çatışmasıyla yön-tutarlı biçimde ilişkilidir; ancak ilişkiler küçük-orta bantta, korelasyonel ve dış-validasyon gerektiren keşifsel bulgulardır.
 
 **Tablo 16.7. [KEŞİFSEL · İKİNCİL] Anne mental sağlık yükü → çocuk/kardeş düzlemi özeti.**
 
 | Analiz | Ana metrik | İkincil yorum |
 |---|---|---|
-| Güncel distres → EMBU-C reddetme (2×2, long) | Beck ≥ 17 b = 0,134 [0,044, 0,224]; p = 0,004 (DM ve antidepresandan bağımsız) | Güncel anne şiddeti çocuk-algılanan reddetmeyi yordar; antidepresan (tedavi göstergesi) yordamaz. |
+| Güncel distres → EMBU-C reddetme (2×2, uzun format) | Beck ≥ 17 b = 0,134 [0,044, 0,224]; p = 0,004 (DM ve antidepresandan bağımsız) | Güncel anne şiddeti çocuk-algılanan reddetmeyi yordar; antidepresan (tedavi göstergesi) yordamaz. |
 | Güncel distres → EMBU-C karşılaştırma | Beck ≥ 17 b = 0,241 [0,081, 0,400]; p = 0,003 | İkinci olumsuz-algı boyutunda da güncel şiddet etkisi; DM ana etkisi sınırda (p = 0,088). |
 | Tedavi × şiddet etkileşimi | p = 0,391 (reddetme) / 0,198 (karşılaştırma) | İki eksen additif; monotonik "risk gradyanı" reddedilir (tedavi ≠ güncel şiddet). |
 | Distres → anne–çocuk uyuşmazlığı | yalnız sıcaklık b = −0,268; p = 0,014 (p_Holm = 0,058) | Yön-tutarlı, Holm sonrası sınırda; çocuk daha fazla olumsuzluk bildirir (reddetme/koruma/karşılaştırma). |
@@ -1588,7 +1592,7 @@ Yön-asimetrisi çözümlemesi (aile-kümelenmiş; grup × kardeş-rolü) üç b
 | Yön-asimetrisi (bakım/baskınlık/hayranlık) | 0/3 grup/rol/etkileşim etkisi (tüm p ≥ 0,37) | Yön DM sinyaline ek katkı getirmiyor; asimetri gruplar arası paylaşılan. |
 | Faset güvenilirliği | bakım α = 0,81/0,84; baskınlık 0,63/0,64; hayranlık 0,69/0,73 | Nullluk düşük güvenilirliğe atfedilemez (16 fasetin 14'ü α ≥ 0,50). |
 | 14-faset granüler forest (BH-FDR) | 0/14 FDR-anlamlı (en düşük p_BH = 0,69) | Grup farkı belirli bir alt-fasette yoğunlaşmıyor; topografi düz. |
-| İşaretli yaş-yönü (DM-only) | ikili yön p = 0,139; sürekli işaretli fark b = −0,196 (p = 0,031) | Betimsel Tier C; DM-yaş hiyerarşisi bakım-asimetrisiyle zayıf ilişkili. |
+| İşaretli yaş-yönü (yalnız DM) | ikili yön p = 0,139; sürekli işaretli fark b = −0,196 (p = 0,031) | Betimsel Tier C; DM-yaş hiyerarşisi bakım-asimetrisiyle zayıf ilişkili. |
 
 ## 16.10 Çocuk-Düzeyi Odak Moderatörler: Cinsiyet ve Anne Yaşı
 
@@ -1606,7 +1610,7 @@ Yön-asimetrisi çözümlemesi (aile-kümelenmiş; grup × kardeş-rolü) üç b
 
 Bu çözümlemeler yalnız DM alt-örnekleminde (n = 120) yürür; imputasyon yapılmaz. Tanı gelişim-penceresi (erken < 6, orta 6–10, geç ≥ 10 yaş; veri-bütünlük düzeltmesi sonrası bantlar 34/59/27, birleştirme gerekmez), çocuğun algıladığı aşırı koruma ve kardeş bakım-asimetrisiyle ilişkilendirildiğinde anlamlı bir örüntü vermez (aşırı koruma için onset omnibus F = 2,18; p = 0,118; η² = 0,036); orta-onset bandında (6–10 yaş) hafif yüksek aşırı koruma görülür ancak çıkarımsal eşiği aşmaz. Bir aile özel bir maruziyet durumu taşır — kardeş, indeks çocuğun tanısından *sonra* doğmuştur (kardeş tanı-anı yaşı < 0); bu bir hata değil, aileye hastalık yerleşmişken doğmuş kardeş kategorisidir ve betimsel/duyarlılık maskesiyle ayrı raporlanır, çıkarımsal banda sokulmaz. Metabolik kontrol (HbA1c) için tam-veri yalnız 39 ailede mevcuttur (ortalama 8,97; medyan 9,0; SD 2,19; aralık 5,8–15,1); bu değişkenin sosyodemografik ve psikososyal-ölçek korelatları yalnız **betimsel** sunulur (düşük güç). HbA1c ile aile psikososyal ölçümleri arasındaki korelasyonların hiçbiri anlamlı değildir (aşırı koruma r = 0,145; kardeş çatışması r = 0,179; hepsi p > 0,27; geniş GA). **Kritik uyarı:** HbA1c verisi rastgele eksik değildir; varlığı klinik-izlem göstergeleriyle güçlü ilişkilidir (§16.14, MNAR seçilim; OR = 4,56) — dolayısıyla bu betimsel korelatlar ve §12.5'teki HbA1c alt-analizleri seçilim yüzeyi (§16.14) raporlanmadan yorumlanamaz.
 
-**Tablo 16.10. [KEŞİFSEL · İKİNCİL] Klinik zamanlama ve metabolik bağlam özeti (DM-only).**
+**Tablo 16.10. [KEŞİFSEL · İKİNCİL] Klinik zamanlama ve metabolik bağlam özeti (yalnız DM).**
 
 | Analiz | Ana metrik | İkincil yorum |
 |---|---|---|
@@ -1617,7 +1621,9 @@ Bu çözümlemeler yalnız DM alt-örnekleminde (n = 120) yürür; imputasyon ya
 
 ## 16.12 Aile Sağlık Profili ve Kodlama-Sadakati Denetimi
 
-Anne ve eş komorbiditesi 14 sistem-özgü kategoride betimsel prevalans olarak sunulur (bağlamsal şeffaflık); çoğu kategori seyrek olduğundan hiçbiri tek başına çıkarımsal test edilmez. En sık kategoriler annede endokrin (%7,9) ve solunum (%5,4), eşte kardiyovasküler (%5,4) ve endokrindir (%4,6). Grup farkı yalnız ikili "≥ 1 komorbidite" düzeyinde not edilir (Faz III §16.5 ile iç-tutarlı): anne komorbiditesi Kontrol %27,1 vs DM %24,2 (OR = 0,86; p = 0,66), eş komorbiditesi Kontrol %15,3 vs DM %24,2 (OR = 1,77; p = 0,10) — ikisi de anlamsız. **Kodlama-sadakati denetimi** bir *analiz değil veri-kalite kontrolüdür:* öz-bildirim ikili kronik-hastalık göstergesi ile kodlanmış kategori-sayısı (> 0) arasındaki uyum Cohen κ = 1,00'dir (anne ve eş için; gözlenen uyum 1,00). Bu **bağımsız geçerlik kanıtı değildir** — kodlanmış 14-kategori matris zaten öz-bildirim metninden türetildiğinden iki ölçüm bağımsız değildir; κ = 1,00 yalnız kodlamanın hatasız olduğunu (öz-bildirim → kategori dönüşümünde tutarlılık) teyit eder. Bağımsız tıbbi kayıt bulunmadığından öz-bildirim ↔ kayıt geçerliği testi (ör. Kriegsman tipi) bu veride kurulamaz; bu bir sınırlılık olarak açıkça belirtilir.
+Anne ve eş komorbiditesi 14 sistem-özgü kategoride betimsel prevalans olarak sunulur (bağlamsal şeffaflık); çoğu kategori seyrek olduğundan hiçbiri tek başına çıkarımsal test edilmez. En sık kategoriler annede endokrin (%7,9) ve solunum (%5,4), eşte kardiyovasküler (%5,4) ve endokrindir (%4,6). Grup farkı yalnız ikili "≥ 1 komorbidite" düzeyinde not edilir (Faz III §16.5 ile iç-tutarlı): anne komorbiditesi Kontrol %27,1 vs DM %24,2 (OR = 0,86; p = 0,66), eş komorbiditesi Kontrol %15,3 vs DM %24,2 (OR = 1,77; p = 0,10) — ikisi de anlamsız.
+
+**Kodlama-sadakati denetimi** bir *analiz değil veri-kalite kontrolüdür:* öz-bildirim ikili kronik-hastalık göstergesi ile kodlanmış kategori-sayısı (> 0) arasındaki uyum Cohen κ = 1,00'dir (anne ve eş için; gözlenen uyum 1,00). Bu **bağımsız geçerlik kanıtı değildir**; kodlanmış 14-kategori matris zaten öz-bildirim metninden türetildiğinden iki ölçüm bağımsız değildir ve κ = 1,00 yalnız öz-bildirimden kategoriye dönüşümün tutarlı uygulandığını gösterir. Bu çalışmada bağımsız tıbbi kayıt bulunmadığından öz-bildirim ↔ kayıt geçerliği testi kurulamaz. Kriegsman'a özgü yöntemsel veya sayısal uyum iddiası bu raporda üretilmemiştir; öz-bildirim/kayıt uyumunun hastalık ve kayıt türüne göre değişebildiği yalnız genel yöntemsel sınırlılık olarak belirtilmiştir (Hansen ve diğerleri, 2014).
 
 **Tablo 16.11. [KEŞİFSEL · İKİNCİL] Aile sağlık profili ve kodlama-sadakati özeti.**
 
@@ -1640,29 +1646,39 @@ Eş doğum tarihi kanonik final tabanında türetme kaybı nedeniyle boştu; ham
 
 ## 16.14 Örneklem-Seçilim ve Alım-Dönemi Geçerlik Denetimleri
 
-> **Yöntem kutusu — MNAR seçilim, IPW fizibilite ve batch confound:** Bu iki denetim yeni bir ilişki keşfetmez; *mevcut* analizlerin geçerliğini sınar. (i) *Rastgele-olmayan eksiklik (MNAR):* bir değişkenin *ölçülmüş olması* bazı değişkenlere bağlıysa, eksik veri rastgele değildir ve o değişken seçilmiş bir alt-örneklemdir (Heckman, 1979; Little ve Rubin, 2019). (ii) *Ters-olasılık ağırlıklandırma (IPW) ve etkin örneklem boyutu (ESS):* seçilimi telafi etmek için ağırlıklandırma kullanılırsa, birkaç büyük ağırlık örneklemi fiilen küçültür; ESS bu "gerçek" bilgi miktarını ölçer, ağırlık-budama (truncation) aşırı ağırlıkları sınırlar. Küçük örneklemde IPW gürültüyü büyütür → burada IPW yalnız fizibilite göstergesi olarak, telafi *değil*, ESS/maksimum-ağırlık/budama raporuyla sunulur. (iii) *Alım-dönemi confound (batch):* iki grup farklı takvim dönemlerinde toplandıysa, "grup" ve "dönem" birbirine karışır; dönem kör kovaryat olarak eklenemez (grup etkisini emer), bunun yerine dönem-dengeli alt-örneklemde replikasyon yapılır.
+> **Yöntem kutusu — MNAR seçilim, IPW fizibilite ve alım-dönemi karışması:** Bu iki denetim yeni bir ilişki keşfetmez; *mevcut* analizlerin geçerliğini sınar. (i) *Rastgele-olmayan eksiklik (MNAR):* bir değişkenin *ölçülmüş olması* bazı değişkenlere bağlıysa, eksik veri rastgele değildir ve o değişken seçilmiş bir alt-örneklemdir (Pedersen ve diğerleri, 2017; Heckman, 1979; Little ve Rubin, 2019). (ii) *Ters-olasılık ağırlıklandırma (IPW) ve etkin örneklem boyutu (ESS):* seçilimi telafi etmek için ağırlıklandırma kullanılırsa, birkaç büyük ağırlık örneklemi fiilen küçültür; ESS bu "gerçek" bilgi miktarını ölçer, ağırlık-budama aşırı ağırlıkları sınırlar. Küçük örneklemde IPW gürültüyü büyütür; burada IPW yalnız fizibilite göstergesi olarak, telafi *değil*, ESS/maksimum-ağırlık/budama raporuyla sunulur. (iii) *Alım-dönemi karışması:* iki grup farklı takvim dönemlerinde toplandıysa, "grup" ve "dönem" birbirine karışır; dönem kör kovaryat olarak eklenemez (grup etkisini emer), bunun yerine dönem-dengeli alt-örneklemde replikasyon yapılır.
 
-**HbA1c seçilim yüzeyi (MNAR).** DM grubunda HbA1c yalnız 39/120 ailede (%32,5) mevcuttur ve varlığı antidepresan kullanımıyla güçlü ilişkilidir (Fisher OR = 4,56; %95 GA [1,84, 11,70]; p = 0,000466; tamamlanma antidepresan+ annede %57,1 vs antidepresan− %22,4). Çok değişkenli seçilim modelinde (DM-only lojistik) ölçülme olasılığını yordayan başlıca değişken antidepresan kullanımıdır (OR = 7,86; %95 GA [2,90, 23,4]; p < 0,001); güncel Beck de zayıf katkı verir (OR = 1,08/puan; p = 0,025). HbA1c ham veri dosyasında yoktu, sonradan klinik-kayıt entegrasyonuyla eklendi → varlığı klinik-izlem/temas göstergesidir; bu, HbA1c'nin "düşük n" değil **seçilmiş (MNAR) alt-örneklem** olduğunu gösterir. IPW yalnız fizibilite amacıyla denendiğinde ağır seçilime işaret eder (etkin örneklem yalnız 19,4/37 = %52,4; maksimum ağırlık 15,3; %95 persentilde budamada 2 gözlem sınırlanır) → n = 39'da telafi güvenilir değildir. **Sonuç kuralı:** hiçbir HbA1c × ebeveynlik bulgusu (§12.5; §16.11) bu seçilim yüzeyi olmadan yorumlanmamalı, betimsel ve seçilim-uyarılı okunmalıdır.
+**HbA1c seçilim yüzeyi (MNAR).** DM grubunda HbA1c yalnız 39/120 ailede (%32,5) mevcuttur ve HbA1c'nin mevcut olması antidepresan kullanımıyla güçlü ilişkilidir (Fisher OR = 4,56; %95 GA [1,84, 11,70]; p = 0,000466; tamamlanma antidepresan kullanan annelerde %57,1, kullanmayanlarda %22,4). Çok değişkenli seçilim modelinde ölçülme olasılığını başlıca antidepresan kullanımı yordamaktadır (OR = 7,86; %95 GA [2,90, 23,4]; p < 0,001); güncel Beck puanı daha zayıf katkı verir (OR = 1,08/puan; p = 0,025). HbA1c ham veri dosyasında bulunmayıp sonradan klinik-kayıt entegrasyonuyla eklendiği için, varlığı aynı zamanda klinik izlem/temas göstergesidir. Bu nedenle HbA1c alt-örneklemi yalnız "küçük n" sorunu değil, seçilmiş (MNAR) alt-örneklem sorunudur. IPW yalnız fizibilite amacıyla denendiğinde ağır seçilime işaret etmiştir (etkin örneklem 19,4/37 = %52,4; maksimum ağırlık 15,3; %95 persentilde budamada 2 gözlem sınırlanır). Bu nedenle n = 39 içinde IPW güvenilir bir telafi olarak sunulmamış; HbA1c × ebeveynlik bulguları (§12.5; §16.11) betimsel ve seçilim-uyarılı okunmuştur.
 
-**Alım-dönemi (batch) confound.** Anket yılı grupla neredeyse tam kolinearidir: DM ailelerin çoğu 2023'te (108/120), Kontrol ailelerin çoğu 2024–25'te toplanmıştır (2023: DM 108/Kontrol 40; 2024: 6/36; 2025: 6/45); grup ~ yıl ilişkisi çok güçlüdür (LR χ²(2) = 89,97; p ≈ 2,9 × 10⁻²⁰; Cramér's V = 0,585). Bu bir alım/dönem confound'udur; yıl kör kovaryat olarak eklenemez (grup etkisini emer). İki grubun da yeterince temsil edildiği tek dönem olan **2023-only** alt-örnekleminde (DM 108/Kontrol 40) ana grup kontrastları tam örneklemle karşılaştırıldığında ayrışır: anne-raporu boyutları (H3) yönce korunur, ancak indeks-çocuğun algıladığı **reddetme** farkı (tam örneklemde d = 0,380; p = 0,004) 2023-only'de kaybolur (d ≈ 0,00; p = 0,99; yön korunmaz), Beck grup farkının işareti de dönem içinde değişir. Bu, çocuk-algılanan reddetme grup farkının **kısmen alım-dönemi/batch etkisiyle karışık** olabileceğine dair somut bir uyarıdır ve H1'in temkinli yorumlanmasını gerektirir (§18.1). İndeks-çocuğun aşırı koruma farkı ise 2023-only'de yönce korunur (d: 0,370 → 0,258).
+**Alım-dönemi karışması.** Anket yılı grupla neredeyse tam kolinearidir: DM ailelerin çoğu 2023'te (108/120), Kontrol ailelerin çoğu 2024–25'te toplanmıştır (2023: DM 108/Kontrol 40; 2024: 6/36; 2025: 6/45); grup ~ yıl ilişkisi çok güçlüdür (LR χ²(2) = 89,97; p ≈ 2,9 × 10⁻²⁰; Cramér's V = 0,585). Bu durumda yıl değişkenini kör kovaryat olarak eklemek uygun değildir, çünkü grup etkisinin önemli bir bölümünü emebilir. İki grubun da yeterince temsil edildiği tek dönem olan **2023-only** alt-örnekleminde (DM 108/Kontrol 40), anne-raporu boyutları (H3) yönce korunurken indeks çocuğun algıladığı **reddetme** farkı tam örneklemdeki düzeyinden (d = 0,380; p = 0,004) sıfıra yaklaşmıştır (d ≈ 0,00; p = 0,99; yön korunmaz); Beck grup farkının işareti de dönem içinde değişir. Bu bulgu, H1 çocuk-algısı reddetme farkının kısmen alım-dönemiyle karışmış olabileceğine dair somut bir tasarım uyarısıdır. Buna karşılık indeks çocuğun aşırı koruma farkı 2023-only alt-örnekleminde yönce korunmuştur (d: 0,370 → 0,258).
 
 **Tablo 16.13. [KEŞİFSEL · İKİNCİL] Örneklem-seçilim ve alım-dönemi geçerlik denetimleri özeti.**
 
 | Analiz | Ana metrik | İkincil yorum |
 |---|---|---|
 | HbA1c × antidepresan (MNAR) | Fisher OR = 4,56 [1,84, 11,70]; p = 0,000466 | HbA1c seçilmiş alt-örneklem; ölçülme klinik-temasa bağlı. |
-| Seçilim modeli (DM-only) | antidepresan OR = 7,86 [2,90, 23,4]; p < 0,001; Beck OR = 1,08; p = 0,025 | Ölçülme olasılığını başlıca antidepresan yordar. |
+| Seçilim modeli (yalnız DM) | antidepresan OR = 7,86 [2,90, 23,4]; p < 0,001; Beck OR = 1,08; p = 0,025 | Ölçülme olasılığını başlıca antidepresan yordar. |
 | IPW fizibilite (telafi değil) | ESS = 19,4/37 (%52,4); maks ağırlık 15,3; budama 2 gözlem | n = 39'da IPW telafisi güvenilir değil; yalnız seçilim göstergesi. |
-| Yıl × grup kolinearite | LR χ²(2) = 89,97; p ≈ 2,9 × 10⁻²⁰; V = 0,585 | DM ağırlıkla 2023, Kontrol 2024–25; batch/dönem confound. |
-| 2023-only replikasyon | EMBU-C reddetme d: 0,380 → ≈ 0,00 (yön korunmaz); aşırı koruma d: 0,370 → 0,258 (korunur) | Çocuk-algılanan reddetme farkı kısmen dönem-karışık; H1 temkinli okunmalı. |
+| Yıl × grup kolinearite | LR χ²(2) = 89,97; p ≈ 2,9 × 10⁻²⁰; V = 0,585 | DM ağırlıkla 2023, Kontrol 2024–25; alım-dönemi karışması. |
+| 2023-only replikasyon | EMBU-C reddetme d: 0,380 → ≈ 0,00 (yön korunmaz); aşırı koruma d: 0,370 → 0,258 (korunur) | Çocuk-algılanan reddetme farkı kısmen dönemle karışmış olabilir; H1 temkinli okunmalı. |
 
 ## 16.15 Fizibilite Dürüstlüğü ve Keşifsel Analizlerin Kanonik Kararı
 
-Keşifsel analizlerin en önemli metodolojik katkısı fizibilite dürüstlüğüdür: bir değişkenin kanonik bazda bulunması modellenebileceğini garanti etmez. Hücre-sayısı denetimi iki analizi (otoimmün diatez n = 1; tek-ebeveyn n = 3) çıkarımsal testten betimsele indirmiş, bir metriği (yaşam-oranı maruziyet) doğrulanmamış duyarlılık katmanına indirmiştir; bunları "keşifsel analiz" diye sunmak yerine "veri sınırı + gelecek tasarım" olarak çerçevelemek jüri savunmasının çekirdeğidir. Aynı dürüstlük, artık-değişken yüzeylerinin çözümlenmesinde iki geçerlik-denetimiyle (§16.14) genişletilmiştir: HbA1c'nin rastgele-olmayan (MNAR) seçilmiş bir alt-örneklem olması (ölçülme olasılığı klinik-temasla güçlü ilişkili, OR = 4,56) ve alım-döneminin grupla neredeyse tam kolinear olması (batch confound; V = 0,585) — ikisi de bir *ilişki* keşfetmez, mevcut analizlerin (HbA1c alt-analizleri, H1 çocuk-algısı farkı) yorum sınırını çizer. Metabolik korelatlar (§16.11) ve tanı-penceresi analizleri de bu nedenle betimsel/seçilim-uyarılı katmanda tutulur.
+Keşifsel analizlerin en önemli metodolojik katkısı fizibilite dürüstlüğüdür: bir değişkenin kanonik bazda bulunması, o değişkenin çıkarımsal olarak modellenebileceği anlamına gelmez. Hücre-sayısı denetimi iki analizi (otoimmün diatez n = 1; tek-ebeveyn n = 3) çıkarımsal testten betimsele indirmiş, yaşam-oranı maruziyet metriğini ise doğrulanmamış duyarlılık katmanında bırakmıştır. Bu kararlar, "sinyal yok" iddiası üretmek yerine veri sınırlarını görünür kılar.
 
-Keşifsel analizler, CSR'ın birincil bulgularını değiştirmez. Çözümleme alanlarının tamamında (kardeş mimarisi, sosyal tabakalaşma, anne sağlık yükü, aile yapısı, klinik zamanlama, çocuk-düzeyi moderatörler ve artık-değişken yüzeyleri) Holm/FDR-korumalı sistematik doğrulayıcı sinyal seyrek ve küçüktür; tüm etki büyüklükleri literatürle uyumlu küçük banda oturur. Öne çıkan hipotez-üretici işaretler iki eksende toplanır. Birincisi, **anne mental sağlık yükünün çocuk/kardeş düzlemine köprülenmesidir** (§16.8): antidepresan yükünün belirgin grup-asimetrisi (χ² = 14,45) yanında, *güncel* anne depresif şiddetinin (Beck ≥ 17) çocuğun algıladığı reddetme (p = 0,004) ve karşılaştırmayı (p = 0,003) — DM grubundan ve antidepresan kullanımından bağımsız olarak — yordaması, ve anne semptom-tipolojisinin (LCA riskli sınıf) anne–çocuk reddetme uyuşmazlığı (p < 0,001) ile kardeş çatışmasında (p = 0,006) dışsal geçerlik göstermesi. Bu köprü, sinyalin neden çocuk düzleminde belirdiğine (§17.7) mekanizma-düzeyi bir katman ekler. İkincisi, DM'de baba-kayırma algısının düşüklüğü (ham p = 0,039), kardeş diadik karşılıklılığının gerçekliği, ileri anne yaşının aşırı korumayla ters gradyanı (§16.10; p = 0,004) ve Beck-aracı Aile-Stres-Modeli'nin yön-tutarlı zayıf zinciridir. Buna karşılık iki bulgu **CSR'ın mevcut yorumlarını temkinli yönde revize eder:** çocuk-algılanan reddetme grup farkı (H1) dönem-dengeli 2023-only alt-örnekleminde kaybolduğundan kısmen alım-dönemi/batch etkisiyle karışmış olabilir (§16.14; §18.1), ve HbA1c alt-analizleri seçilmiş bir alt-örneklemde yürüdüğünden betimsel/seçilim-uyarılı okunmalıdır (§16.14; §12.5). Tüm bu işaretler bağımsız bir Türk kohortunda dış-validasyon olmadan yükseltilmez; hiçbir keşifsel bulgu H1-H4 doğrulayıcı önselini (prior) güçlendirmez; sonuçlar görüldükten sonra hipotez kurma (HARKing) bu bölümde açıkça reddedilir; tüm çıktı `[KEŞİFSEL · İKİNCİL]` etiketiyle konumlanır.
+Aynı disiplin, artık-değişken yüzeylerinin çözümlenmesinde iki geçerlik denetimiyle genişletilmiştir (§16.14). HbA1c'nin rastgele-olmayan seçilmiş bir alt-örneklemde bulunması (ölçülme olasılığı klinik-temasla güçlü ilişkili, OR = 4,56) ve alım döneminin grupla neredeyse tam kolinear olması (V = 0,585), yeni bir ilişki keşfetmez; mevcut HbA1c alt-analizleri ile H1 çocuk-algısı farkının yorum sınırlarını belirler. Metabolik korelatlar (§16.11) ve tanı-penceresi analizleri bu nedenle betimsel/seçilim-uyarılı katmanda tutulmuştur.
 
-**Artık-değişken doygunluk denetimi (analitik kapanış).** Keşifsel katmanın tamamlanmasının ardından, kanonik bazda modele hiç girmemiş ya da yalnız kovaryat olarak geçmiş *son* değişken ve ilişki yüzeyleri sistematik ve **çekişmeli (adversarial)** bir denetime tabi tutulmuştur: on iki aday, her biri için bağımsız bir fizibilite (yalnız agregat hücre/varyans), kuramsal-savunulabilirlik ve HARKing/forking değerlendirmesinin ardından, adayı çürütmeye çalışan ikinci bir bağımsız denetimden geçirilmiştir. **Hiçbir aday özgün, çıkarımsal olarak savunulabilir yeni post-hoc analiz olarak hayatta kalmamıştır (0/12).** Elenme gerekçeleri üç sınıfta toplanır. (i) *Zaten kapsanmış* (5 aday): hane kalabalığı (kişi/oda) yalnız SES içinde tüketilmekle kalmaz, bu örneklemde kalabalık ile anne depresyonu arasındaki ilişki **ampirik olarak sıfırdır** (r ≈ −0,01), yani gerçek bir ilişkinin yeniden-dilimlenmesi bile değildir; ev sahipliği `material_index`'e −0,55 yükle temiz absorbe olmuştur; baba sistem-özgü komorbiditesi §16.5 negatif kontrolü ve §16.12 betimsel panelinde; eğitim homogamisi §16.4/§1.6-B'de (ve §1.8'de daraltılmış olarak); meslek kodlama-kaynağı ise sabit (varyans = 0) olduğundan yordayıcı olamaz. (ii) *Fizibilitesi yetersiz* (3 aday): baba istihdamı ≈ %94 sabittir; dulluk/tek-ebeveyn hücreleri (n = 1/2) tümüyle DM grubundadır (grup ekseninde tam karışım); anne psikiyatrik komorbiditesi yalnız 2 ailede pozitiftir (yarı-dejenere). (iii) *HARKing/forking riski* (3 aday): SES × güncel-distres, grup × güncel-distres ve DM-süresi → kardeş ilişkisi analizleri kod tabanında gerçekten hiç koşulmamış olsalar da, her biri mevcut bir keşifsel bulgunun (§16.8) moderasyonu ya da bir kovaryatın moderatöre terfisidir; çıkarımsal olarak yürütmek keşifsel serbestlik derecelerini (garden of forking paths) genişletip yanlış-pozitif üretirdi. Denetimin betimsel düzeyde sunulmaya değer bulduğu tek yüzey — doğum sırası × cinsiyet — §16.6'da (Tablo 16.14) yalnız betimsel olarak, çıkarımsal iddia olmaksızın sunulmuştur. Bu doygunluk denetimi, keşifsel analitik planın **tamamlandığını** ve ileri post-hoc dilimlemenin bilimsel disiplin açısından gerekçelendirilemeyeceğini gösterir; artık ilerleme yolu daha fazla iç-analiz değil, öne çıkan hipotez-üretici işaretlerin (özellikle §16.8 anne güncel-distres → çocuk düzlemi köprüsü) bağımsız bir kohortta ön-kayıtlı dış-validasyonudur.
+Keşifsel analizler, CSR'ın birincil bulgularını değiştirmez. Kardeş mimarisi, sosyal tabakalaşma, anne sağlık yükü, aile yapısı, klinik zamanlama, çocuk-düzeyi moderatörler ve artık-değişken yüzeylerinde Holm/FDR-korumalı doğrulayıcı sinyal seyrek ve küçüktür; etki büyüklükleri genel olarak küçük bantta kalır.
+
+Öne çıkan hipotez-üretici işaretler iki eksende toplanır. Birincisi, **anne mental sağlık yükünün çocuk/kardeş düzlemine köprülenmesidir** (§16.8): antidepresan yükünün belirgin grup-asimetrisine (χ² = 14,45) ek olarak, *güncel* anne depresif şiddeti (Beck ≥ 17) çocuğun algıladığı reddetme (p = 0,004) ve karşılaştırmayı (p = 0,003), DM grubundan ve antidepresan kullanımından bağımsız olarak yordamaktadır. Anne semptom-tipolojisinin riskli sınıfı da anne–çocuk reddetme uyuşmazlığı (p < 0,001) ve kardeş çatışmasıyla (p = 0,006) ilişkilidir. Bu köprü, sinyalin neden çocuk düzleminde belirdiğine (§17.7) mekanizma-düzeyi bir katman ekler.
+
+İkinci eksen daha sınırlı bağlamsal işaretlerden oluşur: DM'de baba-kayırma algısının düşüklüğü (ham p = 0,039), kardeş diadik karşılıklılığının gerçekliği, ileri anne yaşının aşırı korumayla ters gradyanı (§16.10; p = 0,004) ve Beck-aracı Aile-Stres-Modeli'nin yön-tutarlı zayıf zinciri. Buna karşılık iki geçerlik uyarısı mevcut yorumları temkinli tutar: H1 çocuk-algılanan reddetme farkı, dönem-dengeli 2023-only alt-örnekleminde zayıfladığı için kısmen alım-dönemiyle karışmış olabilir (§16.14; §18.1); HbA1c alt-analizleri ise seçilmiş bir alt-örneklemde yürüdüğünden betimsel/seçilim-uyarılı okunmalıdır (§16.14; §12.5). Tüm bu işaretler bağımsız bir Türk kohortunda dış-validasyon olmadan yükseltilmez; hiçbir keşifsel bulgu H1-H4 doğrulayıcı önselini güçlendirmez ve HARKing disiplini gereği `[KEŞİFSEL · İKİNCİL]` etiketiyle sınırlı tutulur.
+
+**Artık-değişken doygunluk denetimi (analitik kapanış).** Keşifsel katmanın tamamlanmasının ardından, kanonik bazda modele hiç girmemiş ya da yalnız kovaryat olarak geçmiş son değişken ve ilişki yüzeyleri sistematik ve çekişmeli bir denetime tabi tutulmuştur. On iki aday, fizibilite (yalnız agregat hücre/varyans), kuramsal savunulabilirlik ve HARKing/forking riski açısından değerlendirilmiş; her aday daha sonra onu çürütmeye çalışan ikinci bir denetimden geçirilmiştir. **Hiçbir aday özgün, çıkarımsal olarak savunulabilir yeni post-hoc analiz olarak kalmamıştır (0/12).**
+
+Elenme gerekçeleri üç grupta toplanır. İlk grup zaten kapsanmış değişkenlerdir: hane kalabalığı SES içinde tüketilmiş ve bu örneklemde anne depresyonuyla ilişkisi pratik olarak sıfırdır (r ≈ −0,01); ev sahipliği `material_index` içinde temsil edilmiştir; baba sistem-özgü komorbiditesi §16.5 ve §16.12'de kapsanmıştır; eğitim homogamisi önceki eğitim/sınıf analizleri içinde daraltılmıştır; meslek kodlama kaynağı ise sabit olduğundan yordayıcı olamaz. İkinci grup fizibilitesi yetersiz adaylardır: baba istihdamı yaklaşık %94 ile neredeyse sabittir, dulluk/tek-ebeveyn hücreleri tümüyle DM grubundadır ve anne psikiyatrik komorbiditesi yalnız 2 ailede pozitiftir. Üçüncü grup HARKing/forking riski taşıyan adaylardır: SES × güncel distres, grup × güncel distres ve DM süresi → kardeş ilişkisi yüzeyleri mevcut keşifsel bulguların moderasyonu veya kovaryatların moderatöre terfisi niteliğindedir; bunları çıkarımsal olarak yürütmek yanlış-pozitif riskini artıracaktır.
+
+Denetimin betimsel düzeyde sunulmaya değer bulduğu tek yüzey, doğum sırası × cinsiyet kombinasyonudur; bu yüzey §16.6'da (Tablo 16.14) çıkarımsal iddia olmadan sunulmuştur. Böylece keşifsel analitik plan kapanmış; sonraki adım daha fazla iç-analiz değil, öne çıkan hipotez-üretici işaretlerin, özellikle §16.8'deki anne güncel distresi → çocuk algısı köprüsünün, bağımsız bir kohortta ön-kayıtlı dış-validasyonudur.
 
 \newpage
 
@@ -1671,6 +1687,8 @@ Keşifsel analizler, CSR'ın birincil bulgularını değiştirmez. Çözümleme 
 ## 17.1 Genel Yorum Çerçevesi: Üç Bilgi Kaynağı Asimetrisi
 
 Bu çalışmanın en belirgin örüntüsü, ebeveynlik tutumlarının ölçüldüğü üç kaynak (anne öz-bildirimi, çocuk algısı ve düad-içi uyum) arasında sistematik bir asimetri bulunmasıdır. Anne öz-bildirimi düzleminde DM × Kontrol farkı için kanıt belirgin biçimde yetersizdir (H3); çocuk algısı düzleminde DM çocuklar reddetme alt ölçeğinde Kontrol gruptan küçük-tutarlı bir asimetri göstermektedir (H1); anne–çocuk diadik uyum ise DM ve Kontrol gruplarında farklı manifest ve latent örüntüler sergilemektedir (H5). Bu üç kaynak birlikte okunduğunda, aynı yapının (örneğin "anne reddetmesi") farklı bilgi verenler tarafından aynı biçimde işlenmediği görülmektedir. Bu örüntü, De Los Reyes ve diğerlerinin (2015) Operations Triad Modeli içindeki **Diverging Operations (ayrışan operasyonlar)** deseniyle uyumludur ve bilgi-veren uyumsuzluğunu yalnız ölçüm hatası olarak değil, alana ilişkin ek bilgi olarak değerlendirmeyi gerektirir.
+
+Tam metin incelemesi bu yorum çerçevesini güçlendirmiştir. Korelitz ve Garber'ın (2016) ebeveyn-çocuk ebeveynlik algısı meta-analizi, ebeveyn-çocuk uyumunun anlamlı fakat mütevazı olduğunu ve ebeveyn raporlarının genellikle çocuk raporlarından daha olumlu seyrettiğini göstermektedir. Van Gampelaere ve diğerlerinin (2020) T1DM bağlamındaki çok-informant çalışması da anne distresi yükselirken ebeveyn-raporlu psikolojik kontrol farkının belirginleşmemesi, buna karşılık çocuk algı düzleminde ayrışma görülebilmesi bakımından mevcut H1-H3 karşıtlığıyla yapısal olarak uyumludur. Bu dış kanıtlar, çocuk algısının anne öz-bildiriminin "doğrulaması" değil, ayrı ve klinik olarak dikkate alınması gereken bir bilgi kanalı olarak ele alınmasını destekler. Bununla birlikte, çocuk algısı doğrudan gözlenmiş ebeveyn davranışı kanıtı olarak yorumlanmamalıdır.
 
 ## 17.2 H1 Tartışması: Çocuk Algısında DM Lehine Reddetme Yükselmesi
 
@@ -1684,11 +1702,11 @@ Bu yorum, psikometrik duyarlılık kontrolleriyle ayrıca sınanmıştır. EMBU-
 
 EMBU-C sıcaklık alt ölçeğinde grup farkı bulunmaması ("orta düzey H0" lehine kanıt), yorumun sınırını belirlemektedir: DM çocukları anne sıcaklığını Kontrol çocuklarıyla benzer düzeyde algılamakta, farklılaşma özellikle reddetme yorumlamasında yoğunlaşmaktadır. Bu alt-boyut özgüllüğü, Cameron'un (2007) kronik hastalık aile sistemleri çerçevesinde anne aşırı denetim ve çocuk reddetme algısı bağlantısıyla uyumludur.
 
-Bu nedenle H1'in pratik anlamı, tek başına bir patoloji göstergesi üretmek değil, çift-perspektifli aile değerlendirmesi için gözlemsel bir gerekçe sunmaktır. Bulgular, ISPAD 2022 psikolojik bakım kılavuzu, ADA 2026 çocuk-ergen standardı ve ADA psikososyal bakım pozisyon bildirgesinin aile-merkezli değerlendirme yönelimiyle bu sınırlı anlamda uyumludur.
+Bu nedenle H1'in pratik anlamı, tek başına bir patoloji göstergesi üretmek değil, çift-perspektifli aile değerlendirmesi için gözlemsel bir gerekçe sunmaktır. Bulgular, ISPAD 2022 psikolojik bakım kılavuzu ve ADA 2016 psikososyal bakım pozisyon bildirgesinin aile-merkezli değerlendirme yönelimiyle bu sınırlı anlamda uyumludur. ADA 2026 çocuk-ergen standardı güncel standart bağlamı olarak anılmış; bu bölümdeki özgül klinik çıkarımlar ise güvenilir tam metin düzeyinde doğrulanan ISPAD 2022 ve ADA 2016 kaynaklarına dayandırılmıştır.
 
 ## 17.3 H2 Tartışması: Kardeş İlişkisi Mimarisinin Sürekliliği
 
-H2 SRQ alt ölçeklerinin dördünde de DM × Kontrol grup farkı bulgulanmamıştır. Bu desen, T1DM ailelerinde kardeş ilişkisinin temel boyutlarının (sıcaklık, statü, çatışma, rekabet) bu örneklemde belirgin biçimde ayrışmadığını düşündürmektedir. Ancak sonuç, Sharpe ve Rossiter'in (2002) kronik hastalık kardeş literatüründe bildirdiği heterojen ve T1DM'e özgü kesinlik taşımayan genel risk çerçevesiyle birlikte, "kardeş etkisi yoktur" şeklinde değil, "bu örneklemde grup farkı için yeterli kanıt yoktur" şeklinde okunmalıdır.
+H2 SRQ alt ölçeklerinin dördünde de DM × Kontrol grup farkı bulgulanmamıştır. Bu desen, T1DM ailelerinde kardeş ilişkisinin temel boyutlarının (sıcaklık, statü, çatışma, rekabet) bu örneklemde belirgin biçimde ayrışmadığını düşündürmektedir. Ancak sonuç, Sharpe ve Rossiter'in (2002) kronik hastalık kardeş literatüründe bildirdiği heterojen ve T1DM'e özgü kesinlik taşımayan genel risk çerçevesiyle birlikte, "kardeş etkisi yoktur" şeklinde değil, "bu örneklemde grup farkı için yeterli kanıt yoktur" şeklinde okunmalıdır. Bu turda Sharpe ve Rossiter için tam metin kapanmadığından bu kaynak yalnız özet-düzeyli/bağlamsal dayanak olarak kullanılmış; bu çalışmaya özgü kardeş sonuçları için tam-metin düzeyinde dış iddia üretilmemiştir.
 
 Bu ayrım önemlidir: mevcut bulgu klinik olarak kardeş ilişkisinin korunmuş olabileceğini düşündürür, fakat APIM tipi karma model daha küçük etkileri yakalamak için yeterli güç sergilememiş olabilir. Bu nedenle sonuç "Indeterminate" konumunda tutulmuştur. Daha güçlü bir negatif kanıt için TOST eşdeğerlik testi gelecek çalışma analiz hattına eklenmelidir; bu çalışmanın ön-kayıtlı planında H2 ailesi için TOST uygulaması bulunmamaktadır.
 
@@ -1704,15 +1722,15 @@ H3 dört EMBU-P alt ölçeği için elde edilen üç-katmanlı negatif kanıt zi
 
 **(c) Ölçek hassasiyet kısıtı.** EMBU-P reddetme alt ölçeğinin iç tutarlılığı (α = 0,45) ve madde havuzunun zayıf taban etkileri, gerçek farkları yakalamak için yetersiz hassasiyete neden olmuş olabilir. Bu kısıt, çoklu evren analizinde 120 spesifikasyonun tamamında null sonuç çıkmasıyla kısmen reddedilmiştir; ancak ölçek hassasiyeti tartışmasının açık tutulması metodolojik şeffaflık açısından önemlidir.
 
-Bu üç açıklama birlikte değerlendirildiğinde H3, klinik odağı anne ebeveynlik tutumlarını "düzeltme" varsayımına taşımamaktadır. Daha tutarlı çıkarım, NICE NG18, ISPAD 2022 psikolojik bakım kılavuzu ve ADA 2026'nın psikososyal/davranış sağlığı değerlendirmesini öne çıkaran yönelimiyle uyumlu olarak, anne mental sağlık yükünü ve aile psikososyal destek ihtiyacını sistematik biçimde saptamaktır. Bu çıkarım, örneklemimizdeki yüksek antidepresan kullanım oranıyla (DM %29 vs Kontrol %9, SMD = 0,53) aynı klinik dikkat ekseninde birleşmektedir.
+Bu üç açıklama birlikte değerlendirildiğinde H3, klinik odağı anne ebeveynlik tutumlarını "düzeltme" varsayımına taşımamaktadır. Daha tutarlı çıkarım, NICE NG18, ISPAD 2022 psikolojik bakım kılavuzu ve ADA 2016 psikososyal bakım bildirgesinin psikososyal/davranış sağlığı değerlendirmesini öne çıkaran yönelimiyle uyumlu olarak, anne mental sağlık yükünü ve aile psikososyal destek ihtiyacını sistematik biçimde saptamaktır; ADA 2026 bu çıkarımda yalnız güncel standart bağlamı olarak tutulur. Bu çıkarım, örneklemimizdeki yüksek antidepresan kullanım oranıyla (DM %29 vs Kontrol %9, SMD = 0,53) aynı klinik dikkat ekseninde birleşmektedir.
 
 ## 17.5 H4 Tartışması: Goodman-Gotlib Modeliyle Kesitsel SEM Uyumu
 
 Goodman ve Gotlib'in (1999) entegratif modeli, anne depresyonu ile çocuk gelişim çıktıları arasında genetik, prenatal, ebeveynlik davranışları ve stres yollarını içeren bir gelişimsel çerçeve önermektedir. Mevcut çalışmadaki H4 yapısal eşitlik modeli, bu çerçevenin yalnız ebeveynlik tutumu bileşenine karşılık gelen **kesitsel yapısal yol** düzeyini sınamaktadır.
 
-Anne Beck depresyon latent faktörü, EMBU-P sıcaklık (β = −0,28), reddetme (β = 0,33) ve karşılaştırma (β = 0,28) alt ölçeklerinde FDR-düzeltilmiş anlamlı yapısal yollar üretmiştir. Aşırı koruma yolu yön olarak pozitif (β = 0,08) ancak FDR p = .22 ile anlamsızdır. Bu desen, anne depresif belirti yükü ile ebeveynlik tutumu alt boyutları arasındaki kesitsel ilişkinin **alt-boyut-spesifik** olduğunu — özellikle sıcaklık, reddetme ve karşılaştırma boyutlarında belirginleşirken aşırı koruma kanalında ayrışmadığını — düşündürmektedir.
+Anne Beck depresyon latent faktörü, EMBU-P sıcaklık (β = −0,28), reddetme (β = 0,33) ve karşılaştırma (β = 0,28) alt ölçeklerinde FDR-düzeltilmiş anlamlı yapısal yollar üretmiştir. Aşırı koruma yolu yön olarak pozitif (β = 0,08) ancak FDR p = 0,22 ile anlamsızdır. Bu desen, anne depresif belirti yükü ile ebeveynlik tutumu alt boyutları arasındaki kesitsel ilişkinin **alt-boyut-spesifik** olduğunu — özellikle sıcaklık, reddetme ve karşılaştırma boyutlarında belirginleşirken aşırı koruma kanalında ayrışmadığını — düşündürmektedir.
 
-Anlamlı üç yol için standardize katsayılar β = 0,28–0,33 aralığındadır. Bu katsayılar doğrudan Cohen d ile aynı metrikte değildir; yine de Lovejoy ve diğerlerinin (2000) anne depresyonu ile olumsuz ebeveynlik için raporladığı meta-analitik d = 0,40 bulgusuyla yön ve mertebe bakımından uyumludur. Bu karşılaştırma, kesin büyüklük eşleştirmesi değil bağlamsal kalibrasyon olarak okunmalıdır. Desen, sıcaklık/reddetme/karşılaştırma kanallarında literatürle uyumlu bir kesitsel ilişki paterni bulunduğunu; aşırı koruma kanalının ise aynı patern içinde belirginleşmediğini göstermektedir.
+Anlamlı üç yol için standardize katsayılar β = 0,28–0,33 aralığındadır. Bu katsayılar doğrudan Cohen d ile aynı metrikte değildir; yine de Lovejoy ve diğerlerinin (2000) anne depresyonu ile olumsuz ebeveynlik için raporladığı meta-analitik d = 0,40 bulgusuyla yön ve mertebe bakımından uyumludur. Bu turda Lovejoy tam metni kapanmadığından bu kaynak yalnız PubMed özet düzeyinde yön/büyüklük kalibrasyonu için kullanılmaktadır; moderatör, alt-grup veya tablo düzeyi ayrıntı iddiası buradan türetilmemiştir. Desen, sıcaklık/reddetme/karşılaştırma kanallarında literatürle uyumlu bir kesitsel ilişki paterni bulunduğunu; aşırı koruma kanalının ise aynı patern içinde belirginleşmediğini göstermektedir.
 
 Multi-grup invaryans testleri, configural ve metric düzeylerde yapının DM ve Kontrol gruplarında karşılaştırılabilir olduğunu, scalar düzeyin ise sınırda kaldığını göstermiştir. Bu zemin üzerinde Beck depresyonu ile EMBU-P yolları iki grupta benzer tahmin edilmiştir. Dolayısıyla T1DM bağlamı bu kesitsel SEM yollarında ek bir grup moderasyonu sinyali üretmemiştir; sonuç grup-invariant bir nedensel süreç olarak değil, grup-spesifik ayrışma göstermeyen kesitsel ilişki paterni olarak yorumlanmalıdır.
 
@@ -1741,11 +1759,21 @@ Klinik açıdan H5, ebeveyn ve çocuğun T1DM yönetiminde *paylaşılan tutum m
 
 ## 17.7 İkincil Analizlerin Bütünleşik Yorumu — [KEŞİFSEL · İKİNCİL]: Çocuk Düzlemindeki Sinyalin Bağlamı
 
-Psikometrik, çok-informant ve sağlamlık çözümlemeleri, birincil hipotezlerin kararlarını değiştirmez; bu bölümde yalnız H1 örüntüsünün hangi ölçüm koşullarında görünür kaldığını açıklayan keşifsel/ikincil bağlam sunulur. Üç bulgu aynı yöne işaret eder. Birincisi, anne–indeks çocuk–kardeş raporlarını tek bir genel ebeveynlik boyutuna indirgemeye çalışan trifactor doğrulayıcı faktör analizi (CFI medyanı 0,90) kabul edilebilir uyum verirken belirgin bir bilgi-veren metot varyansı ortaya koymuş; latent bilgi-veren ayrışması modelinde anne–çocuk reddetme latent korelasyonu r = 0,025 [%95 GA −0,134; 0,185] ile pratik olarak ortogonal çıkmıştır. Bu sonuç, Bölüm 17.1'de tanımlanan üç-bilgi-kaynağı asimetrisinin yalnız ölçüm gürültüsüne indirgenemeyeceğini ve De Los Reyes ve diğerlerinin (2015) Diverging Operations deseniyle uyumlu bir perspektif ayrışması bulunduğunu düşündürür. İkincisi, taban-etkisine duyarlı madde-yanıt kuramı çözümlemesi, çocuk reddetme boyutunda latent theta farkını manifest ortalama farkına göre büyüterek (Cohen d = 0,372) taban etkisinin H1 sinyalini kısmen maskelemiş olabileceğini gösterir; bu, H3 anne düzleminde farkın yokluğunun *yalnızca* ölçek hassasiyetiyle açıklanamayacağını, çünkü aynı taban-etkisi düzeltmesinin anne tarafında bir sinyal ortaya çıkarmadığını ima eder. Üçüncüsü, çoklu evren çözümlemesinde 120 spesifikasyonun tamamının pozitif yön vermesi ve spesifikasyon eğrisi çıkarımsal testinin permütasyon altında ayrışması (t = 4,084; p = .0002), literatür önseliyle birleştirilen meta-analitik havuzlanmanın küçük ama sıfırdan ayrık bir merkez üretmesiyle (havuzlanmış etki 0,139 [%95 GA 0,049; 0,230]) birlikte, H1 çocuk-algısı sinyalinin analitik karar keyfiyetine dirençli olduğunu destekler.
+Psikometrik, çok-informant ve sağlamlık çözümlemeleri birincil hipotez kararlarını değiştirmez; bu bölümde yalnız H1 örüntüsünün hangi ölçüm koşullarında görünür kaldığını açıklayan keşifsel/ikincil bağlam sunulur. Üç bulgu aynı yöne işaret etmektedir.
 
-**[KEŞİFSEL · İKİNCİL] Yorum.** Bu üç katman, çocuk-algısı reddetme bulgusunun küçük ama yöntem kararlarına dayanıklı, taban-etkisiyle kısmen gizlenmiş ve bilgi-veren perspektifine özgü bir örüntü olduğunu düşündürür. Klinik açıdan en önemli tamamlayıcı bulgu, anne mental sağlık yükünün grup-asimetrisidir: örneklemde antidepresan kullanımı Diverging Operations mantığından bağımsız olarak DM annelerinde belirgin biçimde yüksektir ve aracılık analizinde DM üyeliği ile ebeveynlik çıktıları arasında bağımsız bir aracı yol kanıtı üretmez — yani antidepresan yükü bir *aktarım yolu* değil, kendi başına klinik dikkat gerektiren bir eşlik değişkenidir. Bu, H3 tartışmasında (Bölüm 17.4) öne sürülen "klinik odak anne ebeveynlik tutumları değil anne mental sağlık yükü olmalı" çıkarımıyla ikincil kanıt düzleminde uyumludur. Anne mental sağlık yükünü bir aktarım yolu değil kendi başına klinik hedef olarak konumlandıran bu çıkarım, T1DM ebeveyn distres literatürüyle yakınsamaktadır. Rumburg ve diğerleri (2017), annelerin diyabet-distresinin anne depresif belirtileriyle güçlü biçimde ilişkili olduğunu ve çok değişkenli modelde ergen glisemik kontrolünü yordayan tek anlamlı değişkenin anne depresyonu olduğunu bildirmiştir. Van Gampelaere ve diğerleri (2020) ise stres, anksiyete ve depresif belirti yükselmesinin babalarda değil yalnız annelerde belirdiğini göstererek, yükün cinsiyete-özgü ve ebeveynlik davranışından görece bağımsız bir eksende yoğunlaştığını ortaya koymuştur. Bu iki bağımsız bulgu, örneklemdeki anne-spesifik antidepresan asimetrisinin kronik hastalık bağlamında tekrarlanan bir örüntüyle uyumlu olduğunu desteklemektedir.
+Birincisi, anne–indeks çocuk–kardeş raporlarını tek bir genel ebeveynlik boyutuna indirgemeye çalışan trifactor doğrulayıcı faktör analizi kabul edilebilir uyum verirken (CFI medyanı 0,90), belirgin bir bilgi-veren metot varyansı ortaya koymuştur. Latent bilgi-veren ayrışması modelinde anne–çocuk reddetme latent korelasyonu r = 0,025 [%95 GA −0,134; 0,185] ile pratik olarak ortogonaldir. Bu sonuç, Bölüm 17.1'de tanımlanan üç-bilgi-kaynağı asimetrisinin yalnız ölçüm gürültüsüne indirgenemeyeceğini ve De Los Reyes ve diğerlerinin (2015) Diverging Operations deseniyle uyumlu bir perspektif ayrışması bulunduğunu düşündürür.
 
-Bu tabloyu tamamlayan keşifsel köprü (§16.8), anne mental sağlık yükünü ilk kez *çocuğun algı düzlemine* taşır ve iki eksenin dikkatle ayrılmasını gerektirir. Antidepresan kullanımı — bir tedavi/temas göstergesi — çocuğun algıladığı reddetmeyle ilişkili değilken, annenin *güncel* depresif şiddeti (Beck ≥ 17) çocuğun reddetme (b = 0,134; p = 0,004) ve karşılaştırma (b = 0,241; p = 0,003) algısını, hem DM grubundan hem de antidepresan ekseninden bağımsız olarak yordamaktadır. Bu ayrım kavramsal olarak belirleyicidir: klinik dikkat gerektiren, annenin bir psikiyatrik tanı taşıması değil, o an sürmekte olan belirti yüküdür. Örüntü, anne depresyonunun çocuğa aktarımını — genetik/mizaç yatkınlıklarının yanında — çocuğun olumsuz anne biliş, davranış ve duygulanımına *maruziyeti* üzerinden modelleyen gelişimsel mekanizma çerçevesiyle (Goodman ve Gotlib, 1999) doğrudan örtüşür ve sinyalin neden anne öz-bildirim düzleminde (H3) değil çocuk algı düzleminde (H1) belirdiğine mekanizma-düzeyi bir açıklama önerir: ölçülen, annenin kendine atfettiği tutum değil, çocuğun deneyimlediği duygusal iklimdir. Anne semptom-tipolojisinin latent sınıf çözümlemesi bu yorumu dışsal olarak destekler — "riskli" sınıf hem anne–çocuk reddetme uyuşmazlığını (p < 0,001) hem kardeş çatışmasını (p = 0,006) yordar, ancak antidepresan kullanımını yordamaz (§16.8) — güncel semptom yükü ile tedavi/temas ekseninin gerçekten ayrı olduğunu iç-tutarlı biçimde gösterir. **Bununla birlikte, bu mekanizma yorumu iki temkin kaydıyla sınırlanır:** ilişkiler küçük-orta bandda ve korelasyoneldir (kesitsel tasarım nedensel yön kurmaz); ve H1 çocuk-algısı reddetme farkının kendisi, alım-dönemi dengeli alt-örneklemde zayıfladığından (§16.14; §18.1) kısmen batch etkisiyle karışmış olabilir — dolayısıyla anne-güncel-distres → çocuk-algısı köprüsü, doğrulayıcı bir yol değil, bağımsız kohortta sınanmayı bekleyen hipotez-üretici bir mekanizma önerisi olarak konumlanır.
+İkincisi, taban-etkisine duyarlı madde-yanıt kuramı çözümlemesi çocuk reddetme boyutunda latent theta farkını manifest ortalama farkına göre büyütmüştür (Cohen d = 0,372). Bu, taban etkisinin H1 sinyalini kısmen maskelemiş olabileceğini gösterir. Aynı düzeltme anne tarafında paralel bir sinyal üretmediği için, H3 anne düzlemindeki negatif bulgu yalnız ölçek hassasiyetiyle açıklanamaz.
+
+Üçüncüsü, çoklu evren çözümlemesinde 120 spesifikasyonun tamamı pozitif yön vermiş, spesifikasyon eğrisi çıkarımsal testi permütasyon altında ayrışmıştır (t = 4,084; p = 0,0002). Literatür önseliyle birleştirilen meta-analitik havuzlanmanın küçük ama sıfırdan ayrık bir merkez üretmesi (havuzlanmış etki 0,139 [%95 GA 0,049; 0,230]) de H1 çocuk-algısı sinyalinin tek bir analitik karara bağımlı olmadığını destekler.
+
+**[KEŞİFSEL · İKİNCİL] Yorum.** Bu üç katman, çocuk-algısı reddetme bulgusunun küçük ama yöntem kararlarına dayanıklı, taban etkisiyle kısmen gizlenmiş ve bilgi-veren perspektifine özgü bir örüntü olduğunu düşündürür. Klinik açıdan en önemli tamamlayıcı bulgu anne mental sağlık yükünün grup-asimetrisidir. Antidepresan kullanımı DM annelerinde belirgin biçimde yüksektir; ancak aracılık analizinde DM üyeliği ile ebeveynlik çıktıları arasında bağımsız bir aracı yol üretmez. Bu nedenle antidepresan yükü bir *aktarım yolu* değil, kendi başına klinik dikkat gerektiren bir eşlik değişkeni olarak yorumlanmalıdır.
+
+Bu yorum, H3 tartışmasında (Bölüm 17.4) öne sürülen "klinik odak anne ebeveynlik tutumları değil anne mental sağlık yükü olmalı" çıkarımıyla uyumludur. Rumburg ve diğerleri (2017), annelerin diyabet-distresinin anne depresif belirtileriyle güçlü biçimde ilişkili olduğunu ve çok değişkenli modelde ergen glisemik kontrolünü yordayan tek anlamlı değişkenin anne depresyonu olduğunu bildirmiştir. Van Gampelaere ve diğerleri (2020) ise stres, anksiyete ve depresif belirti yükselmesinin babalarda değil yalnız annelerde belirdiğini göstererek, yükün cinsiyete-özgü ve ebeveynlik davranışından görece bağımsız bir eksende yoğunlaştığını ortaya koymuştur. Bu iki bağımsız bulgu, örneklemdeki anne-spesifik antidepresan asimetrisinin kronik hastalık bağlamında tekrarlanan bir örüntüyle uyumlu olduğunu desteklemektedir.
+
+Bu tabloyu tamamlayan keşifsel köprü (§16.8), anne mental sağlık yükünü *çocuğun algı düzlemine* taşır ve iki eksenin ayrılmasını gerektirir. Antidepresan kullanımı bir tedavi/temas göstergesi olarak çocuğun algıladığı reddetmeyle ilişkili değildir. Buna karşılık annenin *güncel* depresif şiddeti (Beck ≥ 17), çocuğun reddetme (b = 0,134; p = 0,004) ve karşılaştırma (b = 0,241; p = 0,003) algısını hem DM grubundan hem de antidepresan ekseninden bağımsız olarak yordamaktadır. Kavramsal olarak kritik ayrım budur: klinik dikkat gerektiren eksen, annenin psikiyatrik tedavi/temas öyküsü değil, o anda sürmekte olan belirti yüküdür.
+
+Bu örüntü, anne depresyonunun çocuğa aktarımını genetik/mizaç yatkınlıklarının yanında çocuğun olumsuz anne biliş, davranış ve duygulanımına maruziyeti üzerinden modelleyen gelişimsel çerçeveyle (Goodman ve Gotlib, 1999) uyumludur. Böylece H1 sinyalinin neden anne öz-bildirim düzleminde (H3) değil çocuk algı düzleminde belirdiğine bir açıklama önerir: ölçülen yalnız annenin kendine atfettiği tutum değil, çocuğun deneyimlediği duygusal iklimdir. Anne semptom-tipolojisinin latent sınıf çözümlemesi de bu yorumu destekler; "riskli" sınıf anne–çocuk reddetme uyuşmazlığını (p < 0,001) ve kardeş çatışmasını (p = 0,006) yordamış, ancak antidepresan kullanımını yordamamıştır (§16.8). Bununla birlikte, bu mekanizma yorumu iki temkin kaydıyla sınırlıdır: ilişkiler küçük-orta bantta ve korelasyoneldir; ayrıca H1 çocuk-algısı reddetme farkı dönem-dengeli alt-örneklemde zayıfladığı için (§16.14; §18.1) alım-dönemiyle kısmen karışmış olabilir. Dolayısıyla anne güncel distresi → çocuk algısı köprüsü doğrulayıcı bir yol değil, bağımsız kohortta sınanmayı bekleyen hipotez-üretici bir mekanizma önerisidir.
 
 ## 17.8 Bağlamsal Çözümlemelerin Bütünleşik Yorumu — [KEŞİFSEL · İKİNCİL]: Sağlam Kardeş Mimarisi ve Sınırlı Bağlamsal Modülasyon
 
@@ -1759,9 +1787,9 @@ Sosyodemografik ve klinik bağlamsal değişkenlerin ebeveynlik ve kardeş iliş
 
 Yapısal model bu resmi tamamlar. Beck → EMBU-P yolu güçlüdür (β = 0,28–0,33), buna karşılık EMBU-P → EMBU-C yolu zayıftır (H4 ile aracılık çelişkisinin çözümü, Bölüm 17.5). Bu desen, ilişkinin anne tarafında belirginleştiğini, çocuk algı düzlemine karşılığının ise sınırlı kaldığını göstermektedir. Kesitsel tasarım nedeniyle bu örüntü nedensel yön çıkarımı olarak değil, ayrışan-operasyonlar çerçevesiyle uyumlu bir yapısal yakınsama olarak yorumlanmalıdır.
 
-Bu çok-katmanlı desen üç klinik yönelim üretir. Birincisi, T1DM aile değerlendirmesinde **çift-perspektifli ölçüm gereklidir**: yalnız anne öz-bildirimine dayanan bir değerlendirme, çocuğun reddetme algısındaki asimetriyi ve anne-çocuk perspektif ayrışmasını sistematik olarak gözden kaçırır. Bu yönelim, ISPAD 2022 psikolojik bakım kılavuzu, ADA 2026 çocuk-ergen standardı ve çoklu-informant literatürünün aile-merkezli değerlendirme çerçevesiyle uyumludur.
+Bu çok-katmanlı desen üç klinik yönelim üretir. Birincisi, T1DM aile değerlendirmesinde **çift-perspektifli ölçüm gereklidir**: yalnız anne öz-bildirimine dayanan bir değerlendirme, çocuğun reddetme algısındaki asimetriyi ve anne-çocuk perspektif ayrışmasını sistematik olarak gözden kaçırabilir. Bu yönelim, ISPAD 2022 psikolojik bakım kılavuzu, ADA 2016 psikososyal bakım pozisyon bildirgesi ve çoklu-informant literatürünün aile-merkezli değerlendirme çerçevesiyle uyumludur; ADA 2026 burada güncel standart arka planı olarak anılmıştır.
 
-İkincisi, klinik kaynak anne ebeveynlik tutumlarını "düzeltmeye" değil, anne mental sağlık yükünü ve aile psikososyal destek ihtiyacını saptamaya yönelmelidir. H3 negatif kanıtı, antidepresan grup-asimetrisi ve zayıf Aile-Stres-Modeli izi aynı hedefe işaret etmektedir. Antidepresan kullanımındaki DM %29'a karşı Kontrol %9 farkı (SMD = 0,53), Cohen (1988) ölçütünde orta büyüklükte bir grup asimetrisine karşılık gelmekte ve bu klinik yönelime gözlemsel bir çapa sağlamaktadır. Bu yorum, anne depresyonunu ergen glisemik kontrolünün tek anlamlı yordayıcısı olarak konumlandıran Rumburg ve diğerlerinin (2017) bulgusuyla tutarlıdır; nedensellik ima etmeksizin, anne mental sağlık yükünü klinik dikkatin öncelikli hedeflerinden biri olarak konumlandırır.
+İkincisi, klinik kaynak anne ebeveynlik tutumlarını "düzeltmeye" değil, anne mental sağlık yükünü ve aile psikososyal destek ihtiyacını saptamaya yönelmelidir. H3 negatif kanıtı, antidepresan grup-asimetrisi ve zayıf Aile-Stres-Modeli izi aynı hedefe işaret etmektedir. Antidepresan kullanımındaki DM %29'a karşı Kontrol %9 farkı (SMD = 0,53), orta büyüklükte bir grup asimetrisine karşılık gelir ve bu klinik yönelime gözlemsel bir çapa sağlar. Bu yorum, anne depresyonunu ergen glisemik kontrolünün tek anlamlı yordayıcısı olarak konumlandıran Rumburg ve diğerlerinin (2017) bulgusuyla tutarlıdır; nedensellik ima etmeksizin, anne mental sağlık yükünü klinik dikkatin öncelikli hedeflerinden biri olarak konumlandırır. Jaser ve diğerlerinin (2018) anne distresini hedefleyen pilot müdahalesinde psikososyal sonuçlarda olumlu sinyal bulunup HbA1c/adherence sonuçlarının sınırlı kalması da bu klinik yönelimin "hedefli psikososyal destek" düzeyinde tutulmasını, metabolik etki iddiasına yükseltilmemesini destekler.
 
 Üçüncüsü, kardeş ilişkisi mimarisi ve paylaşılan aile algısı bu örneklemde görece korunmuş görünmektedir. Bu nedenle kardeşe yönelik müdahaleler öncelikli bir müdahale hedefi olarak değil, izleme kapsamında tutulmalıdır. Bu yorum, Sharpe ve Rossiter'in (2002) kronik hastalık kardeşleri için bildirdiği genel risk çerçevesini T1DM'e özgü bir kesinlik iddiasına dönüştürmez. Tüm yönelimler, bağımsız bir Türk kohortunda dış-validasyon yapılmadan klinik protokol düzeyine yükseltilmemeli; ikincil ve bağlamsal bulgular hipotez-üretici olarak konumlanmalıdır.
 
@@ -1774,7 +1802,7 @@ Bu çok-katmanlı desen üç klinik yönelim üretir. Birincisi, T1DM aile değe
 - **Kesitsel tasarım:** Çalışma kesitsel bir vaka-kontrol tasarımıdır; nedensel yön çıkarımı yapılmamıştır. Anne depresyonu ↔ ebeveynlik tutumu ↔ çocuk algısı zincirinin zaman boyutu mevcut veriden tahmin edilememiştir.
 - **Tek-merkezli örneklem:** Marmara Üniversitesi pediatrik endokrinoloji polikliniği üzerinden seçilen örneklem, İstanbul/Marmara bölgesinin sosyokültürel profilini yansıtmaktadır. Anadolu ve Doğu Anadolu kohortlarında replikasyon ihtiyacı bulunmaktadır.
 - **Anne odaklı değerlendirme:** Çalışma anne perspektifini birincil bilgi kaynağı olarak almaktadır. Baba perspektifinin dahil edilmediği tasarım, NICE NG18'in iki-ebeveynli aile değerlendirmesi önerisini eksik karşılamaktadır.
-- **Alım-dönemi (batch) confound:** DM ve Kontrol aileleri büyük ölçüde farklı takvim dönemlerinde toplanmıştır (DM ailelerin çoğu 2023'te, Kontrol ailelerin çoğu 2024–25'te; grup ile anket yılı arasında neredeyse tam kolinearite, Cramér's V = 0,585; p ≈ 2,9 × 10⁻²⁰; §16.14). Bu örüntü "grup" ile "alım dönemi"ni istatistiksel olarak birbirine karıştırır ve yıl bir kovaryat olarak eklenemez (grup etkisini emer). İki grubun da temsil edildiği dönem-dengeli 2023-only alt-örnekleminde anne-raporu bulguları yönce korunurken, indeks-çocuğun algıladığı reddetme grup farkı (H1) belirgin biçimde zayıfladığından, bu farkın bir kısmının dönem/batch etkisiyle karışmış olabileceği açık bir tasarım sınırlılığıdır; H1 çocuk-algısı bulgusu bu uyarıyla temkinli okunmalı ve dönem-dengeli bağımsız kohortta sınanmalıdır.
+- **Alım-dönemi karışması:** DM ve Kontrol aileleri büyük ölçüde farklı takvim dönemlerinde toplanmıştır (DM ailelerin çoğu 2023'te, Kontrol ailelerin çoğu 2024–25'te; grup ile anket yılı arasında neredeyse tam kolinearite, Cramér's V = 0,585; p ≈ 2,9 × 10⁻²⁰; §16.14). Bu örüntü "grup" ile "alım dönemi"ni istatistiksel olarak birbirine karıştırır ve yıl değişkeninin kör kovaryat olarak eklenmesi grup etkisini emebilir. İki grubun da temsil edildiği dönem-dengeli 2023-only alt-örnekleminde anne-raporu bulguları yönce korunurken, indeks çocuğun algıladığı reddetme grup farkı (H1) belirgin biçimde zayıflamıştır. Bu nedenle H1 çocuk-algısı bulgusu alım-dönemi uyarısıyla temkinli okunmalı ve dönem-dengeli bağımsız kohortta sınanmalıdır.
 
 ## 18.2 Ölçüm Kaynaklı Sınırlılıklar
 
@@ -1784,7 +1812,7 @@ Bu çok-katmanlı desen üç klinik yönelim üretir. Birincisi, T1DM aile değe
 
 ## 18.3 İstatistiksel Sınırlılıklar
 
-- **Aktör-partner karşılıklı bağımlılık modeli ve düad doğrulayıcı faktör analizi için n = 241 düad sayısı:** Donner ve Eliasziw (1987) çerçevesinde ICC ≥ 0,20 için %85+ güç sağlanmış; ancak k-katsayısı ve RSA polinom regresyonu için DM (n = 120) ve Kontrol (n = 121) alt-örneklem güçleri sınır düzeydedir.
+- **Aktör-partner karşılıklı bağımlılık modeli ve düad doğrulayıcı faktör analizi için n = 241 düad sayısı:** Walter, Eliasziw ve Donner (1998) çerçevesindeki reliability-study güç yaklaşımıyla ICC ≥ 0,20 için %85+ güç sağlanmış; ancak k-katsayısı ve RSA polinom regresyonu için DM (n = 120) ve Kontrol (n = 121) alt-örneklem güçleri sınır düzeydedir.
 - **HbA1c örneklem büyüklüğü:** n = 39 düzeyindeki HbA1c örneklemi, DM klinik alt-analizler için yetersiz güçtedir (Cohen, 1988 standardında power < 0,50). Bu nedenle HbA1c × ebeveynlik etkileşim sonuçları "keşifsel" etiketle raporlanmıştır.
 - **Multi-grup invaryans:** Scalar invariance sınır düzeyde kabul edilmiştir; tam scalar değişmezlik koşulu marjinal düzeyde karşılandığından gruplar arası ortalama karşılaştırmaları metrik düzeyde yorumlanmıştır.
 - **H2 için TOST eşdeğerlik testi yapılmamıştır:** "Fark yoktur" yerine "kanıt yetersizdir" konumlandırması bu nedenle korunmuştur.
@@ -1825,18 +1853,18 @@ Bu çalışma, Tip 1 Diabetes Mellitus tanılı 7-17 yaş çocukların ve annele
 
 **Öneri 1 — Çift-perspektifli aile değerlendirmesi:** Pediatrik diyabet polikliniklerinde standart aile değerlendirmesinin yalnızca anne öz-bildirimine dayanmaması, çocuk algısının paralel olarak alınması önerilmektedir. EMBU-C alt ölçek puanları özellikle reddetme boyutunda ek bilgi sağlayabilir. Çocuk-algısı yüksek reddetme/anne-bildirim düşük reddetme örüntüsü (Diverging Operations), klinik dikkat gerektiren bir değerlendirme tetikleyicisi olarak ele alınmalıdır. Bu öneri, tedavi etkisi iddiası değil, kılavuz ve çoklu-informant literatürüyle uyumlu bir tarama/izlem çıkarımıdır.
 
-**Öneri 2 — Anne mental sağlığı sistematik tarama:** ISPAD 2022 psikolojik bakım kılavuzu, ADA 2016 psikososyal bakım bildirgesi ve ADA 2026 çocuk-ergen standardıyla uyumlu olarak, T1DM tanılı çocukların annelerinde Beck Depresyon Envanteri veya PHQ-9 ile sistematik depresyon taraması yapılması değerlendirilebilir. Eşik üstü skorlanan annelerde (BDI ≥ 17, Hisli 1989 Türkiye normu), ebeveynlik tutumu ek değerlendirmesi (s-EMBU-P sıcaklık ve reddetme) klinik izleme çerçevesine eklenebilir. Bu çalışmadaki anne antidepresan kullanım oranındaki üç-katlı dengesizlik (DM %29 vs Kontrol %9), klinik sahada bu tarama ihtiyacına gözlemsel destek sağlamaktadır.
+**Öneri 2 — Anne mental sağlığı sistematik tarama:** ISPAD 2022 psikolojik bakım kılavuzu ve ADA 2016 psikososyal bakım bildirgesiyle uyumlu olarak, T1DM tanılı çocukların annelerinde Beck Depresyon Envanteri veya PHQ-9 ile sistematik depresyon taraması yapılması değerlendirilebilir. ADA 2026 çocuk-ergen standardı bu yönelime güncel standart arka planı sağlar; özgül tarama gerekçesi bu raporda ISPAD 2022 ve ADA 2016 tam metinleri üzerinden kurulmuştur. Eşik üstü skorlanan annelerde (BDI ≥ 17, Hisli 1989 Türkiye normu), ebeveynlik tutumu ek değerlendirmesi (s-EMBU-P sıcaklık ve reddetme) klinik izleme çerçevesine eklenebilir. Bu çalışmadaki anne antidepresan kullanım oranındaki üç-katlı dengesizlik (DM %29 vs Kontrol %9), klinik sahada bu tarama ihtiyacına gözlemsel destek sağlamaktadır.
 
-**Öneri 3 — Aile temelli davranışsal müdahale entegrasyonu:** Davranışsal Aile Sistem Terapisi-Diyabet (BFST-D; Wysocki ve diğerleri, 2008) gibi aile-merkezli müdahalelerin, anne mental sağlığı eşik üstü olan ailelerde rutin tedaviye eklenmesi değerlendirilebilir. Jansen ve diğerlerinin (2025) pediatrik T1DM ebeveynlik müdahaleleri sistematik derlemesi, müdahale literatürünün genişlediğini ancak etkilerin heterojen ve risk-of-bias sınırlılıklarına duyarlı olduğunu göstermektedir. Bu çalışma, BFST-D veya herhangi bir müdahale için tedavi etkisi kanıtı üretmez; yalnız Beck ile EMBU-P yapısal yollarının belirgin olması nedeniyle anne psikopatolojisini ve aile psikososyal desteğini hedefleyen müdahalelerin dış-validasyonlu çalışmalarda sınanması için gerekçe sunar.
+**Öneri 3 — Aile temelli davranışsal müdahale entegrasyonu:** Davranışsal Aile Sistem Terapisi-Diyabet (BFST-D; Wysocki ve diğerleri, 2008) gibi aile-merkezli müdahalelerin, anne mental sağlığı eşik üstü olan ailelerde rutin tedaviye eklenmesi değerlendirilebilir. Jansen ve diğerlerinin (2025) pediatrik T1DM ebeveynlik müdahaleleri sistematik derlemesi, müdahale literatürünün genişlediğini ancak etkilerin heterojen ve yanlılık riski sınırlılıklarına duyarlı olduğunu göstermektedir. Wakelin ve diğerlerinin (2025) aile psikolojik müdahaleleri meta-analizi de bakım veren ve çocuk psikolojik distresinde kısa vadeli iyileşme sinyali bildirirken, HbA1c etkisinin küçük/kısa vadeli ve heterojen olduğunu vurgulamaktadır. Bu çalışma, BFST-D veya herhangi bir müdahale için tedavi etkisi kanıtı üretmez; yalnız Beck ile EMBU-P yapısal yollarının belirgin olması ve §16.8'de güncel anne distresinin çocuk algısına bağlanması nedeniyle anne psikopatolojisini ve aile psikososyal desteğini hedefleyen müdahalelerin dış-validasyonlu ve ön-kayıtlı çalışmalarda sınanması için gerekçe sunar.
 
-**Öneri 4 — Davranış sağlığı uzmanı entegrasyonu:** ADA 2026 *Standards of Care* önerisi doğrultusunda, çocuk endokrinoloji multidisipliner ekibinde aile sistem perspektifli psikolog veya çocuk-ergen ruh sağlığı uzmanının yapısal entegrasyonu değerlendirilebilir. Bu uygulama çıkarımı dış-validasyon gerektirir; Türkiye Sağlık Bakanlığı T1DM tanı-tedavi protokolünün psikososyal değerlendirme bileşeninin güçlendirilmesi yönünde gözlemsel gerekçe sunar.
+**Öneri 4 — Davranış sağlığı uzmanı entegrasyonu:** ISPAD 2022 psikolojik bakım kılavuzu ve ADA 2016 psikososyal bakım bildirgesiyle uyumlu olarak, çocuk endokrinoloji multidisipliner ekibinde aile sistem perspektifli psikolog veya çocuk-ergen ruh sağlığı uzmanının yapısal entegrasyonu değerlendirilebilir. ADA 2026 *Standards of Care* bu öneri için güncel standart bağlamı sağlar; ancak özgül öneri ayrıntıları bu raporda ISPAD 2022 ve ADA 2016 üzerinden kurulmuştur. Bu uygulama çıkarımı dış-validasyon gerektirir ve Türkiye Sağlık Bakanlığı T1DM tanı-tedavi protokolünün psikososyal değerlendirme bileşeninin güçlendirilmesi yönünde gözlemsel gerekçe sunar.
 
 ## 19.4 Gelecek Araştırma Gündemi
 
 **Replikasyon ve genelleştirme:**
 
 - **Çok-merkezli kohort:** Anadolu ve Doğu Anadolu T1DM merkezlerinin dahil edildiği çok-merkezli replikasyon, sosyokültürel genelleştirilebilirlik açısından önceliklidir.
-- **Boyuna (longitudinal) tasarım:** Anne depresyonu → ebeveynlik tutumu → çocuk algısı zincirinin **zaman düzeyinde** test edilmesi için en az iki dalgalı (T1, T1+12 ay) izlem kohortu önerilmektedir. Çapraz gecikmeli panel modeli (CLPM) ve rassal-aralık çapraz gecikmeli panel modeli (RI-CLPM; Hamaker, Kuiper, & Grasman, 2015) bu zincirin yön doğrulamasını sağlayabilir.
+- **Boyuna (longitudinal) tasarım:** Anne depresyonu → ebeveynlik tutumu → çocuk algısı zincirinin **zaman düzeyinde** test edilmesi için en az iki dalgalı, tercihen üç dalgalı bir izlem kohortu önerilmektedir. Klasik çapraz gecikmeli panel modeli (CLPM) yalnız karşılaştırmalı duyarlılık modeli olarak kullanılmalı; ailelere özgü sabit farklılıkları ayıramadığında yanıltıcı yön çıkarımı üretebileceği için ana yön testi rassal-aralık çapraz gecikmeli panel modeli (RI-CLPM; Hamaker, Kuiper, & Grasman, 2015) ile yapılmalıdır.
 
 **Metodolojik genişletme:**
 
@@ -1846,33 +1874,33 @@ Bu çalışma, Tip 1 Diabetes Mellitus tanılı 7-17 yaş çocukların ve annele
 
 **Müdahale çalışması:**
 
-- **BFST-D veya benzeri aile-merkezli müdahalelerin Türkiye T1DM popülasyonunda randomize kontrollü deneyimi:** Birincil çıktı olarak HbA1c, ikincil çıktı olarak EMBU-P/C alt ölçek skorları ve BDI skoru alınmalıdır. CONSORT-2010 ve SPIRIT-2013 standartlarında ön-kayıtlı tasarım önerilmektedir.
+- **Hedefli aile-merkezli müdahalelerin Türkiye T1DM popülasyonunda randomize kontrollü deneyimi:** BFST-D veya Communication & Coping benzeri aile-merkezli/anne-distresi odaklı müdahaleler, özellikle BDI ≥ 17 veya yüksek diyabet-distresi olan ailelerde sınanmalıdır. Birincil psikososyal çıktı bakım veren distresi ve aile çatışması; metabolik çıktı ise HbA1c olarak önceden tanımlanmalı, HbA1c için küçük/kısa vadeli etki olasılığı ve seçilim riski hesaba katılmalıdır. Tasarım SPIRIT-2013 ile ön-kayıtlı protokol, CONSORT-2010 ile raporlama ve yeterli güçte çok-merkezli randomize kontrollü çalışma disipliniyle yürütülmelidir.
 
 \newpage
 
 # 20. YAYIN VE DİSEMİNASYON STRATEJİSİ
 
-Çalışma kapsamından üç ana tez makalesi ve ikincil/keşifsel çözümlemelerden üç ek metodolojik/klinik makale hedeflenmektedir. Yayın stratejisi, hipotez odağı, metodolojik özgünlük ve açık-bilim katmanı temelinde dergi-eşleştirmesi ile yapılandırılmıştır. Tüm yayınlar APA 7. baskı, ICMJE yazarlık kriterleri ve TÜBİTAK ULAKBİM yayın etiği yönergeleriyle uyumlu olarak hazırlanacaktır.
+Çalışma kapsamından üç ana tez makalesi ve ikincil/keşifsel çözümlemelerden üç ek metodolojik/klinik makale hedeflenmektedir. Yayın stratejisi, hipotez odağı, metodolojik özgünlük ve açık-bilim katmanı temelinde dergi eşleştirmesi ile yapılandırılmıştır. Tüm yayınlar APA 7 / JARS-Quant, STROBE, TRIPOD, ICMJE yazarlık-katkı-açıklama ilkeleri ve TÜBİTAK/ULAKBİM açık bilim politikasıyla uyumlu hazırlanacaktır. C08 tam-metin denetimi, raporlama ve diseminasyon kaynaklarını üç kullanım düzeyine ayırmıştır: JARS-Quant, STROBE, TRIPOD, SPIRIT, CONSORT, PRISMA 2020, PRISMA-ScR, FAIR, TOP, Doshi-Jefferson ve Wieseler kaynakları gövde düzeyinde; ICMJE, TÜBİTAK/ULAKBİM ve ICH E3 resmi policy/guideline düzeyinde; GPP 2022 ve hedef dergi metrikleri ise yalnız üstveri/kaynak-kimliği düzeyinde kullanılacaktır. Bu nedenle C08 sonrası yayın metninde GPP3 güncel standart gibi kullanılmayacak, dergi etki faktörü / Q / CiteScore sayıları canlı JCR-Scopus doğrulaması yapılmadan dondurulmayacaktır.
 
 ## 20.1 Makale 1: Diferansiyel Ebeveynlik ve Çift-Perspektifli Diadik Uyum
 
-**Hedef dergiler (öncelik sırasıyla):** *Pediatric Diabetes* (IF ≈ 4,2; Q1) → *Journal of Pediatric Psychology* (IF ≈ 3,3; Q1) → *Journal of Clinical Psychology in Medical Settings* (IF ≈ 2,1; Q2).
+**Hedef dergiler (öncelik sırasıyla):** *Pediatric Diabetes* → *Journal of Pediatric Psychology* → *Journal of Clinical Psychology in Medical Settings*. Bu sıralama kapsam, okur kitlesi ve yöntemsel uygunluk temelinde korunmuştur; IF/Q/CiteScore metrikleri C08 turunda doğrulanmadığı için metinden çıkarılmış ve gönderim öncesi JCR/Scopus/CiteScore üzerinden canlı doğrulama gerektiren değişken bilgi olarak bırakılmıştır.
 
-**Odak:** H1 (çocuk-algısı reddetme yön farkı) ve H5 çoklu-strateji diadik tutarlılık çerçevesi. H5'te beş stratejinin **yön düzeyinde uyuşmaması** — manifest ICC'nin (dört alt ölçekte Kontrol > DM) tek latent sinyalle (reddetme, kırılgan uyum) çelişmesi — tek-stratejiye dayalı diadik-uyum iddialarının kırılganlığını gösteren **metodolojik bir katkı** olarak konumlandırılacaktır (Olsen-Kenny çerçevesinin Türkiye T1DM popülasyonuna ilk uygulaması). Vurgu, "güçlü uyum bulgusu" değil, çoklu-strateji **çapraz-kontrolün** tek-strateji yanılgılarını açığa çıkarma değeridir.
+**Odak:** H1 (çocuk-algısı reddetme yön farkı) ve H5 çoklu-strateji diadik tutarlılık çerçevesi. H5'te beş stratejinin **yön düzeyinde uyuşmaması** — manifest ICC'nin (dört alt ölçekte Kontrol > DM) tek latent sinyalle (reddetme, kırılgan uyum) çelişmesi — tek-stratejiye dayalı diadik-uyum iddialarının kırılganlığını gösteren **metodolojik bir katkı** olarak konumlandırılacaktır (Olsen-Kenny çerçevesinin Türkiye T1DM popülasyonuna ilk uygulaması). Vurgu, "güçlü uyum bulgusu" değil, çoklu-strateji **çapraz-kontrolün** tek-strateji yanılgılarını açığa çıkarma değeridir. Tartışma omurgası De Los Reyes (2015), Korelitz ve Garber (2016) ve Van Gampelaere ve diğerlerinin (2020) tam metinle doğrulanmış çok-informant kanıtına dayanacak; çocuk algısı gözlenmiş davranış kanıtı gibi sunulmayacaktır.
 
 **Önerilen anahtar mesaj:** Anne ile çocuğun ebeveynlik tutumu algısı, T1DM bağlamında beklenenden daha az örtüşmektedir; reddetme boyutunda DM grubunda tek-yönlü çocuk-algısı yükselmesi, klinikte çocuk perspektifinin paralel olarak alınması gereğine işaret etmektedir.
 
 ## 20.2 Makale 2: Anne Psikopatolojisi-Ebeveynlik Tutumu Aktarımı
 
-**Hedef dergiler:** *Diabetic Medicine* (IF ≈ 3,5; Q1) → *Journal of Family Psychology* (IF ≈ 3,4; Q1) → *Health Psychology* (IF ≈ 4,2; Q1).
+**Hedef dergiler:** *Diabetic Medicine* → *Journal of Family Psychology* → *Health Psychology*. Dergi sıralaması çalışma sorusu ve hedef okuyucu uyumu üzerinden tanımlanmıştır; metrikler canlı doğrulama beklediği için sabit sayısal iddia olarak raporlanmamaktadır.
 
-**Odak:** H3 (anne öz-bildirim ebeveynlik açısından grup eşdeğerliği) ve H4 (Beck → EMBU-P SEM yapısal yol modeli). Goodman ve Gotlib'in (1999) ebeveynlik-tutumu bileşeniyle kesitsel SEM düzeyinde uyum: sıcaklık, reddetme ve karşılaştırma yolları için belirgin ilişki; aşırı koruma yolu için nötr sonuç.
+**Odak:** H3 (anne öz-bildirim ebeveynlik açısından grup eşdeğerliği) ve H4 (Beck → EMBU-P SEM yapısal yol modeli). Goodman ve Gotlib'in (1999) ebeveynlik-tutumu bileşeniyle kesitsel SEM düzeyinde uyum: sıcaklık, reddetme ve karşılaştırma yolları için belirgin ilişki; aşırı koruma yolu için nötr sonuç. Rumburg ve diğerleri (2017) ve Jaser ve diğerleri (2018) anne diyabet distresi/psikososyal destek bağlamını tam metin düzeyinde sağlayacak; Lovejoy (2000) yalnız özet-düzeyli yön ve büyüklük kalibrasyonu olarak kullanılacaktır.
 
 **Önerilen anahtar mesaj:** T1DM tanılı çocukların annelerinde gözlenen depresif belirti profili, ebeveynlik tutumu alt boyutlarıyla boyut-spesifik biçimde ilişkilidir; sıcaklıkla negatif, reddetme ve karşılaştırmayla pozitif, aşırı korumayla ise zayıf/nötr bir kesitsel SEM örüntüsü mevcuttur.
 
 ## 20.3 Makale 3: Türkçe Psikometrik Adaptasyon
 
-**Hedef dergiler:** *Methods in Psychology* (CiteScore ≈ 5,8; Q1) → *European Journal of Psychological Assessment* (IF ≈ 2,9; Q2) → *Psychological Assessment* (IF ≈ 5,1; Q1).
+**Hedef dergiler:** *Methods in Psychology* → *European Journal of Psychological Assessment* → *Psychological Assessment*. Bu liste, psikometri ve ölçüm-yöntemi odağına göre önceliklendirilmiştir; dergi metrikleri C08'de source-identity düzeyinde kalmış, güncel metrik iddiasına dönüştürülmemiştir.
 
 **Odak:** s-EMBU-P ve s-EMBU-C ölçeklerinin Türkçe T1DM popülasyonu için psikometrik validasyon raporu (Bölüm 10). Klasik Test Teorisi (α, ω), Madde Yanıt Teorisi (Graded Response Model), Doğrulayıcı Faktör Analizi (CFI, RMSEA, SRMR), Çok-grup Ölçüm Değişmezliği (configural, metric, scalar) ve Floor/Ceiling etkisi raporu içerecektir. Reddetme alt ölçeğinin sınır altı iç tutarlılık (α = 0,45) bulgusunun şeffaf raporlanması ve **alternatif madde havuzu önerisi** ile sonuçlandırılacaktır.
 
@@ -1882,18 +1910,27 @@ Bu çalışma, Tip 1 Diabetes Mellitus tanılı 7-17 yaş çocukların ve annele
 
 | Makale | Kapsam | Ana bulgu | Hedef dergi | Veri durumu |
 |---|---|---|---|---|
-| **Makale 4** | Multi-informant discrepancy: Trifactor + LDS + sibling concordance | Çocuk method varyansı yaklaşık %60; reddetme latent r = 0,025; sibling reddetme ICC DM = 0 vs Kontrol = 0,322 | *Journal of Child Psychology and Psychiatry* / *Psychological Methods* | Mevcut kanonik baz yeterli; yeni veri gerekmez |
+| **Makale 4** | Çoklu-informant uyuşmazlık: Trifactor + LDS + kardeş uyumu | Çocuk bilgi-veren metot varyansı yaklaşık %60; reddetme latent r = 0,025; kardeş reddetme ICC DM = 0 vs Kontrol = 0,322 | *Journal of Child Psychology and Psychiatry* / *Psychological Methods* | Mevcut kanonik baz yeterli; yeni veri gerekmez |
 | **Makale 5** | Floor-aware IRT ve EMBU reddetme ölçümü | Floor-aware indeks reddetme d = 0,372; manifest farktan belirgin yüksek; reddetme alt skorunun bağımsız kullanımı sınırlı | *Psychometrika* / *Educational and Psychological Measurement* | Mevcut kanonik baz yeterli; yeni veri gerekmez |
-| **Makale 6** | Anne antidepresan/mental sağlık yükü ve diadik tutarlılık | AD mediator kanıtı yok; H1 AD-strata bağımsız; H5 reddetme strata örüntüsü hipotez-üretici | *Pediatric Diabetes* / *Journal of Pediatric Psychology* | Mevcut kanonik baz yeterli; yeni veri gerekmez |
+| **Makale 6** | Anne antidepresan/güncel distres yükü ve çocuk-kardeş düzlemi | Antidepresan aracılık kanıtı yok; güncel Beck ≥ 17 çocuk reddetme/karşılaştırma algısını yordar; LCA riskli sınıf reddetme uyuşmazlığı ve kardeş çatışmasıyla dışsal geçerlik gösterir | *Pediatric Diabetes* / *Journal of Pediatric Psychology* | Mevcut kanonik baz yeterli; dış validasyon gerekir |
 
-Bu üç ikincil/keşifsel analiz makalesi, doğrulayıcı H1-H5 makale hattından ayrı tutulacaktır. Başlıklarda ve yöntem bölümlerinde **keşifsel (exploratory, ön-kayıtsız)** statüsü açık yazılacak, OSF Layer 3 amendment ve Tip 3 sapma tablosu bağlantısı korunacaktır.
+Bu üç ikincil/keşifsel analiz makalesi, doğrulayıcı H1-H5 makale hattından ayrı tutulacaktır. Başlıklarda ve yöntem bölümlerinde **keşifsel (exploratory, ön-kayıtsız)** statüsü açık yazılacak, OSF Layer 3 amendment ve Tip 3 sapma tablosu bağlantısı korunacaktır. Makale 6'da antidepresan kullanımı tedavi/temas göstergesi, güncel Beck şiddeti ise semptom yükü olarak ayrı eksenlerde tutulacak; bu ayrım Jaser ve Rumburg tam-metinleriyle tartışılacak ancak nedensel müdahale etkisi iddiasına dönüştürülmeyecektir.
 
 ## 20.5 Diğer Diseminasyon Faaliyetleri
 
 - **Ulusal kongreler:** Türk Pediatrik Endokrinoloji ve Diyabet Derneği (ÇEDD) yıllık ulusal kongresi sözel sunum başvurusu; Türk Psikiyatri Derneği yıllık kongresi poster başvurusu.
 - **Uluslararası kongreler:** ISPAD (International Society for Pediatric and Adolescent Diabetes) yıllık kongresi sözel/poster başvurusu; ESCAP (European Society for Child and Adolescent Psychiatry) bienal kongresi poster başvurusu.
-- **Açık veri ve kod:** Anonimleştirilmiş düad düzeyi veri seti (katmanlı erişim sınıflandırmasıyla) ve yeniden üretilebilir analiz kodu OSF üzerinden açık erişime sunulacaktır (DOI rezervasyonu yapılacaktır). Ham bireysel veri, TÜBİTAK Açık Bilim Politikası ve KVKK uyumlu çerçevede yalnızca metaveri paylaşımıyla sınırlandırılacaktır.
+- **Açık veri ve kod:** Yeniden üretilebilir analiz kodu, türetilmiş özet tablolar, veri sözlüğü, metadata ve denetim ledger'ları OSF üzerinden açık erişime sunulacaktır (DOI rezervasyonu yapılacaktır). Kimliksizleştirilmiş düad düzeyi analiz verisi, k-anonimlik/l-çeşitlilik ve veri kullanım sözleşmesi koşullarıyla talep-bazlı kontrollü erişime açılacaktır. Ham bireysel veri, tanımlayıcı alanlar, katılımcı düzeyi ayrıntılar ve telif-kapılı tam metinler paylaşılmayacaktır. Bu ayrım, FAIR/TOP şeffaflık ilkeleri ile TÜBİTAK/ULAKBİM açık bilim politikası ve KVKK/çocuk sağlığı veri sınırını birlikte karşılamak için korunmaktadır.
 - **Politika çıktıları:** Türkiye Halk Sağlığı Genel Müdürlüğü Çocuk Sağlığı Daire Başkanlığı'na T1DM psikososyal değerlendirme protokol önerisi sunulacaktır.
+- **Gelecek çalışma protokolleri:** Tahmin modeli dış validasyonu TRIPOD, müdahale çalışması ise SPIRIT-2013 protokol ve CONSORT-2010 raporlama iskeletiyle önceden hizalanacaktır. Literatür/evidence-map ekleri PRISMA 2020 ve PRISMA-ScR ile izlenecek; açık bilim paketlemesi FAIR ve TOP ilkelerine göre metadata, kod, materyal ve erişim sınıflarını ayrı tutacaktır. Bu standartlar mevcut CSR'ın kanıt düzeyini artırmak için değil, sonraki araştırmaların raporlama ve tasarım disiplinini güvenceye almak için kullanılacaktır.
+
+
+## 20.6 Final Beyanlar ve Açık Bilim Sınırı
+
+- **Finansman ve sponsor:** Bu CSR, doktora tez çalışmasının raporlama dosyasıdır; rapor içinde ticari sponsor veya çalışma sonuçlarını etkileyebilecek dış finansman kaydı bulunmamaktadır. Kurumsal destek veya kişisel burs beyanı varsa nihai tez/yayın üst dosyasında yazar-imza aşamasında ayrıca doğrulanmalıdır.
+- **Çıkar çatışması:** CSR içinde çalışma tasarımını, analizini veya raporlamasını etkileyen çıkar çatışması kaydı bulunmamaktadır. Dergi gönderiminde ICMJE çıkar çatışması formları her yazar tarafından ayrıca doldurulacaktır.
+- **AI/LLM kullanımı:** Literatür tarama, kaynak doğrulama, rapor tutarlılık denetimi ve anlatım akışı iyileştirme aşamalarında AI destekli araçlardan yararlanılmıştır. Ham veri, tanımlayıcı kayıt, katılımcı düzeyi hassas içerik ve telif-kapılı tam metinler bu araçlara aktarılmamıştır; bilimsel sorumluluk, veri analizi ve nihai yorumlar araştırmacılara aittir.
+- **Veri ve kod erişimi:** Yeniden üretilebilir analiz kodu, türetilmiş özet tablolar, veri sözlüğü ve denetim ledger'ları tez savunması sonrası OSF üzerinden paylaşılacak; kimliksizleştirilmiş düad düzeyi analiz verisi yalnız kontrollü erişim ve veri kullanım sözleşmesiyle değerlendirilecektir. Ham bireysel veri, doğrudan/dolaylı tanımlayıcılar, çocuk sağlığına ilişkin hassas kayıtlar ve telif-kapılı tam metinler açık erişime açılmayacaktır.
 
 \newpage
 
@@ -1902,6 +1939,8 @@ Bu üç ikincil/keşifsel analiz makalesi, doğrulayıcı H1-H5 makale hattında
 Aşağıda çalışmanın kavramsal, metodolojik ve klinik temellerini oluşturan çekirdek referans seti APA 7. baskı formatında sunulmaktadır. Tam kaynakça doktora tez dosyasında yer almaktadır.
 
 ## 21.1 Kuramsal ve Klinik Çerçeve
+
+Achenbach, T. M., McConaughy, S. H., & Howell, C. T. (1987). Child/adolescent behavioral and emotional problems: Implications of cross-informant correlations for situational specificity. *Psychological Bulletin*, 101(2), 213–232. https://doi.org/10.1037/0033-2909.101.2.213
 
 American Diabetes Association Professional Practice Committee for Diabetes. (2026). 14. Children and adolescents: Standards of Care in Diabetes—2026. *Diabetes Care*, 49(Suppl. 1), S297–S320. https://doi.org/10.2337/dc26-s014
 
@@ -1933,6 +1972,8 @@ de Bock, M., Agwu, J. C., Deabreu, M., Dovc, K., Maahs, D. M., Marcovecchio, M. 
 
 Jansen, M., Voorhoeve, P. G., Wiltink, L., Prins, J. B., & Nefs, G. (2025). Parenting interventions for parents of children with type 1 diabetes: A systematic review. *Journal of Pediatric Psychology*, 50(12), 1115–1138. https://doi.org/10.1093/jpepsy/jsaf078
 
+Jaser, S. S., Lord, J. H., Savin, K., Gruhn, M., & Rumburg, T. (2018). Developing and testing an intervention to reduce distress in mothers of adolescents with type 1 diabetes. *Clinical Practice in Pediatric Psychology*, 6(1), 19–30. https://doi.org/10.1037/cpp0000220
+
 Korelitz, K. E., & Garber, J. (2016). Congruence of parents' and children's perceptions of parenting: A meta-analysis. *Journal of Youth and Adolescence*, 45(10), 1973–1995. https://doi.org/10.1007/s10964-016-0524-0
 
 de Wit, M., Gajewska, K. A., Goethals, E. R., McDarby, V., Zhao, X., Hapunda, G., Delamater, A. M., & DiMeglio, L. A. (2022). ISPAD Clinical Practice Consensus Guidelines 2022: Psychological care of children, adolescents and young adults with diabetes. *Pediatric Diabetes*, 23(8), 1373–1389. https://doi.org/10.1111/pedi.13428
@@ -1947,11 +1988,15 @@ Pinquart, M. (2017). Associations of parenting dimensions and styles with intern
 
 Pinquart, M. (2018). Associations of parenting styles and dimensions with academic achievement in children and adolescents: A meta-analysis. *Educational Psychology Review*, 28(3), 475–493.
 
+Prikken, S., Oris, L., Rassart, J., Missotten, L. C., Weets, I., Moons, P., Goubert, L., & Luyckx, K. (2019). Parental illness intrusiveness and youth glycaemic control in type 1 diabetes: Intergenerational associations and processes. *Psychology & Health*, 34(4), 438–455. https://doi.org/10.1080/08870446.2018.1538451
+
 Sharpe, D., & Rossiter, L. (2002). Siblings of children with a chronic illness: A meta-analysis. *Journal of Pediatric Psychology*, 27(8), 699–710. https://doi.org/10.1093/jpepsy/27.8.699
 
 Streisand, R., & Monaghan, M. (2014). Young children with type 1 diabetes: Challenges, research, and future directions. *Current Diabetes Reports*, 14(9), 520. https://doi.org/10.1007/s11892-014-0520-2
 
 Van Gampelaere, C., Luyckx, K., van der Straaten, S., Laridaen, J., Goethals, E. R., Casteels, K., Vanbesien, J., den Brinker, M., Depoorter, S., Klink, D., Cools, M., & Goubert, L. (2020). Families with pediatric type 1 diabetes: A comparison with the general population on child well-being, parental distress, and parenting behavior. *Pediatric Diabetes*, 21(2), 395–408. https://doi.org/10.1111/pedi.12942
+
+Wakelin, K. E., Read, R. K., Williams, A. Y., Francois-Walcott, R. R., O'Donnell, N., Satherley, R.-M., Harrington, M. P., John, M., & Jones, C. J. (2025). The effectiveness of psychological interventions for families of children with type 1 diabetes on caregiver and child functioning: A systematic review and meta-analysis. *Journal of Diabetes*, 17(6). https://doi.org/10.1111/1753-0407.70112
 
 Wiebe, D. J., Helgeson, V., & Berg, C. A. (2016). The social context of managing diabetes across the life span. *American Psychologist*, 71(7), 526–538. https://doi.org/10.1037/a0040355
 
@@ -1989,7 +2034,17 @@ Chen, F. F. (2007). Sensitivity of goodness of fit indexes to lack of measuremen
 
 Cinelli, C., & Hazlett, C. (2020). Making sense of sensitivity: Extending omitted variable bias. *Journal of the Royal Statistical Society: Series B*, 82(1), 39–67. https://doi.org/10.1111/rssb.12348
 
+Cicchetti, D. V. (1994). Guidelines, criteria, and rules of thumb for evaluating normed and standardized assessment instruments in psychology. *Psychological Assessment*, 6(4), 284–290. https://doi.org/10.1037/1040-3590.6.4.284
+
+Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). Lawrence Erlbaum Associates.
+
 Collins, G. S., Reitsma, J. B., Altman, D. G., & Moons, K. G. M. (2015). Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis (TRIPOD): The TRIPOD Statement. *Annals of Internal Medicine*, 162(1), 55–63. https://doi.org/10.7326/M14-0697
+
+Chan, A.-W., Tetzlaff, J. M., Altman, D. G., Laupacis, A., Gøtzsche, P. C., Krleža-Jerić, K., Hróbjartsson, A., Mann, H., Dickersin, K., Berlin, J. A., Doré, C. J., Parulekar, W. R., Summerskill, W. S. M., Groves, T., Schulz, K. F., Sox, H. C., Rockhold, F. W., Rennie, D., & Moher, D. (2013). SPIRIT 2013 statement: Defining standard protocol items for clinical trials. *Annals of Internal Medicine*, 158(3), 200–207. https://doi.org/10.7326/0003-4819-158-3-201302050-00583
+
+DeTora, L. M., Toroser, D., Sykes, A., ve diğerleri. (2022). Good Publication Practice (GPP) guidelines for company-sponsored biomedical research: 2022 update. *Annals of Internal Medicine*, 175(9), 1298–1304. https://doi.org/10.7326/M22-1460
+
+Doshi, P., & Jefferson, T. (2013). Clinical study reports of randomised controlled trials: An exploratory review of previously confidential industry reports. *BMJ Open*, 3(2), e002496. https://doi.org/10.1136/bmjopen-2012-002496
 
 Dunn, T. J., Baguley, T., & Brunsden, V. (2014). From alpha to omega: A practical solution to the pervasive problem of internal consistency estimation. *British Journal of Psychology*, 105(3), 399–412. https://doi.org/10.1111/bjop.12046
 
@@ -2004,6 +2059,10 @@ Hayes, A. F. (2022). *Introduction to mediation, moderation, and conditional pro
 Hu, L.-t., & Bentler, P. M. (1999). Cutoff criteria for fit indexes in covariance structure analysis: Conventional criteria versus new alternatives. *Structural Equation Modeling: A Multidisciplinary Journal*, 6(1), 1–55. https://doi.org/10.1080/10705519909540118
 
 Hox, J. J., Moerbeek, M., & van de Schoot, R. (2017). *Multilevel analysis: Techniques and applications* (3rd ed.). Routledge. https://doi.org/10.4324/9781315650982
+
+International Committee of Medical Journal Editors. (2026). *Recommendations for the conduct, reporting, editing, and publication of scholarly work in medical journals*. https://www.icmje.org/recommendations/
+
+International Council for Harmonisation. (1995). *E3: Structure and content of clinical study reports*. https://database.ich.org/sites/default/files/E3_Guideline.pdf
 
 Kenny, D. A., Kashy, D. A., & Cook, W. L. (2006). *Dyadic data analysis*. Guilford Press.
 
@@ -2029,6 +2088,10 @@ Nylund, K. L., Asparouhov, T., & Muthén, B. O. (2007). Deciding on the number o
 
 Olsen, J. A., & Kenny, D. A. (2006). Structural equation modeling with interchangeable dyads. *Psychological Methods*, 11(2), 127–141. https://doi.org/10.1037/1082-989X.11.2.127
 
+Nosek, B. A., Alter, G., Banks, G. C., ve diğerleri. (2015). Promoting an open research culture. *Science*, 348(6242), 1422–1425. https://doi.org/10.1126/science.aab2374
+
+Page, M. J., McKenzie, J. E., Bossuyt, P. M., Boutron, I., Hoffmann, T. C., Mulrow, C. D., Shamseer, L., Tetzlaff, J. M., Akl, E. A., Brennan, S. E., Chou, R., Glanville, J., Grimshaw, J. M., Hróbjartsson, A., Lalu, M. M., Li, T., Loder, E. W., Mayo-Wilson, E., McDonald, S., ve diğerleri. (2021). The PRISMA 2020 statement: An updated guideline for reporting systematic reviews. *BMJ*, 372, n71. https://doi.org/10.1136/bmj.n71
+
 Pedersen, A. B., Mikkelsen, E. M., Cronin-Fenton, D., Kristensen, N. R., Pham, T. M., Pedersen, L., & Petersen, I. (2017). Missing data and multiple imputation in clinical epidemiological research. *Clinical Epidemiology*, 9, 157–166. https://doi.org/10.2147/CLEP.S129785
 
 Preacher, K. J. (2015). Advances in mediation analysis: A survey and synthesis of new developments. *Annual Review of Psychology*, 66(1), 825–852. https://doi.org/10.1146/annurev-psych-010814-015258
@@ -2051,6 +2114,8 @@ Schäfer, T., & Schwarz, M. A. (2019). The meaningfulness of effect sizes in psy
 
 Schisterman, E. F., Cole, S. R., & Platt, R. W. (2009). Overadjustment bias and unnecessary adjustment in epidemiologic studies. *Epidemiology*, 20(4), 488–495. https://doi.org/10.1097/EDE.0b013e3181a819a1
 
+Schulz, K. F., Altman, D. G., & Moher, D. (2010). CONSORT 2010 statement: Updated guidelines for reporting parallel group randomised trials. *BMJ*, 340, c332. https://doi.org/10.1136/bmj.c332
+
 Simonsohn, U., Simmons, J. P., & Nelson, L. D. (2020). Specification curve analysis. *Nature Human Behaviour*, 4(11), 1208–1214. https://doi.org/10.1038/s41562-020-0912-z
 
 Sterne, J. A. C., White, I. R., Carlin, J. B., Spratt, M., Royston, P., Kenward, M. G., Wood, A. M., & Carpenter, J. R. (2009). Multiple imputation for missing data in epidemiological and clinical research: Potential and pitfalls. *BMJ*, 338, b2393. https://doi.org/10.1136/bmj.b2393
@@ -2061,11 +2126,17 @@ Steyerberg, E. W., & Vergouwe, Y. (2014). Towards better clinical prediction mod
 
 Terwee, C. B., Bot, S. D. M., de Boer, M. R., van der Windt, D. A. W. M., Knol, D. L., Dekker, J., Bouter, L. M., & de Vet, H. C. W. (2007). Quality criteria were proposed for measurement properties of health status questionnaires. *Journal of Clinical Epidemiology*, 60(1), 34–42. https://doi.org/10.1016/j.jclinepi.2006.03.012
 
+Tricco, A. C., Lillie, E., Zarin, W., O'Brien, K. K., Colquhoun, H., Levac, D., Moher, D., Peters, M. D. J., Horsley, T., Weeks, L., Hempel, S., Akl, E. A., Chang, C., McGowan, J., Stewart, L., Hartling, L., Aldcroft, A., Wilson, M. G., Garritty, C., ve diğerleri. (2018). PRISMA Extension for Scoping Reviews (PRISMA-ScR): Checklist and explanation. *Annals of Internal Medicine*, 169(7), 467–473. https://doi.org/10.7326/M18-0850
+
 Trizano-Hermosilla, I., & Alvarado, J. M. (2016). Best alternatives to Cronbach's alpha reliability in realistic conditions: Congeneric and asymmetrical measurements. *Frontiers in Psychology*, 7, 769. https://doi.org/10.3389/fpsyg.2016.00769
 
 Textor, J., van der Zander, B., Gilthorpe, M. S., Liśkiewicz, M., & Ellison, G. T. H. (2017). Robust causal inference using directed acyclic graphs: The R package dagitty. *International Journal of Epidemiology*, 45(6), 1887–1894. https://doi.org/10.1093/ije/dyw341
 
+Türkiye Bilimsel ve Teknolojik Araştırma Kurumu. (2019). *TÜBİTAK Açık Bilim Politikası*. https://www.tubitak.gov.tr/sites/default/files/tubitak_acik_bilim_politikasi_190316.pdf
+
 Vandenbroucke, J. P., von Elm, E., Altman, D. G., Gøtzsche, P. C., Mulrow, C. D., Pocock, S. J., Poole, C., Schlesselman, J. J., & Egger, M. (2007). Strengthening the Reporting of Observational Studies in Epidemiology (STROBE): Explanation and elaboration. *PLoS Medicine*, 4(10), e297. https://doi.org/10.1371/journal.pmed.0040297
+
+Walter, S. D., Eliasziw, M., & Donner, A. (1998). Sample size and optimal designs for reliability studies. *Statistics in Medicine*, 17(1), 101–110. https://doi.org/10.1002/(SICI)1097-0258(19980115)17:1<101::AID-SIM727>3.0.CO;2-E
 
 VanderWeele, T. J., & Ding, P. (2017). Sensitivity analysis in observational research: Introducing the E-value. *Annals of Internal Medicine*, 167(4), 268–274. https://doi.org/10.7326/M16-2607
 
@@ -2073,7 +2144,11 @@ Vickers, A. J., & Elkin, E. B. (2006). Decision curve analysis: A novel method f
 
 White, I. R., & Carlin, J. B. (2010). Bias and efficiency of multiple imputation compared with complete-case analysis for missing covariate values. *Statistics in Medicine*, 29(28), 2920–2931. https://doi.org/10.1002/sim.3944
 
+Wieseler, B., Wolfram, N., McGauran, N., Kerekes, M. F., Vervölgyi, V., Kohlepp, P., Kamphuis, M., & Grouven, U. (2013). Completeness of reporting of patient-relevant clinical trial outcomes: Comparison of unpublished clinical study reports with publicly available data. *PLoS Medicine*, 10(10), e1001526. https://doi.org/10.1371/journal.pmed.1001526
+
 Wicherts, J. M., Veldkamp, C. L. S., Augusteijn, H. E. M., Bakker, M., van Aert, R. C. M., & van Assen, M. A. L. M. (2016). Degrees of freedom in planning, running, analyzing, and reporting psychological studies: A checklist to avoid p-hacking. *Frontiers in Psychology*, 7, 1832. https://doi.org/10.3389/fpsyg.2016.01832
+
+Wilkinson, M. D., Dumontier, M., Aalbersberg, I. J. J., Appleton, G., Axton, M., Baak, A., Blomberg, N., Boiten, J.-W., da Silva Santos, L. B., Bourne, P. E., Bouwman, J., Brookes, A. J., Clark, T., Crosas, M., Dillo, I., Dumon, O., Edmunds, S., Evelo, C. T., Finkers, R., ve diğerleri. (2016). The FAIR Guiding Principles for scientific data management and stewardship. *Scientific Data*, 3, 160018. https://doi.org/10.1038/sdata.2016.18
 
 Wolff, R. F., Moons, K. G. M., Riley, R. D., Whiting, P. F., Westwood, M., Collins, G. S., Reitsma, J. B., Kleijnen, J., & Mallett, S. (2019). PROBAST: A tool to assess the risk of bias and applicability of prediction model studies. *Annals of Internal Medicine*, 170(1), 51–58. https://doi.org/10.7326/M18-1376
 
@@ -2097,6 +2172,20 @@ Steegen, S., Tuerlinckx, F., Gelman, A., & Vanpaemel, W. (2016). Increasing tran
 
 Ackerman, R. A., Kashy, D. A., Donnellan, M. B., ve diğerleri (2011). Positive-engagement behaviors in observed family interactions: A social relations perspective. *Journal of Family Psychology*, 25(5), 719–730. https://doi.org/10.1037/a0025288
 
+Bakk, Z., & Kuha, J. (2021). Relating latent class membership to external variables: An overview. *British Journal of Mathematical and Statistical Psychology*, 74(2), 340–362. https://doi.org/10.1111/bmsp.12227
+
+Conger, R. D., Conger, K. J., & Martin, M. J. (2010). Socioeconomic status, family processes, and individual development. *Journal of Marriage and Family*, 72(3), 685–704. https://doi.org/10.1111/j.1741-3737.2010.00725.x
+
+Downey, D. B. (1995). When bigger is not better: Family size, parental resources, and children's educational performance. *American Sociological Review*, 60(5), 746–761. https://doi.org/10.2307/2096320
+
+Eradus, M., Leijten, P., Melendez-Torres, G. J., Foo, X. Q., & Oliver, B. R. (2024). Parental differential warmth, hostility, and sibling differences in internalizing and externalizing behavior problems: A meta-analysis. *Journal of Family Psychology*, 38(3), 387–399. https://doi.org/10.1037/fam0001194
+
+Ganzeboom, H. B. G., & Treiman, D. J. (1996). Internationally comparable measures of occupational status for the 1988 International Standard Classification of Occupations. *Social Science Research*, 25(3), 201–239. https://doi.org/10.1006/ssre.1996.0010
+
+Hansen, H., Schäfer, I., Schön, G., Riedel-Heller, S., Gensichen, J., Weyerer, S., Petersen, J. J., & König, H.-H. (2014). Agreement between self-reported and general practitioner-reported chronic conditions among multimorbid patients in primary care: Results of the MultiCare Cohort Study. *BMC Family Practice*, 15, 39. https://doi.org/10.1186/1471-2296-15-39
+
+Hertwig, R., Davis, J. N., & Sulloway, F. J. (2002). Parental investment: How an equity motive can produce inequality. *Psychological Bulletin*, 128(5), 728–745. https://doi.org/10.1037/0033-2909.128.5.728
+
 Jensen, A. C., & Thomsen, A. E. (2024). Parental differential treatment of siblings linked with internalizing and externalizing behavior: A meta-analysis. *Child Development*, 95(4), 1074–1091. https://doi.org/10.1111/cdev.14091
 
 Heckman, J. J. (1979). Sample selection bias as a specification error. *Econometrica*, 47(1), 153–161. https://doi.org/10.2307/1912352
@@ -2105,15 +2194,15 @@ Little, R. J. A., & Rubin, D. B. (2019). *Statistical analysis with missing data
 
 Lanza, S. T., Tan, X., & Bray, B. C. (2013). Latent class analysis with distal outcomes: A flexible model-based approach. *Structural Equation Modeling: A Multidisciplinary Journal*, 20(1), 1–26. https://doi.org/10.1080/10705511.2013.742377
 
+Rohrer, J. M., Egloff, B., & Schmukle, S. C. (2015). Examining the effects of birth order on personality. *Proceedings of the National Academy of Sciences*, 112(46), 14224–14229. https://doi.org/10.1073/pnas.1506451112
+
 ## 21.4 Türkiye-Özgü Klinik Referanslar
 
-Buist, K. L., Deković, M., & Prinzie, P. (2013). Sibling relationship quality and psychopathology of children and adolescents: A meta-analysis. *Clinical Psychology Review*, 33(1), 97–106.
+Buist, K. L., Deković, M., & Prinzie, P. (2013). Sibling relationship quality and psychopathology of children and adolescents: A meta-analysis. *Clinical Psychology Review*, 33(1), 97–106. https://doi.org/10.1016/j.cpr.2012.10.007
 
 Cameron, F. J., Northam, E. A., Ambler, G. R., & Daneman, D. (2007). Routine psychological screening in youth with type 1 diabetes and their parents: A notion whose time has come? *Diabetes Care*, 30(10), 2716–2724.
 
 Wysocki, T., Harris, M. A., Buckloh, L. M., Mertlich, D., Lochrie, A. S., Taylor, A., Sadler, M., & White, N. H. (2008). Randomized, controlled trial of behavioral family systems therapy for diabetes: Maintenance and generalization of effects on parent-adolescent communication. *Behavior Therapy*, 39(1), 33–46.
-
-Van Gampelaere, C., Luyckx, K., van der Straaten, S., ve diğerleri (2020). Families with pediatric type 1 diabetes: A comparison with the general population on child well-being, parental distress, and parenting behavior. *Pediatric Diabetes*, 21(2), 395–408. https://doi.org/10.1111/pedi.12942
 
 Rumburg, T. M., Lord, J. H., Savin, K. L., & Jaser, S. S. (2017). Maternal diabetes distress is linked to maternal depressive symptoms and adolescents' glycemic control. *Pediatric Diabetes*, 18(1), 67–70. https://doi.org/10.1111/pedi.12350
 
@@ -2150,6 +2239,8 @@ s-EMBU-P (Türkçe; anne formu, 29 madde, 4'lü Likert) ve s-EMBU-C (çocuk form
 - **Şemsiye proje kaydı:** OSF Registry ID: vqrt5
 
 Ön-kayıt sonrası protokol değişiklikleri (örn. H2 için Bayesçi BF eklenmemesi, TOST'un H2'ye uygulanmaması, eksik veri imputasyonunun HbA1c'ye uygulanmaması) raporun ilgili bölümlerinde şeffaf olarak belirtilmiş ve "ön-kayıt sonrası analiz kararı" etiketiyle işaretlenmiştir.
+
+C08 yayın/diseminasyon literatür denetimi, açık bilim ve raporlama standartlarının CSR içinde hangi düzeyde kullanılabileceğini ayrı bir artefakt zinciriyle belgelemektedir. Bu zincir `outputs/tables/csr_evidentia_c08_records.csv`, `outputs/tables/csr_evidentia_c08_fulltext_records.csv`, `outputs/reports/csr_evidentia_c08_search_log.md` ve `outputs/reports/csr_evidentia_c08_fulltext_check.md` dosyalarında izlenebilir; ham veri, katılımcı düzeyi kayıt veya telif-kapılı tam metin içermez.
 
 ## Ek C — Hesaplama Ortamı (R Session Bilgileri)
 
@@ -2223,10 +2314,12 @@ Bu ek, rapor finalizasyonunda tamamlanan doğrulama zincirini özetler.
 | Regresyon test paketi (denetim, tablo, klinik fayda, kanonik kilit, veri yönetişimi) | tümü geçti |
 | Hesaplama ortamı ve yeniden üretilebilirlik | Analizler koştu; `renv::status()` yalnız `languageserver` paketinde lockfile-library drift'i bildiriyor |
 | Analiz iş akışı bütünlüğü | Faz III/Faz IV runner ve merkezi audit düzeyinde doğrulandı; tam `targets::tar_make()` bu audit turunda yeniden koşulmadı |
-| Rapor render doğrulaması | Bu audit turunda yeniden render edilmedi; render kanıtı final paket öncesi tekrar tazelenmelidir |
+| Rapor render doğrulaması | `quarto render CSR-FINAL-render.qmd` başarıyla tamamlandı; çıktı `outputs/quarto/CSR-FINAL-render.html` olarak üretildi |
 | Raporlama standartları denetimi | 0 kritik bulgu |
+| C08 yayın/diseminasyon tam-metin denetimi | 17/17 kayıt sınıflandırıldı; 11 makale gövde/accepted-version düzeyinde, 3 resmi policy/guideline düzeyinde, GPP 2022 üstveri düzeyinde, hedef dergi metrikleri metric-gap olarak işaretlendi |
+| Açık veri ve raporlama policy sınırı | FAIR/TOP, ICMJE, TÜBİTAK/ULAKBİM ve ICH E3 kaynakları kullanım düzeyine göre ayrıldı; ham veri, tanımlayıcı kayıt ve telif-kapılı tam metin paylaşımı dışlandı |
 
-Son finalizasyon taramasında açık yazar-notu, yapılacaklar etiketi, doğrulanmamış kaynak veya yer-tutucu izi rapor gövdesinde bulunmamıştır; raporun sayısal doğruluğunu veya geçerliliğini engelleyen kritik bulgu yoktur.
+Son finalizasyon taramasında açık yazar-notu, yapılacaklar etiketi, doğrulanmamış kaynak veya yer-tutucu izi rapor gövdesinde bulunmamıştır. Sayısal doğruluk ve kaynak kullanım düzeyi denetimleri kritik bulgu üretmemiştir; render kanıtı tazelenmiştir; canlı dergi-metrik kontrolleri ise final gönderim öncesinde güncel tutulmalıdır. C08 artefaktları, yayın/diseminasyon bölümündeki kaynak kullanım düzeyi ve açık veri sınırlarını ayrıca belgelemektedir.
 
 \newpage
 
@@ -2242,4 +2335,4 @@ Bu Klinik Çalışma Raporu, Marmara Üniversitesi Sağlık Bilimleri Enstitüs�
 | TİK Üyesi | Prof. Dr. Perran Boran | Marmara Üniv. Tıp Fak. Sosyal Pediatri | ___/___/____ | __________ |
 | TİK Üyesi | Prof. Dr. Nalan Karabayır | İstanbul Medipol Üniv. Tıp Fak. Sosyal Pediatri | ___/___/____ | __________ |
 
-*Bu rapor; uluslararası raporlama standartları (ICH E3, GPP3, APA 7) ile metodolojik şeffaflık prensipleri (TRIPOD, STROBE, CONSORT, COSMIN) çerçevesinde hazırlanmış; tüm istatistiksel sonuçlar ön-kayıtlı analiz planına uygun olarak raporlanmıştır. Raporda yer alan tüm karar metni, sonuç eki ve klinik önerinin altyapısı analiz dosyalarında izlenebilir biçimde saklanmaktadır.*
+*Bu rapor; ICH E3'ün gözlemsel-vaka-kontrol bağlama uyarlanmış CSR yapısı, APA 7 / JARS-Quant, STROBE, TRIPOD, COSMIN ve sonraki çalışma tasarımları için SPIRIT/CONSORT ilkeleriyle; ayrıca ICMJE yazarlık-katkı-açıklama ilkeleri ve TÜBİTAK/ULAKBİM açık bilim politikasıyla uyumlu olarak hazırlanmıştır. ICH E3'ün özgün kapsamı terapötik/profilaktik/tanısal ajan çalışmalarına yönelik olduğundan, bu tezdeki kullanım kayıt amaçlı ilaç CSR'ı değil, gözlemsel CSR uyarlamasıdır. Raporda yer alan tüm karar metni, sonuç eki ve klinik önerinin altyapısı analiz dosyalarında izlenebilir biçimde saklanmaktadır.*
