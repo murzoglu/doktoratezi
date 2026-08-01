@@ -32,7 +32,7 @@ Kalıcı final referans kuralı:
 | EMBU item | `embu_*_qXX` | Final 4'lü Likert; geçerli değerler `1`, `2`, `3`, `4` |
 | BDI item | `beck_1`-`beck_21` | 0-3 aralığında Beck Depresyon Envanteri madde skoru |
 | KIA/SRQ item | `srq_1`-`srq_48`, `srq_sib_1`-`srq_sib_48` | 1-5 aralığında kardeş ilişkileri yanıtı |
-| Klinik | `hba1c` | Son ölçülmüş klinik HbA1c yüzde değeri; yalnız `DM_Hasta_Indeks` satırında dolu olabilir; plauzibilite aralığı `4.5 – 18.0`% |
+| Klinik | `hba1c` | CSV'de mevcut ancak tez kapsamı dışı — hiçbir analizde kullanılmaz (2026 kararı) |
 | Demografi/klinik | aile, anne, eş, çocuk ve DM tanı alanları | Kod değerleri mevcut veri standardına göre saklanır |
 
 `katilimci_cocuk` rol kodları:
@@ -67,8 +67,7 @@ Demografik ve tıbbi final standardı:
 - Long dosyada aile düzeyi demografi/klinik alanları aynı `aile_no` içindeki index ve kardeş satırlarında aynıdır.
 - Family dosyada aile düzeyi alanlar index satırından temsil edilir; kardeşe özgü alanlar `kardes_*` prefixiyle tutulur.
 - Tarih alanları `gg.aa.yyyy` formatındadır; yaş ve süre alanları tarih farkı / 365.25 ile uyumludur.
-- `dm_tani_tarihi`, `dm_yili` ve `hba1c` yalnız `role == "DM_Hasta_Indeks"` için doludur.
-- `hba1c` final analiz veri setinde saklanan son ölçülmüş klinik HbA1c yüzdesidir; ondalık sayı; eksikse `NA`. Final veride 120 DM indeks çocuğun 39'unda doludur; DM indeks dışındaki satırlarda dolu değer yoktur. HbA1c eşleştirmesi hasta/aile kimliği üzerinden kesinleştirilmiştir; HbA1c dışındaki ara eşleştirme alanları final veri standardına dahil değildir. Glisemik kontrolün ebeveynlik tutumu ile ilişkisinde birincil klinik kovaryat olarak kullanılır.
+- `dm_tani_tarihi` ve `dm_yili` yalnız `role == "DM_Hasta_Indeks"` için doludur.
 - Kronik hastalık/engel ve antidepresan gibi ikili tıbbi alanlarda standart kodlama `0 = Hayır/yok`, `1 = Evet/var` şeklindedir.
 - Emekli eş/baba aktif çalışıyor sayılmaz: `es_calisma_durumu = 0`, `es_emekli = 1`; aktif meslek/ISEI/SIOPS/EGP alanları yapısal `NA` kalır.
 - Eski serbest metin alanları final CSV'lerden kaldırılmıştır; meslek ve kronik hastalık açıklamaları standardize alanlara dönüştürülmüş, raw metinler yalnız audit dosyasında saklanmıştır.
@@ -85,7 +84,8 @@ Dosya: `data/processed/FINAL_REFERENCE__analysis_base_long.csv`
 | Tarih ve yaş | `anket_tarihi`, `anne_dogum_tarihi`, `katilimci_cocuk_dogum_tarihi`, `dm_tani_tarihi`, `kardes_dogum_tarihi`, `cocuk_yas`, `anne_yas`, `dm_yili` | Tarih ve türetilmiş yaş/süre alanları |
 | Çocuk/aile demografi | `cocuk_sayisi`, `katilimci_cocuk_sirasi`, `katilimci_cocuk_cinsiyet`, `kardes_cinsiyet`, `medeni_durum`, `es_sag` | Çocuk ve aile yapısı alanları |
 | Anne/eş sosyoekonomik | `egitim_durumu`, `es_egitim_durumu`, `calisma_durumu`, `es_calisma_durumu`, `es_emekli`, `ev_sahipligi`, `ev_oda_sayisi`, `arabaniz_var_mi`, `es_isco08_*`, `es_isei08`, `es_siops08`, `es_egp7`, `aile_isei08`, `aile_siops08`, `aile_egp7` | Kod değerleri ve araştırmacı kararıyla nihai meslek/SES standardizasyonu |
-| Klinik/durum | `anne_antidepresan`, `kronik_hastalik_durumu`, `esiniz_kronik_hastalik_durumu`, `anne_hastalik_*`, `es_hastalik_*`, `hba1c` | Klinik durum bayrakları, nihai hastalık kategori kodları ve T1DM glisemik kontrol değeri |
+| Klinik/durum | `anne_antidepresan`, `kronik_hastalik_durumu`, `esiniz_kronik_hastalik_durumu`, `anne_hastalik_*`, `es_hastalik_*` | Klinik durum bayrakları ve nihai hastalık kategori kodları |
+| CSV kapsam dışı kolon | `hba1c` | CSV'de mevcut ancak tez kapsamı dışı — hiçbir analizde kullanılmaz (2026 kararı) |
 | Beck/BDI | `beck_1`-`beck_21` | Sibling satırlarında yapısal `NA`; index satırlarında anne bildirimi |
 | KIA/SRQ | `srq_1`-`srq_48` | Her çocuk satırında çocuk düzeyi kardeş ilişkileri item bloğu |
 | EMBU-P | `embu_p_q01`-`embu_p_q29` | Sibling satırlarında yapısal `NA`; index satırlarında anne/ebeveyn bildirimi |
@@ -94,8 +94,7 @@ Dosya: `data/processed/FINAL_REFERENCE__analysis_base_long.csv`
 Yapısal eksiklik kuralları:
 
 - `is_index == FALSE` satırlarında `embu_p_q01`-`embu_p_q29` ve `beck_1`-`beck_21` yapısal `NA`dır.
-- `dm_yili` ve `hba1c` yalnız `role == "DM_Hasta_Indeks"` için hesaplanır; kontrol ve kardeş satırlarında yapısal `NA`dır.
-- Long dosyada `hba1c` 39/120 DM indeks satırında doludur; 362 DM kardeş/kontrol satırında yapısal `NA`dır.
+- `dm_yili` yalnız `role == "DM_Hasta_Indeks"` için hesaplanır; kontrol ve kardeş satırlarında yapısal `NA`dır.
 
 ## 4. Family Dosya Şeması
 
@@ -105,7 +104,7 @@ Dosya: `data/processed/FINAL_REFERENCE__analysis_base_family.csv`
 |---|---|---|
 | Aile ve index kimliği | `aile_no`, `cocuk_no`, `katilimci_cocuk`, `is_index`, `role`, `family_role`, `group` | Family satırındaki ana kişi index çocuktur |
 | Index tarih/yaş | `anket_tarihi`, `katilimci_cocuk_dogum_tarihi`, `dm_tani_tarihi`, `cocuk_yas`, `anne_yas`, `dm_yili` | Index çocuk ve anne yaş/süre alanları |
-| T1DM klinik | `hba1c` | Yalnız `DM_Hasta_Indeks` aile satırında dolu olabilir; 39/120 DM indeks ailede dolu; ondalık yüzde |
+| CSV kapsam dışı kolon | `hba1c` | CSV'de mevcut ancak tez kapsamı dışı — hiçbir analizde kullanılmaz (2026 kararı) |
 | Anne/aile demografi-klinik | `anne_dogum_tarihi`, `anne_antidepresan`, `cocuk_sayisi`, `medeni_durum`, `es_sag`, `es_dogum_tarihi`, `egitim_durumu`, `es_egitim_durumu`, `calisma_durumu`, `es_calisma_durumu`, `es_emekli`, `ev_sahipligi`, `ev_oda_sayisi`, `arabaniz_var_mi`, `kronik_hastalik_durumu`, `esiniz_kronik_hastalik_durumu`, `es_isco08_*`, `aile_isei08`, `anne_hastalik_*`, `es_hastalik_*` | Aile/anne düzeyi kovaryatlar ve standardize meslek/hastalık alanları |
 | Index çocuk demografi | `katilimci_cocuk_sirasi`, `katilimci_cocuk_cinsiyet` | Index çocuk bilgisi |
 | Kardeş kimlik/demografi | `kardes_cocuk_no`, `kardes_katilimci_cocuk`, `kardes_is_index`, `kardes_family_role`, `kardes_role`, `kardes_anket_tarihi`, `kardes_dogum_tarihi`, `kardes_sirasi`, `kardes_cinsiyet`, `kardes_yas` | Kardeş satırından wide forma taşınan alanlar |

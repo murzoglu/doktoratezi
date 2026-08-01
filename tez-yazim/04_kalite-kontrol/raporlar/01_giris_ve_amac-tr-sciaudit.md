@@ -10,12 +10,12 @@
 | Metric | Value |
 |---|---:|
 | Paragraphs | 10 |
-| Sentences | 43 |
-| Words | 1217 |
-| Syllables | 3667 |
-| Avg. words/sentence | 28.3 |
-| Avg. syllables/word | 3.01 |
-| Ateşman score | 3.9 |
+| Sentences | 45 |
+| Words | 1276 |
+| Syllables | 3868 |
+| Avg. words/sentence | 28.36 |
+| Avg. syllables/word | 3.03 |
+| Ateşman score | 3.03 |
 | Ateşman label | very-hard |
 
 ## Issue Summary
@@ -35,7 +35,7 @@
 | warning | `sentence-long` | 11 | Sentence is long; check readability and ambiguity. | T1DM özelindeki güncel nitel kanıt da sağlıklı kardeşlerin tanı dönemini ve sonrasını sıklıkla karşılanmamış gereksinimler çerçevesinde d... |
 | warning | `sentence-long` | 17 | Sentence is long; check readability and ambiguity. | Bu doğrultuda tezin temel araştırma sorusu, T1DM tanılı çocuğu olan ailelerde ebeveynlik tutumu, anne depresif belirtileri ve kardeş iliş... |
 | warning | `sentence-long` | 21 | Sentence is long; check readability and ambiguity. | İlk üç alt amaç, aile üyelerinin ebeveynlik ve ilişki bildirimlerini gruplar arasında karşılaştırmaya yöneliktir: T1DM tanılı çocuklar il... |
-| warning | `readability-very-hard` | 1 | Ateşman score is very low; verify the difficulty is justified by scientific content. | 3.9 |
+| warning | `readability-very-hard` | 1 | Ateşman score is very low; verify the difficulty is justified by scientific content. | 3.03 |
 
 ## Provider Layers
 

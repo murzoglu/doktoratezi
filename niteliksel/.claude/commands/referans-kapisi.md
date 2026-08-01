@@ -1,5 +1,5 @@
 ---
-description: Zorunlu 6-adımlı referans kapısı — DOI/tam metin/Zotero/claim/çift AI-reliability kapanmadan citation yok
+description: Zorunlu 6-adımlı referans kapısı — DOI/tam metin/Zotero/claim/iki-kol AI-reliability kapanmadan citation yok
 argument-hint: "[referans künyesi veya DOI/PMID]"
 ---
 
@@ -23,12 +23,12 @@ sözleşmesi; hiçbir adım atlanamaz, sıra değişmez):
    kullandığını belirt. Zotero'ya yazma/import açık onay ister.
 5. **Claim/pasaj notu** — iddiayı destekleyen sayfa/pasaj kanıtını not et;
    claim tam metinden doğrulanmadan citation yazılmaz.
-6. **Ledger kaydı + çift AI-reliability** — satırı
+6. **Ledger kaydı + iki-kol AI-reliability** — satırı
    `doktoratezi/tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md` tablosuna
    ekle (kolonlar: Citation key | DOI/PMID/ID | Zotero item key | Tam metin kanıtı |
    Kullanılan iddia | Bölüm | Nitel AI | Nicel AI | Durum | Not). Referanslı bölüm
-   kapanışında iki audit birlikte koşulur: bu repoda `/nitel-dogrulama`, paired
-   repoda `doktoratezi-ai-audit` scripti.
+   kapanışında iki audit birlikte koşulur: bu kolda (niteliksel/) `/nitel-dogrulama`, nicel
+   kökte `doktoratezi-ai-audit` scripti.
 
 Durum sözlüğü: `candidate → full-text-ok/full-text-exception → zotero-ok →
 reliability-ok → cite-ok` (gerekirse `retired`). Kapı kapanmadan referans tez

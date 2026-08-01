@@ -1,6 +1,6 @@
 ---
 name: t1dm-qual-ai-audit
-description: Repo-aware AI reliability audit workflow for the T1DM Niteliksel qualitative thesis repository. Use when Codex needs to review, tune, or run qualitative-arm AI safety, hooks, MCP routing, Evidentia integration, raw-data boundaries, COREQ/RTA/codebook traceability, or cross-repo coordination with the quantitative doktoratezi repo.
+description: Repo-aware AI reliability audit workflow for the T1DM Niteliksel qualitative thesis repository. Use when Codex needs to review, tune, or run qualitative-arm AI safety, hooks, MCP routing, Evidentia integration, raw-data boundaries, COREQ/RTA/codebook traceability, or cross-repo coordination with the quantitative nicel kök.
 ---
 
 # T1DM Qual AI Audit
@@ -15,8 +15,8 @@ qualitative methodology judgement; it enforces source grounding, privacy boundar
 2. Preserve protected data boundaries: do not print or export raw interview DOCX, merged transcripts,
    demographic rows, consent/protocol personal content, `.remember/`, or family-level sensitive detail.
 3. For thesis writing, format, official section order, summary/ozet, table/figure, or references work,
-   use `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim/README.md` and the official
-   `/mnt/thunderbolt/workspaces/doktoratezi/docs/tez-kilavuz` sources as the top writing gate.
+   use `/workspaces/T1DM-Tez/tez-yazim/README.md` and the official
+   `/workspaces/T1DM-Tez/docs/tez-kilavuz` sources as the top writing gate.
 4. Establish the tool surface with `./dmnitel ai-context`; for ambiguous requests run
    `./dmnitel route-tool --query "<soru>"` before selecting MCPs.
 5. For local qualitative tooling, prefer `dm_niteliksel_toolkit` and `./dmnitel`; for tests use
@@ -30,8 +30,8 @@ qualitative methodology judgement; it enforces source grounding, privacy boundar
    `python3 scripts/util/zotero_env_bridge.py status --json` first; it loads `ZOTERO_API_KEY`
    from `.env` and must never print the key. Use the Desktop helper only for local full-text,
    attachment, or connector workflows. Require confirmation for Zotero writes/imports.
-9. For quantitative H1-H5/EMBU/Beck/KIA/R-pipeline questions, switch to the paired repo
-   `/mnt/thunderbolt/workspaces/doktoratezi`, `tez-yazim`, and `t1dm-tez-rehberi`.
+9. For quantitative H1-H5/EMBU/Beck/KIA/R-pipeline questions, switch to the nicel kök
+   `/workspaces/T1DM-Tez`, `tez-yazim`, and `t1dm-tez-rehberi`.
 10. For MCP checks, use `python3 .codex/tools/codex_mcp_roster_redacted.py`; never raw
    `codex mcp list`.
 11. After external Evidentia/Codex/MCP/plugin use, record the operation with `./dmnitel log-ai-use`.

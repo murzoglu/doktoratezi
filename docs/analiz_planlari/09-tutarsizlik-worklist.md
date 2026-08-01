@@ -1,5 +1,26 @@
 # TUTARSIZLIK WORKLIST — Final'de DÜZELTİLMEMİŞ (Persist Eden) Kayıtlar
 
+> ✅ **REVİZYON 4 (2026-07-18): es_sag UYUMSUZ KAYDI DÜZELTİLDİ.** `es_sag` değişkeninde
+> tek uyumsuz kayıt (aile 2310) için PI kayıt formuna erişildi; eşin **hayatta olduğu**
+> doğrulandı. Kayıt `medeni_durum = 0` (evli) taşıdığı için `es_sag = 0` ile görünür
+> uyumsuzluk vardı; `es_sag` 0 → 1 düzeltildi (family aile_no=2310; long cocuk_no=2310-1,
+> 2310-2). 3 hücre; satır/kolon sayıları değişmedi. Etki: `es_sag` artık sabit (241/241 = 1);
+> tek-ebeveyn (dul) bileşeni n=0'a düştü, boşanmış (medeni_durum=2) n=2 değişmedi. Kanonik kilit
+> **rev 4** olarak yenilendi (yeni sha256; hash-doğrulama geçti). İz:
+> `CORRECTIONS__pi_verified_ledger.csv` (son 3 satır), lock rev 4.
+
+
+> ✅ **REVİZYON 3 (2026-07-18): ONSET TARİH-GİRİŞ HATASI DÜZELTİLDİ.** Görünür tanı yaşı
+> 6 ayın altında olan üç DM kaydı (aile 81, 2032, 2001) için PI kayıt formlarına erişildi;
+> bu kayıtların **neonatal/monogenik diyabet değil, tarih-giriş artefaktı** olduğu doğrulandı.
+> Gerçek tanı yaşları: 81 → 3 yaş (17.03.2018), 2032 → 4 yaş (06.12.2015), 2001 → 4,5 yaş
+> (04.05.2019). `dm_tani_tarihi` + `dm_yili` (family + long) düzeltildi; 12 hücre; satır/kolon
+> sayıları değişmedi. Etki: DM tanı yaşı min 0→0,68 yıl; tanı yaşı strata (24/69/27) ve onset
+> band (34/59/27) **değişmedi**; DM süresi medyanı 3,87→3,80, IQR üst 6,17→5,95. Kanonik kilit
+> **rev 3** olarak yenilendi (yeni sha256; hash-doğrulama geçti). İz:
+> `CORRECTIONS__pi_verified_ledger.csv` (son 12 satır), lock rev 3.
+
+
 > ✅ **DURUM: UYGULANDI (2026-07-08).** Aşağıdaki 11 ailenin tamamı PI form-teyitli değerlerle
 > düzeltildi; kanonik kilit rev 2 olarak yenilendi (38 hücre); düzeltme sonrası tutarsızlık **0**;
 > tam pipeline yeniden koşuldu. Uygulanan değerler: B1 dm_tani → 2000=01.12.2012, 1007=01.08.2020,
@@ -75,7 +96,6 @@ final'de yok).
 |---|---|---|
 | **B8 oda=0** (2 aile) | `material_index`→`ses_latent` (R/11) → propensity + kovaryat | **EVET, dolaylı** (SES kompoziti H1–H5'e girer) — en geniş erişim |
 | **B2 cocuk_sayisi=1** (2) | `cocuk_sayisi_z` kovaryat (H1/H3) + sibship (§108) | **EVET, kovaryat** (2/241, yön değiştirmez) |
-| **B1 dm_yili** (5) | R/27 (§12.5), R/40 (§12.5.1 HbA1c) **maskesiz**; R/55 maskeli | Hayır (DM-klinik keşifsel) |
 | **F2 sıra** (3) | Faz III §108 doğum sırası/sibship | Hayır (keşifsel) |
 | **B7 es_yas=13** (1) | yalnız SUPPLEMENT / Faz IV §125 | Hayır (supplement) |
 
@@ -91,7 +111,7 @@ supplement kalır.
 |---|---|---|
 | **B8 oda=0** | ✅ **EVET** — 0 oda imkansız = eksik | `ev_oda_sayisi: 0 → NA` recode (savunulabilir); `material_index` yeniden türet (R/11). |
 | **B7 es_yas=13** | ✅ **EVET** (supplement) | Supplement'te `es_yas<16 → NA` plausibilite-maskesi. |
-| **B1 dm_yili** (5) | ❌ doğru tarih bilinmiyor | Maske (R/55 kuralını R/27+R/40'a genişlet) **veya** PI form-teyidi ile doğru tarih. |
+| **B1 dm_yili** (5) | ❌ doğru tarih bilinmiyor | Maske (R/55 kuralını R/27'a genişlet) **veya** PI form-teyidi ile doğru tarih. |
 | **B2 cocuk_sayisi** (2) | ⚠️ "1" yanlış, gerçek ≥2 belirsiz | `1 → NA` recode **veya** PI form-teyidi (gerçek toplam). |
 | **F2 sıra** (3) | ❌ doğru sıra bilinmiyor | Maske (§108 dışla) **veya** PI form-teyidi (Çocuk No eki −3/−4 ipucu, teyitsiz). |
 

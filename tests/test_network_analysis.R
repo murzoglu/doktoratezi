@@ -49,8 +49,31 @@ stopifnot(
 results <- run_network_pipeline(df_family_ses, df_family_scored, seed = 42L)
 stopifnot(
   is.data.frame(results$status_table),
-  nrow(results$status_table) == 5L,
-  all(results$status_table$status %in% c("ok", "insufficient_n", "package_unavailable"))
+  nrow(results$status_table) == 6L,
+  all(results$status_table$status %in% c("ok", "insufficient_n", "package_unavailable")),
+  "stability" %in% results$status_table$component
 )
 
-cat("[PASS] KISIM VIII Network analysis (GGM + NCT + Beck symptom)\n")
+# Ag kararliligi (bootnet CS-katsayisi): mevcudiyet + yon-mantigi (CS >= 0,
+# sonlu ve <= 1). Bos donerse (paket yok) tablo bos olmali; ok ise CS gecerli.
+stab_status <- results$status_table$status[results$status_table$component == "stability"]
+if (identical(stab_status, "ok")) {
+  st <- results$stability_table
+  stopifnot(
+    is.data.frame(st),
+    nrow(st) == 1L,
+    st$n_boots[1] >= 1000L,
+    is.finite(st$cs_strength[1]),
+    st$cs_strength[1] >= 0, st$cs_strength[1] <= 1,
+    is.finite(st$cs_expected_influence[1]),
+    st$cs_expected_influence[1] >= 0, st$cs_expected_influence[1] <= 1
+  )
+}
+
+# NCT permutasyon sayisi >= 1000 (denetim P1): pipeline varsayilani.
+if (identical(results$nct_table$permutations[1], 1000L) ||
+    isTRUE(results$nct_table$permutations[1] >= 1000L)) {
+  stopifnot(results$nct_table$permutations[1] >= 1000L)
+}
+
+cat("[PASS] KISIM VIII Network analysis (GGM + NCT + kararlilik + Beck symptom)\n")

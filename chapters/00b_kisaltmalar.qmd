@@ -1,56 +1,274 @@
 <!--
-KISALTMALAR — Marmara §2.5: alfabetik sıra, kısaltma : açıklama.
-Sık kullanılan çok sözcüklü terimler listelenir; yaygın birim kısaltmaları (cm, kg) eklenmez.
-Metinde ilk geçtiği yerde açık ad + parantez içinde kısaltma verilir; sonrasında yalnız kısaltma.
-Bu liste render öncesinde tez metniyle karşılıklı denetlenmelidir (kullanılmayan kısaltma çıkarılır).
-ŞEKİLLER ve TABLOLAR listeleri bu bölümden sonra render aşamasında otomatik üretilir (lof / lot).
+KISALTMALAR — Marmara §2.5 / §1.5: alfabetik sıra; her satır "kısaltma : açıklama"
+biçiminde ve şablonla (TEZ ŞABLONLARI-2026-2RV.docx) hizalı. Başlık satırı
+KULLANILMAZ (resmi şablonda yoktur).
+Sık kullanılan çok sözcüklü terimler listelenir; yaygın birim kısaltmaları (cm, kg)
+eklenmez. Metinde ilk geçtiği yerde açık ad + parantez içinde kısaltma verilir;
+sonrasında yalnız kısaltma. Türkçe karşılığı yerleşik olmayan kavramlarda Türkçe
+karşılığın ardından italik orijinali yazılır (§1.5).
+Bu liste render öncesinde tez metniyle karşılıklı denetlenir: kullanılmayan
+kısaltma çıkarılır, metinde geçen kısaltma eklenir.
+Marmara §5 sırası uyarınca ŞEKİLLER ve TABLOLAR dizinleri Kısaltmalar'dan SONRA
+gelir; bu dosyanın sonunda üretilir (§1.9 Romen numaralandırma zinciri sürer).
 -->
 
 # KISALTMALAR {.unnumbered}
 
-| Kısaltma | Açıklama |
-|---|---|
-| APIM | Aktör–Partner Karşılıklı Bağımlılık Modeli (*Actor–Partner Interdependence Model*) |
-| AVE | Ortalama Açıklanan Varyans (*Average Variance Extracted*) |
-| BSEM | Bayesçi Yapısal Eşitlik Modeli (*Bayesian Structural Equation Modeling*) |
-| CFA | Doğrulayıcı Faktör Analizi (*Confirmatory Factor Analysis*) |
-| CFI | Karşılaştırmalı Uyum İndeksi (*Comparative Fit Index*) |
-| COREQ | Nitel Araştırma Raporlama Ölçütleri (*Consolidated Criteria for Reporting Qualitative Research*) |
-| COSMIN | Sağlık Ölçme Araçları Seçim Standartları (*COnsensus-based Standards for the selection of health Measurement INstruments*) |
-| CR | Bileşik Güvenirlik (*Composite Reliability*) |
-| DAG | Yönlü Asiklik Çizge (*Directed Acyclic Graph*) |
-| EFA | Keşfedici Faktör Analizi (*Exploratory Factor Analysis*) |
-| EMBU | Algılanan Ebeveyn Tutumları Ölçeği (*Egna Minnen Beträffande Uppfostran*) |
-| FDR | Yanlış Keşif Oranı (*False Discovery Rate*) |
-| FIML | Tam Bilgi Maksimum Olabilirlik (*Full Information Maximum Likelihood*) |
-| GRAMMS | Karma Yöntem Çalışması Raporlama Ölçütleri (*Good Reporting of A Mixed Methods Study*) |
-| HbA1c | Glikozile Hemoglobin |
-| ICC | Sınıf-İçi Korelasyon Katsayısı (*Intraclass Correlation Coefficient*) |
-| IPTW | Ters Olasılık Ağırlıklandırma (*Inverse Probability of Treatment Weighting*) |
-| ISEI | Uluslararası Sosyoekonomik İndeks (*International Socio-Economic Index*) |
-| JARS | Dergi Makalesi Raporlama Standartları (*Journal Article Reporting Standards*) |
-| KAEK | Klinik Araştırmalar Etik Kurulu |
-| KİA | Kardeş İlişkileri Anketi |
-| KMO | Kaiser-Meyer-Olkin ölçütü |
-| KVKK | Kişisel Verilerin Korunması Kanunu |
-| MAR | Rastgele Eksiklik (*Missing At Random*) |
-| MCAR | Tamamen Rastgele Eksiklik (*Missing Completely At Random*) |
-| MMAT | Karma Yöntem Değerlendirme Aracı (*Mixed Methods Appraisal Tool*) |
-| NMAR | Rastgele Olmayan Eksiklik (*Not Missing At Random*) |
-| OSF | Açık Bilim Çerçevesi (*Open Science Framework*) |
-| RMSEA | Yaklaşık Hata Kareler Ortalamasının Karekökü (*Root Mean Square Error of Approximation*) |
-| RTA | Refleksif Tematik Analiz |
-| s-EMBU-C | Kısaltılmış EMBU – Çocuk Formu |
-| s-EMBU-P | Kısaltılmış EMBU – Ebeveyn Formu |
-| SES | Sosyoekonomik Durum (*Socioeconomic Status*) |
-| SMD | Standardize Edilmiş Ortalama Fark (*Standardized Mean Difference*) |
-| SRMR | Standardize Artık Kareler Ortalamasının Karekökü (*Standardized Root Mean Square Residual*) |
-| SRQ | Kardeş İlişkileri Anketi (*Sibling Relationship Questionnaire*) |
-| SRQR | Nitel Araştırma Raporlama Standartları (*Standards for Reporting Qualitative Research*) |
-| STROBE | Gözlemsel Çalışmaların Raporlanmasının Güçlendirilmesi (*Strengthening the Reporting of Observational Studies in Epidemiology*) |
-| T1DM | Tip 1 Diabetes Mellitus |
-| TİK | Tez İzleme Komitesi |
-| TLI | Tucker-Lewis İndeksi |
-| TOST | İki Tek-Yönlü Test (*Two One-Sided Tests*) |
-| TRIPOD | Çok Değişkenli Öngörü Modeli Raporlama Ölçütleri (*Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis*) |
-| WLSMV | Ağırlıklı En Küçük Kareler – Ortalama ve Varyans Ayarlı (*Weighted Least Squares Mean and Variance adjusted*) |
+```{=latex}
+% Marmara §1.9: numaralandirma Kisaltmalar'dan itibaren Romen (i, ii, iii).
+% Baslik SONRASINA konur; boylece \chapter*'in \clearpage'i onceki (Tesekkur)
+% sayfasini numarasiz gonderir, roman sifirlamasi bu sayfaya (Kisaltmalar=i) uygulanir.
+\pagenumbering{roman}
+```
+
+  ---------- - ----------------------------------------------------------------------------------------------------------------------------------------------------
+  ABD        : Amerika Birleşik Devletleri
+
+  AC1        : Gwet Uyum Katsayısı (*Gwet's Agreement Coefficient AC1*)
+
+  AID        : Otomatik İnsülin İletim Sistemi (*Automated Insulin Delivery*)
+
+  ANCOVA     : Kovaryans Analizi (*Analysis of Covariance*)
+
+  APA        : Amerikan Psikoloji Derneği (*American Psychological Association*)
+
+  APIM       : Aktör–Partner Karşılıklı Bağımlılık Modeli (*Actor–Partner Interdependence Model*)
+
+  AUC        : Eğri Altı Alan (*Area Under the Curve*)
+
+  BDI        : Beck Depresyon Envanteri (*Beck Depression Inventory*; Türkçe uyarlamada BDÖ)
+
+  BDI-PC     : Birinci Basamak İçin Beck Depresyon Ölçeği (*Beck Depression Inventory for Primary Care*)
+
+  BDÖ        : Beck Depresyon Envanteri (*Beck Depression Inventory*)
+
+  BF₁₀       : Bayes Faktörü (*Bayes factor*)
+
+  BH-FDR     : Benjamini-Hochberg Yanlış-Keşif Oranı Düzeltmesi (*Benjamini-Hochberg False Discovery Rate*)
+
+  BIC        : Bayesçi Bilgi Ölçütü (*Bayesian Information Criterion*)
+
+  BLRT       : Bootstrap Olabilirlik Oranı Testi (*Bootstrap Likelihood Ratio Test*)
+
+  BSEM       : Bayesçi Yapısal Eşitlik Modeli (*Bayesian Structural Equation Modeling*)
+
+  CART       : Sınıflandırma ve Regresyon Ağaçları (*Classification and Regression Trees*)
+
+  CDI        : Çocuk Depresyon Envanteri (*Children's Depression Inventory*)
+
+  CES-D      : Epidemiyolojik Araştırmalar Merkezi Depresyon Ölçeği (*Center for Epidemiologic Studies Depression Scale*)
+
+  CFA        : Doğrulayıcı Faktör Analizi (*Confirmatory Factor Analysis*; Türkçe metinde DFA)
+
+  CFI        : Karşılaştırmalı Uyum İndeksi (*Comparative Fit Index*)
+
+  CGM        : Sürekli Glukoz İzlemi (*Continuous Glucose Monitoring*)
+
+  CONSORT    : Randomize Kontrollü Çalışmaların Raporlanmasında Birleştirilmiş Standartlar (*Consolidated Standards of Reporting Trials*)
+
+  COREQ      : Nitel Araştırma Raporlama Ölçütleri (*Consolidated Criteria for Reporting Qualitative Research*)
+
+  COSMIN     : Sağlık Ölçme Araçları Seçim Standartları (*COnsensus-based Standards for the selection of health Measurement INstruments*)
+
+  CRPBI      : Çocuğun Ebeveyn Davranışı Bildirimi Envanteri (*Children's Reports of Parental Behavior Inventory*)
+
+  CS         : Korelasyon Kararlılık Katsayısı (*Correlation Stability coefficient*)
+
+  ÇAA        : Çeyrekler Arası Aralık (*Interquartile Range, IQR*)
+
+  DAG        : Yönlü Asiklik Çizge (*Directed Acyclic Graph*)
+
+  DCA        : Karar Eğrisi Analizi (*Decision Curve Analysis*)
+
+  DCCT       : Diyabet Kontrol ve Komplikasyonları Çalışması (*Diabetes Control and Complications Trial*)
+
+  DFA        : Doğrulayıcı Faktör Analizi (*Confirmatory Factor Analysis*)
+
+  DKA        : Diyabetik Ketoasidoz
+
+  DM         : Diyabet (*diabetes mellitus*; bu çalışmada Tip 1 diyabet grubu)
+
+  DSM        : Ruhsal Bozuklukların Tanısal ve İstatistiksel El Kitabı (*Diagnostic and Statistical Manual of Mental Disorders*)
+
+  EBIC-LASSO : Genişletilmiş Bayesçi Bilgi Ölçütü ile Düzenlenmiş LASSO (*Extended Bayesian Information Criterion LASSO*)
+
+  ECV        : Açıklanan Ortak Varyans (*Explained Common Variance*)
+
+  EGP        : Erikson-Goldthorpe-Portocarero Sınıf Şeması
+
+  EI         : Beklenen Etki (*Expected Influence*)
+
+  EMBU       : Algılanan Ebeveyn Tutumları Ölçeği (*Egna Minnen Beträffande Uppfostran*)
+
+  EMBU-C     : EMBU Çocuk Formu (*EMBU-Child*)
+
+  EMBU-P     : EMBU Ebeveyn Formu (*EMBU-Parent*)
+
+  ESEM       : Keşifsel Yapısal Eşitlik Modeli (*Exploratory Structural Equation Modeling*)
+
+  ESS        : Etkin Örneklem Büyüklüğü (*Effective Sample Size*)
+
+  FDR        : Yanlış-Keşif Oranı (*False Discovery Rate*)
+
+  FIML       : Tam Bilgi Maksimum Olabilirlik (*Full Information Maximum Likelihood*)
+
+  FMSF       : Aile Yönetim Tarzı Çerçevesi (*Family Management Style Framework*)
+
+  GA         : Güven Aralığı (*Confidence Interval*)
+
+  GCP        : İyi Klinik Uygulamalar (*Good Clinical Practice*)
+
+  GGM        : Gauss Grafik Modeli (*Gaussian Graphical Model*)
+
+  GRAMMS     : Karma Yöntem Çalışması Raporlama Ölçütleri (*Good Reporting of A Mixed Methods Study*)
+
+  HADS       : Hastane Anksiyete ve Depresyon Ölçeği (*Hospital Anxiety and Depression Scale*)
+
+  HbA1c      : Glikozillenmiş Hemoglobin (*glycated haemoglobin A1c*)
+
+  HC3        : Değişen Varyansa Dayanıklı Tip-3 Standart Hata (*Heteroskedasticity-Consistent type 3*)
+
+  HSCL-25    : Hopkins Belirti Tarama Listesi-25 (*Hopkins Symptom Checklist-25*)
+
+  ICC        : Sınıf-İçi Korelasyon Katsayısı (*Intraclass Correlation Coefficient*)
+
+  IDF        : Uluslararası Diyabet Federasyonu (*International Diabetes Federation*)
+
+  IMM        : Moderatörlü Aracılık İndeksi (*Index of Moderated Mediation*)
+
+  IPTW       : Ters Olasılık Ağırlıklandırma (*Inverse Probability of Treatment Weighting*)
+
+  IRT        : Madde-Yanıt Teorisi (*Item Response Theory*)
+
+  ISEI       : Uluslararası Sosyoekonomik İndeks (*International Socio-Economic Index*)
+
+  ISPAD      : Uluslararası Pediatrik ve Adolesan Diyabet Derneği (*International Society for Pediatric and Adolescent Diabetes*)
+
+  JARS       : Dergi Makalesi Raporlama Standartları (*Journal Article Reporting Standards*)
+
+  KAET-Ç     : Kısaltılmış Algılanan Ebeveyn Tutumları Ölçeği – Çocuk Formu (*s-EMBU-C Türkçe uyarlaması*)
+
+  KİA        : Kardeş İlişkileri Anketi (*Sibling Relationship Questionnaire*, SRQ)
+
+  KMO        : Kaiser-Meyer-Olkin ölçütü
+
+  KVKK       : Kişisel Verilerin Korunması Kanunu
+
+  LASSO      : En Küçük Mutlak Büzülme ve Seçim Operatörü (*Least Absolute Shrinkage and Selection Operator*)
+
+  LCA        : Latent Sınıf Analizi (*Latent Class Analysis*)
+
+  LLM        : Büyük Dil Modeli (*Large Language Model*)
+
+  LOO        : Birini Dışarıda Bırakma Çapraz Doğrulaması (*Leave-One-Out cross-validation*)
+
+  LPA        : Latent Profil Analizi (*Latent Profile Analysis*)
+
+  MAR        : Rastgele Eksiklik (*Missing At Random*)
+
+  MCAR       : Tamamen Rastgele Eksiklik (*Missing Completely At Random*)
+
+  MCMC       : Markov Zinciri Monte Carlo (*Markov Chain Monte Carlo*)
+
+  MI         : Çoklu Atama (*Multiple Imputation*)
+
+  MLR        : Sağlam Maksimum Olabilirlik Kestiricisi (*Maximum Likelihood with Robust standard errors*)
+
+  MNAR       : Rastgele Olmayan Eksiklik (*Missing Not At Random*)
+
+  NCT        : Ağ Karşılaştırma Testi (*Network Comparison Test*)
+
+  NPV        : Negatif Kestirim Değeri (*Negative Predictive Value*)
+
+  OR         : Olasılık Oranı (*Odds Ratio*)
+
+  OSF        : Açık Bilim Çerçevesi (*Open Science Framework*)
+
+  PARI       : Ebeveyn Tutumlarını Araştırma Aracı (*Parental Attitude Research Instrument*)
+
+  PBI        : Ebeveyn Bağlanma Aracı (*Parental Bonding Instrument*)
+
+  PDT        : Ebeveyn Diferansiyel Muamelesi (*Parental Differential Treatment*)
+
+  PHQ-9      : Hasta Sağlığı Anketi-9 (*Patient Health Questionnaire-9*)
+
+  PPV        : Pozitif Kestirim Değeri (*Positive Predictive Value*)
+
+  PS         : Eğilim Skoru (*Propensity Score*)
+
+  RMSEA      : Yaklaşık Hata Kareler Ortalamasının Karekökü (*Root Mean Square Error of Approximation*)
+
+  ROC        : Alıcı İşletim Karakteristiği (*Receiver Operating Characteristic*)
+
+  ROPE       : Pratik Eşdeğerlik Bölgesi (*Region of Practical Equivalence*)
+
+  RSA        : Yanıt Yüzeyi Analizi (*Response Surface Analysis*)
+
+  RTA        : Refleksif Tematik Analiz (*Reflexive Thematic Analysis*)
+
+  RV         : Sağlamlık Değeri (*Robustness Value*)
+
+  s-EMBU-C   : Kısaltılmış EMBU – Çocuk Formu
+
+  s-EMBU-P   : Kısaltılmış EMBU – Ebeveyn Formu
+
+  SD         : Standart Sapma (*Standard Deviation*; Türkçe metinde SS)
+
+  SDQ        : Güçler ve Güçlükler Anketi (*Strengths and Difficulties Questionnaire*)
+
+  SEM        : Yapısal Eşitlik Modeli (*Structural Equation Modeling*)
+
+  SES        : Sosyoekonomik Durum (*Socioeconomic Status*)
+
+  SESOI      : İlgilenilen En Küçük Etki Büyüklüğü (*Smallest Effect Size Of Interest*)
+
+  SHA-256    : Güvenli Özet Algoritması-256 (*Secure Hash Algorithm 256*)
+
+  SIOPS      : Standart Uluslararası Mesleki Prestij Ölçeği (*Standard International Occupational Prestige Scale*)
+
+  SMD        : Standardize Edilmiş Ortalama Fark (*Standardized Mean Difference*)
+
+  sNB        : Standardize Net Fayda (*Standardized Net Benefit*)
+
+  SRMR       : Standardize Artık Kareler Ortalamasının Karekökü (*Standardized Root Mean Square Residual*)
+
+  SRQ        : Kardeş İlişkileri Anketi (*Sibling Relationship Questionnaire*; Türkçe kısaltması KİA)
+
+  SRQR       : Nitel Araştırma Raporlama Standartları (*Standards for Reporting Qualitative Research*)
+
+  SS         : Standart Sapma (*Standard Deviation*)
+
+  STROBE     : Gözlemsel Çalışmaların Raporlanmasının Güçlendirilmesi (*Strengthening the Reporting of Observational Studies in Epidemiology*)
+
+  T1DM       : Tip 1 Diyabet (*type 1 diabetes mellitus*)
+
+  TİK        : Tez İzleme Komitesi
+
+  TLI        : Tucker-Lewis İndeksi
+
+  TOST       : İki Tek-Yönlü Test (*Two One-Sided Tests*)
+
+  TRIPOD     : Çok Değişkenli Öngörü Modeli Raporlama Ölçütleri (*Transparent Reporting of a multivariable prediction model for Individual Prognosis Or Diagnosis*)
+
+  WAIC       : Yaygın Uygulanabilir Bilgi Ölçütü (*Widely Applicable Information Criterion*)
+
+  WLSMV      : Ağırlıklı En Küçük Kareler – Ortalama ve Varyans Ayarlı (*Weighted Least Squares Mean and Variance adjusted*)
+
+  YÖK        : Yükseköğretim Kurulu
+  ---------- - ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+```{=latex}
+% Marmara §5 sirasi (6. ve 7. madde): SEKILLER ve TABLOLAR dizinleri
+% Kisaltmalar'dan SONRA, Ozet'ten ONCE gelir. _quarto.yml PDF hattinda
+% `lof: false` / `lot: false`; dizinler burada uretilir ve §1.9 uyarinca
+% Romen numaralandirmayi (Kisaltmalar = i) surdurur.
+% \addcontentsline sablon ICINDEKILER'inde bu iki dizinin de listelenmesi
+% icindir; \clearpage'den SONRA cagrilir ki kaydedilen sayfa numarasi
+% dizinin ilk sayfasi olsun.
+\clearpage
+\addcontentsline{toc}{chapter}{ŞEKİLLER DİZİNİ}
+\listoffigures
+\clearpage
+\addcontentsline{toc}{chapter}{TABLOLAR DİZİNİ}
+\listoftables
+```

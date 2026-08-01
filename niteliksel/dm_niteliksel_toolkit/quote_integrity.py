@@ -17,6 +17,10 @@ QUOTE_FIELDS = [
     "theme",
 ]
 
+# V3 kanonik şema (verbatim içermez): quote_id,aile_no,rol,tema,triadik_eksen,kaynak_dosya
+# `triadik_eksen` opsiyonel meta sütunudur; check_quotes tarafından görmezden gelinir.
+OPTIONAL_FIELDS = ["triadik_eksen"]
+
 TEXT_SUFFIXES = {".txt", ".md", ".csv", ".tsv"}
 ALLOWED_BRACKET_INSERTS = {"[isim]", "[okul adı]", "[şehir]", "[annesi]", "[ablası]", "[…]", "[...]"}
 
@@ -33,11 +37,22 @@ def check_quotes(source_dir: Path, quotes_csv: Path) -> list[QuoteIssue]:
     rows = read_csv(quotes_csv)
     issues: list[QuoteIssue] = []
 
+    # V2 şema: quote_text_used sütunu var (verbatim denetim etkin).
+    # V3 şema: quote_text_used yok; verbatim denetim atlanır.
+    # triadik_eksen gibi opsiyonel sütunlar her iki şemada da yok sayılır.
+    schema_has_verbatim = bool(rows) and "quote_text_used" in rows[0]
+
     by_quote_id: dict[str, set[str]] = defaultdict(set)
     for row in rows:
         quote_id = normalize_space(row.get("quote_id", ""))
-        quote_text = normalize_space(row.get("quote_text_used", ""))
         family_id = normalize_space(row.get("family_id", ""))
+
+        if not schema_has_verbatim:
+            # V3 şema: verbatim sütunu yok; yalnız quote_id izle.
+            by_quote_id[quote_id].add("")
+            continue
+
+        quote_text = normalize_space(row.get("quote_text_used", ""))
         by_quote_id[quote_id].add(quote_text)
 
         if not quote_text:

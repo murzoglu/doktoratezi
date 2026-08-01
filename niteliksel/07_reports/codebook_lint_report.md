@@ -11,8 +11,8 @@ AI destekli çıktılar yalnızca yardımcı, ön-denetim veya tutarlılık kont
 - satır 4, `example_quote_id`: Örnek alıntı ID'si placeholder görünüyor; kaynak alıntı kaydıyla doğrulanmalıdır. (RESEARCHER_TO_ASSIGN_TANI_BILGI_ARAYISI)
 - satır 7, `example_quote_id`: Örnek alıntı ID'si placeholder görünüyor; kaynak alıntı kaydıyla doğrulanmalıdır. (RESEARCHER_TO_ASSIGN_GECE_TAKIP)
 - satır 14, `example_quote_id`: Örnek alıntı ID'si placeholder görünüyor; kaynak alıntı kaydıyla doğrulanmalıdır. (RESEARCHER_TO_ASSIGN_YARAR_BULMA_OLGUNLASMA)
-- satır 22, `example_quote_id`: Örnek alıntı ID'si placeholder görünüyor; kaynak alıntı kaydıyla doğrulanmalıdır. (RESEARCHER_TO_ASSIGN_SAGLIK_EKIBI_DESTEGI)
-- satır 24, `example_quote_id`: Örnek alıntı ID'si placeholder görünüyor; kaynak alıntı kaydıyla doğrulanmalıdır. (RESEARCHER_TO_ASSIGN_MANEVI_BASA_CIKMA)
+- satır 23, `example_quote_id`: Örnek alıntı ID'si placeholder görünüyor; kaynak alıntı kaydıyla doğrulanmalıdır. (RESEARCHER_TO_ASSIGN_SAGLIK_EKIBI_DESTEGI)
+- satır 25, `example_quote_id`: Örnek alıntı ID'si placeholder görünüyor; kaynak alıntı kaydıyla doğrulanmalıdır. (RESEARCHER_TO_ASSIGN_MANEVI_BASA_CIKMA)
 
 ## Öneriler
 

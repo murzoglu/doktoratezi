@@ -21,9 +21,18 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _common import read_event  # noqa: E402
 
-SENSITIVE_DATA_PATH = r"(\bdata/(raw|identified|cleaned|backup|processed)(/|\b)|\boutputs/|\b_targets(/|\b))"
+# --- Üç-katmanlı veri-yönetişimi (owner onaylı revizyon 2026-07-13) ---
+# Tier 1: PII/ön-temizlik kaynak dosyaları (isim, doğum tarihi, onam) — analiz
+# ASLA kullanmaz; her komut ailesi için hard-block kalır.
+PII_SOURCE_PATH = r"\bdata/(raw|identified|cleaned|backup)(/|\b)"
+# Tier 2: de-identified analiz yüzeyi (kanonik işlenmiş baz + aggregate çıktı +
+# targets store). De-identifikasyon Stage 1'de tamamlanır; owner onayıyla R/python
+# okuma+hesaplamasına AÇIKtır (bu yüzey artık interpreter/display kuralında yok).
+ANALYSIS_SURFACE_PATH = r"(\bdata/processed(/|\b)|\boutputs/|\b_targets(/|\b))"
+# Tier 3: herhangi bir çalışma verisi — yalnız exfiltrasyon (kopya/arşiv/encode)
+# kuralında kullanılır; de-identified olsa bile makineden dışarı taşınması kapalı.
+ANY_DATA_PATH = rf"({PII_SOURCE_PATH}|{ANALYSIS_SURFACE_PATH})"
 CREDENTIAL_PATH = r"(^|[\s'\"=])(\.env(?:\.[\w-]+)?|[^\s'\";|&]*(credentials|client_secret|dr-murzoglu-doktora\.json)[^\s'\";|&]*)"
-SENSITIVE_PATH = rf"({SENSITIVE_DATA_PATH}|{CREDENTIAL_PATH})"
 
 DENY_RULES = [
     (re.compile(r"\brm\s+-\w*[rf]\w*[rf]\w*\b[^|;&\n]*\s+(/[^\s]*|~|\*|\$HOME)(\s|$)"),
@@ -38,14 +47,14 @@ DENY_RULES = [
     (re.compile(r"\bchmod\s+(-R\s+)?777\b"), "World-writable (777) chmod"),
     (re.compile(r"\bgh\s+repo\s+delete\b"), "GitHub repo deletion"),
     (re.compile(r"\bgit\s+add\s+(\.|-A|--all)(\s|$)"), "Broad staging; stage files by name"),
-    (re.compile(rf"\b(cat|head|tail|less|more|sed|awk|grep|rg)\b[^|;&\n]*{SENSITIVE_DATA_PATH}", re.IGNORECASE),
-     "Direct shell display/search of sensitive study data"),
+    (re.compile(rf"\b(cat|head|tail|less|more|sed|awk|grep|rg)\b[^|;&\n]*{PII_SOURCE_PATH}", re.IGNORECASE),
+     "Direct shell display/search of PII source data (data/raw|identified|cleaned|backup)"),
     (re.compile(rf"\b(cat|head|tail|less|more|sed|awk|grep|rg)\b[^|;&\n]*{CREDENTIAL_PATH}", re.IGNORECASE),
      "Direct shell display/search of credentials or environment files"),
-    (re.compile(rf"\b(python3?|Rscript|R\s+-e|node|ruby|perl)\b[^|;&\n]*{SENSITIVE_PATH}", re.IGNORECASE),
-     "Interpreter command touches sensitive study data or credentials"),
-    (re.compile(rf"\b(cp|scp|rsync|tar|zip|7z|gzip|xz|base64)\b[^|;&\n]*{SENSITIVE_PATH}", re.IGNORECASE),
-     "Copy/archive/encode command touches sensitive study data or credentials"),
+    (re.compile(rf"\b(python3?|Rscript|R\s+-e|node|ruby|perl)\b[^|;&\n]*({PII_SOURCE_PATH}|{CREDENTIAL_PATH})", re.IGNORECASE),
+     "Interpreter command touches PII source data or credentials"),
+    (re.compile(rf"\b(cp|scp|rsync|tar|zip|7z|gzip|xz|base64)\b[^|;&\n]*({ANY_DATA_PATH}|{CREDENTIAL_PATH})", re.IGNORECASE),
+     "Copy/archive/encode of study data or credentials (exfiltration guard)"),
 ]
 
 
@@ -98,8 +107,9 @@ def main() -> None:
         if rule.search(command):
             deny(
                 f"Blocked by reliability policy: {reason}. "
-                "Satır-düzeyi veri bağlama dökülmez; analiz targets pipeline'ı "
-                "ve aggregate çıktılar üzerinden yürür."
+                "De-identified analiz bazı (data/processed, outputs, _targets) "
+                "R/python ile okuma+hesaplamaya açıktır; PII kaynak dosyaları, "
+                "credential'lar ve verinin dışa-kopyalanması kapalıdır."
             )
     sys.exit(0)  # allow
 

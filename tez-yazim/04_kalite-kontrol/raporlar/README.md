@@ -18,7 +18,7 @@ Denetimler **`sci-audit@cureonics-marketplace` plugin** üzerinden koşulur
 /sci-audit:check-turkish chapters/<bolum>.qmd --strictness certification
 
 # Deterministik CLI (rapor üretimi; plugin-bundled):
-SCIA="$(ls -d /home/mahirkurt/.claude/plugins/cache/cureonics-marketplace/sci-audit/*/ | sort -V | tail -1)"
+SCIA="$(ls -d $HOME/.claude/plugins/cache/cureonics-marketplace/sci-audit/*/ | sort -V | tail -1)"
 python3 "${SCIA}skills/turkish-sci-style/scripts/tr_sciaudit.py" chapters/<bolum>.qmd \
   --strictness certification --format md --fail-on error \
   --out tez-yazim/04_kalite-kontrol/raporlar/<bolum-kodu>-tr-sciaudit.md

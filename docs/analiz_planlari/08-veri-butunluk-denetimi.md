@@ -30,10 +30,8 @@ yeniden-türetme + yeniden-kilit (kanonik-değiştiren, PI onaylı) olarak §5't
 
 **Ham→final provenans farkları (kullanıcı raporu, denetim-dışı doğrulama gerektirir):** raw-final
 tarih farkı 19 ailede; 3 `dm_tani_tarihi` entegrasyonla tamamlandı; 2 eski-yıl kaydı temizlendi;
-HbA1c ham dosyada yok → klinik-kayıt entegrasyonuyla eklendi (→ B6/seçilim); 1 PII kolonu ham'da,
 çıktıya alınmadı.
 
-| B6 | HbA1c MNAR seçilim (klinik-temas göstergesiyle seçilmiş alt-örneklem) | 39/120 | GEÇERLİK-TEHDİDİ | ayrı: `07-...faz4` §134, Fisher OR=4,56 |
 
 ---
 
@@ -41,11 +39,9 @@ HbA1c ham dosyada yok → klinik-kayıt entegrasyonuyla eklendi (→ B6/seçilim
 
 - **Kimlik/yapı:** `aile_no` tekil (241); grup 120 DM / 121 Kontrol; long tam 2 satır/aile. ✓
 - **Likert aralıkları:** EMBU-P/C ∈ [1,4]; Beck ∈ [0,3]; SRQ ∈ [1,5] — **aralık ihlali YOK.** ✓
-- **HbA1c değer aralığı:** [5,8–15,1] — klinik olarak makul. ✓
 - **Komorbidite tutarlılığı:** `anne_hastalik_kategori_sayisi == Σ(14 flag)` **tüm ailelerde**. ✓
 - **Yaş makullüğü:** anne−çocuk yaş farkı hepsinde ≥15 (imkansız-genç-anne YOK); yaşlar makul
   aralıkta (çocuk 7–17, anne 27–52, kardeş 7–17). ✓
-- **Yapısal eksiklik doğru:** Kontrol'de `dm_yili`/`hba1c` DOLU olan **yok** (0); DM'de `dm_yili`
   NA olan yok. Yapısal-missing tasarım gereği temiz. ✓
 
 **Yorum:** Tutarsızlıklar **dar ve lokalize** (B1–B3 toplam ~9 aile-kayıt); ölçek verisi,
@@ -68,7 +64,6 @@ ama temizlik için maskelenmeli.
 |---|---|---|---|
 | R/55 (§16.7 maruziyet) | `dm_yili/cocuk_yas` oranı | ✅ **MASKELİ** (dm_yili>cocuk_yas dışlanır, `n_dislanan` raporlanır; §110.1) | Korunmuş |
 | R/27 (§12.5 DM alt-analiz) | `dm_yili_z` kovaryat | ❌ **MASKESİZ** | 5/120 kontaminasyon (biri negatif `tani_yasi`) |
-| R/40 (§12.5.1/§16.7 HbA1c) | `dm_yili_z`, `tani_yasi_z` | ❌ **MASKESİZ** | 5/120 + HbA1c MNAR (B6) çift-tehdit |
 | R/54 (§108 doğum sırası/sibship) | `sirasi`, `cocuk_sayisi` | ❌ maskesiz | B2 (2) + B3-hata (3) kontaminasyon |
 | R/12/R/21/R/31/R/04 | `dm_yili` (NMAR/rapor/türetim) | — | düşük öncelik (kovaryat/taşıma) |
 
@@ -76,16 +71,13 @@ ama temizlik için maskelenmeli.
 (`stopifnot(dm_yili<=cocuk_yas)` yok) → B1 `tani_yasi = cocuk_yas − dm_yili`'yi global olarak
 **negatif** üretir ve maskesiz modüllere sızar.
 
-### 3.3 HbA1c hattı: **çift-tehdit**
-B1 (maskesiz `dm_yili`) + B6 (MNAR seçilim). CSR §12.5.1/§16.7 HbA1c bulguları **iki** düzeltme
-gerektirir: mantık-maskesi + seçilim-uyarısı (bkz. `07-...faz4` §134).
+gerektirir: mantık-maskesi ve açık duyarlılık notu.
 
 ---
 
 ## 4. ÖZET: Etkinin Ağırlığı
 - **Tez ana iddiaları (H1–H5): güvende** — yalnız 2-aile `cocuk_sayisi` kovaryat teması, ihmal
   edilebilir.
-- **Etkilenen: keşifsel DM-klinik + sibship + HbA1c** (zaten `[KEŞİFSEL·İKİNCİL]`, düşük güç).
 - **Ölçek/psikometri/komorbidite/yapısal-missing: temiz.**
 - **§125 (Faz IV) infizibl** — `es_dogum_tarihi` %100 boş (B5).
 
@@ -96,7 +88,7 @@ gerektirir: mantık-maskesi + seçilim-uyarısı (bkz. `07-...faz4` §134).
 **Seçenek A — Belgeli mantık-maskesi / veri-kalite katmanı (ÖNERİLEN).**
 Yeni saf fonksiyon `data_quality_flags()` (R/55 maskesinin genellenmişi): (i) B1 `dm_yili>cocuk_yas`
 (5), (ii) B2 `cocuk_sayisi` tutarsız (2), (iii) B3 ikiz-olmayan aynı-sıra (3) bayrakları. R/27,
-R/40, R/54 bu bayrakla dışlama/duyarlılık uygular; birim testi + `outputs/tables/data_quality_*.csv`.
+R/54 bu bayrakla dışlama/duyarlılık uygular; birim testi + `outputs/tables/data_quality_*.csv`.
 **Kilit DEĞİŞMEZ.** Yalnız etkilenen keşifsel modüller yeniden koşar; H1–H5 yeniden-koşum GEREKMEZ.
 Sapma tipi: **Tip 2** (analitik işleme). — *En orantılı; standart pratik (kilitli veri elle
 düzeltilmez, maskelenir/belgelenir).*
@@ -110,7 +102,6 @@ confirmatory'yi yalnız 2-aile kovaryat etkiler; pristine veri PI tercihiyse yap
 **Seçenek C — Hibrit.** Şimdi maske (A) ile analizleri koru; genuine hücreleri bir sonraki
 planlı veri-sürümü için `08-...denetimi` kayıt-defterinde biriktir; toplu re-lock ileride.
 
-**B5 (baba yaşı) ve B6 (HbA1c seçilim) hiçbir maskeyle çözülmez** — B5 provenans-boşluğu (kabul
 edilir sınır), B6 seçilim-uyarısı olarak raporlanır.
 
 ---

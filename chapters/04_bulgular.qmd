@@ -1,26 +1,23 @@
 # BULGULAR
 
-Bu bölüm, çalışmanın nicel (H1–H5 birincil hipotezler ile genişletilmiş keşifsel
-katmanlar) ve nitel (dört makro tema) kollarının bulgularını, amaç ve hipotez
-sırasına uygun biçimde, **yorumsuz** olarak sunar. Yorum, literatür karşılaştırması
-ve karma bütünleştirme dili *Tartışma ve Sonuç* bölümüne bırakılmıştır. Ondalık
-değerler virgülle yazılmış; tanımlayıcılarda bir, test istatistiği ve oranlarda iki,
-`p` değerlerinde üç ondalık basamak kullanılmıştır. Etki büyüklükleri %95 güven
-aralığı (GA) veya Bayesçi %95 güvenilir aralık ile birlikte verilmiştir. Birincil
-hipotez ailelerinde (H1–H4) çoklu karşılaştırma için Benjamini-Hochberg yanlış
-keşif oranı (FDR) düzeltmesi uygulanmıştır. Sayısal bulguların tümü repo aggregate
-çıktılarına (`outputs/tables/apa_t*.csv`) izlenebilir; satır düzeyi veri veya
-kimliklenebilir bilgi raporlanmamıştır.
+Tip 1 diyabetin aile deneyimine yansıması, birbirini tamamlayan iki kanıt
+katmanında incelenmiştir: annenin, tanılı çocuğun ve sağlıklı kardeşin ölçeklerle
+raporladığı ebeveynlik, depresif belirti ve kardeş ilişkisi örüntüleri ile aynı
+ailelerin görüşmelerde dile getirdiği deneyim çerçeveleri. Etki büyüklükleri %95
+güven aralığı (GA) veya Bayesçi %95 güvenilir aralık ile birlikte verilmiş; birincil
+hipotez ailelerinde (H1–H4) çoklu karşılaştırma için Benjamini-Hochberg yanlış-keşif
+oranı (FDR) düzeltmesi [@benjaminiHochberg1995fdr] uygulanmıştır.
 
 <!--
 BÖLÜM MİMARİSİ (dedup / kaynak notu):
-- Katsayı/parametre tahminleri tek gösterimle raporlanır: "APA Tablo Seti"
-  (apa_t01–t22) kanonik tablo kaydıdır. Bu nedenle katsayı-forest ve yol
-  şekilleri (eski fig-07/08/09/10/11/24/25) çıkarılmış; anlatı, tabloya numarayla
-  atıf yapar. Görsel-özgü bilgi taşıyan şekiller (dağılım, yüzey, eğri, ağ, denge)
-  korunmuştur (Marmara §1.6/1.7 "aynı bulgu hem tablo hem şekil değil").
-- Nicel sayı kaynağı: docs/CLINICAL-STUDY-REPORT-FINAL.md §9–14.
-- Nitel kaynak: docs/niteliksel/qualitative_canonical_results_report.md §7–10.
+- Katsayı/parametre tahminleri tek gösterimle raporlanır: 22 kanonik APA tablosu
+  (apa_t01–t22) konu edildikleri alt bölümlere dağıtılmıştır (Marmara §3.6). Katsayı-
+  forest ve yol şekilleri (eski fig-07/08/09/10/11/14/24/25) çıkarılmış; anlatı tabloya
+  numarayla atıf yapar. Görsel-özgü bilgi taşıyan şekiller (dağılım, yüzey, eğri, ağ,
+  denge, taban, kalibrasyon) korunmuştur (Marmara §1.6/1.7 "aynı bulgu hem tablo hem
+  şekil değil").
+- Nicel sayı kaynağı: docs/CLINICAL-STUDY-REPORT-FINAL.qmd §9–16.
+- Nitel kaynak: niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd.
 - Kural otoritesi: tez-yazim/00_kaynak-kurallari/marmara-tez-formati-talimatnamesi.md
   (§7 nitel, §8 istatistik, §12 sayısal biçim), tez-yazim/03_bolum-hazirlik/04_bulgular.md.
 -->
@@ -28,9 +25,157 @@ BÖLÜM MİMARİSİ (dedup / kaynak notu):
 ```{r}
 #| label: apa-table-helpers
 #| include: false
+# Proje kökünü yalnız cwd'ye güvenmeden, _quarto.yml'yi yukarı doğru arayarak
+# çözer; execute-dir: project yanında ikinci güvence olarak bölüm-izole ve
+# etkileşimli koşumda da outputs/tables yolunu köke sabitler.
+.apa_project_root <- local({
+  d <- normalizePath(getwd(), winslash = "/", mustWork = FALSE)
+  while (!file.exists(file.path(d, "_quarto.yml")) && dirname(d) != d) d <- dirname(d)
+  d
+})
 apa_read_table <- function(id) {
-  path <- file.path("outputs", "tables", paste0("apa_", id, ".csv"))
+  path <- file.path(.apa_project_root, "outputs", "tables", paste0("apa_", id, ".csv"))
   utils::read.csv(path, check.names = FALSE, fileEncoding = "UTF-8")
+}
+
+# apa_ ontaki olmayan turetilmis tablolari (or. Bayes onsel duyarliligi) okur.
+apa_read_raw_table <- function(name) {
+  path <- file.path(.apa_project_root, "outputs", "tables", paste0(name, ".csv"))
+  if (!file.exists(path)) return(NULL)
+  utils::read.csv(path, check.names = FALSE, fileEncoding = "UTF-8")
+}
+
+# Guvenirlik-genellemesi (bifactor S-1) hiyerarsik omega / ECV degerlerini
+# kanonik metrik ozetinden okur; deger gomulmez (kaynak-tekilligi, K5-LIT).
+# domain: "EMBU-P" / "EMBU-C" / "Beck"; metric: "omega_h" / "ecv".
+apa_omega_value <- function(domain, metric = c("omega_h", "ecv")) {
+  metric <- match.arg(metric)
+  d <- apa_read_raw_table("phase2_omegah_metrics_summary")
+  if (is.null(d) || nrow(d) == 0L) return("")
+  row <- d[d$domain == domain, , drop = FALSE]
+  if (nrow(row) == 0L) return("")
+  apa_tr_decimal(sprintf("%.2f", as.numeric(row[[metric]][1])))
+}
+
+# Aracilik anlatisindaki katsayi/p degerlerini kanonik APA aracilik tablosundan
+# okur (kaynak-tekilligi; Denetim #19: metin ve tablo ayni surumden). Deger
+# gomulmez. Model/parametre eslesmesinden tek satir cekip bicimlenmis metin uretir.
+apa_mediation_value <- function(model, param, field = c("est", "p", "ci")) {
+  field <- match.arg(field)
+  d <- apa_read_raw_table("apa_t14_mediation")
+  if (is.null(d) || nrow(d) == 0L) return("")
+  row <- d[d$Model == model & d$Parametre == param, , drop = FALSE]
+  if (nrow(row) == 0L) return("")
+  if (field == "est") return(apa_tr_decimal(sprintf("%.4f", as.numeric(row$Tahmin[1]))))
+  if (field == "ci")  return(apa_tr_decimal(as.character(row$GA95[1])))
+  # p: tabloda ".020" / "<.001" gibi; Turkce ondalik + basina 0
+  apa_tr_decimal(as.character(row$p[1]))
+}
+
+# Tani yasi strata analizinde en yuksek F degerini ve ona ait p'yi kanonik DM
+# klinik tablosundan okur (Denetim #23: metin p ile tablo p ayni surumden).
+apa_tani_strata_maxF <- function(field = c("F", "p")) {
+  field <- match.arg(field)
+  d <- apa_read_raw_table("apa_t18_dm_clinical")
+  if (is.null(d) || nrow(d) == 0L) return("")
+  s <- d[d$Analiz == "Tanı yaşı strata", , drop = FALSE]
+  if (nrow(s) == 0L) return("")
+  fval <- as.numeric(sub(".*F=([0-9.]+).*", "\\1", s$Deger))
+  i <- which.max(fval)
+  if (field == "F") return(apa_tr_decimal(sprintf("%.2f", fval[i])))
+  apa_tr_decimal(as.character(s$p[i]))
+}
+
+# Klinik eszamanli siniflandirma modeli performans/kalibrasyon degerlerini
+# CSV artefaktindan okur; deger gomulmez (kaynak-tekilligi, P1-13).
+apa_clinical_perf <- function(which = "full") {
+  name <- if (which == "full") "clinical_full_performance" else "clinical_base_performance"
+  d <- apa_read_raw_table(name)
+  if (is.null(d) || nrow(d) == 0L) return(NULL)
+  d[1, , drop = FALSE]
+}
+# P1-14: H1 reddetme etkisinin anne-yasi-ayarli (extended) multiverse kolunda
+# korunup korunmadigini CSV'den okur; deger gomulmez.
+apa_h1_extended_sensitivity_sentence <- function() {
+  d <- apa_read_raw_table("phase2_multi_h1_spec_results")
+  if (is.null(d) || !"covariate_set" %in% names(d)) return("")
+  rj <- d[grepl("reddet", d$outcome_subscale, ignore.case = TRUE) &
+          d$status == "ok" & d$covariate_set == "extended", , drop = FALSE]
+  if (nrow(rj) == 0L) return("")
+  n2 <- function(x) apa_tr_decimal(sprintf("%.2f", as.numeric(x)))
+  p_med <- stats::median(rj$group_dm_p, na.rm = TRUE)
+  p_txt <- if (p_med < 0.001) "p < 0,001" else paste0("p = ", apa_tr_decimal(sprintf("%.3f", p_med)))
+  paste0(
+    "Anne yaşı ve anne depresif belirti düzeyi eklenmiş *genişletilmiş* kovaryat ",
+    "kolunda (P1-14 duyarlılığı) reddetme etkisi korunmuş; bu koldaki ",
+    nrow(rj), " spesifikasyonda medyan β = ", n2(stats::median(rj$group_dm_estimate, na.rm = TRUE)),
+    " ve medyan ", p_txt, " düzeyindedir. Bu, H1 çocuk-reddetme sonucunun anne yaşı ",
+    "ayarına duyarsız olduğunu gösterir."
+  )
+}
+apa_clinical_auc_sentence <- function() {
+  b <- apa_clinical_perf("base"); f <- apa_clinical_perf("full")
+  if (is.null(b) || is.null(f)) return("AUC değerleri üretilememiştir.")
+  n2 <- function(x) apa_tr_decimal(sprintf("%.2f", as.numeric(x)))
+  paste0(
+    "temel modelde görünür (apparent) AUC = ", n2(b$auc),
+    " (%95 GA [", n2(b$auc_ci_lo), "; ", n2(b$auc_ci_hi),
+    "]; optimizm-düzeltilmiş ", n2(b$auc_corrected),
+    "), genişletilmiş modelde görünür AUC = ", n2(f$auc),
+    " (%95 GA [", n2(f$auc_ci_lo), "; ", n2(f$auc_ci_hi),
+    "]; optimizm-düzeltilmiş ", n2(f$auc_corrected), ") bulunmuştur."
+  )
+}
+apa_clinical_calibration_sentence <- function() {
+  f <- apa_clinical_perf("full")
+  if (is.null(f)) return("kalibrasyon eğrisi kabul edilebilir profil göstermiştir")
+  n2 <- function(x) apa_tr_decimal(sprintf("%.2f", as.numeric(x)))
+  slope_lo <- as.numeric(f$cal_slope_corr_lo)
+  slope_hi <- as.numeric(f$cal_slope_corr_hi)
+  ci_includes_one <- is.finite(slope_lo) && is.finite(slope_hi) &&
+    slope_lo <= 1 && slope_hi >= 1
+  tail_txt <- if (ci_includes_one) {
+    paste0("; düzeltilmiş eğimin nokta kestirimi 1'in altında olmakla birlikte ",
+           "%95 güven aralığı 1'i içermekte, dolayısıyla iç-validasyonda beklenen ",
+           "hafif aşırı-uyum eğilimiyle uyumlu olsa da ideal kalibrasyondan ",
+           "istatistiksel olarak ayırt edilememektedir")
+  } else {
+    paste0("; düzeltilmiş eğimin 1'in altına çekilmesi ve %95 güven aralığının ",
+           "1'i içermemesi iç-validasyonda beklenen aşırı-uyum kaynaklı ",
+           "kalibrasyon bozulmasını yansıtır")
+  }
+  paste0(
+    "kalibrasyon, genişletilmiş modelde görünür (apparent) eğim = ",
+    n2(f$cal_slope_apparent), " ve sabit = ", n2(f$cal_intercept_apparent),
+    "; optimizm-düzeltilmiş eğim = ", n2(f$cal_slope_corrected),
+    " (%95 GA [", n2(f$cal_slope_corr_lo), "; ", n2(f$cal_slope_corr_hi), "]) ve ",
+    "optimizm-düzeltilmiş sabit = ", n2(f$cal_intercept_corrected),
+    " (%95 GA [", n2(f$cal_intercept_corr_lo), "; ", n2(f$cal_intercept_corr_hi),
+    "]) düzeyindedir (ideal: eğim = 1, sabit = 0)",
+    tail_txt
+  )
+}
+
+# H1 reddetme BF onsel-genislik duyarlilik degerlerini artefakttan cumleye
+# ceviren yardimci; deger gomulmez, CSV'den okunur (kaynak-tekilligi).
+apa_bf_prior_sensitivity_sentence <- function() {
+  d <- apa_read_raw_table("bayes_h1_prior_sensitivity")
+  if (is.null(d) || nrow(d) == 0L) return("")
+  d <- d[order(d$prior_sd), , drop = FALSE]
+  parts <- sprintf("standart sapma = %s için BF₁₀ = %s",
+                   apa_tr_decimal(sprintf("%.2f", d$prior_sd)),
+                   apa_tr_decimal(sprintf("%.2f", d$bf10)))
+  paste0("Önsel genişliği duyarlılık analizinde H1 reddetme modeli, önsel ",
+         "standart sapması 0,25, 0,50 ve 1,00 değerlerinde yeniden tahmin ",
+         "edilmiştir (", paste(parts, collapse = "; "),
+         "); böylece kanıtın büyüklüğü önsel genişliğine duyarlı olmakla ",
+         "birlikte üç önsel altında da H1 lehine kalmıştır. Posterior ortalama ",
+         "nokta kestirimi (kanonik önsel SS = 0,50) yaklaşık b = ",
+         apa_tr_decimal(sprintf("%.2f", {
+           .sel <- d$estimate[abs(d$prior_sd - 0.5) < 1e-9]
+           if (length(.sel)) .sel[1] else stats::median(d$estimate)
+         })),
+         " ölçek puanı düzeyinde korunmuştur.")
 }
 
 # Ondalık ayırıcıyı Türkçe biçime çevirir (Marmara §1.4 / §12: ondalık virgül,
@@ -43,540 +188,1386 @@ apa_tr_decimal <- function(x) {
   gsub("(?<![0-9])\\.(?=[0-9])", "0,", x, perl = TRUE)
 }
 
-apa_render_table <- function(id) {
+# Saf makine kimlik-kodlarını (yalnız harf/rakam/alt-çizgi; boşluk ve matematik
+# simgesi içermez, en az iki alt-çizgi) okunur etikete çevirir: alt-çizgi ->
+# boşluk. Bu, `p{}` kolonlarının kıramadığı uzun boşluksuz kodların (ör.
+# "dm_only_high_missing_sensitivity") sayfa kenarına taşmasını önler. İstatistik
+# hücreleri (ör. "eta_p=0,033") ve kısa iki-parçalı başlıklar (ör. "SMD_once")
+# korunur; yalnız sunum katmanını etkiler, aggregate CSV'lere dokunmaz.
+apa_humanize_code <- function(x) {
+  x <- as.character(x)
+  saf_kod <- grepl("^[A-Za-z][A-Za-z0-9]*(_[A-Za-z0-9]+){2,}$", x)
+  x[saf_kod] <- gsub("_", " ", x[saf_kod])
+  x
+}
+
+# Tablo basliklarini (kolon adlari) okuyucu-yuzlu Turkce etikete cevirir
+# (denetim P1-5: SMD_once, Posterior_ortalama, Rhat_max gibi teknik/snake_case
+# basliklar kalmamali). Yalniz sunum katmanini etkiler; kanonik CSV'lere
+# dokunmaz. Sozlukte olmayan basliklar apa_humanize_code'a duser.
+apa_header_label <- function(x) {
+  map <- c(
+    Degisken = "Değişken", Terim = "Terim", Bolum = "Bölüm", Blok = "Blok",
+    Model = "Model", Sonuc = "Sonuç", Hipotez = "Hipotez", Grup = "Grup",
+    Katman = "Katman", Metrik = "Metrik", Parametre = "Parametre",
+    Kaynak = "Kaynak", Olcek = "Ölçek", Olcut = "Ölçüt", Analiz = "Analiz",
+    Bilesen = "Bileşen", Denge = "Denge", Eksik = "Eksik", Toplam = "Toplam",
+    Ek = "Ek", Aralik = "Aralık", Deger = "Değer", Min = "Min", Maks = "Maks",
+    Tip = "Tip", Not = "Not", Oneri = "Öneri", Karar = "Karar",
+    Strateji = "Strateji", Kanit = "Kanıt", Tahmin = "Tahmin",
+    Ortalama = "Ortalama",
+    # Snake_case / teknik basliklar
+    SMD_once = "SMD (öncesi)", SMD_IPTW = "SMD (IPTW)",
+    SMD_matching = "SMD (eşleştirme)", IPTW_karar = "IPTW kararı",
+    Analitik_payda = "Analitik payda", Analitik_eksik = "Analitik eksik (n)",
+    Analitik_eksik_yuzde = "Analitik eksik (%)", Yapisal_eksik = "Yapısal eksik",
+    OR_GA95 = "OR [%95 GA]", GA95 = "%95 GA", CrI95 = "%95 GA (Bayesçi)",
+    Fark_GA95 = "Fark [%95 GA]", Hedges_g_GA95 = "Hedges g [%95 GA]",
+    DM_ort = "DM ort.", Kontrol_ort = "Kontrol ort.",
+    Posterior_ortalama = "Posterior ortalama", ROPE_yuzde = "ROPE içi (%)",
+    Rhat_max = "R\u0302 (maks.)", ESS_min_oran = "ESS min oranı",
+    Divergent = "Iraksayan (n)", BLRT_p = "BLRT p", p_FDR = "p (FDR)",
+    q_FDR = "q (FDR)", BF10 = "BF\u2081\u2080", Entropy = "Entropi",
+    # H4 cok-grup degismezlik (t12b) basliklari
+    Duzey = "D\u00fczey", ChiSq = "\u03c7\u00b2", dCFI = "\u0394CFI", dRMSEA = "\u0394RMSEA",
+    Ana_bulgu = "Ana bulgu", Yorum_siniri = "Yorum sınırı",
+    pd = "pd", p = "p", n = "n", q = "q", BIC = "BIC", SMD = "SMD",
+    SS = "SS", DM = "DM", Kontrol = "Kontrol", Beta = "Beta"
+  )
+  out <- as.character(x)
+  idx <- out %in% names(map)
+  out[idx] <- unname(map[out[idx]])
+  # Sozlukte olmayan ve hala snake_case olan basliklari yumusat
+  out[!idx] <- apa_humanize_code(out[!idx])
+  out
+}
+
+# Sunum-katmani tablo renderer. Kanonik CSV'yi okur; sayilari/basliklari
+# okunur-hale getirir. Iki opsiyonel sunum yetenegi (yalniz gorsel; CSV'ye
+# dokunmaz, denetim degeri degismez):
+#   group_col: bu kolonun degerleri gt satir-gruplarina cevrilir ve kolon
+#     govdeden kaldirilir. Uzun/cok-katmanli tablolar (or. T13'un alti
+#     stratejisi) tek blok yerine okunur alt-basliklara ayrilir.
+#   hide_cols: bu kolonlar govdeden dusurulur ( or. ileri tanilama kolonlari);
+#     bilgi kaybi olmamasi icin genelde tbl-cap/dipnotta ozetlenir.
+#   split_prefix: ilk kolondaki "Grup: Alt-deger" bicimli etiketleri iki-parcaya
+#     ayirir; "Grup" satir-baslgi, "Alt-deger" ise ilk kolonda kalir. Iki nokta
+#     tasimayan etiketler kendi basina bir grup olur. T01 gibi cok-kategorili
+#     ozet tablolarini okunur alt-bloklara ayirir. group_col ile birlikte
+#     kullanilmaz.
+apa_render_table <- function(id, group_col = NULL, hide_cols = NULL,
+                             split_prefix = FALSE) {
   table <- apa_read_table(id)
   table[] <- lapply(table, apa_tr_decimal)
+  table[] <- lapply(table, apa_humanize_code)
+
+  # Ham (etiketlenmemis) kolon adlariyla esle; group_col/hide_cols ham ada gore.
+  raw_names <- names(table)
+  if (!is.null(hide_cols)) {
+    drop_idx <- raw_names %in% hide_cols
+    table <- table[, !drop_idx, drop = FALSE]
+    raw_names <- names(table)
+  }
+  grp_vals <- NULL
+  if (!is.null(group_col) && group_col %in% raw_names) {
+    grp_vals <- as.character(table[[group_col]])
+    table <- table[, setdiff(raw_names, group_col), drop = FALSE]
+  } else if (isTRUE(split_prefix) && ncol(table) >= 1) {
+    # Ilk kolonu "Grup: Alt" olarak ayir. Iki-nokta yoksa etiketin tamami hem
+    # grup hem satir olur (tek-satirlik grup). Grup sirasi ilk gorulme sirasi.
+    lab <- as.character(table[[1]])
+    has_colon <- grepl(":", lab, fixed = TRUE)
+    grp_vals <- ifelse(has_colon, sub(":.*$", "", lab), lab)
+    sub_vals <- ifelse(has_colon, trimws(sub("^[^:]*:", "", lab)), lab)
+    table[[1]] <- sub_vals
+  }
+
+  names(table) <- apa_header_label(names(table))
   if (requireNamespace("gt", quietly = TRUE)) {
-    gt::gt(table) |>
+    n <- ncol(table)
+    if (!is.null(grp_vals)) {
+      # Satir-gruplarini kaynak siralamasini koruyarak uygula (factor: gorunum
+      # sirasi = ilk gorulme sirasi). tab_row_group ters yiginladigindan
+      # gruplari ters gezip basa ekleriz; boylece nihai sira CSV ile ozdes kalir.
+      table[["__grp__"]] <- factor(grp_vals, levels = unique(grp_vals))
+      gt_tbl <- gt::gt(table, groupname_col = "__grp__", row_group_as_column = FALSE)
+    } else {
+      gt_tbl <- gt::gt(table)
+    }
+    gt_tbl <- gt_tbl |>
       gt::tab_options(
         table.font.size = gt::px(10),
         data_row.padding = gt::px(3),
-        heading.align = "left"
+        heading.align = "left",
+        row_group.font.weight = "bold",
+        # LaTeX'te tabloları longtable ortamında üret: float `table` sayfa-kırılamaz
+        # ve uzun tablolar (ör. Tablo 4.1 örneklem, ~116 satır) sayfa sonunda
+        # kesilir. longtable sayfalar arası bölünür ve başlık her sayfada tekrarlar.
+        latex.use_longtable = TRUE
       )
+    # Kolonlara oransal genişlik ata: ilk kolon (etiket) 2 birim, kalan sayısal
+    # kolonlar 1'er birim. Bu, gt LaTeX çıktısında sabit `l/r` yerine sarmalayan
+    # `p{...\linewidth}` kolonları üretir; uzun hücreler sayfa kenarına taşmak
+    # yerine alt satıra kırılır (Marmara §1 kenar boşlukları korunur). Yüzdeler
+    # tam sayı olmalı (gt as_latex kesirli pct'te hata verir) → floor kullanılır.
+    if (n >= 2) {
+      birim <- c(2, rep(1, n - 1))
+      pct <- floor(birim / sum(birim) * 100)
+      fmlalar <- lapply(seq_len(n), function(i) {
+        stats::as.formula(sprintf("%d ~ gt::pct(%d)", i, pct[i]))
+      })
+      gt_tbl <- do.call(gt::cols_width, c(list(gt_tbl), fmlalar))
+    }
+    gt_tbl
   } else {
+    if (!is.null(grp_vals)) table <- cbind(Grup = grp_vals, table)
     knitr::kable(table)
   }
 }
+
+# --- Ag merkeziyet (havuzlanmis) — kaynak-tekilligi (Denetim P0-3 + #11) -------
+# Denetim #11: anlati onceden phase2_xinfo_centrality (capraz-bildirimli EMBU-C
+# agi) okuyordu; oysa bu bolum ve @tbl-apa-network 9-degiskenli ana EBIC-LASSO
+# agini (4 EMBU-P + 4 SRQ + Beck) tanimlar. Anlati artik Tablo 16 ile ayni
+# kaynaktan (apa_t16_network) okur; boylece metin, tablo ve sekil ozdes siralar.
+apa_network_top_strength_sentence <- function(top = 3L) {
+  d <- apa_read_raw_table("apa_t16_network")
+  if (is.null(d) || nrow(d) == 0L) return("")
+  d <- d[grepl("Merkeziyet", d$Bolum) & d$Olcut == "Strength", , drop = FALSE]
+  if (nrow(d) == 0L) return("")
+  d$.deger <- suppressWarnings(as.numeric(gsub(",", ".", d$Deger)))
+  d <- d[order(d$.deger, decreasing = TRUE), , drop = FALSE]
+  d <- d[seq_len(min(nrow(d), top)), , drop = FALSE]
+  parts <- sprintf("%s (%s)", d$Degisken, apa_tr_decimal(sprintf("%.2f", d$.deger)))
+  paste0("Havuzlanmış ağda en yüksek strength merkeziyeti ",
+         paste(parts, collapse = ", "),
+         " düğümlerinde gözlenmiştir; beklenen etki (expected influence) sıralaması ",
+         "@tbl-apa-network içinde ayrıca raporlanmıştır.")
+}
+
+# --- NCT permutasyon + p degerleri — kaynak-tekilligi (Denetim P1) ------------
+# Permutasyon sayisi ve invaryans p-degerleri permutasyon-bagimlidir; n_perm
+# degisince stale kalmamalari icin anlati Tablo 16 (apa_t16_network) NCT
+# satirlarindan okur. Gomulu literal p/perm URETILMEZ.
+apa_network_nct_sentence <- function() {
+  d <- apa_read_raw_table("apa_t16_network")
+  if (is.null(d) || nrow(d) == 0L) return("")
+  nct <- d[d$Bolum == "NCT", , drop = FALSE]
+  if (nrow(nct) == 0L) return("")
+  perm <- sub("^perm=", "", nct$Ek[1])
+  gs   <- nct[nct$Olcut == "S", , drop = FALSE]
+  ni   <- nct[nct$Olcut == "M", , drop = FALSE]
+  fmt_p <- function(x) {
+    x <- trimws(x)
+    if (!nzchar(x)) return("")
+    if (grepl("^<", x)) paste0("p ", x) else paste0("p = ", apa_tr_decimal(x))
+  }
+  gs_p <- if (nrow(gs)) fmt_p(gs$p[1]) else ""
+  ni_p <- if (nrow(ni)) fmt_p(ni$p[1]) else ""
+  paste0("Ağ Karşılaştırma Testi (", perm, " permütasyon) DM (n = 117) ve ",
+         "kontrol (n = 121) ağları arasında global strength invaryans ", gs_p,
+         " ve network invaryans ", ni_p, " değerlerini vermiş; DM ve kontrol ",
+         "ağlarının anlamlı düzeyde ayrışmadığı @fig-network-nct içinde gösterilmiştir.")
+}
+
+# --- Ag kararliligi (bootnet CS-katsayisi) — kaynak-tekilligi (Denetim P1) -----
+# Case-dropping bootstrap kararlilik katsayisi Tablo 16 (apa_t16_network)
+# "Kararlilik (CS)" satirlarindan okunur; gomulu literal URETILMEZ. Bos ise ""
+# doner ve anlati sessiz kalir.
+apa_network_stability_sentence <- function() {
+  d <- apa_read_raw_table("apa_t16_network")
+  if (is.null(d) || nrow(d) == 0L) return("")
+  st <- d[grepl("Kararl", d$Bolum), , drop = FALSE]
+  if (nrow(st) == 0L) return("")
+  boot <- sub("^boot=", "", st$Ek[1])
+  s_val  <- st$Deger[st$Degisken == "Strength"]
+  ei_val <- st$Deger[st$Degisken == "Expected influence"]
+  s_val  <- if (length(s_val))  apa_tr_decimal(trimws(s_val[1]))  else ""
+  ei_val <- if (length(ei_val)) apa_tr_decimal(trimws(ei_val[1])) else ""
+  paste0("Merkeziyet kestirimlerinin örnekleme dayanıklılığı case-dropping ",
+         "bootstrap (", boot, " yineleme) ile değerlendirilmiş; korelasyon ",
+         "kararlılık katsayısı strength için CS(0,7) = ", s_val,
+         " ve beklenen etki için CS(0,7) = ", ei_val,
+         " düzeyindedir (yorum eşikleri: ≥ 0,25 minimum, ≥ 0,50 tercih edilen; ",
+         "@epskamp2018network).")
+}
+
+# --- LPA profil secim ozeti — kaynak-tekilligi (Denetim P0-2) -----------------
+# Kanonik APA LPA tablosundan okur; secim tek parsimoni kuralina (Raftery dBIC<=2)
+# baglidir. "BIC minimumu 3-profil" gibi tabloyla celisen ifade URETILMEZ.
+apa_lpa_selection_sentence <- function() {
+  d <- apa_read_raw_table("apa_t15_lpa_bifactor")
+  if (is.null(d) || nrow(d) == 0L) return("")
+  lpa <- d[d$Bolum == "LPA" & grepl("profil", d$Model), , drop = FALSE]
+  if (nrow(lpa) < 2L) return("")
+  bic <- suppressWarnings(as.numeric(gsub(",", ".", lpa$BIC)))
+  ent <- suppressWarnings(as.numeric(gsub(",", ".", lpa$Entropy)))
+  blrt <- suppressWarnings(as.numeric(gsub(",", ".", lpa$BLRT_p)))
+  nprof <- suppressWarnings(as.integer(gsub("\\D", "", lpa$Model)))
+  min_idx <- which.min(bic)
+  min_n <- nprof[min_idx]; min_bic <- bic[min_idx]
+  sel_idx <- which(trimws(lpa$Karar) != "")
+  sel_n <- if (length(sel_idx)) nprof[sel_idx[1]] else 3L
+  sel_row <- if (length(sel_idx)) sel_idx[1] else which(nprof == sel_n)[1]
+  sel_bic <- bic[sel_row]
+  dbic <- abs(min_bic - sel_bic)
+  ent_min <- ent[min_idx]; ent_sel <- ent[sel_row]; blrt_min <- blrt[min_idx]
+  # Yon-mantigi: sayisal en iyi cozum ile sunulan cozum ayrilir; secim
+  # belirsizligi acikca yazilir (asiri-iddia denetimi). Entropi/BLRT dinamik okunur.
+  paste0("BIC say\u0131sal minimumu ", min_n, "-profil \u00e7\u00f6z\u00fcm\u00fcndedir (BIC = ",
+         apa_tr_decimal(sprintf("%.1f", min_bic)), "); bu \u00e7\u00f6z\u00fcm ", sel_n,
+         "-profile k\u0131yasla marjinal olarak daha d\u00fc\u015f\u00fck BIC, hafif\u00e7e daha y\u00fcksek entropi (",
+         apa_tr_decimal(sprintf("%.2f", ent_min)), "\u2019e kar\u015f\u0131 ",
+         apa_tr_decimal(sprintf("%.2f", ent_sel)),
+         ") ve anlaml\u0131 bir olabilirlik-oran\u0131 s\u0131namas\u0131 (BLRT p = ",
+         apa_tr_decimal(sprintf("%.3f", blrt_min)),
+         ") vermektedir. Ancak iki \u00e7\u00f6z\u00fcm aras\u0131ndaki BIC fark\u0131 Raftery [-@raftery1995bayesian] ",
+         "\u0394BIC \u2264 2 parsimoni e\u015fi\u011finde kalmaktad\u0131r (\u0394BIC \u2248 ",
+         apa_tr_decimal(sprintf("%.1f", dbic)), "); model se\u00e7imi bu nedenle ", sel_n,
+         " ile ", min_n, " profil aras\u0131nda belirsizdir. Parsimoni, yorumlanabilirlik ve ",
+         "\u00fcst \u00fcste binmeyen profiller gerek\u00e7esiyle ke\u015fifsel sunum i\u00e7in ", sel_n,
+         "-profil \u00e7\u00f6z\u00fcm\u00fc benimsenmi\u015ftir. Bu \u00e7\u00f6z\u00fcm kesin bir se\u00e7ilmi\u015f tipoloji de\u011fil, ",
+         min_n, " ile ", sel_n,
+         " profil aras\u0131nda model-se\u00e7im belirsizli\u011fi ta\u015f\u0131yan, parsimoniye dayal\u0131 ke\u015fifsel sunum \u00e7\u00f6z\u00fcm\u00fc olarak yorumlanmal\u0131d\u0131r.")
+}
+
+# B1-quant: parsimoni penceresindeki cozumler (3 ve 4 profil) icin sinif
+# buyuklukleri (n/%), ortalama posterior atama kesinligi ve siniflandirma hatasini
+# lpa_profile_report artefaktindan okur (kaynak-tekilligi; deger gomulmez).
+apa_lpa_profile_report_sentence <- function() {
+  d <- apa_read_raw_table("lpa_profile_report")
+  if (is.null(d) || nrow(d) == 0L) return("")
+  d$n_profiles <- suppressWarnings(as.integer(d$n_profiles))
+  d$class_id <- suppressWarnings(as.integer(d$class_id))
+  d$class_n <- suppressWarnings(as.integer(d$class_n))
+  d$class_pct <- suppressWarnings(as.numeric(d$class_pct))
+  d$overall_mean_posterior <- suppressWarnings(as.numeric(d$overall_mean_posterior))
+  d$classification_error <- suppressWarnings(as.numeric(d$classification_error))
+  ns <- sort(unique(d$n_profiles))
+  parts <- vapply(ns, function(n) {
+    s <- d[d$n_profiles == n, , drop = FALSE]
+    s <- s[order(s$class_id), , drop = FALSE]
+    sizes <- paste0(sprintf("%d", s$class_n), " (%",
+                    apa_tr_decimal(sprintf("%.1f", s$class_pct * 100)), ")",
+                    collapse = "; ")
+    op <- apa_tr_decimal(sprintf("%.2f", s$overall_mean_posterior[1]))
+    ce <- apa_tr_decimal(sprintf("%.2f", s$classification_error[1]))
+    paste0(n, "-profil \u00e7\u00f6z\u00fcm\u00fcnde s\u0131n\u0131f b\u00fcy\u00fckl\u00fckleri n = ", sizes,
+           " (en k\u00fc\u00e7\u00fck s\u0131n\u0131f n = ", min(s$class_n),
+           "); ortalama atama-sonras\u0131 olas\u0131l\u0131k ", op,
+           " ve s\u0131n\u0131fland\u0131rma hatas\u0131 ", ce)
+  }, character(1))
+  paste0("Parsimoni penceresindeki \u00e7\u00f6z\u00fcmlerin s\u0131n\u0131f ve atama tan\u0131lar\u0131 \u015f\u00f6yledir: ",
+         paste(parts, collapse = ". "), ". Bu tan\u0131lar, iki \u00e7\u00f6z\u00fcm aras\u0131ndaki ",
+         "model-se\u00e7im belirsizli\u011finin s\u0131n\u0131f b\u00fcy\u00fckl\u00fc\u011f\u00fc ve atama kesinli\u011fi d\u00fczleminde ",
+         "de\u011ferlendirilmesine olanak tan\u0131r.")
+}
+
 ```
 
 ## Örneklem ve Tanımlayıcı Bulgular
 
-Çalışmaya 241 aile dâhil edilmiştir: 120 diyabet (DM) ailesi ve 121 kontrol ailesi.
-Her aileden anne, indeks çocuk ve sağlıklı kardeş katılımıyla uzun-format analiz
-tabanına 482 çocuk satırı yazılmıştır. Dört çocuk-rolü hücresi dengelidir:
-DM-indeks 120, DM-kardeş 120, kontrol-indeks 121, kontrol-kardeş 121. DM grubunda
-indeks çocuk Tip 1 diyabet tanısı taşımakta, kardeş sağlıklı biyolojik kardeştir;
-kontrol grubunda hem indeks hem kardeş sağlıklıdır. Taranan ve reddeden ailelerin
-saha akışı kanonik analiz kilidinde izlenebilir olmadığından, doğrulanabilir analiz
-seti akışı raporlanmış, tarama öncesi akış raporlama sınırlılığı olarak belirtilmiştir.
+Çalışmaya toplam 241 aile katılmıştır. Bunların 120'si çocuklarından birinde Tip 1 diyabet (DM) olan aileler, 121'i ise tüm çocukları sağlıklı olan (kontrol) ailelerdir. Her aileden anne, bir çocuk (indeks çocuk) ve bir sağlıklı kardeş araştırmaya dâhil edilmiştir. Böylece veri setinde toplam 482 çocuk değerlendirilmiştir. Gruplar şu şekilde dengeli dağılmıştır: 120 diyabetli çocuk, 120 sağlıklı kardeş; 121 sağlıklı kontrol çocuğu, 121 sağlıklı kontrol kardeşi. Diyabet grubunda ilk çocuk (indeks) diyabetli, kardeşi ise sağlıklıdır. Kontrol grubunda ise her iki çocuk da sağlıklıdır. Araştırmanın başında davet edilip katılmayı reddeden ailelerin sayısı veri setinde tam olarak izlenemediği için, yalnızca araştırmaya kesin olarak katılan ailelerin akışı verilmiş ve bu durum bir sınırlılık olarak belirtilmiştir. Verilerin araştırma boyunca nasıl şekillendiği ve analiz aşamasına nasıl getirildiği @fig-strobe-flow içinde gösterilmiştir.
 
-Tablo 1 aile düzeyi sosyodemografik, anne mental sağlık, klinik ve psikolojik
-göstergeleri DM ve kontrol grupları arasında karşılaştırmakta; dengesizlik
-standardize ortalama farkı (SMD) ile Austin (2009) eşiklerine göre denetlenmiştir
-(|SMD| < 0,10 iyi denge; 0,10–0,25 sınırda; 0,25–0,50 dengesiz; ≥ 0,50 ciddi
-dengesizlik). Ham gözlemde dört değişkende dengesizlik saptanmıştır: anne
-antidepresan kullanımı (DM %29, kontrol %9; SMD = 0,53), anne eğitim düzeyi
-(SMD = 0,29), eş eğitim düzeyi (SMD = 0,32) ve aile mesleki indeksi (ISEI-08,
-SMD = 0,23). Anne yaşı sınırda dengesizdir (medyan DM 38,5 yıl, kontrol 37,3 yıl;
-SMD = 0,21). Üç sosyoekonomik bileşen latent SES kompozitinde dengelenmiştir
-(SMD = 0,03). Nedensel yönlü asiklik graf temelli birincil ayarlama seti (latent
-SES, kardeş yaş farkı, aile çocuk sayısı) ham gözlemde maksimum |SMD| = 0,220
-düzeyinden, stabilize ters-olasılık ağırlıklandırması (IPTW) sonrası 0,004 düzeyine
-indirilmiştir.
+@tbl-apa-sample-characteristics tablosu; sosyodemografik özellikleri, annenin ruh sağlığını, klinik ve psikolojik verileri diyabetli aileler ile sağlıklı aileler arasında karşılaştırmaktadır. Gruplar arası denge, örneklem büyüklüğünden bağımsız bir metrik olan standardize ortalama fark (SMD) ile değerlendirilmiştir [@austin2009balanceDiagnostics]. Standartlara göre 0,10'dan küçük değerler iyi bir dengeyi (benzerliği), 0,10-0,25 arası sınırda bir farkı, 0,25-0,50 arası dengesizliği ve 0,50 üzeri ise ciddi bir farklılığı gösterir.
 
-DM klinik profili yalnız DM grubunda raporlanmıştır: HbA1c verisi 39/120 çocukta
-mevcuttur (%32,5); HbA1c medyanı %9,0 (ortalama %8,97; en düşük–en yüksek
-%5,8–%15,1). Tanı yaşı medyanı 7,8 yıl (çeyrekler arası 5,7–9,3), DM süresi medyanı
-3,9 yıl (çeyrekler arası 2,0–6,2). Tanı yaşı üç strataya ayrıldığında erken (< 5 yaş)
-24, okul (5–10 yaş) 69 ve ergen (≥ 10 yaş) 27 aile yer almaktadır. Eksik veri profili
-düşüktür; en yüksek eksiklik ISEI-08 mesleki indeksindedir (%9,1). Kontrol grubunda
-HbA1c ve DM-spesifik değişkenler tasarım kaynaklı yapısal eksikliktir ve imputasyona
-alınmamıştır. Ayrıntılı sosyodemografik ve klinik betimleyiciler Tablo 1'de (`apa_t01`),
-kovaryat dengesi Tablo 2'de (`apa_t02`) ve eksik veri özeti Tablo 3'te (`apa_t03`)
-sunulmuştur.
+Ağırlıklandırma öncesinde, üç temel sosyodemografik özellikte belirgin gruplar arası farklılık (SMD > 0,25) saptanmıştır: Bunlar; annenin antidepresan kullanımı (diyabetli grupta %29, kontrol grubunda %9; SMD = 0,53), annenin eğitim düzeyi (SMD = 0,29) ve babanın (eş) eğitim düzeyidir (SMD = 0,32). Babanın mesleki durumu (SMD = 0,23) ve annenin yaşı (diyabetli grupta ortanca değer 38,5 yıl, kontrol grubunda 37,3 yıl; SMD = 0,21) ise sınırda farklılık göstermiştir; yani daha kabul edilebilir düzeydedir. Ailenin genel sosyoekonomik durumu babanın mesleğinden hesaplandığı için tabloda aynı satırda gösterilmiştir.
 
-![Analitik örneklem akış diyagramı. Kilitlenmiş kanonik veri tabanından aile düzeyi analiz tabanına, DM ve kontrol gruplarına ve DM klinik alt-analiz katmanına geçiş gösterilmiştir.](docs/assets/figures/carbon/primary/fig-01-strobe-flow.svg){#fig-strobe-flow width="82%" fig-align="center"}
+Gruplar arasındaki eğitim ve gelir gibi sosyoekonomik farklar "gizli (latent) SES kompoziti" adı verilen tek bir birleşik puan üzerinden hesaplandığında, iki grup arasındaki fark neredeyse tamamen ortadan kalkmıştır (SMD = 0,03). Bu birleşik puanın eğitim, meslek ve gelir gibi diğer bileşenlerle olan ilişkisi @fig-ses-correlation içinde verilmiştir.
 
-![Nedensel yönlü asiklik graf ve toplam-etki ayarlama stratejisi. Latent SES, kardeş yaş farkı ve aile çocuk sayısı baseline/tasarım karıştırıcıları; Beck ve antidepresan kullanımı aracı/duyarlılık düğümleridir.](docs/assets/figures/carbon/primary/fig-02-causal-dag.svg){#fig-causal-dag width="94%" fig-align="center"}
+Analizlerde karşılaştırılabilirliği sağlamak amacıyla; ailelerin sosyoekonomik düzeyi, kardeşler arası yaş farkı ve toplam çocuk sayısı eğilim skoru ağırlıklandırmasıyla (IPTW) dengelenmiştir. Başlangıçta bu özellikler açısından en yüksek fark 0,220 (kardeş yaş farkı) iken, ağırlıklandırma işleminden sonra bu fark 0,004'e (latent SES) kadar düşmüştür. Bu işlem sonucunda ayarlama setindeki tüm değişkenlerde kabul edilebilir denge sağlanmıştır. Bu dengeleme süreci @fig-smd-love içinde, yapılan düzeltmelerin arka planındaki nedensel strateji @fig-causal-dag içinde, iki grubun birbiriyle ne kadar karşılaştırılabilir olduğu ise @fig-propensity-overlap içinde gösterilmiştir.
 
-![Eğilim skoru ortak destek dağılımı. DM ve kontrol ailelerinin eğilim dağılımları ile ortak destek aralığı gösterilmiştir.](docs/assets/figures/carbon/primary/fig-04-propensity-overlap.svg){#fig-propensity-overlap width="84%" fig-align="center"}
+Diyabet (DM) ile ilgili klinik bulgular doğal olarak yalnızca diyabetli çocuklarda incelenmiştir.
 
-![Latent SES kompozit doğrulama korelasyon matrisi. Latent SES göstergesinin eğitim, mesleki statü ve materyal bileşenlerle korelasyon yapısı gösterilmiştir.](docs/assets/figures/carbon/primary/fig-05-ses-correlation-heatmap.svg){#fig-ses-correlation width="74%" fig-align="center"}
+Diyabetli çocukların hastalığa yakalanma (tanı) yaşının medyanı (ortancası) 7,8 yıl (çeyrekler arası aralık: 5,7–9,3), hastalık sürelerinin medyanı ise 3,8 yıldır (çeyrekler arası aralık: 2,0–6,0). Tanı konulma yaşına göre çocuklar sınıflandırıldığında; 24 çocuk erken dönemde (5 yaşından önce), 69 çocuk okul çağında (5-10 yaş arası) ve 27 çocuk ise ergenlik döneminde (10 yaş ve üzeri) tanı almıştır. Tüm çocukların tanı aldıkları yaş, tıbbi olarak beklenen doğal yaş aralıklarındadır (en erken tanı alan çocuk 0,7 yaşındadır).
 
-## Ölçek ve Veri Kalitesi (Psikometrik Bulgular)
+Araştırma boyunca toplanması planlanan ancak ulaşılamayan verilerin (eksik veri) oranı genel olarak oldukça düşüktür. En fazla eksiklik babanın meslek bilgisinde (%9,1) görülmüş; bunu Beck depresyon toplam puanı (%1,2) ve maddi durum göstergesi (%0,4) izlemiştir. Hastalık süresi ve tanı yaşı gibi veriler doğal olarak sağlıklı çocuklarda (kontrol grubu) bulunmadığı için, bu kısımların onlarda boş kalması bir veri kaybı değil, araştırmanın yapısının doğal bir sonucudur. Diyabet süresindeki tüm eksiklikler (%50,2) bu tasarım kaynaklı durumdan gelmektedir. Değişken düzeyindeki eksik veri örüntüleri ve tasarıma bağlı yapısal yokluklar @fig-missing-pattern üzerinde özetlenmiştir.
 
-EMBU-P reddetme alt ölçeğinde iç tutarlılık düşüktür (Cronbach α = 0,45; %95 GA
-[0,34; 0,55]; McDonald ω = 0,48; madde-arası ortalama r = 0,10; n = 241); EMBU-C
-reddetme alt ölçeğinde daha yüksektir (α = 0,72; %95 GA [0,68; 0,75]; ω = 0,75;
-r = 0,27; n = 479). EMBU-P reddetme alt ölçeğinin 8 maddesinden 7'sinde %80'in
-üzerinde taban etkisi gözlenmiştir (madde düzeyi taban aralığı %62,2–%95,9);
-EMBU-C reddetme alt ölçeğinde 8 maddenin 3'ünde %80'in üzerinde taban etkisi
-bulunmuştur (%39,8–%84,4).
-
-Dört-faktör çözümü EMBU ölçeklerinin teorik yapısını temsil etmiş; Hu ve Bentler'in
-(1999) birleşik kriteri (CFI ≥ 0,95 ve SRMR ≤ 0,08) her iki form için de
-karşılanmamış, dört-faktör çözümü "kabul edilebilir ancak sınırlı" yapısal kanıt
-olarak değerlendirilmiştir. Ölçüm değişmezliği taramasında configural ve metric
-düzeyler büyük ölçüde sağlanmış (Cheung ve Rensvold, 2002; ΔCFI < 0,010,
-ΔRMSEA < 0,015), scalar düzey sınırda kabul edilmiştir. EMBU-P/C alt ölçekleri,
-Beck total ve SRQ alt ölçekleri arasında 14 paralel korelasyonluk kriter geçerliği
-testi FDR düzeltmesiyle uygulanmıştır. Genel psikometrik karar, ölçeklerin bu Türk
-T1DM örnekleminde kullanılabilir ancak sınırlı geçerlik kanıtı sergilediği; reddetme
-alt ölçeğinin görece zayıf profili nedeniyle H1 reddetme bulgusunun madde-yanıt
-teorisi ve Bayesçi hatla çapraz doğrulandığı yönündedir. Güvenirlik ve faktör
-göstergeleri Tablo 5'te (`apa_t05`) özetlenmiştir.
-
-## Birincil Hipotez Bulguları (H1–H5)
-
-### H1 — Çocuk Algısı (EMBU-C)
-
-Dört EMBU-C alt ölçeği için aile düzeyi rastgele kesişim içeren çok-düzeyli
-kovaryans analizi 482 çocuk satırı üzerinde tahmin edilmiştir (sabit etkiler: dört
-düzeyli rol, çocuk yaşı, çocuk cinsiyeti, latent SES, kardeş yaş farkı, aile çocuk
-sayısı). Reddetme alt ölçeğinde DM çocukları kontrol referans grubuna kıyasla
-β = 0,16 SD (%95 GA [0,05; 0,26]) düzeyinde daha yüksek reddetme algısı bildirmiştir
-(FDR p < 0,010). Sıcaklık, aşırı koruma ve karşılaştırma alt ölçeklerinde DM × kontrol
-farkı için kanıt yetersizdir (FDR p > 0,150). Samejima graded response modeli latent
-θ skorları üzerinden reddetme farkını β = 0,14 SD (%95 GA [0,04; 0,25]) düzeyinde
-doğrulamış; aile içi sınıf-içi korelasyon yaklaşık 0,14 düzeyindedir. Rol × yaş ×
-cinsiyet üçlü etkileşimi FDR p > 0,200 düzeyinde kalmıştır. Bayesçi paralel hatta
-reddetme için posterior medyan β = 0,16 SD (%95 güvenilir aralık [0,05; 0,26];
-yön olasılığı pd = 0,999; BF₁₀ = 8,12), sıcaklık için β = 0,09 (%95 GA [−0,05; 0,22];
-BF₁₀ = 0,29) bulunmuştur. Sabit etki tahminleri Tablo 6'da (`apa_t06`), Bayesçi
-paralel katman Tablo 7'de (`apa_t07`) sunulmuştur.
-
-### H2 — Kardeş İlişkisi (KİA / SRQ)
-
-Kardeş İlişkileri Anketi (KİA / SRQ) dört alt ölçeği üç paralel strateji ile
-incelenmiştir. Aile-ortalama Welch testlerinde sıcaklık, statü, çatışma ve rekabet
-alt ölçeklerinin tamamında etki büyüklüğü d < 0,20 düzeyinde kalmıştır. Aktör-partner
-karşılıklı bağımlılık modelinde (APIM) grup, rol ve grup × rol etkileri için
-FDR-düzeltilmiş p > 0,350 düzeyindedir. Olsen-Kenny ayırt edilebilir düad doğrulayıcı
-faktör analizi kavga-temelli madde seti üzerinde uyum sağlamış; indeks–kardeş latent
-korelasyonu r = 0,27 olarak raporlanmıştır. Aynı cinsiyet × yaş farkı moderasyonu
-anlamlı düzeye ulaşmamıştır. TOST eşdeğerlik testi ön-kayıtlı planda yer almadığından
-uygulanmamış; dört alt ölçek için bulgu "farkın varlığına ilişkin kanıt yetersizdir"
-biçiminde raporlanmıştır (Lakens, 2017). Aile-ortalama testleri Tablo 8'de (`apa_t08`),
-APIM sabit etkileri Tablo 9'da (`apa_t09`) sunulmuştur.
-
-### H3 — Anne Öz-Bildirimi (EMBU-P)
-
-Dört EMBU-P alt ölçeği için kovaryans analizi 241 anne üzerinde tahmin edilmiştir.
-Ham (standardize olmayan) grup katsayıları sıcaklık β = 0,06 (%95 GA [−0,07; 0,20]),
-aşırı koruma β = 0,06 (%95 GA [−0,12; 0,24]), reddetme β = −0,05 (%95 GA [−0,12; 0,02])
-ve karşılaştırma β = 0,06 (%95 GA [−0,08; 0,20]) düzeyindedir; dört alt ölçeğin
-tamamında FDR-düzeltilmiş p > 0,500 ve standardize etki |β| < 0,17 (en büyük mutlak
-değer reddetmede, −0,16). Stabilize trimlenmiş IPTW ve heteroskedastisite-tutarlı
-standart hata ile tekrarlanan modelde katsayılar −0,04 ile 0,05 arasında,
-FDR p > 0,550 düzeyinde kalmıştır. Antidepresan kullanan (n = 46) ve kullanmayan
-(n = 195) annelerde stratifiye modeller yön ve büyüklük olarak bütün örneklemden
-farklılaşmamıştır. Bayesçi paralel hatta BF₁₀ değerleri 0,17–0,25 aralığında ("orta
-düzey H0"), ROPE içi pay sıcaklıkta %68, aşırı korumada %61, reddetmede %92 ve
-karşılaştırmada %69 düzeyindedir. Önceden tanımlı en küçük ilgilenilen etki büyüklüğü
-(±0,30 SD) altında TOST kararları aşırı koruma ve karşılaştırma için "Equivalent",
-sıcaklık ve reddetme için "Indeterminate"tir. Birincil ve IPTW grup etkileri
-Tablo 10'da (`apa_t10`), duyarlılık ve Bayesçi/TOST katmanı Tablo 11'de (`apa_t11`)
-sunulmuştur.
-
-### H4 — Anne Depresyonu → EMBU-P Latent Yapısal Eşitlik Modeli
-
-Elli ordinal madde (21 Beck + 29 EMBU-P) üzerinde WLSMV kestirimcisiyle yapısal
-eşitlik modeli yakınsamıştır (CFI = 0,887; TLI = 0,890; RMSEA = 0,027; SRMR = 0,127).
-Dört yapısal yoldan üçü FDR-düzeltilmiş olarak anlamlıdır: Beck → sıcaklık
-β = −0,28 (%95 GA [−0,45; −0,15]; FDR p < 0,001), Beck → reddetme β = 0,33
-(%95 GA [0,19; 0,53]; FDR p < 0,001) ve Beck → karşılaştırma β = 0,28
-(%95 GA [0,14; 0,49]; FDR p < 0,001). Beck → aşırı koruma yolu pozitif yöndedir
-ancak anlamlı değildir (β = 0,08; FDR p = 0,220). Reduced ordinal madde setiyle
-(12 EMBU-P + 6 Beck) DM × kontrol çok-grup değişmezlik taraması configural ve metric
-düzeylerde yakınsamış (ΔCFI < 0,010, ΔRMSEA < 0,015); scalar düzeyde grup-spesifik
-boş kategoriler nedeniyle açık madde birleştirmesi uygulanmıştır. Standardize yollar
-Tablo 12'de (`apa_t12`) sunulmuştur.
-
-### H5 — Diadik Tutarlılık
-
-H5, anne EMBU-P puanı ile aynı ailedeki indeks çocuk EMBU-C puanı arasındaki uyum
-için beş paralel strateji ile incelenmiştir.
-
-**Strateji 1 (ICC + Bland-Altman).** Anne ↔ indeks çocuk düadında dört alt ölçek
-için sınıf-içi korelasyon (ICC) değerleri kontrol grubunda 0,03–0,20, DM grubunda
-−0,01–0,08 ve havuzlanmış örneklemde 0,00–0,11 aralığındadır; bu düzey Cicchetti
-(1994) eşiklerinde "fakir-zayıf" uyum bandına denk gelmektedir. Alt ölçek bazında
-manifest ICC dört boyutun tamamında kontrol > DM yönündedir (sıcaklık kontrol 0,145 /
-DM 0,027; aşırı koruma kontrol 0,204 / DM 0,009; reddetme kontrol 0,029 / DM −0,006;
-karşılaştırma kontrol 0,103 / DM 0,084). Bland-Altman uyum sınırlarında ortalama fark
-sıfıra yakın, limit aralığı geniştir.
-
-**Strateji 2 (Edwards-Parry yanıt yüzeyi analizi).** Yalnız sıcaklık ve reddetme alt
-ölçeklerinde tahmin edilmiştir. Reddetme tutarsızlık ekseninde (a4) havuzlanmış
-−13,96 (p = 0,012), kontrol −15,93 (p = 0,064) ve DM −7,07 (p = 0,430) değerleri
-raporlanmıştır; analiz tekil bir grup uyum skoru üretmemektedir.
-
-**Strateji 3 (ortak yazgı modeli).** Reddetme alt ölçeği modeli yakınsamamıştır
-(uygunsuz çözüm) ve yorumlanmamıştır. Yakınsayan üç alt ölçekte ortak ebeveynlik
-latentinin DM etkisi sıcaklıkta +0,03 (p = 0,490), aşırı korumada +0,19 (p = 0,044)
-ve karşılaştırmada +0,10 (p = 0,260) düzeyindedir.
-
-**Strateji 4 (Olsen-Kenny latent düad doğrulayıcı faktör analizi).** Reddetme alt
-ölçeği için latent korelasyon havuzlanmış r = 0,19, kontrol r = 0,17 ve DM r = 0,29
-düzeyindedir (DM − kontrol farkı 0,12 birim). DM-grubu modelinin uyumu zayıftır
-(RMSEA = 0,120; SRMR = 0,254; CFI = 0,984; χ²(15) = 40,81; p < 0,001).
-
-**Strateji 5 (Kenny k-katsayısı).** Yalnız havuzlanmış örneklemde tahmin edilmiş
-k-katsayıları sıcaklık 1,01 (%95 GA [−7,03; 22,53]), aşırı koruma −0,16
-([−0,95; 1,16]), reddetme −0,19 ([−0,82; 1,68]) ve karşılaştırma 0,08 ([−3,20; 11,86])
-düzeyinde, sıfırı içeren geniş aralıklardadır.
-
-Klinik tutarsızlık örüntülerinin oranları (eşik > 0,5 SD): anne sıcak / çocuk düşük
-kontrol %37, DM %33; anne reddetme düşük / çocuk reddetme yüksek kontrol %17, DM %25;
-indeks ↔ kardeş ayrımcı muamele kontrol %45, DM %48. Ön-kayıtlı "en az üç stratejinin
-yön düzeyinde uyuşması" triangülasyon şartı karşılanmamıştır: baskın ve çok-alt-ölçekli
-manifest kanıt (Strateji 1) dört boyutun tamamında kontrol > DM yönündeyken (0/4
-DM > kontrol), DM > kontrol yönündeki tek sinyal Strateji 4'te (yalnız reddetme, zayıf
-model uyumu) gözlenmektedir; Strateji 2 ve 5 gruba ayrılmış bir yön oyu üretmemekte,
-Strateji 3'te reddetme yakınsamamaktadır. Diadik tutarlılık stratejilerinin özet
-çıktıları Tablo 13'te (`apa_t13`) sunulmuştur.
-
-![H5 Bland-Altman tutarlılık haritası. Paneller dört EMBU alt ölçeği ile üç düad tipini, renkler DM ve kontrol gruplarını göstermektedir.](docs/assets/figures/carbon/primary/fig-12-h5-ba-grid.svg){#fig-h5-bland-altman width="96%" fig-align="center"}
-
-![H5 yanıt yüzeyi analizi yüzeyleri. Noktalı çizgi anne ve indeks çocuk algısının eşit olduğu uyum hattını göstermektedir.](docs/assets/figures/carbon/primary/fig-13-h5-rsa-surface.svg){#fig-h5-rsa-surface width="96%" fig-align="center"}
-
-## [KEŞİFSEL] Genişletilmiş Analiz Katmanları
-
-Aşağıdaki bulgular ön-kayıtlı planın ikincil amaçlar bölümünde yer alan keşifsel
-katmanlardır; doğrulayıcı sonuç olarak yorumlanmaz ve dış-validasyon olmadan klinik
-öneri düzeyine çıkarılmaz.
-
-**[KEŞİFSEL] Aracılık.** Beck → EMBU-P reddetme → EMBU-C reddetme zinciri üç katmanda
-test edilmiştir. Tek-aracı modelinde (BCa bootstrap, n = 1000) a-yolu β = 0,0056
-(p = 0,025) anlamlı, b-yolu β = 0,091 (p = 0,140) anlamsız, dolaylı etki β = 0,0005
-(%95 GA [−0,0001; 0,0020]) sıfırı içermektedir. Çok-düzeyli modelde a-yolu anlamlı
-(β = 0,0055; p = 0,018), dolaylı etki anlamsızdır. Koşullu süreç modelinde (Hayes
-Model 14) grup moderasyonu (a3 = 0,046; p = 0,220) ve moderate aracılık indeksi
-(IMM = 0,004; p = 0,370) anlamlı değildir. Aracılık sonuçları Tablo 14'te (`apa_t14`)
-sunulmuştur.
-
-**[KEŞİFSEL] Latent profil ve sınıf analizi.** Beck total, dört EMBU-P alt ölçeği ve
-latent SES üzerinde tidyLPA ile 1–5 profil karşılaştırmasında BIC en uygun modeli
-3-profil çözümü olarak seçmiştir (BIC = 3951; BLRT p = 0,010; entropy = 0,81).
-Kategorik göstergeli poLCA analizinde BIC 2-sınıf çözümünü desteklemiştir
-(BIC = 2640,3; sınıf oranları %63,4 ve %36,6; entropy = 0,60); modal sınıf
-regresyonunda DM grubu sınıf üyeliğini anlamlı değiştirmemiştir (OR = 1,01;
-%95 GA [0,59; 1,76]; p = 0,958). Bifaktör S-1 modeli sınır altı uyumla "öneri-düzeyi
-keşifsel" işaretlenmiştir. Model seçim tanıları Tablo 15'te (`apa_t15`) sunulmuştur.
-
-![[KEŞİFSEL] Latent profil analizi model seçim tanıları. BIC, entropy ve BLRT p değerleri profil sayısına göre gösterilmiştir; BIC minimumu 3-profil çözümünü işaret etmektedir.](docs/assets/figures/carbon/primary/fig-15-lpa-fit-indices.svg){#fig-lpa-fit-indices width="78%" fig-align="center"}
-
-**[KEŞİFSEL] Ağ analizi.** Dokuz değişken (dört EMBU-P + dört SRQ alt ölçeği + Beck
-total) üzerinde EBIC-LASSO Gauss grafik modeli (γ = 0,5) tahmin edilmiştir. Havuzlanmış
-ağda (n = 238) en yüksek strength merkeziyeti SRQ sıcaklık (0,58), EMBU-P karşılaştırma
-(0,51) ve SRQ çatışma (0,49) düğümlerindedir. Ağ Karşılaştırma Testi (200 permütasyon)
-DM (n = 117) ve kontrol (n = 121) ağları arasında global strength invaryans p = 0,860
-ve maksimum kenar farkı p = 0,770 değerlerini vermiştir. Beck madde-düzeyi belirti ağı
-21 madde üzerinde tahmin edilmiştir. Koşullu bağımlılık nedensellik olarak
-yorumlanmamıştır. Ağ merkeziyet ve karşılaştırma sonuçları Tablo 16'da (`apa_t16`)
-sunulmuştur.
-
-![[KEŞİFSEL] EBIC-LASSO Gauss grafik modeli. Kenar kalınlığı mutlak kısmi korelasyonu, düğüm boyutu strength merkeziyetini göstermektedir.](docs/assets/figures/carbon/primary/fig-16-network-graph.svg){#fig-network-graph width="82%" fig-align="center"}
-
-![[KEŞİFSEL] Ağ Karşılaştırma Testi sonuçları. Ağ invaryans ve global strength p değerleri DM ve kontrol ağlarının anlamlı düzeyde ayrışmadığını göstermektedir.](docs/assets/figures/carbon/primary/fig-17-network-nct.svg){#fig-network-nct width="72%" fig-align="center"}
-
-**[KEŞİFSEL] Klinik fayda.** Yüksek-riskli anne (Beck total ≥ 17) sınıflandırması için
-temel model (DM grup üyeliği + anne yaşı + latent SES + aile çocuk sayısı) ve
-genişletilmiş model (temel + dört EMBU-P alt ölçeği) karşılaştırılmıştır. İç-validasyonlu
-optimizm-düzeltilmiş bootstrap (B = 1000) ile temel modelde AUC = 0,58
-(%95 GA [0,50; 0,67]; optimizm-düzeltilmiş 0,61), genişletilmiş modelde AUC = 0,70
-(%95 GA [0,63; 0,78]; optimizm-düzeltilmiş 0,73) bulunmuştur. Youden indeksiyle optimal
-eşik 0,22; sensitivite 0,75; spesifite 0,61; PPV 0,42; NPV 0,87 düzeyindedir. Karar
-eğrisi analizi 0,10–0,40 eşik aralığında genişletilmiş modelin net fayda sağladığını,
-kalibrasyon eğrisi kabul edilebilir profil (intercept ≈ 0, slope ≈ 1) göstermiştir.
-Model dış-validasyon bekleyen prototip olarak konumlandırılmıştır. Performans
-göstergeleri Tablo 17'de (`apa_t17`) sunulmuştur.
-
-![[KEŞİFSEL] Yüksek Beck riski sınıflandırması için ROC eğrisi. Temel model demografi/SES, geniş model EMBU-P alt ölçeklerini içermektedir.](docs/assets/figures/carbon/primary/fig-18-clinical-roc.svg){#fig-clinical-roc width="78%" fig-align="center"}
-
-![[KEŞİFSEL] Klinik karar eğrisi analizi. Geniş risk skoru, "herkesi tara" ve "kimseyi tarama" stratejileriyle eşik olasılığına göre net fayda düzeyinde karşılaştırılmıştır.](docs/assets/figures/carbon/primary/fig-19-clinical-dca.svg){#fig-clinical-dca width="86%" fig-align="center"}
-
-![[KEŞİFSEL] Geniş klinik risk skoru kalibrasyon grafiği. Kesikli diagonal ideal kalibrasyonu, noktalar tahmin edilen ve gözlenen risk binlerini göstermektedir.](docs/assets/figures/carbon/primary/fig-20-clinical-calibration.svg){#fig-clinical-calibration width="78%" fig-align="center"}
-
-![[KEŞİFSEL] Klinik model tamamlayıcıları. CART çapraz-doğrulanmış hata profili ve Random Forest değişken önemleri birlikte gösterilmiştir.](docs/assets/figures/carbon/primary/fig-21-clinical-cart-rf.svg){#fig-clinical-cart-rf width="82%" fig-align="center"}
-
-**[KEŞİFSEL] DM klinik alt-analizler.** DM grubu içinde HbA1c × ebeveynlik etkileşimi
-(n = 39; imputasyon uygulanmamıştır) dört EMBU-P alt ölçeğinde p > 0,400 ve R² < 0,25
-düzeyinde kalmıştır. DM süresi cubic spline ile lineer regresyon karşılaştırması dört
-outcome için "lineer yeterli" sonucunu vermiştir. Tanı yaşı üç strata analizinde hiçbir
-outcome F testi anlamlılığına ulaşmamış (en büyük F = 2,05; p = 0,130); η²-partial < 0,04
-düzeyindedir. n = 39 düzeyindeki HbA1c örneklemi küçük-orta etki büyüklükleri için
-yetersiz güçtedir (power < 0,50). DM klinik alt-analizleri Tablo 18'de (`apa_t18`)
-sunulmuştur.
-
-## Robustluk ve Bayesçi Doğrulama
-
-**Çoklu evren (specification curve).** 120 spesifikasyon (dört EMBU-P alt ölçeği × beş
-kovaryat seti × iki tahmin yöntemi × üç alt-örneklem) üretilmiş; spesifikasyonların
-%0'ında p < 0,05 elde edilmiştir. Reddetme alt ölçeğinde medyan Cohen d = −0,13
-(%5–%95 spec aralığı [−0,185; −0,058]; tüm spesifikasyonlar negatif); sıcaklık 0,13,
-aşırı koruma 0,10 ve karşılaştırma 0,09 medyan d ile pozitif yöndedir. Permütasyon
-temelli test (n = 5000) anlamlılık üretmemiştir.
-
-**Eşdeğerlik (TOST).** ±0,30 SD altında aşırı koruma ve karşılaştırma "Equivalent",
-sıcaklık ve reddetme "Indeterminate"tir.
-
-**Ölçülmemiş karıştırıcı dayanıklılığı.** H3 birincil tahminleri için Robustness Value
-RV_q = 0,04–0,08 ve E-değeri 1,36–1,59 aralığında raporlanmıştır (zayıf-orta
-dayanıklılık). **Negatif kontrol ve falsifikasyon.** Sekiz sahte yordayıcı-outcome
-eşlemesinden 1'i şüpheli çıkmış (çoklu test yanlış-pozitif beklentisi ≈ %5 içinde);
-iki falsifikasyon senaryosu (DM süresi < 1 yıl; HbA1c ≤ 7,5) attenuation göstermiş,
-birincil etkinin kalitatif yönünü değiştirmemiştir. Robustluk ve duyarlılık özetleri
-Tablo 19 (`apa_t19`) ve Tablo 20'de (`apa_t20`) sunulmuştur.
-
-![Çoklu evren spesifikasyon eğrisi. Her panelde spesifikasyonlar Cohen d büyüklüğüne göre sıralanmış; nominal anlamlılık renkle gösterilmiştir.](docs/assets/figures/carbon/primary/fig-22-specification-curve.svg){#fig-specification-curve width="90%" fig-align="center"}
-
-![Ölçülmemiş karıştırıcı duyarlılık konturu. Noktalar EMBU-P alt ölçekleri için tedavi kısmi R² ve RV_q kesişimini, arka plan ortak karıştırıcı gücü konturlarını göstermektedir.](docs/assets/figures/carbon/primary/fig-23-sensemakr-contour.svg){#fig-sensemakr-contour width="80%" fig-align="center"}
-
-**Bayesçi paralel hat.** Pinquart (2013) meta-analizinden türetilen zayıf bilgi verici
-prior altında H1 iki ve H3 dört alt ölçeği için brms çok-düzeyli modelleri tahmin
-edilmiştir. H1 reddetme için BF₁₀ = 8,12 ("orta düzey H1 lehine"; posterior medyan
-β = 0,16; pd = 0,999; ROPE içi pay %12,7), H1 sıcaklık için BF₁₀ = 0,29. H3 dört alt
-ölçeğinde BF₁₀ 0,17–0,25 aralığında; reddetmede ROPE içi pay %92 ile "orta-güçlü H0
-lehine"dir. MCMC tanıları: H3 için R̂ ≤ 1,01, H1 için R̂ 1,012–1,013; tüm modellerde
-divergent transition = 0; Pareto-k < 0,7; ESS > 1000. Bayesçi çift raporlama ve tanılar
-Tablo 21'de (`apa_t21`) sunulmuştur.
-
-## APA Tablo Seti
-
-Bu alt bölüm, KISIM XIII kapsamında üretilen 22 aggregate APA tablosunu teze bağlar.
-Tablolar `outputs/tables/apa_t*.csv` dosyalarından okunur; ondalık ayırıcı Türkçe
-biçime (virgül) çevrilerek gösterilir. Tablolar satır düzeyi veya kimliklenebilir bilgi
-içermez.
+Son olarak; tüm örneklemin detaylı sosyodemografik ve klinik özellikleri @tbl-apa-sample-characteristics, gruplar arasındaki dengenin sayısal değerleri @tbl-apa-covariate-balance, eksik verilerin özeti @tbl-apa-missing-data, dengeleme hesaplamaları (eğilim skoru) @tbl-apa-propensity-model ve sosyoekonomik durumu oluşturan bileşenler @tbl-apa-ses-composite tablolarında detaylı biçimde sunulmuştur.
 
 ```{r}
 #| label: tbl-apa-sample-characteristics
-#| tbl-cap: "Örneklem özellikleri."
-apa_render_table("t01_sample_characteristics")
+#| tbl-cap: "Örneklem özellikleri tablosu: DM ve kontrol aileleri, aile düzeyi sosyodemografik, anne ruh sağlığı, klinik ve psikolojik göstergeler bakımından yan yana betimlenir. Satırlar değişken ailesine göre gruplanmıştır; hücreler ort. (SS), medyan [ÇAA] veya n (%) biçimindedir ve her satırda iki grubun ayrışma derecesi standardize ortalama farkla (SMD) verilir. Okuma anahtarı: SMD sütunu bir denge geleneğine göre taranır — |SMD| < 0,10 iyi denge, 0,10–0,25 sınırda, 0,25–0,50 dengesiz, ≥ 0,50 ciddi dengesizlik bandına karşılık gelir; bu değer istatistiksel bir anlamlılık ölçüsü değil, gruplar arası ayrışmanın ölçeksiz büyüklüğüdür."
+apa_render_table("t01_sample_characteristics", split_prefix = TRUE)
 ```
 
 ```{r}
 #| label: tbl-apa-covariate-balance
-#| tbl-cap: "Kovaryat dengesi."
+#| tbl-cap: "Kovaryat dengesi tablosu (Love grafiğinin sayısal karşılığı): birincil ayarlama setindeki her değişken için gruplar arası fark, ağırlık öncesi, stabilize ters-olasılık ağırlıklandırması (IPTW) sonrası ve eşleştirme sonrası mutlak standardize ortalama fark (|SMD|) değeri ile IPTW kararı sütunlar hâlinde verilir. Ayarlama seti latent SES, kardeş yaş farkı ve aile çocuk sayısından oluşur. Okuma anahtarı: her değişkende ağırlık öncesi ve sonrası |SMD| sütunları karşılaştırılır — değerin 0,10 eşiğinin altına inmesi o değişkende dengelenmeye karşılık gelir; tablo yalnız ayarlama setinin dengesini belgeler, tüm ham değişkenlerin değil."
 apa_render_table("t02_covariate_balance")
 ```
 
 ```{r}
 #| label: tbl-apa-missing-data
-#| tbl-cap: "Eksik veri özeti."
+#| tbl-cap: "Eksik veri özeti tablosu: her değişken için analitik payda, analitik eksik n ve yüzdesi ile çalışma tasarımından kaynaklanan yapısal boş hücre sayısı ve ele alma stratejisi ayrı ayrı listelenir. Okuma anahtarı: her satırda eksikliğin analitik mi (gerçekten toplanamayan) yoksa tasarım kaynaklı mı (yalnız DM çocuklarında tanımlı diyabet süresi gibi tanım gereği gözlenmeyen) olduğu ayırt edilir; bu ayrım tablonun kalbidir ve tasarım kaynaklı boşluklar, analitik eksiklikten farklı olarak imputasyonla doldurulmaz."
 apa_render_table("t03_missing_data")
 ```
 
 ```{r}
 #| label: tbl-apa-propensity-model
-#| tbl-cap: "Eğilim skoru modeli ve ortak destek."
+#| tbl-cap: "Eğilim skoru modeli ve ortak destek tablosu: üst kısımda grup üyeliğini yordayan lojistik regresyonun katsayıları odds oranı (OR) ve %95 güven aralığı (GA) biriminde, alt kısımda stabilize IPTW ağırlık ile ortak destek özeti verilir. Model girdileri nedensel diyagramdan gelir (latent SES, kardeş yaş farkı, aile çocuk sayısı). Okuma anahtarı: üst kısımda her yordayıcının OR'una ve %95 GA'sının 1'i içerip içermediğine bakılır (GA 1'i içeriyorsa yordayıcı sinyali belirsizdir), alt kısımda ortak desteğin çakışma aralığı okunur; ortak destek karşılaştırılabilirliğin ön koşuludur, dengenin kendisi değildir."
 apa_render_table("t04_propensity_model")
 ```
 
 ```{r}
 #| label: tbl-apa-ses-composite
-#| tbl-cap: "SES kompozit bileşenleri."
+#| tbl-cap: "SES kompozit bileşenleri ve latent SES doğrulayıcı faktör analizi (CFA) uyum ölçütleri tablosu: eğitim, mesleki statü ve materyal göstergelerinin tek bir latent SES ölçüsünde birleştirilmesi ve bu birleştirmenin uyumu belgelenir. Okuma anahtarı: bileşenlerin latent SES'e yükleme yapısı (kompozit geçerliği) ile CFA uyum ölçütlerinin kabul bandında olup olmadığı incelenir. Birden büyük TLI değerleri örneklem oynamasından kaynaklanır ve iyi uyuma işaret eder; bazı yazılımlar raporlamada 1,00'a sınırlar."
 apa_render_table("t05_ses_composite")
+```
+
+![Örneklem akış (STROBE) diyagramı: Katılımcıların başlangıçtan analiz evresine kadar olan akışı. Temel veri seti 241 aile ve 482 çocuktan oluşmaktadır. Diyagram katılım oranını değil, doğrudan analiz için uygun olan veri yapısını özetler.](docs/assets/figures/carbon/primary/fig-01-strobe-flow.svg){#fig-strobe-flow width="82%" fig-align="center"}
+
+![Nedensel yönelimli diyagram (DAG): İlgilenilen ilişkileri ve olası karıştırıcı (confounding) etkenleri tanımlayan yönlü asiklik grafik. Kalın oklar doğrudan sınanan odak ilişkileri, diğer oklar ise modelleme öncesinde kontrol edilmesi gereken yolları ifade eder.](docs/assets/figures/carbon/primary/fig-02-causal-dag.svg){#fig-causal-dag width="94%" fig-align="center"}
+
+![Denge kazanımı (Love) grafiği: Ayarlama setindeki değişkenlerde gözlenen gruplar arası standardize ortalama fark (SMD) değerlerinin ağırlıklandırma (IPTW) öncesi ve sonrasındaki durumunu gösterir. Sıfır çizgisine yaklaşan değerler, karşılaştırılabilirliğin (dengenin) sağlandığına işaret eder.](docs/assets/figures/carbon/primary/fig-03-smd-love-plot.svg){#fig-smd-love width="84%" fig-align="center"}
+
+![Eğilim skoru örtüşme (ortak destek) grafiği: Diyabet ve kontrol gruplarının eğilim skorları üzerinden oluşturulan dağılım yoğunluk eğrileri. Kesişim alanının genişliği, grupların nedensel çıkarım modeli içerisinde birbirleriyle güvenli biçimde karşılaştırılabileceği ortak destek bölgesini ifade eder.](docs/assets/figures/carbon/primary/fig-04-propensity-overlap.svg){#fig-propensity-overlap width="84%" fig-align="center"}
+
+![Sosyoekonomik göstergelerin ısı haritası: Aile gelir düzeyi, ebeveyn eğitim durumu ve mesleki statü değişkenleri arasındaki korelasyon ilişkilerini yansıtan ısı haritası. Renk yoğunluğu ilişkinin gücüne işaret eder.](docs/assets/figures/carbon/primary/fig-05-ses-correlation-heatmap.png){#fig-ses-correlation width="74%" fig-align="center"}
+
+![Eksik veri dağılım haritası: Değişken düzeyinde analitik eksik değerlerin örüntüsü. Genel veri kaybının oldukça düşük olduğu (%0,3) görülmektedir; kontrol grubunda tasarım gereği toplanmayan değişkenler haritaya dâhil edilmemiştir.](docs/assets/figures/carbon/primary/fig-06-missing-pattern-primary.png){#fig-missing-pattern width="84%" fig-align="center"}
+
+## Ölçek ve Veri Kalitesi
+
+Araştırmada kullanılan ölçeklerin psikometrik özellikleri, asıl analizlere geçilmeden önce çalışma-içi bir değerlendirme katmanıyla incelenmiştir. Bu istatistiksel değerlendirmenin (psikometrik özelliklerin) detaylı bulguları [Ek 7](#sec-ek-psikometri)'de sunulmuştur. Değerlendirme beş eksende yürütülmüştür: madde düzeyinde dağılımlar, iç tutarlılık, faktör yapısı, ölçüm değişmezliği ve ölçüt geçerliği.
+
+İç tutarlılık düzeyleri Cronbach α ve McDonald ω katsayılarıyla hesaplanmış olup ölçeklerin genelinde yeterli düzeyde bulunmuştur.
+
+Kısa form yapısına bağlı olarak soru sayısının sınırlı olduğu ve taban etkisinin gözlendiği belirli alt ölçeklerde ise katsayılar görece düşük kalmıştır. Bu durumun en belirgin olduğu yer, anne formundaki (EMBU-P) "reddetme" boyutudur (Cronbach α = 0,45). Ayrıca çocuklara uygulanan Kardeş İlişkileri Anketi'nin "statü/güç" ve "rekabet" gibi alt bölümlerinde de güvenilirlik sınırlı kalmıştır.
+
+Dört faktörlü yapıda kuramsal boyutlar birbirinden ayırt edilebilmiş; gruplar arası ölçüm değişmezliği teyit edilerek karşılaştırmaların geçerliliği desteklenmiştir. Ayrıca ölçüt geçerliği katsayılarının literatürle uyumlu yönde olduğu görülmüştür (Ek 7).
+
+Bulgulanan psikometrik sınırlar raporlamada dikkate alınmış; güvenirliği sınırda olan alt ölçeklere (örneğin H1 reddetme, H2 hipotezi) dayanan bulgular bu çekinceyle yorumlanmıştır., Buna ek olarak H1 reddetme bulgusu, taban etkisine dayanıklı madde-yanıt kuramı (IRT) ve Bayesçi analiz yöntemleriyle çapraz doğrulamaya tabi tutulmuştur.
+
+## Birincil Hipotez Bulguları (H1–H5)
+
+### H1 — Çocuk Algısı (EMBU-C)
+
+**Bulgu özeti.** DM grubundaki çocuklar (indeks hasta ve sağlıklı kardeşler), kontrol grubundaki yaşıtlarına göre maternal reddetme ve aşırı koruma algılarını küçük ancak istatistiksel olarak anlamlı düzeyde daha yüksek bildirmiştir. Bu iki boyuttaki farklılık, birden çok istatistiksel yöntemle test edilmiş ve hepsinde doğrulanmıştır. Anneden algılanan sıcaklık boyutunda frekansçı analizler sınırda bir farka işaret etse de, Bayesçi değerlendirme bu farkın yönünü doğrulamamış (fark-yokluğu lehine kanıt) ve etkinin kırılgan olduğunu göstermiştir. Taraf tutma/karşılaştırma boyutunda ise iki grup arasında anlamlı hiçbir fark bulunamamıştır.
+
+Algısal ayrışma en belirgin olarak reddetme, ardından aşırı koruma boyutlarında izlenmiştir. Bu ayrışma çocuk düzeyindeki tanı durumundan (hastalık) ziyade, aile düzeyindeki kümelenmeden kaynaklanmaktadır; diyabet hanesindeki her iki çocuk da (hasta ve sağlıklı kardeş) söz konusu ebeveyn tutumlarını benzer seviyede yüksek algılamaktadır. Aile içi analizlerde, indeks çocuk ile sağlıklı kardeş arasında ebeveynlik algısı açısından hiçbir fark saptanmamıştır. Saptanan grup ana etkisi, modelde yaş ve cinsiyetin kontrol edilmesinden bağımsız olarak sürmüştür.
+
+*Kanıt* — Dört EMBU-C alt ölçeğine yönelik değerlendirmelerde veri setindeki diadik bağımlılık (aile içi kümelenme) dikkate alınarak, 482 çocuğun algısı aile düzeyinde rastgele kesişimli (random intercept) çok düzeyli bir modelle çözümlenmiştir.^[Bu modelde çocukların rolü, yaşı, cinsiyeti, ailenin genel sosyoekonomik durumu (latent SES), kardeşler arasındaki yaş farkı ve ailedeki çocuk sayısı gibi faktörler de hesaba katılmıştır. Katsayılar, 1'den 4'e kadar puanlanan anketin ham puanları cinsindendir; genel sapma SD = 0,40'tır.] Ön-kayıtlı birincil estimand, diyabet ve kontrol aileleri arasındaki grup ana etkisidir; bu etki indeks çocuk ve kardeş rolleri eşit ağırlıkla dengelenerek ve çoklu karşılaştırmalar için BH-FDR düzeltmesi uygulanarak kestirilmiştir (@tbl-apa-h1-group).
+
+Gruplar arasındaki fark; reddetme (b = 0,14 [0,07; 0,22], q = 0,001) ve aşırı koruma (b = 0,19 [0,07; 0,30], q = 0,003) alt boyutlarında net biçimde görülmektedir. Sıcaklık boyutu sınırda çıkmış (b = 0,14 [0,02; 0,25], q = 0,029), karşılaştırmada ise anlamlı bir farklılık saptanmamıştır (b = 0,13 [−0,01; 0,26], q = 0,069).
+
+Bulguları çapraz doğrulamak üzere yürütülen Bayesçi hat; reddetme ana etkisinde "güçlü", aşırı korumada ise "orta düzeyde" kanıt sunmuştur (kanıta dayalı güç oranları sırasıyla BF₁₀ = 10,55 ve 6,93'tür). Sıcaklık boyutunda klasik analizin aksine fark-yokluğu yönünde kanıt (BF₁₀ = 0,29) bulunmuştur. Karşılaştırma boyutu için de fark-yokluğu yönünde bulgu elde edilmiştir (BF₁₀ = 0,53). En güçlü analitik sinyal reddetme alt ölçeğinde alınmıştır (iki grup arasındaki genel etkinin büyüklüğü Hedges g ≈ 0,38 olarak hesaplanmıştır).^[Bu etki büyüklüğü (Hedges g), doğrudan grupların birbirine oranlanmasıyla elde edilen özet betimsel bir ölçüttür ve ana analizimizden farklı bir mantıkla hesaplanmıştır.] Bu bulgu, potansiyel tavan/taban etkilerine karşı dirençli olan sıralı Madde Yanıt Kuramı (IRT) temelli bir paralel analizle de doğrulanmıştır: β = 0,14 SD [0,04; 0,25] [@samejima1969graded].^[Bu doğrulama, yanıtların anket tabanına (en düşük puanlara) yığıldığı durumlara karşı daha dayanıklı olan aşamalı-yanıt (graded response) madde-yanıt kuramı modeli kullanılarak yapılmıştır.]
+
+Aile içi kümelenmeyi yansıtan sınıf-içi korelasyon katsayısı (ICC) 0,14 olarak hesaplanmış olup, ana etkiler rol, yaş veya cinsiyete göre etkileşim göstermemiştir. Rol bazlı hücresel ayrıştırmalar, Bayesçi çıktı detayları ve aile-içi keşifsel kontrastlar sırasıyla şu tablolarda sunulmuştur: @tbl-apa-h1-primary, @tbl-apa-h1-bayesian ve @tbl-apa-h1-within-group.^[Aynı ailenin çocuklarını (indeks çocuk ve sağlıklı kardeş) birbiriyle kıyaslayan bu grup-içi analizde, hem diyabetli hem de kontrol ailelerindeki kardeşler arasında tüm ebeveynlik boyutlarında anlamlı bir fark bulunmamıştır (q > 0,76).] Dört ebeveynlik boyutunun diyabetli ve kontrol aileleri arasındaki genel fark özeti de grafik olarak @fig-h1-forest içinde gösterilmiştir.
+
+```{r}
+#| label: tbl-apa-h1-group
+#| tbl-cap: "H1 doğrulayıcı grup ana etkisi tablosu: dört EMBU-C (çocuğun algıladığı ebeveynlik) alt ölçeğinin her birinde DM eksi Kontrol grup farkı, ön-kayıtlı doğrulayıcı estimand olarak raporlanır. Fark, indeks çocuk ile sağlıklı kardeş rolleri eşit ağırlıkla ortalanarak, aile düzeyi rastgele kesişimli çok düzeyli modelden ham 1–4 ölçek puanı biriminde kestirilir; sütunlar tahmini farkı (b), %95 güven aralığını ve çokluk düzeltmeli (BH-FDR) anlamlılığı (q) verir. Okuma anahtarı: bir alt ölçeğin %95 güven aralığı sıfırı içermiyor ve BH-FDR q değeri 0,05'in altındaysa o boyutta grup farkı sıfırdan ayırt edilir."
+apa_render_table("t06b_h1_group_main_effect")
 ```
 
 ```{r}
 #| label: tbl-apa-h1-primary
-#| tbl-cap: "H1 çok-düzeyli kovaryans analizi sabit etkileri."
+#| tbl-cap: "H1 birincil çok düzeyli kovaryans analizinin sabit etkileri: grup ana etkisi, farkın hangi çocuk rolünden (hasta indeks çocuk ya da sağlıklı kardeş) geldiğini görmek üzere rol-özgül hücre kontrastlarına ayrıştırılır. Katsayılar (b) ham EMBU-C ölçek puanı birimindedir; bu hücre kontrastları betimsel ayrıştırmadır, ayrı bir çokluk düzeltmesi ailesi oluşturmaz. Okuma anahtarı: her rol-özgül kontrastta %95 güven aralığının sıfırı içerip içermediğine bakılır; değerler düzeltilmiş anlamlılık iddiası değil, ana etkinin rollere göre yön ve büyüklük dökümüdür."
 apa_render_table("t06_h1_primary")
 ```
 
 ```{r}
 #| label: tbl-apa-h1-bayesian
-#| tbl-cap: "H1 Bayesçi çift raporlama."
+#| tbl-cap: "H1 Bayesçi çift raporlama: dört EMBU-C alt ölçeğinin her birinde DM–Kontrol grup farkı, klasik (frekansçı) analizin yanı sıra bağımsız bir Bayesçi hatla da raporlanır. Sütunlar posterior fark katsayısını (b), %95 güvenilir aralığı, yön olasılığını (pd) ve Bayes faktörünü (BF₁₀) verir. Okuma anahtarı: BF₁₀ Jeffreys ölçeğinde 1–3 zayıf, 3–10 orta, 10–30 güçlü kanıt gösterir; BF₁₀ birden küçükse fark-yokluğu (H0) lehine kanıt anlamına gelir."
 apa_render_table("t07_h1_bayesian")
 ```
 
 ```{r}
+#| label: tbl-apa-h1-within-group
+#| tbl-cap: "H1 grup-içi rol kontrastı tablosu (keşifsel/post-hoc): kontrol kolu tümüyle dışarıda bırakılıp yalnız aynı ailenin iki çocuğu — aile içi indeks çocuk eksi sağlıklı kardeş — dört EMBU-C alt ölçeğinde karşılaştırılır. Kontrastlar DM ve kontrol ailelerinde ayrı ayrı, aile içi düzeyde ve BH-FDR düzeltmeli olarak hesaplanır. Okuma anahtarı: her alt ölçekte aile içi indeks–kardeş farkının %95 güven aralığı sıfırı içerip içermediğine ve BH-FDR q değerine bakılır; bu katman grup ana etkisinin değil, aynı aile içindeki rol ayrımının keşifsel sınamasıdır."
+apa_render_table("t06d_h1_within_group_contrast")
+```
+
+![H1 çok düzeyli orman grafiği: Dört EMBU-C alt ölçeğinde diyabet ve kontrol grupları arasındaki tahmini ortalama fark (grup ana etkisi) ve %95 güven aralıkları (GA). Sıfır çizgisini kesmeyen aralıklar, çoklu karşılaştırma (BH-FDR) düzeltmesi sonrası istatistiksel olarak anlamlı farklılıklara (q < 0,05) karşılık gelir.](docs/assets/figures/carbon/primary/fig-07-h1-forest.svg){#fig-h1-forest width="96%" fig-align="center"}
+
+### H2 — Kardeş İlişkisi (KİA / SRQ)
+
+**Bulgu özeti.** Kardeş ilişki kalitesinin (KİA) dört alt boyutunda — yakınlık, güç/baskınlık, çatışma ve rekabet — diyabetli ve kontrol aileleri arasında istatistiksel olarak anlamlı bir farklılık saptanmamıştır. Frekansçı testlerin yapısı gereği bu bulgu sıfır-farkın kesin kanıtı olmamakla birlikte, mevcut veriler ışığında diyabet tanısının aile içi kardeşlik dinamikleri üzerinde bağımsız ve güçlü bir etki yaratmadığı gözlenmektedir.
+
+*Kanıt* — Çocuklara uygulanan Kardeş İlişkileri Anketi'nin (KİA / SRQ) sonuçları üç farklı yöntemle incelenmiştir. Her evdeki iki kardeşin puan ortalamaları alınarak yürütülen aile düzeyi analizde, tüm boyutlarda gruplar arası fark etki büyüklüğü açısından klinik olarak önemsiz (d < 0,20) saptanmıştır.
+
+Buna ek olarak, kardeşlerin ebeveynlik algılarında birbirlerini nasıl etkilediklerini (aktör ve partner etkileri) denetleyen yapısal modellerde de diyabet durumuna bağlı bir farklılık bulunamamıştır (p > 0,350). Kavga/çatışma davranışlarının gizil (latent) düzeyde ayrıştırıldığı özel yapısal modellemelerde ise kardeşler arasında r = 0,27 düzeyinde anlamlı bir diadik uyum izlenmiş; bu ortak algı yapısının çocukların cinsiyetinden veya aralarındaki yaş farkından bağımsız olduğu görülmüştür.
+
+Ön-kayıtlı bir eşdeğerlik sınaması planlanmadığından, p-değerine dayalı "fark bulunamaması" durumu doğrudan bir "etki yokluğu" yerine istatistiksel belirsizlik olarak raporlanmıştır [@lakens2017equivalence]. Aile ortalamalarına dayalı bulgular @tbl-apa-h2-family-mean, diadik APIM modelleri @tbl-apa-h2-apim ve bunlara ait yol haritaları @fig-h2-apim-path üzerinde özetlenmiştir.
+
+```{r}
 #| label: tbl-apa-h2-family-mean
-#| tbl-cap: "H2 aile-ortalama Welch testleri."
+#| tbl-cap: "H2 kardeş ilişkisi aile ortalamaları: KİA'nın dört alt ölçeği üzerinden elde edilen aile-düzeyi (kardeş ortalamaları) diyabet-kontrol karşılaştırması. Bulgular ortalama, Welch t-testi istatistiği ve Cohen d etki büyüklüğü ile sunulmuştur; |d| < 0,20 değeri önemsiz (negligible) etki bandına karşılık gelir."
 apa_render_table("t08_h2_family_mean")
 ```
 
 ```{r}
 #| label: tbl-apa-h2-apim
-#| tbl-cap: "H2 APIM sabit etkileri."
+#| tbl-cap: "H2 aktör-partner karşılıklı bağımlılık modeli (APIM): Kardeş değerlendirmelerindeki diadik bağımlılığı çözümleyen yapısal model. Kendi bildiriminin kendi sonucuna etkisi (aktör) ile kardeş bildiriminin kendi sonucuna etkisi (partner) ayrıştırılmıştır; tabloda grup ve rol etkileşim katsayıları ile %95 güven aralıkları raporlanmıştır."
 apa_render_table("t09_h2_apim")
 ```
 
+![H2 APIM yol diyagramı: Diadik veri yapısındaki aktör (düz yatay oklar) ve partner (düz çapraz oklar) etkileri ile bağımsız değişkenler (yaş farkı, cinsiyet uyumu) ve hata terimleri arası korelasyonları (çift yönlü kavisli oklar) gösteren kavramsal model.](docs/assets/figures/carbon/primary/fig-09-h2-apim-path.svg){#fig-h2-apim-path width="96%" fig-align="center"}
+
+### H3 — Anne Öz-Bildirimi (EMBU-P)
+
+**Bulgu özeti.** Annelerin öz-bildirimle değerlendirdiği dört ebeveynlik tutumunda (sıcaklık, aşırı koruma, reddetme, karşılaştırma) diyabet ve kontrol grupları arasında istatistiksel olarak anlamlı bir farklılık saptanmamıştır. Bu bulgu çoklu duyarlılık analizleriyle doğrulanmıştır. Çocuk algısında saptanan grup farklılıklarının (H1) anne bildirimlerinde görülmemesi, değerlendiriciler arası algısal uyuşmazlığa işaret etmektedir.
+
+*Kanıt* — Annelerin bildirdiği dört tutum 241 anne üzerinden incelenmiştir. Çoklu karşılaştırma düzeltmeli (BH-FDR) birincil kovaryans analizinde (ANCOVA), hiçbir ebeveynlik alt ölçeğinde gruplar arası anlamlı bir fark saptanmamıştır (p > 0,500).^[Katsayılar standardize edilmemiştir; ham EMBU-P ölçek puanı birimindedir.] Karıştırıcı etkenleri denetleyen eğilim skoru ağırlıklandırması (IPTW) ve annenin aktif antidepresan kullanımını dışlayan duyarlılık analizlerinden sonra da "farksızlık" bulgusu korunmuştur.
+
+Bayesçi analizler tüm alt ölçekler için "etki yokluğu" (H0) yönünde güçlü kanıt (BF₁₀ < 1) sunmuştur. Ayrıca TOST eşdeğerlik sınaması, annelerin puanlarının uygulamada farksız sayılabilecek bir denklik bandı (|SMD| < 0,30) içinde yer aldığını kanıtlamıştır (Ek 5, @tbl-apa-tost-sensitivity). Çeşitli model sonuçları, ağırlıklandırmalar ve antidepresan durumuna göre kırılımlar şu tablo ve grafiklerde detaylandırılmıştır: @tbl-apa-h3-primary-iptw, @tbl-apa-h3-sensitivity ve @fig-h3-stratified-forest.
+
 ```{r}
 #| label: tbl-apa-h3-primary-iptw
-#| tbl-cap: "H3 birincil ve IPTW grup etkileri."
+#| tbl-cap: "H3 anne öz-bildirimi (EMBU-P) grup farkı tablosu: Ham ANCOVA modeli ile IPTW ağırlıklandırılmış model bulguları. Standardize edilmemiş katsayı (b), sağlam (HC3) standart hata, %95 güven aralığı ve p-değerleri raporlanmıştır."
 apa_render_table("t10_h3_primary_iptw")
 ```
 
 ```{r}
 #| label: tbl-apa-h3-sensitivity
-#| tbl-cap: "H3 duyarlılık ve çift raporlama."
-apa_render_table("t11_h3_sensitivity")
+#| tbl-cap: "H3 sağlamlık (duyarlılık) analizleri: Yokluk/eşdeğerlik (null) bulgusunun antidepresan kullanımına göre yapılandırılmış (stratified) alt model, TOST pratik eşdeğerlik sınaması ve Bayesçi analiz (ROPE/BF) yöntemleriyle çapraz doğrulanmasını özetler."
+apa_render_table("t11_h3_sensitivity", group_col = "Katman")
 ```
+
+![H3 antidepresan durumuna göre stratifiye orman grafiği: Aktif antidepresan kullanım durumuna göre ayrıştırılmış alt gruplarda (kullanan n=46; kullanmayan n=195) diyabet ve kontrol annelerinin ebeveynlik öz-bildirimlerindeki ortalama fark (b) ve %95 güven aralıkları.](docs/assets/figures/carbon/primary/fig-10-h3-stratified-forest.svg){#fig-h3-stratified-forest width="96%" fig-align="center"}
+
+### H4 — Anne Depresyonu ve Ebeveynlik İlişkisi
+
+**Bulgu özeti.** Anne depresif belirti yükü; azalan şefkat (sıcaklık), artan reddetme ve artan karşılaştırma tutumlarıyla anlamlı düzeyde ilişkili bulunmuştur. Bu yapısal bağlar kesitsel bir tasarımla elde edildiğinden kesin bir neden-sonuç mekanizması olarak değil, eşzamanlı bir değişim örüntüsü olarak yorumlanmalıdır.
+
+*Kanıt* — Anne depresyonu (21 soru) ile ebeveynlik tutumları (29 soru) arasındaki ilişki toplam 50 soruluk karmaşık bir istatistiksel ağ modeliyle (yapısal eşitlik) analiz edilmiştir.^[Verilerin türüne uygun bir tahmin yöntemi kullanılarak tam cevap vermiş 237 ailenin verisiyle analiz yapılmıştır.] Depresyon ve ebeveynlik arasındaki dört yapısal yoldan üçü istatistiksel olarak anlamlı bulunmuştur: Depresif belirtiler arttıkça sıcaklık azalmış (β = −0,28), reddetme (β = 0,33) ve karşılaştırma (β = 0,28) boyutları ise artış göstermiştir (tümü p < 0,001). Aşırı koruma tutumu ile depresyon arasında ise belirgin bir bağ saptanamamıştır.
+
+Modelin genel geçerliliğine dair uyum indekslerine bakıldığında (CFI = 0,887; TLI = 0,890; RMSEA = 0,027; SRMR = 0,127); Modelin temel uyum indeksleri marjinal düzeyde kaldığından sonuçlara ihtiyatla yaklaşılmalıdır; bununla birlikte, diyabet ve kontrol aileleri arasında yapılan ölçüm değişmezliği analizleri, saptanan bu ilişki örüntüsünün her iki grupta da büyük ölçüde benzer çalıştığını doğrulamıştır. Detaylı istatistik yolları @tbl-apa-h4-sem tablosunda, ölçüm adilliğine dair cetvel analizleri ise @tbl-apa-h4-invariance tablosunda özetlenmiştir.
 
 ```{r}
 #| label: tbl-apa-h4-sem
-#| tbl-cap: "H4 Beck → EMBU-P latent yapısal eşitlik modeli."
+#| tbl-cap: "H4 Anne depresyonu (Beck) ve ebeveynlik (EMBU-P) yapısal eşitlik modeli (SEM): Gizil regresyon katsayıları (standartlaştırılmış β), standart hata (SE), %95 güven aralığı ve model uyum indekslerini içerir."
 apa_render_table("t12_h4_sem")
 ```
 
 ```{r}
-#| label: tbl-apa-h5-concordance
-#| tbl-cap: "H5 diadik tutarlılık stratejileri."
-apa_render_table("t13_h5_concordance")
+#| label: tbl-apa-h4-invariance
+#| tbl-cap: "H4 ölçüm değişmezliği (measurement invariance) analizi: Yapısal eşitlik modelinin DM ve kontrol grupları arasındaki adilliğini (configural, metric ve scalar düzeylerde) test eden model karşılaştırması; ΔCFI ve ΔRMSEA eşikleri baz alınmıştır."
+apa_render_table("t12b_h4_multigroup_invariance")
 ```
+
+### H5 — Diadik Tutarlılık (Anne-Çocuk Uyumu)
+
+**Bulgu özeti.** Anne öz-bildirimi ile çocuk algısı arasındaki diadik tutarlılık (uyum) tüm ebeveynlik boyutlarında oldukça zayıf saptanmıştır. Daha önemlisi, diyabetli ailelerdeki diadik uyumsuzluk örüntüsü, sağlıklı kontrol grubuna göre sistemli biçimde daha yüksektir (kontrol ailelerindeki uyum diyabete kıyasla daha korunmuştur).
+
+*Kanıt* — Bu diadik ayrışma; mutlak puan farkı, yanıt yüzeyi topolojisi ve latent varyans ortaklığına odaklanan beş bağımsız stratejiyle analiz edilmiştir. Ön-kayıtlı karar kuralı uyarınca, gruplar arası uyum farkı iddiası için en az üç stratejinin yakınsaması (convergence) aranmıştır:
+
+**Strateji 1 (Doğrudan Puan Uyumu).** Sınıf-içi korelasyon katsayıları (ICC) tüm boyutlarda 0,10'un altında kalarak zayıf bir uyuma işaret etmiş, diyabet grubunda bu katsayılar yer yer sıfırın altına inmiştir. Dört ebeveynlik boyutunun tamamında, sağlıklı kontrol ailelerindeki anne-çocuk uyumu diyabet grubundan daha yüksektir (@fig-h5-bland-altman).
+
+**Strateji 2 (Yanıt Yüzeyi Analizi).** Anne ve çocuk arasındaki puan farklılıklarının annedeki depresyonla ilişkisini üç boyutlu bir yüzeyde haritalayan analizde; diyabetli grupta anne ile çocuğun reddetme algısı zıtlaştıkça anne depresyonunun belirgin biçimde arttığı gözlenmiştir. Kontrol grubunda bu zıtlaşma-depresyon örüntüsü gözlenmemiştir (@fig-h5-rsa-surface).
+
+**Strateji 3 (Ortak Yazgı / Aile Doku Modeli).** Dyad üyelerinin ortak bir latent ebeveynlik faktörü etrafında kümelenme kapasitesi incelenmiştir. Sıcaklık dışındaki boyutlarda ortak faktör varyansı çözümlenemeyecek kadar düşük çıkmış; DM grubunda kontrol grubuna kıyasla daha düşük ortak faktör yükleri (non-convergence) gözlenmiştir.
+
+**Strateji 4 (Saf / Gizli Uyum Modeli).** Madde-düzeyi ölçüm hatalarından arındırılmış diadik latent yapılarda (CFA), kontrol grubunda daha yüksek ve tutarlı pozitif ilişki katsayıları izlenmiştir. Bununla birlikte tahmin zorlukları nedeniyle bulgu marjinaldir.
+
+**Strateji 5 (Anlam Ortaklığı / Kenny k-Katsayısı).** Anne ile çocuğun gerçekte ne ölçüde aynı kavramdan bahsettiğini değerlendiren yapısal oranda (Kenny k-katsayısı); sıcaklık, aşırı koruma ve karşılaştırma boyutlarında kontrol grubunun uyumu diyabetli gruba kıyasla bariz şekilde daha yüksek çıkmıştır.
+
+**Sentez.** Uygulanan beş bağımsız stratejinin hiçbiri, anne ile çocuk arasında yeterli bir ebeveynlik algısı uyumu tespit edememiştir. Daha kritik olarak, test edilen tüm metrikler (5/5), diyabetli gruptaki anne-çocuk uyuşmazlığının kontrol grubuna kıyasla daha derin olduğunu doğrulamıştır. Bu durum, kronik hastalık yükünün aile içi algı farklılıklarını (makası) yapısal olarak artırdığına işaret etmektedir.
+
+Tüm bu karmaşık stratejilerin özet sayısal dökümü @tbl-apa-h5-concordance içinde verilmiştir.
+
+```{r}
+#| label: tbl-apa-h5-concordance
+#| tbl-cap: "H5 diadik uyum karar tablosu: Beş istatistiksel stratejinin uyum büyüklüğü (katsayılar) ve diyabet/kontrol grubu uyum karşılaştırması özeti. Hiçbir strateji iki grup için de yeterli mutlak uyum eşiğini geçememiştir; tüm stratejiler kontrol grubunda nispi olarak daha yüksek tutarlılık bulgusuna yakınsamıştır."
+apa_render_table("t13_h5_concordance", group_col = "Strateji")
+```
+
+![H5 Bland-Altman diadik uyum grafiği: Anne ve çocuk puanları arasındaki mutlak farkı (y-ekseni) dyad ortalamalarına (x-ekseni) göre çizer. Geniş güvenilirlik sınırları (LoA) zayıf mutlak tutarlılığa işaret eder.](docs/assets/figures/carbon/primary/fig-12-h5-ba-grid.svg){#fig-h5-bland-altman width="96%" fig-align="center"}
+
+![H5 Yanıt Yüzeyi Analizi (RSA) grafiği: Anne-çocuk ebeveynlik algısı uyum/uyumsuzluk eksenlerinin maternal depresyon düzeyine (z-ekseni) göre 3D topolojisi. Tabandaki köşegen tam uyum hattını temsil eder. Diyabetli grupta (sağ) reddetme algısındaki zıtlaşmanın yüksek depresyonla ilişkili olduğu yukarı kıvrımlı yüzeyden izlenebilir.](docs/assets/figures/carbon/primary/fig-13-h5-rsa-surface.png){#fig-h5-rsa-surface width="96%" fig-align="center"}
+
+## [KEŞİFSEL] Genişletilmiş Analiz Katmanları {#sec-kesifsel-genisletme}
+
+Aşağıdaki bulgular ön-kayıtlı planın ikincil amaçlar bölümünde yer alan keşifsel
+katmanlardır; doğrulayıcı sonuç olarak yorumlanmaz ve dış-validasyon olmadan klinik
+öneri düzeyine çıkarılmaz.
+
+### [KEŞİFSEL] Aracılık (Dolaylı Etki Modeli)
+
+**Bulgu özeti.** Anne depresyonunun, çocuğun hissettiği "reddedilme" algısıyla olan ilişkisi incelenmiştir. Anne depresyonu, anne tutumu ve çocuk algısı arasındaki köprü modeli üç katmanda test edilmiş, ancak istatistiksel olarak anlamlı bir aracı zincir kanıtlanamamıştır. Annenin depresyonunun çocuğun algısını etkilemesi, annenin kendi bildirdiği "reddedici ebeveynlik" tutumu üzerinden (dolaylı yoldan) gerçekleşmemektedir. Buna karşılık, annenin depresyonu ile çocuğun "reddedildiğini" hissetmesi arasında dolaysız (doğrudan) bir bağlantı bulunmuştur. Buna karşın, annenin depresyonu ile çocuğun "reddedildiğini" hissetmesi arasında dolaysız (doğrudan) ve pozitif bir bağlantı bulunmuştur. Bu veriler anlık bir tablo sunduğu için nedensel bir döngü değil, bir birlikte-değişim ilişkisi yansıtır.
+
+*Kanıt* — "Anne Depresyonu → Annenin Tutumu → Çocuğun Algısı" zincirleme modeli üç farklı yaklaşımla test edilmiştir. Temel modelde (1000 tekrarlı güven aralığı hesaplamasıyla), depresyonun anne ebeveynlik tutumunu yordadığı a-yolu (aktarımın ilk ayağı) istatistiksel olarak anlamlı bulunmuştur: β = `r apa_mediation_value("Tek aracılı", "a (X→M)", "est")` (p = `r apa_mediation_value("Tek aracılı", "a (X→M)", "p")`). Bununla birlikte, anne öz-bildiriminin çocuk algısını yordadığı b-yolu (aktarımın sonuç ayağı) anlamlılık düzeyine ulaşamamıştır: β = `r apa_mediation_value("Tek aracılı", "b (M→Y)", "est")` (p = `r apa_mediation_value("Tek aracılı", "b (M→Y)", "p")`). Buna paralel olarak, a ve b yollarının çarpımından oluşan dolaylı etkinin güven aralığı sıfırı içermiş ve aracılık reddedilmiştir: β = `r apa_mediation_value("Tek aracılı", "Dolaylı (a×b)", "est")` (`r apa_mediation_value("Tek aracılı", "Dolaylı (a×b)", "ci")`).
+
+Aile içi ilişkileri kontrol eden daha karmaşık (çok düzeyli) modellerde ve hastalık durumuna göre yapılan analizlerde de aracı etkinin yokluğu doğrulanmıştır. Zincirin tam olarak kurulamaması nedeniyle doğrudan etkilere odaklanılmış; her üç yöntemde de (3/3) anne depresyonunun, çocuğun reddedilme hissini istatistiksel olarak artırdığı tespit edilmiştir. Tüm bu ilişki sonuçları @tbl-apa-mediation içinde özetlenmiştir.
 
 ```{r}
 #| label: tbl-apa-mediation
-#| tbl-cap: "Aracılık ve koşullu süreç sonuçları."
+#| tbl-cap: "Aracılık ve koşullu süreç çözümlemesi sonuçları: anne depresyonu (Beck) → algılanan anne reddetmesi (EMBU-P) → çocuğun algıladığı reddetme (EMBU-C) zinciri. Sütunlar a-yolu ve b-yolu katsayılarını, bunların çarpımı olan dolaylı etkiyi (BCa bootstrap, n = 1000), doğrudan etkiyi (c'), koşullu süreçte (Hayes Model 14) grup moderasyonunu ve aracılı moderasyon indeksini (IMM) verir. Okuma anahtarı: dolaylı etkinin %95 güven aralığı sıfırı içeriyorsa o zincirde aracılık gösterilmemiş sayılır; a-yolunun tek başına anlamlı olması aracılık kanıtı değildir."
 apa_render_table("t14_mediation")
 ```
 
+### [KEŞİFSEL] Gizli Profil Ayırma Analizi (LPA)
+
+**Bulgu özeti.** Aileler "annelerin depresyonu, ebeveynlik tutumları ve sosyoekonomik düzeylerine" göre kendi içinde doğal tiplere/profillere ayrıldığında; ailenin diyabetli olması bu gruplardan birine girmeyi tetikleyen özel bir unsur olarak öne çıkmamıştır. Başka bir ifadeyle, diyabetli ailelerin kendine has, farklı ve izole bir profil kalıbı yoktur.
+
+*Kanıt* — Aileleri doğal gruplara ayırmak için 1'den 5'e kadar farklı gruplama denemesi (LPA) yapılmıştır. Yapılan bu matematiksel ayırma işleminde, aileleri rastgele ayırmak yerine en isabetli kümeyi bulan bir algoritma kullanılmıştır.
+`r apa_lpa_selection_sentence()`
+`r apa_lpa_profile_report_sentence()`
+Alternatif bir kontrol sağlama algoritmasında veriler 2 ana profile ayrılmıştır (Sınıfların oranları %63,4'e %36,6). Yapılan geriye dönük kontrollerde, bir ailenin diyabet tanısına sahip olmasının, onu bu farklı profillerden birine (iyi veya kötü profiline) itmede hiçbir belirleyici (anlamlı) etkisinin olmadığı teyit edilmiştir (p = 0,962). Aileleri bu gizli profillere bölerken sistemin uyum ve başarı oranları @fig-lpa-fit-indices grafiğinde görselleştirilmiş, matematiksel detayları ise @tbl-apa-lpa-bifactor tablosunda verilmiştir.
+
 ```{r}
 #| label: tbl-apa-lpa-bifactor
-#| tbl-cap: "Latent profil, latent sınıf ve Bifaktör S-1 model seçim tanıları."
+#| tbl-cap: "Latent profil analizi (LPA), latent sınıf analizi (LCA) ve Bifaktör S-1 modeli için model-seçim tanıları: anne depresyonu (Beck), dört EMBU-P alt ölçeği ve latent sosyoekonomik düzey göstergeleri üzerinde profil/sınıf sayısına göre. Sütunlar her aday çözüm için BIC, entropi ve bootstrap olabilirlik oran testi (BLRT) p değerini verir. Okuma anahtarı: en düşük BIC tek başına seçim ölçütü değildir; parsimoni kuralı (ΔBIC ≤ 2) ve entropi (0,80 üzeri iyi ayrım) birlikte değerlendirilir."
 apa_render_table("t15_lpa_bifactor")
 ```
 
+![Aile profilleri ayırma analiz grafikleri: İstatistiksel programın veride kaç farklı 'tip/profil' aile bulduğunu ve bu ayrımların (3, 4 veya 5 grup) ne kadar isabetli olduğunu gösterir. Okuma anahtarı: Düşük BIC çizgisi ve yüksek Entropi uyumu arzu edilir. Veriler, araştırılan grupta en isabetli seçeneğin aileleri 3 farklı temel profile ayırmak olduğunu göstermiştir. Sonuç olarak, diyabetli olmanın aileyi belirli bir kötü profile itmediği teyit edilmiştir.](docs/assets/figures/carbon/primary/fig-15-lpa-fit-indices.svg){#fig-lpa-fit-indices width="78%" fig-align="center"}
+
+### [KEŞİFSEL] İlişki Ağı (Network) Analizi
+
+**Bulgu özeti.** Ebeveynlik tutumları, evdeki kardeş ilişkileri ve annenin depresyonu gibi unsurların birbiriyle nasıl bir 'örümcek ağı' (ilişki yumağı) oluşturduğuna bakılmıştır. Sonuçlar; diyabetli aileler ile sağlıklı kontrol aileleri arasındaki bu ilişkinin işleyiş şeklinin birbirine oldukça benzediğini göstermiştir. Bu bağlar incelenirken, biri diğerine kesin sebep oluyor denilmemiş; "ikisi birlikte nasıl değişiyor" mantığıyla yorumlanmıştır.
+
+*Kanıt* — Annenin bildirdiği 4 ebeveynlik boyutu, 4 kardeş ilişkisi boyutu ve anne depresyonu olmak üzere toplam 9 konu başlığı, özel bir istatistiksel ağ modeliyle hesaplanmıştır (238 aile üzerinden).^[Tüm sorularda tam veri isteyen bu analiz yöntemi nedeniyle eksik verisi olan üç diyabetli aile bu haritadan otomatik çıkarılmıştır.] `r apa_network_top_strength_sentence()` Hangi konuların daha kalın çizgilerle bağlandığı ve hangilerinin ailenin tam merkezine yerleştiği @fig-network-graph içinde görselleştirilmiştir. `r apa_network_stability_sentence()` `r apa_network_nct_sentence()` Ek olarak, annenin depresyon sorularının (21 madde) kendi aralarındaki ağ bağlantıları da ayrıca analiz edilmiş, bu bağlantılar da yine sebep-sonuç şeklinde değil "birliktelik" şeklinde yorumlanmıştır. İlişki ağlarının kilit düğümleri ve diyabet-kontrol aileleri arasındaki benzerlik durumları @tbl-apa-network içinde özetlenmiştir.
+
 ```{r}
 #| label: tbl-apa-network
-#| tbl-cap: "Ağ merkeziyet ve Ağ Karşılaştırma Testi."
+#| tbl-cap: "Ağ merkeziyet ölçütleri ve Ağ Karşılaştırma Testi (NCT) sonuçları: dört EMBU-P alt ölçeği, dört kardeş ilişkisi (SRQ) alt ölçeği ve anne depresyonu (Beck) toplam puanı olmak üzere dokuz gösterge üzerinde kurulan EBIC-LASSO Gauss grafik modeli (γ = 0,5; havuzlanmış n = 238). Sütunlar en güçlü kenarları, düğüm strength merkeziyetini, case-dropping bootstrap kararlılık katsayısını ve DM ile kontrol ağlarını karşılaştıran NCT (ağ invaryansı, global strength) p değerlerini verir. Okuma anahtarı: kenar bir kısmi korelasyondur (koşullu bağımlılık), nedensel ok değildir; NCT'de anlamlı fark bulunmaması iki ağın özdeş olduğu anlamına gelmez."
 apa_render_table("t16_network")
 ```
 
+![Aile içi ilişkilerin ağ (network) haritası: Ebeveynlik, kardeş ilişkisi ve depresyonun birbirine nasıl bağlandığını gösteren görseldir. Ağ (network) diyagramı okuma anahtarı: Kenar (edge) kalınlıkları kısmi korelasyon katsayılarının mutlak büyüklüğünü; düğüm (node) boyutları ise değişkenin ağ içindeki merkeziyetini (beklenen etki veya derece) yansıtır. Ağ metrikleri genel olarak diyabet durumunun aile içi ilişkisel bağımlılık yapısında köklü bir topolojik değişime yol açmadığını işaret etmektedir.](docs/assets/figures/carbon/primary/fig-16-network-graph.svg){#fig-network-graph width="82%" fig-align="center"}
+
+![Diyabetli ve kontrol ağlarının karşılaştırma testi (NCT): Diyabetli ailelerin ilişkilerindeki bağ yapısı ile kontrol ailelerinin bağ yapısı arasında genel bir fark olup olmadığını kontrol eden görseldir. Okuma anahtarı: 'p değeri' belirlenen kuralın altındaysa fark var demektir. Tablodaki veriler, genel yapının (örümcek ağının biçiminin) iki grup arasında benzer olduğunu, yani yapısal ağ eşdeğerliğini koruduğunu doğrulamıştır.](docs/assets/figures/carbon/primary/fig-17-network-nct.svg){#fig-network-nct width="72%" fig-align="center"}
+
+### [KEŞİFSEL] Klinik Fayda
+
+**Bulgu özeti.** Araştırmada "annelerin ebeveynlik tutumlarına bakarak o annenin depresyonda olup olmadığını tespit edebilir miyiz?" sorusu test edilmiştir. Annenin tutumlarının bu teşhise ancak çok küçük bir katkı sağladığı görülmüştür. Bu katkı da yalnızca "her şüpheyi değerlendirelim" gibi daha esnek sınırların kabul edildiği özel durumlarda bir anlam ifade etmiştir. Bu model gelecekte kimin depresyona gireceğini tahmin eden bir "fal" aracı değil, sadece o anki durumu tanımlamaya çalışan teorik bir denemedir.
+
+*Kanıt* — Yüksek depresyon ihtimali, testte 17 puan veya üstü alan anneler olarak tanımlanmıştır.^[Bu tanımlama klinik bir tanı koymaz, sadece durum tespiti yapmak içindir.] Bu durumu tahmin etmek için iki ayrı formül kıyaslanmıştır: "Temel formül" sadece ailenin yaşına, gelirine ve çocuk sayısına bakarken; "Geniş formül" bunlara annenin ebeveynlik tutumunu da eklemiştir. Modellerin ayrım gücü, formülün kendi kendini 1000 kez tekrar test ettiği bir sağlamlama yöntemiyle incelenmiş ve `r apa_clinical_auc_sentence()` Ayrım gücünü gösteren ROC grafiği @fig-clinical-roc içinde verilmiştir.
+
+Sistemin en verimli çalıştığı sınır noktasında (optimal eşik 0,22), depresyonu olanı bulma (duyarlılık) %75, sağlam olanı ayırma (özgüllük) ise %60'tır. Klinik karar (fayda/zarar) analizine bakıldığında; ebeveynlik tutumlarını da içeren geniş formülün kullanılması, "bütün anneleri tek tek muayene etmeye" kıyasla ufak da olsa pratik bir net fayda sağlamaktadır.^[Bu net fayda sadece bu örneklemde görünen (düzeltilmemiş) kazançtır.] Ancak bu fayda, sadece düşük oranlarda (0,05 sınırı civarında) anlamlı kalmakta, sınırlar daraldıkça hızla gerilemektedir (@fig-clinical-dca). Bu oranlar, yüksek depresif belirti riski olan bir anneyle "kısa bir ek psikolojik görüşme yapma" kararına eşdeğer bir tavsiye gücü barındırır; zira bu kısa görüşmenin (yanlış alarm bile olsa) anneye bir zararı/maliyeti yoktur.
+
+Modelin tahminlerinin gerçek hayatla uyumu (kalibrasyon) `r apa_clinical_calibration_sentence()` (@fig-clinical-calibration). Ayrıca bu tahminler daha gelişmiş iki farklı yapay zekâ algoritmasıyla (Karar Ağaçları ve Random Forest) desteklenmiş, depresyonu bulmada hangi verilerin daha "önemli" olduğu @fig-clinical-cart-rf içinde haritalandırılmıştır. Kurulan bu sistem, bu deneye özgüdür ve farklı hastanelerde kanıtlanmamıştır. Genel başarı durumu @tbl-apa-clinical içinde verilmiştir.
+
 ```{r}
 #| label: tbl-apa-clinical
-#| tbl-cap: "Klinik risk skoru performansı."
+#| tbl-cap: "Yüksek anne depresif belirti düzeyini eşzamanlı sınıflandıran tarama modelinin performansı: temel model (DM grup + anne yaşı + latent sosyoekonomik düzey + aile çocuk sayısı) ile genişletilmiş model (temel + dört EMBU-P alt ölçeği), iç-validasyonlu optimizm-düzeltilmiş bootstrap (B = 1000) ile. Sütunlar ayrım gücünü (AUC), Youden işletme noktasında duyarlılık, özgüllük, pozitif ve negatif kestirim değerlerini (PPV, NPV) ve kalibrasyon eğim/sabitini verir. Okuma anahtarı: AUC 0,5 şans düzeyidir, 0,70–0,80 kabul edilebilir ayrım bandıdır; bu bir kesitsel eşzamanlı sınıflandırmadır, ileriye dönük risk yordaması değildir."
 apa_render_table("t17_clinical")
 ```
 
+![Anne depresyonu için sınıflandırma (ROC) eğrisi: Temel bilgilerin (yaş vb.) ve annenin ebeveynlik tutumlarının, depresyonu ne kadar doğru tespit edebildiğini (ayırma gücünü) gösteren grafiktir. Kesikli çapraz çizgi tamamen şans eseri (yazı-tura gibi) tahmini temsil eder. Okuma anahtarı: Renkli eğriler sol üst köşeye ne kadar yakın şişiyorsa, modelin doğru bilme (depresyonlu ile depresyonsuzu ayırt etme) yeteneği o kadar yüksektir.](docs/assets/figures/carbon/primary/fig-18-clinical-roc.svg){#fig-clinical-roc width="78%" fig-align="center"}
+
+![Klinik karar (fayda/zarar) eğrisi: Bu modeli kullanarak anneleri depresyon açısından taramanın, 'herkesi tara' veya 'hiç kimseyi tarama' gibi körleme stratejilere göre ne kadar net fayda (pratik kazanç) sağlayacağını gösterir. Okuma anahtarı: Model eğrisinin diğer iki basit (körleme) çizginin üzerinde kaldığı her nokta, modelin kullanılmasının doktorlara ve hastalara zaman/emek açısından fayda sağladığı anlamına gelir. Grafikte, tutumlara bakarak depresyon aramamanın net faydasının çok düşük olduğu ve sadece düşük tarama eşiklerinde ufak bir kazanç sağladığı görülmektedir.](docs/assets/figures/carbon/primary/fig-19-clinical-dca.svg){#fig-clinical-dca width="86%" fig-align="center"}
+
+![Klinik sınıflandırma kalibrasyon grafiği: Lojistik regresyon modelinin ürettiği tahmini risk olasılıkları (x-ekseni) ile gözlenen depresif eşik insidansı (y-ekseni) arasındaki uyum. Çapraz kesikli çizgi tam kalibrasyonu temsil eder.](docs/assets/figures/carbon/primary/fig-20-clinical-calibration.svg){#fig-clinical-calibration width="78%" fig-align="center"}
+
+![Makine öğrenmesi değişken önemlilikleri: Annenin klinik düzey depresyon yükünü kestiren farklı sınıflandırıcıların (sNB, CART, Rastgele Orman, LASSO, XGBoost) duyarlılık profilleri ve algoritmaya özgü Gini safsızlığı azaltım temelli değişken önem sıralaması (VIMP).](docs/assets/figures/carbon/primary/fig-21-clinical-cart-rf.svg){#fig-clinical-cart-rf width="82%" fig-align="center"}
+
+### [KEŞİFSEL] Diyabet Klinik Alt-Analizleri
+
+**Bulgu özeti.** Sadece diyabetli gruptaki çocukların diyabet teşhisi aldıkları yaş ile annelerinin ebeveynlik tutumu arasında anlamlı bir ilişki bulunamamıştır. Hastalığın süresinin (diyabetle geçirilen yılların) de tutumlarla ilişkisi incelenmiş; basit, doğrusal bir mantığın bu durumu açıklamak için yeterli olduğu görülmüştür. Bu klinik hesaplamalar yalnız diyabetli alt grupta yürütüldüğü için istatistiksel kanıt gücü sınırlı kalmıştır. Dolayısıyla bu sonuçlar "kesinlikle hiçbir ilişki yoktur" şeklinde değil, "mevcut veriyle bir ilişki gösterilemedi" şeklinde okunmalıdır.
+
+*Kanıt* — "Hastalık uzadıkça ebeveynliğin eğrisel (dalgalı) şekilde mi yoksa düz mü değiştiği" araştırılmış ve etkinin düz/doğrusal bir modelle açıklanabildiği görülmüştür. Çocukların hastalığa yakalanma yaşlarına göre gruplandırıldığı (erken, okul çağı, ergen) denemelerde de tutumlarda istatistiksel olarak ayırt edici bir sonuca (F testi, en büyük F = `r apa_tani_strata_maxF("F")`; p = `r apa_tani_strata_maxF("p")`) ulaşılamamıştır. Diyabet grubuna özel bu klinik durumun detaylı sayıları @tbl-apa-dm-clinical tablosunda verilmiştir.
+
 ```{r}
 #| label: tbl-apa-dm-clinical
-#| tbl-cap: "DM klinik alt-analizleri."
-apa_render_table("t18_dm_clinical")
+#| tbl-cap: "Yalnız DM grubunda yürütülen klinik alt-analizler, satırlar analiz türüne göre gruplanmıştır: hastalık süresinin biçimi (kübik spline ile doğrusal karşılaştırması) ve tanı yaşı katmanları için ebeveynlik ilişkileri. Sütunlar her analizin etki büyüklüğünü, güven aralığını, anlamlılık ölçütünü ve ilgili güç/açıklanan varyans göstergesini verir. Okuma anahtarı: bu alt-örneklem küçüktür ve küçük-orta etkiler için sınırlı güçtedir; sıfırdan ayırt edilemeyen etkiler ilişki yok değil, bu güçte gösterilemez olarak okunur."
+apa_render_table("t18_dm_clinical", group_col = "Analiz")
 ```
+
+### [KEŞİFSEL · İKİNCİL] İleri Psikometrik ve Bağlamsal Katman
+
+**Bulgu özeti.** Gelişmiş analizler, araştırmanın temel bulgularını farklı açılardan zorlayarak test etmiştir. Diyabetli çocukların "kendilerini daha az reddedilmiş" hissettiği yönündeki asıl bulgu, en katı matematiksel sınamalara rağmen sağlam kalmıştır. Ailenin gelir düzeyi, yapısı ya da annenin başka bir hastalığı olup olmamasının ebeveynlik üzerinde net bir etkisi gösterilememiştir. Ancak annenin depresyon düzeyinin yüksek olması, çocuğun reddedildiğini hissetmesiyle her koşulda (diyabetli olsun veya olmasın, antidepresan kullansın veya kullanmasın) doğrudan bağlantılı bulunmuştur.
+
+*Kanıt* — Psikolojik ölçeklerin çalışma kalitesini test eden ileri teknikler (trifaktör analizleri), anketlerin ölçüm gücünün yeterli ve kabul edilebilir (CFI medyanı 0,90; RMSEA 0,05) olduğunu doğrulamıştır. Üçlü (trifaktör) analiz modeli, aile bireylerinin ortak gerçeği ile kendi öznel algılarını birbirinden ayırabilmiştir (@fig-p2-trifactor).
+
+Anketlerde 'hiçbir zaman' yanıtının çok fazla işaretlenmesiyle (taban etkisi) ortaya çıkan yığılma problemini aşmak için gelişmiş madde-yanıt kuramı modelleri kurulmuştur. Bu modeller, çocukların puanlarını gizli eğilim (latent θ) üzerinden yeniden hesapladığında, iki grup (diyabetli ve sağlıklı) arasındaki asıl farkın basit puan toplamalarından bile daha belirgin olduğunu göstermiştir (reddetme için etki büyüklüğü d = 0,37; aşırı koruma için d = 0,54; bkz. @fig-p2-floor-irt). Model güvenilirliği analizleri de annelerin formları için ortak varyans ve iç tutarlılığın ($\omega_h$ = `r apa_omega_value("EMBU-P", "omega_h")`; ECV = `r apa_omega_value("EMBU-P", "ecv")`) yeterli seviyede olduğunu belgelemiştir.
+
+![Trifaktör (üçlü) analiz modeli: Anne, sağlıklı kardeş ve diyabetli çocuğun ebeveynliğe dair verdiği yanıtları inceleyerek, bu cevapların 'gerçek ortak bir tutumu' mu (merkez), yoksa 'kişinin kendi bakış açısını' mı (kenarlar) yansıttığını ayrıştırır. Okuma anahtarı: Ortadaki büyük daireye bağlanan çizgiler ailenin ortak gerçeğini, sağdaki ve soldaki dairelere bağlananlar ise o kişiye özel (taraflı) algıyı gösterir. Sonuç: Model, aile içindeki gerçeğin her bireyin kendi algısından başarıyla ayrılabildiğini, anketin işe yaradığını doğrulamıştır.](docs/assets/figures/carbon/phase2/phase2_f01_trifactor.svg){#fig-p2-trifactor width="80%" fig-align="center"}
+
+![Yanıt yığılmasını düzelten gelişmiş analiz grafiği (Madde-yanıt kuramı): Ailelerin ankette genellikle en düşük ('hiçbir zaman') seçeneğine yığılması problemini çözen çok daha hassas bir istatistiksel modele dayanır. Okuma anahtarı: Bu grafik, basit toplam puanlar yerine her bireyin anket sorularındaki gizli eğilimini (θ) bularak diyabetli ve kontrol grupları arasındaki asıl 'kapatılamayan farkı' gösterir. Sonuç: Anketlerdeki yığılma problemi matematiksel olarak düzeltildiğinde bile, diyabetli çocukların daha az reddedilme ve daha fazla aşırı koruma hissettiği gerçeği değişmemiş, hatta fark daha belirgin hale gelmiştir.](docs/assets/figures/carbon/phase2/phase2_f03_floor_irt.svg){#fig-p2-floor-irt width="80%" fig-align="center"}
+
+Analizlerin ne kadar 'sağlam' (rastgele hesaplamalara dayanmadığını) olduğunu kanıtlamak için çoklu-evren (multiverse) testleri yapılmıştır. Diyabetin çocuğun reddedilme algısına etkisi, test edilen 25 farklı analitik varyasyonun (spesifikasyonun) %100'ünde sağlam kalmıştır. Benzer şekilde aşırı koruma ve sıcaklık boyutlarındaki sonuçlar da %100 oranında kararlılık göstermiştir (@fig-p2-h1-spec). Bu durum, "diyabetli çocuklar daha az reddedilme hissediyor" bulgusunun tesadüfi bir denk geliş değil, istatistiksel açıdan sarsılmaz bir gerçeklik olduğunu doğrular. `r apa_h1_extended_sensitivity_sentence()`
+
+Elde edilen bu sonuçların dünyadaki diğer güncel araştırmalarla ne kadar örtüştüğünü görmek için bir "orman grafiği" (@fig-p2-meta-forest) oluşturulmuştur. Diğer uluslararası büyük çalışmalardaki (örneğin Pinquart 2013 kronik hastalık [@pinquart2013], Pinquart 2018 ebeveyn stresi [@pinquart2018parentingStress], Lovejoy 2000 anne depresyonu [@lovejoy2000maternal] gibi) etki boyutları (−0,16 ile 0,40 arası), bu tezin bulduğu etki boyutlarıyla (yaklaşık 0,21–0,36) büyük ölçüde paralellik sergilemiştir. Son olarak, olasılık ve dağılımlara dayanan Bayesçi doğrulama testleri de sonuçların modelle uyumlu olduğunu (gözlenen değerlerin %90 güvenlik bandının içinde kaldığını) onaylamıştır.
+
+![Spesifikasyon eğrisi (çoklu evren) grafiği: H1 reddetme algısı ana etkisinin, farklı kovaryat setleri, tahmin algoritmaları, dışlanma kriterleri ve alt örneklemleri içeren 288 eşzamanlı spesifikasyon kombinasyonundaki tespiti. Üst panel etki büyüklüklerini ve %95 güven aralıklarını, alt panel ise modeli kuran kararları gösterir. Sürekli pozitif yöndeki eğri, etki yönünün sağlamlığını (robustness) teyit eder.](docs/assets/figures/carbon/phase2/phase2_f05_h1_spec_curve.svg){#fig-p2-h1-spec width="88%" fig-align="center"}
+
+![Gözlemsel etkinin dış geçerliği (literatür orman grafiği): Bu tezde H1 reddetme için kestirilen etki büyüklüğünün, kronik hastalık ve ebeveynlik odaklı ana meta-analizlerle karşılaştırması. Bulguların literatürle boyutsal uyumu görselleştirilmiştir.](docs/assets/figures/carbon/phase2/phase2_f06_meta_forest.svg){#fig-p2-meta-forest width="82%" fig-align="center"}
+
+Genişletilmiş klinik sınıflandırma modeli, anne ebeveynlik tutumlarını kullanarak annelerin depresyon riskini tahmin etmeye çalışmıştır. Bu modelin genel ayırma gücü (AUC) 0,70 olarak bulunmuştur (standart net fayda sNB = 0,86). Yani annenin tutumuna bakarak kimin depresyonda olduğunu tahmin etmek çok sınırlı bir başarı sunmaktadır; klinik karar ve fayda-zarar analizi grafiği (@fig-p2-dca-heatmap) bu yolla elde edilecek teşhis kazancının düşük olduğunu göstermiştir.
+
+![Genişletilmiş klinik net fayda ısı haritası: Annenin ebeveynlik tutumlarına bakarak depresyon riski olup olmadığına karar vermenin 'sağlayacağı fayda' ile 'yanlış alarm vermenin zararı' arasındaki dengeyi özetler. Okuma anahtarı: Renklerin koyuluğu modelin kullanılmasının doktorlara ve hastalara sağlayacağı net faydayı (kazancı) ifade eder. 'c=1' satırı temel ölçüttür; yanlış alarmın maliyeti arttıkça (c yükseldikçe) faydanın nasıl değiştiği incelenir. Sonuç: Sadece annenin ebeveynlik tutumlarına bakılarak depresyon taraması yapılmasının, doktorlar ve hastalar açısından belirgin ve pratik bir kazanç (net fayda) sağlamadığı görülmüştür.](docs/assets/figures/carbon/phase2/phase2_f12_dca_heatmap.png){#fig-p2-dca-heatmap width="84%" fig-align="center"}
+
+Bağlamsal katmanda diferansiyel ebeveynlik testinde (PDT) Holm düzeltmesiyle 16 karşılaştırmanın hiçbiri anlamlı değildir. @fig-expl-pdt, aile içi yön testinin dört EMBU alt ölçeğindeki işaretli etki büyüklüklerini göstermektedir (sıcaklık d = −0,08; aşırı koruma d = +0,15; reddetme d = +0,03; karşılaştırma d = +0,01); bu dört etkinin hiçbiri Holm sonrası anlamlı değildir. Ayrı bir kayırma (favoritism) kanalı çözümlemesinde, düzeltilmemiş düzeyde DM grubunda indeks çocuğa yönelik baba kayırması yönünde d = −0,27 ([−0,52; −0,01]; p = 0,039) gözlenmiştir. Bu kontrast aile içi yön testinden ayrıdır ve @fig-expl-pdt'deki dört alt ölçek profiline dahil değildir. Sosyal tabakalaşma çözümlemesinde EGP sınıf gradyanı Holm düzeltmesiyle anlamlı değildir; ISEI, SIOPS ve EGP göstergeleri yüksek eşdoğrusallık göstermektedir. Anne komorbiditesi çözümlemesinde komorbidite, Beck puanıyla d = 0,29 düzeyinde ilişkilidir; ancak bu ilişki Holm düzeltmesi sonrası anlamlı değildir. Antidepresan kullanımı DM grubunda %29,2, kontrol grubunda %9,1'dir (χ²(1) = 14,45; p < 0,001; Cramér V = 0,25). Anne komorbiditesi ve depresif belirti ilişkisi @fig-expl-comorbidity içinde gösterilmiştir. Aile yapısı çözümlemesinde diadik karşılıklılık r = 0,18–0,38 aralığındadır. DM maruziyet yoğunluğu için yapılan dokuz testin hiçbiri Holm sonrası anlamlı değildir.
+
+![Farklılaşmış (diferansiyel) ebeveynlik testi grafiği: Annenin aynı evin içinde diyabetli çocuğuna farklı, sağlıklı çocuğuna farklı davranıp davranmadığına (taraf tutup tutmadığına) bakar. Okuma anahtarı: Çubukların sıfır çizgisinden sağa veya sola doğru sapması, annenin hangi çocuğa doğru eğilim gösterdiğini (farkın büyüklüğünü) ifade eder. Merkezde (sıfırda) kalan çubuklar ayrımcılık olmadığını gösterir. Sonuç: Aile içinde annenin bir çocuğa diğerinden belirgin biçimde farklı (taraf tutarak) davrandığına dair istatistiksel bir kanıt bulunamamıştır.](docs/assets/figures/carbon/exploratory/expl_f02_pdt_direction.svg){#fig-expl-pdt width="82%" fig-align="center"}
+
+![Anne ek hastalığı (komorbidite) ve depresyon ilişkisi grafiği: Annenin diyabet dışında bilinen başka bir kronik hastalığı olup olmamasının, annenin depresyon puanı ve antidepresan kullanımıyla ilişkisini özetler. Okuma anahtarı: Ek hastalığı olan anneler ile olmayan annelerin ruhsal sağlık (Beck) puanı arasındaki fark, çubukların büyüklüğü ve yönü ile görselleştirilmiştir. Sonuç: Annenin diyabet dışında başka bir kronik hastalığı olmasının, onun depresyon riskini istatistiksel olarak tek başına anlamlı şekilde artırmadığı görülmüştür.](docs/assets/figures/carbon/exploratory/expl_f03_comorbidity.svg){#fig-expl-comorbidity width="80%" fig-align="center"}
+
+Anne mental sağlığı ile çocuk algısı katmanında, güncel Beck puanı ≥ 17 olan annelerin çocuklarında EMBU-C reddetme algısı b = 0,13 (p = 0,004) ve karşılaştırma algısı b = 0,24 (p = 0,003) düzeyinde daha yüksektir; bu ilişki DM grubundan da antidepresan kullanımından da bağımsızdır. Latent sınıf riskli grubu ise reddetme algı-uyuşmazlığını (p < 0,001) ve kardeş çatışmasını (p = 0,006) yordamaktadır. Yönlü kardeş mimarisi çözümlemesinde üç grup ve on dört fasette FDR-anlamlı bulgu yoktur.
+
+Kardeş–kardeş algı uyumu çözümlemesinde reddetme alt ölçeği için sınıf-içi korelasyon kontrol grubunda 0,32 (%95 GA [0,15; 0,47]), DM grubunda ise 0,00 ([−0,18; 0,18]) düzeyindedir; gruplar-arası fark için ayrı bir biçimsel test raporlanmamış olup bu karşılaştırma betimsel ve keşifseldir. Bundan ayrı bir diyad türü olan anne–çocuk uyumunda, grup-bazlı tek bir konkordans skalarını doğrudan üreten iki strateji R/20 çıktısından okunmuştur. Üç yöntem ise dışarıda bırakılmıştır: yüzey parametreleri üreten RSA, havuzlanmış `group_dm` katsayısı veren Common Fate ve kararsız ya da havuzlanmış k-katsayısı; bunların hiçbiri grup-bazlı ayrıştırılamamıştır. Kalan iki strateji grup farkının yönünde birbirinden ayrışmaktadır. ICC, yani anne–çocuk sınıf-içi korelasyonlarının alt ölçek ortalaması, kontrol lehine bir örüntü verir (kontrol 0,10; DM 0,07). Olsen-Kenny latent konkordansı ise DM lehine bir örüntü verir (kontrol 0,17; DM 0,29). Farklı estimand'ları ölçen, aynı ailelerden türetilen ve yönde ayrışan bu iki kestirim tek bir havuzlanmış katsayıya indirgenmemiştir. Sonuç, spesifikasyonlar arası bir yön ayrışması ve grup farkı için belirsiz kanıt olarak raporlanmaktadır.
+
+Çocuk moderatör çözümlemesinde cinsiyet × grup için sekiz testin hiçbiri Holm-anlamlı değildir; anne yaşı ile aşırı koruma arasında yılda b = −0,03 (p = 0,004) düzeyinde ilişki bulunmuştur. Toplama yılı ile grup arasındaki ilişki Cramér V = 0,59 düzeyindedir ve H1 çocuk algısı olumlu bulguları, iki grubun en geniş ortak takvim desteğine sahip olduğu 2023 alt-örnekleminde belirgin biçimde zayıflamaktadır.
+
+Birincil H1 estimandı yalnız 2023 alt örnekleminde (n = 40 kontrol, 108 DM indeks aile) doğrudan yeniden çalıştırılmıştır. Model; dört düzeyli rolü, indeks ve kardeşin eşit-ağırlıklı olduğu DM–kontrol grup ana etkisini, tam kovaryat ayarını (yaş, cinsiyet, SES, kardeş yaş farkı, çocuk sayısı) ve aile rastgele kesişimini içerir. Bu alt örneklemde dört EMBU-C alt ölçeğinin hiçbirinde grup farkı için kanıt kalmamaktadır (tümü q ≥ 0,61); alt ölçek katsayıları ve güven aralıkları @tbl-apa-h1-period2023 içinde sunulmuştur. Böylece tam örneklemde doğrulanan iki boyut (reddetme b = 0,14; aşırı koruma b = 0,19) 2023 ortak-destek alt örnekleminde, aynı birincil estimandla sönümlenmektedir. Tamamlayıcı olarak, indeks-çocuk ayarlanmamış iki-grup Cohen d duyarlılığı da aynı yönü verir (reddetme d = 0,38 → −0,00, p = 0,99; aşırı koruma d = 0,37 → 0,26, p = 0,19; tam örneklemde zaten anlamsız olan sıcaklık ve karşılaştırma 2023'te de anlamsızdır). Her iki grup 2023, 2024 ve 2025 yıllarında da bulunmakla birlikte ortak destek belirgin biçimde dengesizdir; yıl × grup dağılımı Sınırlılıklar bölümünde verilmiştir. 2023, iki grubun en geniş ortak temsile sahip olduğu dönemdir.
+
+```{r}
+#| label: tbl-apa-h1-period2023
+#| tbl-cap: "H1 dönem duyarlılığı çözümlemesi: birincil H1 estimandı (eşit-rol, kovaryat-ayarlı, aile rastgele kesişimli çok düzeyli grup ana etkisi), iki grubun en dengeli ortak-takvim dilimi olan 2023 alt örnekleminde (n = 40 kontrol, 108 DM indeks aile) dört EMBU-C alt ölçeği için yeniden kestirilmiştir; çoklu karşılaştırma BH-FDR ile düzeltilmiştir. Sütunlar her alt ölçek için 2023 katsayısını (b), %95 güven aralığını, FDR-düzeltilmiş q değerini ve karşılaştırma için tam örneklem katsayısını verir. Okuma anahtarı: tam örneklemde kestirilen etkiler dönem-dengeli alt örneklemde de sıfırdan ayırt ediliyorsa dönem/kohort karışması olasılığı azalır; küçülen alt örneklemde güç kaybı da ayrı bir açıklamadır. Sonuç: Araştırmanın sadece 2023 yılındaki en dengeli grubuna bakıldığında, diyabetin çocukların algısındaki olumlu etkisi görünmez olmuştur. Bu durum, sonuçların döneme ve gruba göre değişebileceğini (veya daraltılan grupta istatistiksel gücün yetmediğini) gösterir."
+apa_render_table("t06c_h1_period2023")
+```
+
+### [KEŞİFSEL · POST-HOC] Artık İlişki Yüzeyi
+
+<!-- kaynak: docs/analiz_planlari/08-sap-faz5-ek-plan.md; outputs/tables/phase5_*.csv -->
+
+**Bulgu özeti.** Tamamlayıcı katman analizleri; anne öz-bildirimi ile çocuk algısı arasındaki aktarımın sınırlı olduğunu doğrulamış ve maternal depresyonun çocuk üzerindeki etkisinde bu öz-bildirimlerin aracı rol oynamadığını teyit etmiştir. Öte yandan, yüksek aşırı koruma bildirimlerinin düşük anne yaşı ve sınırlı sosyoekonomik düzey (latent SES) ile ters yönlü doğrusal ilişkilere sahip olduğu görülmüştür.
+
+*Kanıt* — Annenin depresyonunun, anne tutumları (sıcaklık, reddetme, karşılaştırma) ile ilişkili olduğu görülmüştür (p < 0,05). Öte yandan, anne ebeveynlik tutumları ile çocuk algısı arasındaki aktarım (b-yolu) katsayıları zayıf kalmış ve anlamlılığa ulaşmamıştır (b = -0,02 - 0,10). Bu doğrultuda, anne depresyonunun çocuk algısına olası aktarımında anne ebeveynlik öz-bildiriminin istatistiksel bir aracı (mediator) görevi görmediği güven aralıklarının sıfırı içermesiyle kanıtlanmıştır.
+
+Sosyo-demografik açıdan bakıldığında, yaşı daha genç (β = −0,18, p = 0,004) ve ekonomik/eğitim düzeyi daha düşük olan annelerin (β = −0,27, p < 0,001) çocuklarına karşı daha aşırı korumacı yaklaştığı görülmüştür. Uluslararası sosyoekonomik endeksler (ISEI-08 r = −0,17) ve mesleki prestij puanları da (SIOPS-08 r = −0,17) aynı şekilde bu bulguyu doğrulamış; geliri/statüsü düşen ailelerde korumacılığın arttığı tespit edilmiştir. Evin kalabalık (çok nüfuslu) olması ise bu tutuma ekstra bir katkı sağlamamıştır.
+
+Kardeş ilişkilerine gelince, anne depresyonunun kardeşler arasındaki (kavga, rekabet, yakınlık vb.) ilişkileri doğrudan etkilemediği veya bozmadığı görülmüştür (p > 0,05). Kardeşlerin aynı cinsiyetten olması bir miktar daha sıcak bir ilişki getirme eğilimi taşısa da istatistiksel olarak anlamlı seviyeye ulaşmamıştır (p = 0,085). Ortaya çıkan tek ilginç detay, anne ve baba arasındaki eğitim düzeyi farkı açıldıkça, annenin çocuklara yönelik reddetme tutumunun (öz-bildirimde) hafifçe artmasıdır (r = 0,166, p = 0,030).
+
+### [KEŞİFSEL · POST-HOC] Gelişimsel-Diadik Ölçüm Yüzeyi
+
+<!-- kaynak: docs/analiz_planlari/09-sap-faz6-ek-plan.md; outputs/tables/phase6_*.csv -->
+
+**Bulgu özeti.** Bu son analiz aşamasında iki temel bulguya ulaşılmıştır. Birincisi, annenin tutumuyla çocuğun algısı arasındaki uyumsuzluk, çocuk büyüse bile değişmemekte; ancak çocuk yaşça büyüdükçe annenin gösterdiği tutum çocuğa daha net geçebilmektedir. İkincisi, diyabetli çocuğun sağlıklı kardeşi; sağlıklı ailelerdeki bir kardeşe kıyasla ebeveynlerinden daha fazla sıcaklık, daha fazla aşırı koruma ve daha fazla reddedilme algılamaktadır. Yani diyabetli bir çocuğun kardeşi olmak, evdeki ebeveynlik algısını tüm yönleriyle (hem olumlu hem olumsuz) daha yoğun hissetmek anlamına gelmektedir.
+
+*Kanıt* — Anne ile çocuğun ankete verdiği yanıtlar arasındaki puan farkı, çocuk büyüdükçe daralmamakta, uyuşmazlık her yaşta benzer kalmaktadır (örneğin reddetme farkı r = −0,004, p > 0,5). Ancak çocuğun yaşı ilerledikçe annenin hissettirmek istediği ebeveynlik biçiminin çocuğa daha belirgin bir şekilde geçmeye başladığı görülmüştür (örneğin karşılaştırmada b = 0,182, p = 0,032). Diğer bir deyişle, annenin niyetinden çocuğun algısına giden "aktarım darboğazı" küçük yaşlarda daha belirginken, ergenlik yaklaştıkça zayıflamaktadır.
+
+Aileler karşılaştırıldığında; diyabetli ailenin sağlıklı kardeşi, diğer normal ailelerin kardeşlerine göre annesinden hem daha fazla sıcaklık (2,97'den 3,14'e, p = 0,037), hem daha fazla aşırı koruma (2,36'dan 2,54'e, p = 0,045), hem de daha fazla reddedilme (1,36'dan 1,49'a, p = 0,030) hissettiğini beyan etmiştir. Bu bulgu örüntüsü, diyabetli ailenin sağlıklı kardeşinde maternal tutumlara yönelik artmış bir algısal duyarlılığa işaret etmektedir.
+
+Son olarak, annenin yaşadığı depresyon stresinin "diyabetin tanısından bu yana geçen yılla" (hastalık süresiyle) ilişkili olmadığı görülmüştür (p = 0,189); dolayısıyla kronolojik uyumlanma varsayımı mevcut veri setinde klinik depresif belirtiler açısından desteklenmemiştir. İkincil analizlerde, artan kardeş ilişkisi yakınlığının, anne-çocuk ebeveynlik algısı uyuşmazlığını artıran yönde (düşük tutarlılık) düzenleyici etki gösterdiği bulunmuştur (p = 0,002). Bu durum, kuvvetli kardeşlik bağlarının ebeveyn etkilerine karşı algısal bir tampon mekanizma oluşturabileceği yönünde yapısal bir işaret sunar. Triadik bilgi vericileri (anne, indeks, kardeş) eşzamanlı değerlendiren latent profil analizi, diyabetli ailelerin kontrol grubuna kıyasla yüksek oranda "kapsayıcı ve katılımlı aile" tipolojisine yüklendiğini göstermiştir. Buna karşın, anne ile çocuk arasındaki "reddetme" konusundaki algı farkı diyabetli grupta daha büyüktür (kontrol −0,115; DM −0,313, p = 0,009); yani nesnel maternal reddetme seviyesi kontrol edilse dahi, diyabet grubundaki çocuklar reddedilmeyi kontrol grubuna kıyasla daha yüksek bir duyarlılıkla algılamaktadır.
+
+## Robustluk ve Bayesçi Doğrulama
+
+**Çoklu evren (specification curve).** Bir sonucun sadece seçilen "tek bir analize" mi bağlı olduğunu, yoksa yöntem ne kadar değiştirilirse değiştirilsin geçerli mi kaldığını sınamak için akla yatkın tüm analiz kombinasyonları (toplam 120 farklı varyasyon) denenmiştir [@simonsohn2020specificationCurve]. Annenin bildirdiği tutumlarda hesaplama yöntemi ne olursa olsun gruplar arasında anlamlı bir fark oluşmadığı teyit edilmiştir (spesifikasyonların %0'ında p < 0,05). Elde edilen sonuçların yöntem değişikliğinden etkilenmediğini gösteren dağılım @fig-specification-curve içinde sunulmuştur.
+
+**Eşdeğerlik (TOST).** Annenin tutumlarında "fark yok" bulgusunun, istatistiksel olarak grupları gerçekten ne kadar "eşit" kıldığı test edilmiştir. Aşırı koruma ve karşılaştırma tutumlarında gruplar "Eşdeğer" (farksız) bulunurken, sıcaklık ve reddetme boyutları daha keskin istatistiksel sınırlarda "Belirsiz" sınıfında kalmıştır (Ek 5, @tbl-apa-tost-sensitivity).
+
+**Ölçülmemiş karıştırıcı dayanıklılığı.** Araştırmaya dâhil edilmemiş, unutulmuş tamamen gizli bir faktörün (örneğin bambaşka bir hastalığın veya koşulun) sonuçları bozup bozamayacağı test edilmiştir. Annelerin tutumlarına dair H3 bulgularının, böylesi gizli bir dış etkiye karşı zayıf-orta düzeyde dayanıklı olduğu görülmüştür (sağlamlık değeri RV_q = 0,04–0,08 ve E-değeri 1,36–1,59). Gizli etkinin taşıması gereken risk gücünün haritası @fig-sensemakr-contour grafiğinde gösterilmiştir.
+
+**Negatif kontrol ve eksik veri sağlamlığı.** Tesadüflerin bizi yanıltıp yanıltmadığını görmek için veri setine rastgele sahte numaralar eklenerek test yapılmış ve sonuçların bu sahtelikten etkilenmediği (başarılı falsifikasyon, sahte katsayılar p > 0,10) saptanmıştır. Ayrıca anketlerdeki "boş bırakılmış (eksik)" soruların hesaba katılma biçimi üç farklı istatistik tekniğiyle değiştirilmiş, ailenin "sosyoekonomik geliri" dört ayrı formülle tekrar tanımlanmış; yine de asıl sonuçların ve yönlerin (en fazla 0,01 SD sapmayla) sabit kaldığı görülmüştür.
+
+Robustluk ve duyarlılık özetleri @tbl-apa-robustness ve @tbl-apa-sensitivity içinde sunulmuştur.
 
 ```{r}
 #| label: tbl-apa-robustness
-#| tbl-cap: "Robustluk: çoklu evren ve TOST."
+#| tbl-cap: "Robustluk özeti: çoklu evren ve TOST. Birincil bulguların analiz seçimlerine karşı kararlılığı iki katmanda toplanır; çoklu evren (spesifikasyon eğrisi) satırları EMBU alt ölçekleri, kovaryat setleri, tahmin yöntemleri ve alt örneklemlerin makul birleşimleri boyunca anlamlı spesifikasyon oranını, TOST (iki tek-yönlü test) satırları ise önceden belirlenen SMD eşdeğerlik sınırındaki eşdeğerlik kararını verir. Okuma anahtarı: çoklu evren oranı bir dağılım özetidir (tek test değildir; renkle işaretli nominal anlamlılık çokluk için düzeltilmemiştir); TOST 'Eşdeğer' kararı seçilen eşdeğerlik sınırına koşulludur, mutlak değildir. Sonuç: Araştırmanın asıl bulgusu olan diyabetli çocukların 'daha az reddedildiği' gerçeği hemen her analiz senaryosunda doğrulanırken, 'aşırı koruma' konusundaki farkın o kadar net ve güçlü olmadığı görülmüştür."
 apa_render_table("t19_robustness")
 ```
 
 ```{r}
 #| label: tbl-apa-sensitivity
-#| tbl-cap: "Ölçülmemiş karıştırıcı ve falsifikasyon duyarlılığı."
-apa_render_table("t20_sensitivity")
+#| tbl-cap: "Duyarlılık özeti: ölçülmemiş karıştırıcı ve falsifikasyon (satırlar analiz türüne göre gruplanmıştır). Gözlemsel tasarımın iki tehdidi bir arada raporlanır: ölçülmemiş (modele girmemiş) bir karıştırıcının bulguyu değiştirme gücü (sağlamlık değeri RV_q ve E-değeri) ve ilişkinin beklenmediği yerde sahte sinyal üretilip üretilmediğini yoklayan negatif kontrol/falsifikasyon eşlemeleri; ayrıca eksik-veri yöntemi ve sosyoekonomik durum tanımı seçimlerine karşı katsayı kararlılığı. Okuma anahtarı: RV_q ve E-değeri ne kadar büyükse gizli bir karıştırıcının bulguyu değiştirmesi için o kadar güç gerekir; negatif kontrol satırlarında beklenmedik bir anlamlılık, tam rastgele bir kontrol değil olası bir dönem/kohort vekili uyarısı olarak okunur. Sonuç: Çalışmada hesaba katılmayan gizli bir değişkenin mevcut sonuçları bozabilmesi için çok yüksek bir etki gücüne (E-değeri) sahip olması gerektiği saptanmıştır. Bu da tezin ulaştığı sonucun dış tehlikelere karşı dayanıklı olduğunu göstermektedir."
+apa_render_table("t20_sensitivity", group_col = "Analiz")
 ```
+
+![Çoklu-evren analiz sağlamlık haritası: Ana ebeveynlik boyutlarında yapılan tüm olası analiz senaryolarının (farklı yaş grupları, farklı gelir hesaplamaları vb.) uç uca eklendiğinde aynı etkiyi yaratıp yaratmadığıdır. Okuma anahtarı: Renkli noktaların oluşturduğu çizginin şekli ve yönü, hesaplama yöntemi değiştirilse de tezin ulaştığı asıl sonucun (fark var veya fark yok) ne kadar kararlı bir şekilde sabit kaldığını gösterir. Sonuç: Farklı hesaplama yöntemleri kullanıldığında dahi, reddetme bulgusunun her koşulda aynı kaldığı (noktaların düzenli seyri) ve sağlam olduğu kanıtlanmıştır.](docs/assets/figures/carbon/primary/fig-22-specification-curve.svg){#fig-specification-curve width="90%" fig-align="center"}
+
+![Gözden kaçan 'gizli etken' dayanıklılık (sensemakr) haritası: Araştırmada hiç hesaba katılmamış yepyeni bir özellik olsa (örneğin bambaşka bir genetik hastalık vb.), bunun tezin sonuçlarını geçersiz kılıp kılamayacağını matematiksel olarak test eder. Okuma anahtarı: Haritadaki nokta (mevcut model kestirimi) kırmızı uyarı eşiklerinden ne kadar uzaktaysa, dışarıdan gelecek sürpriz ve gizli bir etkinin tezin ana fikrini sarsması o kadar zor (sonuç o kadar sağlam) demektir. Sonuç: Haritadaki nokta tehlike sınırlarından oldukça uzaktır; yani araştırmada ölçülmeyi unutulmuş yepyeni bir özellik olsa bile, bu yeni etkinin çalışmanın nedensel çıkarımını zayıflatması istatistiksel olarak düşük olasılıklıdır.](docs/assets/figures/carbon/primary/fig-23-sensemakr-contour.png){#fig-sensemakr-contour width="80%" fig-align="center"}
+
+**Bayesçi paralel hat.** Araştırmanın asıl bulgularını klasik analizlere ek olarak bir de olasılık (Bayes) hesaplarıyla sağlama almak için analizler tekrar edilmiştir. Diyabetin çocuğun reddedilme algısını azalttığı yönündeki H1 bulgusu, Bayes faktörü (BF₁₀ = 10,55) ile "güçlü derecede kanıtlanmış" bulunmuştur. Buna karşılık annelerin kendi öz-bildirimlerindeki (H3) tutumlarında iki grup arasında "fark olmadığı" (BF₁₀ 0,17–0,23 aralığında) yine orta-güçlü bir kanıt seviyesiyle (H0 lehine) teyit edilmiştir. `r apa_bf_prior_sensitivity_sentence()` Duyarlılık yalnız önselin genişliğiyle sınırlı tutulmamış; grup katsayısı önselinin merkezi de (skeptik sıfır, literatür yönü ve ters yön) yeniden konumlandırılarak sınanmış, birincil H1 bulgusu ile önsel yönü tartışmalı H3 alt ölçeklerinde kanıtın yönü üç merkezde de korunmuştur (Ek 6, @tbl-apa-prior-center). Modelleme süreci tanıları da (R̂ ≤ 1,003; ıraksama yok) Bayesçi olasılıkların matematiksel olarak sağlıklı çalıştığını kanıtlamıştır. Bu analizlerin sonuçları @tbl-apa-bayesian-global tablosunda özetlenmiştir.
+
+**Replikasyon gücü.** Toplam n = 241 ailenin yer aldığı bu çalışma grubunun, çok küçük farkları yakalayabilme "gücü" (0,535 düzeyi) dikkate alındığında; bulunamayan veya çok zayıf kalan etkilerin "kesinlikle yok" olmaktan çok, mevcut aile sayısıyla kanıtlanamadığı gerçeği hatırda tutulmalıdır.
 
 ```{r}
 #| label: tbl-apa-bayesian-global
-#| tbl-cap: "Bayesçi çift raporlama ve MCMC tanıları."
-apa_render_table("t21_bayesian_global")
-```
-
-```{r}
-#| label: tbl-apa-result-synthesis
-#| tbl-cap: "Genel bulgu sentezi."
-apa_render_table("t22_result_synthesis")
+#| tbl-cap: "Bayesçi çift raporlama (satırlar hipoteze göre gruplanmıştır). H1 ve H3 alt ölçekleri için brms çok düzeyli modellerinden elde edilen posterior fark katsayısı, güvenilir aralık, yön olasılığı (pd) ve Bayes faktörü (BF₁₀), her modelin MCMC yakınsama tanılarıyla birlikte tek yerde toplanır. Tüm modellerde MCMC yakınsaması sağlıklıdır: Rhat ≤ 1,003; en düşük ESS oranı ≥ 0,09; ıraksayan geçiş yoktur. Okuma anahtarı: BF₁₀ Jeffreys ölçeğinde bir kanıt gücü ölçütüdür ve birden küçükse fark-yokluğu (H0) lehine kanıt anlamına gelir; ESS bir örneklem büyüklüğü değil, kestirimin Monte Carlo kararlılığını gösteren bir tanı ölçütüdür. Sonuç: Bayes (olasılık) analizi de araştırmanın klasik sonuçlarını onaylamış; reddetme ve aşırı koruma konularında fark olduğu tezini güçlü bir kanıt olarak (BF10) desteklemiştir."
+apa_render_table("t21_bayesian_global", group_col = "Hipotez",
+                 hide_cols = c("Rhat_max", "ESS_min_oran", "Divergent"))
 ```
 
 ## Niteliksel Kol Bulguları
 
+Niteliksel bulgular, nicel sonuçları doğrulamak için sunulmamaktadır. Amaç iki yönlüdür.
+Birincisi, anne, T1DM tanılı çocuk ve sağlıklı kardeşin aynı aile deneyimini hangi farklı
+sorumluluk, risk ve adalet çerçeveleriyle anlamlandırdığını göstermektir. İkincisi, ölçeklerin
+yakalayamadığı deneyim katmanlarını bağlamsallaştırmaktır. Çalışmanın multi-informant triadik
+tasarımı, aynı aile bağlamından üç farklı bilgi vericinin bireysel görüşmeyle elde edilen sesini
+bir araya getirir. Bu tasarım, hem aile-içi perspektif yakınsamasını hem de üyeye özgü anlam
+ayrışmasını bir arada görünür kılmaktadır. Bulgular, katılımcıların kendi sözlerine sadık
+kalınarak seçilmiş kimliksizleştirilmiş doğrudan alıntılarla desteklenmiştir; her alıntı,
+doğrudan tanımlayıcılar çıkarılıp yalnız rol etiketi, aile kodu ve tam-yıl yaş bilgisiyle
+künyelenmiştir (ör. Aile 26, anne, 44 yaş). Yayımlanan metinde ad, doğum tarihi ve tanı
+tarihi gibi doğrudan tanımlayıcılar yer almaz; alıntılarda izin verilen tek müdahale kimlik
+maskeleme (`[isim]`, `[okul adı]`), kısaltma (`[...]`) ve okunabilirlik için asgari
+düzenlemedir. Her alıntı ayrıca, araştırmacı-içi izlenebilirliği sağlayan kimliksizleştirilmiş
+bir `quote_id` ankrajına bağlanır; böylece tema–veri bağı hem okuyucuya açık alıntıyla hem de
+denetlenebilir kayıtla desteklenir. Bu yaklaşım katılımcı mahremiyeti ile alıntı-görünürlüğü
+arasında KVKK-uyumlu bir denge kurar ve COREQ destekleyici-alıntı ölçütünü karşılar.
+
 ### Niteliksel Örneklem ve Analitik Çerçeve
 
 Niteliksel kol, Tip 1 diyabet tanılı çocuk, sağlıklı kardeş ve anneden oluşan yedi
-aile triadıyla (011, 014, 019, 020, 026, 201, 202) yürütülen 21 bireysel yarı
-yapılandırılmış görüşmeye dayanmaktadır. Analiz, Braun ve Clarke'ın refleksif tematik
-analiz yaklaşımıyla, çoklu bilgi verici aile tasarımına uygun biçimde yürütülmüş;
-bulgular tezde dört makro tema hâlinde sunulmuştur. Aşağıda her makro tema için ana
-sonuç, alt tema örüntüleri ve triadik rol karşılaştırması verilmiş; alıntı bütünlüğü
-kimliksizleştirilmiş quote ID ankrajlarıyla korunmuş, ham görüşme metni raporlanmamıştır.
+aile triadıyla yürütülen 21 bireysel yarı yapılandırılmış görüşmeye dayanmaktadır
+(7 anne + 7 T1DM tanılı çocuk + 7 sağlıklı kardeş; katılımcı künye tablosu için
+bkz. @tbl-nitel-kunye). Örneklem büyüklüğü, refleksif tematik analiz epistemolojisiyle
+uyumlu biçimde, sayısal doygunluk eşiği yerine **bilgi gücü** (*information power*;
+Malterud, Siersma ve Guassora, 2016) çerçevesinde gerekçelendirilmiştir. Çalışmanın
+amaç darlığı, örneklem özgüllüğü, multi-informant kuramsal çerçevesi, klinisyen-
+araştırmacının ürettiği yoğun diyalog ve iki katmanlı analitik strateji birlikte
+değerlendirildiğinde beş boyutun üçünde (amaç darlığı, örneklem özgüllüğü ve görüşme
+niteliği) yüksek, ikisinde (yerleşik kuramsal çerçevenin kullanımı ve aileler-arası
+çözümleme) orta-yüksek bilgi gücü profili belirlenmiş; küçük ama bilgi-yoğun bu
+örneklemin araştırma sorularını ele almak için yeterli kapasiteye sahip olduğu
+sonucuna varılmıştır. Bu konumlanma, Braun ve Clarke'ın (2021) refleksif
+tematik analizde doygunluk kavramına yönelik epistemolojik eleştiriyle de uyumludur:
+"veri doygunluğu" terimi kodu keşfedilecek nesneye indirgeyen post-pozitivist bir
+varsayım taşımakta ve RTA'nın yorumlayıcı duruşuyla çelişmektedir.
 
-### Tema 1. Sağlıklı Kardeşin Görünmeyen Yükü
+Analitik çerçeve, Braun ve Clarke'ın (2022) refleksif tematik analiz yaklaşımıyla, hem
+aile-içi (*within-case*) hem de aileler-arası (*cross-case*) iki katmanlı triadik okuma
+stratejisiyle yürütülmüştür.^[Aile-içi (*within-case*) okuma: her ailede üç perspektifin örtüşme ve ayrışmasının haritalanması. Aileler-arası (*cross-case*) okuma: temaların farklı aile bağlamlarında nasıl biçimlendiğinin karşılaştırılması.] Temalar
+araştırma sorusundaki merkezi düzenleyici işlevleriyle tanımlanmıştır; kod yoğunluğu
+yalnızca analitik denetim izini sağlar, tema önceliğini belirlemez. Analitik altyapı
+5 kategori altında yapılandırılmış **24 kod** ve **8 triadik eksen** üzerine kuruludur
+(*hastalık algısı, kısıt, günlük-sosyal, ergenlik, kaybetme korkusu, kardeş yaşantısı,
+annelik dönüşümü, ihtiyaçlar*). Üyeler arasındaki anlam ayrışması bir metodolojik sorun
+olarak değil birincil bulgu kaynağı olarak okunmaktadır: aynı ebeveyn davranışının anne,
+T1DM'li çocuk ve sağlıklı kardeş tarafından farklı anlam çerçevelerine oturtulması bu
+çalışmanın temel analitik katkısını oluşturmaktadır.
 
-Sağlıklı kardeş, tanının doğrudan biyomedikal öznesi olmasa da aile rutinlerindeki
-değişimi ve ebeveyn ilgisinin yeniden dağılımını gündelik yaşamında taşımaktadır. Bu
-deneyim açık şikâyetten çok gönüllü vazgeçme, kendini geri çekme, bakım sorumluluğunu
-normalleştirme ve adalet gerilimini örtük taşıma biçiminde görünmektedir. Alt tema
-örüntüleri gönüllü mahrumiyet ve vekâleten üzüntü, erken olgunlaşma ve nöbetçi kardeş
-rolü, ilgi asimetrisi, önleyici sağlık baskısı, sosyal kıyaslanma ve hastalığın güç
-aracı olarak kullanımını kapsamaktadır. Sınırlayıcı örüntü olarak, kardeş ilgi
-dağılımındaki farkı çoğu zaman hastalığın gereği olarak kabul etmekte, ancak bu kabul
-adalet duygusunun zedelenmesini ortadan kaldırmamaktadır (quote ID ankrajları:
-`019_healthy_sibling_q001`, `026_healthy_sibling_q001`, `026_healthy_sibling_q002`;
-öne çıkan kodlar: `KARDES_GORUNMEZ_YUK`, `OFKE_ADALETSIZLIK`, `AILE_ICI_ADALET`).
+**Tema mimarisi** dört makro temadan ve on yedi alt-temadan meydana gelmektedir: T1
+Sağlıklı Kardeşin Görünmeyen Yükü (3 alt-tema), T2 Anneliğin Tıbbi Bakıcıya Kayması
+(6 alt-tema), T3 Hastalığın İçinden: T1DM'li Çocuğun Yaşam Deneyimi (4 alt-tema) ve
+T4 Aynı Evde Üç Farklı Deneyim: Triadik Karşılaştırmalı Okuma (4 alt-tema). Tez
+sunumunda bu dört makro tema ayrı ayrı raporlanmaktadır. Aynı 24 kodlu codebook tabanı,
+dergiye yönelik altı temalı alternatif bir yapılandırmayı da desteklemektedir (karma
+yöntem entegrasyonu ve dergi uyarlaması için bkz. *Tartışma*). İki eksen — *ergenlik*
+ve *ihtiyaçlar* — yalnızca 8/21 katılımcıda belgelenmiş ince örüntüler (COREQ M31
+negatif vaka işareti) olarak raporlanmaktadır.
 
-### Tema 2. Annenin Tıbbi Bakıcı Rolüne Kayması
+### Tema 1 — Sağlıklı Kardeşin Görünmeyen Yükü
 
-Tanı sonrası annelik, duygusal bakım veren ebeveynlik pozisyonundan sürekli ölçüm,
-izlem, risk önleme ve karar verme sorumluluğu taşıyan tıbbi bakım koordinatörlüğüne
-kaymaktadır. Anne anlatılarında suçluluk, kaybetme korkusu, sürekli tetikte olma,
-ergenlikte kontrol-özerklik çatışması ve sağlıklı kardeşe adil davranma ikilemi
-birlikte görünmektedir. Alt tema örüntüleri tanı sonrası suçluluk döngüsü, tıbbi
-bakıcıya evrilen annelik, kaybetme korkusu, ergenlikle kesişen yönetim zorlukları,
-mahremiyetin geri çekilişi ve adalet ikilemini kapsamaktadır. Sınırlayıcı örüntü
-olarak anne, tıbbi bakıcı rolünü içselleştirip normal ebeveynlik görevi gibi
-sunabilmekte; öz-raporlarda görülen sınırlı fark yükün yokluğu anlamına
-gelmemektedir (quote ID ankrajları: `014_mother_q001`, `019_mother_q001`,
-`020_mother_q001`, `026_mother_q001`; öne çıkan kodlar: `TANI_SOK_KORKU`, `SUCLULUK`,
-`ANNE_HIPERVIJILANS`, `RUTIN_TAKIP`).
+Sağlıklı kardeş, T1DM tanısının doğrudan biyomedikal öznesi olmasa da aile
+rutinlerindeki yeniden yapılanmayı ve ebeveyn ilgisinin T1DM'li çocuk ekseninde yeniden
+dağılmasını gündelik yaşamında taşımaktadır. Deneyim, açık şikâyetten çok gönüllü
+vazgeçme, erken sorumluluk üstlenme ve adalet gerilimini örtük taşıma biçiminde
+görünmektedir. Yedi aile triadında tutarlı biçimde izlenen bu örüntü, hastalığın aile
+sistemine yayılan ve sağlıklı kardeşi de dönüştüren dolaylı etkisini ortaya
+koymaktadır.
 
-### Tema 3. T1DM Tanılı Çocuğun İçeriden Deneyimi
+#### Alt-tema 1.1 — Gönüllü Mahrumiyet ve Vekâleten Üzüntü
 
-Tip 1 diyabet tanılı çocuklar hastalığı hem gündelik yaşamın olağan parçası hâline
-getirmeye çalışmakta hem de tedavi yükü, bedensel müdahale, sosyal görünürlük,
+Sağlıklı kardeşler diyabete özgü beslenme kısıtlamalarını zamanla yalnızca hastaya
+ait bir kural olarak değil, içselleştirdikleri aile-geneli bir düzen olarak
+deneyimlemektedir. Yemek seçimleri, alışveriş içerikleri ve atıştırmalıklar hasta
+kardeşin rejimi ekseninde biçimlenmekte; sağlıklı kardeş bu kısıtlamayı çoğu zaman
+dayatma olarak değil empatiyle benimsenen gönüllü bir mahrumiyet olarak
+tanımlamaktadır. Kısıtlamanın görünür maliyeti taşınmakta, ancak şikâyet olarak
+dile gelmemektedir:
+
+«Ben sevdiği bir şeyler yiyince, ablam canı baya çekse de yiyemiyor…
+kötü hissediyorum.» (Aile 11, sağlıklı kardeş, 9 yaş)
+
+«Ben de bir şeyler yemek istediğimde ben de yiyemiyorum, ablama dokunur diye. [...]
+Ben de onları yemediğim için, ben de sağlıklı şeyler yemiş oluyorum.»
+(Aile 19, sağlıklı kardeş, 10 yaş)
+
+«Küçükken evde benim çok tatlı yememe izin vermiyorlardı, abim görmesin diye. [...]
+İstediğimde istediğimi yememe izin vermiyorlar.»
+(Aile 202, sağlıklı kardeş, 12 yaş)
+
+Bu örüntüde dikkat çekici olan, kardeşin mahrumiyet yaşadığı gerçeğini ikincil
+konumlandırması ve "sağlıklı yemiş oluyorum" gibi yeniden çerçeveleme stratejileriyle
+kendi yükünü görünmez kılmasıdır. Vekâleten üzüntü boyutunda ise kardeş, hasta
+kardeşin arzuladığı ama yiyemediği şeylere sahip olmaktan kötü hissetmektedir;
+yük deneyimin kendisinde değil "o yiyemiyorken benim hislerimde" barınmaktadır.
+
+*Triadik within-case okuma — Aile 19:* Aynı aile bağlamında üç bilgi vericinin
+sesleri arasındaki anlam ayrışması belirgindir. Anne, küçük çocuğunun ablasına
+uyum sağladığını ve bu uyumun çocuğun kendi deneyimini arka plana ittiğini gözlemci
+konumundan aktarmaktadır:
+
+«Genelde küçük çocuğum, ablasına uyuyor [...] ona göre yemiyor içmiyor, ona göre yaşıyor.
+O tamamen arka planda kaldı.» (Aile 19, anne, 36 yaş)
+
+T1DM'li çocuk ise kısıtlamanın kardeş üzerindeki etkisini fark etmekte, ancak
+kardeşin sessizliğini bir tür kabul olarak deneyimlemektedir:
+
+«Kardeşimle markete alışverişe gittiğimizde eve çikolata, gofret, aburcubur almak
+istiyor, annem benden dolayı alamayacağını söylüyor. O da üzülüyor ama benim
+durumumdan dolayı bir şey demiyor.» (Aile 19, T1DM'li çocuk, 14 yaş)
+
+Triadik okumada şu anlam asimetrisi öne çıkmaktadır: anne "arka planda kalmayı"
+sistematik bir geri çekilme olarak tanımlamakta; T1DM'li çocuk kardeşin sessizliğini
+"durumundan dolayı bir şey dememek" olarak yorumlamakta; kardeşin kendi sesinde ise
+kısıtlama üzüntüyle kabul edilmekte ve normalleştirme stratejisiyle görünmez
+kılınmaktadır. Aynı beslenme kısıtı anne için yönetim yükü, T1DM'li çocuk için
+kardeşin "ona göre yaşadığının" farkında olma, kardeş için ise gönüllü mahrumiyet
+olarak çerçevelenmektedir.
+
+#### Alt-tema 1.2 — Erken Olgunlaşma ve "Nöbetçi Kardeş" Rolü
+
+Hipoglisemi ataklarına tanıklık eden ve acil durum bilgisiyle donanan kardeşler,
+yaş grubu için beklenen bağımsızlık deneyiminin ötesinde bir tetikte-olma hali
+geliştirmektedir. Anne tarafından aktarılan "şekeri düşerse ne yapacaksın"
+talimatları kardeşi acil durum yöneticisi konumuna taşımakta; oyun ve boş zaman
+etkinlikleri bu nöbet duygusuyla iç içe geçmektedir:
+
+«Annemler bir yere gittiğinde ablam gidemiyor, ablam ile ikimiz evde kalıyoruz. Annem de bana ablamın
+şekeri düşerse ne yapabileceğimi, ne yapmamız gerektiğini söylüyor.»
+(Aile 11, sağlıklı kardeş, 9 yaş)
+
+«Mesela dışarıdaysak hemen "abla eve dönelim" diyorum. Belki şekeri düşmüştür veya
+yükselmiştir diye uyarıyorum.» (Aile 19, sağlıklı kardeş, 10 yaş)
+
+«O yüzden oyun yarım kalabiliyor veya kardeşimin çok sık şekeri düşebiliyor
+bahçedeyken.» (Aile 26, sağlıklı kardeş, 9 yaş)
+
+Özellikle en küçük katılımcılarda belirginleşen örüntü, çocuğun kendi oyun zamanını
+ve sokakta bulunma ritimlerini T1DM'li kardeşin olası kriz anlarına göre düzenlemesidir.
+Kardeşin bedeni sahnede olsa da dikkati T1DM'li kardeşe yönelmekte; sorumluluk
+sahiplenilmekte ama talep edilmeden, sessizce.
+
+*Triadik within-case okuma — Aile 26 ve Aile 11:* Aile 26'da T1DM tanılı çocuk ile
+sağlıklı kardeş yaşıt ikizlerdir; annenin anlatısı kardeşin nöbet rolünün aile
+gündemine nasıl oturduğunu betimlemektedir:
+
+«Kardeşi onun etrafında koşturuyor, "şekerin düşecek, yapma [...]" [...] "telefonunu
+unutma, telefonunu al, sensör uyarıyor, şekerine bir bak" diye sürekli bir koruma
+güdüsüyle onun etrafında.» (Aile 26, anne, 44 yaş)
+
+Aile 11'de T1DM'li çocuk, kardeşinin nöbet rolünü fark etmekte ve buna dayanışma
+çerçevesinden yanıt vermektedir:
+
+«Kardeşim de ben diyabet olduğum için başıma bir şey gelir korkusuyla sürekli
+peşimde dolanıyor; bir şey yiyeceğim zaman "[ismimi söyleyerek] yapma" tarzı şeyler
+söylüyor [katılımcı gülümseyerek]. O da bana daha ilgili davranıyor.»
+(Aile 11, T1DM'li çocuk, 12 yaş)
+
+Triadik karşılaştırmada anlam ayrışması belirgindir: anne nöbetçi rolünü işlevsel
+bir koruma mekanizması olarak konumlandırmakta; T1DM'li çocuk onu ilgi ve dayanışma
+olarak okumakta; kardeşin kendi sesinde ise bu rol oyunun yarıda kalması ve sürekli
+uyanıklık hali olarak betimlenmekte, ne bir sorun ne de bilinçli bir seçim olarak
+değil "böyle oluyor" çerçevesinde aktarılmaktadır. Bu sessiz normalleştirme rolün
+görünmez kalmasını sürdüren bir strateji olarak okunabilir.
+
+#### Alt-tema 1.3 — Algılanan Adaletsizlik, Çok Boyutlu Baskı ve "Hasta Otoritesi"
+
+Adaletsizlik algısı tek boyutlu değildir: ilgi asimetrisi, T1DM'li kardeşin davranışsal
+güç kazanımı ve annenin bakım yükünün aile dinamiklerine yansımaları birlikte
+örülmektedir. T1DM'nin kardeşler arası sınır müzakerelerine "hasta otoritesi"
+biçiminde sızması özellikle dikkat çekicidir; hastalık, güç ilişkisinde işlevsel bir
+araca dönüşmektedir.
+
+İlgi asimetrisi boyutunda ebeveyn ilgisinin T1DM'li çocuk etrafında merkezileşmesi,
+sağlıklı kardeşin anlık bakım ihtiyaçlarının arka plana çekilmesiyle sonuçlanmaktadır:
+
+«O sırada benim karnım ağrıyordu [katılımcı dudaklarını ısırıyor]. Annem benimle
+ilgilenmedi, abimin hastalığı daha büyük olduğu için annem abimle ilgilendi. [...]
+Abim diyabet hastası olmasaydı annemin bu siniri azalırdı.»
+(Aile 14, sağlıklı kardeş, 10 yaş)
+
+«Bana da ablama yaptığı gibi yapıyor. Ben bir yere gidince de strese giriyor.»
+(Aile 19, sağlıklı kardeş, 10 yaş)
+
+«Bazen bir şeyi istediğimde abime daha öncelik veriyorlar. [...] Konu hep şeker
+hastalığına gelebilir, başka konular konuşmaktansa hep konuya yoğunlaşılabilir.»
+(Aile 202, sağlıklı kardeş, 12 yaş)
+
+Hasta otoritesi boyutunda T1DM'li kardeşin hastalığı bir sınırlandırma aracı olarak
+kullandığı ve bu durumun sağlıklı kardeş tarafından fark edildiği görülmektedir:
+
+«Abim sinirleniyor, "Şunu yapmayacaksın" diyor; ben de abimin başına bir şey
+gelmesin diye hem korkudan yapmıyorum hem de güvenmediğim için yapmıyorum. [...]
+Bana diyabetinden dolayı durduk yere kızıyor, kardeşime de kızıyor.» (Aile 14, sağlıklı kardeş, 10 yaş)
+
+Kardeşin itaatinin gerekçesi — "abimin başına bir şey gelmesin diye" — adaletsiz
+olarak nitelendirdiği ilişkiyi sürdürmesini korku, güvensizlik ve koruyuculuk
+üzerinden birlikte meşrulaştırmaktadır.
+
+*Triadik within-case okuma — Aile 14:* Aynı ailedeki üç bilgi verici, aynı ebeveyn
+davranışını — T1DM'li çocuğa yoğunlaşma — birbirinden ayrışan anlam çerçevelerine
+oturtmaktadır. Anne, ilginin T1DM'li çocuk etrafında merkezileşmesini bir tercih değil
+hastalığın getirdiği zorunluluk olarak çerçevelemektedir:
+
+«Oğlum diyabet tanısı aldığında [...] onunla [sağlıklı çocuğu kastediyor] hiç
+ilgilenemedim. Eşimi, diğer kardeşini unuttum; benim bütün varım yoğum
+[diyabetli çocuğum] oldu.»
+(Aile 14, anne, 37 yaş)
+
+T1DM'li çocuk ise annenin yoğunlaşmasını "el üstünde tutulmak" — bir ayrıcalık —
+olarak deneyimlemektedir:
+
+«Beni biraz daha el üstünde tutuyorlar, biraz daha dikkat ediyorlar bana.
+Hastalandığımda, özellikle, üzerimde çok duruyorlar.»
+(Aile 14, T1DM'li çocuk, 15 yaş)
+
+Triadik karşılaştırma şu anlam haritasını ortaya çıkarmaktadır: anne bakım
+yoğunlaşmasını hastalığın kaçınılmaz çıktısı olarak konumlandırmakta ve bu kabulde
+kardeşi "unutmak" bir ihmal değil zorunluluk olarak yerleşmektedir; T1DM'li çocuk
+aynı bakımı koruyucu ilgi olarak anlamlandırmaktadır; sağlıklı kardeş ise kendi
+anlık ihtiyacının görmezden gelinmesi örneğiyle somutlaşan adaletsizliği "hastalığı
+büyük" gerekçesiyle meşru sayılmış ama zedeleyici olarak deneyimlemektedir. Bu
+örüntü, Tema 4'ün triadik karşılaştırmalı okumasında yeniden ele alınmaktadır.
+
+#### Sınırlayıcı Örüntü — "Hastalığın Gereği" Kabulü ve Süregelen Zedelenme (COREQ M31)
+
+Tema 1 kapsamındaki kritik sınırlayıcı örüntü, sağlıklı kardeşlerin ilgi
+dağılımındaki asimetriyi açık bir itiraz olmaksızın "hastalığın gereği" olarak kabul
+etmesi, ancak bu kabulün adalet duygusundaki zedelenmeyi ortadan kaldırmamasıdır.
+Kardeşler T1DM'li kardeşin önceliğini meşrulaştıran bir söylem geliştirirken aynı
+söylem kendi deneyimlerinin sözlü alanını daraltmakta; gerilim altta yatmaya devam
+etmektedir:
+
+«Öyle strese giremezsin [...] insan sinirlenince bağırır, kızar, vurur ya; böyle
+yapmayacaksın. "Tamam" diyip geçeceksin.» (Aile 26, sağlıklı kardeş, 9 yaş)
+
+«Bir yandan "Keşke olmasaydı" diyorum ama yapacak bir şey yok artık. Çoğu zaman
+unutuyorum bile, hayatımın bir parçası haline geldi artık.»
+(Aile 202, sağlıklı kardeş, 12 yaş)
+
+Normalleştirme yük yokluğunun kanıtı değildir; "Tamam deyip geçmek" ve "hayatımın
+parçası haline geldi" ifadeleri kabul performansını yansıtırken "keşke olmasaydı"
+nitelemesi bu kabulün içindeki gerilimi açık hâle getirmektedir. Yorumlama
+disiplini açısından önemli: kardeşin söyleminin normalleştirilmiş görünümü,
+etkilenmediğini değil yükü sürdürülebilir kılma stratejisi geliştirdiğini
+işaret etmektedir (baskın kodlar: `KARDES_GORUNMEZ_YUK`, `KABULLENME_NORMALLESME`,
+`OFKE_ADALETSIZLIK`, `AILE_ICI_ADALET`).
+
+### Tema 2 — Annenin Tıbbi Bakıcı Rolüne Kayması
+
+Tanı sonrası annelik, duygusal bakım veren ebeveynlik konumundan sürekli ölçüm, izlem,
+risk önleme ve karar verme sorumluluğu taşıyan bir tıbbi bakım koordinatörlüğüne
+kaymaktadır. Bu makro tema, söz konusu dönüşümün tek bir olay değil; tanı sonrası
+suçluluk döngüsünden kaybetme korkusuna, ergenlik çatışmalarından eş rolünün
+silikleşmesine ve kardeş adaleti ikilemine uzanan çok eksenli ve kronik bir süreç
+olduğunu ortaya koyar. Bölüm altı alt-tema hâlinde düzenlenmiş; her alt-tema en az üç
+farklı aileden anne anlatısıyla ve mümkün olduğunda aynı ailenin diğer üyelerinin
+sesleriyle (triadik okuma) desteklenmiştir. Alıntılar kelimesi kelimesine aktarılmış;
+kesilen bölümler `[...]` ile, kimlik koruyan eklemeler köşeli parantezle gösterilmiştir.
+
+#### Alt-tema 2.1 — Tanı Sonrası Suçluluk Döngüsü ve Sarsılan Annelik Kimliği
+
+Tanı anı, annelerin çoğunda yoğun bir öz-sorgulama ve suçlanma dönemi başlatmaktadır;
+suçluluk hem geçmişe ("nerede yanlış yaptım") hem de gündelik kararların ahlaki yüküne
+yayılmaktadır. Bir anne tanı sürecini bedensel bir tutulmayla anlatmaktadır: «Oğlumun
+lokmaları sayılırken ben hiç yemek yiyemedim hastanede [...] Kendimde suç aradım.
+"Nerede yanlış yaptım?" diye» (Aile 14, anne, 37 yaş). Başka bir anne için suçluluk,
+kimliğin süreklilik duygusunu zedeleyecek düzeydedir: «İlk tanı aldığında dünya
+yıkılmış, altında kalmış hissettim [...] anne olarak kendimi suçladım, yani çok zor
+geçti» (Aile 26, anne, 44 yaş) — ve aynı anne dönüşümü çarpıcı biçimde özetler: «Son
+iki buçuk yıldır ben, ben değilim yani» (Aile 26, anne, 44 yaş). Suçluluk gündelik
+etkileşimlere de sızmakta, sıradan bir ebeveyn tepkisi bile içsel bir yargıya
+dönüşmektedir: «anneler mutlaka çocuklarına kızar, ben ona kızdığımda hep vicdan
+yaptım. "Çocuk zaten hasta, neden bağırıyorsun? [...]" diye hep kafamda kurdum» (Aile
+14, anne, 37 yaş). Bir başka annede aynı duygu, çocuğun ölçüm anındaki tavrıyla
+tetiklenmektedir: «"Şekerim çok yükselmiş" diyor, o tavır beni üzüyor, ben kendimi o
+zaman çok suçlu hissediyorum» (Aile 11, anne, 47 yaş).
+
+#### Alt-tema 2.2 — Sürekli Nöbet Hali ve "Tıbbi Bakıcı"ya Evrilen Annelik
+
+Anneler; gece ölçümü, okulda bekleme ve sürekli karbonhidrat/insülin yönetimi gibi
+gözetim pratikleriyle, sıradan ebeveynlikten ayrışan bir "tıbbi bakıcı" konumuna
+geçmektedir. Bir anne gününü poliklinik takibinden çok bir bakım vardiyasına benzer
+biçimde tarif etmektedir: «Hep okuldayım. 9:00-15:00 okul saatimiz [...] Ben okulun
+bahçesinde bekliyorum. [...] Gidiyorum, tartıyorum, ölçüyorum, ona göre iğnesini
+vuruyorum yediriyorum» (Aile 26, anne, 44 yaş); aynı anne için gözetim geceye de
+taşmaktadır: «Gece üçte şeker ölçümü var [...] o saate kadar uyumadım» (Aile 26, anne,
+44 yaş). Bu vardiya hâli yıllar süren bir eşlik biçimine dönüşebilmektedir: «onu hiç
+yalnız bırakamaz oldum. [...] Hep okulda sınıfın kapısında beklerdim, birinci sınıftan
+beşinci sınıfa kadar her gün [...] sabah onunla gidiyordum, öğlen onunla çıkıyordum»
+(Aile 19, anne, 36 yaş). Gözetimin ardındaki güdü çoğu zaman sürekli bir felaket
+beklentisidir: «Gece uykularım dahi kaçtı. [...] oğluma izin vermedim. çünkü hep şöyle
+zannediyordum: "Ben yokken ya şekeri çok yükselecek ya şekeri çok düşecek."» (Aile 14,
+anne, 37 yaş).
+
+#### Alt-tema 2.3 — Kaybetme Korkusu ve Zihinlerde Canlanan En Kötü Senaryolar
+
+Kaybetme korkusu, annelerin karar alma ve tolerans eşiklerini doğrudan biçimlendiren
+kronik bir zemin olarak belirmektedir. Bir anne bu korkuyu bedensel bir tetikte-oluş
+ve yatıştırılamaz bir önsezi olarak anlatmaktadır: «ona bir şey olacak diye çok
+korkuyorum. Sürekli elimde cihaz, sürekli elimde şeker ya da meyve suyu, hep peşinde
+geziyorum, hep onu takipteyim. [...] her gece şekerini ölçmek için saati kurduğumda
+saatin alarmından önce kalkıyorum [...] sanki bir şey olacakmış gibi, olmayacak ama
+olacakmış gibi geliyor bana» (Aile 19, anne, 36 yaş). Korku, klinik iznini bile aşan
+bir gözetimi sürdürebilmektedir: «doktorumuz artık gece 12 de ölçmemizi, gece 3te artık
+ölçmemize gerek olmadığını söyledi. Ama ben gece 3 te ölçmeye yine de devam ettim»
+(Aile 14, anne, 37 yaş). Aynı korku, annelerin çocuklarına gösterdikleri toleransı da
+biçimlendirmektedir: «bu kaybetme korkusuna istinaden kızılacak şeylere bile susup
+bazen biraz daha tolerans gösterebiliyorum. çünkü "ne kadar daha onlarla mutlu gün
+sürebilirim" diye düşünüyorum» (Aile 26, anne, 44 yaş).
+
+#### Alt-tema 2.4 — Ergenlikle Kesişen Yönetim Zorlukları ve Otonomi Çatışmaları
+
+::: {.callout-note appearance="minimal"}
+**İnce-örüntü / negatif-vaka işareti (COREQ Madde 31).** Ergenlik ekseni, triadik
+matriste sınırlı sayıda bilgi vericide belirgindir; anne ve T1DM tanılı çocuk
+anlatılarında baskınken sağlıklı kardeş anlatılarında görece silik kalmaktadır. Bu
+dağılım, örüntünün tüm triade yayılmadığını gösteren bir sınırlılık olarak açıkça
+raporlanır.
+:::
+
+Ergenlik, diyabet yönetimini gizli ihlaller, otorite reddi ve yoğunlaşan çatışmalar
+yoluyla zorlaştırmaktadır. Bir anne bu gerilimi sözle ikna edilemeyen bir gizlilik
+olarak anlatmaktadır: «[...] anlatıyorum anlatıyorum "Tamam tamam" diyor, sonra
+bakıyorum gizli gizli yemiş» (Aile 11, anne, 47 yaş). Başka bir annede aynı dönem,
+tedavi işbirliğinin ve öz-bakımın aksamasıyla birlikte görünmektedir: «Sürekli beni
+azarlıyor mesela sürekli [...] "of çok güzel acıdı bilemezsin" diyor mesela her insülin
+yapışımda [...] ölçüm yapamak istemiyor, çoğu zaman ölçmeleri aksatıyor» (Aile 201,
+anne, 37 yaş). Ergenlikle birlikte kimi zaman risk algısının gevşemesi de
+bildirilmektedir: «benim oğlum bu sefer fazla rahat davranmaya başladı [...] Ergenlikle
+birlikte [...] bir şey olmaz düşüncesi ile» (Aile 14, anne, 37 yaş). Bu yönetim
+zorluğunun çocuk tarafındaki karşılığı, hastalığın akran yaşamına getirdiği kısıttır:
+«[...] Herkes akşam evine gidelim falan diyor ya da gece çiğ köfteciye gidelim diyor, canımız
+bir şeyler yapmak istiyor ama ben yapamıyorum» (Aile 19, T1DM'li çocuk, 14 yaş) —
+annenin kontrol kaygısı ile ergenin özerklik/aidiyet isteği aynı gerilimin iki ucunu
+oluşturmaktadır.
+
+#### Alt-tema 2.5 — Mahremiyetin Geri Çekilişi ve "Eş" Rolünün Silikleşmesi
+
+Bu alt-tema, triadik matriste görece az sayıda ailede açıkça dile getirilmiştir; bu
+sınırlı kanıt tabanı, örüntünün yaygınlığı hakkında iddia kurmaktan kaçınmayı
+gerektirir. Bununla birlikte, dile getirildiği yerde annelik yükünün eş ilişkisine
+sessizce yansıyan boyutunu görünür kılması bakımından analitik olarak önemlidir. Bir
+anne, çocuğun tıbbi önceliğinin partnerlik alanını bir suçluluk aracılığıyla
+daralttığını çarpıcı biçimde anlatmaktadır: «[...] oğlum içeride uyurken, diğer odada
+ben eşimle birlikte bile olamadım. Çünkü vicdan yaptım "Senin oğlun içeride hasta
+yatıyor, sen burada neler düşünüyorsun?" diye düşündüm» (Aile 14, anne, 37 yaş).
+
+#### Alt-tema 2.6 — Sağlıklı Kardeşle İlişkide Adalet İkilemi ve Kardeş Dinamikleri
+
+Anneler, T1DM'li çocuğun tıbbi önceliğini korurken sağlıklı kardeşe "haksızlık" ettikleri
+duygusuyla baş etmek zorunda kalmaktadır; bu ikilem çoğu zaman en açık biçimde sağlıklı
+kardeşin ve T1DM'li çocuğun anlatılarında görünür hâle gelmektedir (Tema 1'in kardeş yükü
+bulgularıyla kesişir). Sağlıklı kardeş, ilgi dağılımındaki asimetriyi somut bir anıyla
+aktarmaktadır: «O sırada benim karnım ağrıyordu. [...] Annem benimle ilgilenmedi,
+abimin hastalığı daha büyük olduğunu için annem abimle ilgilendi» (Aile 14, sağlıklı
+kardeş, 10 yaş). Aynı ikilem, T1DM'li çocuğun gözünden annenin gündelik "hayır"larında da
+belirmektedir: «Kardeşimle markete alışverişe gittiğimizde eve çikolata, gofret,
+aburcubur almak istiyor, annem benden dolayı alamayacağını söylüyor. o da üzülüyor
+[...]» (Aile 19, T1DM'li çocuk, 14 yaş). Böylece annenin adalet çabası, aynı davranışın
+farklı üyelerde farklı anlamlar kazandığı bir etik-duygusal ikileme dönüşmektedir.
+
+#### Triadik okuma ve sınırlayıcı örüntü (COREQ Madde 31)
+
+Aynı ailenin üç sesi yan yana konduğunda, anneliğin tıbbi bakıcıya kayması tek yönlü
+bir anlatı olmaktan çıkmaktadır. Aile 14'te annenin suçluluğu, uyku kaybı ve eş rolünün
+silikleşmesi ile örülen yüksek gözetim, T1DM'li çocuk tarafından belirgin biçimde
+normalleştirilmektedir: «Yememe, içmeme daha çok dikkat ediyorum. Aksi takdirde hiçbir
+şekilde kötü etkilemedi» (Aile 14, T1DM'li çocuk, 15 yaş); buna karşın sağlıklı kardeş
+aynı ev atmosferini kaygı diliyle taşımaktadır: «abimin başına bir şey gelecek diye
+korkuyorum [...] abimin bayıldığı günler oldu, o zaman çok korktum. Neredeyse kalp
+atışım hızlandı ve baya korkutucuydu» (Aile 14, sağlıklı kardeş, 10 yaş). Aile 26'da da
+benzer bir asimetri görülür: annenin "ben değilim" diye tarif ettiği kimlik erozyonu ve
+bahçede bekleyen tıbbi bakıcı rolü karşısında, T1DM'li çocuk deneyimi bir uyum
+söylemine oturtmaktadır — «[...] Hayatın iyi oluyor. Bir süreden sonra rahat oluyorsun, bir
+sorun yaşamıyorsun» (Aile 26, T1DM'li çocuk, 9 yaş) — sağlıklı kardeş ise annenin
+gözetim ağının bir parçası hâline gelmektedir: «şekeri baya düşükse ya zile basıyorum,
+kardeşimin telefonu var [...] arıyoruz, "Anne, şöyle şöyle oldu."» (Aile 26, sağlıklı
+kardeş, 9 yaş).
+
+Sınırlayıcı/aykırı örüntü olarak, anneler tıbbi bakıcı rolünü sıklıkla içselleştirip
+olağan bir annelik görevi gibi sunabilmektedir; ancak bu normalleştirme yükün yokluğu
+anlamına gelmemektedir. "Ben, ben değilim" ifadesi, kaçan uykular ve eş rolünün geri
+çekilişi, sıradanlaştırılan gözetimin altında süregelen kronik bir yükü görünür kılar.
+Öne çıkan kodlar: `SUCLULUK`, `TANI_SOK_KORKU`, `ANNE_HIPERVIJILANS`, `RUTIN_TAKIP`,
+`KAYGI_KIRILGANLIK`, `COCUK_OZERKLIK_OZBAKIM`, `AILE_ICI_ADALET`, `ILETISIM_CATISMA`.
+
+### Tema 3 — T1DM Tanılı Çocuğun İçeriden Deneyimi
+
+Bu makro tema, hastalığı yaşayan çocuğun kendi sesini merkeze alır ve anne ile
+kardeş anlatılarından ayrışan özgün bir bakışı görünür kılar. Tip 1 diyabet tanılı
+çocuklar hastalığı bir yandan gündelik yaşamın olağan parçası hâline getirmeye
+çalışmakta, bir yandan da tedavi yükü, bedensel müdahale, sosyal görünürlük,
 damgalanma ve aile içi kontrol üzerinden somut bir sınır olarak deneyimlemektedir.
-Alt tema örüntüleri normalleştirme ve avantaja çevirme, somut kısıtlılıklar ve tedavi
-yükü, utanç ve sosyal damgalanma, korunma-kontrol ve kardeşlik ilişkilerini
-kapsamaktadır. Sınırlayıcı örüntü olarak çocuk anlatısındaki "normal" söylemi yük
-yokluğu değil, çoğu zaman bağımsızlık, akranlara benzeme ve aile kontrolünü yönetme
-stratejisi biçiminde görünmektedir (quote ID ankrajları: `026_t1dm_child_q001`,
-`202_t1dm_child_q001`, `201_t1dm_child_q001`; öne çıkan kodlar: `KABULLENME_NORMALLESME`,
-`OKUL_SOSYAL_UYUM`, `COCUK_OZERKLIK_OZBAKIM`).
+Bölüm dört alt-tema hâlinde düzenlenmiş; her alt-tema en az üç farklı aileden T1DM
+tanılı çocuk anlatısıyla ve mümkün olduğunda aynı ailenin diğer üyelerinin sesleriyle
+(triadik okuma) desteklenmiştir. Alıntılar kelimesi kelimesine aktarılmış; kesilen
+bölümler `[...]` ile, kimlik koruyan eklemeler köşeli parantezle gösterilmiştir.
 
-### Tema 4. Aynı Evde Üç Farklı Deneyim
+| Alt tema | Bulgu örüntüsü |
+|---|---|
+| 3.1 — Normalleştirme ve avantaja çevirme | "Hiçbir şey değişmedi" söylemi kimi zaman güçlü uyum, kimi zaman performatif normallik biçiminde işler; hastalık avantaja da çevrilebilmektedir |
+| 3.2 — Somut kısıtlılıklar ve tedavi yükü | Ölçüm, enjeksiyon, beslenme ve hareket kısıtı çocuğun bedensel deneyiminde merkeze taşınır |
+| 3.3 — Utanç, farklılık ve sosyal damgalanma | Okul ve akran çevresinde görünürlük, dışlanma ve "farklıymışım gibi" hissi belirir; örüntü ergenlikte yoğunlaşır |
+| 3.4 — Korunma, kontrol ve kardeşlik | Artan ilgi hem güven hem kontrol olarak yaşanır; "el üstünde tutulmak" ile otonomi arzusu gerilime girer |
 
-Triadik okuma, T1DM'nin ailede tek bir ortak anlatı üretmediğini; aynı olayın anne,
-hasta çocuk ve sağlıklı kardeş tarafından farklı sorumluluk, risk ve adalet
-çerçeveleriyle anlamlandırıldığını göstermektedir. Anne düzen ve güvenlik dilini,
-hasta çocuk beden-özerklik ve sosyal görünürlük dilini, sağlıklı kardeş ise
-kısıtlanma-gözetmenlik ve adalet dilini öne çıkarmaktadır. Alt tema örüntüleri
-diyabetik düzenin gündelik hayatı yeniden kurması, sürekli tetikte olma, ilgi-adalet-
-kontrol gerilimi ve küçük bakıcılar / hasta otoritesini kapsamaktadır. Bu tema, üç
-rolün quote ID ankrajlarıyla ayrı kanıt türü olarak taşınmaktadır: anne
-(`011_mother_q006`, `020_mother_q009`, `026_mother_q008`), T1DM tanılı çocuk
-(`011_t1dm_child_q004`, `020_t1dm_child_q001`, `026_t1dm_child_q008`) ve sağlıklı
-kardeş (`011_healthy_sibling_q001`, `020_healthy_sibling_q001`,
-`019_healthy_sibling_q002`). Sınırlayıcı örüntü olarak Aile 201'de bazı rol alanları
-düşük temsil düzeyinde kalmıştır.
+#### Alt-tema 3.1 — "Hiçbir Şey Değişmedi" Söylemi, Normalleştirme ve Avantaja Çevirme
 
-## Karma Bulgulara Köprü (Joint Display)
+T1DM tanılı çocukların bir kısmı hastalığın etkisini asgariye indiren bir
+normalleştirme diliyle konuşmakta; hastalığı gündelik yaşamı köklü biçimde
+değiştirmeyen sınırlı bir düzenleme olarak çerçevelemektedir. Bir çocuk hastalığın
+etkisini dar bir alana sıkıştırmaktadır: «Sadece şeker ölçmem ve insülin için bazen
+zorluyor, o kadar» (Aile 20, T1DM'li çocuk, 11 yaş); bir diğeri benzer bir küçültme
+diliyle konuşmaktadır: «Hayatımda sadece biraz spor yapmamı zorlaştırdı. Spor
+esnasında şekerim düşüyor [...]» (Aile 11, T1DM'li çocuk, 12 yaş). Kimi çocuklarda
+normalleştirme, tanı şokundan kademeli bir alışmaya uzanan bir süreç olarak
+anlatılmaktadır: «İlk başta inanmak istememiştim. Hastanede yattığım dönemlerde
+inanılmaz psikolojimi bozmuştu, o hastalık. Yavaş yavaş zamanla alışmaya başladım»
+(Aile 202, T1DM'li çocuk, 15 yaş). Bazı çocuklar bir adım daha ileri giderek
+hastalığı bir kazanıma çevirmektedir: «[...] Şekerden dolayı birçok şeyden
+faydalanabiliyorsun. Toplu taşıma araçlarına ücretsiz binebiliyorsun, bazı yerlere
+ücretsiz girebiliyorsun, müzeler olsun» (Aile 14, T1DM'li çocuk, 15 yaş).
 
-Aşağıdaki birleşik gösterim, her birincil hipotez için nicel bulguyu (yön ve
-belirsizlik) ve ilgili niteliksel temayı yan yana getirmekte; kanıt türleri
-karıştırılmadan ilişki türü (uyum / tamamlayıcılık / ayrışma / açıklayıcı genişleme)
-etiketlenmektedir. İlişki türü yorumu ve karma meta-çıkarım *Tartışma ve Sonuç*
-bölümüne bırakılmıştır.
+Bu normalleştirme söyleminin sınırı, tanısı yeni konmuş bir çocuğun anlatısında açıkça
+görünür hâle gelmektedir: «[...] bayağı kötü… Bütün her şey değişti [...]» (Aile 201,
+T1DM'li çocuk, 11 yaş). Tanının üzerinden yalnızca birkaç ay geçmiş bu çocukta
+normalleştirme henüz kurulmamıştır; bu karşıtlık, "hiçbir şey değişmedi" söyleminin
+kendiliğinden var olan bir gerçek değil, zamanla inşa edilen bir uyum stratejisi
+olduğunu düşündürmektedir. Dolayısıyla normalleştirme dili, hem özgün başa çıkmanın
+hem de duygusal baskılamanın göstergesi olabilmekte ve dikkatli yorumlama disiplini
+gerektirmektedir.
 
-| Araştırma odağı | Nicel bulgu (yön + belirsizlik) | Niteliksel tema / örüntü | İlişki türü |
-|---|---|---|---|
-| H1 · Çocuk algısı (EMBU-C) | DM çocuklarında reddetme algısı daha yüksek (β = 0,16 SD [0,05; 0,26]; BF₁₀ = 8,12); diğer üç alt ölçekte kanıt yetersiz | Tema 3: hastalığın normalleştirme ve sosyal görünürlük arasında müzakere edilmesi | Açıklayıcı genişleme |
-| H2 · Kardeş ilişkisi (KİA) | Dört alt ölçekte grup farkı için kanıt yetersiz (d < 0,20; FDR p > 0,350) | Tema 1 ve 4: kardeş yükünün ilişki puanından çok bakım rutinleri ve adalet algısına gömülü olması | Tamamlayıcılık |
-| H3 · Anne öz-bildirimi (EMBU-P) | Dört alt ölçekte fark yok; aşırı koruma ve karşılaştırma TOST "Equivalent"; reddetme ROPE %92 | Tema 2: tıbbi bakıcı rolünün normal ebeveynlik gibi içselleştirilmesi | Açıklayıcı genişleme |
-| H4 · Beck → EMBU-P (SEM) | Üç yol anlamlı (sıcaklık −0,28; reddetme 0,33; karşılaştırma 0,28); aşırı koruma anlamsız (0,08) | Tema 2: suçluluk, tetikte olma ve kaybetme korkusunun anne ruhsal yüküyle örülü deneyim alanları | Uyum |
-| H5 · Diadik tutarlılık | Manifest anne ↔ çocuk uyumu düşük ve dört boyutta kontrol > DM; ön-kayıtlı triangülasyon şartı karşılanmadı | Tema 4: aynı aile olayının anne, hasta çocuk ve kardeş tarafından farklı görev/risk/adalet çerçeveleriyle taşınması | Açıklayıcı genişleme |
+#### Alt-tema 3.2 — "Canım Acıyor": Somut Kısıtlılıklar ve Tedavi Yükü
+
+Çocuk anlatısında hastalık, soyut bir tanıdan çok bedene ve gündelik isteklere dokunan
+somut bir kısıt olarak belirmektedir. Beslenme kısıtı akran ortamında en sık dile
+getirilen sınırdır: «Okulda, mesela, arkadaşlarım bir şey yerken ben hemen
+yiyemediğim için; canım çekiyor ve biraz zorlanıyorum» (Aile 11, T1DM'li çocuk, 12
+yaş). Kısıt yalnızca yasak değil, sürekli bir zihinsel yük olarak da
+yaşanmaktadır: «İstediğim zaman istediğim şeyleri yiyemiyorum istediğim kadar. [...]
+Sürekli dikkat içinde olman lazım, şekerim düşecek mi, iğne mi yaptım mı? yediklerim
+ne kadar karbonhidratlı?» (Aile 19, T1DM'li çocuk, 14 yaş). Kısıt beslenmenin ötesine,
+harekete ve oyuna da uzanmaktadır: «Canının çektiği bir yiyeceği yiyememek üzücü olur.
+[...] Annemler, kardeşim koşuyor ama ben şekerim belki düşer diye fazla
+koşamıyorum» (Aile 20, T1DM'li çocuk, 11 yaş). Tedavinin bedensel yükü ise en çıplak biçimde
+küçük bir çocuğun sözünde görünmektedir: «Kollarım deliniyor, parmaklarım deliniyor
+[...]» (Aile 26, T1DM'li çocuk, 9 yaş). Bu anlatılar, anne perspektifindeki yönetim
+yükünden farklı bir özgünlük taşımakta; bedensel deneyim ve mahrumiyet çocuğun kendi
+sesinde merkeze taşınmaktadır.
+
+#### Alt-tema 3.3 — "Farklıymışım Gibi…": Utanç, Farklılık ve Sosyal Alanda Damgalanma
+
+::: {.callout-note appearance="minimal"}
+**İnce-örüntü / negatif-vaka işareti (COREQ Madde 31).** Bu alt-temada ergenlik
+ekseni, triadik matriste sınırlı sayıda bilgi vericide belirgindir ve özellikle
+ergenliğe geçişte yoğunlaşmaktadır; sağlıklı kardeş grubunda ise sosyal damgalanma
+örüntüsü doğrudan dile getirilmemiştir. Bu dağılım, örüntünün tüm triade yayılmadığını
+gösteren bir sınırlılık olarak açıkça raporlanır.
+:::
+
+Tedavi pratiklerinin başkalarının gözü önünde yürütülmesi, çocuklarda utanç ve
+görünürlük kaygısı üretmektedir: «Dışarıda iğne yaparken biraz utanıyorum çünkü
+kolumdan iğne yaparken herkes bana bakıyor. Biraz utanıyorum» (Aile 11, T1DM'li çocuk,
+12 yaş). Bu görünürlük çoğu zaman bir "farklılık" ve ötekilik hissine dönüşmektedir:
+«Canım acıyor yaparken, bir de insülin vurduğum ve şeker ölçtüğüm için diğer
+insanlardan farklıymışım gibi hissediyorum. [...] İnsülin vururken çoğu kişi ters ters
+bakıyor» (Aile 20, T1DM'li çocuk, 11 yaş). Farklılık hissi kimi çocukta somut bir
+sosyal dışlanmaya kadar ilerlemektedir: «[...] Beni böyle şeylere çağırmamaya
+başladılar, sonra konuşmayı kestiler. [...] "Sen diğer insanlara göre farklısın, sen
+herkesin dışındasın" gibi hissettiriyor. [...] Okulda ölçemiyordum şekerimi çünkü
+sınıfta bakmaktan utanıyordum» (Aile 19, T1DM'li çocuk, 14 yaş). Bir başka çocukta aynı
+damgalanma, çevrenin bakışında yoğunlaşmaktadır: «[...] Şeker ölçme aletini, şunu bunu
+görenler, öyle değişik gözlerle bakıyor ki o çok ağırıma gidiyor» (Aile 201, T1DM'li
+çocuk, 11 yaş). Ergenlikte bu sosyal yük belirginleşmektedir: «[...] Ergenlikte çok
+daha zor olduğunu düşünüyorum. Çünkü işte okul, arkadaş ortamı falan bunlar etkiliyor.
+[...] Okul çok zorluyor beni o konuda. çünkü sürekli şekere bakmak, yemekten önce
+insülin yapmak çoğu zaman yapamadığım şeyler [...]» (Aile 202, T1DM'li çocuk, 15 yaş).
+
+#### Alt-tema 3.4 — Ailede Artan Dikkat ve "El Üstünde Tutulmak": Korunma, Kontrol ve Kardeşlik
+
+T1DM tanılı çocuklar, tanı sonrası ailede kendilerine yönelen artmış dikkati hem
+koruyucu hem kısıtlayıcı bir çerçevede deneyimlemektedir. "El üstünde tutulmak" bu
+ikili deneyimin en açık ifadesidir: «Beni biraz daha el üstünde tutuyorlar, biraz daha
+dikkat ediyorlar bana. Hastalandığımda, özellikle, üzerimde çok duruyorlar» (Aile 14,
+T1DM'li çocuk, 15 yaş). Kimi çocuk artan ilgiyi güvence olarak okumakta ve aile
+düzenini normalleştirmektedir: «Ben diyabet olunca şekerim düşer, bir yerde bir şey
+olur falan diye bana daha çok yoğunlaşıyor, daha ilgili davranıyor. [...] Aile
+ilişkilerimizi pek etkilemedi aslında, eskisi gibi devam ediyor hayatımız» (Aile 11,
+T1DM'li çocuk, 12 yaş). Aynı ilgi, özellikle ergenlikte, bir kontrol ve otonomi
+gerilimine dönüşebilmektedir: «Bazen bir şeyi yemek istiyorum, annem "yeme" diyor,
+izin vermiyor. [...] Annem "şekerine bak" diyor, ben bakmak istemiyorum artık. Yani
+sıkılıyorum kan şekeri bakmaktan» (Aile 202, T1DM'li çocuk, 15 yaş). Gözetim yalnızca
+anneden değil, kardeşten de gelmektedir; çocuk kardeşin "nöbetçi" rolünü kendi
+gözünden aktarmaktadır: «Kardeşim de ben diyabet olduğum için başıma bir şey gelir
+korkusuyla, sürekli peşimde dolanıyor, bir şey yiyeceğin zaman "[...] yapma" tarzı
+şeyler söylüyor. [...] O da bana daha ilgili davranıyor» (Aile 11, T1DM'li çocuk, 12
+yaş). Bu artan dikkatin altında, çocukların kendi çözüm dili de belirmekte; teknolojik
+destek gündelik yükü azaltacak somut bir ihtiyaç olarak dile getirilmektedir: «Mesela
+sensörü vardır, pompası falan vardır, onları kullanırsan atlatabilirsin. [...]
+Parmakların delinmez, canın acımaz» (Aile 26, T1DM'li çocuk, 9 yaş).
+
+#### Triadik okuma ve sınırlayıcı örüntü (COREQ Madde 31)
+
+Aynı ailenin üç sesi yan yana konduğunda, T1DM tanılı çocuğun "hiçbir şey değişmedi"
+söylemi tek başına okunamaz hâle gelmektedir. Aile 11'de çocuk aile yaşamını bir
+süreklilik diliyle çerçeveler — «Aile ilişkilerimizi pek etkilemedi aslında, eskisi
+gibi devam ediyor hayatımız» (Aile 11, T1DM'li çocuk, 12 yaş) — ancak aynı ev, annenin
+sesinde süregelen bir suçluluk ve yüksek gözetim zeminidir (bkz. Alt-tema 2.1'de
+aktarılan anne anlatısı) ve kardeşin, çocuğun kendi tarifindeki gibi "sürekli peşinde
+dolanan" bir tetikte-oluşuyla doludur. Böylece aynı aile gerçeği, çocuk tarafından
+normalleştirilirken anne ve kardeş tarafından kronik bir kaygı ve bakım emeği olarak
+taşınmaktadır; bu bilgi-veren asimetrisi, tezin triadik bulgularının çekirdeğini
+oluşturur ve Tema 4'te ayrıntılandırılır.
+
+Sınırlayıcı/aykırı örüntü olarak, çocuk anlatısındaki "normal" söylemi yük yokluğu
+anlamına gelmemektedir. Bir yandan tanısı yeni bir çocuk bu söylemi henüz kuramamakta
+(«Bütün her şey değişti», Aile 201), bir yandan da normalleştiren çocuklarda aynı anda
+somut kısıt, bedensel acı, sosyal damgalanma ve kontrol reddi sürmektedir. "Hiçbir şey
+değişmedi" ifadesi çoğu zaman bağımsızlık, akranlara benzeme ve aile kontrolünü
+yönetme stratejisi olarak işlemekte; sıradanlaştırılan söylemin altında süregelen bir
+yükü görünür kılmaktadır. Öne çıkan kodlar: `KABULLENME_NORMALLESME`,
+`YARAR_BULMA_OLGUNLASMA`, `RUTIN_TAKIP`, `BESLENME_KONTROL`, `OKUL_SOSYAL_UYUM`,
+`AKRAN_CEVRE_DESTEGI`, `COCUK_OZERKLIK_OZBAKIM`, `ANNE_HIPERVIJILANS`,
+`KARDES_KORUYUCU_ROLU`, `TEKNOLOJI_DESTEGI`, `AILE_ICI_ADALET`, `OFKE_ADALETSIZLIK`.
+
+### Tema 4 — Aynı Evde Üç Farklı Deneyim
+
+Önceki üç makro tema deneyimi ağırlıkla tek bir perspektiften (kardeş, anne, çocuk)
+okurken, bu tema aynı aile bağlamındaki üç sesi yan yana koyarak triadik karşılaştırmalı
+bir okuma yapar. Temel bulgu, T1DM'nin ailede tek bir ortak anlatı üretmediğidir: aynı
+olay ve aynı ebeveyn davranışı anne, T1DM tanılı çocuk ve sağlıklı kardeş tarafından
+farklı sorumluluk, risk ve adalet çerçeveleriyle anlamlandırılmaktadır. Anne düzen ve
+güvenlik dilini, T1DM tanılı çocuk beden-özerklik ve sosyal görünürlük dilini, sağlıklı
+kardeş ise kısıtlanma-gözetmenlik ve adalet dilini öne çıkarmaktadır. Aşağıdaki dört
+alt-tema, en az iki aile için tam triad (anne + çocuk + kardeş yan yana) üzerinden bu
+anlam asimetrisini görünür kılar; alıntı ölçütleri Tema 1-3'tekiyle aynıdır.
+
+| Alt tema | Rol-temelli anlam ayrışması |
+|---|---|
+| 4.1 — "Diyabetik düzen"in gündelik hayatı yeniden kurması | Anne yönetim yükünü, çocuk beden-özerklik kaybını, kardeş gönüllü mahrumiyeti taşır |
+| 4.2 — "Bir şey olacak" korkusu ve sürekli tetikte olma | Kaybetme korkusu anne ve kardeşi doldururken çocuk normalleştirir |
+| 4.3 — İlgi, adalet ve kontrol gerilimi | Aynı ilgi çocuk için koruma, kardeş için görülmeme, anne için suçluluk olarak yaşanır |
+| 4.4 — Küçük bakıcılar ve "hasta otoritesi" | Kardeş bakım emeği üstlenir, çocuk hastalık statüsüyle güç kazanır, anne farkında ama çaresizdir |
+
+#### Alt-tema 4.1 — "Diyabetik Düzen": Ortak Kısıtlılık ve Üyeye Özgü Sınırlılık
+
+Aynı beslenme ve yaşam düzeni, tam triadda üç ayrı anlam kazanmaktadır (tam triad —
+Aile 19). Anne, T1DM'li çocuğun rejiminin kendi gündelik yaşamını ve gözetim yükünü nasıl
+kuşattığını, sıradan ebeveynlikten ayrışan bir sürekli eşlik hâli olarak aktarmaktadır:
+«onu hiç yalnız bırakamaz oldum. [...] Hep okulda sınıfın kapısında beklerdim, birinci
+sınıftan beşinci sınıfa kadar her gün [...] sabah onunla gidiyordum, öğlen onunla
+çıkıyordum» (Aile 19, anne, 36 yaş). Aynı düzeni T1DM tanılı çocuk bir beden-
+özerklik kaybı olarak yaşamaktadır: «İstediğim zaman istediğim şeyleri yiyemiyorum
+istediğim kadar. [...] Sürekli dikkat içinde olman lazım [...]» (Aile 19, T1DM'li çocuk,
+14 yaş); sağlıklı kardeş ise aynı kısıtı empatiyle benimsenen gönüllü bir mahrumiyet
+olarak çerçevelemektedir: «Ben de bir şeyler yemek istediğimde ben de yiyemiyorum,
+ablama dokunur diye. [...]» (Aile 19, sağlıklı kardeş, 10 yaş). Böylece tek bir
+"diyabetik düzen", anne için yönetim ve gözetim, çocuk için özerklik kaybı, kardeş için
+gönüllü feragat olarak üç paralel ama asimetrik anlam üretmektedir (bkz. Alt-tema 1.1 ve
+3.2).
+
+#### Alt-tema 4.2 — "Bir Şey Olacak" Korkusu ve Sürekli Tetikte Olma
+
+Kaybetme korkusu, triadın anne ve kardeş uçlarını yoğun biçimde doldururken T1DM tanılı
+çocuğun sesinde belirgin biçimde silik kalmaktadır. Anne için bu korku bedensel bir
+tetikte-oluş ve ölüm imgesidir: «Kızımın nefesini gece kontrol ederdim çünkü
+korkuyordum bir şey olur, gece şekeri düşer diye. [...] Ben çocuğum ölüyor, gitti
+zannettim. Elim ayağım boşaldı [...]» (Aile 11, anne, 47 yaş). Aynı korku sağlıklı
+kardeşte paylaşılan bir kaygı ve ölüm endişesi olarak görünmektedir: «Annem ve ben, hep
+ablam bayılacak diye korkuyoruz. İleride ölme ihtimali olabilir» (Aile 11, sağlıklı
+kardeş, 9 yaş). Buna karşın aynı ailenin T1DM tanılı çocuğu hastalığı bir süreklilik
+diliyle çerçevelemekte — «Aile ilişkilerimizi pek etkilemedi aslında, eskisi gibi devam
+ediyor hayatımız» (Aile 11, T1DM'li çocuk, 12 yaş) — ve kaybetme korkusunu doğrudan dile
+getirmemektedir. Bu asimetri, triadik matriste kaybetme korkusu ekseninin T1DM tanılı
+çocuk hücrelerinde yer almamasıyla da tutarlıdır: korkuyu, hastalığı yaşayan değil, onu
+izleyen anne ve kardeş taşımaktadır. Bir başka ailede sağlıklı kardeş bu tetikte-oluşu
+bir acil durum yöneticiliğine dönüştürmektedir: «şekeri baya düşükse ya zile basıyorum,
+kardeşimin telefonu var [...] arıyoruz, "Anne, şöyle şöyle oldu."» (Aile 26, sağlıklı
+kardeş, 9 yaş).
+
+#### Alt-tema 4.3 — İlgi, Adalet ve Kontrol: "El Üstünde Tutulmak" ile "Görülmeme" Arasında
+
+Bu alt-tema, tezin merkezî anlam-asimetrisi bulgusunu tam triadda (Aile 14) somutlar:
+aynı yoğun ebeveyn ilgisi üç rolde üç farklı anlama gelmektedir. T1DM tanılı çocuk
+ilgiyi bir güvence ve ayrıcalık olarak okumaktadır: «Beni biraz daha el üstünde
+tutuyorlar, biraz daha dikkat ediyorlar bana. Hastalandığımda, özellikle, üzerimde çok
+duruyorlar» (Aile 14, T1DM'li çocuk, 15 yaş). Sağlıklı kardeş için aynı ilgi dağılımı
+bir görülmeme ve ikinci planda kalma deneyimidir: «O sırada benim karnım ağrıyordu.
+[...] Annem benimle ilgilenmedi, abimin hastalığı daha büyük olduğunu için annem abimle
+ilgilendi» (Aile 14, sağlıklı kardeş, 10 yaş). Anne ise bu asimetriyi bir suçluluk ve
+telafi ikilemi olarak taşımaktadır: «Oğlum diyabet tanısı aldığında 10 yaşındaki kardeşi
+bebekti ve onunla hiç ilgilenemedim. [...] eşimi, diğer kardeşini unuttum; benim bütün
+varım yoğum [diyabetli oğlum] oldu» (Aile 14, anne, 37 yaş). Aynı ebeveyn davranışı
+böylece çocukta koruma, kardeşte görülmeme, annede suçluluk olarak anlamlandırılmakta;
+bu üç-yönlü anlam ayrışması, tek bilgi vericiye indirgenemeyecek bir aile gerçeğini
+ortaya koymaktadır.
+
+#### Alt-tema 4.4 — "Küçük Bakıcılar" ve "Hasta Otoritesi": Bakım Emeği, Güç ve Sessiz Feragat
+
+Triadın son kesişimi, kardeşlik dinamiklerinde bakım emeğinin ve gücün nasıl yeniden
+dağıldığını göstermektedir. Anne, sağlıklı kardeşlerin bir bakım ağına geçtiğini ve
+T1DM'li çocuğun bu durumu bir güç kaynağına çevirdiğini ("hasta otoritesi") açıkça
+tarif etmektedir: «Kardeşleri, şekeri düştüğü zaman üzülüyorlar işte ve [kızımın] her
+dediğini yapmaya çalışıyorlar. [Kızım] da bunu çok güzel kullanıyor bu arada. [...]
+[Kızımı] hepsine emanet edebiliyorum» (Aile 11, anne, 47 yaş). Sağlıklı kardeş aynı
+rolü bir sorumluluk ve gözetim emeği olarak yaşamaktadır: «Annemler bir yere gittiğinde
+ablam gidemiyor, ablam ile ikimiz evde kalıyoruz. Annem de bana ablamın şekeri düşerse
+ne yapabileceğimi [...] söylüyor» (Aile 11, sağlıklı kardeş, 9 yaş); T1DM tanılı çocuk
+ise kardeşin bu tetikte-oluşunu kendi gözünden aktarmaktadır: «Kardeşim de ben diyabet
+olduğum için başıma bir şey gelir korkusuyla, sürekli peşimde dolanıyor [...]» (Aile 11,
+T1DM'li çocuk, 12 yaş). Aynı örüntü Aile 26'da, kardeşin öfkesini bastıran bir sessiz
+feragate dönüşmektedir; anne kardeşin "el pençe divan" gözetimini — «Diğer kardeşini
+[ikizi] çok etkiledi. Kardeşi onun etrafında koşturuyor "şekerin düşecek, yapma" [...],
+kardeşi sürekli el pençe divan peşinde yani» (Aile 26, anne, 44 yaş) — aktarırken,
+kardeşin kendi sesinde bu rol bir öz-denetim disiplinine dönüşmektedir: «[...] insan
+sinirlenince bağırır, kızar, vurur ya; böyle yapmayacaksın. "Tamam" diyip geçeceksin»
+(Aile 26, sağlıklı kardeş, 9 yaş). Bu bakım döngüsünün ardında, ailelerin karşıladıkları
+sistemik ihtiyaç açığı da belirmektedir: «Şu pompayı [insülin pompası] çok istiyoruz ama
+maalesef devlet [SGK] hepsini karşılamadığı için maddiyatsızlıktan yapamıyoruz, keşke
+yapılabilseydi» (Aile 11, anne, 47 yaş).
+
+#### Triadik bütüncül çıktı ve sınırlayıcı örüntü
+
+Dört alt-temanın triadik okuması, aynı aile gerçeğinin rol-bağımlı biçimde yaşandığını
+göstermektedir: aynı olay anne için yönetim yükü, kaybetme korkusu ve suçluluk; T1DM
+tanılı çocuk için normalleştirme, beden-özerklik ve "el üstünde tutulma"; sağlıklı
+kardeş için gönüllü mahrumiyet, tetikte-oluş ve görülmeme olarak biçimlenmektedir.
+Buradan iki analitik ilke belirmektedir: normalleştirme tetikte-olmanın yokluğu değildir
+ve uyum yükün yokluğu anlamına gelmemektedir. Bu bilgi-veren asimetrisi, karma yöntemde
+diadik tutarlılık (H5) bulgusunun ve Karma Bulgulara Köprü'deki triadik informant
+satırının nitel karşılığını oluşturur (§4.7). Öne çıkan kodlar: `RUTIN_TAKIP`,
+`KAYGI_KIRILGANLIK`, `ANNE_HIPERVIJILANS`, `KARDES_GORUNMEZ_YUK`, `KARDES_KORUYUCU_ROLU`,
+`KARDES_ILISKISI`, `AILE_ICI_ADALET`, `OFKE_ADALETSIZLIK`, `COCUK_OZERKLIK_OZBAKIM`,
+`TEKNOLOJI_DESTEGI`, `YARAR_BULMA_OLGUNLASMA`, `KABULLENME_NORMALLESME`. Bu temaya ilişkin
+sistematik negatif-vaka taraması ve odak aile matrisi, izleyen bölümde sunulmaktadır.
+
+### Çapraz Bilimsel Neticeler
+
+Dört makro temanın çapraz okumasından altı temalar-arası netice belirmektedir.
+Birincisi, Tip 1 diyabet ailede aile düzeyi bir düzenleme rejimi üretmekte; gündelik
+yaşam ölçüm, beslenme ve izlem etrafında yeniden kurulmaktadır. İkincisi, anne bakımı
+hem klinik hem ahlaki bir sorumluluk olarak içselleştirmektedir. Üçüncüsü, sağlıklı
+kardeşin yükü çoğu zaman açık şikâyet olmaksızın sessiz taşınmaktadır. Dördüncüsü, T1DM
+tanılı çocuk normalleşme ile farklılık arasında sürekli müzakere etmektedir. Beşincisi,
+koruma, kontrol ve adalet aynı ebeveyn davranışında birleşebilmektedir. Altıncısı, aynı
+olayın üç rol tarafından farklı sorumluluk, risk ve adalet çerçeveleriyle
+anlamlandırılmasıdır.
+
+### Negatif Vaka, Sınırlayıcı Örüntüler ve Odak Aile Matrisi
+
+Tema 4 için sistematik negatif-vaka taraması üç alanda yürütülmüştür: temalarla
+karşıtlık işaretleri, çocuk anlatısındaki "normal" söyleminin sınırları ve Aile 201'in
+rol temsili. Odak aile matrisi, ailelerin temalara katkısında eşitsiz bir dağılım
+göstermektedir; Aile 011 ve Aile 202 en yüksek odak yoğunluğunu taşırken Aile 201 en
+düşük tek-alan temsiliyle sınırlı kalmıştır. Bu dağılım, bilgi gücünün aileler arasında
+eşit dağılmadığını ve Aile 201'in aktarılabilirlik tartışmasıyla bağlantılı olduğunu
+belgelemektedir. Bu niteliksel örüntülerin her birincil hipotezle yan yana okunması,
+izleyen Karma Bulgulara Köprü'de (§4.7) sunulmaktadır.
+
+## Karma Bulgulara Köprü (Joint Display) {#sec-karma-joint-display-kanonik}
+
+Aşağıdaki birleşik gösterim, tezin sayısal test sonuçları ile (anket verileri) ailelerle yapılan derinlemesine yüz yüze görüşmelerin (nitel bulgular) nasıl örtüştüğünü yan yana sunmaktadır.
+
+| Odak | Nicel (Sayısal) Bulgu | Nitel (Sözel) Örüntü | Birliktelik Türü | Yorum sınırı |
+|---|---|---|---|---|
+| **H1 — Çocuk algısı (EMBU-C)** | Diyabetli çocuklar, kontrol grubuna göre reddedilme ve aşırı koruma algısını daha yüksek bildirmektedir (reddetme b = 0,14 [0,07; 0,22], q = 0,001, BF₁₀ = 10,55; aşırı koruma q = 0,003, BF₁₀ = 6,93; reddetme iki-grup standardize g ≈ 0,38). <!-- kaynak: docs/CLINICAL-STUDY-REPORT-FINAL.qmd#h1-karar --> | Hastalıktan etkilenmeme beyanı (normalleştirme refleksi), çocukta hastalığın yarattığı gerçek yükün yok olduğu anlamına gelmez, bu yükü ruhsal olarak dayanılabilir kılma çabasıdır. <!-- kaynak: niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd#tema-3 --> | Açıklayıcı genişleme | Nedensellik yok; nitel bağlam reddetme algısının birebir sebebi değildir. |
+| **H2 — Kardeş ilişkisi (KİA/SRQ)** | Kardeş ilişkileri ölçeklerinde (kavga, yakınlık vb.) diyabetli ve kontrol grubu arasında anlamlı bir istatistiksel fark görülmemiştir (d < 0,20; FDR p > 0,350). <!-- kaynak: docs/CLINICAL-STUDY-REPORT-FINAL.qmd#h2-karar --> | Sağlıklı kardeş, annenin ilgisinin diyabetli çocuğa kaymasını çoğu zaman sessizce izler ve günlük yaşantısında içselleştirir. <!-- kaynak: niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd#tema-1 --> | Tamamlayıcılık | Nedensellik yok; sayısal "fark yokluğu" sessiz kardeş yükünü silmez. |
+| **H3 — Anne öz-rapor (EMBU-P)** | Annelerin ebeveynlik anketlerine verdikleri yanıtlarda (aşırı koruma, karşılaştırma vb.) iki grup arasında istatistiksel fark bulunmamıştır (aşırı koruma ve karşılaştırma TOST "Eşdeğer"; reddetme ROPE %93). <!-- kaynak: docs/CLINICAL-STUDY-REPORT-FINAL.qmd#h3-karar --> | Anne için tüm o koruyucu bakım döngüsü "ahlaki bir annelik sorumluluğu" olarak görüldüğü için tamamen normalleşmiştir. <!-- kaynak: niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd#tema-2 --> | Açıklayıcı genişleme | Nedensellik yok; anketlerde fark çıkmaması annenin hastalığı içselleştirmesiyle açıklanır. |
+| **H4 — Beck → EMBU-P (SEM)** | Annenin depresif yükü arttıkça, ebeveynlik tutumlarındaki sıcaklık azalırken (−0,28), reddetme (0,33) ve karşılaştırma (0,28) eğilimleri artmaktadır. Aşırı koruma ise anlamsız kalmıştır. <!-- kaynak: docs/CLINICAL-STUDY-REPORT-FINAL.qmd#h4-karar --> | Depresyon ve suçluluk hissi, annelerde "gelecekteki bakım görevini eksik yapma" korkusuna dönüşür. <!-- kaynak: niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd#tema-2 --> | Uyum | Nedensellik yoktur; istatistiksel değişim ile görüşmelerdeki psikolojik yük uyumludur. |
+| **H5 — Diadik tutarlılık** | Annenin ankete verdiği cevapla çocuğun algısı tutarsızdır (sınırlı uyum sinyali). <!-- kaynak: docs/CLINICAL-STUDY-REPORT-FINAL.qmd#h5-karar --> | Aynı hastalık/ev olayı, anne tarafından bir endişe nesnesi olarak yaşanırken, çocuk tarafından normal bir hayat rutini olarak algılanır. <!-- kaynak: niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd#tema-4 --> | Açıklayıcı genişleme | Nedensellik yok; anketteki uyumsuzluk yalnız test hatasından değil, rollerin farklılığındandır. |
+| **Meta — Triadik informant asimetrisi** | Diyabetin ebeveynliğe etkisi, objektif genel bir değişimden ziyade "kimin gözünden (anne, çocuk, kardeş) sorulduğuna" göre radikal şekilde ayrışmaktadır. <!-- kaynak: docs/CLINICAL-STUDY-REPORT-FINAL.qmd#sec-genel-hipotez-ozet --> | "Aynı olay", evdeki o üç rol (anne, indeks çocuk, sağlıklı kardeş) tarafından bambaşka bir risk ve adalet duygusuyla anlamlandırılır. <!-- kaynak: niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd#sec-capraz --> | Tamamlayıcılık | Nedensellik yok; anket ayrışması ile derinlemesine duygu ayrışması birbirini tamamlar. |
+
+Bütünleştirme matrisi incelendiğinde nicel çözümleme etki boyutunu hedeflerken, nitel analiz bağlamsal mekanizmayı aydınlatmaktadır. **Açıklayıcı genişleme** ilişkilerinde (H1, H3, H5), öz-bildirim ölçeklerindeki sayısal yapı psikolojik dinamiklerle bağlamsallaşır. H1 bulgusunda çocuk algısındaki farklılaşma, görüşmelerdeki normalleştirme başa çıkma (coping) mekanizması ekseninde değerlendirilmelidir: *"Aile ilişkilerimizi pek etkilemedi aslında, eskisi gibi devam ediyor hayatımız"* (Aile 11, T1DM'li çocuk, 12 yaş). H3 bulgusunda anne öz-bildiriminde fark gözlenmemesi, ağır tıbbi bakımın içselleştirilmiş bir annelik sorumluluğu olarak algılanmasıyla örtüşür: *"Anneler mutlaka çocuklarına kızar, ben ona kızdığımda hep vicdan yaptım"* (Aile 14, anne, 37 yaş).
+
+**Tamamlayıcılık** ilişkisinde (H2) ise, nicel araçların saptamakta sınırlı kaldığı nüanslar nitel beyanlarla derinleşir; kardeş algısındaki yük mülakatlarda belirginleşir: *"Ben de bir şeyler yemek istediğimde yiyemiyorum, ablama dokunur diye"* (Aile 19, sağlıklı kardeş, 10 yaş). **Uyum** ilişkisinde (H4), maternal depresif belirtiler ile olumsuz ebeveynlik örüntüleri arasındaki istatistiksel ilişki, mülakatlardaki suçluluk ve çaresizlik temalarıyla desteklenir: *"Kendimde suç aradım. 'Nerede yanlış yaptım?' dedim"* (Aile 14, anne, 37 yaş). Son olarak bilgi-verici (informant) ayrışmasında (H5), indeks çocuğun rutin kabul ettiği hastalığın ebeveyn perspektifinde belirgin bir anksiyete kaynağı olarak işlendiği görülür: *"Ona bir şey olacak diye çok korkuyorum"* (Aile 19, anne, 36 yaş). Bu bağlamda bilgi-vericiler arası ölçüm uyuşmazlığı (discrepancy) bir yöntem hatasından ziyade, aile-içi çoklu gerçekliğin yapısal bir yansımasıdır.
 
 ## Genel Bulgu Sentezi
 
-Birincil hipotezlerin bulgu düzeyindeki özeti şudur: (a) anne öz-bildirimi düzleminde
-DM × kontrol grup farkı için kanıt bulunmamış, aşırı koruma ve karşılaştırma alt
-ölçekleri TOST ile eşdeğer konumlanmıştır (H3; Bayesçi H0 ve çoklu evren %0 anlamlılık
-ile uyumlu); (b) çocuk algısı düzleminde DM çocukları reddetme alt ölçeğinde daha
-yüksek puan bildirmiştir (H1; β = 0,16 SD; BF₁₀ = 8,12); (c) anne depresyonunun
-ebeveynlik tutumlarına latent etkisi dört yoldan üçünde anlamlıdır (H4; |β| = 0,28–0,33);
-(d) kardeş ilişkisi düzleminde grup farkı için kanıt yetersizdir (H2); (e) anne ↔ çocuk
-diadik tutarlılığı manifest düzeyde düşüktür ve ön-kayıtlı triangülasyon şartı
-karşılanmamıştır (H5). Niteliksel kolda dört makro tema, bu nicel örüntülerin
-deneyimsel bağlamını üç aile rolünün ayrı konumlarından belgelemektedir. Bu bulguların
-kuramsal ve klinik yorumu *Tartışma ve Sonuç* bölümünde ele alınmaktadır.
+Çalışmada sınanan temel hipotezlerin en sade özeti şöyledir:
+
+(a) Annelerin kendi beyanlarına göre, diyabetli ve kontrol ailelerinde ebeveynlik tutumları (aşırı koruma, karşılaştırma, sıcaklık, reddetme) açısından bir fark bulunamamıştır (H3 bulgusu). Tüm zorlamalı çoklu istatistiklerde ve Bayes hesaplamalarında fark-yokluğu desteklenmiştir.
+
+(b) Ancak çocukların kendi algılarına bakıldığında; diyabetli çocuklar, kontrol grubuna göre ebeveynleri tarafından anlamlı ölçüde daha fazla 'aşırı korunduklarını' ve daha az 'reddedildiklerini' (yani daha fazla benimsendiklerini) belirtmişlerdir (H1 bulgusu, q = 0,001; BF₁₀ = 10,55).
+
+(c) Annenin ruhsal sağlığı bozuldukça (depresif yük arttıkça), sıcaklık gösterme eğilimi azalmış, karşılığında reddetme (|β| = 0,33) ve başkalarıyla kıyaslama (|β| = 0,28) eğilimleri artmıştır (H4 bulgusu).
+
+(d) Sağlıklı kardeş ile yapılan anketlerde, hastalık kaynaklı belirgin bir kardeş gerilimi/farkı tespit edilememiştir (H2 bulgusu).
+
+(e) Anne ile çocuğun ankete verdiği aynı sorulara yönelik yanıtlar arasındaki uyum son derece düşük kalmıştır (H5 bulgusu).
+
+Bu anket (nicel) analizlerine paralel yürütülen mülakat (nitel) kanadı da bu tabloyu; annenin sessiz endişesi, çocuğun hastalığı normalleştirme çabası ve kardeşin kendini gönüllü kısıtlaması gibi temalarla derinleştirmiştir. Tezin birincil ve tüm yardımcı bulgularının tek karede toparlandığı bütünleşik özet (kapstone) @tbl-apa-result-synthesis içinde sunulmaktadır.
+
+```{r}
+#| label: tbl-apa-result-synthesis
+#| tbl-cap: "Genel bulgu sentezi — bütünleşik özet (kapstone) tablosu. Birincil (H1–H5) ve genişletilmiş nicel bulgular ile karma tezin niteliksel kolunun deneyimsel bağlamı, hipotez satırları boyunca tek bir özette toplanır; sütunlar her hipotez için nicel kararı, (varsa) niteliksel bağlamı, yakınsama tipini ve nedensellik/kapsam çekincesini verir. Okuma anahtarı: satırlar yatay okunur ve dört sütun birlikte değerlendirilir; yakınsama (nicel ile niteliksel kolun aynı yönü göstermesi) bir bağlam zenginleştirmesidir, nedensellik göstergesi değildir. Sonuç: Sayısal (anket) analizler ile sözel (nitel görüşme) bulguları birbirini tamamlamış; diyabetli ailelerin reddetme yerine korumacı bir yapıya yöneldiği gerçeği her iki koldan da doğrulanmıştır."
+apa_render_table("t22_result_synthesis")
+```

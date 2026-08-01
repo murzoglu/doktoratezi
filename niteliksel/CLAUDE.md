@@ -1,8 +1,9 @@
 # CLAUDE.md — T1DM Niteliksel
 
-> **Migrasyon notu (2026-07-09):** Nitel repo içeriği tek-repo çalışma modeli için
-> `/mnt/thunderbolt/workspaces/doktoratezi/niteliksel` altına taşınmıştır.
-> Bu alt-ağaç yeni canonical çalışma konumudur; eski bağımsız repo silinmemiştir.
+> **Migrasyon notu:** Nitel kol içeriği tek-repo çalışma modeli için karma tez
+> reposunun kök `niteliksel/` alt-ağacına taşınmıştır. Bu alt-ağaç yeni canonical
+> çalışma konumudur; ayrı bağımsız nitel kol artık yoktur. Nicel kol ve genel
+> proje bağlamı için repo kökü ([`../CLAUDE.md`](../CLAUDE.md)) esastır.
 
 Tip 1 Diyabet & Ebeveynlik Tutumu doktora tezinin **niteliksel kolu**. Yazılım
 projesi değil — nitel araştırma korpusu, analiz tabloları, tez/makale taslakları
@@ -70,14 +71,24 @@ Araç ekosistem haritası: `00_context/TOOL_ECOSYSTEM_MAP.md`.
   varsa kullanılır.
 
 ## Kanonik aktif dosyalar
+
+> ⚠️ **Kanon güncellemesi (2026-07-29, Task 1.4):** `new/` kanonu v2.0'ı geçersiz
+> kılar. Eski `qualitative_canonical_results_report.md` ve `codebook_v2.md` dosyaları
+> `archive/2026-07-29_pre_new_canon/` altına taşınmıştır (silinmemiş, git geçmişi korunuyor).
+> Fark özeti: `03_analysis/reconciliation_v2_to_v3.md`.
+
 - Temizlenmiş nitel tez metni:
   `02_processed/cleaned_text/thesis_qualitative_cleaned_current.md`
 - Birleşik transcript: `02_processed/transcripts/all_transcripts_merged.md`
-- **Güncel codebook: `03_analysis/codebook/codebook_v2.md`**
-  (23 kod × 6 journal tema × 4 tez makro tema; v1 superseded).
-  ⚠️ `codebook_v3.csv` bir Faz B **draft**'tır — v2 hâlâ kanonik.
+- **Kanonik codebook (v3.0): `03_analysis/codebook/codebook_v3.md`**
+  (24 kod × 8 triadik eksen × 4 makro tema; v2.0 → arşivde).
+  Destekleyen: `03_analysis/codebook/theme_architecture_v3.md` (4 makro / 17 alt + 8-eksen Rosetta).
+- **Triadik ham veri:** `new/triadik_matris_extracted.csv`
+  (aile_no · rol · triadik_eksen · verbatim_tr; KVKK — repo dışına çıkmaz).
 - Methodology paketi: `03_analysis/methodology/` (COREQ, audit trail,
-  positionality OM/BA, LLM beyanı, savunma argümanları).
+  positionality OM/BA, LLM beyanı, savunma argümanları — v2.0'dan korundu).
+- Arşiv: `archive/2026-07-29_pre_new_canon/` (qualitative_canonical_results_report.md +
+  codebook_v2.md — yalnız tarihsel başvuru).
 - Canlı durum: `00_context/TRACKER.md` · Yol haritası: `00_context/ROADMAP_v1.md`.
 
 ## Tema yapısı (karıştırma)
@@ -87,13 +98,13 @@ Araç ekosistem haritası: `00_context/TOOL_ECOSYSTEM_MAP.md`.
 ## İş akışı durumu
 - Faz A (Kalite Pekiştirme) ✅ tamam.
 - Bundan sonraki tez yazım sürecinin ana operasyon merkezi:
-  `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim`.
-- Bu repo tez yazımında yalnız nitel kolun ilişkili kesimleri için açılır:
+  `/workspaces/T1DM-Tez/tez-yazim`.
+- Bu kol (niteliksel/) tez yazımında yalnız nitel kolun ilişkili kesimleri için açılır:
   RTA/COREQ, audit trail, triadik tema kanıtı, seçilmiş anonim alıntı denetimi
   ve kanonik nitel sonuç raporu kontrolü.
-- Tez yazımında nitel kolu temsil eden ana aktarım kaynağı, doktoratezi
-  reposuna taşınmış kanonik nitel sonuç raporudur; ham transcript veya geniş
-  nitel repo yeniden taraması varsayılan değildir.
+- Tez yazımında nitel kolu temsil eden ana aktarım kaynağı, nicel köke
+  taşınmış kanonik nitel sonuç raporudur; ham transcript veya geniş
+  nitel kol yeniden taraması varsayılan değildir.
 
 ## Claude Code katmanı (zorunlu)
 - Tez yazımı, nitel kanıt, referans veya karma sentez içeren HER işte

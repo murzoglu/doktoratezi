@@ -22,10 +22,10 @@ izlenebilir listede bağlar.
    klasöre kopyalanmaz ve harici MCP/RAG araçlarına gönderilmez.
 3. Yazımda kullanılacak sayısal iddia önce CSR, SAP, veri haritası ve ilgili test
    kanıtıyla; nitel iddia önce kanonik nitel rapor, COREQ/audit trail ve gerekirse
-   nitel repo reliability raporuyla kapatılır.
+   nitel kol reliability raporuyla kapatılır.
 4. Dış literatür eklenecekse Evidentia -> OpenAthens/full-text ->
    Anna's fallback -> PMC/OA/repository -> Zotero -> referans ledgeri ->
-   çift AI-reliability sırası tamamlanmadan citation metne giremez.
+   iki-kol AI-reliability sırası tamamlanmadan citation metne giremez.
 
 ## Birincil Kaynak Haritası
 
@@ -34,7 +34,7 @@ izlenebilir listede bağlar.
 | Resmi tez kılavuzu | `docs/tez-kilavuz/TEZ YAZIM KLAVUZU-2025.pdf` | Format, bölüm sırası, tablo/şekil, kaynakça. | Açık repo içi |
 | Resmi tez şablonu | `docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx` | Kapak, ön bölümler, bölüm yerleşimi. | Açık repo içi |
 | Güncel klinik çalışma sonuç raporu | `docs/CLINICAL-STUDY-REPORT-FINAL.md` | Nicel bulgular, örneklem, yöntem, klinik yorum sınırı. | Repo içi kanonik |
-| Nitel çalışma sonuç raporu | `docs/niteliksel/qualitative_canonical_results_report.md` | Nitel kolun tezde varsayılan temsil kaynağı. | Repo içi türetilmiş |
+| Nitel çalışma sonuç raporu | `niteliksel/qualitative_canonical_results_report.md` | Nitel kolun tezde varsayılan temsil kaynağı. | Repo içi türetilmiş |
 | Klinik çalışma protokolü | `docs/protokol/KLINIK_CALISMA_PROTOKOLU.md` | Etik, tasarım, örneklem, ölçüm araçları, veri toplama. | Repo içi kanonik |
 | Veri sözleşmesi | `docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md` | Final CSV şeması, structural NA, ölçüm blokları. | Repo içi kanonik |
 | Ham klinik veri | `data/raw/Raw Data - Final.csv` | Yalnız doğrulama ve reprodüksiyon; yazıma satır içeriği taşınmaz. | Korumalı |
@@ -48,20 +48,20 @@ izlenebilir listede bağlar.
 | Demografik ve tıbbi form | `docs/protokol/KANONIK_DEMOGRAFIK_VE_TIBBI_BILGILER.md` | Kovaryatlar, klinik/demografik alanlar, kodlar. | Repo içi kanonik |
 | SES formu | `docs/protokol/SOSYOEKONOMIK-STATU-DEGERLENDIRME.md` | SES/meslek/ev-olanakları alanları ve kod kararları. | Repo içi kanonik |
 
-## Nitel Repo Koşullu Kaynakları
+## Nitel Kol Koşullu Kaynakları
 
-Nitel repo artık genel yazım merkezi değildir. Aşağıdaki kaynaklar yalnız nitel
+Nitel kol artık genel yazım merkezi değildir. Aşağıdaki kaynaklar yalnız nitel
 yöntem, bulgular, joint display, tartışma veya ekler kesiminde gerekli olursa
 açılır.
 
 | Kaynak | Yol | Kullanım sınırı |
 |---|---|---|
-| Kanonik nitel sonuç raporu kaynağı | `/mnt/thunderbolt/workspaces/T1DM Niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` | Doktoratezi kopyasıyla hash eşleşmesi korunur. |
-| Nitel rapor AI reliability | `/mnt/thunderbolt/workspaces/T1DM Niteliksel/07_reports/ai_reliability_qualitative_canonical_results_report.md` | Quote-ID, code-ID ve copy parity düzeyi; ham alıntı yok. |
-| Codebook | `/mnt/thunderbolt/workspaces/T1DM Niteliksel/03_analysis/codebook/codebook_v2.md` | Tema/kod tanımı; gerektiğinde `codebook_v3.csv` ile kontrol. |
-| COREQ ve yöntem paketi | `/mnt/thunderbolt/workspaces/T1DM Niteliksel/03_analysis/methodology/` | RTA, COREQ, audit trail, positionality ve LLM beyanı. |
-| Ham nitel görüşmeler | `/mnt/thunderbolt/workspaces/T1DM Niteliksel/01_raw_data/interviews_docx/` | Korumalı; yazımda doğrudan açılmaz, kopyalanmaz, dış araca gönderilmez. |
-| Görüşme rehberi | `/mnt/thunderbolt/workspaces/T1DM Niteliksel/01_raw_data/interview_guides/qualitative_interview_questions.docx` | Yöntem bölümünde araç tanımı için hedefli kullanılır; ham içerik/katılımcı yanıtı taşınmaz, dış araca gönderilmez. |
+| Kanonik nitel sonuç raporu kaynağı | `/workspaces/T1DM-Tez/niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd` | Tek kanonik Quarto kaynak; Markdown kopyası `niteliksel/qualitative_canonical_results_report.md`. |
+| Nitel doğrulama/provenans notu | `niteliksel_kanonik_sonuclar.qmd` `# Doğrulama Durumu` | Quote-ID, code-ID ve provenans sınırlılıkları; ham alıntı yok. |
+| Codebook | `/workspaces/T1DM-Tez/niteliksel/03_analysis/codebook/codebook_v2.md` | Tema/kod tanımı; gerektiğinde `codebook_v3.csv` ile kontrol. |
+| COREQ ve yöntem paketi | `/workspaces/T1DM-Tez/niteliksel/03_analysis/methodology/` | RTA, COREQ, audit trail, positionality ve LLM beyanı. |
+| Ham nitel görüşmeler | `/workspaces/T1DM-Tez/niteliksel/01_raw_data/interviews_docx/` | Korumalı; yazımda doğrudan açılmaz, kopyalanmaz, dış araca gönderilmez. |
+| Görüşme rehberi | `/workspaces/T1DM-Tez/niteliksel/01_raw_data/interview_guides/qualitative_interview_questions.docx` | Yöntem bölümünde araç tanımı için hedefli kullanılır; ham içerik/katılımcı yanıtı taşınmaz, dış araca gönderilmez. |
 
 ## Zorunlu Kapanış Kapıları
 

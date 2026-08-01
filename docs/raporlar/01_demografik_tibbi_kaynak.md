@@ -23,11 +23,7 @@ Bu dengesizlikler DAG temelli birincil ayarlama seti ve propensity-temelli
 stabilize IPTW ağırlıklamasıyla kontrol edilmiştir; ham SMD maksimumu
 0.220 düzeyinden 0.004 seviyesine düşürülmüştür.
 
-DM grubunda HbA1c verisi yalnızca 39 aile (%32.5) için mevcuttur. Klinik
-biyobelirteç imputasyona alınmaz; KISIM X HbA1c × ebeveynlik etkileşimi
-keşifsel etiketle yürütülmüştür. Tanı yaşı medyanı 7.8 yıl, DM süresi
-medyanı 3.9 yıldır. Bu profil, çoğunlukla okul çağında tanı almış ve orta
-süreli kronik bakım deneyimi olan ailelerin örneklenmiştir.
+DM grubunda tanı yaşı medyanı 7.8 yıl, DM süresi medyanı 3.9 yıldır. Bu profil, çoğunlukla okul çağında tanı almış ve orta süreli kronik bakım deneyimi olan ailelerin örneklendiğini gösterir.
 
 ## Bölüm 1 — Örneklem ve Aile Yapısı
 
@@ -100,34 +96,10 @@ duyarlılık analizi olarak raporlanır.
 
 ## Bölüm 4 — DM Klinik Profili
 
-DM grubu için 120 aile için klinik veriler toplanmıştır. Klinik gösterge
-veri tamamlanma profili dengesizdir: DM süresi (dm_yili) ve tanı yaşı
-(tani_yasi) için %100 tamamlanma sağlanmışken, HbA1c yalnızca 39 aile
-(%32.5) için mevcuttur. Bu, çalışmanın güç kısıtlamasıdır.
+DM grubu için 120 ailede klinik zamanlama değişkenleri toplanmıştır. DM süresi (dm_yili) ve tanı yaşı değişkenleri bu bağlamı betimlemek için kullanılır.
 
-HbA1c medyanı 9.0% (IQR 7.3-9.6) düzeyindedir. ISPAD 2022 hedef eşiği
-olan 7.0% değerinin oldukça üzerindedir. Hedefte (<7%) olan aile oranı
-%18, hedef üstü (7-9%) %33, yüksek risk (>9%) %49 düzeyindedir. Bu
-profil, çalışma örnekleminin glisemik kontrol açısından ortalama düzeyin
-altında bir bakım kalitesine sahip olduğunu göstermektedir. Klinik
-biyobelirteç imputasyona alınmaz (kural #19); KISIM X HbA1c × ebeveynlik
-etkileşim analizi keşifsel etiketle yürütülmüş ve güç sınırlamasıyla
-yorumlanmıştır.
 
-DM süresi medyanı 3.9 yıl, çeyrekler arası aralık 2.0-6.2 yıl. DM süresi
-spline modellemesinde cubic vs. lineer regresyon LRT karşılaştırması beş
-outcome için linear sufficient sonucunu vermiştir; bu, DM süresinin
-ebeveynlik tutum yordayıcısı olarak kalıcı doğrusal bir etki gösterdiğini
-düşündürmektedir.
-
-Tanı yaşı medyanı 7.8 yıl, çeyrekler arası aralık 5.7-9.3 yıl. Tanı yaşı
-3 strataya ayrılmıştır: erken (<5 yaş), okul (5-10 yaş), ergen (≥10 yaş).
-Erken strata 22 aile, okul strata 64 aile, ergen strata 34 aile içerir.
-Strata analizi ANOVA F testi ile yürütülmüş; hiçbir outcome'da F testi
-anlamlılığa ulaşmamıştır (en büyük F = 2.05, p = 0.13, sıcaklık alt
-ölçeğinde). Eta-partial < 0.04 düzeyindedir. Bulgu, tanı yaşının
-ebeveynlik tutum yordayıcısı olarak ayrımlaştırıcı olmadığını,
-güç kısıtlamasıyla yorumlanması gerektiğini önermektedir.
+DM süresi medyanı 3.9 yıl, tanı yaşı medyanı 7.8 yıldır. Bu değişkenler DM grubunun klinik zamanlama bağlamını betimler; doğrulayıcı hipotez kararlarını genişletmez.
 
 ## Bölüm 5 — Tablo 1 ve Kovaryat Dengesi
 
@@ -161,9 +133,7 @@ raporlanır.
 ## Bölüm 6 — Eksik Veri Yönetimi
 
 Aile düzeyi 241 satır üzerinde eksik veri profili karakterize edilmiştir.
-HbA1c değişkeni DM grubunda %67.5 eksik (39/120 mevcut), kontrol grubunda
 %100 eksik olup tasarım kaynaklı yapısal eksikliktir. Kontrol grubunda
-HbA1c ölçülmediği için bu eksiklik MCAR/MAR/MNAR ekseninin dışındadır
 ve imputasyona alınmaz (kural #19).
 
 Diğer aile-düzeyi sosyodemografik değişkenlerde eksik oran düşüktür.
@@ -187,14 +157,7 @@ içi multilevel model zorunluluğu ortaya konmuştur. Yaş ve cinsiyet
 bileşenleri grup bazında dengelidir; yalnız anne yaşı SMD = 0.21 ile
 dengesiz eşiğindedir. Anne ruh sağlığı eksenınde anne antidepresan
 SMD = 0.53 ciddi dengesizlik göstermiştir. SES bileşenleri ham gözlemde
-dengesizlik gösterirken latent SES kompoziti dengelidir. DM klinik
-profilinde HbA1c medyan 9.0% ile ISPAD hedefin üzerindedir, %32.5
-tamamlanma ile keşifsel analiz sınırlamaları geçerlidir. DM süresi
-ve tanı yaşı strata farkları ebeveynlik tutum yordayıcısı olarak
-ayrımlaştırıcı bulunmamıştır. Kovaryat dengesi maksimum |SMD| 0.220
-ham gözlemden 0.004 IPTW sonrasına düşmüştür. Eksik veri stratejisi
-HbA1c yapısal eksiklik + sosyodemografi MAR/MI(m=50)/FIML üç katmanlı
-çerçevede yürütülür.
+dengesizlik gösterirken latent SES kompoziti dengelidir. DM klinik zamanlama profilinde DM süresi ve tanı yaşı bağlamsal değişkenler olarak sunulur. Eksik veri stratejisi sosyodemografi MAR/MI(m=50)/FIML üç katmanlı çerçevede yürütülür.
 
 Sonraki adımlar olarak psikometrik validasyon (KISIM IV) ayrı dokümanda
 raporlanmıştır: EMBU-P/C 4-faktör WLSMV CFA, Beck tek-faktör/iki-faktör,

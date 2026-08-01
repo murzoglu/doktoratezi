@@ -70,8 +70,8 @@ floor_irt_delta <- data.frame(
 
 omegah_metrics <- data.frame(
   domain = c("EMBU-P", "EMBU-C", "Beck"),
-  omega_h = c(0.66, 0.54, 0.89),
-  ecv = c(0.41, 0.51, 0.78),
+  omega_h = c(0.81, 0.54, 0.89),
+  ecv = c(0.47, 0.51, 0.78),
   stringsAsFactors = FALSE
 )
 
@@ -94,32 +94,6 @@ ad_h5_strat <- data.frame(
   ci_lower = c(-0.15, -0.57, -0.30, -0.20, -0.05, -0.26, -0.17, -0.33),
   ci_upper = c(0.23, 0.63, 0.12, 0.46, 0.32, 0.81, 0.25, 0.34),
   p_value = NA_real_,
-  stringsAsFactors = FALSE
-)
-
-hba1c_bayes <- data.frame(
-  predictor_subscale = c("sicaklik", "reddetme"),
-  posterior_median = c(0.123, 0.067),
-  pd = c(0.944, 0.800),
-  ci_lower = c(-0.031, -0.091),
-  ci_upper = c(0.275, 0.232),
-  rope_share = c(0.386, 0.652),
-  stringsAsFactors = FALSE
-)
-
-hba1c_spline <- data.frame(
-  outcome_subscale = c("sicaklik", "asiri_koruma", "reddetme", "karsilastirma"),
-  status = "ok",
-  n_used = 39L,
-  df_spline = 3L,
-  spline_r_squared = c(0.21, 0.25, 0.20, 0.19),
-  linear_r_squared = c(0.11, 0.25, 0.12, 0.14),
-  lrt_f = c(2.20, 0.02, 1.53, 0.93),
-  lrt_p = c(0.127, 0.982, 0.232, 0.403),
-  aic_linear = c(74.3, 93.5, 21.8, 60.8),
-  aic_spline = c(73.3, 97.5, 22.2, 62.5),
-  decision = "linear_sufficient",
-  error_message = NA_character_,
   stringsAsFactors = FALSE
 )
 
@@ -203,9 +177,14 @@ multi_sca <- data.frame(
 
 meta_combined <- data.frame(
   study_label = c("Pinquart_2013", "Pinquart_2018", "Lovejoy_2000",
-    "Vermaes_2012", "T1DM_EBEVEYN_red"),
+    "Vermaes_2012", "T1DM_EBEVEYN_2026_reddetme"),
+  domain = c("chronic_illness_parenting", "parenting_stress",
+    "depression_parenting", "siblings_internalizing", "this_study"),
   yi = c(-0.16, 0.20, 0.40, 0.17, 0.147),
   vi = c(0.0064, 0.0081, 0.0144, 0.0100, 0.0015),
+  # Denetim (derin) #4.25 — metrik manifest sutunu; grafikte nokta-yani etiket.
+  orig_metric = c("Hedges g", "Hedges g", "r -> d (donusturulmus)",
+    "Cohen d", "Hedges g"),
   stringsAsFactors = FALSE
 )
 
@@ -258,7 +237,6 @@ summary_tbl <- phase2_apa_summary_table(
   floor_irt_group_delta = floor_irt_delta,
   omegah_metrics = omegah_metrics,
   h5ext_strategy_pooled = h5ext_pooled,
-  hba1c_bayesian = hba1c_bayes,
   multi_h1_curve = multi_h1_curve,
   meta_pooling = meta_pooling,
   multi_sca = multi_sca,
@@ -280,8 +258,6 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
     omegah_metrics_summary_table = omegah_metrics,
     h5ext_strategy_pooled_table = h5ext_pooled,
     ad_h5_stratified_table = ad_h5_strat,
-    hba1c_bayesian_posterior_table = hba1c_bayes,
-    hba1c_spline_table = hba1c_spline,
     imai_sensitivity_grid_table = imai_grid,
     imai_summary_table = imai_summary,
     dag_ci_tests_table = dag_ci,
@@ -297,9 +273,9 @@ if (requireNamespace("ggplot2", quietly = TRUE)) {
     output_dir = tempfile("phase2_figs_")
   )
   stopifnot(grepl("KESIFSEL", result$target_summary$kanit_kategorisi, fixed = TRUE))
-  stopifnot(length(result$figures) == 12L)
-  stopifnot(length(result$figure_paths) == 12L)
-  stopifnot(length(result$figure_svg_paths) == 12L)
+  stopifnot(length(result$figures) == 11L)
+  stopifnot(length(result$figure_paths) == 11L)
+  stopifnot(length(result$figure_svg_paths) == 11L)
   svg_header <- readLines(result$figure_svg_paths[[1L]], n = 3L, warn = FALSE)
   stopifnot(any(grepl("data-carbon-style=\"IBM Carbon Design System v11\"", svg_header, fixed = TRUE)))
   stopifnot(any(grepl("data-figma-carbon-charts-library=", svg_header, fixed = TRUE)))

@@ -18,9 +18,16 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _common import read_event  # noqa: E402
 
-SENSITIVE_DATA_PATH = r"(\bdata/(raw|identified|cleaned|backup|processed)(/|\b)|\boutputs/|\b_targets(/|\b))"
+# --- Three-tier data governance (owner-approved revision 2026-07-13) ---
+# Tier 1: PII/pre-cleaning source files — analysis never needs these; hard-block.
+PII_SOURCE_PATH = r"\bdata/(raw|identified|cleaned|backup)(/|\b)"
+# Tier 2: de-identified analysis surface (canonical processed base + aggregate
+# outputs + targets store). Owner-authorized for R/python read + compute
+# (de-identification completed in Stage 1) — absent from interpreter/display rules.
+ANALYSIS_SURFACE_PATH = r"(\bdata/processed(/|\b)|\boutputs/|\b_targets(/|\b))"
+# Tier 3: any study data — used only by the exfiltration guard (copy/archive/encode).
+ANY_DATA_PATH = rf"({PII_SOURCE_PATH}|{ANALYSIS_SURFACE_PATH})"
 CREDENTIAL_PATH = r"(^|[\s'\"=])(\.env(?:\.[\w-]+)?|[^\s'\";|&]*(credentials|client_secret|dr-murzoglu-doktora\.json)[^\s'\";|&]*)"
-SENSITIVE_PATH = rf"({SENSITIVE_DATA_PATH}|{CREDENTIAL_PATH})"
 
 # Each entry: (compiled regex, human reason). Tune to your environment.
 DENY_RULES = [
@@ -39,14 +46,14 @@ DENY_RULES = [
     (re.compile(r"\bchmod\s+(-R\s+)?777\b"), "World-writable (777) chmod"),
     (re.compile(r"\bgh\s+repo\s+delete\b"), "GitHub repo deletion"),
     (re.compile(r"\bgit\s+add\s+(\.|-A|--all)(\s|$)"), "Broad staging; stage files by name"),
-    (re.compile(rf"\b(cat|head|tail|less|more|sed|awk|grep|rg)\b[^|;&\n]*{SENSITIVE_DATA_PATH}", re.IGNORECASE),
-     "Direct shell display/search of sensitive study data"),
+    (re.compile(rf"\b(cat|head|tail|less|more|sed|awk|grep|rg)\b[^|;&\n]*{PII_SOURCE_PATH}", re.IGNORECASE),
+     "Direct shell display/search of PII source data (data/raw|identified|cleaned|backup)"),
     (re.compile(rf"\b(cat|head|tail|less|more|sed|awk|grep|rg)\b[^|;&\n]*{CREDENTIAL_PATH}", re.IGNORECASE),
      "Direct shell display/search of credentials or environment files"),
-    (re.compile(rf"\b(python3?|Rscript|R\s+-e|node|ruby|perl)\b[^|;&\n]*{SENSITIVE_PATH}", re.IGNORECASE),
-     "Interpreter command touches sensitive study data or credentials"),
-    (re.compile(rf"\b(cp|scp|rsync|tar|zip|7z|gzip|xz|base64)\b[^|;&\n]*{SENSITIVE_PATH}", re.IGNORECASE),
-     "Copy/archive/encode command touches sensitive study data or credentials"),
+    (re.compile(rf"\b(python3?|Rscript|R\s+-e|node|ruby|perl)\b[^|;&\n]*({PII_SOURCE_PATH}|{CREDENTIAL_PATH})", re.IGNORECASE),
+     "Interpreter command touches PII source data or credentials"),
+    (re.compile(rf"\b(cp|scp|rsync|tar|zip|7z|gzip|xz|base64)\b[^|;&\n]*({ANY_DATA_PATH}|{CREDENTIAL_PATH})", re.IGNORECASE),
+     "Copy/archive/encode of study data or credentials (exfiltration guard)"),
 ]
 
 

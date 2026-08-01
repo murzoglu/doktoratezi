@@ -113,7 +113,7 @@ Tam metin sırası:
 Zotero kapanışı:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 python3 scripts/util/zotero_env_bridge.py status --json
 python3 scripts/util/zotero_env_bridge.py import-doi <DOI> \
   --bibtex-key <citation_key> \
@@ -191,7 +191,7 @@ Zorunlu imla/yazım denetimi — **sci-audit plugin axis G** (kanonik araç):
 /sci-audit:check-turkish chapters/<bolum>.qmd --strictness certification
 
 # Deterministik CLI (CI/rapor üretimi; plugin-bundled tr_sciaudit.py):
-SCIA="$(ls -d /home/mahirkurt/.claude/plugins/cache/cureonics-marketplace/sci-audit/*/ | sort -V | tail -1)"
+SCIA="$(ls -d $HOME/.claude/plugins/cache/cureonics-marketplace/sci-audit/*/ | sort -V | tail -1)"
 python3 "${SCIA}skills/turkish-sci-style/scripts/tr_sciaudit.py" chapters/<bolum>.qmd \
   --strictness certification --format md --fail-on error \
   --terms "diyabet,depresyon,ebeveyn,kardeş,ölçek,yöntem" \
@@ -227,10 +227,26 @@ Bu kapı **iki ayrı, çakışmayan katman** çalıştırır (görev sınırı B
 2. **Repo/veri invaryant denetimi — repo-özel ai-audit plugin'leri.** KVKK/ham
    veri sınırı, quote-parity, kanonik kilit ve araç politikası — bunlar
    `sci-audit` kapsamı **dışıdır** ve orada tekrarlanmaz.
+3. **Bağımsız judge — `galileo-audit` (model çeşitliliği).** Katman 1'in yanında,
+   Roche-içi GPT-5.4 judge + gemini-embedding-001 semantik-tutarlılık bağımsız bir
+   ikinci-görüş verir (tek-model korelasyonlu hatalarını kırar). **three-tier gate:**
+   **HARD** (sci-audit A–G ve repo invaryantları — değişmez) / **SOFT-block**
+   (groundedness/faithfulness < 0,60 · `citation_support=unsupported` · bölümler-arası
+   çelişki · büyük Claude↔GPT bütünlük çelişkisi → bölüm en fazla `provisional-pass`;
+   `certified-final` yalnız düzeltme **veya** sertifika-defterine yazılan açık insan
+   **override gerekçesiyle**) / **advisory** (bib-dup, tekrar, üslup — yalnız rapor).
+   KVKK: gateway'e yalnız manuskript/literatür. Doktrin: `manuskript-denetimi-sciaudit.md` §6;
+   yapılandırma `.claude/galileo.local.md`.
 
 Zorunlu komutlar, bölümün temasına göre daraltılmadan çalıştırılır:
 
 ```bash
+# 0) Bib-hijyen denetimi — three-tier gate:
+#    HARD (atıflı-tanımsız key → render kırar): kapı açılmaz
+#    SOFT (alan/DOI/dup eksikliği): not düşülür, devam edilir
+#    advisory (orphan key): yalnız rapor
+python3 scripts/util/bib_hygiene.py all
+
 # 1) Manüskript adli denetimi (sci-audit — axes A-F; Türkçe ise G Kapı 4'te koşuldu)
 /sci-audit:audit chapters/<bolum>.qmd --lang tr --strictness certification --type <coreq|strobe|prisma|jars>
 # ardından raporu birleştir:
@@ -239,12 +255,12 @@ Zorunlu komutlar, bölümün temasına göre daraltılmadan çalıştırılır:
 /sci-audit:ai-log "<bolum> sertifikasyon sci-audit koşumu"
 
 # 2) Repo/veri invaryant denetimi (KVKK, ham veri, quote-parity — sci-audit DIŞI)
-cd /mnt/thunderbolt/workspaces/T1DM\ Niteliksel
+cd /workspaces/T1DM-Tez/niteliksel
 ./dmnitel ai-context
 ./dmnitel route-tool --query "<bolum> sertifikasyon kaynak ve araç kapıları"
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py
 
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py
 python3 scripts/util/zotero_env_bridge.py status --json
 git diff --check -- chapters/<bolum>.qmd references/references.bib tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md
@@ -261,6 +277,29 @@ Koşullu komutlar:
   RTA yöntem veya nitel bulgu metni değiştiyse.
 - `npx promptfoo@latest eval -c reliability/evals/promptfooconfig.yaml`:
   AI guardrail, prompt, policy veya reliability dosyası değiştiyse.
+
+**BULGULAR (`04_bulgular.qmd`) ve TARTIŞMA (`05_tartisma_ve_sonuc.qmd`) bölümlerine
+özel — karma sentez drift-guard (zorunlu):**
+
+```bash
+# Karma kanıt-ledger drift-guard — BULGULAR ve TARTIŞMA bölüm sertifikasyonu için ZORUNLU
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/util/karma_ledger_check.py
+```
+
+Çıkış kodu yorumu:
+
+| Çıkış kodu | Anlam | Sertifikasyon kararı |
+|---|---|---|
+| `0` | Temiz — HARD bulgu yok | Devam edilir |
+| `1` | **HARD bulgu var** (severity=1) | **Bölüm sertifikasyona KAPALI** — ledger/sentez belgesi düzeltilmeden PASS yok |
+| `2` | SOFT bulgu var (severity=2), HARD yok | `provisional-pass` mümkün; her SOFT bulgusu sertifika raporunda gerekçelendirilir |
+
+**HARD=0 (exit 0 veya exit 2) olmadan bölüm `certified-final` sayılmaz.** SOFT
+bulguları (exit 2) sertifika defterinde madde madde gerekçeli kabul edilirse
+`provisional-pass` verilebilir; `certified-final` için düzeltme gereklidir.
+Checker referans dosyaları: `tez-yazim/05_entegrasyon/karma-kanit-ledgeri.tsv`
+(kanıt-ledger) ve `tez-yazim/05_entegrasyon/karma-sentez-kanonik.md` (sentez
+belgesi); bu iki dosya değişirse checker yeniden çalıştırılır.
 
 PASS koşulu:
 
@@ -310,3 +349,4 @@ edilmez.
 | `privacy-gap` | Ham veri, transcript, credential veya hassas ayrıntı çıkarılır. |
 | `reliability-gap` | AI-reliability bulgusu düzeltilir ve test yeniden çalıştırılır. |
 | `approval-gap` | Açık uygulama onayı alınmadan final statüsü verilmez. |
+| `karma-ledger-hard` | BULGULAR/TARTIŞMA: `karma_ledger_check.py` exit 1 (HARD bulgu). Ledger ve/veya sentez belgesi düzeltilir; checker yeniden çalıştırılır, exit 0 olmadan PASS yok. |

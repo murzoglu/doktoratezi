@@ -1,13 +1,13 @@
 # T1DM Niteliksel
 
 > **Migrasyon notu (2026-07-09):** Bu nitel kol artık tek-repo çalışma modeli için
-> `/mnt/thunderbolt/workspaces/doktoratezi/niteliksel` altında yönetilir.
+> `/workspaces/T1DM-Tez/niteliksel` altında yönetilir.
 > Eski bağımsız kaynak repo korunmuştur; yeni işler için canonical konum bu
 > klasördür. `.git/` ve `.env*` dosyaları taşınmamıştır.
 
 ## DM Niteliksel Toolkit
 
-Bu repo, T1DM niteliksel tez çalışmasının analiz ve raporlama süreçlerini desteklemek üzere
+Bu kol (niteliksel/), T1DM niteliksel tez çalışmasının analiz ve raporlama süreçlerini desteklemek üzere
 `dm_niteliksel_toolkit` adlı yerel bir yardımcı araç içerir. Araç; kod kitabı denetimi, triadik
 matris üretimi, COREQ uyum kontrolü, alıntı bütünlüğü, negatif vaka taraması, AI kullanım günlüğü
 ve repo-özel Evidentia/life-science-research/Zotero/t1dm-tez yönlendirmesi için tasarlanmıştır.
@@ -30,13 +30,13 @@ verileri hiçbir harici sisteme gönderilmemelidir.
 ```
 
 `ai-context`, ajanlara güvenli çalışma yüzeyini verir: yerel `dmnitel` komutları, Evidentia MCP
-çekirdeği, koşullu Life Science Research ve Zotero plugin katmanları, paired `doktoratezi` repo yolu,
+çekirdeği, koşullu Life Science Research ve Zotero plugin katmanları, nicel kök yolu,
 güvenli repo kanıtları ve korunmuş veri sınırları. `route-tool`, her soru için önce yerel nitel
 araçları mı, Evidentia dış-kanıt kaskadını mı, Life Science Research biyomedikal veri katmanını mı,
 Zotero kaynakça katmanını mı, yoksa paired `doktoratezi` + `t1dm-tez-rehberi` akışını mı
 kullanacağını seçer.
 
-`cross-repo-status`, nitel ve nicel repodaki güvenli kaynakları tek karma tez yazım haritasında
+`cross-repo-status`, nitel koldaki ve nicel kökteki güvenli kaynakları tek karma tez yazım haritasında
 birleştirir; ham transcript, demografi veya nicel satır düzeyi veri okumaz.
 
 Zotero Web API durum kontrolü (`ZOTERO_API_KEY` `.env`den okunur, anahtar yazdırılmaz):
@@ -54,7 +54,7 @@ Zotero Desktop local API yalnız Zotero uygulamasındaki lokal full-text index, 
 connector import gibi işler gerektiğinde kullanılır:
 
 ```bash
-python3 /home/mahirkurt/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py status --json
+python3 ~/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py status --json
 ```
 
 ### Kısa Kullanım

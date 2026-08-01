@@ -332,43 +332,64 @@ phase2_apa_plot_h1_spec_curve <- function(h1_spec_results_table) {
   if (!requireNamespace("ggplot2", quietly = TRUE)) return(NULL)
   if (is.null(h1_spec_results_table) || nrow(h1_spec_results_table) == 0L) return(NULL)
   d <- h1_spec_results_table[h1_spec_results_table$status == "ok", , drop = FALSE]
-  d <- d[order(d$group_dm_estimate), , drop = FALSE]
-  d$rank <- seq_len(nrow(d))
   d$significant <- ifelse(!is.na(d$group_dm_p) & d$group_dm_p < 0.05, "p < .05", "NS")
   d$outcome_source <- if ("outcome_subscale" %in% names(d)) d$outcome_subscale else d$outcome_subscale_result
   d$outcome_label <- phase2_carbon_subscale_label(d$outcome_source)
+  # B8 denetimi: dort alt olcek farkli estimand'lar oldugundan tek birlesik egri/
+  # global test yerine her alt olcek AYRI PANEL'de gosterilir; birincil estimand
+  # (reddetme) ilk panel olacak bicimde siralanir. Rank ve median panel-ici hesaplanir.
+  lev0 <- c("Reddetme", "Sicaklik", "Asiri koruma", "Karsilastirma")
+  lev <- c(lev0[lev0 %in% unique(d$outcome_label)],
+           setdiff(unique(d$outcome_label), lev0))
+  d$outcome_label <- factor(d$outcome_label, levels = lev)
   d$ci_lower <- d$group_dm_estimate - 1.96 * d$group_dm_se
   d$ci_upper <- d$group_dm_estimate + 1.96 * d$group_dm_se
-  median_estimate <- stats::median(d$group_dm_estimate, na.rm = TRUE)
+  d <- do.call(rbind, lapply(split(d, d$outcome_label, drop = TRUE), function(s) {
+    s <- s[order(s$group_dm_estimate), , drop = FALSE]
+    s$rank <- seq_len(nrow(s))
+    s
+  }))
+  med <- do.call(rbind, lapply(split(d, d$outcome_label, drop = TRUE), function(s) {
+    data.frame(outcome_label = s$outcome_label[1L],
+               med = stats::median(s$group_dm_estimate, na.rm = TRUE),
+               stringsAsFactors = FALSE)
+  }))
+  med$outcome_label <- factor(med$outcome_label, levels = lev)
   pal <- phase2_carbon_palette()
 
   ggplot2::ggplot(d, ggplot2::aes(x = rank, y = group_dm_estimate,
     color = outcome_label, shape = significant)) +
     ggplot2::geom_linerange(ggplot2::aes(ymin = ci_lower, ymax = ci_upper),
       alpha = 0.18, linewidth = 0.25, show.legend = FALSE) +
-    ggplot2::geom_point(size = 1.5, alpha = 0.82) +
+    ggplot2::geom_point(size = 1.4, alpha = 0.82) +
     ggplot2::geom_hline(yintercept = 0, color = pal[["gray_80"]], linewidth = 0.35) +
-    ggplot2::geom_hline(yintercept = median_estimate,
+    ggplot2::geom_hline(data = med, ggplot2::aes(yintercept = med),
       linetype = "dashed", color = pal[["blue_60"]], linewidth = 0.4) +
+    ggplot2::facet_wrap(~ outcome_label, ncol = 2L, scales = "free_x") +
     ggplot2::scale_color_manual(values = c(
       `Sicaklik` = pal[["chart_1"]],
       `Asiri koruma` = pal[["chart_2"]],
       `Reddetme` = pal[["chart_3"]],
       `Karsilastirma` = pal[["chart_4"]]
-    )) +
+    ), guide = "none") +
     ggplot2::scale_shape_manual(values = c(`p < .05` = 16, NS = 1)) +
     ggplot2::labs(
-      title = "F2-F05 | H1 multiverse specification curve",
-      subtitle = sprintf("%d spesifikasyon; kesik mavi cizgi median beta = %.3f",
-        nrow(d), median_estimate),
-      x = "Spesifikasyon sirasi", y = "Group_dm estimate (multilevel beta)",
-      color = "Alt olcek", shape = "Anlamlilik",
+      title = "F2-F05 | H1 multiverse specification curve (alt olceklere gore ayri)",
+      subtitle = "Her panel bir alt olcek (ayri estimand); kesik cizgi panel-ici median beta. Estimand'lar tek egride birlestirilmez.",
+      x = "Spesifikasyon sirasi (alt olcek ici)", y = "Group_dm estimate (multilevel beta)",
+      shape = "Anlamlilik",
       caption = phase2_carbon_caption("phase2_multi_h1_spec_results.csv")
     ) +
     phase2_carbon_theme(base_size = 10)
 }
 
 phase2_apa_plot_meta_forest <- function(combined_studies_table, pooling_summary_table) {
+  # Denetim (derin) #4.20: Farkli yapilari (kronik hastalik ebeveynligi, ebeveyn
+  # stresi, maternal depresyon, kardes icsellestirme, bu calisma) olcen calismalar
+  # ortak-estimand'li tek bir REML havuzuna alinamaz. Havuzlanmis elmas ve dikey
+  # "pooled" cizgisi kaldirildi; grafik yapi (domain) alanina gore panellenmis
+  # betimsel bir referans grafigine donusturuldu. pooling_summary_table artik
+  # gorsele havuz cizgisi olarak yansitilmaz (imza geriye-uyum icin korunur).
   if (!requireNamespace("ggplot2", quietly = TRUE)) return(NULL)
   if (is.null(combined_studies_table)) return(NULL)
   d <- combined_studies_table
@@ -376,69 +397,72 @@ phase2_apa_plot_meta_forest <- function(combined_studies_table, pooling_summary_
   d$se <- sqrt(d$vi)
   d$ci_lower <- d$yi - 1.96 * d$se
   d$ci_upper <- d$yi + 1.96 * d$se
-  d <- d[order(d$yi), , drop = FALSE]
 
-  pooled_y <- if (!is.null(pooling_summary_table)) {
-    pooling_summary_table$pooled_mean[1L]
-  } else {
-    stats::weighted.mean(d$yi, 1 / d$vi)
-  }
-  pooled_lo <- if (!is.null(pooling_summary_table)) {
-    pooling_summary_table$pooled_lower[1L]
-  } else {
-    NA_real_
-  }
-  pooled_hi <- if (!is.null(pooling_summary_table)) {
-    pooling_summary_table$pooled_upper[1L]
-  } else {
-    NA_real_
-  }
-  d$study_source <- ifelse(grepl("^T1DM_EBEVEYN", d$study_label), "Bu calisma", "Dis kaynak")
-  pooled_row <- d[1L, , drop = FALSE]
-  pooled_row[1L, ] <- NA
-  pooled_row$study_label <- "Pooled REML"
-  pooled_row$yi <- pooled_y
-  pooled_row$se <- NA_real_
-  pooled_row$ci_lower <- pooled_lo
-  pooled_row$ci_upper <- pooled_hi
-  pooled_row$study_source <- "Pooled"
-  plot_d <- rbind(d, pooled_row)
-  plot_d$study_label <- factor(plot_d$study_label, levels = rev(plot_d$study_label))
+  domain_label <- c(
+    this_study = "Bu çalışma (EMBU-C alt ölçekleri)",
+    chronic_illness_parenting = "Kronik hastalık · ebeveynlik",
+    parenting_stress = "Ebeveyn stresi",
+    depression_parenting = "Maternal depresyon · ebeveynlik",
+    siblings_internalizing = "Kardeş içselleştirme"
+  )
+  d$domain_tr <- ifelse(d$domain %in% names(domain_label),
+    domain_label[d$domain], d$domain)
+  d$study_source <- ifelse(grepl("^T1DM_EBEVEYN", d$study_label),
+    "Bu çalışma", "Dış kaynak")
+  d$study_tr <- phase2_carbon_variable_label(sub("^T1DM_EBEVEYN_2026_", "", d$study_label))
+  d$study_tr <- ifelse(d$study_source == "Bu çalışma", d$study_tr, d$study_label)
+
+  # Panel siralamasi: bu calisma en ustte, ardindan dis alanlar
+  d$domain_tr <- factor(d$domain_tr, levels = c(
+    "Bu çalışma (EMBU-C alt ölçekleri)",
+    "Kronik hastalık · ebeveynlik",
+    "Ebeveyn stresi",
+    "Maternal depresyon · ebeveynlik",
+    "Kardeş içselleştirme"
+  ))
+  d <- d[order(d$domain_tr, d$yi), , drop = FALSE]
+  d$study_tr <- factor(d$study_tr, levels = rev(unique(d$study_tr)))
   pal <- phase2_carbon_palette()
 
-  ggplot2::ggplot(plot_d, ggplot2::aes(x = yi, y = study_label)) +
+  # Denetim (derin) #4.25 — metrik manifest: Her noktanin ozgun etki-buyuklugu
+  # metrigi (combined_studies_table$orig_metric) gorsele kucuk bir etiket olarak
+  # yansitilir; boylece karisik-metrikli eksen sadece altyazi nesrinden degil
+  # dogrudan grafikten de izlenebilir. Sutun yoksa (geriye-uyum) etiket cizilmez.
+  has_metric <- "orig_metric" %in% names(d) && any(!is.na(d$orig_metric))
+
+  p <- ggplot2::ggplot(d, ggplot2::aes(x = yi, y = study_tr)) +
     ggplot2::geom_vline(xintercept = 0, color = pal[["gray_40"]],
       linetype = "dashed", linewidth = 0.35) +
-    ggplot2::geom_vline(xintercept = pooled_y, color = pal[["blue_60"]],
-      linetype = "dotted", linewidth = 0.45) +
     ggplot2::geom_segment(
-      data = plot_d[plot_d$study_source != "Pooled", , drop = FALSE],
-      ggplot2::aes(x = ci_lower, xend = ci_upper, y = study_label, yend = study_label),
+      ggplot2::aes(x = ci_lower, xend = ci_upper, y = study_tr, yend = study_tr),
       color = pal[["gray_50"]], linewidth = 0.5
     ) +
     ggplot2::geom_point(
-      data = plot_d[plot_d$study_source != "Pooled", , drop = FALSE],
-      ggplot2::aes(shape = study_source),
-      size = 2.9, color = pal[["gray_80"]], fill = "white", stroke = 0.9
+      ggplot2::aes(shape = study_source, fill = study_source),
+      size = 2.9, color = pal[["gray_80"]], stroke = 0.9
+    )
+
+  if (has_metric) {
+    p <- p + ggplot2::geom_text(
+      ggplot2::aes(x = ci_upper, label = orig_metric),
+      hjust = -0.12, size = 2.2, color = pal[["gray_60"]],
+      family = "sans", na.rm = TRUE
     ) +
-    ggplot2::geom_segment(
-      data = plot_d[plot_d$study_source == "Pooled", , drop = FALSE],
-      ggplot2::aes(x = ci_lower, xend = ci_upper, y = study_label, yend = study_label),
-      color = pal[["blue_60"]], linewidth = 0.9
-    ) +
-    ggplot2::geom_point(
-      data = plot_d[plot_d$study_source == "Pooled", , drop = FALSE],
-      shape = 18, size = 4.4, color = pal[["blue_60"]]
-    ) +
-    ggplot2::scale_shape_manual(values = c(`Bu calisma` = 21, `Dis kaynak` = 16)) +
+      ggplot2::scale_x_continuous(expand = ggplot2::expansion(mult = c(0.05, 0.28)))
+  }
+
+  p +
+    ggplot2::facet_grid(domain_tr ~ ., scales = "free_y", space = "free_y", switch = "y") +
+    ggplot2::scale_shape_manual(values = c(`Bu çalışma` = 21, `Dış kaynak` = 22)) +
+    ggplot2::scale_fill_manual(values = c(`Bu çalışma` = pal[["blue_60"]], `Dış kaynak` = "white")) +
     ggplot2::labs(
-      title = "F2-F06 | Bayesian/meta-analytic forest",
-      subtitle = sprintf("Pooled = %.3f [%.3f, %.3f]; mavi isaret pooled kestirim",
-        pooled_y, pooled_lo, pooled_hi),
-      x = "Effect size estimate", y = "Study", shape = "Kaynak",
+      title = "Referans etki büyüklüğü grafiği",
+      subtitle = "Yapıya göre panellenmiş; ortak-estimand'lı havuzlama yapılmamıştır (her nokta özgün metriğiyle etiketli)",
+      x = "Standartlaştırılmış etki büyüklüğü (Hedges g / d)", y = NULL, shape = "Kaynak", fill = "Kaynak",
       caption = phase2_carbon_caption("phase2_meta_combined_studies.csv")
     ) +
-    phase2_carbon_theme(base_size = 9)
+    phase2_carbon_theme(base_size = 9) +
+    ggplot2::theme(strip.placement = "outside", strip.text.y.left = ggplot2::element_text(angle = 0))
 }
 
 phase2_apa_plot_xinfo_network <- function(xinfo_edges_table, xinfo_centrality_table = NULL) {
@@ -495,46 +519,6 @@ phase2_apa_plot_xinfo_network <- function(xinfo_edges_table, xinfo_centrality_ta
       axis.text.x = ggplot2::element_text(angle = 45, hjust = 1, size = 6.5),
       axis.text.y = ggplot2::element_text(size = 6.5)
     )
-}
-
-phase2_apa_plot_dx_age_spline <- function(hba1c_spline_table) {
-  if (!requireNamespace("ggplot2", quietly = TRUE)) return(NULL)
-  if (is.null(hba1c_spline_table) || nrow(hba1c_spline_table) == 0L) return(NULL)
-  required <- c("outcome_subscale", "linear_r_squared", "spline_r_squared", "lrt_p")
-  if (!all(required %in% names(hba1c_spline_table))) return(NULL)
-
-  d <- hba1c_spline_table[hba1c_spline_table$status == "ok", , drop = FALSE]
-  if (nrow(d) == 0L) return(NULL)
-  d$outcome_label <- phase2_carbon_subscale_label(d$outcome_subscale)
-  d$delta_aic <- d$aic_spline - d$aic_linear
-  d_long <- data.frame(
-    outcome_label = rep(d$outcome_label, 2L),
-    model = rep(c("Lineer", "Spline"), each = nrow(d)),
-    r_squared = c(d$linear_r_squared, d$spline_r_squared),
-    lrt_p = rep(d$lrt_p, 2L),
-    delta_aic = rep(d$delta_aic, 2L),
-    stringsAsFactors = FALSE
-  )
-  d_long$model <- factor(d_long$model, levels = c("Lineer", "Spline"))
-  pal <- phase2_carbon_palette()
-  label_d <- d
-  label_d$label <- paste0("p=", phase2_apa_format_p(label_d$lrt_p))
-
-  ggplot2::ggplot(d_long, ggplot2::aes(x = outcome_label, y = r_squared, fill = model)) +
-    ggplot2::geom_col(position = ggplot2::position_dodge(width = 0.72), width = 0.62) +
-    ggplot2::geom_text(data = label_d,
-      ggplot2::aes(x = outcome_label, y = pmax(linear_r_squared, spline_r_squared) + 0.025,
-        label = label),
-      inherit.aes = FALSE, color = pal[["gray_70"]], size = 3) +
-    ggplot2::scale_fill_manual(values = c(Lineer = pal[["chart_2"]], Spline = pal[["chart_4"]])) +
-    ggplot2::coord_cartesian(ylim = c(0, max(d_long$r_squared, na.rm = TRUE) + 0.08)) +
-    ggplot2::labs(
-      title = "F2-F08 | Tani yasi x parenting spline karar paneli",
-      subtitle = "Spline eklenmesi 4/4 alt olcekte anlamli kazanc saglamadi; karar: linear sufficient",
-      x = "Alt olcek", y = "R kare", fill = "Model",
-      caption = phase2_carbon_caption("phase2_hba1c_spline.csv")
-    ) +
-    phase2_carbon_theme(base_size = 10)
 }
 
 phase2_apa_plot_imai_sensitivity <- function(imai_sensitivity_grid_table, imai_summary_table) {
@@ -707,7 +691,6 @@ phase2_apa_summary_table <- function(
     floor_irt_group_delta = NULL,
     omegah_metrics = NULL,
     h5ext_strategy_pooled = NULL,
-    hba1c_bayesian = NULL,
     multi_h1_curve = NULL,
     meta_pooling = NULL,
     multi_sca = NULL,
@@ -781,20 +764,6 @@ phase2_apa_summary_table <- function(
         ana_metrik = sprintf("Pooled = %.3f [%.3f, %.3f]",
           dm_focus$pooled_mean[1L], dm_focus$pooled_lower[1L], dm_focus$pooled_upper[1L]),
         yorum = "5 strateji uzerinden DM diadik concordance icin sinirda anlamli pozitif",
-        stringsAsFactors = FALSE
-      )
-    }
-  }
-
-  if (!is.null(hba1c_bayesian) && nrow(hba1c_bayesian) > 0L) {
-    redd <- hba1c_bayesian[hba1c_bayesian$predictor_subscale == "reddetme", , drop = FALSE]
-    if (nrow(redd) > 0L) {
-      rows[["hba1c"]] <- data.frame(
-        kisim = "XXIV/65",
-        analiz = "HbA1c x parenting Bayesian (Pinquart prior, n=39)",
-        ana_metrik = sprintf("Posterior median = %.3f, pd = %.3f",
-          redd$posterior_median[1L], redd$pd[1L]),
-        yorum = "n_hba1c=39, prior-amplified, replikasyon zorunlu",
         stringsAsFactors = FALSE
       )
     }
@@ -888,8 +857,6 @@ run_phase2_apa_outputs_pipeline <- function(
     omegah_metrics_summary_table = NULL,
     h5ext_strategy_pooled_table = NULL,
     ad_h5_stratified_table = NULL,
-    hba1c_bayesian_posterior_table = NULL,
-    hba1c_spline_table = NULL,
     imai_sensitivity_grid_table = NULL,
     imai_summary_table = NULL,
     dag_ci_tests_table = NULL,
@@ -914,7 +881,6 @@ run_phase2_apa_outputs_pipeline <- function(
       meta_combined_studies_table, meta_pooling_summary_table),
     f07_xinfo_network = phase2_apa_plot_xinfo_network(
       xinfo_edges_table, xinfo_centrality_table),
-    f08_dx_age_spline = phase2_apa_plot_dx_age_spline(hba1c_spline_table),
     f09_imai_sensitivity = phase2_apa_plot_imai_sensitivity(
       imai_sensitivity_grid_table, imai_summary_table),
     f10_dag_validation = phase2_apa_plot_dag_validation(
@@ -948,7 +914,6 @@ run_phase2_apa_outputs_pipeline <- function(
     floor_irt_group_delta = floor_irt_group_delta_table,
     omegah_metrics = omegah_metrics_summary_table,
     h5ext_strategy_pooled = h5ext_strategy_pooled_table,
-    hba1c_bayesian = hba1c_bayesian_posterior_table,
     multi_h1_curve = multi_h1_curve_summary_table,
     meta_pooling = meta_pooling_summary_table,
     multi_sca = multi_sca_inferential_table,

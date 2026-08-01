@@ -47,12 +47,6 @@ fam$beck_clinical <- factor(ifelse(fam$beck_total >= 17, "Klinik_duzey", "Klinik
   levels = c("Klinik_alti", "Klinik_duzey"))
 fam$beck_severity <- cut(fam$beck_total, c(-1, 9, 16, 29, 63),
   labels = c("Minimal", "Hafif", "Orta", "Siddetli"))
-# HbA1c yalniz DM'de + AD ile iliskili eksiklik (MNAR sentetik)
-avail_p <- ifelse(fam$anne_antidepresan == 1, 0.6, 0.25)
-fam$hba1c <- NA_real_
-dm_idx <- which(fam$group_f == "DM")
-fam$hba1c[dm_idx] <- ifelse(runif(length(dm_idx)) < avail_p[dm_idx],
-  round(rnorm(length(dm_idx), 8.5, 1.5), 1), NA_real_)
 for (s in c("sicaklik", "asiri_koruma", "reddetme", "karsilastirma")) {
   fam[[paste0("embu_p_", s, "_mean")]] <- round(runif(N, 1, 4), 2)
   fam[[paste0("embu_c_idx_", s, "_mean")]] <- round(runif(N, 1, 4), 2)
@@ -99,21 +93,15 @@ supp$ebeveyn_yas_farki <- fam$anne_yas - supp$es_yas
 adj_ge_raw <- function(adj, raw) all(adj >= raw - 1e-8, na.rm = TRUE)
 
 # ===========================================================================
-# R/62 — §134-135 secilim/batch
+# R/62 — §135 secilim/batch
 # ===========================================================================
 r62 <- run_phase4_selection_batch_pipeline(fam)
-stopifnot(all(c("hba1c_ad_fisher", "hba1c_selection_model", "hba1c_ipw_feasibility",
-  "year_group_table", "year_collinearity", "batch_replication", "target_summary") %in% names(r62)))
-stopifnot(r62$hba1c_ad_fisher$n_dm == 120L)
-stopifnot(is.na(r62$hba1c_ad_fisher$odds_ratio) || r62$hba1c_ad_fisher$odds_ratio >= 0)
+stopifnot(all(c("year_group_table", "year_collinearity", "batch_replication",
+  "year_stratified_descriptive", "target_summary") %in% names(r62)))
+stopifnot(identical(r62$target_summary$kisim, "KISIM XLIX (§135)"))
 stopifnot(r62$target_summary$imputation == "YOK (Kural 19)")
-stopifnot(grepl("feasibility|DUZELTME DEGIL", r62$hba1c_ipw_feasibility$amac))
-# IPW ESS <= n_available (etkin ornek gercek ornekten buyuk olamaz)
-ipw <- r62$hba1c_ipw_feasibility
-if (!is.na(ipw$ess)) stopifnot(ipw$ess <= ipw$n_available + 1e-6, ipw$ess_truncated <= ipw$n_available + 1e-6)
 stopifnot(nrow(r62$year_group_table) >= 2L)
 stopifnot(all(c("d_full", "d_2023", "yon_korundu") %in% names(r62$batch_replication)))
-stopifnot(all(r62$hba1c_selection_model$statu == STATU))
 
 # ===========================================================================
 # R/61 — §130-133 maternal MH → cocuk duzlemi
@@ -165,15 +153,14 @@ nl <- r57$nonlinearity_120
 stopifnot(all(c("nonlin_F", "nonlin_p", "nonlineer_var") %in% names(nl)))
 
 # ===========================================================================
-# R/58 — §121-122 onset/metabolik (DM-only)
+# R/58 — §121 onset (DM-only)
 # ===========================================================================
 r58 <- run_phase4_onset_metabolic_pipeline(fam)
 stopifnot(r58$target_summary$n_dm == 120L)
-stopifnot(all(c("onset_band_descriptive_121", "hba1c_descriptive_122",
-  "hba1c_psychosocial_cor_122", "post_diagnosis_sibling_sensitivity_121") %in% names(r58)))
-cor122 <- r58$hba1c_psychosocial_cor_122
-stopifnot(all(cor122$r >= -1 & cor122$r <= 1, na.rm = TRUE))
-stopifnot(grepl("SECILIM|secilim|§134", r58$hba1c_descriptive_122$uyari))
+stopifnot(identical(r58$target_summary$kisim, "KISIM XLIV (§121)"))
+stopifnot(all(c("onset_band_descriptive_121", "onset_omnibus_121",
+  "post_diagnosis_sibling_sensitivity_121", "target_summary") %in% names(r58)))
+stopifnot(all(r58$onset_omnibus_121$p_value >= 0 & r58$onset_omnibus_121$p_value <= 1, na.rm = TRUE))
 
 # ===========================================================================
 # R/59 — §123-124 aile saglik profili/gecerlik

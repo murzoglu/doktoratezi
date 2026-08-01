@@ -40,7 +40,6 @@ Aşağıdaki tablo, çalışma-sonu CSR'larında belgelenen ve Faz II'yi tetikle
 | 3 | Anne antidepresan kullanımı SMD=0.53 (DM %29 vs Kontrol %9) — yalnız stratifiye, aracı/moderator değil | CSR §9.2, §11.3.4 | **XXII** — AD mediator + moderator + Beck × AD latent etkileşim |
 | 4 | H5 beş diadik tutarlılık stratejisi yön düzeyinde uyumlu, **büyüklük düzeyinde sistematik sapma** | CSR §11.5.6 | **XXIII** — MTMM CT-C(M-1), Bayesian strateji pooling |
 | 5 | `negctrl_aile_no → EMBU-P Sıcaklık` β=0.098 p=.003 zayıf flag; 3-level varyans yapısı test edilmedi | CSR §13.5 | **XXV** — 3-level (yıl × aile × satır) varyans modeli |
-| 6 | HbA1c × ebeveynlik n=39 yetersiz güç; Bayesian bilgi-verici prior ile re-analiz yok | CSR §12.5.1, §16.3 | **XXIV** — HbA1c × parenting Bayesian joint model |
 | 7 | H1 multiverse yapılmadı (CSR §13.6 paradoksu); H3 multiverse %0 anlamlı, H1 doğrulanmadı | CSR §13.6 | **XXVII** — H1 multiverse 240-spec + SCA inferential |
 | 8 | Kesitsel tasarım — sequential ignorability kırılganlığı için Imai-Keele ρ duyarlılığı yok | CSR §16.1 | **XXV** — Imai-Keele causal mediation sensitivity |
 | 9 | H2 için TOST eşdeğerlik testi ön-kayıtta yer almadı; "fark yok" yerine "kanıt yetersiz" demek zorunda kalındı | CSR §11.2.2 | **XXX** + **XXIII** — Post-hoc TOST + APIM equivalence |
@@ -60,7 +59,6 @@ Aşağıdaki tablo, çalışma-sonu CSR'larında belgelenen ve Faz II'yi tetikle
 - **KISIM XXI** — Psikometrik robustleştirme (4 analiz: Tobit IRT, ω_h/ECV, Beck bifactor, ESEM)
 - **KISIM XXII** — Antidepresan ve mental sağlık yükü (3 analiz: mediator, moderator, latent etkileşim)
 - **KISIM XXIII** — H5 diadik tutarlılık genişletmesi (4 analiz: MTMM, Beck × group moderation, sibling concordance, Bayesian pooling)
-- **KISIM XXIV** — Klinik stratifikasyon (4 analiz: HbA1c joint, tanı yaşı spline, glycemic trajectory pilot, ISPAD logistic)
 - **KISIM XXV** — Nedensel aracılık sensitivitesi (4 analiz: Imai-Keele, PC algorithm + FCI, c' triangulation, 3-level varyans)
 - **KISIM XXVI** — Distribüsyonel yaklaşımlar (3 analiz: quantile, distributional, beta regression)
 - **KISIM XXVII** — Multiverse genişletme (4 analiz: H1 240-spec, H4 SEM multiverse, BMA, SCA inferential)
@@ -114,7 +112,6 @@ Faz II SAP §KISIM XXXIV'te detaylanan 12-haftalık sprint planı:
 - **Hafta 3** — Sprint A3: KISIM XXI (Psikometrik robustleştirme)
 - **Hafta 4** — Sprint A4: KISIM XXII (Antidepresan)
 - **Hafta 5** — Sprint B1: KISIM XXIII (H5 ext)
-- **Hafta 6** — Sprint B2: KISIM XXIV (HbA1c joint)
 - **Hafta 7** — Sprint B3: KISIM XXV (Causal mediation + DAG)
 - **Hafta 8** — Sprint B4: KISIM XXVI (Distributional)
 - **Hafta 9** — Sprint C1: KISIM XXVII (Multiverse extension)

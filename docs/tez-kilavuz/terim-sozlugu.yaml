@@ -1,0 +1,97 @@
+# Kanonik Terim Sözlüğü — tez genelinde tercih edilen tek biçim + yasak varyantlar
+#
+# Bu dosya, `scripts/util/terim_tutarlilik_audit.py` tarafından okunan tek makine-
+# okunur terim otoritesidir. `chapters/*.qmd` içinde her `yasak_varyantlar` kaydı
+# taranır; muafiyet dışı her bulgu `zorlama: hard` girişlerinde HARD (teslim engeli)
+# üretir. İnsan gerekçesi ve tespit bağlamı için:
+#   - docs/tez-kilavuz/TERIM_TUTARLILIK_TARAMASI.md   (tespit raporu, A1-A7)
+#   - docs/tez-kilavuz/ONERI_terim-sozlugu-ve-denetim-tasarimi.md  (3-katman tasarım)
+#   - docs/tez-kilavuz/ONERI_gizil-latent-ortuk-terim-standardi.md (A1 detay)
+#
+# ŞEMA (denetçi hem PyYAML hem gömülü mini-parser ile okur; biçim düzenli tutulmalı):
+#   global_muafiyet:                mapping
+#     muaf_dosya_onekleri: [...]    bu önekle başlayan dosyalar tamamen MUAF (İng. özet)
+#     muaf_bolum_basliklari: [...]  bu başlıktan itibaren metin MUAF (# SUMMARY/# ABSTRACT)
+#   terimler:                       liste; her öğe:
+#     - id:                 A1..A7  (TERIM_TUTARLILIK_TARAMASI.md ile birebir)
+#       kanonik:            "tercih edilen tek biçim"
+#       ingilizce:          "english"          (ilk-geçiş parantezi; opsiyonel)
+#       kapsam:             "istatistik|embu-alt-olcek|olcek-kisaltmasi"
+#       oncelik:            "A"
+#       zorlama:            "hard" | "not"      (hard=teslim engeli · not=belge-amaçlı)
+#       yasak_varyantlar:   ["...", "..."]      (inline liste; zorlama=not ise boş [] olabilir)
+#       baglamsal_muafiyet: "regex"             (bu regex satırda eşleşirse bulgu INFO'ya düşer; opsiyonel)
+#       istisna_notu:       "insan gerekçesi"
+#
+# DEĞİŞMEZLİK: Bu sözlük yalnız terim-dilini düzenler; hiçbir sayı/istatistik/atıf/
+# yön kararını etkilemez.
+
+global_muafiyet:
+  muaf_dosya_onekleri: ["chapters/00c"]
+  muaf_bolum_basliklari: ["SUMMARY", "ABSTRACT"]
+
+terimler:
+  - id: A1
+    kanonik: "latent"
+    ingilizce: "latent"
+    kapsam: "istatistik"
+    oncelik: "A"
+    zorlama: "hard"
+    yasak_varyantlar: ["gizil", "örtük değişken"]
+    baglamsal_muafiyet: "confounder|karıştırıcı|karistirici|gözlenmeyen|gozlenmeyen|sensemakr|nedensel|karıştıran|karistiran|gizlilik|gizli algı|veri gizli"
+    istisna_notu: "2026-07-29 kullanıcı kararı: kanonik biçim 'latent'e ters çevrildi (önceki karar 'gizil' idi; Marmara lang:tr'ye aykırı olduğu kullanıcıya bildirildi ve kabul edildi). Tüm 'gizil/gizil profil/gizil yetenek/gizil değişken/gizil konkordans' → 'latent*'. AYRIM: 'gizli' (gizl-i, farklı kelime) confounder/gizlilik/gizli algı anlamlarında MUAF (baglamsal_muafiyet); yalnız latent anlamındaki 'gizli' latent'e çevrilir (elle). İngilizce özet (00c) tamamen muaf. Karar-log: docs/tez-kilavuz/ONERI_gizil-latent-ortuk-terim-standardi.md."
+
+  - id: A2
+    kanonik: "aşırı koruma"
+    ingilizce: "overprotection"
+    kapsam: "embu-alt-olcek"
+    oncelik: "A"
+    zorlama: "hard"
+    yasak_varyantlar: ["aşırı koruyuculuk"]
+    baglamsal_muafiyet: "Dirik|Arrindell|Perris|Pinquart|kuram|özerklik|ozerklik|kavramsal|genel anlamda|meta-anali|meta anali|literatür|literatur|derleme|kronik hastalık|kronik fiziksel"
+    istisna_notu: "Tezin KENDİ EMBU alt ölçeği adı 'Aşırı Koruma'dır. 'aşırı koruyuculuk' yalnız (a) Dirik/Arrindell uyarlamasından söz ederken onun terimi olarak, (b) genel kuramsal/literatür kavramı (özerklik desteği karşıtı; meta-analiz/derleme aktarımı) olarak serbest — bu bağlamlar baglamsal_muafiyet ile (paragraf penceresinde) INFO'ya düşer. Tezin kendi alt ölçeğini adlandırırken 'aşırı koruma'ya hizalanmalı."
+
+  - id: A3
+    kanonik: "reddetme"
+    ingilizce: "rejection"
+    kapsam: "embu-alt-olcek"
+    oncelik: "A"
+    zorlama: "hard"
+    yasak_varyantlar: ["reddedicilik"]
+    baglamsal_muafiyet: "Dirik|Arrindell|Perris|uyarlama"
+    istisna_notu: "Tezin KENDİ EMBU alt ölçeği adı 'Reddetme'dir. 'reddedicilik' Dirik'in terimidir; yalnız kaynak-anlatımında (Dirik/Arrindell/uyarlama bağlamı) serbest — baglamsal_muafiyet ile INFO'ya düşer."
+
+  - id: A4
+    kanonik: "aşırı koruma / aşırı koruyuculuk bağlam ayrımı"
+    kapsam: "embu-alt-olcek"
+    oncelik: "A"
+    zorlama: "not"
+    yasak_varyantlar: []
+    istisna_notu: "Belge-amaçlı bağlam kaydı (zorlama yok). Üç ayrı kullanım: (1) tezin kendi alt ölçeği → 'aşırı koruma' (A2 zorlar); (2) Dirik uyarlamasından söz → onun terimi 'aşırı koruyuculuk' serbest; (3) genel kuramsal kavram → serbest. Körlemesine bul-değiştir YAPMA; bağlamı A2 baglamsal_muafiyet ayırır. Detay: docs/protokol/ARRINDELL_DIRIK_DERIN_FARK_ANALIZI.md"
+
+  - id: A5
+    kanonik: "yanlış-keşif"
+    ingilizce: "false discovery"
+    kapsam: "istatistik"
+    oncelik: "A"
+    zorlama: "hard"
+    yasak_varyantlar: ["yanlış keşif"]
+    istisna_notu: "Çoklu-karşılaştırma düzeltmesi (FDR) bağlamında tireleme sabit: 'yanlış-keşif oranı'. Tiresiz 'yanlış keşif' biçimi yasak. 'çoklu karşılaştırma' ayrı bir kavramdır, dokunulmaz."
+
+  - id: A6
+    kanonik: "s-EMBU (kısa form) / EMBU (genel)"
+    ingilizce: "s-EMBU"
+    kapsam: "olcek-kisaltmasi"
+    oncelik: "A"
+    zorlama: "not"
+    yasak_varyantlar: []
+    istisna_notu: "Belge-amaçlı (zorlama yok; körlemesine değişim ölçek kimliğini bozar). Kısa form ölçeğe atıfta 's-EMBU', genel/tarihsel EMBU ailesine atıfta 'EMBU'. 'KAET' Dirik'in Türkçe kısaltmasıdır; yalnız Dirik bağlamında. İlk geçişte tanımla, sonra bağlama göre tutarlı kullan."
+
+  - id: A7
+    kanonik: "KİA (Kardeş İlişkileri Anketi)"
+    ingilizce: "SRQ"
+    kapsam: "olcek-kisaltmasi"
+    oncelik: "A"
+    zorlama: "not"
+    yasak_varyantlar: []
+    istisna_notu: "Belge-amaçlı (zorlama yok; üç ad da bağlamda geçerli). İlk geçişte 'Kardeş İlişkileri Anketi (KİA; SRQ)' tanımla; sonra birincil kısaltma 'KİA'. 'SRQ' İngilizce özet/parantez, 'Kardeş İlişkileri' açık ad olarak serbest."

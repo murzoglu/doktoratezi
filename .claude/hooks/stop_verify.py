@@ -34,6 +34,10 @@ SOURCE_MARKER = re.compile(
     r"`[^`]*[/.][^`]*`",
     re.IGNORECASE,
 )
+# §1.4 Marmara ondalık virgül: gövde metninde nokta-ondalık p değeri (p=0.NNN)
+# turn-end'de bloklanır. sci-audit axis-G tr-pvalue blocker'ının turn-end
+# muadili (plugin Stop hook'u bu repoda ayrı ateşlenmeyebilir).
+PVALUE_DOT = re.compile(r"\bp\s*[=<>]\s*0\.\d", re.IGNORECASE)
 
 
 def last_assistant_message(event: dict) -> str:
@@ -81,6 +85,18 @@ def main() -> None:
         sys.exit(0)
 
     msg = last_assistant_message(event)
+
+    if PVALUE_DOT.search(msg):
+        m = PVALUE_DOT.search(msg)
+        sys.stdout.write(json.dumps({
+            "decision": "block",
+            "reason": (
+                "§1.4 kapısı: nokta-ondalık p değeri (\"%s...\") — Marmara "
+                "ondalık virgül kuralı gereği p=0,NNN yazın (nokta değil virgül)."
+                % msg[m.start():m.start() + 12]
+            ),
+        }))
+        sys.exit(0)
 
     sentences = re.split(r"(?<=[.!?])\s+", msg)
     unsourced = [

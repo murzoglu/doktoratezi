@@ -3,7 +3,7 @@
 from pathlib import Path
 import re
 
-ROOT = Path("/mnt/thunderbolt/workspaces/doktoratezi")
+ROOT = Path("/workspaces/T1DM-Tez")
 SRC = ROOT / "docs" / "CLINICAL-STUDY-REPORT-FINAL.md"
 OUT = ROOT / "CSR-FINAL-render.qmd"
 
@@ -22,9 +22,7 @@ FIG_MAP = {
                (f"{DEM}/demo-11-egitim.svg", "Anne/es egitim duzeyi dagilimi grup bazinda.", "fig-d11"),
                (f"{DEM}/demo-07-beck-grup.svg", "Beck depresyon toplam puani grup karsilastirmasi.", "fig-d07"),
                (f"{DEM}/demo-09-antidep.svg", "Anne antidepresan kullanimi grup bazinda.", "fig-d09")],
-    "## 9.4 ": [(f"{DEM}/demo-13-hba1c.svg", "HbA1c dagilimi (DM grubu, n=39).", "fig-d13"),
-               (f"{DEM}/demo-14-hba1c-target.svg", "HbA1c glisemik hedef bantlari (DM grubu).", "fig-d14"),
-               (f"{DEM}/demo-15-dm-suresi.svg", "DM hastalik suresi dagilimi.", "fig-d15"),
+    "## 9.4 ": [(f"{DEM}/demo-15-dm-suresi.svg", "DM hastalik suresi dagilimi.", "fig-d15"),
                (f"{DEM}/demo-16-tani-strata.svg", "Tani yasi strata dagilimi (erken/okul/ergen).", "fig-d16")],
     "## 8.6 ": [(f"{P}/fig-02-causal-dag.svg", "Birincil etki modelleri icin yonlu asiklik graf (DAG) ve backdoor ayarlama seti.", "fig-dag")],
     "## 8.7 ": [(f"{P}/fig-05-ses-correlation-heatmap.svg", "SES latent kompoziti: bilesen korelasyon isi haritasi.", "fig-ses")],

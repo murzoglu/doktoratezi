@@ -358,7 +358,7 @@ h5_strategy4_dyadic_cfa <- function(df_family_scored, df_family_ses_groups) {
 
 # === Strateji 5: k-coefficient (Kenny et al. 2006) =====================
 
-h5_strategy5_k_coefficient <- function(df_long_scored, n_boot = 500L, seed = 20260428L) {
+h5_strategy5_k_coefficient <- function(df_long_scored, n_boot = 1000L, seed = 20260428L) {
   if (!requireNamespace("lme4", quietly = TRUE)) {
     return(list(status = data.frame(subscale = NA_character_, status = "package_unavailable",
                                     stringsAsFactors = FALSE)))
@@ -443,10 +443,10 @@ h5_inconsistency_patterns <- function(df) {
   rows <- list()
   pattern_specs <- list(
     list(name = "anne_high_child_low_warmth",
-         desc = "Anne sıcak Çocuk düşük (savunmacılık)",
+         desc = "Anne sıcaklık puanı yüksek / çocuk düşük",
          a = "embu_p_sicaklik_mean", b = "embu_c_idx_sicaklik_mean", direction = "a_minus_b", threshold = 0.5),
     list(name = "anne_low_child_high_rejection",
-         desc = "Anne reddetme düşük Çocuk yüksek (öz-eleştiri yokluğu)",
+         desc = "Anne reddetme puanı düşük / çocuk yüksek",
          a = "embu_c_idx_reddetme_mean", b = "embu_p_reddetme_mean", direction = "a_minus_b", threshold = 0.5),
     list(name = "differential_parental_treatment",
          desc = "İndeks-Kardeş arası fark (DPT)",
@@ -480,7 +480,7 @@ h5_inconsistency_patterns <- function(df) {
 
 run_h5_dyadic_concordance_pipeline <- function(df_family_ses, df_family_scored, df_long_scored,
                                                 run_rsa = TRUE, run_cfa = TRUE,
-                                                run_k = TRUE, n_boot = 500L) {
+                                                run_k = TRUE, n_boot = 1000L) {
   prepared <- h5_prepare_frame(df_family_ses)
   s1 <- h5_strategy1_icc_bland_altman(prepared)
   s2 <- if (run_rsa) h5_strategy2_rsa(prepared) else list(status = data.frame(status = "skipped"), parameters = data.frame())

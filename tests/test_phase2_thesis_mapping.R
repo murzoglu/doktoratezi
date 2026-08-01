@@ -2,7 +2,7 @@ source("R/49_phase2_thesis_mapping.R")
 
 # 1) Chapter mapping
 chap <- phase2_thesis_chapter06_mapping()
-stopifnot(nrow(chap) == 13L)
+stopifnot(nrow(chap) == 12L)
 stopifnot(all(c("chapter_section", "primary_audit_csv", "primary_figure",
   "headline_finding") %in% names(chap)))
 
@@ -15,7 +15,7 @@ stopifnot(all(c("title", "primary_findings", "target_journal_primary",
 
 # 3) Paragraph seeds
 seeds <- phase2_quarto_chapter_paragraph_seeds()
-stopifnot(length(seeds) == 13L)
+stopifnot(length(seeds) == 12L)
 stopifnot(all(vapply(seeds, nchar, integer(1L), USE.NAMES = FALSE) > 100L))
 stopifnot(all(grepl("\\[KEŞİFSEL|KESIFSEL|Faz II", paste(seeds, collapse = " "))))
 

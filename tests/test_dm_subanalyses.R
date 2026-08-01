@@ -1,5 +1,5 @@
 # tests/test_dm_subanalyses.R
-# KISIM X — DM klinik alt-analizler: HbA1c × parenting + spline + tanı yaşı strata.
+# KISIM X — DM klinik alt-analizler: DM süresi spline + tanı yaşı strata.
 
 suppressPackageStartupMessages({ library(targets) })
 source("R/00_paths.R")
@@ -17,24 +17,15 @@ stopifnot(
   length(levels(prep$tani_yasi_strata)) == 3L
 )
 
-# n özet — kural #19 HbA1c %32.5
+# n özet — DM klinik payda
 n_summary <- dm_n_summary(prep)
 stopifnot(
   is.data.frame(n_summary),
-  nrow(n_summary) == 7L,
+  nrow(n_summary) == 5L,
   n_summary$value[n_summary$metric == "n_dm_total"] == 120L,
-  n_summary$value[n_summary$metric == "n_with_hba1c"] >= 30L,
-  n_summary$value[n_summary$metric == "n_with_hba1c"] <= 50L
-)
-
-# HbA1c × parenting — keşifsel
-hba1c <- dm_hba1c_interaction(prep, "embu_p_asiri_koruma_mean")
-stopifnot(
-  is.data.frame(hba1c),
-  hba1c$status == "ok",
-  hba1c$n <= 45L,
-  is.finite(hba1c$estimate),
-  is.finite(hba1c$p_value)
+  n_summary$value[n_summary$metric == "n_with_dm_yili"] > 0L,
+  is.finite(n_summary$value[n_summary$metric == "median_dm_yili"]),
+  is.finite(n_summary$value[n_summary$metric == "median_tani_yasi"])
 )
 
 # DM süresi spline — cubic vs lineer LRT
@@ -68,11 +59,10 @@ stopifnot(
 # Pipeline orchestrator
 results <- run_dm_subanalyses_pipeline(df_family_ses)
 stopifnot(
-  nrow(results$n_summary_table) == 7L,
-  nrow(results$hba1c_interaction_table) == 5L,
+  nrow(results$n_summary_table) == 5L,
   nrow(results$spline_duration_table) == 5L,
   nrow(results$strata_descriptive_table) == 15L,
   nrow(results$strata_tests_table) == 5L
 )
 
-cat("[PASS] KISIM X DM sub-analyses (HbA1c + spline + diagnosis-age strata)\n")
+cat("[PASS] KISIM X DM sub-analyses (duration spline + diagnosis-age strata)\n")

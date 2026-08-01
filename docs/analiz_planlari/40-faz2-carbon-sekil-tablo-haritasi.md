@@ -42,7 +42,6 @@ SAP Bölüm 93.2 başlangıçta sekiz figür planladı; Carbon revizyonu sonras�
 | F2-F05 | SAP F2-F07, tracker F2-28/31 | `phase2_multi_h1_spec_results.csv`, `phase2_multi_h1_curve_summary.csv`, `phase2_multi_sca_inferential.csv` | `docs/assets/figures/carbon/phase2/phase2_f05_h1_spec_curve.svg` (`outputs/figures/phase2_f05_h1_spec_curve.{png,svg}` generated) | Specification curve tarifi; median çizgisi; SVG metadata eklendi | 25.8; Bölüm 6.9 | 120/120 başarılı specification içinde H1 yönü pozitif kalıyor |
 | F2-F06 | SAP F2-F08, tracker F2-32 | `phase2_meta_combined_studies.csv`, `phase2_meta_pooling_summary.csv` | `docs/assets/figures/carbon/phase2/phase2_f06_meta_forest.svg` (`outputs/figures/phase2_f06_meta_forest.{png,svg}` generated) | Forest plot istisnası: nötr CI + mavi pooled işaret; SVG metadata eklendi | 25.9; Bölüm 6.10 | Pooled etki `0.139 [0.049, 0.230]`, çalışma etkileri literatür merkezine yakın |
 | F2-F07 | Tracker F2-05 ayrıntı | `phase2_xinfo_edges.csv`, `phase2_xinfo_centrality.csv` | `docs/assets/figures/carbon/phase2/phase2_f07_xinfo_network.svg` (`outputs/figures/phase2_f07_xinfo_network.{png,svg}` generated) | Carbon Charts categorical + cross-informant shape encoding; SVG metadata eklendi | 25.1; Bölüm 6.2 | Cross-informant ağ, edge ağırlığı ve bilgi-veren kapanmasını ayrıntılı gösteriyor |
-| F2-F08 | SAP F2-F05, tracker F2-18 | `phase2_hba1c_spline.csv` | `docs/assets/figures/carbon/phase2/phase2_f08_dx_age_spline.svg` (`outputs/figures/phase2_f08_dx_age_spline.{png,svg}` generated) | Paired R² bar paneli; LRT p etiketi; SVG metadata eklendi | 25.5; Bölüm 6.6 | Tanı yaşı spline 4/4 alt ölçekte lineer modele anlamlı üstünlük sağlamıyor |
 | F2-F09 | SAP F2-F06, tracker F2-21 | `phase2_imai_sensitivity_grid.csv`, `phase2_imai_summary.csv` | `docs/assets/figures/carbon/phase2/phase2_f09_imai_sensitivity.svg` (`outputs/figures/phase2_f09_imai_sensitivity.{png,svg}` generated) | Rho x adjusted ACME küçük çoklu panel; critical rho kesikli çizgi; SVG metadata eklendi | 25.6; Bölüm 6.7 | Dolaylı etkiler ölçülmemiş karıştırıcıya karşı çok kırılgan |
 | F2-F10 | Tracker F2-22/F2-24 | `phase2_dag_ci_tests.csv`, `phase2_dag_three_level.csv` | `docs/assets/figures/carbon/phase2/phase2_f10_dag_validation.svg` (`outputs/figures/phase2_f10_dag_validation.{png,svg}` generated) | Carbon tile/technical validation paneli; Technical Diagram metadata eklendi | 25.6; Bölüm 6.7 | DAG implied CI 12/12 tutarlı; yıl kümelenmesi alt ölçeğe göre değişiyor |
 | F2-F11 | Tracker F2-33 | `phase2_meta_ppc_summary.csv` | `docs/assets/figures/carbon/phase2/phase2_f11_ppc_replication.svg` (`outputs/figures/phase2_f11_ppc_replication.{png,svg}` generated) | PPC interval + observed marker; SVG metadata eklendi | 25.9; Bölüm 6.10 | 4/4 outcome posterior predictive replication ile uyumlu |
@@ -53,7 +52,6 @@ SAP Bölüm 93.2 başlangıçta sekiz figür planladı; Carbon revizyonu sonras�
 | SAP/Tracker ID | Önceki durum | Üretilen çıktı | Kaynak veri | Carbon/Figma biçimi |
 |---|---|---|---|---|
 | F2-05 ayrıntı | Sadece edge-summary figürü vardı | `phase2_f07_xinfo_network.{png,svg}` | `phase2_xinfo_edges.csv`, `phase2_xinfo_centrality.csv` | Edge map; renk=işaret, şekil=cross-informant, boyut=|weight| |
-| F2-F05 / F2-18 | Tablo/karar düzeyinde kalmıştı | `phase2_f08_dx_age_spline.{png,svg}` | `phase2_hba1c_spline.csv` | Lineer vs spline R² paneli + LRT p etiketi |
 | F2-F06 / F2-21 | Rapor metninde kırılganlık tablosu vardı | `phase2_f09_imai_sensitivity.{png,svg}` | `phase2_imai_sensitivity_grid.csv`, `phase2_imai_summary.csv` | Rho x adjusted ACME curve; critical rho çizgisi |
 | F2-22/F2-24 | `pcalg` fallback nedeniyle figür yoktu | `phase2_f10_dag_validation.{png,svg}` | `phase2_dag_ci_tests.csv`, `phase2_dag_three_level.csv` | Tile-based DAG validation panel; Technical Diagram metadata |
 | F2-33 | PPC kararı tablo düzeyindeydi | `phase2_f11_ppc_replication.{png,svg}` | `phase2_meta_ppc_summary.csv` | Replike %95 aralık + gözlenen t marker |
@@ -71,7 +69,6 @@ SAP Bölüm 93.2 başlangıçta sekiz figür planladı; Carbon revizyonu sonras�
 | F2-T06 | AD x group moderation | `phase2_ad_moderation_h1_*`, `phase2_ad_moderation_h4_*`, `phase2_ad_moderation_h5_stratified_correlations.csv`, `phase2_ad_beck_interaction_*` | Figür F2-F04 ile strata anlatımı |
 | F2-T07 | MTMM trait/method varyans payları | `phase2_h5ext_mtmm_fit_indices.csv`, `phase2_h5ext_mtmm_variance.csv`, `phase2_h5ext_mtmm_status.csv` | H5 method ayrışması |
 | F2-T08 | Sibling-pair concordance ICC | `phase2_h5ext_sibling_icc.csv`, `phase2_h5ext_strategy_estimates.csv`, `phase2_h5ext_strategy_pooled.csv`, `phase2_h5ext_beck_moderation_*`, `phase2_h5ext_target_summary.csv` | H5 pooled yorum ve PDT hipotezi |
-| F2-T09 | HbA1c x parenting Bayesian posterior | `phase2_hba1c_bayesian_posterior.csv`, `phase2_hba1c_bayesian_status.csv`, `phase2_hba1c_dm_summary.csv`, `phase2_hba1c_spline.csv`, `phase2_hba1c_ispad_logistic.csv`, `phase2_hba1c_target_summary.csv` | Complete-case hipotez üretici; F2-F08 spline karar figürü |
 | F2-T10 | Imai-Keele rho-critical sensitivity | `phase2_imai_summary.csv`, `phase2_imai_sensitivity_grid.csv`, `phase2_imai_status.csv`, `phase2_imai_target_summary.csv`, `phase2_cprime_triangulation.csv`, `phase2_dag_*` | Aracılık yorumunu sınırlayan ana tablo |
 | F2-T11 | H1 multiverse özeti | `phase2_multi_h1_spec_grid.csv`, `phase2_multi_h1_spec_results.csv`, `phase2_multi_h1_curve_summary.csv`, `phase2_multi_h4_spec_results.csv`, `phase2_multi_h4_summary.csv`, `phase2_multi_bma.csv`, `phase2_multi_sca_inferential.csv`, `phase2_multi_target_summary.csv` | SAP 240 hedefi yerine gerçekleşen 120 spec açık belirtilmeli |
 | F2-T12 | Bayesian meta-analytic pooling | `phase2_meta_combined_studies.csv`, `phase2_meta_pooling_summary.csv`, `phase2_meta_pooling_status.csv`, `phase2_meta_pooling_shrunk.csv`, `phase2_meta_ppc_summary.csv`, `phase2_meta_eb_shrunk.csv`, `phase2_meta_eb_outlier_summary.csv`, `phase2_meta_target_summary.csv` | Figür F2-F06 ile meta-analitik konum |
@@ -89,7 +86,6 @@ SAP Bölüm 93.2 başlangıçta sekiz figür planladı; Carbon revizyonu sonras�
 | `phase2_xinfo_*` | 7 | Cross-informant ağ | F2-F02 |
 | `phase2_floor_irt_*` | 6 | Floor-aware IRT | F2-T03, F2-F03 |
 | `phase2_omegah_*` | 6 | Reliability generalization | F2-T04 |
-| `phase2_hba1c_*` | 6 | Klinik stratifikasyon | F2-T09 |
 | `phase2_esem_*` | 5 | ESEM fallback/sınırlılık | F2-T04 ek sınırlılık |
 | `phase2_dist_*` | 5 | Quantile, distributional, beta/bounded model | Faz II dağılımsal bölüm |
 | `phase2_clinical_*` | 5 | AUC, sNB, DCA heatmap data | Klinik karar modeli |
@@ -111,7 +107,6 @@ Toplam gerçekleşen Phase 2 tablo artefaktı: `113` CSV.
 | Psikometrik robustleştirme | `phase2_floor_irt_*`, `phase2_omegah_*`, `phase2_esem_*` | F2-F03 | Ölçüm sınırlılığı + H1 yönünün korunması |
 | Antidepresan | `phase2_ad_*` | F2-F04 | AD klinik yük göstergesi, mekanizma değil |
 | H5 genişletmesi | `phase2_h5ext_*` | F2-F04 | Aynı figür paylaşımlı kullanılabilir |
-| Klinik stratifikasyon | `phase2_hba1c_*` | F2-F08 | Complete-case; tanı yaşı spline karar paneli |
 | Nedensel aracılık/DAG | `phase2_imai_*`, `phase2_dag_*`, `phase2_cprime_triangulation.csv` | F2-F09, F2-F10 | Duyarlılık ve DAG doğrulama görselleştirildi |
 | Distribüsyonel modeller | `phase2_dist_*` | yok | İleride raincloud/quantile panel üretilebilir |
 | Multiverse/SCA | `phase2_multi_*` | F2-F05 | 120 spec gerçekleşen sayı olarak korunmalı |

@@ -3,7 +3,6 @@ source("R/50_statistical_audit.R")
 family_ok <- data.frame(
   aile_no = c(1, 2),
   group = c("Kontrol", "DM"),
-  hba1c = c(NA_real_, 7.4),
   stringsAsFactors = FALSE
 )
 
@@ -44,7 +43,6 @@ stopifnot(any(audit_ok$tool_registry$tool == "performance"))
 family_bad <- data.frame(
   aile_no = c(1, 1, 3),
   group = c("Kontrol", "DM", "DM"),
-  hba1c = c(8.1, NA_real_, NA_real_),
   stringsAsFactors = FALSE
 )
 
@@ -59,29 +57,7 @@ long_bad <- data.frame(
 contract_findings <- audit_data_contract(family_bad, long_bad)
 stopifnot(any(contract_findings$check_id == "family_key_unique" & contract_findings$severity == "critical"))
 stopifnot(any(contract_findings$check_id == "long_family_pair_count" & contract_findings$severity == "critical"))
-stopifnot(any(contract_findings$check_id == "hba1c_structural_missingness" & contract_findings$severity == "critical"))
 stopifnot(any(contract_findings$check_id == "long_group_consistency" & contract_findings$severity == "critical"))
-
-family_hba1c_edge <- data.frame(
-  aile_no = 10,
-  group = "DM",
-  hba1c = 15.1,
-  stringsAsFactors = FALSE
-)
-long_hba1c_edge <- data.frame(
-  aile_no = c(10, 10),
-  group = c("DM", "DM"),
-  family_role = c("index", "sibling"),
-  role = c("DM_Hasta_Indeks", "DM_Hasta_Kardes"),
-  stringsAsFactors = FALSE
-)
-edge_findings <- audit_data_contract(family_hba1c_edge, long_hba1c_edge)
-stopifnot(!any(edge_findings$check_id == "hba1c_plausibility_range"))
-
-family_hba1c_bad <- family_hba1c_edge
-family_hba1c_bad$hba1c <- 18.1
-range_findings <- audit_data_contract(family_hba1c_bad, long_hba1c_edge)
-stopifnot(any(range_findings$check_id == "hba1c_plausibility_range" & range_findings$severity == "review"))
 
 result_bad <- result_ok
 result_bad$statistic <- 1.25

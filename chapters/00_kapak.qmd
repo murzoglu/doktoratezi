@@ -1,0 +1,221 @@
+<!--
+DIŞ KAPAK ve İÇ KAPAK — Marmara Tez Yazım Kılavuzu 2025 §2.1 ve resmi şablon
+docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx (kapak sayfası) esas alınmıştır.
+
+§2.1 kuralları:
+  - Üst orta bölümde 2x2 cm boyutlarında mavi Marmara Üniversitesi logosu.
+  - Logonun altında sırasıyla: üniversite ve enstitünün adı, tezin başlığı,
+    öğrencinin adı, yüksek lisans/doktora tezi, danışmanın ünvanı ve adı
+    soyadı, program adı, varsa ikinci danışman, şehir ve yıl.
+  - Tez başlığı kalın 14 punto ve en çok 20 kelime; diğer tüm yazılar 12 punto.
+  - Bütün yazılar büyük harf.
+  - "İç kapak sayfası içerik ve düzen olarak tamamen dış kapağın aynısı
+    olmalıdır" → aynı içerik iki kez üretilir.
+
+Bu tezde ikinci danışman bulunmadığından şablonun "İKİNCİ DANIŞMAN" bloğu
+yer almaz (§2.1 "varsa").
+
+BAŞLIK KAYNAĞI. Kapak başlığı, Marmara Üniversitesi Sağlık Bilimleri Enstitüsü
+Yönetim Kurulu'nun 11.05.2023 tarihli 2023/19-68 sayılı kararıyla kabul edilen
+tez önerisi başlığı ile birebir aynıdır (kaynak:
+docs/protokol/KLINIK_CALISMA_PROTOKOLU.md §0 "Protokol Başlığı (Enstitü)" ve §3).
+Kılavuz §3.1 "tez başlığı, tez önerisinde kabul edilen başlık ile aynı olmalı"
+dediğinden bu başlık esas alınmıştır. Başlık 20 kelimedir; §2.1'in 20 kelime
+sınırını tam olarak karşılar.
+
+Aynı çalışmanın etik kurul onay belgesinde (MÜTF KAEK 06.01.2023 / 09.2023.201,
+Ek 1) daha uzun bir proje adı varyantı kayıtlıdır; iki belge aynı protokol
+koduna bağlı tek bir çalışmaya aittir ve bu ilişki Gereç ve Yöntem "Etik
+Hususlar" bölümünde açıkça belirtilmiştir.
+
+Kapak yerleşimi: başlık 2 satırdan 5 satıra çıktığı için, alt bloklar (öğrenci,
+danışman, şehir/yıl) şablondaki mutlak konumlarında kalsın diye fazla 3 satır
+başlık öncesi boşluktan geri alınır (PDF kolunda `\vspace{-3\baselineskip}`);
+DOCX kolunda aynı denge başlık öncesi boş paragraf sayısının 6'dan 3'e
+indirilmesiyle sağlanmıştır. Satır kırmaları 14 pt kalın TNR'de 160 mm metin
+genişliğine sığacak biçimde ölçülerek seçilmiştir; başlık ileride değişirse
+kırmalar ve satır sayısı birlikte yeniden ölçülmelidir.
+
+Logo varlığı: docs/assets/logo/marmara-universitesi-logo.png — resmi şablonun
+gömülü görselinden (word/media/image1.png), şablonun kendi kırpma kutusuyla
+(srcRect) çıkarılmıştır; kaynak ve üretim notu docs/assets/logo/README.md.
+
+Şehir/yıl satırı teslim yılına göre sabittir: İSTANBUL – 2026.
+
+PDF kolunda yerleşim ham LaTeX ile, DOCX kolunda `custom-style` paragraf
+stilleri (KapakOrta / KapakBaslik, reference-doc'ta tanımlı) ile sağlanır.
+Varsayılan Quarto başlık bloğu iki kolda da bastırılır (_quarto.yml PDF
+`\renewcommand{\maketitle}{}`; DOCX post-render Title/Author paragrafı silme).
+-->
+
+::: {.content-visible when-format="pdf"}
+
+```{=latex}
+% --- Marmara §2.1 kapak yerlesimi (dis kapak + ic kapak; ikisi ayni) ---
+% Kapak sayfalari numarasizdir (§1.9; _quarto.yml'de \pagenumbering{gobble}).
+\newcommand{\marmarakapaksayfasi}{%
+  \thispagestyle{empty}%
+  \begin{center}
+    \setlength{\parskip}{0pt}%
+    \linespread{1}\selectfont
+    \vspace*{0mm}
+    \includegraphics[width=2cm,height=2cm]{docs/assets/logo/marmara-universitesi-logo.png}\par
+    \vspace{6mm}
+    TÜRKİYE CUMHURİYETİ\par
+    MARMARA ÜNİVERSİTESİ\par
+    \textbf{SAĞLIK BİLİMLERİ ENSTİTÜSÜ}\par
+    \vspace{29mm}
+    {\fontsize{14}{18}\selectfont\bfseries
+     % Sablon 2 satirlik basliga gore hizalidir; bu baslik 5 satirdir.
+     % Fazla 3 satir ustten geri alinir, boylece asagidaki bloklar
+     % (ogrenci / danisman / sehir-yil) sablondaki yerinde kalir.
+     % Satir kirmalari 14 pt kalin TNR'de metin genisligine (160 mm)
+     % sigacak sekilde secilmistir; baslik degisirse yeniden olculmelidir.
+     \vspace{-3\baselineskip}
+     DİYABETİK ÇOCUKLAR, SAĞLIKLI KARDEŞLERİ VE\\
+     ANNELERİNİN EBEVEYNLİK TUTUMLARINA YÖNELİK\\
+     ALGILARININ VE KARDEŞLER ARASI İLİŞKİLERİN\\
+     SAĞLIKLI KONTROL GRUBU İLE KARŞILAŞTIRILARAK\\
+     İNCELENMESİ\par}
+    \vspace{20mm}
+    ÖZLEM MURZOĞLU KURT\par
+    DOKTORA TEZİ\par
+    \vspace{25mm}
+    DANIŞMAN\par
+    PROF. DR. EREN ÖZEK\par
+    SOSYAL PEDİATRİ DOKTORA PROGRAMI\par
+    % Sablonda danisman blogu ile sehir/yil arasinda 4 + (ikinci danisman
+    % 2 satir) + 7 = 13 satirlik bosluk vardir; ikinci danisman yoksa
+    % sehir/yil satirinin yeri degismez (§2.1 "varsa ikinci danisman").
+    \vspace{64mm}
+    İSTANBUL – 2026\par
+    \vfill
+  \end{center}
+  \clearpage}
+% Dis kapak
+\marmarakapaksayfasi
+% Ic kapak (§2.1: dis kapagin tamamen aynisi)
+\marmarakapaksayfasi
+```
+
+:::
+
+::: {.content-visible when-format="docx"}
+
+::: {custom-style="Kapak Orta"}
+![](docs/assets/logo/marmara-universitesi-logo.png){width=2cm height=2cm}
+
+TÜRKİYE CUMHURİYETİ
+
+MARMARA ÜNİVERSİTESİ
+
+**SAĞLIK BİLİMLERİ ENSTİTÜSÜ**
+:::
+
+```{=openxml}
+<w:p/><w:p/><w:p/>
+```
+
+::: {custom-style="Kapak Baslik"}
+DİYABETİK ÇOCUKLAR, SAĞLIKLI KARDEŞLERİ VE
+
+ANNELERİNİN EBEVEYNLİK TUTUMLARINA YÖNELİK
+
+ALGILARININ VE KARDEŞLER ARASI İLİŞKİLERİN
+
+SAĞLIKLI KONTROL GRUBU İLE KARŞILAŞTIRILARAK
+
+İNCELENMESİ
+:::
+
+```{=openxml}
+<w:p/><w:p/><w:p/><w:p/><w:p/><w:p/>
+```
+
+::: {custom-style="Kapak Orta"}
+ÖZLEM MURZOĞLU KURT
+
+DOKTORA TEZİ
+:::
+
+```{=openxml}
+<w:p/><w:p/><w:p/><w:p/><w:p/><w:p/>
+```
+
+::: {custom-style="Kapak Orta"}
+DANIŞMAN
+
+PROF. DR. EREN ÖZEK
+
+SOSYAL PEDİATRİ DOKTORA PROGRAMI
+:::
+
+```{=openxml}
+<w:p/><w:p/><w:p/><w:p/><w:p/><w:p/><w:p/><w:p/>
+```
+
+::: {custom-style="Kapak Orta"}
+İSTANBUL – 2026
+:::
+
+{{< pagebreak >}}
+
+::: {custom-style="Kapak Orta"}
+![](docs/assets/logo/marmara-universitesi-logo.png){width=2cm height=2cm}
+
+TÜRKİYE CUMHURİYETİ
+
+MARMARA ÜNİVERSİTESİ
+
+**SAĞLIK BİLİMLERİ ENSTİTÜSÜ**
+:::
+
+```{=openxml}
+<w:p/><w:p/><w:p/>
+```
+
+::: {custom-style="Kapak Baslik"}
+DİYABETİK ÇOCUKLAR, SAĞLIKLI KARDEŞLERİ VE
+
+ANNELERİNİN EBEVEYNLİK TUTUMLARINA YÖNELİK
+
+ALGILARININ VE KARDEŞLER ARASI İLİŞKİLERİN
+
+SAĞLIKLI KONTROL GRUBU İLE KARŞILAŞTIRILARAK
+
+İNCELENMESİ
+:::
+
+```{=openxml}
+<w:p/><w:p/><w:p/><w:p/><w:p/><w:p/>
+```
+
+::: {custom-style="Kapak Orta"}
+ÖZLEM MURZOĞLU KURT
+
+DOKTORA TEZİ
+:::
+
+```{=openxml}
+<w:p/><w:p/><w:p/><w:p/><w:p/><w:p/>
+```
+
+::: {custom-style="Kapak Orta"}
+DANIŞMAN
+
+PROF. DR. EREN ÖZEK
+
+SOSYAL PEDİATRİ DOKTORA PROGRAMI
+:::
+
+```{=openxml}
+<w:p/><w:p/><w:p/><w:p/><w:p/><w:p/><w:p/><w:p/>
+```
+
+::: {custom-style="Kapak Orta"}
+İSTANBUL – 2026
+:::
+
+{{< pagebreak >}}
+
+:::

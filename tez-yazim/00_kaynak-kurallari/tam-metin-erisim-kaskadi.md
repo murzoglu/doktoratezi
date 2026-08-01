@@ -12,15 +12,29 @@ tamamlanmadan tez metnine final citation olarak girmez:
 
 1. Evidentia ile DOI/PMID/PMCID/OpenAlex/YÖK kimliği doğrulanır.
 2. OpenAthens veya eşdeğer kurumsal yayıncı erişimi denenir.
-3. Kurumsal erişim başarısızsa Anna's Library/annas-reader denenir.
-4. Anna başarısızsa PubMed Central, Europe PMC, yayıncı OA sayfası, kurumsal
+3. Kurumsal erişim tam metni vermezse Roche Minerva korpusu (minerva-evidence)
+   denenir: DOI ile vectorstore tam metni, sonra rominedb.
+4. Minerva da vermezse Anna's Library/annas-reader denenir (son çare).
+5. Anna başarısızsa PubMed Central, Europe PMC, yayıncı OA sayfası, kurumsal
    repository, author accepted manuscript, interlibrary loan veya yazar talebi
    gibi diğer kanıtlı rotalara geçilir.
-5. Erişilen tam metin Zotero'ya item, full-text URL, dosya attachment veya
+6. Erişilen tam metin Zotero'ya item, full-text URL, dosya attachment veya
    erişim notu olarak bağlanır.
-6. `references/references.bib` ve
+7. `references/references.bib` ve
    `tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md` aynı kayıtla
    mutabıklaştırılır.
+
+> **Üç tam-metin kaynağı tam paritede** (`scripts/mcp/fulltext_cascade.py`):
+> OpenAthens (§T1) ve annas-reader (§T2) HTTP MCP; **Minerva (§T1.5)** yerel
+> stdio köprüsüdür (`minerva_evidence_bridge.py`, `${GRAVITEE_*}`). Üçü de aynı
+> hata/boş-sonuç dedektöründen geçer, kimlik/erişim yoksa graceful atlanır ve
+> token/anahtar değeri asla yazılmaz.
+>
+> **İki farklı sıra ekseni** (karıştırma): (a) bu belgedeki **bölüm sırası**
+> kurumsal-öncelik verir (§T1 OpenAthens → §T1.5 Minerva → §T2 Anna → §T3 OA);
+> (b) deterministik yardımcının **yürütme sırası** yasal-önceliktir —
+> `--tier` varsayılanı `pubmed,openathens,minerva,annas` (açık-erişim önce,
+> Minerva her hâlde annas ÖNCESİ). İkisi de Minerva'yı annas'tan önce konumlar.
 
 ## T0 Preflight
 
@@ -64,10 +78,33 @@ OpenAthens, bu repo için claim-critical tam metinde ilk erişim kapısıdır.
    kullanıcının interaktif tarayıcı oturumu kullanılır veya OA eşdeğeri (ör.
    PMC) tercih edilir. Örnek engel: DOI `10.1111/jep.14190` (J Eval Clin Pract).
 
+## T1.5 Minerva (Roche Kurumsal Literatür Korpusu) Kapısı
+
+OpenAthens tam metni vermezse, Anna'dan **ÖNCE** Roche Minerva korpusu denenir
+(lisanslı kurumsal kaynak; 25M+ makale/abstract, RoMine veri kümesi). Bağlantı
+`minerva-evidence` stdio köprüsüyle kurulur (kimlik `${GRAVITEE_*}` env'den;
+değer yazılmaz). Kaskad doktrini: evidentia `literatur-kanit-evidentia.md` §1.2.
+
+1. **Vectorstore tam metni:** `minerva_literature_fulltext_by_doi` (DOI ile).
+   Getirilen tam metin **anamnesis'e ingest** edilip chunk-düzeyinde alıntılanır;
+   teze verbatim toplu kopyalanmaz (telif).
+2. **rominedb yedeği:** vectorstore boş/hatalıysa `minerva_rominedb_get_article`
+   (doi/title). rominedb bir "Test API"dir → sık boş dönebilir; boş = kanıt yok.
+3. **Türkçe-sorgu kuralı:** `minerva_literature_search` çağrılırsa Türkçe sorguda
+   `mode:semantic` zorunludur (hibrit Türkçe'de düşük-recall).
+4. Başarılı sayılan kanıt: DOI-teyitli tam metin gövdesi (≥ anlamlı uzunluk),
+   anamnesis'e ingest + claim-level lokatör. Metadata uyuşmazlığı → `full-text-ok`
+   sayılmaz, T2'ye geçilir.
+5. **KVKK:** gateway'e yalnız DOI/başlık/literatür terimi gider; katılımcı/ham
+   tez verisi, aile-düzeyi demografik veya transkript ASLA gönderilmez.
+
+Deterministik yardımcı: `python3 scripts/mcp/fulltext_cascade.py --tier minerva
+--doi <DOI>` (annas öncesi kademe olarak varsayılan kaskadda da koşar).
+
 ## T2 Anna's Library / annas-reader Kapısı
 
-OpenAthens işe yaramazsa veya ilgili yayıncı kurum erişiminde yoksa Anna
-ikinci ana kapıdır.
+OpenAthens ve Minerva işe yaramazsa veya ilgili yayıncı kurum erişiminde yoksa
+Anna son-çare kapıdır.
 
 1. DOI/PMID/başlık ile arama yapılır.
 2. Crossref/yayıncı metadata uyumu kontrol edilir.
@@ -80,7 +117,7 @@ ikinci ana kapıdır.
 
 ## T3 Açık Erişim ve Diğer Rotalar
 
-OpenAthens ve Anna başarısızsa sırasıyla:
+OpenAthens, Minerva ve Anna başarısızsa sırasıyla:
 
 1. PubMed/EPMC: PMCID, `isOpenAccess`, Europe PMC full text.
 2. OpenAlex/Unpaywall: `oa_status`, repository full text, license.
@@ -124,8 +161,8 @@ kanıt olarak kullanılabilir; Web API yeterliyse Desktop zorunlu değildir.
 ## Ledger Durumları
 
 - `candidate`: kimlik doğrulandı, tam metin henüz açık değil.
-- `full-text-ok`: OpenAthens, Anna, PMC/OA veya eşdeğer resmi tam metin kapısı
-  başarıyla geçti.
+- `full-text-ok`: OpenAthens, **Minerva (Roche korpus)**, Anna, PMC/OA veya
+  eşdeğer resmi tam metin kapısı başarıyla geçti.
 - `zotero-ok`: Zotero item key, full-text URL/attachment veya note ve BibTeX
   key ledger ile mutabık.
 - `full-text-exception`: tam metne erişilemedi; final citation için bekletilir
@@ -140,5 +177,5 @@ kanıt olarak kullanılabilir; Web API yeterliyse Desktop zorunlu değildir.
 - Telifli tam metni uzun pasajlar halinde çoğaltmak.
 - Tam metni görülmeyen kaynaktan sayısal endpoint veya yöntem ayrıntısı
   uydurmak.
-- SciSpace, ResearchGate veya genel web PDF aynasını OpenAthens/Anna/PMC/OA
-  provenance olmadan tek başına `full-text-ok` saymak.
+- SciSpace, ResearchGate veya genel web PDF aynasını OpenAthens/Minerva/Anna/
+  PMC/OA provenance olmadan tek başına `full-text-ok` saymak.

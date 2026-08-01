@@ -5,10 +5,10 @@ bölüm, format, referans, render ve karma sentez oturumları**.
 
 Bu belge bir öneri değil, **zorunlu uyulması gereken talimatnamedir**.
 Nitel koldaki eş talimatname:
-`/mnt/thunderbolt/workspaces/T1DM Niteliksel/00_context/TALIMATNAME_TEZ_YAZIM.md`.
+`/workspaces/T1DM-Tez/niteliksel/00_context/TALIMATNAME_TEZ_YAZIM.md`.
 Codex tarafında aynı süreci `CONVENTIONS.md` + `.codex/hooks/` zorlar. Tez
 sürecinin araç envanteri:
-`/mnt/thunderbolt/workspaces/T1DM Niteliksel/00_context/TOOL_ECOSYSTEM_MAP.md`.
+`/workspaces/T1DM-Tez/niteliksel/00_context/TOOL_ECOSYSTEM_MAP.md`.
 
 ## 0. Bağlayıcılık ve zorlama katmanları
 
@@ -41,11 +41,11 @@ Politika değişikliği iki harness ağacına birlikte işlenir
 4. Üretim eşlemesi: yazım `thesis.qmd` + `chapters/0X_*.qmd`'de yapılır;
    `tez-yazim/` operasyon katmanıdır, tez metni oraya yazılmaz.
 5. Nitel kanıt gerekirse kanonik kaynak
-   `docs/niteliksel/qualitative_canonical_results_report.md`; ham transcript ve
-   nitel repo geniş taraması default değildir. Nitel metodoloji sorusu →
+   `niteliksel/qualitative_canonical_results_report.md`; ham transcript ve
+   nitel kol geniş taraması default değildir. Nitel metodoloji sorusu →
    `niteliksel-arastirma-rehberi-t1dm` skill; nicel pipeline sorusu →
    `t1dm-tez-rehberi` skill (`.claude/skills/t1dm-tez-rehberi/`).
-6. Karma tez / joint display: nitel repoda `/capraz-repo` köprü raporu +
+6. Karma tez / joint display: nitel kolda `/capraz-repo` köprü raporu +
    `tez-yazim/05_entegrasyon/nitel-nicel-joint-display-plan.md`. Nitel kol çıktı
    çerçevesi (RTA/COREQ/quote-integrity/KVKK): `tez-yazim/05_entegrasyon/
    nitel-cikti-cercevesi.md`. Dış literatür/citation Evidentia hattı:
@@ -78,9 +78,28 @@ Politika değişikliği iki harness ağacına birlikte işlenir
 
 Her dış referans `/referans-kapisi` ile 6 kapıdan geçer: bağlam →
 bibliyografik kimlik → tam metin → Zotero (item key ≠ BibTeX key) →
-claim/pasaj → ledger + çift AI-reliability. Ledger:
+claim/pasaj → ledger + iki-kol AI-reliability. Ledger:
 `tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md`. Kapı kapanmadan
 referans `chapters/*.qmd` veya `references/references.bib`'e girmez.
+
+### 4.1 Referans Bütünlük Şiarı (RBŞ) — konstitüsyonel
+
+**Tüm referans-metin analiz ve teze-entegrasyon süreçlerinde bağlayıcı temel kuraldır**
+(referans kapısı, narratif derin-lit `/tez-literatur`, anlatım zenginleştirme
+`/anlatim-zenginligi`, karma sentez, evidentia dış-kanıt köprüsü; **nicel ve nitel kol**):
+
+> Bir referans makaleden zenginleştirme/analiz yaparken makalenin **bir parçasını değil
+> tamamını geniş bağlamda semantik olarak kavra**, bu geniş bağlamı **rafine ederek**
+> revize et; **hem makalenin hem tez metninin somut bilimsel iddialarını çarpıtma.**
+
+Uygulama: kaynak kullanılmadan önce tam metni ingest edilip amaç / yöntem / örneklem /
+ana-iddia / koşul-kısıt / temkin ekseninde **bütünsel** kavranır; zenginleştirme bu
+bütün-makale anlayışından türer, tek çekilmiş bir cümleden değil (**cherry-pick =
+çarpıtma**). Kaynak kendi **kapsam + koşuluyla** aktarılır (ör. "diyabette daha zayıf",
+"çocuk-bildiriminde tutarsız"); düzleştirme / abartma / olduğundan-uyumlu gösterme yok,
+uyumsuz kanıt "uyumlu"ya çevrilmez. Tez metninin sayı/istatistik/bulguları ayrıca
+DOKUNULMAZ'dır (bkz. `/anlatim-zenginligi` kanıt bölgesi). RBŞ ihlali sci-audit B
+(claim-grounding) + galileo `overclaim`/`claim_source_match` ile denetlenir.
 
 ## 5. Bölüm sertifikasyonu
 
@@ -113,14 +132,24 @@ istatistik/halüsinasyon/kılavuz/AI-şeffaflık/Türkçe imla) yalnız `sci-aud
 **KVKK/ham veri/quote-parity/kanonik kilit yalnız repo ai-audit plugin'lerinde**.
 İki katman çakışmaz (detay: `tez-yazim/04_kalite-kontrol/bolum-finalizasyon-sertifikasyon-playbook.md`).
 
+**Semantik/judge katmanı (Şerit B, advisory — 2026-07-21, embedding CANLI):** manüskript
+denetiminin YANINDA opsiyonel çalışır, HARD değildir. `python3 scripts/util/thesis_semantic.py
+bib-dup` (semantik yakın-duplikat; `--strict` ile gerçek-dup HARD) ve `... redundancy`
+(bölüm-tekrarı); `python3 scripts/util/karma_ledger_check.py --semantic` (parafraz-sadık
+drift=INFO); `galileo-audit` judge uzantıları `convergence/harking/overclaim/coherence_judge`
+(hepsi SOFT-block, insan-override). Embedding erişilemezse string/CRC32'ye degrade — sessiz
+atlama yok. KVKK: gateway'e yalnız manüskript/literatür (`scripts/eval/semantic_core.py`
+tripwire zorlar). Doktrin: `.claude/galileo.local.md` +
+`.claude/skills/t1dm-tez-rehberi/references/manuskript-denetimi-sciaudit.md` §galileo.
+
 İş "tamam" sayılmaz, eğer: kaynaklar dosya yoluyla izlenebilir değilse; veri
-sınırı ihlal edildiyse; gerekli test exit 0 değilse; referanslı bölümde çift
-AI-reliability (bu repo + nitel repo) koşulmadıysa; harici MCP kullanımı nitel
-repodaki `./dmnitel log-ai-use` günlüğüne yazılmadıysa; kullanıcı istemeden
+sınırı ihlal edildiyse; gerekli test exit 0 değilse; referanslı bölümde iki-kol
+AI-reliability (kök + niteliksel/ kolu) koşulmadıysa; harici MCP kullanımı
+niteliksel/ kolundaki `./dmnitel log-ai-use` günlüğüne yazılmadıysa; kullanıcı istemeden
 stage/commit/push yapıldıysa.
 
 ## 7. Talimatname bakımı
 
 Değişiklik önce burada, sonra nitel ikizde ve `CONVENTIONS.md`'de yapılır;
 hook davranışı değişiyorsa iki hook ağacı + testler birlikte güncellenir.
-Çelişki sırası: kullanıcının açık talimatı → bu talimatname → diğer repo notları.
+Çelişki sırası: kullanıcının açık talimatı → bu talimatname → niteliksel/ kolu notları.

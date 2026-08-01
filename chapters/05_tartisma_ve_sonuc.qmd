@@ -1,73 +1,491 @@
 # TARTIŞMA ve SONUÇ
 
-Bu bölüm beş hipotezin sentezini Tip 1 diyabet ve ebeveynlik literatürü, gelişimsel psikoloji teorileri ve psikometrik kısıtlar bağlamında tartışmaktadır. Yorum kararları yedi tedbir prensibine (devstats KISIM XV) uygun yürütülmüş, etki büyüklüğü ve güven aralığı baskın yorum aracı olarak kullanılmış, "p < .05" tek-başına anlamlılık kanıtı sayılmamış ve nedensellik dili gözlemsel verinin sınırları içinde tutulmuştur (kural #15).
+Bu çalışmanın hem sayısal (anket) hem de sözel (mülakat) bulguları birlikte değerlendirildiğinde, Tip 1 diyabetin aile üzerindeki etkisinin tek boyutlu olmadığı çok net görülmektedir. Standart psikolojik testlerin ortaya koyduğu istatistiksel sonuçlar ile ailelerin yüz yüze görüşmelerde aktardığı öznel deneyimler bazı noktalarda birebir örtüşürken, bazı noktalarda birbirinden ayrılmaktadır. Bu bölümde ulaşılan tüm sonuçlar, dünyadaki diğer araştırmaların (literatürün) ışığında ve araştırmanın sınırları dâhilinde yorumlanmaktadır. Bulguların gücü sadece "istatistiksel olarak fark var mı" sorusuyla değil, "bu fark gerçek hayatta ne kadar büyük ve ne kadar güvenilir" sorularıyla (etki büyüklüğü ve güven aralığı) birlikte değerlendirilmiştir. Araştırma anlık bir fotoğraf çekme (kesitsel) niteliğinde olduğu için, elde edilen hiçbir bulgu kesin bir "neden-sonuç" ilişkisi olarak iddia edilmemiştir.
 
-## Sosyal İstenirlik ve Diadik Kopukluk
+Bulgular bütünsel olarak değerlendirildiğinde, Tip 1 diyabetin ebeveynlik tutumlarına etkisinin üniter bir yapı sergilemediği; aksine **bilgi-verici konumuna (öz-bildirim ile çocuk algısı arasındaki ayrışmaya)** bağlı olarak farklılaştığı görülmektedir. Maternal reddetme ve aşırı koruma boyutlarındaki farklılık yalnız çocuk algısında (EMBU-C) saptanırken (@tbl-apa-h1-group, @tbl-apa-h1-bayesian); aynı yapı anne öz-bildirimiyle (EMBU-P) değerlendirildiğinde gruplar arası fark gözlenmemiştir (@tbl-apa-h3-primary-iptw, @tbl-apa-h3-sensitivity). Beklendiği üzere diadik anne-çocuk ölçüm tutarlılığı da oldukça düşük bulunmuştur (@tbl-apa-h5-concordance). Bu bağlamda çalışmanın temel katkısı, ebeveynlikte mutlak bir değişim iddiasından ziyade; kronik hastalık yükünün *hangi bilgi-verici kanalında, hangi tutum boyutunda ve ne yönde* ayrıştığını nedensel modele uygun bir mimariyle haritalandırmasıdır. Takip eden tartışma bu ayrışma haritasını izler: Sırasıyla çocuk algısı, anne öz-bildirimi, maternal depresif belirtilerin rolü ve diadik-triadik kardeş konumu incelenecek; sonrasında nicel bulgular yarı-yapılandırılmış görüşmelerin tematik sonuçlarıyla (karma yöntem bütünleşmesi) sentezlenecektir.
 
-Tezin ana çerçevesi, anne öz-rapor (EMBU-P) ile çocuk algısı (EMBU-C) arasında bir kopukluk olduğunu göstermektedir. H3 birincil bulgusu DM × Kontrol grup farkını anne öz-raporda anlamlı bulgulamamış (BF₁₀ = 0.17-0.25, ROPE %61-92, multiverse %p<.05 = 0%, TOST 2/4 Equivalent), oysa H1 ve H5 birlikte DM çocuklarının daha yüksek reddetme algısına sahip olduğunu ve anne ↔ çocuk diadik tutarlılığının düşük kaldığını ortaya koymuştur. Bu örüntü Streisand & Monaghan (2014) kronik hastalık ailelerinde anne savunmacılığı hipoteziyle uyumludur; DM tanılı çocuk annelerinin sosyal istenirlik baskısı altında "iyi anne" temsiliyeti güçlüdür ve öz-rapor düzlemi bunu yansıtmaktadır. KISIM XII Bayesian dual reporting H3 için "moderate H0" kanıtı vererek bu yorumu istatistiksel olarak sağlamlaştırmakta, KISIM XI multiverse ve TOST sonuçları ise spesifikasyon değişkenliğine karşı bulguların dayanıklılığını göstermektedir.
+Çocuk algısına odaklanan birincil hipotez (H1) doğrulanmıştır. Diyabet grubundaki çocuklar (indeks ve sağlıklı kardeş), kontrol grubundaki yaşıtlarına göre maternal aşırı koruma ve reddetme düzeylerini anlamlı biçimde daha yüksek algılamaktadır. Bu iki ana bulgu, hem geleneksel frekansçı (q ≤ 0,003) hem de alternatif olasılıkçı (Bayesçi, BF₁₀ ≥ 6,93) analiz yöntemleriyle güçlü biçimde teyit edilmiştir (Bulgular, @tbl-apa-h1-group, @tbl-apa-h1-bayesian). Sıcaklık boyutunda başlangıçta sınırda izlenen fark, Bayesçi çapraz doğrulamada etki-yokluğu lehine zayıflamış; karşılaştırma alt ölçeğinde ise grup ana etkisi saptanmamıştır.
 
-Bu kopukluğun klinik yorumlanması iki düzlemdedir. Birinci düzlemde anne raporu klinik karar vericilerin (pediatrik endokrinolog, psikiyatrist) ana bilgi kaynağı olamaz; çocuk-tarafından raporlanan EMBU-C ve diadik konkordans ölçümleri zorunlu tamamlayıcılardır. İkinci düzlemde anne savunmacılığının kendisi bir psikoeğitim hedefidir; anne-çocuk uyum çalışmaları ve birlikte aile-temelli müdahaleler (Family-Based Behavioral Therapy, Anderson 2003) bu kopukluğu azaltma kapasitesine sahiptir.
+Bulunan bu ebeveynlik farkının "sadece diyabetli çocuğa mı özel yoksa evin geneline mi yayıldığını" anlamak için aile içi ek (post-hoc) testler yapılmıştır. Aile içi keşifsel kontrastlarda; aynı evdeki indeks çocuk ile sağlıklı kardeş arasında ebeveynlik algısı açısından hiçbir boyut ve hastalık grubunda (DM ve kontrol) istatistiksel fark saptanmamıştır (tümü p > 0,76; @tbl-apa-h1-within-group). Bu bulgu örüntüsü, aşırı koruma ve reddetme algısındaki artışın indeks çocuğun bireysel tanı durumundan ziyade **aile sisteminin genel iklimine** yansıyan yapısal bir özellik olduğuna işaret eder. DM tanısı, kardeşler arası tutum algısında bir makas açmamakta; aksine aynı evdeki iki çocuğun da maternal tutum algısını kontrol grubuna kıyasla benzer biçimde şekillendirmektedir. Bu durum, "hastalığın sadece hastayı değil bütün aile sistemini etkilediği" yönündeki temel gerçeği güçlü biçimde desteklemektedir.
 
-## Anne Depresyonunun Latent Etkisi
+Bulunan en güçlü ve sağlam sonuç 'reddetme' duygusundaki artıştır. Bu sebeple izleyen tartışma öncelikle bu duygu üzerinde duracak; aşırı koruma bulgusu ise diyabet gibi kronik hastalıklarda kuralların ve denetimin zorunlu olarak artması (hastalık yönetimi) gerçeğiyle birlikte ele alınacaktır.
 
-H4 latent SEM modeli, Beck depresyon skoru ile EMBU-P sıcaklık (β = -0.30), reddetme (β = +0.36) ve karşılaştırma (β = +0.31) alt ölçekleri arasında orta-büyüklükte ve istatistiksel olarak anlamlı bağlantılar raporlamıştır. Bu örüntü Goodman & Gotlib (1999) maternal depresyon → ebeveynlik tutumu meta-analizinin gözlemiyle uyumludur ve KISIM VI mediation analizinde Beck → EMBU-P_reddetme yolunun (a) anlamlı çıkmasını mantıken destekler. Ancak EMBU-P → EMBU-C yolunun (b) anlamsız kalması, anne depresyon belirti düzeyinin çocuk algısına doğrudan değil dolaylı (anne davranışı + çocuk yorumlaması filtreleri üzerinden) yansıdığını düşündürmektedir.
+DM ve kontrol grupları arasındaki reddetme algısı farkı, standart metriklerde "küçük ile orta" bant arasına düşen bir etki büyüklüğü (Hedges g ≈ 0,38) taşır. Bu etki (r² ≈ 0,04 varyans açıklamasına denk), ilk bakışta sınırlı görünmekle birlikte; Funder ve Ozer'in [@funderOzer2019effectSize] vurguladığı üzere sistematik, tekrarlanabilir ve zaman içinde kümülatif sonuçlar doğuran "pratikte anlamlı" (practically significant) bir klinik büyüklüğe karşılık gelir.
 
-Multi-group invariance taraması metric düzeyde DM ve Kontrol grupları için ölçüm modelinin kabul edilebilir olduğunu göstermiş, scalar düzeyde grup-spesifik boş ordinal kategoriler nedeniyle açık item collapse yapılmıştır; bu duyarlılık kararı 02-sapma-tablosu'da raporlanmıştır.
+Bu sonucun dünyadaki diğer araştırmalarla ne kadar örtüştüğünü görmek için Pinquart'ın 325 farklı çalışmayı sentezlediği kapsamlı meta-analizi incelenebilir. O incelemeye göre; kronik hastalığı olan çocukların ailelerinde en belirgin değişim 'aşırı korumacılık' (g = 0,39) iken, onu sırasıyla 'duygusal sıcaklığın azalması' (g = −0,22) ve 'olumsuz ebeveyn-çocuk ilişkisi' (g = −0,16) izler. Bu farklılıklar çoğunlukla küçüktür ve hastalıktan hastalığa değişir. Sadece diyabet hastalarına bakıldığında ise (16 ayrı araştırma), ebeveyn-çocuk ilişkisindeki olumsuzlaşma istatistiksel olarak (g = −0,23) kanıtlanmış durumdadır [@pinquart2013].
 
-## Çocuk Algısının Aile-İçi Ayrımı (H1)
+Bu araştırmada reddetme boyutu için kestirilen etki büyüklüğü (g ≈ 0,38), literatür ortalaması ile boyutsal uyum gösterir. Hastalık yönetiminin gerektirdiği sürekli denetim ve regülasyon (aşırı koruma algısı, BF₁₀ = 6,93) zorunlu olarak artarken; çocuklarda bu durumun algısal bir yansıması veya eşzamanlı bir seyri olarak reddedilme/anlaşılamama deneyiminin belirmesi muhtemeldir [@vangampelaere2020families; @trojanowski2021]. Bu sonuçlar, dünya literatüründeki "hastalığa uyum sağlansa da bazı kaçınılmaz tutum sapmaları olur" şeklindeki genel kanıyı birebir destekler [@pinquart2013].
 
-H1 multilevel ANCOVA modeli ve KISIM XII Bayesian dual reporting birlikte DM çocuklarının kontrol çocuklarından 0.16 SD yüksek reddetme algısı raporladığını (BF₁₀ = 8.12, "moderate H1") göstermiştir. Bu fark Pinquart (2013) meta-analizinde kronik hastalık çocukları için raporlanan tipik d ≈ 0.13-0.30 aralığının alt sınırındadır ve klinik anlamlılık Cohen küçük etki kategorisinde kalmaktadır. Aile-içi ICC ≈ 0.14 düzeyi multilevel rastgele aile-kesişim modelinin zorunluluğunu doğrulamış (Hox 2018 eşiği 0.05); birey düzeyi modeller standart hata yanlılığını şişiremezdi.
+Ancak bu bulgu salt "diyabet" etkisine indirgenmemelidir. Gözlemsel tasarımda merkez ve veri toplama yılı konfounders (karıştırıcı) etki riski taşır. Zaman periyodu açısından en dengeli kesit olan 2023 alt-örnekleminde ana etkinin zayıflaması (Bulgular, @tbl-apa-h1-period2023), güç (power) kaybıyla ilişkili olabileceği gibi dış etkenlerin varyansını da barındırabilir. Bu nedenle, gözlenen farkların bağımsız başka bir grupta, zaman ve mekân etkisinden tamamen arındırılarak tekrar test edilmesi (sınanması) gereklidir.
 
-EMBU-C sıcaklık alt ölçeğinde grup farkı bulunmaması ("moderate H0"), DM çocuklarının "anne sıcaklığını" kontrol çocuklarıyla benzer düzeyde algıladığını fakat reddetme yorumlamada farklılaştığını gösterir; bu örüntü Cameron (2007) kronik hastalık aile sistemleri çerçevesinde anne aşırı denetim ve çocuk reddetme algısı bağlantısıyla uyumludur.
+Rohner'ın Ebeveyn Kabul-Red Kuramına (PARTheory) göre, ebeveynlikte nesnel davranıştan çok çocuğun bu eylemi "reddedilme" olarak algılaması asıl yapısal unsurdur ve psikolojik iyi oluşun temel belirleyicilerindendir [@rohner2004parAcceptance]. Bu nedenle, farkın sayısal büyüklüğünden ziyade 'yönü' (çocuğun bunu olumsuz hissetmesi) kritiktir. Kümülatif bir "anlaşılamama" veya duyarsızlık deneyimi, gelişimsel bir klinik risk faktörü olarak dikkate alınmalıdır.
 
-## Kardeş İlişkisi Bulgusunun Yorumu (H2)
+Araştırmada değerlendirme ağırlığının çocuk algısına verilmesi metodolojik bir tercih olmanın ötesinde kuramsal bir zorunluluktur; nitekim bilgi-verici (informant) konumunun kestirilen etki büyüklüğünü yapısal biçimde modere ettiği literatürde sabittir. Pinquart ve Shen'in 569 araştırmayı incelediği çalışmasında; evdeki sorunları anne-baba anlatırsa sorun büyük (g = 0,46), öğretmen anlatırsa orta (g = 0,37), ergenin bizzat kendisi anlatırsa sorun en küçük boyutta (g = 0,17) çıkmaktadır [@pinquart2011behaviorProblems]. Bilgi-verici kanalı, sorunun görünürlüğünü sınırlar.
 
-H2 SRQ alt ölçeklerinin dördünde de DM × Kontrol grup farkı bulgulanmamış olması, T1DM ailelerinde kardeş ilişkisinin temel özelliklerinin (sıcaklık, statü, çatışma, rekabet) hastalık varlığından bağımsız olarak korunduğunu düşündürmektedir. Bu sonuç Stuart & Hodges (2003) kardeş kronik hastalık literatürünün karma sonuçlarıyla tutarlıdır: bazı çalışmalar artmış çatışma raporlarken, bazıları artmış destek raporlamıştır. Mevcut tezin null bulgusu klinik olarak "kardeş ilişkisi sağlam kalmış" yorumuna işaret eder; ancak APIM benzeri karma model TIP I hata kontrolü için yeterli güç sergilememiş olabilir, simr post-hoc analizleri gelecek faz için planlanmıştır.
+Sorunun kime sorulduğunun (bilgi-verici ayrımının) bir diğer sonucu da anne ile çocuğun verdiği cevapların genelde tam olarak uyuşmamasıdır. Achenbach'ın 119 çalışmalık ünlü raporunda, iki ebeveynin birbiriyle uyumu yüksekken (r = 0,60), ebeveyn ile çocuk arasındaki uyum sadece r = 0,22'de kalmıştır [@achenbach1987crossinformant]. Yakın tarihte De Los Reyes'in 341 araştırmayı (1989-2014) toparladığı kapsamlı çalışmada da bilgi-verici çiftleri genelinde ortalama uyum oranı sadece r = 0,28 (%95 GA [0,22; 0,33]) olarak doğrulanmıştır [@deLosReyes2015].
 
-## Diadik Tutarsızlık Bulgusunun Klinik Önemi (H5)
+Bu bağlamda diadik uyum iki boyutta yapısal olarak düşer: (1) Dışsallaştırma belirtilerine kıyasla içselleştirme/algı gibi gözlenemez öznel durumlarda; ve (2) rol/jenerasyon farkının bulunduğu ebeveyn-çocuk ekseninde [@deLosReyes2015]. Tezin temel odaklarından olan reddedilme duygusu, bu iki dezavantajı (öznel algı + ebeveyn-çocuk ekseni) eşzamanlı taşıdığından yapısal uyuşmazlığa en açık boyuttur.
 
-H5 birincil yenilik katkısı olarak kurulmuştur ve beş paralel strateji ile DM ailelerinde anne ↔ çocuk algısı arasındaki tutarlılığın sistematik biçimde düşük kaldığını göstermiştir. ICC değerleri "fakir-zayıf" Cicchetti (1994) bandında, Olsen-Kenny dyadic CFA latent konkordansı havuzlanmış r = 0.19 ve klinik tutarsızlık örüntüleri %33-48 oranında raporlanmıştır.
+Alanın bu düşük uyumu yorumlama biçimi de zaman içinde olgunlaşmıştır. Achenbach ve
+arkadaşları, incelenen ölçümlerin test–tekrar test güvenirliklerinin yeterli olduğunu
+göstererek düşük uyumun bir güvenilmezlik göstergesi olmadığını daha o dönemde
+vurgulamıştır; farklı bilgi-vericiler geçerli biçimde farklı bilgi taşıyabilir
+[@achenbach1987crossinformant]. De Los Reyes ve arkadaşlarının geliştirdiği çerçeve bu
+düşünceyi sistemleştirir: her bilgi-verici çocuğu kısmen farklı bağlamlarda (ör. ev,
+okul) ve farklı bir ilişki içinden gözlediğinden, raporlar arası uyuşmazlık salt ölçüm
+hatası ya da yanlılık değil, büyük ölçüde geçerli ve bağlama-özgü bilgidir
+[@deLosReyesKazdin2005; @delosReyes2013strategic]. Reddedilmişlik gibi öznel bir deneyim
+söz konusu olduğunda ise çocuk, bu deneyimi gözlemleyebilecek ayrıcalıklı — çoğu zaman
+tek — konumdadır [@rohner2004parAcceptance].
 
-DM grubunda Olsen-Kenny latent konkordansının (r = 0.29) Kontrol grubundan (r = 0.17) marjinal yüksek olması ilk bakışta beklenmeyen bir sonuçtur; ancak H1 reddetme bulgusu ile birleştirildiğinde anlamlı hale gelir: DM çocukları daha yüksek reddetme algısı raporlarken, anneler kendi reddetmelerini benzer-düşük seviyede raporlamaktadır; latent konkordans yüksekse de bu konkordans iki tarafın da düşük puan verme eğiliminden değil, ortak bir altta yatan algı yapısının varlığından gelmektedir. Bu çelişki, ölçüm hatasını dışlayan latent dyadic CFA'nın gözlenen ölçek puanlarının ötesinde bir bilgi katmanı sağladığının kanıtıdır ve psikometrik adaptasyon çalışmalarının diadik analizler için neden kritik olduğunu gösterir.
+Bununla birlikte gözlenen her uyuşmazlığın geçerli bir sinyal olduğu varsayılamaz.
+Uyuşmazlığa ölçüm güvenirliği (özellikle bu örneklemde iç tutarlılığı düşük kalan
+EMBU-P reddetme alt ölçeği), madde eşik/kategorilerinin bilgi-vericiler arasında
+farklı işleyişi ve yanıt süreçlerindeki farklılıklar da katkıda bulunabilir. Mevcut
+kesitsel tasarım bu ölçüm-kaynaklı payı gerçek algı ayrışmasından tam olarak
+ayrıştıramaz (bkz. ölçüm değişmezliği tartışması ve Ek 3). Dolayısıyla yukarıdaki
+meta-analitik kanıt, düşük uyumun genelde geçerli varyans taşıdığını gösterse de, bu
+örneklemdeki EMBU-P ölçümünün geçerliğini tek başına kanıtlamaz. Yine de iki bulgu
+birlikte — etkinin bilgi-vericiye bağımlı olması ve çapraz uyumun yapısal olarak düşük
+kalması — çocuğun kendi algısının diğer bilgi-vericilere indirgenemeyecek, ayrı bir
+bilgi kaynağı olarak değerlendirilmesini destekler. Reddedilmişlik gibi öznel bir
+deneyimde ise bu algıyı doğrudan onu yaşayan çocuktan almak yalnızca yöntemsel değil
+kavramsal olarak da önceliklidir.
 
-Kenny k-katsayısının bootstrap güven aralıklarının geniş olması (k = -0.19 ile +1.01 arasında) örneklem büyüklüğünün diadik APIM bootstrap için sınırda olduğunu doğrulamıştır; Kenny et al. (2006) k yorumlaması için gereken n ≥ 200 dyad eşiğinde olmamıza rağmen aile-içi bağımlılık nedeniyle bootstrap gücü düşmüştür. Bu sınırlılık tezde açıkça raporlanmış ve k yorumu teorik ankraj olarak verilmiştir.
+Türkiye bağlamında Şahin ve arkadaşlarının 50 Tip 1 diyabetli ergen ile 50 sağlıklı
+kontrolü karşılaştıran vaka-kontrol çalışması, diyabet grubunda psikiyatrik bozukluk
+oranının %68'e ulaştığını göstermiştir [@sahin2015parentalAttitude]. Bu yüksek
+psikiyatrik yük, ebeveynlik ikliminin bu grupta yalnızca bir gelişimsel bağlam değil,
+klinik açıdan da kritik bir zemin oluşturduğunu hatırlatır. Ebeveyn tutumlarının PARI
+(Ebeveyn Tutumlarını Araştırma Aracı) ile ölçüldüğü bu çalışmada grupları ayıran boyut
+duygusal reddetme değil otoriter tutumdur (44,82'ye karşı 38,88; p = 0,001); düşmanca/
+reddedici tutum alt ölçeğinde gruplar farklılaşmamıştır (31,02'ye karşı 30,20;
+p = 0,542). Ayrımın kontrol/otorite ekseninde belirip duygusal-reddetme ekseninde
+belirmemesi, yukarıda ele alınan literatürle tutarlıdır: kronik hastalıkta en belirgin
+tutum sapması reddetme değil denetim/aşırı-koruma ekseninde toplanır. Hastalık
+yönetiminin dayattığı sürekli gözetim ve kural koyma talebi, sıcaklığı geri çekmeden
+denetimi yükselten bir tutum örüntüsüyle uyumludur. Nitekim diyabet anneleri kaçınmacı
+başa çıkmayı da daha sık kullanmıştır (p = 0,013); bu da tabloyu reddetme değil,
+hastalık yükü altında düzenlenen başa çıkma ve denetim davranışları yönünde pekiştirir.
 
-## Tipoloji ve Network Analizinin Katkısı
+İlgili çalışmanın salt anne öz-bildirimine (PARI) dayanarak reddetme boyutunda fark bulamaması (H3 bulgusuyla tutarlı olarak), değerlendirici farklılığının etkisini açıkça belgeler. Çocuğun algısında beliren reddetme farkı, ancak çocuk raporuyla yakalanabilir. Annelerin öz-bildiriminde dahi ortaya çıkan "otoriter denetim" farkı ise, tezin çocuk algısındaki "aşırı koruma" bulgusuyla birleştiğinde; diyabete bağlı temel tutum sapmasının Türkiye örnekleminde de "denetim-koruma" ekseninde yoğunlaştığını teyit eder.
 
-KISIM VII LPA 3-profil çözümünü en uygun model olarak seçmiş ve "Adapte / Tükenmiş / Standart" temel klinik tipolojisini önermiştir. Bu profillerin klinik karar değerini değerlendirmek için ileri faz dış validasyon çalışması gereklidir; mevcut bulgu betimsel bir öneri-düzeyi olarak rapor edilmektedir. Bifactor S-1 modelinin sınır altı uyumu (CFI = 0.79, SRMR = 0.14), EMBU-P 29-madde mimarisinin tek genel + üç spesifik faktör ayrımı için tam destek vermediğini göstermektedir; gelecek psikometrik adaptasyon çalışmaları madde havuzunu güçlendirmelidir.
+Literatürde T1DM olgularında reddetme algısını doğrudan çocuğun (ve kardeşin) öz-bildirimiyle çok-düzeyli kontrol eden ve sağlıklı kıyas sunan araştırma eksikliği, bu tasarımın odağını (çocuk algısını merkeze alma kararı) yöntemden ziyade epistemolojik bir gereklilik hâline getirmiştir.
 
-KISIM VIII network analizi DM ve Kontrol gruplarının ağ yapılarını NCT global strength invariance p = 0.86 ile değişmediğini göstermiş, bu da H1-H4 düzeyinde grup farklarının lokalize (alt ölçek-spesifik) olduğunu, sistemik bir ağ farklılığının olmadığını desteklemektedir.
+Anne öz-bildirimi düzleminde H3 için birincil hipotez desteklenmemiştir: dört EMBU-P
+alt ölçeğinin tamamında DM × kontrol farkı için kanıt bulunmamıştır (Bulgular,
+@tbl-apa-h3-primary-iptw, @tbl-apa-h3-sensitivity). Bu bulgu, ebeveynlik yükünün
+*yokluğu* değil, öz-bildirim kanalındaki *görünürlük sınırı* olarak okunmalıdır.
+Anlamsızlık tek başına etki yokluğuna kanıt sayılamaz; ancak Bayes faktörü ile
+eşdeğerlik testinin birlikte kullanımı, etki-yokluğunu pozitif biçimde değerlendirmeye
+izin verdiği için metodolojik olarak yerleşiktir [@lakens2017equivalence;
+@lakens2018nullBF].
 
-## Klinik Karar Aracı Olarak Anne Risk Skoru
+Duyarlılık analizleri aşırı koruma ve karşılaştırma boyutlarında pratik eşdeğerliği (TOST ve BF₁₀ ≤ 0,23) doğrularken; sıcaklık ve reddetme boyutlarında istatistiksel belirsizlik bölgesinde (inconclusive) kalmıştır (Ek 5). Bu istatistiksel belirsizlik, H1 kapsamında çocukların yükselmiş reddetme algısıyla sentezlendiğinde diadik uyuşmazlık tablosunu güçlendirmektedir.
 
-KISIM IX yüksek-riskli anne sınıflandırması (Beck ≥ 17) için iç-validasyonlu lojistik risk skoru üretmiştir. Genişletilmiş model dört EMBU-P alt ölçeğini eklediğinde temel modelden NRI/IDI metriklerinde marjinal bir iyileşme göstermiş, ancak bu iyileşme Vickers-Elkin DCA net benefit eğrisinde 0.10-0.30 risk eşiği aralığında klinik olarak anlamlı bir kazanım sağlamamıştır. Bulgu, EMBU-P alt ölçeklerinin Beck depresyon riski için bağımsız bilgi katmanı sağlamadığını, çünkü Beck ile EMBU-P arasındaki H4 SEM bağlantılarının yapısal olarak ortak varyans paylaştığını göstermektedir.
+Morsbach ve Prinz'in [@morsbachPrinz2006] öz-bildirim eleştirisi; doğrudan "reddetme" ve "şefkat" gibi yapıların ölçümünde annelerin sosyal istenirlik (social desirability) yanlılığına karşı daha zayıf olduğunu gösterir. Ebeveynin kendi olumsuz tutumunu beyan etme güçlüğü, elde edilen H3 null (farksızlık) bulgusunun temel bir yapısal kaynağıdır.
 
-Sonuçlar dış validasyon çalışmasıyla doğrulanmadan klinik karar aracı olarak kullanılmamalıdır (kural #18).
+Bu mekanizmanın gözlemsel karşılığı çarpıcıdır. Zahidi ve arkadaşları, 133 bakıcının bir
+çocukla videoya alınan etkileşimini, ebeveyn davranışı değerlendirmesinde "altın
+standart" sayılan gözlemsel ölçütlerle kodlamış ve aynı ebeveynlerin öz-bildirimlarıyla
+karşılaştırmıştır. Örneklemin bir kolu Metro-Atlanta uyuşturucu mahkemelerinde tedavi
+gören ebeveynlerden (mahkeme-yönlendirmeli, "zorlama altındaki" grup), diğer kolu bir
+karşılaştırma grubundan (zorlama-dışı bakıcılar) oluşur. Sıcaklık ve ilgi boyutlarında
+öz-bildirim ile gözlem arasındaki korelasyonlar tüm örneklemde neredeyse sıfır ve hiçbiri
+anlamlı değildir (sıcaklık için r = −0,03…0,06, ilgi için r = −0,05…0,08). Dahası bu
+uyumsuzluk, bakıcı türü (zorlama altındaki karşı zorlama-dışı) ve çocuk yaşı
+alt-gruplarının hiçbirinde anlamlı bir uyuma dönüşmemiştir [@zahidi2019].
 
-## DM Klinik Heterojenliği
+Bu bulgunun kanıt değeri, tam da kopukluğun bağlama duyarsız görünmesinde yatar.
+Uyumsuzluk yalnızca sosyal istenirlik basıncının yüksek olduğu mahkeme-yönlendirmeli
+grupta değil, zorlama-dışı karşılaştırma grubunda ve incelenen tüm alt-gruplarda da
+belirmiştir; yazarlar bulguyu bir sosyal-istenirlik yan-ürünü olarak değil, öz-bildirim
+ile gözlemin genel olarak "birbirinin yerine geçemeyeceği" biçiminde yorumlar. Bu
+örüntü, öz-bildirim ile gerçeklik arasındaki açığın Morsbach ve Prinz'in tanımladığı
+istenirlik-yönlü "düzenleme" ile sınırlı olmadığını düşündürür; açık, bilgi-vericinin
+bakış açısından ve ölçüm sürecinden kaynaklanan daha genel bir ayrışmayı da içerir.
+Kopukluğun zorlama-dışı bakıcılarda bile sürmesi, öz-bildirim kanalının yapısal
+kırılganlığının olağan örneklemlere de taşınabilir olduğuna işaret eder. Yine de
+Zahidi örneklemi bir kronik hastalık grubu değildir; mevcut çalışmadaki H3
+anlamsızlığının ne ölçüde bu ölçüm kırılganlığından, ne ölçüde gerçek bir etki
+yokluğundan kaynaklandığı doğrudan ölçülemez ve bu pay açık bırakılmalıdır.
 
-KISIM X DM-only alt-analizler HbA1c × parenting etkileşiminin (n = 39 keşifsel) anlamlı olmadığını, DM süresinin spline ile cubic non-linear yorumun lineer modelden istatistiksel iyileşme sağlamadığını ve tanı yaşı 3-strata farklarının F < 2.05 ile sınır altı kaldığını raporlamıştır. Bu örüntü iki alternatif yorumla okunabilir: birincisi DM klinik heterojenliği bu örneklem büyüklüğünde ebeveynlik tutum yordamasında ayrımlaştırıcı değildir; ikincisi düşük HbA1c veri tamamlanma oranı (%32.5) yorumlanan etkilerin gerçek etkilerden ziyade rastgele dalgalanma içinde gizli kalmasına yol açıyor olabilir. Kural #19 uyarınca HbA1c için imputation yapılmamış ve bulgu güç sınırlamasıyla birlikte raporlanmıştır.
+Öz-rapor kanalının sessiz kalması, yükün gerçekten var olduğu bir zeminde daha da
+anlamlıdır; ancak bu yükün öz-bildirima yansıyıp yansımadığı nüanslıdır. Streisand ve
+Monaghan'ın küçük çocuklu Tip 1 diyabet ailelerine ilişkin derlemesi, birincil
+çalışmaları bir araya getirerek annelerin insülin uygulamalarının %79'unu ve
+kan-şekeri ölçümlerinin %70'ini üstlendiğini derler; aynı derlemede küçük çocuklu
+ebeveynlerde klinik-düzey anksiyete ve depresyon belirtileri %21-24 aralığında
+raporlanmıştır [@streisandMonaghan2014]. Yani hem genel psikolojik yük hem de bakımın
+anneye kayan dağılımı bu örneklemlerde öz-bildirima yansımaktadır. Mevcut çalışmanın
+H0'ı bu nedenle "yük yok" biçiminde değil, "spesifik olarak EMBU-P ebeveynlik-tutumu
+alt ölçeklerinde grup farkının belirmediği, buna karşın gece izlemi gibi objektif
+bakım yükünün ölçek puanına her zaman yansımayabileceği" biçiminde okunmalıdır.
+Haugstvedt ve arkadaşlarının 200 katılımcılı (103 anne, 97 baba) popülasyon-temelli
+çalışması bu asimetriyi doğrudan nicelendirir. Anneler tıbbi bakım yükünü babalardan
+anlamlı biçimde daha yüksek (3,02'ye karşı 2,78; p = 0,048) ve duygusal sıkıntıyı
+daha fazla (HSCL-25 1,39'a karşı 1,22; p < 0,001) bildirmiştir. Yük ile sıkıntı
+arasındaki bağ yalnız annelerde anlamlı bulunmuştur (r = 0,25-0,37) [@haugstvedt2011].
+On sekiz niteliksel çalışmayı birleştiren bir kapsam derlemesi ise bakım yükünü kronik
+keder, glukoz yönetimi sorumluluğu, uyku bozukluğu ve kariyer fedakârlığı gibi
+yinelenen temalarda belgeler; anne ile baba arasındaki yük farkını doğrudan niceleyen
+çalışmaların azlığını açık bir araştırma boşluğu olarak işaretler [@azimi2024caregiver].
 
-## Sınırlılıklar ve Sapma Şeffaflığı
+Bu yükle olası bir ilişkiye işaret eden bir belirteç mevcut örneklemde de
+görünürdür. Tip 1 diyabetli çocuk anneleri kontrol annelerine kıyasla belirgin
+biçimde daha yüksek oranda antidepresan kullanmaktadır (%29'a karşı %9;
+SMD = 0,53) (Bulgular, @tbl-apa-sample-characteristics). Bu oran doğrudan bir
+depresyon yükü ölçümü değil, ruhsal tedavi kullanımı ve/veya hizmete erişim
+farkını yansıtabilecek bir belirteçtir; endikasyon, hizmete erişim, anksiyete,
+ağrı ve tedavi arama davranışı gibi etkenleri de kapsar. Yine de bu asimetri,
+öz-bildirimlu ebeveynlik-tutumu farkının yokluğunun anne ruh sağlığı yükünün
+yokluğu anlamına gelmediğini destekler. Nitekim Tip 1 diyabet ailelerinde
+sıkıntının özellikle annelerde yoğunlaştığı ve çok-bilgi-verici tablonun anne
+düzleminde ayrıştığı belgelenmiştir [@vangampelaere2020families]. Anne depresif
+belirtilerinin bu bağlamda glisemik kontrolün başlıca yordayıcısı olabildiği de
+gösterilmiştir [@rumburg2017maternalDistress]. Bu tablo, anne
+öz-bildirim düzlemindeki H0'ın anneliğin tıbbi bakım koordinatörlüğüne kayması ve bu
+rolün ahlaki zorunluluk olarak içselleştirilmesine ilişkin niteliksel örüntüyle
+birlikte değerlendirildiğinde anlam kazandığını göstermektedir.
 
-Çalışmanın temel sınırlılıkları şunlardır: (a) örneklem büyüklüğü (n = 482 satır = 241 aile) bazı multilevel ve diadik analizler için sınırda kalmıştır; (b) HbA1c veri tamamlanma oranı düşüktür ve KISIM X bulgusunun yorumu güç-sınırlı yapılmıştır; (c) EMBU-P Reddetme alt ölçeğinde α = 0.45 sınır altı iç tutarlılığı gözlemlenmiş ve bu KISIM XI sensitivite hattıyla raporlanmıştır; (d) Kenny k-katsayısı bootstrap güven aralıkları geniş kalmış, gelecek faz n artışı veya Bayesian k preflighti önerilmektedir; (e) çalışma yalnızca nicel ölçüm aracıyla yürütülmüş, çocuk ve anne deneyim narratifi sayısal modeller dışında kalmıştır; (f) ön-kayıt prospektif/reflective hibrit olarak kabul edilmiştir, OSF d524q (validasyon) ve pytfe (H1-H5 confirmatory) ayrımı 02-sapma-tablosu'da izlenmektedir.
+Anne depresif belirti yükü ile ebeveynlik öz-bildirimi arasındaki yapısal ilişkiyi sınayan dördüncü hipotez (H4) kısmen desteklenmiştir. Yapısal eşitlik modelinde, yüksek maternal depresyonun düşük sıcaklık, artmış reddetme ve artmış karşılaştırma tutumlarını istatistiksel olarak anlamlı düzeyde yordadığı gösterilmiştir (Bulgular, @tbl-apa-h4-sem). Bununla birlikte karşılaştırmalı uyum indekslerinin (CFI, TLI) marjinal kalması ve tasarımın kesitsel doğası gereği, saptanan bu bağlar nedensel bir etki yönünden ziyade eşzamanlı bir kovaryasyon örüntüsü olarak yorumlanmalıdır.
 
-KISIM XI sensitivite üçlüsü (multiverse + TOST + sensemakr) bu sınırlılıkların etkilerini sayısallaştırmıştır: spesifikasyon değişkenliğine karşı bulgular dayanıklı, eşdeğerlik bandı 2/4 alt ölçekte kesin (Equivalent), ölçülmemiş karıştırıcı duyarlılığı RV_q ≈ 0.04-0.08 ile zayıf-orta düzeydedir.
+Örüntünün yönü ve görece büyüklüğü literatürle tutarlıdır. Lovejoy ve arkadaşlarının [@lovejoy2000maternal] 46 çalışmalık meta-analizinde anne depresyonu en güçlü negatif etkiyi olumsuz/düşmanca ebeveynlik davranışı (d = 0,44) üzerinde gösterirken, olumlu davranışlar üzerindeki etki daha zayıf (d = -0,16) kalmıştır. Mevcut tezde saptanan, anne depresyonunun pozitif boyutlardan (sıcaklık) ziyade olumsuz/kontrol edici boyutlarda (reddetme ve karşılaştırma) daha keskin yapısal yollar (path coefficients) üretmesi, bu bulguyla paraleldir.
 
-## Klinik ve Araştırma İçin Çıkarımlar
+Goodman ve ekibinin [@goodman2011maternalMetaanalytic] kapsamlı meta-analizinde anne depresyonu ile ebeveynlik arası ilişki küçük-orta bantta (r ≈ 0,23) tespit edilmiş, ancak bu bağın öz-bildirim araçlarında daha güçlü saptanması yöntem varyansına (method variance) bağlanmıştır. Tezin saptadığı ilişkilerin bu bantta kalması bu bulguyu desteklerken, boylamsal çalışmalarda depresyon-ebeveynlik bağının (r = 0,15) korunması yapısal etkinin varlığını teyit eder [@goodman2020parentingMediator].
 
-Bulguların klinik önerileri şunlardır: (a) T1DM tanılı çocuk ailelerinde anne öz-raporu tek-başına klinik karar bilgi kaynağı olarak yetersizdir, çocuk algısı ölçümü zorunlu tamamlayıcıdır; (b) anne depresyonu ebeveynlik tutum yordayıcısı olarak büyük etki sergilemektedir, perinatal psikiyatri tarama programları DM bakım hizmetine entegre edilmelidir; (c) anne ↔ çocuk diadik tutarsızlık örüntüleri (anne savunmacılığı, ayrımcı muamele) klinik psikoeğitim hedefleridir; (d) kardeş ilişkisi DM aile sistemlerinde sağlam kalmıştır, fakat kardeş-spesifik müdahale fırsatları mevcuttur.
+Bu durum Tip 1 diyabet dünyası için de geçerlidir. Jaser ve ekibinin 108 diyabetli çocuk ve annesiyle yaptığı araştırmada, annenin depresyonu ile çocuğun depresyonu arasında çok güçlü bir bağ bulunmuştur (r = 0,44). Annenin çocukla kurduğu 'sıcaklık', bu depresyonun çocuğa geçişini engelleyen veya yavaşlatan kısmi bir filtre görevi görmüştür [@jaser2007t1dmMediators].
 
-Araştırma için öneriler: (a) Türk T1DM ailelerinde EMBU-C ve diadik konkordans ölçümleri ileri psikometrik adaptasyon çalışmasıyla güçlendirilmelidir; (b) prospektif boylamsal tasarım Beck → EMBU-P → EMBU-C zincirinin nedensel yapısını test etmek için gereklidir; (c) dış örneklem validasyon çalışması KISIM IX risk skorunun klinik karar değerini doğrulamak için zorunludur; (d) sosyal istenirlik kompansasyonunun derinlemesine incelenmesi ayrı bir niteliksel/karma yöntem araştırma projesi olarak yürütülmelidir (bu tezin kapsamı dışındadır).
+Dahası maternal depresif yük öz-bildirim boyutunda sınırlı kalmamakta, çocuk algısına doğrudan geçişkenlik göstermektedir. İkincil keşifsel katmanda, yüksek klinik belirti gösteren (Beck ≥ 17) annelerin çocukları, hastalık durumundan ve aktif antidepresan kullanımından bağımsız olarak belirgin düzeyde yüksek maternal reddetme (p = 0,004) ve karşılaştırma (p = 0,003) algısı bildirmiştir. Bu bulgu, H4 (maternal depresyon) ile H1 (çocuk reddetme algısı) arasındaki algısal yansımayı açıklar: annenin beyanından bağımsız biçimde maternal psikiyatrik sıkıntı çocuğun değerlendirmesine yansımaktadır [@goodman1999risk].
 
-## Sonuç
+Annenin ruh hali ile diyabetli çocuğun durumu arasındaki bu geçişgenlik, yeni Türkiye verileriyle de desteklenmektedir. 129 anne-çocukla yapılan bir araştırmada; annedeki depresyon, kaygı ve bakım yükünün çocuğun duygusal/davranışsal sorunlarıyla doğrudan bağlantılı olduğu bildirilmiştir [@akdoganDuken2026caregiver]. Hatta 390 ergen ve anneyi kapsayan başka bir çalışmada, annesi klinik düzeyde depresyonda olan çocukların kan şekeri kontrollerinin bile diğerlerinden daha kötü (%9,6'ya karşı %8,6) olduğu gösterilmiştir [@abadula2024maternalDepr]. 1219 ailenin beş yıl izlendiği uluslararası bir projede ise annelerin sürekli kendilerini 'ergenlerden daha sıcak ebeveynler' olarak görmesi, çocukların içsel sorunlar yaşamasını engelleyememiştir [@esposito2025discrepancy]. Bu bağlamda ebeveyn öz-bildiriminden ziyade çocuğun ebeveynlik algısı klinik gelişimi şekillendiren temel faktördür.
 
-Bu doktora tezi Tip 1 Diyabet (T1DM) tanılı çocuklar, sağlıklı kardeşleri ve anneleri ile sağlıklı kontrol grubu arasındaki ebeveynlik tutumu algı örüntüsünü; EMBU (kısaltılmış 29 madde, 4 alt ölçek) ebeveyn ve çocuk formları, Beck Depresyon Envanteri ve Kardeş İlişkileri Anketi (KİA / SRQ) ile çoklu kaynaklı, aile düzeyinde nesteli bir tasarımda incelemiştir. Veri tabanı 241 aile × 2 katılımcı = 482 satır olarak kanonik kilit altına alınmış, analiz hattı `targets` orkestrasyonuyla yürütülmüş ve KISIM I-XII boyunca multilevel ANCOVA, latent SEM, dyadic CFA, propensity-score ayarlamalı IPTW, sensitivite üçlüsü (multiverse + TOST + sensemakr) ve Bayesian dual reporting analizleri tamamlanmıştır.
+Aşırı koruma ile depresyon arasında anlamlı bir yapısal yol (path) saptanamaması, bu boyutun psikiyatrik yükten bağımsızlaştığını gösterir. Kronik hastalık bağlamında aşırı koruma, depresif bir semptom uzantısından ziyade hastalık yönetiminin (glisemik kontrol, rejim uyumu) nesnel gereklerine karşı üretilen durumsal ve adaptif bir tutumdur [@pinquart2013]. Reddetme gibi sert tutumların aksine [@pinquart2017parentingDimensions], aşırı korumanın bu bağlamda içselleştirilmiş bir düşmanlıktan çok tıbbi izlemin yapısal bir zorunluluğunu yansıtması muhtemeldir.
 
-Beş hipotezin toplu yansıması şudur. **H1** çocuk algısı düzleminde DM çocuklarının kontrol çocuklarından 0.16 SD yüksek reddetme algısı raporladığını (Bayes faktörü 8.12, "moderate H1") göstermiştir. **H2** kardeş ilişkisi alt ölçeklerinde grup farkı raporlanmamıştır. **H3** anne öz-rapor düzleminde DM × Kontrol farkı bulgulanmamış (Bayes faktörü 0.17-0.25, "moderate H0"; TOST 2/4 Equivalent), sosyal istenirlik temelli savunmacılık hipotezi sayısal kanıtla desteklenmiştir. **H4** Beck depresyon → EMBU-P latent SEM modeli sıcaklık (β = -0.30), reddetme (β = +0.36) ve karşılaştırma (β = +0.31) yollarında orta-büyüklükte ve istatistiksel olarak anlamlı etki raporlamıştır. **H5** birincil yenilik katkısı olarak kurulan diadik tutarlılık analizi beş paralel strateji ile zayıf ICC, düşük latent konkordans (r = 0.19) ve yüksek klinik tutarsızlık örüntülerini ortaya koymuş, anne ↔ çocuk algı kopukluğunu sayısallaştırmıştır.
+Enine kesitsel veride nedensel yönelim kurulamayacağı göz önüne alındığında, depresyon ve ebeveynlik arasındaki ilişkinin salt eş-değişim (covariation) olarak okunması metodolojik bir gerekliliktir [@maxwellCole2011crossMediation].
 
-Tezin teorik katkısı, T1DM ailelerinde ebeveynlik tutumlarının gözlem düzeyine göre değişen örüntü gösterdiğini ve diadik konkordans ölçümünün psikometrik adaptasyon çalışmalarında zorunlu tamamlayıcı olduğunu göstermesidir. Klinik katkısı, anne öz-rapor düzleminin tek-başına yetersiz kaldığı, çocuk algısının ve diadik tutarlılığın klinik karar bilgi kaynağı olarak entegre edilmesi gerektiği önerisidir. Metodolojik katkısı, küçük-orta etki büyüklüğü ve sınır altı psikometrik iç tutarlılık koşulları altında multiverse + TOST + sensemakr + Bayesian dual reporting üçlüsünün null bulguları kesin yorumlamak için zorunlu olduğunu göstermesidir.
+Ayrıca H4'te Beck ve EMBU-P ölçümlerinin her ikisi de aynı anneden, aynı oturumda
+ve öz-bildirim yöntemiyle toplandığından, aralarındaki eş-değişimin bir bölümü
+ortak yöntem varyansından (CMV) kaynaklanıyor olabilir. Bu paylaşılan yöntem
+yanlılığı Beck → EMBU-P katsayılarını yukarı yönlü şişirebileceğinden, bu yolların
+büyüklüğü tavan tahmin olarak yorumlanmalıdır.
 
-Sınırlılıklar ve gelecek faz önerileri şunlardır: HbA1c veri tamamlanma oranı (%32.5) DM klinik alt-analizlerinin gücünü kısıtlamış ve EMBU-P Reddetme α = 0.45 ile sınır altı iç tutarlılık göstermiştir. Bu sınırlılıklara karşı (a) prospektif boylamsal genişletme, (b) EMBU-P psikometrik adaptasyon güçlendirmesi ve (c) KISIM IX risk skorunun dış validasyon çalışması önerilmektedir. Sosyal istenirlik kompansasyonunun derinlemesine niteliksel incelenmesi bu tezin kapsamı dışındadır ve ayrı bir araştırma projesi olarak yürütülecektir.
+Kardeş ilişkisi düzleminde H2 desteklenmemiştir: dört alt ölçekte de DM × kontrol
+farkı için kanıt yetersiz kalmıştır (Bulgular, @tbl-apa-h2-family-mean,
+@tbl-apa-h2-apim). Bu bulgunun aktif bir eşdeğerlik kanıtı değil "fark için kanıt
+yetersizliği" olarak raporlanması önemlidir; kronik hastalık kardeş alanyazınında null
+etkileri biçimsel eşdeğerlik testiyle doğrulayan doğrudan bir emsale ulaşılamadığından,
+bu ihtiyat tezin ayırt edici bir yöntemsel duruşudur. Sonuç, alanyazınla iki düzeyde
+tutarlıdır. Birincisi, kronik hastalıkta kardeş etkisinin küçük ve heterojen olduğudur.
+Sharpe ve Rossiter'in 51 çalışma ve 103 etki büyüklüğünü birleştiren meta-analizinde
+kardeşlerde yalnız küçük ve negatif bir genel etki bulunmuştur (ağırlıklı ortalama
+Mz = −0,20; %95 GA −0,23 ile −0,16). Ebeveyn raporları çocuk öz-bildirimlarından yaklaşık
+iki kat daha olumsuz seyretmiş (Mz = −0,23'e karşı −0,13; p < 0,0001), etki
+içselleştirmede dışsallaştırmadan güçlü çıkmış (Mz = −0,41'e karşı −0,15) ve diyabet,
+günlük tedavi rejimi gerektiren anlamlı-negatif hastalık kümesinde yer almıştır
+[@sharpe2002siblings]. Kanserli çocukların kardeşlerine ilişkin 102 çalışmayı (63 nicel,
+35 nitel, 4 karma) sentezleyen narratif sistematik derlemede kaygı, depresyon ve genel
+uyumun ortalama düzeyleri karşılaştırma gruplarına yakın kalmaktadır
+[@long2018cancerSibReview]. Küçük bir etkinin tek bir örneklemde saptanamaması
+beklenebilir olduğundan, mevcut null bulgu bu tabloyla çelişmez; dahası, "ebeveyn
+raporunun çocuk raporundan daha olumsuz olması", grup puanı düzeyindeki fark yokluğunun
+bilgi-verici kaynağıyla ilişkili olabileceğini düşündürür.
 
-Açık bilim çıktıları OSF kayıtları (`pytfe` confirmatory + `d524q` validasyon), `renv.lock` paket kilidi, `_targets/meta` hash zinciri ve `FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock` kanonik veri kilidi olarak korunmuş; tüm sapma kararları `02-sapma-tablosu.md` içinde şeffaf raporlanmıştır.
+İkincisi, somatik kronik hastalıkta kardeş ilişkisinin büyük ölçüde korunduğudur. Rad
+ve arkadaşlarının 100 aileyi (50 somatik hastalık, 50 ruhsal bozukluk) karşılaştıran
+çalışmasında somatik grubun kardeşleri olumlu ilişki boyutlarında anlamlı biçimde daha
+yüksek puan almıştır (ilgi/arkadaşlık 24,88'e karşı 19,98, p < 0,001; empati 22,62'ye
+karşı 20,35, p = 0,041). Çatışma ve saldırganlıkta gruplar farklılaşmamıştır
+[@rad2023siblingDynamics]. Kronik hastalıkta kardeş uyumunu 67 çalışma üzerinden hem
+risk hem de uyum-sağlama ekseninde ele alan bütünleştirici derleme de bu iki yönlülüğü
+desteklemektedir [@lummerAikey2021].
+
+Ancak grup puanları düzeyindeki fark yokluğu,
+sağlıklı kardeşin etkilenmediği anlamına gelmez. Dinleyici ve arkadaşlarının 191 kronik
+hastalık kardeşi ile 100 kontrolü karşılaştıran Türkiye çalışmasında kardeşlerin toplam
+yaşam kalitesi kontrollere göre düşüktür (PedsQL 75,1'e karşı 83,4; p < 0,001).
+Kritik biçimde, bozulmuş yaşam kalitesi çocuk öz-bildiriminde %30,4 iken ebeveyn
+vekil-bildiriminde yalnız %15,1'dir [@dinleyici2019siblingQoLTurkiye]; bu ayrışma,
+çocuğun kendi yükünü ebeveynden daha fazla algıladığını Türk örnekleminde doğrular. Aynı
+çalışmada diyabet alt-grubunun psikososyal yaşam kalitesinin kontrolden anlamlı biçimde
+düşük çıkmaması, Tip 1 diyabette görünmez yükün daha örtük veya hastalığa-özgü biçimde
+deneyimlenebileceği uyarısını taşır. Nitekim Mısır'da 100 Tip 1 diyabet kardeşiyle
+(50 küçük, 50 büyük) yürütülen çalışmanın tam metninde SDQ ebeveyn-raporuna göre küçük
+kardeşlerin %18'i (9/50), öz-bildirima göre büyük kardeşlerin %20'si (10/50) yüksek güçlük
+düzeyi bildirmiştir. Toplam güçlük puanı kan şekeri kontrol düzeyi, hastalık komplikasyonları,
+ebeveyn stresi ve aile işlevselliğiyle pozitif ilişkili bulunmuştur
+[@elhabashy2023siblings]. 288 aileyi kapsayan Norveç yapısal eşitlik çalışmasında baba
+depresyonu daha düşük kardeş yaşam kalitesiyle (B = −6,98; p < 0,001), ebeveyn-kardeş
+iletişim kalitesi ise daha yüksek yaşam kalitesiyle (B = 0,47) ilişkili bulunmuştur.
+Anne depresyonu ile ilişki ve tüm dolaylı etkiler anlamsız kalmıştır
+[@kirchhofer2025sibsRiskModel]. Türkiye'de 54 Tip 1 diyabet kardeşini 200 kontrolle
+karşılaştıran yeni bir çalışmada da kardeşlerin depresyon, anksiyete ve utanç puanları
+kontrollerden farklı bulunmamıştır [@erdim2022siblings]; bu bulgu, standart ölçeklerin
+sağlıklı kardeşteki farkı yakalayamadığı yönündeki null yorumunu Türk Tip 1 diyabet
+örnekleminde doğrudan destekler.
+
+Kardeş İlişkileri Anketi'nin ölçtüğü ilişki-kalitesi
+boyutları [@furmanBuhrmester1985srq] bu yükün sessiz biçimlerini doğrudan
+yakalamayabilir; Türkiye'de kardeş ilişkisini ölçmeye yönelik bağımsız araç geliştirme
+çabaları [@aktas2017kardesIliskileriOlcegi] bu alandaki ölçüm ihtiyacını
+göstermektedir. Bu nedenle H2 null bulgusu "kardeş ilişkisinin temel nitelikleri
+sağlam kalmış, ancak görünmez yük ilişki-kalitesi ölçeğinin dışında kalıyor olabilir"
+biçiminde, sağlıklı kardeşin görünmeyen yüküne ilişkin niteliksel örüntüyle birlikte
+okunmalıdır.
+
+Bu araştırmanın temel çıkarımlarından biri de aynı haneyi paylaşan anne ve çocuğun ebeveynlik süreçlerini ne derece farklı deneyimlediğidir (H5). Beş farklı istatistiksel strateji ile yürütülen çok-yöntemli analiz, anne öz-bildirimi ile çocuk algısı arasındaki diadik tutarlılığın düşük olduğunu doğrulamıştır (Bulgular, @tbl-apa-h5-concordance). Sayısal veriler bu diadik kopukluğun şiddetini belgelerken, çalışmanın nitel boyutu bu ayrışmanın bağlamsal kökenlerini aydınlatmaktadır.
+
+Aslında bu kopukluk bilimsel literatürün de beklediği bir durumdur. Korelitz ve Garber'in 85 araştırmayı özetlediği çalışmasında, anne-çocuk arasındaki algı uyumunun genellikle zayıf olduğu (r = 0,23-0,28 bandında) saptanmıştır. Dahası ebeveynler, öz-bildirim ölçümlerinde kendi tutumlarını çocuklarının algısına kıyasla daha olumlu raporlama yönelimindedir. Diyabet gibi hastalıkların olduğu klinik gruplarda ise bu uyum neredeyse sıfıra yaklaşmaktadır [@korelitz2016congruence]. Ünlü araştırmacı Achenbach da bu durumu "bir ölçüm hatası veya yanlılık olarak değil, her bireyin ilişkiyi kendi bağlamından geçerli bir şekilde farklı deneyimlemesi (durumsal özgüllük) olarak kavramlaştırmıştır [@achenbach1987crossinformant]. Dolayısıyla bilgi-vericiler arası uyuşmazlık ölçümsel bir hata değil, ilişkisel dinamiklerin yapısal bir yansımasıdır [@deLosReyes2015].
+
+De Los Reyes ve Kazdin, annenin, çocuğun veya öğretmenin aynı çocuğa bakıp bamfarklı bildirimlerde bulunmasını bağlamsal değişkenlikle açıklar: Bilgi-vericiler hedef davranışları farklı ortamlarda ve farklı beklentilerle değerlendirir. Çocuğun evdeki tavrı ile okul veya hastanedeki tavrı aynı olamaz. Bu perspektiften, uyuşmazlık bir geçersizlik göstergesi değil, her bir gözlemcinin kendi bağlamına özgü geçerli bir bilgi taşıdığı anlamına gelir [@deLosReyesKazdin2005; @deLosReyes2021needsGoals]. Bu çerçevede, mevcut araştırmada izlenen anne-çocuk bildirim ayrışması da beklenen yapısal bir sonuç olarak değerlendirilmelidir [@delosReyes2022discrepancies].
+
+Uyum düzeyinin sınıf-içi korelasyon eşiklerine göre "fakir-zayıf" bantta konumlanması
+ve geniş güven aralıklarının raporlanması psikometrik otoriteyle uyumludur
+[@cicchetti1994; @koo2016iccGuideline]; latent diadik model ise değiştirilebilir diadlar
+için yapısal eşitlik geleneğine dayanır [@olsenKenny2006interchangeableDyads;
+@kennyKashyCook2006]. Diadik uyumun raporlanmasında sınıf-içi korelasyonun yanı sıra
+Bland-Altman uyum sınırlarının kullanılması, COSMIN taksonomisinde ayrı bir ölçüm
+özelliği olan *ölçüm hatası* boyutunu doğrudan işlevsel olarak karşılamaktadır; bu
+özellik, iki bildirim arasındaki sistematik sapma ve rastgele değişkenliğin mutlak
+ölçek biriminde nicelenmesidir [@mokkink2018cosmin].
+
+Kritik bir ampirik dayanak, uyumun alana bağlı olduğudur. Barry ve arkadaşlarının Tip
+1 diyabetli 154 genç ile 211 ebeveynde yürüttüğü tarama çalışmasında depresyon ve
+anksiyete semptomları için anne-genç uyumu "iyi" düzeydedir (ICC = 0,787 ve
+ICC = 0,781) [@barryMenkhaus2020t1dScreening]. Buna karşın mevcut çalışmadaki
+ebeveynlik-algısı alanında uyumun fakir kalması, düşük uyumun genel bir bilgi-verici
+zaafından değil, bilgi-verici × boyut etkileşiminden kaynaklandığını göstermektedir.
+Bu etkileşim mevcut veride de nicelenmiştir: latent değişken düzeyinde anne-çocuk
+uyuşmazlığı reddetme boyutunda sıfıra yakın kalmış (r = 0,03), karşılaştırma boyutunda
+sıfırdan uzaklaşmıştır (r = 0,18) (Bulgular, §4.4.6). Ayrı bir bilgi-verici çiftinde,
+kardeşler-arası reddetme algısı uyumu DM grubunda (ICC = 0,00) kontrole (ICC = 0,32)
+kıyasla belirgin biçimde düşük kalmıştır (bkz. §H5 kardeş uyumu). Düşük uyum böylece
+genel bir bilgi-verici zaafı olarak değil, hem boyut- hem de bilgi-verici-çifti ve
+gruba-özgü bir örüntü olarak yorumlanmaktadır.
+
+Bu algı farkının kökeni, Branje ve ekibinin 288 aileyi inceleyen araştırmasında daha iyi anlaşılır. Bir insanın başkası hakkındaki düşüncesi sadece karşıdakinden değil; kendi huyundan, toplumun o kişi hakkındaki genel izleniminden ve ikisi arasındaki karşılıklı, kendilerine özgü (diadik) ilişkisel tarihten beslenir. Annelerin çocuklarına bakışı ağırlıklı olarak "sadece ikimize özel bağ" üzerinden şekillenirken, çocuklar bu duruma daha farklı pencerelerden bakarlar [@branje2003srmFamilyPerception].
+
+Bu bağlamda karma tasarımın temel katkısı, "bilgi-verici uyuşmazlığının ardında yatan mekanizma nedir?" sorusuna nitel verilerle yanıt verebilmesidir. Niteliksel temalar; annenin tıbbi sorumluluk ve güvenlik eksenli, indeks çocuğun bedensel özerklik ve sosyal algı temelli, sağlıklı kardeşin ise adaletsizlik ve ikincilleştirilme odaklı anlam dünyaları inşa ettiğini göstermiştir. Bu durum aynı hanedeki üç aktörün yapısal olarak farklı fenomenolojik konumlar deneyimlediğine işaret eder. Çalışma ebeveynlik davranışının nesnel bir dökümünü sunmaktan ziyade, aynı davranışsal tutumun bu üç bilgi-verici tarafından nasıl farklı anlamlandırıldığını (fenomenolojik ayrışmayı) belgelemiştir. Nicel bulgularda saptanan istatistiksel uyumsuzluğun bağlamsal derinliği bu nitel temalarla bütünleşmektedir.
+korunmuştur.
+
+Niteliksel dört makro tema, bu ayrışma haritasının deneyimsel içeriğini üç aile
+rolünün konumundan belgelemekte ve her tema uluslararası nitel kanıtla
+zenginleşmektedir. Sağlıklı kardeşin görünmeyen yükü teması, kardeşin tanının doğrudan
+öznesi olmasa da aile rutinlerindeki değişimi ve ebeveyn ilgisinin yeniden dağılımını
+sessizce taşıdığını göstermektedir. Bu örüntü, 23 niteliksel çalışmayı ve 269 sağlıklı
+kardeşi sentezleyen sistematik derlemenin "çok erken büyümek" temasıyla neredeyse
+birebir örtüşür; söz konusu derleme, ebeveyn dikkatinin hasta çocuğa yönelmesiyle
+kardeş gereksinimlerinin gözden kaçtığını vurgular [@tan2024siblingreview]. Webster ve
+arkadaşlarının 24 aileyle yürüttüğü çok-perspektifli çalışma bu görünmezliği çarpıcı
+biçimde nicelendirir: ailelerin %83'ünde kardeşler hasta kardeşine bakım verirken
+yalnız bir kardeş resmî olarak "genç bakıcı" tanınmış, araştırmacılar "tetikte
+yardımcı" ile "yerine geçen ebeveyn" gibi ayrı bakım rolleri tanımlamıştır
+[@webster2018siblingcaringroles]. Bu tipoloji, mevcut çalışmadaki Tip 1 diyabet
+kardeşinin üstlendiği kan-şekeri izlemi ve hipoglisemi gözetimi işine doğrudan bir ad
+vermektedir.
+
+Tip 1 diyabete özgü yeni nitel kanıt bu tabloyu pekiştirir: birden çok
+üyesinde Tip 1 diyabet bulunan ailelerde sağlıklı kardeşlerin önceliklendirilme
+kaynaklı hayal kırıklığı yaşadığı ve bir kardeşte "ebeveynleşme" sınırına gelen bir
+bakım rolü üstlendiği belgelenmiştir [@litchman2025family]. Bu yükün ölçüm görünürlüğü
+ise düşüktür: sağlıklı kardeş deneyimi literatürde büyük ölçüde ebeveyn-vekil
+bildirimiyle temsil edilmekte, kardeşin kendi öz-bildirimi kıt kalmaktadır
+[@blamires2024umbrella]. Altmış iki çalışmalık bir kapsam derlemesinde kardeş yükünü
+tanımlı bir katılım ölçeğiyle ölçen tek bir çalışma bile bulunamamıştır
+[@linimayr2025scoping]. Bu tablo, mevcut çalışmada H2 grup farkı belirmezken görünmez
+yükün niteliksel kolda öne çıkmasını bilgi-verici ve ölçüm alanı farkıyla bağdaştırır.
+
+Annenin tıbbi bakıcı rolüne kayması teması, tanı sonrası anneliğin sürekli ölçüm,
+izlem ve risk önleme sorumluluğu taşıyan bir konuma dönüştüğünü betimlemektedir. Bu
+dönüşüm, Knafl ve Deatrick'in Aile Yönetim Stili Çerçevesi'nde (Family Management Style
+Framework) kuramsal bir zemine oturmaktadır; çerçeve, bir çocuğun kronik hastalığına
+verilen aile yanıtını durumun tanımı, yönetim davranışları ve algılanan sonuçlar
+boyutlarıyla kavramsallaştırır [@knafl2003fmsf; @knafl2012continued]. Annenin "tıbbi
+bakıcı" konumuna kayması bu çerçevede bir yönetim davranışı yeniden yapılanması olarak;
+bakımı ahlaki bir zorunluluk biçiminde içselleştirmesi ise durumun tanımı düzleminde
+okunabilmektedir.
+
+Lindström ve Sanner'in tükenmişlik yaşayan 21 Tip 1 diyabet annesiyle yürüttüğü
+çalışma bu deneyimi "imkânsız görev" olarak adlandırır: anneler, hiçbir zaman tam
+olarak başarılamayacak bir mükemmel bakım standardını sürekli kendilerine dayatmakta ve
+kendilerini durmadan yargılamaktadır [@lindstrom2017missionimpossible]. Waite-Jones ve
+arkadaşları ise annelik deneyimini bir "tıbbi kariyer"e benzetir — anne, zamanla
+çocuğunun bakımını profesyonel bir uzmanlık gibi yürütmeye başlar. Ancak bu sürekli
+tetikte olma hâli (hipervijilans) çevresindekiler tarafından çoğu kez "nörotik" bir
+aşırılık olarak yanlış okunur; bu yanlış anlaşılma, kendini sürekli yeniden besleyen bir
+döngü içinde annede öz-güven zedelenmesi ile suçluluk üretir
+[@waiteJones2020medicalcareermother]. Bu döngünün nesnel bir tezahürü uyku alanındadır:
+Macaulay ve arkadaşlarının Tip 1 diyabetli çocukların ebeveynleriyle yürüttüğü karma
+çalışmada 20 ebeveynin 13'ünde kötü uyku kalitesi saptanmış, gece glikoz izlemi ve
+hipoglisemi korkusu "hafif uyuma" ve sürekli tetikte olma haliyle ilişkilendirilmiştir
+[@macaulay2020parentalsleep]. İran'da 20 anneyle yürütülen çalışma da bakımın süreğen
+bir işe dönüşerek aile dengesini bozduğunu belgeler [@haghighiMoghadam2022mothers]. Bu
+tema, anne öz-bildirim düzlemindeki H0 ile depresyon-ebeveynlik yolları arasındaki
+bağlantıyı deneyim düzeyinde anlamlandırmaktadır.
+
+Tip 1 diyabetli çocuğun içeriden deneyimi teması, çocukların hastalığı hem
+olağanlaştırmaya çalıştığını hem de tedavi yükü, bedensel müdahale ve sosyal
+görünürlük üzerinden somut bir sınır olarak deneyimlediğini göstermektedir.
+Commissariat ve arkadaşlarının 40 ergenle yürüttüğü tematik analizde tüm katılımcılar
+diyabeti ortak biçimde bir "yük" olarak tanımlamış, birçoğu kendini "daha az normal"
+hissettiğini belirtmiştir; ergenler hastalığı kimliğe dâhil etme ile kimlik dışında
+sınırlama arasında farklılaşır [@commissariat2016identity]. Leung ve arkadaşlarının 22
+ergenle yürüttüğü odak grup çalışması damgalanma, tanı ifşası ve Tip 2 ile
+karıştırılmayı içeren bir "kimlik" temasını, kısıtlayıcılığı içeren bir "engel"
+temasını tanımlar [@leung2021fourIs]. Bu bulgular, mevcut çalışmadaki çocuk anlatısında
+beliren "normal" söyleminin yük yokluğu değil, çoğu zaman akranlara benzeme ve aile
+kontrolünü yönetme stratejisi olduğunu düşündürmektedir.
+
+Aynı evde üç farklı deneyim teması ise, Tip 1 diyabetin ailede tek bir ortak anlatı
+üretmediğini, aynı olayın farklı sorumluluk, risk ve adalet çerçeveleriyle
+anlamlandırıldığını göstermektedir. Bu farklılaşmayı adlandırmakta yararlı bir kavram,
+Devins'in "hastalık müdahaleciliği" (illness intrusiveness) çerçevesidir: bir hastalık,
+yalnız tıbbi belirtileriyle değil, günlük yaşamın alanlarına (iş, aile, boş zaman) ne
+ölçüde girip bunları kısıtladığıyla da yük üretir. Devins ve arkadaşlarının son-dönem
+böbrek hastalığı olan 19 hasta-eş çiftinde yürüttüğü çalışmada hastalar, eşlerinden
+anlamlı biçimde daha yüksek hastalık müdahaleciliği bildirmiştir (F(1,17)=21,76;
+p < 0,001). Bu fark evlilik-dışı yaşam alanlarında daha da büyümüştür. Eşler aile
+ortamını sistemi ayakta tutma yönünde daha fazla düzenlemiş, uyarlama yükünü çoğunlukla
+kadınlar üstlenmiştir. Örneklem yetişkin hastalardan oluştuğundan bulgu Tip 1 diyabet
+ebeveyn bağlamına doğrudan aktarılamaz; ancak aynı hastalık gerçekliğinin farklı aile
+rolleri tarafından farklı yaşam alanlarında ve farklı ağırlıkta deneyimlendiği fikrine
+kavramsal bir dayanak sağlar [@devins1997illnessintrusiveness].
+
+Türkiye'de Uludaşdemir
+ve Bilgehan'ın Tip 1 diyabetli çocukların anne ve babalarıyla yürüttüğü fenomenolojik
+çalışma bu rol ayrışmasını doğrudan gösterir: anneler parmak-delme acısı, diyabetik
+beslenme ve destek bulamama gibi güçlükleri, babalar ise finansal yükü ve işten izin
+alamamayı öne çıkarmıştır [@uludasdemir2026motherfather]. Bu diadik Türk kanıtı mevcut
+bulguyu güçlü biçimde desteklemektedir. Ancak anne, Tip 1 diyabetli çocuk ve sağlıklı
+kardeşten oluşan üç-rol aynı-ev karşılaştırmalı niteliksel tasarımına alanyazında
+ulaşılamamış; mevcut örneklerin tümü diadik düzeyde kalmaktadır — bu, mevcut çalışmanın
+triadik çok-bilgi-verici nitel tasarımının doldurduğu gerçek bir boşluktur. Niteliksel
+bulguların bu aktarımında yoğun betimleme (*thick description*) yoluyla aktarılabilirlik
+ile nicel genellenebilirlik ayrı kavramlar olarak korunmuştur; Aile 201'in bazı rol
+alanlarında düşük temsil düzeyinde kalması ise aktarılabilirlik tartışmasına bağlı bir
+sınırlayıcı örüntü olarak belgelenmiştir.
+
+Karma yöntem çalışmalarında nicel ve niteliksel bulguların nasıl bir araya geldiği
+açıkça adlandırılmalıdır. Burada üç ilişki türü kullanılmıştır:
+
+- **Açıklayıcı genişleme**: Nicel istatistiklerin saptadığı yapısal durumların (örneğin diadik uyumsuzluğun) nitel görüşmeler üzerinden bağlamsal olarak derinleştirilmesidir.
+- **Tamamlayıcılık**: Sayıların bir açıyı, görüşmelerin ise eksik kalan diğer açıyı ölçerek yapbozu tamamlamasıdır.
+- **Uyum**: Her iki yöntemin de aynı şeyi söylemesidir; sayılar etkinin şiddetini gösterirken, görüşmeler bu etkinin hikayesini anlatır.
+
+Bu üç kavram ışığında bulguları bir araya getirdiğimizde şu manzara ortaya çıkmaktadır (ayrıca bkz. @tbl-apa-result-synthesis):
+
+**Çocukların reddedilme hissi (H1) ile "çocuğun iç dünyası" arasındaki ilişki (Genişletme):** Sayılarda gördüğümüz o hafif reddedilmişlik hissinin ardında, çocukların kendilerini "hasta" değil "normal" gösterme çabası ve ailelerinin müdahalelerini kısıtlama olarak görmeleri yatar.
+<!-- kaynak: docs/CLINICAL-STUDY-REPORT-FINAL.qmd#h1-karar -->
+
+**Kardeşlerin anketlerde fark göstermemesi (H2) ile "görünmeyen yük" teması (Tamamlayıcılık):** Anket sonuçlarına bakılırsa diyabetli kardeş ile sağlıklı kardeşin hisleri arasında fark yoktur. Ancak derinlemesine görüşmeler, sağlıklı kardeşin hayatının baştan aşağı değiştiğini ve gizli bir bakım yükü taşıdığını ortaya çıkarmıştır. İki yöntem birbirini tamamlayarak görünmez olanı görünür kılmıştır. Bu durum, Türkiye'deki diğer araştırmaların (örneğin Dinleyici ve ekibi, ebeveyn-çocuk algısında %30'a karşı %15'lik fark) bulgularıyla da örtüşmektedir [@dinleyici2019siblingQoLTurkiye].
+<!-- kaynak: docs/CLINICAL-STUDY-REPORT-FINAL.qmd#h2-karar -->
+
+**Annelerin "farklılık bildirmemesi" demesi (H3) ile "tıbbi bakıcıya dönüşme" teması (Genişletme):** Annelerin öz-bildirim ölçeklerinde kontrol grubuyla benzer düzeyde puan alması ebeveynlik yükünün yokluğundan ziyade, ağır diyabet yönetiminin ahlaki bir annelik sorumluluğu olarak içselleştirildiğini ve bu nedenle anket formatında şikayet olarak kodlanmadığını düşündürmektedir.
+<!-- kaynak: docs/CLINICAL-STUDY-REPORT-FINAL.qmd#h3-karar -->
+
+**Depresyonun etkisi (H4) ile "sürekli tetikte olma ve suçluluk" teması (Uyum):** Anketlerin gösterdiği "annenin depresyonu çocuğu etkiler" bulgusu, görüşmelerdeki annelerin "geceleri sürekli şeker ölçme, uyuyamama ve çocuğuma yetemiyorum suçluluğu" anlatılarıyla birebir örtüşmüştür. Sayılarla hikaye burada tam olarak hizalanmıştır.
+<!-- kaynak: docs/CLINICAL-STUDY-REPORT-FINAL.qmd#h4-karar -->
+
+**Anne-çocuk uyuşmazlığı (H5) ile "aynı evde farklı dünyalar" teması (Genişletme):** Ölçümlerde izlenen uyuşmazlıklar salt hata varyansından (ölçüm yanlılığından) kaynaklanmamakta; aktörlerin (anne, indeks, kardeş) hastalığa yönelik öznel deneyim alanlarının yapısal farklılığını yansıtmaktadır.
+<!-- kaynak: niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd#tema-4 -->
+
+Karma bütünleştirme sonuçları, bilgi-vericiler arası farklılıkların geçersiz bir ölçümü değil, fenomenolojik olarak çoklu ve geçerli bir aile gerçekliğini temsil ettiğini doğrular. Niteliksel örneklem grubundan (n=7) elde edilen temalar evrene istatistiksel bir genelleme iddiası taşımaz; ancak nicel sonuçların arkasındaki nedensel mekanizmaları ve öznelliği anlamlandırmak için kavramsal bir derinlik sunar.
+
+Buraya kadarki yorumlar, çalışmanın en başında belirlediğimiz temel soruların (5 birincil hipotezin) yanıtlarıydı. Aşağıda bahsedeceğimiz bulgular ise "kesin sonuç" değil, verilerin içine daha derinlemesine daldığımızda karşımıza çıkan ve gelecekteki araştırmalara ışık tutabilecek "yeni ipuçlarıdır". Her bir ipucunu önce kendi verimizde ne anlama geldiği, sonra literatürde nasıl göründüğü, en son da neden dikkatle okunması gerektiği çerçevesinde ele alıyoruz.
+
+**Aracılık zincirindeki kırılma.** Maternal depresyonun çocuk algısı üzerindeki etkisinde annenin öz-bildirim tutumlarının aracı (mediator) rol oynadığına dair yapısal eşitlik modeli sınandığında; doğrudan ilişkinin anlamlı bulunduğu, ancak ebeveynlik öz-bildiriminin bir aracı (köprü) işlevi görmediği saptanmıştır (Bulgular, @tbl-apa-mediation). Ne var ki metodolojik çalışmalar (örn. Maxwell ve Cole) kesitsel (enine) veri yapılarıyla yürütülen dolaylı etki modellerinin zaman içerisindeki aktarımı tespit etmekte kısıtlı kalabileceğini vurgular [@maxwellCole2011crossMediation]. Bu nedenle aracılık yokluğu bulgusu salt nedensel bir red olarak değil, kesitsel ölçüm sınırı olarak değerlendirilmeli ve boylamsal tasarımlarla yeniden sınanmalıdır [@imaiKeeleYamamoto2010mediationDuyarlilik].
+
+**Ortalamanın arkasına saklanan gizli sinyal.** Tüm klinik örneğin merkezi eğilimine bakıldığında "reddedilme" algısı görece düşük düzeyde kalmaktadır. Ne var ki zayıf zemin ve zemin etkisine duyarlı istatistiksel modellemelerle (IRT ve latent özellikler) dağılımın uç noktalarına (en yüksek risk altındaki çocuklara) odaklanıldığında, bu alt grupta reddedilme hissinin çok daha şiddetli (neredeyse iki katı) olduğu saptanmıştır (Bulgular, §4.4.6). Bu bulgu, araştırmacıların her zaman ortalamaya odaklanmasının ne kadar yanıltıcı olabileceğini gösterir. Dolayısıyla genel evrendeki düşük etki büyüklüğü, yüksek riskli alt gruptaki klinik şiddeti maskelememelidir. Bu nedenle, söz konusu özgül risk grubu için daha duyarlı bir klinik değerlendirme önerilmektedir.
+
+**Ebeveynleri profilleme (Tipoloji).** Örneklemdeki annelerin ebeveynlik tutum yanıtları üzerinden üç alt profilli bir latent sınıflandırma (LPA) denenmiştir. Ancak profil belirleme stratejilerinin istatistiksel geçerliğinin çoğu literatür örneğinde sınırda kaldığı raporlanmaktadır [@sorgente2025lcaReview; @petersen2019lcaChildMH]. Mevcut çözümlemede üç-profilli çözüm fit indeksleriyle [@nylund2007sinifSayisi] desteklense de, bu katmanın doğrulayıcı olmaktan ziyade keşifsel/hipotez-üretici bir model olarak ele alınması uygun olacaktır.
+
+**Kardeşler arası ağ (Network) yapısında fark bulamadık.** Örneklem içi anket yanıtları üzerinden oluşturulan ağ (network) modelleri incelendiğinde, tanı ve kontrol gruplarına ait ağ yapılarının şekilsel olarak birbirinden belirgin biçimde ayrışmadığı görülmüştür (Bulgular, @tbl-apa-network) [@epskampFried2018ggm; @vanBorkulo2022nct]. Kuşkusuz bu durum, gruplar arası yapısal farkların bütünüyle yokluğu şeklinde yorumlanmamalıdır; sadece elimizdeki verinin "büyük resimde" bir fark kanıtlamaya yetmediğini gösterir. Ayrıca mevcut örneklem hacmi sınırlı olduğundan, bu ağdaki noktaların yerlerinin değişme ihtimali yüksektir.
+
+**İyi bir istatistik her zaman "klinik fayda" sağlamaz.** Annelik ve ebeveynlik özelliklerine bakarak "bu annenin depresyonu var mıdır" diye tarama yapan bir model geliştirdik. Bu model istatistiksel olarak başarılı oldu (ayrım gücü arttı). Ancak pratikte (klinikte) bunu "tarama testi" olarak kullanırsak sağlayacağı net fayda, daha yüksek eşiklerde yetersiz kaldı (Bulgular, @tbl-apa-clinical). Tıp literatürü de şunu söyler: İstatistiği ne kadar güçlü olursa olsun, bir testin klinikte hastaya fayda sağlayıp sağlamayacağı, o testin yanlış alarm verme maliyetine bağlıdır [@vickersElkin2006dca]. Dolayısıyla bu modelimiz, şimdilik sadece laboratuvarda çalışan ama sahaya inmeden önce üzerinde ince ayarlar yapılması gereken bir prototiptir.
+
+**Anket puanlarını toplamak yanıltıcı olabilir.** Anketlerdeki maddeleri sadece toplayarak "toplam puan" elde etmek, çocukların rastgele verdiği cevapları veya testin hatalarını görmezden gelir. Bunun yerine latent yapı modelleri kurulduğunda, gözlenen etkinin daha yüksek olduğu saptanmıştır (Bulgular, §4.4.6). Bu bulgu, araştırmacılara "sadece puanları toplamayın, ölçüm hatasını hesaba katan gelişmiş modeller kullanın" [@mcneishWolf2020toplamPuan] uyarısında bulunur. Ayrıca anne, çocuk ve kardeş bildirimleri tek bir kapsamlı modelde (trifaktör) birleştirilmeye çalışılsa da; soru sayısının azlığı ve cevapların çoğunun "hiçbir zaman" şıkkında birikmesi nedeniyle model düzgün çalışmamıştır [@marsh2014esem]. Bu da elimizdeki anketlerin kapasitesinin bir sınırıdır.
+
+**Bulgular test yöntemine göre değişiyor mu? (Sağlamlık Kontrolü)** Bir araştırmada aynı veriye farklı istatistiklerle yaklaştığınızda sonuçlar değişiyorsa, o bulguya güvenilmez. Mevcut analizlerde temel bulgular dört ayrı duyarlılık/robustluk testinden geçirilmiştir: (1) Bir etkinin sıfıra yakın olduğunu ispatlayan eşdeğerlik testleri [@lakens2018esdegerlik], (2) Gözden kaçmış bir dış etkenin (karıştırıcı) gözlenen etkiyi geçersiz kılması için ne kadar güçlü olması gerektiğini hesaplayan duyarlılık analizleri [@vanderweeleDing2017evalue; @cinelliHazlett2020sensemakr], (3) "Ya modeli şöyle kursaydık?" sorusuna yanıt olarak binlerce farklı senaryoyu aynı anda çalıştıran çoklu-evren analizleri [@steegen2016multiverse] ve (4) Araştırmanın hata yapma potansiyelini görmek için kurgulanan "sahte eşleşme" testleri (negatif kontrol ve falsifikasyon).
+
+Tüm bu zorlu sınamalar, ana bulgularımızın tek bir istatistiksel tercihe sırtını dayamadığını, yani sonuçların "kurduğumuz modele" değil, "sahadaki gerçeğe" dayandığını kanıtlamak için yapılmıştır (Bulgular, §4.5). Sadece sekiz sahte testten birinde (kayıt sırasıyla ebeveyn sıcaklığı arasında) ilginç bir bağlantı çıkmış, ancak bunun tesadüf olmadığı, ailelerin farklı zamanlarda/merkezlerde çalışmaya dahil olmasından kaynaklandığı (dönem/kohort etkisi) anlaşılmıştır.
+
+**Arka planda kalan diğer ince detaylar (Artık İlişki Yüzeyi).** (Bulgular, §4.4.7)
+- **İlk olarak**, annenin kendi tutumuna yönelik beyanı ile çocuğun algıladığı ebeveynlik arasındaki korelasyon zayıftır. Bu kopukluk, anne depresyonunun çocukta neden doğrudan reddedilme hissi olarak belirdiğini (aradaki ebeveynlik köprüsünün neden yıkıldığını) açıklamaktadır.
+- **İkinci olarak**, annelerin çocuklarını "aşırı koruma" eğilimi, hastalığın kendisinden ziyade annenin yaşı ve sosyoekonomik durumuyla bağlantılı bulunmuştur. Daha genç ve gelir durumu daha düşük olan anneler, çocuklarını aşırı korumaya daha meyillidir. Evin kalabalık olması ise bu duruma ekstra bir etki yapmamaktadır.
+- **Üçüncü olarak**, annenin depresyon düzeyinin kardeşler arasındaki ilişkinin kalitesini bozduğuna dair bir kanıt bulunamamıştır. Bu da sağlıklı kardeşin ilişki boyutunda diyabetten pek etkilenmemesi (H2) bulgumuzla uyumludur.
+
+Tüm bu ikincil faktörleri, hatalı bulgu üretmemek için katı istatistik süzgeçlerinden geçirdiğimizde (yanlış-keşif düzeltmesi), ayakta kalan tek yan bulgu "anne-baba arasındaki eğitim farkının, annedeki reddetme davranışıyla ilişkisi" olmuştur. Yani geri kalan sosyo-demografik veya sağlıkla ilgili değişkenler ana bulguları değiştirecek güçte değildir [@buist2013siblingMeta].
+
+**Kardeşler evdeki durumu nasıl algılıyor?** Tip 1 diyabetli indeks çocuğun sağlıklı kardeşiyle arasındaki algı farkları incelendiğinde (Bulgular, §4.4.6), klinik hastalık bağlamının kardeşler arası algısal uyuşmazlığın yönünü tek başına belirlemediği saptanmıştır.
+
+Asıl dikkat çekici örüntü şudur: Sağlıklı (kontrol) ailelerde iki kardeşin evdeki "reddedilme" hissi birbirine orta düzeyde benzerken (uyum ICC = 0,32; %95 GA [0,15; 0,47]), diyabetli ailelerde bu bağ pratikte kaybolmaktadır (ICC = 0,00; %95 GA [−0,18; 0,18]). Ham karşılaştırma çarpıcı bir ayrışmaya işaret etse de, iki grubun güven aralıkları alt/üst sınırlarda kısmen örtüşmekte ve gruplar arası fark için bu çözümlemede ayrı bir biçimsel test raporlanmamaktadır; dolayısıyla bulgu betimsel/keşifsel düzeyde okunmalıdır. Bu sınır içinde okunduğunda tablo, diyabetli ailelerde her çocuğun aynı evi giderek daha "kendine has" biçimde algılayabildiğini düşündürmektedir. Örüntü, aile içi ilişkilerin ne kadar kişiye özgü (idiyosenkratik) olabileceğini gösteren güncel literatürle de uyumludur [@branje2003srmFamilyPerception].
+
+**Çocuğun cinsiyeti ve yaşı (Gelişimsel Katman).** Çocuğun cinsiyetinin ebeveynlik algısı üzerinde moderatör etkisi saptanmamıştır (Bulgular, §4.4.6). Yaş değişkeni dikkate alındığında ise, anne yaşı arttıkça aşırı koruma algısının düştüğü görülmüştür (p = 0,004). Düşük ebeveyn yaşı ve düşük sosyoekonomik düzeyin (latent SES) aşırı koruyucu tutumu doğrusal olarak yordaması; bu tutumun doğrudan diyabet tanısından ziyade demografik bağlamın yarattığı adaptif bir refleks olduğuna işaret eder [@trillingsgaard2018maternalAge].
+
+Ayrıca çocuğun yaşı büyüdükçe (ergenlikte), annenin kendisi hakkında verdiği anket cevaplarıyla çocuğun verdiği cevaplar arasındaki bağlantı (uyum) güçlenmektedir (Bulgular, §4.4.8). Yani küçük yaştaki çocukların ebeveynlik anketlerini daha farklı (ya da yetersiz) algılamaları, uyumsuzluğun bir nedeni olabilir [@deLosReyes2015].
+
+Öte yandan, diyabetli ailenin sağlıklı kardeşi, kontrol grubundaki çocuklara kıyasla hem sıcaklığı hem de müdahaleyi "daha yoğun" hissetmektedir. Bu durum, diyabetin eve getirdiği "yoğun ebeveynlik ikliminin" sağlıklı kardeşi ihmal etmekten (tükenme) ziyade, onu da o yoğun iklimin içine çektiğini (genelleşme) göstermektedir.
+
+**Hastalığın zamansal seyri ile ebeveynlik hissi arasında bağ bulamadık.** Sadece diyabetli ailelere bakıp, hastalığın süresi veya tanı konan yaş gibi 'tıbbi ölçütlerin' ebeveynlik algısını nasıl etkilediğini inceledik (Bulgular, §4.4.6). Yapılan testlerin tamamında sonuç aynıydı: Çocuğun ne kadar süredir diyabetli olması veya tanıyı hangi yaşta alması, annenin ebeveynlik anketlerini veya çocuğun hissettiği reddedilme algısını belirgin biçimde değiştirmemektedir.
+
+Bu durum iki temel eksende yorumlanabilir. Birincisi; Aile içindeki ebeveynlik ilişkisi, hastalığın "biyolojik ciddiyetinden" çok, ailenin kendi dinamiğine bağlıdır [@trojanowski2021]. İkincisi ve kavramsal olarak daha muhtemel olanı; Metabolik kontrol (HbA1c) verisine erişilebilen alt örneklem hacminin (n=39) kısıtlılığı ve veri kayıp mekanizmasının tesadüfi olmama olasılığıdır. Bu nedenle metabolik kontrol ile tutum arasında bir bağın olmadığı kesin bir iddiadan ziyade, verinin istatistiksel güç sınırlarıyla ilişkilendirilmelidir.
+
+**Veri toplama zamanlarındaki farklar sonuçları etkilemiş olabilir.** Kesitsel çalışmanın temel sınırlılıklarından biri, tanı (diyabet) ve kontrol gruplarının veri toplama dönemlerinin (yıl) zaman ekseninde bütünüyle örtüşmemesidir. Grupların ortak zaman desteğine (overlap) sahip olduğu yalnız 2023 yılı alt-örneklemiyle yürütülen duyarlılık analizinde H1 reddetme ana etkisinin belirgin düzeyde zayıflaması, saptanan grup farkının bir bölümünün dönemsel (period) etkilerden veya karıştırıcı konfounders varyansından kaynaklanabileceğini göstermektedir [@hernan2004selectionBias]. Bu bağlamda sonuçlar yapısal tutarlılık sunsa da, kesin etkinin doğrulanması için zaman bağlamı eşleştirilmiş eş-zamanlı örneklemlerle yeniden sınama ihtiyacı geçerliliğini korur.
+
+Ölçüm düzeyinde kısa bir not gereklidir. EMBU-P reddetme alt ölçeğinde iç tutarlılık
+bu örneklemde görece düşük kalmıştır (α = 0,45; Ek 7). Kısa ve tabana yığılan alt
+ölçeklerde madde-arası korelasyonun düşüklüğü güvenirliği aşağı çeker ve α, omega ile
+birlikte yorumlanmalıdır; düşük güvenirlik tek başına yapı geçersizliği kanıtı değildir
+[@tavakolDennick2011alpha; @clarkWatson1995validity; @sijtsma2009alpha;
+@eisinga2013twoItem]. EMBU ailesinde kısa reddetme/kontrol alt ölçeklerinin
+güvenirliğinin örneklemler arası değişkenlik gösterebildiği bilinmektedir
+[@penelo2010embucClinical; @li2012sEmbuChinese; @naivarSen2020embuTurkey]. Bu nedenle
+reddetme boyutuna dayanan bulgular (H1 reddetme) madde-yanıt teorisi ve Bayesçi hatla
+çapraz doğrulanmış; ölçüm değişmezliği ise, klinik-ergen örneklemlerde tam değişmezliğe
+ulaşan çalışmalarla tutarlı biçimde [@penelo2012sEmbuAdolescent], kısmi-skalar düzeyde
+raporlanmıştır [@putnickBornstein2016measurementInvariance].
+
+Ölçeğin ölçüt geçerliği beklenen yöndedir: anne karşılaştırma boyutu depresyonla
+(ρ = 0,26), çocuk karşılaştırma boyutu ise kardeş çatışmasıyla (ρ = 0,30) pozitif
+ilişkilidir (Ek 7); bu örüntü, kuramsal olarak beklenen ilişkilerin gözlenmesi anlamında
+yakınsak geçerliğe zayıf-orta düzeyde destek sağlar. Buna karşılık anne-çocuk reddetme
+latent korelasyonu sıfıra yakın kalmış (r = 0,03), yani aynı yapının farklı
+bilgi-vericilerce ölçümündeki yakınsama reddetme boyutunda gözlenmemiştir (Bulgular,
+§4.4.6). Güvenirlik-genellemesinde EMBU-P hiyerarşik omega yüksek ($\omega_h$ = 0,81)
+iken açıkladığı ortak varyans yarının altındadır (ECV = 0,47) [@eid2017bifactorS1];
+toplam puan güvenilir biçimde ölçülebilmekle birlikte bu güvenilirlik tek bir genel
+faktöre atfedilemez. Bu örüntüler birlikte, kısa ve taban etkili alt ölçeklerde
+çok-boyutlu yorumun ihtiyat gerektirdiğine ve ölçüm sınırlılığı ile gerçek perspektif
+ayrışmasının bu tasarımda tam ayrıştırılamayacağına işaret eder.
+
+**Araştırmamızın Güçlü Yönleri:**
+Araştırma, bulguların güvenilirliğini destekleyen kapsamlı analitik yaklaşımlar (karma yöntemler, aile düzeyinde analizler, Bayesçi çerçeve) içermektedir. Anne, diyabetli çocuk ve kardeşin "üçlü" olarak değerlendirilmesi, aile içindeki kopuklukları daha net göstermiştir. Tüm analitik süreçler Açık Bilim ilkeleri doğrultusunda yapılandırılmıştır.
+
+**Araştırmamızın Zayıf Yönleri (Sınırlılıklar):**
+Bulgularımız dikkatle okunmalıdır çünkü:
+- **Sebep-Sonuç İlişkisi Yoktur:** Araştırma kesitsel bir desenle yapılandırılmıştır. Dolayısıyla kronik hastalık varlığının ebeveynlik tutumundaki değişimlere doğrudan yol açtığı yönünde kesin bir nedensel çıkarım yapılamaz.
+- **Anketlerin Yanıltıcılığı:** Anneler "iyi görünmek" amacıyla, hissettiklerini tam yansıtmamış olabilir. Ayrıca verilerimizde (örneğin reddetme ölçeğinde) anket sorularının güvenilirliği sınırda kalmıştır.
+- **Toplama Zamanı ve Kurum Etkisi:** Kontrol grubu tek bir merkezden, tanı grubu ise çoğunlukla farklı bir merkezden ve kısmen farklı yıllarda örneklenmiştir. Grupların aynı takvim yılında örtüştüğü 2023 alt-örnekleminde ana etkinin azaldığı görülmüştür (bkz. @tbl-yil-grup). Bu bulgu, saptanan bazı varyansların doğrudan hastalık bağlamından ziyade, hastaneden veya o dönemin şartlarından kaynaklanmış olabileceğini gösterir [@hernan2004selectionBias; @luqueFernandez2016paradox].
+- **Örneklemin "İdeal Aile" Olması:** Araştırmaya dâhil olmak için ailelerin boşanmamış olması ve en az iki çocuğu olması gerekiyordu. Bu nedenle araştırma; tek ebeveynli, kayıp yaşamış veya ayrılmış ailelerin deneyimleyebileceği farklı gelişimsel dinamikleri temsil etmemektedir.
+
+| Yıl | DM | Kontrol | Toplam |
+|---|---|---|---|
+| 2023 | 108 | 40 | 148 |
+| 2024 | 6 | 36 | 42 |
+| 2025 | 6 | 45 | 51 |
+
+: Veri toplama yılı × grup dağılımı. Her iki grup üç yılda da bulunur; ortak destek 2023'te en geniştir. {#tbl-yil-grup}
+
+**Sonuç ve Genel Öneriler**
+
+Bu tezin ulaştığı en çarpıcı gerçek şudur: Aynı tıbbi tabloyu ve aynı hanehalkı bağlamını paylaşmalarına rağmen anne, indeks çocuk ve sağlıklı kardeş ebeveynliği fenomenolojik olarak birbirinden oldukça farklı deneyimlemektedir. Reddedilme hissi gibi kritik gelişimsel algı farklılıkları annenin ebeveynlik öz-bildiriminde değil, doğrudan çocuğun değerlendirmesinde ortaya çıkmaktadır. Bununla birlikte, metodolojik sınırlar (kesitsellik, bilgi-verici uyuşmazlığı) göz önüne alındığında, saptanan bu algısal farklılıkların münhasıran diyabet tablosundan kaynaklandığına dair kesin bir nedensel çıkarımdan kaçınılmalıdır.
+
+Bu sonuçların ışığında klinik pratikte ve gelecekteki araştırmalarda şunları öneriyoruz:
+
+1. **Klinik Öneriler:** Poliklinik muayenelerinde çocukların psikolojik durumu sadece "annelere sorularak" değerlendirilmemeli; doğrudan çocuğun dünyası da dinlenmelidir. Ayrıca annedeki depresif eğilimlerin diyabet yönetimine zararlı etkileri göz önüne alınarak, hastanelerde annelere yönelik standart psikososyal destek birimleri kurulmalıdır [@deWit2022ispadPsychological; @laffel2003teamwork].
+2. **Gelecek Araştırmalar İçin Öneriler:**
+   - **Genişletme:** Çalışma tek bir merkeze sıkışmaktan kurtarılıp Anadolu'daki daha geniş kitlelerle ve "babaları" da dâhil ederek tekrarlanmalıdır.
+   - **Zamanı İzleme (Boylamsal):** Bu tezdeki gibi "tek seferlik" değil, aileyi teşhis anından itibaren en az üç dalga hâlinde yıllarca izleyen araştırmalar yapılmalıdır [@hamaker2015clpm].
+   - **Müdahale Testleri:** Sıkıntı çeken annelere verilecek psikolojik destek eğitimlerinin, diyabetli çocuğun kan şekerine ve evdeki huzura gerçekten fayda sağlayıp sağlamadığını net olarak ölçen büyük klinik deneyler (randomize kontrollü tasarımlar) planlanmalıdır [@chan2025spirit; @hopewell2025consort; @wakelin2025familyInterventions].
+
+Bu tezin asıl başarıya ulaştığı yer, bir ailenin diyabet karşısında nasıl aynı anda hem omuz omuza verip hem de üç farklı yalnızlık yaşayabileceğini bilimsel ve insani bir dengede ortaya koyması olmuştur.

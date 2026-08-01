@@ -600,7 +600,7 @@ h4_bayesian_sem_plan <- function(seed = 20260428L) {
     model = "bayesian_sem_blavaan_preflight",
     syntax = h4_bayesian_sem_model_syntax(),
     ordered_items = paste(h4_multigroup_ordered_items(), collapse = ";"),
-    priors = "lambda~normal(0.5,0.5); beta~normal(0,1)",
+    priors = "lambda_ana~normal(0.5,0.5); capraz_yuk+artik_kov~normal(0,0.01) [yaklasik-sifir]; beta~normal(0,1)",
     target = "stan",
     chains = 4L,
     burnin = 2000L,
@@ -661,7 +661,7 @@ summarize_h4_targets <- function(analysis_frame, item_diagnostics, latent_sem, m
 
 run_h4_beck_parenting_sem_pipeline <- function(df_family_ses, run_sem = TRUE,
                                                run_multigroup = TRUE,
-                                               multigroup_max_step = "metric_loadings") {
+                                               multigroup_max_step = "scalar_thresholds") {
   analysis_frame <- h4_prepare_analysis_frame(df_family_ses)
   item_diagnostics <- h4_item_diagnostics(analysis_frame)
   latent_sem <- if (run_sem) {

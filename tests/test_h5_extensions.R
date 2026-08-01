@@ -108,6 +108,27 @@ defaults <- h5ext_strategy_estimates_default()
 stopifnot(nrow(defaults) == 5L)
 stopifnot(all(c("ICC", "RSA", "CFM", "OlsenKenny", "k_coef") %in% defaults$strategy))
 
+# 7b) Denetim P0-6: strateji girdileri R/20 ciktisindan turetilir (kaynak-tekilligi).
+# Yalniz grup-tanimli iki strateji (ICC, OlsenKenny) havuza girer; sentetik R/20
+# tablolariyla smoke-test.
+icc_syn <- data.frame(
+  subscale = rep(c("sicaklik", "reddetme"), each = 6L),
+  dyad = rep(c("anne_idx", "anne_sib", "idx_sib"), times = 4L),
+  group = rep(c("DM", "Kontrol"), length.out = 12L),
+  n = 120L, icc = seq(0.02, 0.30, length.out = 12L),
+  icc_ci_lo = NA_real_, icc_ci_hi = NA_real_, stringsAsFactors = FALSE
+)
+cfa_syn <- data.frame(group = c("Pooled", "Kontrol", "DM"),
+  true_concordance = c(0.19, 0.17, 0.29), stringsAsFactors = FALSE)
+derived <- h5ext_strategy_estimates_from_h5(icc_syn, cfa_syn)
+stopifnot(
+  nrow(derived) == 2L,
+  all(c("ICC", "OlsenKenny") %in% derived$strategy),
+  all(is.finite(derived$estimate_dm)), all(is.finite(derived$estimate_kontrol)),
+  all(is.finite(derived$se) & derived$se > 0),
+  is.null(h5ext_strategy_estimates_from_h5(NULL, NULL))  # zarif fallback
+)
+
 pool_iv <- h5ext_strategy_pooling(group_focus = "dm", chains = 2L, iter = 500L)
 stopifnot(!is.null(pool_iv))
 stopifnot("pooled_mean" %in% names(pool_iv))

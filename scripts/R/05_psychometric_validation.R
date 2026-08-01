@@ -1,3 +1,5 @@
+source("R/01_io.R")
+source("R/07_reproducibility.R")
 source("R/06_psychometric_validation.R")
 
 psychval_required_package("readr")
@@ -7,9 +9,12 @@ psychval_required_package("lavaan")
 psychval_required_package("irr")
 psychval_required_package("TOSTER")
 
+# Kanonik CSV yollari + kilit dosyasi tek kaynaktan (R/01_io.R) alinir.
+canon <- canonical_final_reference_paths()
 paths <- list(
-  family = "data/processed/FINAL_REFERENCE__analysis_base_family.csv",
-  long = "data/processed/FINAL_REFERENCE__analysis_base_long.csv",
+  family = canon$family,
+  long = canon$long,
+  lock = canon$lock,
   tables = "outputs/tables",
   models = "outputs/models"
 )
@@ -21,30 +26,22 @@ write_table <- function(x, file_name) {
   utils::write.csv(x, file.path(paths$tables, file_name), row.names = FALSE)
 }
 
-expected_hash <- c(
-  family = "509d8905aa28b59b9731fedcc88dc3656123a57f7a08cc8dbf37382f8db76aa2",
-  long = "764d345eda31453992790e83a1ba20f6fe5dc8ab77d541a3879e13a62359dc97"
-)
+# Hash kaynaktan okunur, koda gomulmez (Sayisal Butunluk kaidesi): beklenen
+# sha256 kanonik .lock dosyasindan gelir; validate_and_load() uyumsuzlukta durur.
+lock <- read_final_reference_lock(paths$lock)
+family_expected <- match_final_reference_record(lock, paths$family)
+long_expected   <- match_final_reference_record(lock, paths$long)
 
-actual_hash <- c(
-  family = digest::digest(paths$family, file = TRUE, algo = "sha256"),
-  long = digest::digest(paths$long, file = TRUE, algo = "sha256")
-)
-
-if (!identical(unname(actual_hash), unname(expected_hash))) {
-  stop("Canonical final-reference hash check failed", call. = FALSE)
-}
-
-df_family <- readr::read_csv(paths$family, show_col_types = FALSE)
-df_long <- readr::read_csv(paths$long, show_col_types = FALSE)
+df_family <- validate_and_load(paths$family, paths$lock, reader = "readr")
+df_long   <- validate_and_load(paths$long, paths$lock, reader = "readr")
 
 data_audit <- data.frame(
   file = c(basename(paths$family), basename(paths$long)),
   rows = c(nrow(df_family), nrow(df_long)),
   columns = c(ncol(df_family), ncol(df_long)),
-  sha256 = unname(actual_hash),
-  expected_sha256 = unname(expected_hash),
-  hash_ok = unname(actual_hash) == unname(expected_hash),
+  sha256 = c(sha256_file(paths$family), sha256_file(paths$long)),
+  expected_sha256 = c(family_expected$sha256[[1]], long_expected$sha256[[1]]),
+  hash_ok = TRUE,
   stringsAsFactors = FALSE
 )
 write_table(data_audit, "psychval_data_audit.csv")
@@ -137,6 +134,42 @@ long_scores <- merge(long_scores, long_srq_scores, by = c("aile_no", "cocuk_no")
 long_scores$srq_total_mean <- psychval_srq_total_mean(df_long, "srq")
 write_table(long_scores, "psychval_scores_long.csv")
 write_table(long_srq_scores, "psychval_srq_scores_long.csv")
+
+# KIA/SRQ ve Beck guvenirligi EMBU tablosunda yer almaz; Ek 7'de raporlanan
+# alfa/omega degerlerinin tek kaynagi bu artefakttir (Sayisal Butunluk kaidesi:
+# kaynak-tekilligi). SRQ cocuk duzeyinde (df_long), Beck anne/aile duzeyinde
+# (df_family) hesaplanir; Beck bloku long dosyada kardes satirlarinda yapisal NA.
+scale_reliability <- rbind(
+  psychval_srq_reliability_table(df_long, prefix = "srq", scale = "KIA/SRQ (cocuk duzeyi)"),
+  psychval_beck_reliability_table(df_family, prefix = "beck", scale = "Beck Depresyon Envanteri (anne)")
+)
+write_table(scale_reliability, "psychval_reliability_srq_beck.csv")
+
+embu_subscale_mean_cols <- paste0(names(map), "_mean")
+srq_subscale_mean_cols <- paste0(names(psychval_srq_subscale_map()), "_mean")
+score_distributions <- rbind(
+  psychval_score_distribution_table(
+    family_scores, embu_subscale_mean_cols,
+    scale = "EMBU-P (anne)", score_min = 1, score_max = 4,
+    labels = unname(psychval_subscale_labels()[names(map)])
+  ),
+  psychval_score_distribution_table(
+    long_scores, embu_subscale_mean_cols,
+    scale = "EMBU-C (cocuk)", score_min = 1, score_max = 4,
+    labels = unname(psychval_subscale_labels()[names(map)])
+  ),
+  psychval_score_distribution_table(
+    long_scores, c(srq_subscale_mean_cols, "srq_total_mean"),
+    scale = "KIA/SRQ (cocuk)", score_min = 1, score_max = 5,
+    labels = c(unname(psychval_srq_subscale_labels()), "Toplam")
+  ),
+  psychval_score_distribution_table(
+    family_scores, "beck_total",
+    scale = "Beck Depresyon Envanteri (anne)", score_min = 0, score_max = 63,
+    labels = "Toplam puan"
+  )
+)
+write_table(score_distributions, "psychval_score_distributions.csv")
 
 run_efa <- function(data, prefix, form) {
   items <- psychval_numeric_frame(data, psychval_item_columns(prefix, 1:29))
@@ -358,8 +391,10 @@ run_invariance <- function(data, prefix, form, group_var,
   if (length(unique(data[[group_var]])) < 2) {
     return(data.frame(
       form = form, group_var = group_var, item_set = item_set, level = c("configural", "metric", "scalar"),
-      cfi_scaled = NA_real_, rmsea_scaled = NA_real_, srmr = NA_real_,
-      delta_cfi = NA_real_, delta_rmsea = NA_real_,
+      cfi_scaled = NA_real_, tli_scaled = NA_real_, rmsea_scaled = NA_real_, srmr = NA_real_,
+      chisq_scaled = NA_real_, df_scaled = NA_real_,
+      delta_cfi = NA_real_, delta_rmsea = NA_real_, delta_srmr = NA_real_,
+      decision = NA_character_,
       error = "group_var has fewer than two observed groups",
       stringsAsFactors = FALSE
     ))
@@ -388,27 +423,43 @@ run_invariance <- function(data, prefix, form, group_var,
     if (inherits(fit, "error")) {
       return(data.frame(
         form = form, group_var = group_var, item_set = item_set, level = level,
-        cfi_scaled = NA_real_, rmsea_scaled = NA_real_, srmr = NA_real_,
-        delta_cfi = NA_real_, delta_rmsea = NA_real_, error = conditionMessage(fit),
+        cfi_scaled = NA_real_, tli_scaled = NA_real_, rmsea_scaled = NA_real_, srmr = NA_real_,
+        chisq_scaled = NA_real_, df_scaled = NA_real_,
+        delta_cfi = NA_real_, delta_rmsea = NA_real_, delta_srmr = NA_real_,
+        decision = NA_character_, error = conditionMessage(fit),
         stringsAsFactors = FALSE
       ))
     }
-    fm <- lavaan::fitMeasures(fit, c("cfi.scaled", "rmsea.scaled", "srmr"))
+    fm <- lavaan::fitMeasures(fit, c("cfi.scaled", "tli.scaled", "rmsea.scaled", "srmr", "chisq.scaled", "df.scaled"))
     data.frame(
       form = form, group_var = group_var, item_set = item_set, level = level,
       cfi_scaled = unname(fm["cfi.scaled"]),
+      tli_scaled = unname(fm["tli.scaled"]),
       rmsea_scaled = unname(fm["rmsea.scaled"]),
       srmr = unname(fm["srmr"]),
+      chisq_scaled = unname(fm["chisq.scaled"]),
+      df_scaled = unname(fm["df.scaled"]),
       delta_cfi = NA_real_,
       delta_rmsea = NA_real_,
+      delta_srmr = NA_real_,
+      decision = NA_character_,
       error = NA_character_,
       stringsAsFactors = FALSE
     )
   })
   out <- do.call(rbind, rows)
+  if ("decision" %in% names(out) && nrow(out) >= 1L) out$decision[1] <- "baseline"
   for (i in seq_len(nrow(out))[-1]) {
     out$delta_cfi[i] <- out$cfi_scaled[i] - out$cfi_scaled[i - 1]
     out$delta_rmsea[i] <- out$rmsea_scaled[i] - out$rmsea_scaled[i - 1]
+    out$delta_srmr[i] <- out$srmr[i] - out$srmr[i - 1]
+    out$decision[i] <- if (is.na(out$delta_cfi[i]) || is.na(out$delta_rmsea[i])) {
+      NA_character_
+    } else if (out$delta_cfi[i] >= -0.010 && out$delta_rmsea[i] <= 0.015) {
+      "invaryan"
+    } else {
+      "non-invaryan"
+    }
   }
   out
 }
@@ -443,27 +494,43 @@ run_single_factor_invariance <- function(data, prefix, form, group_var,
     if (inherits(fit, "error")) {
       return(data.frame(
         form = form, group_var = group_var, item_set = item_set, level = level,
-        cfi_scaled = NA_real_, rmsea_scaled = NA_real_, srmr = NA_real_,
-        delta_cfi = NA_real_, delta_rmsea = NA_real_, error = conditionMessage(fit),
+        cfi_scaled = NA_real_, tli_scaled = NA_real_, rmsea_scaled = NA_real_, srmr = NA_real_,
+        chisq_scaled = NA_real_, df_scaled = NA_real_,
+        delta_cfi = NA_real_, delta_rmsea = NA_real_, delta_srmr = NA_real_,
+        decision = NA_character_, error = conditionMessage(fit),
         stringsAsFactors = FALSE
       ))
     }
-    fm <- lavaan::fitMeasures(fit, c("cfi.scaled", "rmsea.scaled", "srmr"))
+    fm <- lavaan::fitMeasures(fit, c("cfi.scaled", "tli.scaled", "rmsea.scaled", "srmr", "chisq.scaled", "df.scaled"))
     data.frame(
       form = form, group_var = group_var, item_set = item_set, level = level,
       cfi_scaled = unname(fm["cfi.scaled"]),
+      tli_scaled = unname(fm["tli.scaled"]),
       rmsea_scaled = unname(fm["rmsea.scaled"]),
       srmr = unname(fm["srmr"]),
+      chisq_scaled = unname(fm["chisq.scaled"]),
+      df_scaled = unname(fm["df.scaled"]),
       delta_cfi = NA_real_,
       delta_rmsea = NA_real_,
+      delta_srmr = NA_real_,
+      decision = NA_character_,
       error = NA_character_,
       stringsAsFactors = FALSE
     )
   })
   out <- do.call(rbind, rows)
+  if ("decision" %in% names(out) && nrow(out) >= 1L) out$decision[1] <- "baseline"
   for (i in seq_len(nrow(out))[-1]) {
     out$delta_cfi[i] <- out$cfi_scaled[i] - out$cfi_scaled[i - 1]
     out$delta_rmsea[i] <- out$rmsea_scaled[i] - out$rmsea_scaled[i - 1]
+    out$delta_srmr[i] <- out$srmr[i] - out$srmr[i - 1]
+    out$decision[i] <- if (is.na(out$delta_cfi[i]) || is.na(out$delta_rmsea[i])) {
+      NA_character_
+    } else if (out$delta_cfi[i] >= -0.010 && out$delta_rmsea[i] <= 0.015) {
+      "invaryan"
+    } else {
+      "non-invaryan"
+    }
   }
   out
 }
@@ -613,8 +680,13 @@ validity_srq_long <- do.call(rbind, lapply(c("srq_total_mean", srq_subscale_mean
     paste("EMBU-C comparison vs", y_var)
   )
 }))
+validity_all <- rbind(validity_beck, validity_srq_family, validity_srq_long)
+# 14 paralel korelasyonun aile-bilgeli hata oranini kontrol etmek icin
+# Benjamini-Hochberg (FDR) duzeltmesi tum korelasyon ailesi uzerinde birlikte
+# uygulanir; ham p_value korunur, p_adjusted ayri sutunda saklanir.
+validity_all$p_adjusted <- stats::p.adjust(validity_all$p_value, method = "BH")
 write_table(
-  rbind(validity_beck, validity_srq_family, validity_srq_long),
+  validity_all,
   "psychval_validity_correlations.csv"
 )
 

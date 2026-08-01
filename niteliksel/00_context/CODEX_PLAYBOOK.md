@@ -1,27 +1,27 @@
 # T1DM Karma Tez Codex Playbook
 
 > **Migrasyon notu (2026-07-09):** Bu playbook'un canonical kopyası artık
-> `/mnt/thunderbolt/workspaces/doktoratezi/niteliksel` altındadır.
+> `/workspaces/T1DM-Tez/niteliksel` altındadır.
 > Nitel araçlar bu alt-ağaçtan (`cd niteliksel && ./dmnitel ...`)
-> çalıştırılır; üst tez yazım merkezi hâlâ `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim`dir.
+> çalıştırılır; üst tez yazım merkezi hâlâ `/workspaces/T1DM-Tez/tez-yazim`dir.
 
-Bu dosya bu workspace'teki nitel repo işlemleri için koruyucu operasyonel
+Bu dosya bu workspace'teki nitel kol işlemleri için koruyucu operasyonel
 playbook'tur. Bundan sonraki tez yazım sürecinin ana çalışma dizini
-`/mnt/thunderbolt/workspaces/doktoratezi`, ana operasyon merkezi ise
-`/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim` klasörüdür. Bu nitel repo,
+`/workspaces/T1DM-Tez`, ana operasyon merkezi ise
+`/workspaces/T1DM-Tez/tez-yazim` klasörüdür. Bu nitel kol,
 tezde yalnız nitel kolun ilişkili kesimleri yazılırken kaynak/denetim katmanı
 olarak açılır.
 
 ## Resmi Tez Yazım Kaynakları
 
 Tez yazımı, format, bölüm sırası, özet/summary, tablo/şekil ve kaynakça işlerinde
-üst kaynak nicel repo içindeki yazım merkezidir:
+üst kaynak nicel kök içindeki yazım merkezidir:
 
-- `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim/README.md`
-- `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim/06_kritik-kaynaklar/README.md`
-- `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim/00_kaynak-kurallari/format-kontrati.md`
-- `/mnt/thunderbolt/workspaces/doktoratezi/docs/tez-kilavuz/TEZ YAZIM KLAVUZU-2025.pdf`
-- `/mnt/thunderbolt/workspaces/doktoratezi/docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx`
+- `/workspaces/T1DM-Tez/tez-yazim/README.md`
+- `/workspaces/T1DM-Tez/tez-yazim/06_kritik-kaynaklar/README.md`
+- `/workspaces/T1DM-Tez/tez-yazim/00_kaynak-kurallari/format-kontrati.md`
+- `/workspaces/T1DM-Tez/docs/tez-kilavuz/TEZ YAZIM KLAVUZU-2025.pdf`
+- `/workspaces/T1DM-Tez/docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx`
 
 Bu kaynaklar çakışırsa resmi `docs/tez-kilavuz` dosyaları format, başlık,
 ondalık virgül, kaynakça ve bölüm sırası kararlarında eski repo notlarının
@@ -38,7 +38,7 @@ ondalık virgül, kaynakça ve bölüm sırası kararlarında eski repo notları
    `doktoratezi/docs/tez-kilavuz` resmi kaynaklarını esas al.
 4. Her tez yazım oturumunda `./dmnitel ai-context` ve Anamnesis/context kapısı ile
    anonim/türetilmiş çalışma bağlamını sabitle.
-5. Karma tez, joint display, nicel-nitel sentez veya iki repo birlikte isteniyorsa
+5. Karma tez, joint display, nicel-nitel sentez veya iki-kol birlikte isteniyorsa
    `./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md`
    çalıştır.
 6. Dış kaynak, tam metin, citation audit, YÖK/OSF/KOL gerekiyorsa Evidentia v1.7.0
@@ -59,16 +59,16 @@ ondalık virgül, kaynakça ve bölüm sırası kararlarında eski repo notları
 
 ## Veri Sınırı
 
-- Nitel repo korumalı alanları: `01_raw_data/`, `02_processed/transcripts/`, `01_deidentified/`,
+- Nitel kol korumalı alanları: `01_raw_data/`, `02_processed/transcripts/`, `01_deidentified/`,
   `00_raw_locked/`, `.remember/`.
-- Nicel repo korumalı alanları: `data/raw/`, `data/identified/`, `data/cleaned/`,
+- Nicel kök korumalı alanları: `data/raw/`, `data/identified/`, `data/cleaned/`,
   `data/backup/`, `data/processed/*`, `outputs/*`, `_targets/`.
 - Bu alanlardan satır düzeyi içerik, aile düzeyi hassas detay, ham alıntı, demografi satırı,
   onam/protokol kişisel içeriği memory'ye veya harici MCP/RAG'e taşınmaz.
 - Tezde yalnız araştırmacı tarafından seçilmiş anonim alıntı, kod/tema düzeyi türetilmiş bilgi,
   COREQ/audit trail/codebook çıktısı, kanonik nitel sonuç raporu ve nicel
   tarafta testlenmiş aggregate sonuç kullanılır.
-- Nitel repo, kanonik sonuç raporu doktoratezi tarafına aktarıldıktan sonra
+- Nitel kol, kanonik sonuç raporu doktoratezi tarafına aktarıldıktan sonra
   genel tez yazımı için yeniden taranmaz; yalnız ilgili yöntem, bulgular,
   joint display, tartışma veya ek kesiminde kanıt denetimi gerekirse açılır.
 
@@ -78,15 +78,15 @@ ondalık virgül, kaynakça ve bölüm sırası kararlarında eski repo notları
 |---|---|---|
 | `./dmnitel ai-context` | Repo-özel güvenli tool bridge özeti | PASS |
 | `./dmnitel route-tool` | Tool seçimi belirsiz her iş | PASS |
-| `./dmnitel cross-repo-status` | Resmi kılavuz merkezli karma tez/joint display/iki repo yazım koordinasyonu | Unittest ile korunuyor |
+| `./dmnitel cross-repo-status` | Resmi kılavuz merkezli karma tez/joint display/iki-kol yazım koordinasyonu | Unittest ile korunuyor |
 | `./dmnitel lint-codebook` | Codebook CSV tutarlılığı | Unittest yüzeyi var |
 | `./dmnitel build-triadic-matrix` | Kodlu segmentlerden triadik matris | Unittest yüzeyi var |
 | `./dmnitel check-quotes` | Anonim alıntı bütünlüğü | Unittest yüzeyi var |
 | `./dmnitel audit-coreq` | COREQ metin içi kanıt denetimi | Unittest yüzeyi var |
 | `./dmnitel find-negative-cases` | Tema yorumu öncesi negatif/alternatif vaka arama | Unittest yüzeyi var |
 | `./dmnitel log-ai-use` | Harici AI/MCP/plugin kullanım kaydı | Unittest yüzeyi var |
-| `t1dm-qual-ai-audit` plugin/skill | Nitel repo hook, privacy, route, reliability denetimi | 55/55 PASS |
-| `doktoratezi-ai-audit` plugin/skill | Nicel repo hook, raw-data, claim grounding denetimi | 142/142 PASS |
+| `t1dm-qual-ai-audit` plugin/skill | Nitel kol hook, privacy, route, reliability denetimi | 55/55 PASS |
+| `doktoratezi-ai-audit` plugin/skill | Nicel kök hook, raw-data, claim grounding denetimi | 142/142 PASS |
 | Codex hooks | SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop guardrail | py_compile PASS, regression PASS |
 | `codex_mcp_roster_redacted.py` | MCP roster kontrolü; raw `codex mcp list` yerine | PASS, token redaction doğrulandı |
 | Promptfoo offline gate | Repo policy golden-case regression | Nitel 4/4 PASS, nicel 4/4 PASS |
@@ -97,8 +97,8 @@ ondalık virgül, kaynakça ve bölüm sırası kararlarında eski repo notları
 | Zotero Web API bridge | `references.bib`, citation key, search/export/cite | Status PASS, key redacted |
 | Zotero Desktop local API | Lokal full-text/attachment/connector | API kapalı; Zotero app açıkken kullanılabilir |
 | `06_tools/scripts/*.py` | DOCX/Markdown dönüştürme ve transcript kalite işleri | Varsayılan değil; `python-docx` ve yedek kontrolü gerekir |
-| `scripts/util/integrate_t1dm_qualitative_repo.py` | Nicel repodan nitel scaffold materyalizasyonu | Çalıştırma rutin değil; geniş overwrite/back-up yüzeyi var |
-| `plugins/eric-mcp-server` | Eğitim/okul/akademik uyum literatürü için ERIC MCP | Nicel repo plugin yüzeyi; koşullu |
+| `scripts/util/integrate_t1dm_qualitative_repo.py` | Nicel kökten nitel scaffold materyalizasyonu | Çalıştırma rutin değil; geniş overwrite/back-up yüzeyi var |
+| `plugins/eric-mcp-server` | Eğitim/okul/akademik uyum literatürü için ERIC MCP | Nicel kök plugin yüzeyi; koşullu |
 
 ## Skill ↔ Evidentia Entegrasyonu (üç kollu kanıt hattı)
 
@@ -128,8 +128,8 @@ Varsayılan Evidence MCP çekirdeği dış kanıt veya referans yönetimi gerekt
 `evidentia-skills`, `pubmed-epmc`, `paper-search`, `openalex`, `semantic-scholar`,
 `psyarxiv-osf`, `yoktez-mcp`, `anamnesis`, `evidentia-kb`, `annas-reader`.
 Claude Code tarafında tek doğruluk kaynağı
-`/mnt/thunderbolt/workspaces/evidentia-cc/plugins/evidentia/CONNECTORS.md`;
-`/mnt/thunderbolt/workspaces/evidentia-cc/plugins/evidentia/shared/canonical-cache-contract.md`
+`~/.claude/plugins/cache/cureonics-marketplace/evidentia/<sürüm>/CONNECTORS.md`;
+`~/.claude/plugins/cache/cureonics-marketplace/evidentia/<sürüm>/shared/canonical-cache-contract.md`
 tek-fetch/retrieve-don't-dump disiplinini zorlar. Bu projede `psyarxiv-osf`
 config hazır fakat endpoint 404 bloklu; worker düzelene kadar fallback
 `paper-search` + `openalex`.
@@ -171,14 +171,14 @@ MCP roster 2026-06-30 tarihinde redacted komutla kontrol edildi; roster araçlar
 görünüyor. Bazı araçlarda `Not logged in` veya `Unsupported` auth etiketi var; bu durum
 araç çağrısı gerektiğinde ayrıca doğrulanmalıdır.
 
-## İki Repo Yazım Modeli
+## İki-Kol Yazım Modeli
 
 | Tez bölümü | Nitel kaynak | Nicel kaynak | Tool gate |
 |---|---|---|---|
-| `GİRİŞ ve AMAÇ` / `GENEL BİLGİLER` | Kanonik nitel rapor gerekirse arka plan; geniş nitel repo taraması default değil | `tez-yazim/03_bolum-hazirlik/01_giris-ve-amac.md`, CSR, SAP | Anamnesis + Evidentia + Anna's + Zotero + çift AI-reliability |
+| `GİRİŞ ve AMAÇ` / `GENEL BİLGİLER` | Kanonik nitel rapor gerekirse arka plan; geniş nitel kol taraması default değil | `tez-yazim/03_bolum-hazirlik/01_giris-ve-amac.md`, CSR, SAP | Anamnesis + Evidentia + Anna's + Zotero + iki-kol AI-reliability |
 | `GEREÇ ve YÖNTEM` | COREQ, audit trail, positionality, LLM statement | `tez-yazim/03_bolum-hazirlik/03_gerec-ve-yontem.md`, `_targets.R`, veri haritası | Resmi kılavuz + kanonik nitel yöntem kanıtı |
 | `BULGULAR` | Kanonik nitel sonuç raporu, 4 makro tema, quote integrity | `tez-yazim/03_bolum-hazirlik/04_bulgular.md`, H1-H5, EMBU/Beck/KIA | Repo artefaktı ve test kanıtı |
-| `TARTIŞMA ve SONUÇ` | Negatif vaka, refleksivite, triadik yorum | `tez-yazim/03_bolum-hazirlik/05_tartisma-ve-sonuc.md`, Faz II post-hoc sınırları | Anamnesis + Evidentia + Anna's + nedensellik sınırı + çift AI-reliability |
+| `TARTIŞMA ve SONUÇ` | Negatif vaka, refleksivite, triadik yorum | `tez-yazim/03_bolum-hazirlik/05_tartisma-ve-sonuc.md`, Faz II post-hoc sınırları | Anamnesis + Evidentia + Anna's + nedensellik sınırı + iki-kol AI-reliability |
 | `KAYNAKLAR` / `EKLER` | COREQ, codebook, audit trail, LLM statement | `tez-yazim/03_bolum-hazirlik/06_kaynaklar-ekler.md`, references.bib, kanonik formlar | Anna's ledger + Zotero + format kontrol |
 
 Yazımda nitel tema, nicel estimate gibi sunulmaz. Nicel sonuçlar nitel bulguların
@@ -208,10 +208,10 @@ Karma tez/cross-repo değişikliği:
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests
 ```
 
-Nicel repo veri-yönetişimi kontrolü:
+Nicel kök veri-yönetişimi kontrolü:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 Rscript tests/test_reproducibility_lock.R
 Rscript tests/test_final_reference_loading.R
 Rscript tests/test_data_governance.R

@@ -4,25 +4,25 @@ These rules are loaded into Codex context by `.codex/hooks/session_start.py`.
 
 1. Use Turkish for thesis/repo explanations unless the user asks otherwise.
 2. Ground repo facts in `CLAUDE.md`, `00_context/TRACKER.md`, `00_context/REPO_CONTEXT.md`,
-   `03_analysis/codebook/codebook_v2.md`, methodology files, or checked toolkit/tests.
-3. Use `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim` as the primary thesis-writing
+   `03_analysis/codebook/codebook_v3.md`, methodology files, or checked toolkit/tests.
+3. Use `/workspaces/T1DM-Tez/tez-yazim` as the primary thesis-writing
    workspace. Use this repo's `00_context/CODEX_PLAYBOOK.md` as the protective qualitative
    playbook only when qualitative-arm evidence, methodology, quote integrity, or AI-reliability
    checks are needed.
 4. For thesis writing, format, official section order, table/figure rules, summary/ozet, and
-   references, use `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim/README.md` and the official
-   files under `/mnt/thunderbolt/workspaces/doktoratezi/docs/tez-kilavuz` as the top writing source.
+   references, use `/workspaces/T1DM-Tez/tez-yazim/README.md` and the official
+   files under `/workspaces/T1DM-Tez/docs/tez-kilavuz` as the top writing source.
 5. Do not print, summarize broadly, or export row-level/participant-level content from
    `01_raw_data/`, `02_processed/transcripts/`, `.remember/`, `00_raw_locked/`, or `01_deidentified/`.
 6. Distinguish qualitative-arm facts from quantitative-arm facts. Quantitative pipeline claims belong
-   to `/mnt/thunderbolt/workspaces/doktoratezi`; qualitative RTA/COREQ/codebook claims belong here.
+   to `/workspaces/T1DM-Tez`; qualitative RTA/COREQ/codebook claims belong here.
 7. Tool orchestration is task-gated: official thesis writing now stays in `doktoratezi/tez-yazim`;
    qualitative methodology, quote integrity, and canonical qualitative evidence checks stay here only
    when a thesis section explicitly needs them. External
    literature/citation/full-text/KOL/OSF/YOK evidence goes through Evidentia v1.7.0
    (`medical-research` v8.5.0; native-first, no web/OSINT tier) with Anna's Library as a
-   copyright-gated fallback full-text gate; quantitative R analysis goes through the paired
-   `doktoratezi` repo.
+   copyright-gated fallback full-text gate; quantitative R analysis goes through the
+   nicel kök.
 8. Manuscript-level scientific audits use `sci-audit@cureonics-marketplace` v0.2.0 under the
    doktoratezi `tez-yazim` rules. Kapı 4 is `/sci-audit:check-turkish` / axis G; Kapı 5 is
    `/sci-audit:audit` + `/sci-audit:audit-report` / axes A-F. Do not recreate repo-local
@@ -36,11 +36,17 @@ These rules are loaded into Codex context by `.codex/hooks/session_start.py`.
    Anamnesis/context management, Evidentia external evidence, full-text checking, sci-audit,
    Zotero, and paired `t1dm-tez-rehberi`.
 11. Use `./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md`
-   before mixed-methods chapter writing, joint displays, or two-repo synthesis.
+   before mixed-methods chapter writing, joint displays, or cross-arm synthesis.
 12. Default evidence MCP core: `evidentia-skills`, `pubmed-epmc`, `paper-search`, `openalex`,
    `semantic-scholar`, `psyarxiv-osf`, `yoktez-mcp`, `anamnesis`, `evidentia-kb`, and
-   `annas-reader`. The Claude Code plugin source of truth is
-   `/mnt/thunderbolt/workspaces/evidentia-cc/plugins/evidentia/CONNECTORS.md`; it enforces
+   `annas-reader`. **Surface note:** that list is the Codex/account roster; in the
+   Claude Code `evidentia@cureonics-marketplace` plugin the bound connectors are
+   `pubmed-epmc`, `openalex`, `semantic-scholar`, `anamnesis`, `evidentia-kb`,
+   `annas-reader`, `openathens`, `yok-akademik` (+ conditional layers), and
+   `paper-search`/`psyarxiv-osf`/`yoktez-mcp`/`evidentia-skills` are absent — live
+   inventory: quant-root `.claude/skills/t1dm-tez-rehberi/references/literatur-kanit-evidentia.md` §1.1.
+   The Claude Code plugin source of truth is
+   `~/.claude/plugins/cache/cureonics-marketplace/evidentia/<sürüm>/CONNECTORS.md`; it enforces
    native MCP/REST/legal-OA before a documented gap, not web fallback. In this project
    `psyarxiv-osf` is configured but endpoint-blocked, so use Paper Search + OpenAlex fallback until
    the worker is live. Use Anamnesis/context management for non-sensitive project context and
@@ -51,7 +57,7 @@ These rules are loaded into Codex context by `.codex/hooks/session_start.py`.
    evidence are recorded in the thesis reference ledger. Full-text exceptions must be explicit and
    reviewed before citation; a `full-text-exception` alone is not `cite-ok`.
 14. Reference-bearing chapter changes require both AI-reliability gates: `t1dm-qual-ai-audit` in this
-   repo and `doktoratezi-ai-audit` in the paired quantitative repo.
+   repo and `doktoratezi-ai-audit` in the nicel kök.
 15. Conditional plugin layers stay out of context unless triggered: `life-science-research`
    for genetics, variants, proteins, pathways, pharmacology, clinical trials, omics datasets,
    or mechanistic T1DM biology; `zotero` for Web API search/export through
@@ -74,6 +80,6 @@ These rules are loaded into Codex context by `.codex/hooks/session_start.py`.
 20. Log external Evidentia/Codex/MCP/plugin use with `./dmnitel log-ai-use`; raw/identifiable flags must stay
     `no` because those data must not be sent.
 21. For toolkit code changes, prefer `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests`.
-22. The primary thesis repo is `/mnt/thunderbolt/workspaces/doktoratezi`; cross-repo synthesis may
+22. The single thesis monorepo is `/workspaces/T1DM-Tez` (this qualitative arm lives in its `niteliksel/` subtree); cross-arm synthesis may
     use the transferred canonical qualitative results report, de-identified themes, methodology,
     COREQ/audit trail outputs, and researcher-approved excerpts, never raw transcripts or demographic rows.

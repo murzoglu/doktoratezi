@@ -3,41 +3,41 @@
 Repo profile: `t1dm_qualitative_thesis`
 Local gate: `dmnitel + niteliksel-arastirma-rehberi-t1dm`
 Codex playbook: `00_context/CODEX_PLAYBOOK.md`
-Paired quantitative repo: `/mnt/thunderbolt/workspaces/doktoratezi`
-Thesis writing root: `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim`
+Nicel kök: `/workspaces/T1DM-Tez`
+Thesis writing root: `/workspaces/T1DM-Tez/tez-yazim`
 
 ## Official Thesis Sources
-- `/mnt/thunderbolt/workspaces/doktoratezi/docs/tez-kilavuz/TEZ YAZIM KLAVUZU-2025.pdf`
-- `/mnt/thunderbolt/workspaces/doktoratezi/docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx`
+- `/workspaces/T1DM-Tez/docs/tez-kilavuz/TEZ YAZIM KLAVUZU-2025.pdf`
+- `/workspaces/T1DM-Tez/docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx`
 
 ## Thesis Writing Entrypoints
-- `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim/README.md`
-- `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim/06_kritik-kaynaklar/README.md`
-- `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim/06_kritik-kaynaklar/kritik-dosya-manifesti.tsv`
-- `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim/00_kaynak-kurallari/format-kontrati.md`
-- `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim/01_mimari/yetkinlik-ve-arac-mimarisi.md`
+- `/workspaces/T1DM-Tez/tez-yazim/README.md`
+- `/workspaces/T1DM-Tez/tez-yazim/06_kritik-kaynaklar/README.md`
+- `/workspaces/T1DM-Tez/tez-yazim/06_kritik-kaynaklar/kritik-dosya-manifesti.tsv`
+- `/workspaces/T1DM-Tez/tez-yazim/00_kaynak-kurallari/format-kontrati.md`
+- `/workspaces/T1DM-Tez/tez-yazim/01_mimari/yetkinlik-ve-arac-mimarisi.md`
 
 ## Operational Order
 - Once 00_context/CODEX_PLAYBOOK.md dosyasini ana Codex playbook olarak kullan.
-- Tez yazim/format islerinde ana calisma merkezini /mnt/thunderbolt/workspaces/doktoratezi/tez-yazim olarak kabul et ve resmi docs/tez-kilavuz kaynaklarini ust kural yap.
-- Her tez yazim oturumunda klinik/nitel rapor, protokol, ham/kilitli veri ve olcek-form secimini once /mnt/thunderbolt/workspaces/doktoratezi/tez-yazim/06_kritik-kaynaklar/README.md ve manifest TSV ile yap.
+- Tez yazim/format islerinde ana calisma merkezini /workspaces/T1DM-Tez/tez-yazim olarak kabul et ve resmi docs/tez-kilavuz kaynaklarini ust kural yap.
+- Her tez yazim oturumunda klinik/nitel rapor, protokol, ham/kilitli veri ve olcek-form secimini once /workspaces/T1DM-Tez/tez-yazim/06_kritik-kaynaklar/README.md ve manifest TSV ile yap.
 - Once ./dmnitel route-tool ile sorunun yerel nitel, dis-kanit veya nicel-pipeline oldugunu ayir.
-- Nitel repo yetkinliklerini yalniz tezde nitel kolun ilgili kesimleri yazilirken veya kanonik nitel sonuc raporu denetlenirken ac.
+- Nitel kol yetkinliklerini yalniz tezde nitel kolun ilgili kesimleri yazilirken veya kanonik nitel sonuc raporu denetlenirken ac.
 - Her tez yazim oturumunda ./dmnitel ai-context ve Anamnesis/context gate ile anonim/turetilmis baglami sabitle.
 - Diger MCP'leri yalniz gorev sinyaliyle ac: YOK/ERIC akademik, mevzuat, klinik terminoloji/regulasyon, render/browser, GitHub veya teknik platform kapilari ayri tutulur.
-- Karma tez veya joint display sorularinda ./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md ile iki-repo kaynak haritasini guncelle.
+- Karma tez veya joint display sorularinda ./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md ile iki-kol kaynak haritasini guncelle.
 - Yerel nitel denetimde ./dmnitel komutlarini calistir; ham katilimci verisi dokme.
 - Dis literatur/tam metin/YOK/OSF/KOL gerekiyorsa Evidentia MCP cekirdegini ac ve Anna's Library full-text gate'i en onemli referans kapisi olarak kullan.
 - Genetik/varyant/protein/pathway/omics/farmakoloji/clinical trial sorularinda life-science-research plugin router'ini kosullu ac.
 - Kaynakca, citation key, references.bib veya kutuphane senkronu gerekiyorsa once tam metin/claim ledger'ini kapat, sonra .env ZOTERO_API_KEY kullanan Zotero Web API bridge'ini kullan.
 - Referansli bolum kapanisinda nitel ve nicel AI-reliability kontrollerini birlikte calistir.
-- Nicel H1-H5, EMBU, Beck, KIA veya targets sorusu varsa paired doktoratezi repo + t1dm-tez-rehberi akisini kullan.
+- Nicel H1-H5, EMBU, Beck, KIA veya targets sorusu varsa nicel kök + t1dm-tez-rehberi akisini kullan.
 - Her harici AI/MCP kullanimini ./dmnitel log-ai-use ile kaydet.
 
 ## Dmnitel Commands
 - `./dmnitel ai-context` — Ajan icin repo-ozel dmnitel + Anamnesis/context + Evidentia + t1dm-tez bridge ozetini guvenli bicimde verir.
 - `./dmnitel route-tool --query "<soru>"` — Soruya gore dmnitel, Evidentia veya paired doktoratezi/t1dm-tez akisini secer.
-- `./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md` — Nitel ve nicel repo kaynaklarini resmi Marmara tez kilavuzu merkezli tek karma tez yazim akisi icin guvenli bicimde haritalar.
+- `./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md` — Nitel kol ve nicel kök kaynaklarini resmi Marmara tez kilavuzu merkezli tek karma tez yazim akisi icin guvenli bicimde haritalar.
 - `./dmnitel lint-codebook 02_codebook/codebook.csv` — Kod kitabi tutarliligi ve alan eksikleri.
 - `./dmnitel build-triadic-matrix --coded-data <coded.csv> --output 04_triadic_matrices/<name>.csv` — Anne, T1DM cocuk ve saglikli kardes rolleri icin tema/subtema matrisi.
 - `./dmnitel check-quotes --source <deidentified-source> --quotes <quotes.csv>` — Kullanilan anonim alintilarin kaynakla butunlugu.
@@ -91,8 +91,8 @@ Thesis writing root: `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim`
 - `python3 scripts/util/zotero_env_bridge.py cite --query "<title>" --markdown <draft.md> --bib references/references.bib --marker '<cite>'`
 
 ## Zotero Desktop Local API Commands
-- `python3 /home/mahirkurt/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py status --json`
-- `python3 /home/mahirkurt/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py fulltext <attachment-key> --out <fulltext.txt>`
+- `python3 ~/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py status --json`
+- `python3 ~/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py fulltext <attachment-key> --out <fulltext.txt>`
 
 ## Safe Repo Evidence
 - `03_analysis/codebook/codebook_v2.md`

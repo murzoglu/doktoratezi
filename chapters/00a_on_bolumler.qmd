@@ -1,14 +1,19 @@
 <!--
-ÖN BÖLÜMLER — Tez Onayı, Beyan, Teşekkür.
+ÖN BÖLÜMLER — Tez Onayı, Beyan, Teşekkür, İçindekiler.
 Kapak ve iç kapak resmi DOCX şablonundan üretilir (Marmara §2.1); burada yer almaz.
-İÇİNDEKİLER, ŞEKİLLER ve TABLOLAR listeleri render aşamasında otomatik üretilir
-(toc / lof / lot); Teşekkür'den sonra, Kısaltmalar'dan önce konumlanır.
-{İMZA}, {TARİH}, {…} alanları savunma/teslim aşamasında doldurulur (Marmara §2.2–2.3).
+Marmara §5 resmi sırası: Tez onayı → Beyan → Teşekkür → İçindekiler → Kısaltmalar
+→ Şekiller → Tablolar → Özet → Summary.
+İÇİNDEKİLER bu dosyanın sonunda (Teşekkür'den sonra) üretilir; ŞEKİLLER ve
+TABLOLAR dizinleri Kısaltmalar'dan SONRA, 00b dosyasının sonunda üretilir.
+PDF hattında konumlandırma ham LaTeX (\tableofcontents / \listoffigures /
+\listoftables), DOCX hattında post-render betiği
+(scripts/util/docx_marmara_dizin_basliklari.py) ile sağlanır.
+{İMZA}, {…} alanları savunma/teslim aşamasında doldurulur (Marmara §2.2–2.3).
 -->
 
-# TEZ ONAYI {.unnumbered}
+# TEZ ONAYI {.unnumbered .unlisted}
 
-Marmara Üniversitesi Sağlık Bilimleri Enstitüsü Sosyal Pediatri Doktora Programı öğrencisi Uzm. Dr. Özlem Murzoğlu Kurt'un *"Tip 1 Diyabet Tanılı Çocuklar, Sağlıklı Kardeşleri ve Annelerinde Ebeveynlik Tutumu Algısı"* başlıklı tez çalışması, {SAVUNMA TARİHİ} tarihinde yapılan tez savunma sınavı sonrasında başarılı bulunarak jürimiz tarafından Doktora Tezi olarak kabul edilmiştir.
+Marmara Üniversitesi Sağlık Bilimleri Enstitüsü Sosyal Pediatri Doktora Programı öğrencisi Uzm. Dr. Özlem Murzoğlu Kurt'un *"Diyabetik Çocuklar, Sağlıklı Kardeşleri ve Annelerinin Ebeveynlik Tutumlarına Yönelik Algılarının ve Kardeşler Arası İlişkilerin Sağlıklı Kontrol Grubu ile Karşılaştırılarak İncelenmesi"* başlıklı tez çalışması, {SAVUNMA TARİHİ} tarihinde yapılan tez savunma sınavı sonrasında başarılı bulunarak jürimiz tarafından Doktora Tezi olarak kabul edilmiştir.
 
 | Görev | Unvan, Ad Soyad | Kurum | İmza |
 |---|---|---|---|
@@ -24,11 +29,9 @@ Bu tez, Marmara Üniversitesi Sağlık Bilimleri Enstitüsü Yönetim Kurulu'nun
 
 {{< pagebreak >}}
 
-# BEYAN {.unnumbered}
+# BEYAN {.unnumbered .unlisted}
 
-Bu tezin kendi çalışmam olduğunu, planlanmasından yazımına kadar hiçbir aşamasında etik dışı davranışımın olmadığını, tezdeki bütün bilgileri akademik ve etik kurallar içinde elde ettiğimi, tez çalışmasıyla elde edilmeyen bütün bilgi ve yorumlara kaynak gösterdiğimi ve bu kaynakları kaynaklar listesine aldığımı, tez çalışması ve yazımı sırasında patent ve telif haklarını ihlal edici bir davranışımın olmadığını beyan ederim.
-
-{TARİH}
+Bu tez çalışmasının kendi çalışmam olduğunu, tezin planlanmasından yazımına kadar bütün safhalarda etik dışı davranışımın olmadığını, bu tezdeki bütün bilgileri akademik ve etik kurallar içinde elde ettiğimi, bu tez çalışması ile elde edilmemiş bütün bilgi ve yorumlara kaynak gösterdiğimi ve bu kaynakları da kaynaklar listesine aldığımı, yine bu tezin çalışılması ve yazımı sırasında patent ve telif haklarını ihlal edici bir davranışımın olmadığı beyan ederim.
 
 Uzm. Dr. Özlem Murzoğlu Kurt
 
@@ -36,7 +39,7 @@ Uzm. Dr. Özlem Murzoğlu Kurt
 
 {{< pagebreak >}}
 
-# TEŞEKKÜR {.unnumbered}
+# TEŞEKKÜR {.unnumbered .unlisted}
 
 Doktora eğitimim ve tez sürecim boyunca bilgisi, deneyimi ve yönlendirmeleriyle bana yol gösteren danışmanım Prof. Dr. Eren Özek'e teşekkürlerimi sunarım. Tez izleme komitemde yer alarak çalışmanın her aşamasına katkı veren {TİK üyeleri} hocalarıma; çalışmanın klinik yürütülmesindeki katkıları için pediatrik endokrinoloji alanındaki değerli katkısıyla Doç. Dr. Belma Haliloğlu'na; nitel görüşmelerdeki iş birliği ve refleksif değerlendirmeleri için {ikinci araştırmacı} teşekkür ederim.
 
@@ -44,8 +47,24 @@ Araştırmaya katılmayı kabul eden çocuklara, sağlıklı kardeşlerine ve an
 
 Bu süreçte desteğini esirgemeyen aileme minnettarım.
 
-{Bu çalışma herhangi bir kurum veya kuruluş tarafından desteklenmemiştir. — Proje/fon desteği alındıysa Marmara §2.3 uyarınca proje adı, kuruluş ve numara ile burada beyan edilir.}
-
 Uzm. Dr. Özlem Murzoğlu Kurt
 
-İstanbul, {YIL}
+İstanbul, 2026
+
+<!--
+Marmara §2.3 (proje/fon beyanı): Tez çalışması proje, fon vb. destekle
+yürütülmüşse beyan, bu sayfanın alt kısmında AYRI bir bölüm olarak proje adı,
+destekleyen kuruluş ve proje numarası ile verilir. Şablon biçimi:
+"Bu tez çalışması Marmara Üniversitesi Bilimsel Araştırma Projeleri
+Koordinasyon Birimi tarafından ……… No.'lu proje kapsamında desteklenmiştir."
+Bu çalışma proje/fon desteği almadığından beyan eklenmemiştir; destek alınırsa
+cümle bu satırın yerine yazılır.
+-->
+
+```{=latex}
+% Marmara §5 sirasi (4. madde): ICINDEKILER, Tesekkur'den SONRA gelir.
+% _quarto.yml PDF hattinda `toc: false`; dizin burada uretilir. Sayfa
+% numarasi henuz `gobble` oldugundan Icindekiler numarasizdir (§1.9).
+\renewcommand{\contentsname}{İÇİNDEKİLER}
+\tableofcontents
+```

@@ -82,8 +82,8 @@ yok; ondalık kesinlik gerçekçi; confirmatory ↔ `[KEŞİFSEL]` ayrımı koru
 | Yorum bileşeni | Kaynak | Sınır |
 |---|---|---|
 | Hipotez sonucu | CSR, `outputs/models`, SAP | Bulgu tekrarı değil, yorum. |
-| Literatür karşılaştırması | Evidentia hattı + ledger `cite-ok` | Tam metin + çift AI-reliability kapalı. |
-| Nitel tema yorumu | `docs/niteliksel/qualitative_canonical_results_report.md` | De-identified; negatif vaka dahil. |
+| Literatür karşılaştırması | Evidentia hattı + ledger `cite-ok` | Tam metin + iki-kol AI-reliability kapalı. |
+| Nitel tema yorumu | `niteliksel/qualitative_canonical_results_report.md` | De-identified; negatif vaka dahil. |
 | Karma bütünleştirme | `05_entegrasyon/nitel-nicel-joint-display-plan.md` | Kanıt türü etiketli. |
 | Sınırlılık/tedbir | `t1dm-tez-rehberi` tedbir referansı | Nedensellik/genelleme sınırı. |
 
@@ -95,6 +95,6 @@ yok; ondalık kesinlik gerçekçi; confirmatory ↔ `[KEŞİFSEL]` ayrımı koru
 - [ ] Karma bütünleştirme joint display etiketiyle yapıldı; ayrışma teorik
       okundu, hata sayılmadı.
 - [ ] Öneriler amaç-bulgu ile sınırlı; alt başlık yok (onaysız).
-- [ ] Dış referanslar ledger `cite-ok` + çift AI-reliability (`talimatname` §6).
+- [ ] Dış referanslar ledger `cite-ok` + iki-kol AI-reliability (`talimatname` §6).
 - [ ] Format §12 + `sci-audit` axis G/A–F blocker'sız.
 - [ ] Kapı 0–5 sertifikasyonu + açık onay.

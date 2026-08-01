@@ -1,0 +1,297 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  turkish,
+  12pt,
+  a4paper,
+]{report}
+\usepackage{xcolor}
+\usepackage[top=2cm,bottom=2cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{TeX Gyre Termes}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off]{babel}
+\else
+\usepackage[bidi=default,shorthands=off]{babel}
+\fi
+\ifPDFTeX
+\else
+\babelfont{rm}[]{TeX Gyre Termes}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+% --- Marmara §1.2: 1,5 satir araligi + paragraf 6 nk + girinti yok ---
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 1pt}
+% --- §1.2: iki yana yasli, satir sonunda kelime bolme yok ---
+\usepackage[none]{hyphenat}
+\sloppy
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+% --- Turkce heceleme/karakter (polyglossia XeLaTeX icin) ---
+\usepackage{polyglossia}
+\setmainlanguage{turkish}
+% --- §5 dizin basligi ezimi include-before-body'de yapilir; Quarto
+% kendi \AtBeginDocument ezimini enjekte ettiginden (ve o bizimkinden
+% sonra calistigindan) yeniden-adlandirma \listoffigures'tan hemen
+% once, govde basinda uygulanir (bkz. include-before-body). ---
+% --- §1.9: sayfa numarasi alt-orta ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+% --- §1.3: bolum basligi bold 14 pt, alt basliklar bold 12 pt ---
+\usepackage{titlesec}
+\titleformat{\chapter}{\normalfont\fontsize{14}{17}\bfseries}{\thechapter.}{1em}{}
+\titleformat{\section}{\normalfont\fontsize{12}{15}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\fontsize{12}{15}\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\fontsize{12}{15}\bfseries}{\thesubsubsection}{1em}{}
+% bolum basligi sayfanin tepesinden baslasin (buyuk ust bosluk olmasin)
+\titlespacing*{\chapter}{0pt}{0pt}{1\baselineskip}
+% --- §1.9: kapak/onay/icindekiler/dizin sayfalari numarasiz baslar;
+% Kisaltmalar'dan itibaren Romen, Ozet'ten itibaren Arap rakami
+% (gecisler chapters/00b ve 00c icindeki ham LaTeX bloklariyla). ---
+\pagenumbering{gobble}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{İçindekiler}
+\else
+  \newcommand\contentsname{İçindekiler}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Şekil Listesi}
+\else
+  \newcommand\listfigurename{Şekil Listesi}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Tablo Listesi}
+\else
+  \newcommand\listtablename{Tablo Listesi}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Şekil}
+\else
+  \newcommand\figurename{Şekil}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tablo}
+\else
+  \newcommand\tablename{Tablo}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listeleme}
+\newcommand*\listoflistings{\listof{codelisting}{İlan Listesi}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdflang={tr},
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\author{}
+\date{}
+\begin{document}
+
+% §5: Quarto'nun Turkce LOF/LOT ad ezimi \AtBeginDocument ile bizim
+% header ezimimizi geciyor; govde basinda (tum \AtBeginDocument
+% hook'lari calistiktan SONRA) yeniden adlandirarak sabitliyoruz.
+\renewcommand{\listfigurename}{ŞEKİLLER DİZİNİ}
+\renewcommand{\listtablename}{TABLOLAR DİZİNİ}
+
+\renewcommand*\contentsname{İÇİNDEKİLER}
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\listoffigures
+\listoftables
+
+\chapter{Governance mapping (Layer 6)}\label{governance-mapping-layer-6}
+
+This scaffold's controls mapped to the three frameworks that dominate
+the 2026 regulatory surface. Use this when you need to show
+\emph{defensible} process --- which matters in regulated (medical /
+pharma) deployments.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+This scaffold control
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+NIST AI RMF (GenAI Profile)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+ISO/IEC 42001
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+EU AI Act
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Source grounding + citation enforcement (Layer 0) & MEASURE 2.x
+(validity, reliability) & 8.3 operational control & Art. 13
+transparency \\
+Deterministic hooks / deny-list (Layer 1) & MANAGE 2.x (risk treatment)
+& 8.1 operational planning & Art. 15 robustness \\
+Claim verification: Lynx / RAGAS / semantic entropy (Layer 2) & MEASURE
+2.3 (accuracy) & 9.1 monitoring & Art. 15 accuracy \\
+Verifier-agent triangulation (Layer 3) & MANAGE 4.x & 8.1 & Art. 14
+human oversight (assist) \\
+Golden-set regression + CI gate (Layer 4) & MEASURE 4.x (feedback) & 9.1
+/ 10.x improvement & Art. 17 quality mgmt system \\
+OTel traceability (Layer 5) & GOVERN 1.x (accountability) & 7.5
+documented info & Art. 12 record-keeping / logging \\
+Human-in-the-loop + red-team (Layer 6) & MAP / MANAGE & 6.1 risk
+assessment & Art. 14 human oversight; Art. 9 risk mgmt \\
+\end{longtable}
+}
+
+Notes - Record-keeping (EU AI Act Art. 12) is satisfied operationally by
+the OTel GenAI spans, provided you retain traces with the run's
+prompt/model/dataset linkage. - ``Human oversight'' is only partially
+automatable: the verifier and gates \emph{assist} a human reviewer; they
+do not replace sign-off for high-risk outputs. - This is an
+engineering-control map, not legal advice. Confirm applicability and
+current enforcement dates with counsel for your jurisdiction and risk
+tier.
+
+
+
+
+\end{document}

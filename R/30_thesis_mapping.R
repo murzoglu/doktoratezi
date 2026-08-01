@@ -2,21 +2,21 @@
 
 thesis_chapter_mapping <- function() {
   data.frame(
-    chapter = c("01_giris", "02_yontem", "03_bulgular", "04_tartisma", "05_sonuc"),
-    path = file.path("chapters", c("01_giris.qmd", "02_yontem.qmd", "03_bulgular.qmd", "04_tartisma.qmd", "05_sonuc.qmd")),
+    chapter = c("01_giris_ve_amac", "02_genel_bilgiler", "03_gerec_ve_yontem", "04_bulgular", "05_tartisma_ve_sonuc"),
+    path = file.path("chapters", c("01_giris_ve_amac.qmd", "02_genel_bilgiler.qmd", "03_gerec_ve_yontem.qmd", "04_bulgular.qmd", "05_tartisma_ve_sonuc.qmd")),
     role = c(
       "Kuramsal gerekçe ve hipotez çerçevesi",
+      "Kavramsal ve klinik arka plan",
       "Açık bilim, veri katmanı ve analiz protokolü",
       "H1-H5 + KISIM VI-XII bulgu, figür ve APA tabloları",
-      "Literatür sentezi, sınırlılıklar ve klinik yorum sınırı",
-      "Ana sonuç ve gelecek faz önerileri"
+      "Tartışma, sınırlılıklar, sonuç ve gelecek faz önerileri"
     ),
     required_artifact = c(
       "Hipotez metni",
+      "Genel bilgiler metni",
       "Yöntem protokolü",
-      "24 figür + 22 APA tablo",
-      "Tartışma/sınırlılık metni",
-      "Sonuç metni"
+      "24 figür + 25 APA tablo",
+      "Tartışma/sınırlılık/sonuç metni"
     ),
     stringsAsFactors = FALSE
   )
@@ -28,13 +28,12 @@ thesis_mapping_checks <- function(chapter_mapping, figure_manifest, table_manife
   html_exists <- file.exists(thesis_html)
   html <- if (html_exists) paste(readLines(thesis_html, warn = FALSE, encoding = "UTF-8"), collapse = "\n") else ""
 
-  figure_ids <- c(
-    "fig-strobe-flow", "fig-causal-dag", "fig-smd-love", "fig-propensity-overlap",
-    "fig-ses-correlation", "fig-h1-forest", "fig-h1-three-way-emm", "fig-h2-apim-path",
-    "fig-h3-stratified-forest", "fig-h4-sem-path", "fig-h5-bland-altman", "fig-h5-rsa-surface",
-    "fig-mediation-effects", "fig-lpa-fit-indices", "fig-network-graph", "fig-network-nct",
-    "fig-clinical-roc", "fig-clinical-dca", "fig-clinical-calibration", "fig-clinical-cart-rf",
-    "fig-specification-curve", "fig-sensemakr-contour", "fig-bayesian-forest", "fig-bayesian-diagnostics"
+  html_figure_ids <- c(
+    "fig-strobe-flow", "fig-causal-dag", "fig-propensity-overlap",
+    "fig-ses-correlation", "fig-h5-bland-altman", "fig-h5-rsa-surface",
+    "fig-lpa-fit-indices", "fig-network-graph", "fig-network-nct",
+    "fig-clinical-roc", "fig-clinical-dca", "fig-clinical-calibration",
+    "fig-clinical-cart-rf", "fig-specification-curve", "fig-sensemakr-contour"
   )
   table_ids <- c(
     "tbl-apa-sample-characteristics", "tbl-apa-covariate-balance", "tbl-apa-missing-data",
@@ -59,9 +58,9 @@ thesis_mapping_checks <- function(chapter_mapping, figure_manifest, table_manife
     expected = c(
       nrow(chapter_mapping),
       24L,
-      22L,
+      25L,
       1L,
-      length(figure_ids),
+      length(html_figure_ids),
       length(table_ids)
     ),
     observed = c(
@@ -69,7 +68,7 @@ thesis_mapping_checks <- function(chapter_mapping, figure_manifest, table_manife
       nrow(figure_manifest),
       nrow(table_manifest),
       as.integer(html_exists),
-      sum(vapply(figure_ids, grepl, logical(1), x = html, fixed = TRUE)),
+      sum(vapply(html_figure_ids, grepl, logical(1), x = html, fixed = TRUE)),
       sum(vapply(table_ids, grepl, logical(1), x = html, fixed = TRUE))
     ),
     stringsAsFactors = FALSE

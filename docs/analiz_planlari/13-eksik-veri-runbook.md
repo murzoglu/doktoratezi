@@ -15,9 +15,7 @@ Bu katman final CSV dosyalarını değiştirmez ve satır-düzeyi imputed veri y
 | `fiml_primary` | Birincil analiz değişkenleri, eksikler korunmuş | SEM/FIML ve model-içi missing handling |
 | `complete_case_primary` | Birincil frame üzerinde complete-case alt küme | Tanımlayıcı kayıp kıyası; birincil analiz değil |
 | `mi_primary` | Structural eksik içermeyen birincil MI frame | MAR varsayımı altında ana MI nesnesi |
-| `mi_clinical_sensitivity` | `mi_primary` + `hba1c`, `dm_yili` | DM-klinik duyarlılık analizleri |
 
-`hba1c` ve `dm_yili` kontrol grubunda structural missing kabul edilir. Bu kolonlar primary MI frame'e alınmaz; klinik sensitivity frame'inde `mice` `where` matrisi ile yalnız DM grubundaki analitik eksikler imputasyona açılır.
 
 ## 3. Özetler
 

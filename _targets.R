@@ -34,7 +34,6 @@ source("R/36_reliability_generalization.R")
 source("R/37_esem_embu.R")
 source("R/38_antidepressant_pathway.R")
 source("R/39_h5_extensions.R")
-source("R/40_hba1c_joint.R")
 source("R/41_causal_mediation.R")
 source("R/42_dag_pc_fci.R")
 source("R/43_distributional.R")
@@ -63,6 +62,22 @@ source("R/59_family_health_validity.R")
 source("R/60_derived_structural.R")
 source("R/61_maternal_mh_child_plane.R")
 source("R/62_selection_batch_validity.R")
+# Son-tur butunluk: H3 eksik-veri cercevesi saglamligi (CC/FIML/MI + NMAR delta)
+source("R/63_missing_h3_robustness.R")
+# Faz V SAP (KISIM L, §136-141) — [KESIFSEL · POST-HOC], OSF Layer 6
+# Artik iliski yuzeyi: kanonik bazda mevcut ama focal modele girmemis birkac
+# iliski (maternal depresyon->kardes, informant transmisyon/b-yolu, asiri koruma
+# gradyani, egitim farki, same_sex duad). YENI VERI YOK; kanonik kilit DEGISMEZ;
+# H1-H5 confirmatory cekirdek DEGISMEZ. CSV artefaktlari
+# scripts/R/58_phase5_residual_associations_audit.R tarafindan yazilir.
+source("R/64_phase5_residual_associations.R")
+# Faz VI SAP (KISIM LI, §142-151) — [KESIFSEL · POST-HOC], OSF Layer 7
+# Gelisimsel-diadik olcum yuzeyi: cocuk yasi x anne-cocuk uyumu/transmisyon,
+# cam kardes (indeks hastalik-yuku -> kardes algisi), maternal distres zaman-
+# cizgisi, kardes sicakligi moderatoru, triadik aile-iklimi tipolojisi, uyum
+# yonu. YENI VERI YOK; kanonik kilit DEGISMEZ; H1-H5 confirmatory DEGISMEZ.
+# CSV artefaktlari scripts/R/59_phase6_developmental_dyadic_audit.R ile yazilir.
+source("R/65_phase6_developmental_dyadic.R")
 
 tar_option_set(
   packages = character()
@@ -129,6 +144,32 @@ list(
     missing_target_summary,
     summarize_missing_targets(df_family_ses, missing_results)
   ),
+  # H3 eksik-veri cercevesi saglamligi: complete-case / FIML / MI(m=50) tahmin
+  # karsilastirmasi + NMAR delta izgarasi (aile_isei08 SES kovaryati, %9,1 eksik).
+  tar_target(
+    h3_missing_robustness_results,
+    run_h3_missing_robustness(missing_results, missing_imputations)
+  ),
+  tar_target(h3_missing_framework_comparison_table, h3_missing_robustness_results$framework_comparison),
+  tar_target(h3_nmar_delta_sensitivity_table, h3_missing_robustness_results$nmar_delta_sensitivity),
+  tar_target(h3_missing_robustness_summary_table, h3_missing_robustness_results$summary),
+  tar_target(
+    h3_missing_framework_comparison_csv,
+    save_apa_table_csv(h3_missing_framework_comparison_table, "outputs/tables/h3_missing_framework_comparison.csv"),
+    format = "file"
+  ),
+  tar_target(
+    h3_nmar_delta_sensitivity_csv,
+    save_apa_table_csv(h3_nmar_delta_sensitivity_table, "outputs/tables/h3_nmar_delta_sensitivity.csv"),
+    format = "file"
+  ),
+  # H3 SES-operasyonelleştirme sağlamlıği (latent/Hollingshead/kompozit/ISEI)
+  tar_target(h3_ses_operationalization_table, run_h3_ses_operationalization(df_family_ses)),
+  tar_target(
+    h3_ses_operationalization_csv,
+    save_apa_table_csv(h3_ses_operationalization_table, "outputs/tables/h3_ses_operationalization.csv"),
+    format = "file"
+  ),
   tar_target(table1_results, build_table1_family(df_family_ses)),
   tar_target(table1_family_summary_table, table1_results$table),
   tar_target(table1_smd_balance_table, table1_results$smd_balance),
@@ -169,6 +210,9 @@ list(
   tar_target(h1_primary_fixed_effects_table, h1_child_perception_results$primary_fixed_effects),
   tar_target(h1_primary_anova_table, h1_child_perception_results$primary_anova),
   tar_target(h1_primary_role_pairwise_table, h1_child_perception_results$primary_role_pairwise),
+  tar_target(h1_primary_within_group_role_contrast_table, h1_child_perception_results$primary_within_group_role_contrast),
+  tar_target(h1_primary_group_main_effect_table, h1_child_perception_results$primary_group_main_effect),
+  tar_target(h1_primary_period2023_group_main_effect_table, h1_child_perception_results$primary_period2023_group_main_effect),
   tar_target(h1_primary_diagnostics_table, h1_child_perception_results$primary_diagnostics),
   tar_target(h1_three_way_tests_table, h1_child_perception_results$three_way_tests),
   tar_target(h1_three_way_emmeans_grid_table, h1_child_perception_results$three_way_emmeans_grid),
@@ -225,7 +269,7 @@ list(
       df_family_ses,
       run_sem = TRUE,
       run_multigroup = TRUE,
-      multigroup_max_step = "metric_loadings"
+      multigroup_max_step = "scalar_thresholds"
     )
   ),
   tar_target(h4_scaling_summary_table, h4_beck_parenting_sem_results$scaling_summary),
@@ -252,7 +296,7 @@ list(
       run_rsa = TRUE,
       run_cfa = TRUE,
       run_k = TRUE,
-      n_boot = 200L
+      n_boot = 1000L
     )
   ),
   tar_target(h5_icc_bland_altman_table,         h5_dyadic_concordance_results$icc_bland_altman_table),
@@ -318,6 +362,12 @@ list(
   tar_target(lpa_fit_table,                   latent_profile_results$lpa_fit_table),
   tar_target(lpa_classes_table,               latent_profile_results$lpa_classes_table),
   tar_target(lpa_profile_means_table,         latent_profile_results$lpa_profile_means_table),
+  tar_target(lpa_profile_report_table,        latent_profile_results$lpa_profile_report_table),
+  tar_target(
+    lpa_profile_report_csv,
+    save_apa_table_csv(lpa_profile_report_table, "outputs/tables/lpa_profile_report.csv"),
+    format = "file"
+  ),
   tar_target(lpa_group_distribution_table,    latent_profile_results$lpa_group_distribution),
   tar_target(lca_indicator_audit_table,       latent_profile_results$lca_indicator_audit_table),
   tar_target(lca_fit_table,                   latent_profile_results$lca_fit_table),
@@ -341,6 +391,7 @@ list(
   tar_target(network_edges_table,            network_results$edges_table),
   tar_target(network_centrality_table,       network_results$centrality_table),
   tar_target(network_nct_table,              network_results$nct_table),
+  tar_target(network_stability_table,        network_results$stability_table),
   tar_target(network_beck_centrality_table,  network_results$beck_centrality_table),
 
   # KISIM IX — Klinik fayda: risk skor + ROC + DCA + CART + RF + NRI/IDI
@@ -359,23 +410,34 @@ list(
   tar_target(clinical_calibration_table,   clinical_utility_results$calibration_table),
   tar_target(clinical_nri_idi_table,       clinical_utility_results$nri_idi_table),
 
-  # KISIM X — DM klinik alt-analizler (HbA1c × parenting, dm_yili spline, tanı yaşı strata)
+  # KISIM X — DM klinik alt-analizler (dm_yili spline, tanı yaşı strata)
   tar_target(
     dm_subanalyses_results,
     run_dm_subanalyses_pipeline(df_family_ses)
   ),
   tar_target(dm_n_summary_table,           dm_subanalyses_results$n_summary_table),
-  tar_target(dm_hba1c_interaction_table,   dm_subanalyses_results$hba1c_interaction_table),
   tar_target(dm_duration_spline_table,     dm_subanalyses_results$spline_duration_table),
   tar_target(dm_strata_descriptive_table,  dm_subanalyses_results$strata_descriptive_table),
   tar_target(dm_strata_tests_table,        dm_subanalyses_results$strata_tests_table),
 
   # KISIM XIII / 40 — APA tablo + sekil paketi, Sprint A paketleri
-  tar_target(bayes_h1_posterior_table, utils::read.csv("outputs/tables/bayes_h1_posterior.csv", fileEncoding = "UTF-8")),
-  tar_target(bayes_h3_posterior_table, utils::read.csv("outputs/tables/bayes_h3_posterior.csv", fileEncoding = "UTF-8")),
-  tar_target(bayes_h1_diagnostics_table, utils::read.csv("outputs/tables/bayes_h1_diagnostics.csv", fileEncoding = "UTF-8")),
-  tar_target(bayes_h3_diagnostics_table, utils::read.csv("outputs/tables/bayes_h3_diagnostics.csv", fileEncoding = "UTF-8")),
-  tar_target(bayes_loo_waic_table, utils::read.csv("outputs/tables/bayes_loo_waic.csv", fileEncoding = "UTF-8")),
+  # Bayes CSV girdileri format="file" ile izlenir: dosya icerigi (hash)
+  # degisince targets asagi-akis APA tablolarini otomatik gecersizler.
+  # ONCEKI KOK-NEDEN (denetim P0-1): dosya-izleme olmadan read.csv kullanildigi
+  # icin model yeniden calisinca (BF 5,68 -> 10,55) tar_outdated() bunu
+  # goremiyor, turev CSV'ler bayat kaliyordu.
+  tar_target(bayes_h1_posterior_path, "outputs/tables/bayes_h1_posterior.csv", format = "file"),
+  tar_target(bayes_h3_posterior_path, "outputs/tables/bayes_h3_posterior.csv", format = "file"),
+  tar_target(bayes_h1_diagnostics_path, "outputs/tables/bayes_h1_diagnostics.csv", format = "file"),
+  tar_target(bayes_h3_diagnostics_path, "outputs/tables/bayes_h3_diagnostics.csv", format = "file"),
+  tar_target(bayes_loo_waic_path, "outputs/tables/bayes_loo_waic.csv", format = "file"),
+  tar_target(bayes_h1_prior_sensitivity_path, "outputs/tables/bayes_h1_prior_sensitivity.csv", format = "file"),
+  tar_target(bayes_h1_posterior_table, utils::read.csv(bayes_h1_posterior_path, fileEncoding = "UTF-8")),
+  tar_target(bayes_h3_posterior_table, utils::read.csv(bayes_h3_posterior_path, fileEncoding = "UTF-8")),
+  tar_target(bayes_h1_diagnostics_table, utils::read.csv(bayes_h1_diagnostics_path, fileEncoding = "UTF-8")),
+  tar_target(bayes_h3_diagnostics_table, utils::read.csv(bayes_h3_diagnostics_path, fileEncoding = "UTF-8")),
+  tar_target(bayes_loo_waic_table, utils::read.csv(bayes_loo_waic_path, fileEncoding = "UTF-8")),
+  tar_target(bayes_h1_prior_sensitivity_table, utils::read.csv(bayes_h1_prior_sensitivity_path, fileEncoding = "UTF-8")),
   tar_target(apa_h1_forest_plot, apa_plot_h1_forest(h1_primary_fixed_effects_table)),
   tar_target(apa_h4_sem_path_plot, apa_plot_h4_sem_path(h4_latent_sem_structural_paths_table)),
   tar_target(apa_h5_bland_altman_plot, apa_plot_h5_bland_altman(df_family_ses)),
@@ -561,6 +623,9 @@ list(
       ses_component_summary_table = ses_component_summary_table,
       ses_cfa_fit_measures_table = ses_cfa_fit_measures_table,
       h1_primary_fixed_effects_table = h1_primary_fixed_effects_table,
+      h1_primary_group_main_effect_table = h1_primary_group_main_effect_table,
+      h1_primary_within_group_role_contrast_table = h1_primary_within_group_role_contrast_table,
+      h1_primary_period2023_group_main_effect_table = h1_primary_period2023_group_main_effect_table,
       h1_primary_anova_table = h1_primary_anova_table,
       bayes_h1_posterior_table = bayes_h1_posterior_table,
       bayes_h1_diagnostics_table = bayes_h1_diagnostics_table,
@@ -574,10 +639,14 @@ list(
       robust_tost_equivalence_table = robust_tost_equivalence_table,
       h4_latent_sem_fit_measures_table = h4_latent_sem_fit_measures_table,
       h4_latent_sem_structural_paths_table = h4_latent_sem_structural_paths_table,
+      h4_multigroup_fit_measures_table = h4_multigroup_fit_measures_table,
+      h4_multigroup_comparison_table = h4_multigroup_comparison_table,
       h5_icc_bland_altman_table = h5_icc_bland_altman_table,
       h5_dyadic_cfa_latent_corr_table = h5_dyadic_cfa_latent_corr_table,
       h5_k_coefficient_table = h5_k_coefficient_table,
       h5_inconsistency_patterns_table = h5_inconsistency_patterns_table,
+      h5_rsa_parameters_table = h5_rsa_parameters_table,
+      h5_common_fate_regressions_table = h5_common_fate_regressions_table,
       mediation_simple_effect_table = mediation_simple_effect_table,
       mediation_multilevel_effect_table = mediation_multilevel_effect_table,
       mediation_conditional_effect_table = mediation_conditional_effect_table,
@@ -588,11 +657,11 @@ list(
       bifactor_s1_fit_table = bifactor_s1_fit_table,
       network_centrality_table = network_centrality_table,
       network_nct_table = network_nct_table,
+      network_stability_table = network_stability_table,
       clinical_base_performance = clinical_base_performance,
       clinical_full_performance = clinical_full_performance,
       clinical_nri_idi_table = clinical_nri_idi_table,
       dm_n_summary_table = dm_n_summary_table,
-      dm_hba1c_interaction_table = dm_hba1c_interaction_table,
       dm_duration_spline_table = dm_duration_spline_table,
       dm_strata_tests_table = dm_strata_tests_table,
       robust_multiverse_summary_table = robust_multiverse_summary_table,
@@ -637,7 +706,7 @@ list(
     format = "file"
   ),
   tar_target(final_publication_strategy_table, final_publication_strategy()),
-  tar_target(final_publication_evidence_map_table, final_publication_evidence_map()),
+  tar_target(final_publication_evidence_map_table, final_publication_evidence_map(bayes_h1_posterior_table, bayes_h3_posterior_table)),
   tar_target(final_risk_matrix_table, final_risk_matrix()),
   tar_target(final_risk_summary_table, final_risk_summary(final_risk_matrix_table)),
   tar_target(final_timeline_24_week_table, final_timeline_24_week()),
@@ -1126,6 +1195,8 @@ list(
       df_family_ses = df_family_ses,
       df_long_scored = df_long_scored,
       df_family_scored = df_family_scored,
+      h5_icc_table = h5_icc_bland_altman_table,
+      h5_cfa_latent_table = h5_dyadic_cfa_latent_corr_table,
       bootstrap_n = 1000L,
       brms_chains = 2L,
       brms_iter = 2000L,
@@ -1204,60 +1275,6 @@ list(
     phase2_h5ext_target_summary_csv,
     save_apa_table_csv(phase2_h5ext_target_summary_table,
       "outputs/tables/phase2_h5ext_target_summary.csv"),
-    format = "file"
-  ),
-
-  # KISIM XXIV/65, 66, 68 — HbA1c klinik stratifikasyon (DM-only)
-  tar_target(
-    phase2_hba1c_results,
-    run_hba1c_joint_pipeline(
-      df_family_ses = hba1c_ensure_group_dm(df_family_ses),
-      brms_chains = 2L,
-      brms_iter = 2000L,
-      run_bayesian = TRUE,
-      df_spline = 3L
-    )
-  ),
-  tar_target(phase2_hba1c_dm_summary_table, phase2_hba1c_results$dm_summary),
-  tar_target(phase2_hba1c_bayesian_status_table, phase2_hba1c_results$bayesian_status),
-  tar_target(phase2_hba1c_bayesian_posterior_table, phase2_hba1c_results$bayesian_posterior),
-  tar_target(phase2_hba1c_spline_table, phase2_hba1c_results$spline_table),
-  tar_target(phase2_hba1c_ispad_table, phase2_hba1c_results$ispad_table),
-  tar_target(phase2_hba1c_target_summary_table, phase2_hba1c_results$target_summary),
-  tar_target(
-    phase2_hba1c_dm_summary_csv,
-    save_apa_table_csv(phase2_hba1c_dm_summary_table,
-      "outputs/tables/phase2_hba1c_dm_summary.csv"),
-    format = "file"
-  ),
-  tar_target(
-    phase2_hba1c_bayesian_status_csv,
-    save_apa_table_csv(phase2_hba1c_bayesian_status_table,
-      "outputs/tables/phase2_hba1c_bayesian_status.csv"),
-    format = "file"
-  ),
-  tar_target(
-    phase2_hba1c_bayesian_posterior_csv,
-    save_apa_table_csv(phase2_hba1c_bayesian_posterior_table,
-      "outputs/tables/phase2_hba1c_bayesian_posterior.csv"),
-    format = "file"
-  ),
-  tar_target(
-    phase2_hba1c_spline_csv,
-    save_apa_table_csv(phase2_hba1c_spline_table,
-      "outputs/tables/phase2_hba1c_spline.csv"),
-    format = "file"
-  ),
-  tar_target(
-    phase2_hba1c_ispad_csv,
-    save_apa_table_csv(phase2_hba1c_ispad_table,
-      "outputs/tables/phase2_hba1c_ispad_logistic.csv"),
-    format = "file"
-  ),
-  tar_target(
-    phase2_hba1c_target_summary_csv,
-    save_apa_table_csv(phase2_hba1c_target_summary_table,
-      "outputs/tables/phase2_hba1c_target_summary.csv"),
     format = "file"
   ),
 
@@ -1635,7 +1652,6 @@ list(
       omegah_metrics_summary_table = phase2_omegah_metrics_summary_table,
       h5ext_strategy_pooled_table = phase2_h5ext_strategy_pooled_table,
       ad_h5_stratified_table = phase2_ad_moderation_h5_stratified_table,
-      hba1c_bayesian_posterior_table = phase2_hba1c_bayesian_posterior_table,
       multi_h1_spec_results_table = phase2_multi_h1_spec_results_table,
       multi_h1_curve_summary_table = phase2_multi_h1_curve_summary_table,
       multi_sca_inferential_table = phase2_multi_sca_inferential_table,
@@ -1663,7 +1679,7 @@ list(
   ),
 
   # KISIM XXXII/94, 95 — Tez Bolum 6 + Makale 4-6 yayin plan
-  tar_target(phase2_thesis_results, run_phase2_thesis_mapping_pipeline()),
+  tar_target(phase2_thesis_results, run_phase2_thesis_mapping_pipeline(bayes_h1_posterior_table)),
   tar_target(phase2_thesis_chapter_mapping_table,
     phase2_thesis_results$chapter_mapping),
   tar_target(phase2_thesis_publication_plan_table,
@@ -1763,8 +1779,7 @@ list(
     run_phase4_selection_batch_pipeline(
       df_family_ses = df_family_ses,
       year_col = "anket_tarihi",
-      replication_year = 2023L,
-      ipw_trunc_q = 0.95
+      replication_year = 2023L
     )
   ),
   tar_target(
@@ -1807,6 +1822,33 @@ list(
     run_phase4_derived_structural_pipeline(
       df_family_ses = df_family_ses,
       supplement = es_yas_supplement
+    )
+  ),
+
+  # ---- Faz V SAP (KISIM L, §136-141) — [KESIFSEL · POST-HOC], OSF Layer 6 ----
+  # Kanonik kilitli df_family_ses'e bagli; YENI VERI GIRMEZ; kilit rev DEGISMEZ.
+  # CSV artefaktlari scripts/R/58_phase5_residual_associations_audit.R runner'i ile.
+  tar_target(
+    phase5_residual_results,
+    run_phase5_residual_associations_pipeline(
+      df_family_ses = df_family_ses,
+      n_boot = 1000L,
+      sesoi_r = 0.10,
+      sesoi_d = 0.20,
+      seed = 20260714L
+    )
+  ),
+
+  # ---- Faz VI SAP (KISIM LI, §142-151) — [KESIFSEL · POST-HOC], OSF Layer 7 ----
+  # Kanonik kilitli df_family_ses'e bagli; YENI VERI GIRMEZ; kilit rev DEGISMEZ.
+  # CSV artefaktlari scripts/R/59_phase6_developmental_dyadic_audit.R runner'i ile.
+  tar_target(
+    phase6_developmental_results,
+    run_phase6_developmental_pipeline(
+      df_family_ses = df_family_ses,
+      sesoi_r = 0.10,
+      sesoi_d = 0.20,
+      seed = 20260714L
     )
   )
 )

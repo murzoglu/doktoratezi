@@ -51,6 +51,14 @@ meta_ensure_group_dm <- function(df) {
 # ============================================================================
 
 meta_prior_studies <- function() {
+  # Denetim (derin) #4.25 — metrik manifest: Orman grafigi (Sekil 4.25 /
+  # fig-p2-meta-forest) bes kaynagi tek eksende betimsel olarak yan yana koyar.
+  # Dis calismalarin OZGUN etki-buyuklugu metrigi ayni degildir; bu farklilik
+  # yalniz sekil altyazisinda nesir olarak degil, veri/kanit katmaninda da
+  # izlenebilir olmalidir. `orig_metric` sutunu her satirin kaynak metrigini
+  # kaydeder ve otomatik olarak phase2_meta_combined_studies.csv'ye akar; boylece
+  # "ozgun metrikleri farkli oldugundan bu karsilastirma yalnizca betimseldir"
+  # savi kaynak veriden dogrulanabilir hale gelir (kaynak-tekilligi).
   data.frame(
     study = c(
       "Pinquart_2013_chronic_illness_parenting",
@@ -65,6 +73,12 @@ meta_prior_studies <- function() {
     n_studies = c(325L, 56L, 46L, 56L),
     weight_label = c("meta_chronic", "meta_stress",
       "meta_depression", "meta_siblings"),
+    orig_metric = c(
+      "Hedges g",          # Pinquart 2013: standardize ortalama fark (g/d)
+      "Hedges g",          # Pinquart 2018: standardize ortalama fark (g/d)
+      "r -> d (donusturulmus)",  # Lovejoy 2000: korelasyonel meta; r'den d'ye
+      "Cohen d"            # Vermaes 2012: standardize ortalama fark (d)
+    ),
     stringsAsFactors = FALSE
   )
 }
@@ -86,35 +100,33 @@ meta_estimate_this_study <- function(df_family_ses, df_long_scored,
 
   paired <- merge(long, fam, by = "aile_no", all.x = TRUE)
 
-  if (!requireNamespace("lme4", quietly = TRUE)) {
-    return(list(yi = NA_real_, se = NA_real_, n = NA_integer_,
-      study_label = "T1DM_EBEVEYN_2026", domain = "this_study"))
-  }
-  formula <- stats::as.formula(sprintf(
-    "%s ~ group_dm + cocuk_yas_z + ses_latent_z + (1 | aile_no)", outcome
-  ))
-  fit <- tryCatch(
-    suppressWarnings(suppressMessages(lme4::lmer(formula, data = paired))),
-    error = function(e) e
-  )
-  if (inherits(fit, "error")) {
-    return(list(yi = NA_real_, se = NA_real_, n = NA_integer_,
+  # Iki-grup standardize etki buyuklugu: Hedges g. Onceki surum ham lmer
+  # group_dm katsayisini (1-4 olcek-puani birimi) donduruyordu; bu, orman
+  # grafiginde standardize d/g birimli dis calismalarla ayni eksende
+  # karistiriliyordu (denetim P0-3). Artik bu calisma da dis literaturle ayni
+  # birimde (Hedges g) raporlanir; tezin "iki-grup g ~ 0,38" basligiyla tutarli.
+  y <- suppressWarnings(as.numeric(paired[[outcome]]))
+  gdm <- paired$group_dm
+  ok <- !is.na(y) & !is.na(gdm)
+  y <- y[ok]; gdm <- gdm[ok]
+  v1 <- y[gdm == 1L]; v0 <- y[gdm == 0L]
+  n1 <- length(v1); n0 <- length(v0)
+  if (n1 < 5L || n0 < 5L) {
+    return(list(yi = NA_real_, se = NA_real_, n = n1 + n0,
       study_label = "T1DM_EBEVEYN_2026", domain = "this_study",
-      error = conditionMessage(fit)))
+      error = "insufficient_group_n"))
   }
-  cs <- summary(fit)$coefficients
-  if (!"group_dm" %in% rownames(cs)) {
-    return(list(yi = NA_real_, se = NA_real_, n = stats::nobs(fit),
-      study_label = "T1DM_EBEVEYN_2026", domain = "this_study",
-      error = "predictor_dropped"))
-  }
-  yi <- cs["group_dm", "Estimate"]
-  se <- cs["group_dm", "Std. Error"]
+  sp <- sqrt(((n1 - 1) * stats::var(v1) + (n0 - 1) * stats::var(v0)) / (n1 + n0 - 2))
+  d <- if (is.finite(sp) && sp > 0) (mean(v1) - mean(v0)) / sp else NA_real_
+  J <- 1 - 3 / (4 * (n1 + n0) - 9)
+  g <- J * d
+  vi <- (n1 + n0) / (n1 * n0) + g^2 / (2 * (n1 + n0))
+  se <- sqrt(vi)
   list(
-    yi = yi,
+    yi = g,
     se = se,
-    vi = se^2,
-    n = stats::nobs(fit),
+    vi = vi,
+    n = n1 + n0,
     study_label = sprintf("T1DM_EBEVEYN_2026_%s", outcome_subscale),
     domain = "this_study",
     weight_label = sprintf("this_%s", outcome_subscale)
@@ -429,6 +441,9 @@ run_bayesian_meta_pipeline <- function(df_family_ses, df_long_scored,
       vi = this_est$vi,
       n_studies = NA_integer_,
       weight_label = this_est$weight_label,
+      # Bu calisma: iki-grup (DM vs. kontrol) J-duzeltmeli Hedges g (bkz.
+      # meta_estimate_this_study; denetim P0-3). Metrik manifest satiri.
+      orig_metric = "Hedges g",
       stringsAsFactors = FALSE
     )
   })
@@ -445,6 +460,7 @@ run_bayesian_meta_pipeline <- function(df_family_ses, df_long_scored,
         vi = prior_studies$vi,
         n_studies = prior_studies$n_studies,
         weight_label = prior_studies$weight_label,
+        orig_metric = prior_studies$orig_metric,
         stringsAsFactors = FALSE
       ),
       this_study_estimates
@@ -457,6 +473,7 @@ run_bayesian_meta_pipeline <- function(df_family_ses, df_long_scored,
       vi = prior_studies$vi,
       n_studies = prior_studies$n_studies,
       weight_label = prior_studies$weight_label,
+      orig_metric = prior_studies$orig_metric,
       stringsAsFactors = FALSE
     )
   }

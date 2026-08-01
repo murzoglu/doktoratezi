@@ -1,2 +1,292 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+bin/
+include/
+pip-selfcheck.json
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Credentials - VERY IMPORTANT!
+dr-murzoglu-doktora.json
+*.json
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!renv/settings.json
+# Ajan/plugin yapilandirmalari (gizli bilgi degil, izlenmeli)
+!.claude/settings.json
+!**/marketplace.json
+!**/hooks.json
+!**/plugin.json
+credentials/
 .env
+.env.local
+
+# MCP connector sırları (gerçek Bearer key + upstream API anahtarları) — ASLA commit etme
+MCP-TALIMATLAR.md
+
+# Test files
+test_file.txt
+downloaded_test_file.txt
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Logs
+*.log
+
+# Research data boundaries
+data/raw/
+data/identified/
+data/backup/
+data/cleaned/
+data/processed/*
+!data/processed/.gitkeep
+# Kök data/ katılımcı-düzeyi CSV'leri (KVKK özel nitelikli sağlık verisi) — asla izlenmez
+data/*.csv
+
+# Project archives — historical decisions, pre-canonical artifacts
+archive/
+
+# Reference books (copyright-protected; do not commit)
+docs/books/
+
+# Misc artifacts (zip bundles, temp HTML)
+carbon-html-report.zip
+*.zip
+docs/**/*_files/
+
+# Quarto ara render çıktıları (thesis.qmd kök dizininde üretilir)
+/thesis.tex
+/thesis.typ
+/thesis.html
+/thesis.docx
+/thesis.pdf
+/thesis_files/
+outputs/*
+!outputs/.gitkeep
+!outputs/tables/
+outputs/tables/*
+!outputs/tables/.gitkeep
+!outputs/figures/
+outputs/figures/*
+!outputs/figures/.gitkeep
+!outputs/models/
+outputs/models/*
+!outputs/models/.gitkeep
+_targets/
+_targets.RDS
+_targets.yaml
+_freeze/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Cache
+.cache/
+*.cache
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Frontend Build
+frontend/dist/
+frontend/build/
+frontend/.vite/
+frontend/.turbo/
+
+# Environment variables
 .env.*
+!.env.example
+.env.backend
+.env.backend.OLD
+.env.frontend
+.env.development
+.env.production
+.env.test
+
+# Backend service-specific env files
+backend/.env
+backend/**/.env
+!backend/**/.env.example
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# Uploads and temp files
+uploads/
+temp/
+tmp/
+*.tmp
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Testing
+coverage/
+.nyc_output/
+*.coverage
+
+# Backend
+backend/**/node_modules/
+backend/**/__pycache__/
+backend/**/*.pyc
+backend/**/dist/
+
+# MongoDB
+mongo_data/
+
+# PostgreSQL
+postgres_data/
+
+# Redis
+redis_data/
+/.quarto/
+
+# Quarto / LaTeX transient output
+/_book/
+/_site/
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fls
+*.fdb_latexmk
+*.lof
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+
+# ── Nitel kol (niteliksel/) veri sınırı — git-commit koruması ─────────
+# Nitel repo bu monorepoya taşındı (/workspaces/T1DM-Tez/niteliksel).
+# Ham transkript / PII / ses kaydı / credential ASLA commit edilmez.
+# Bu YALNIZ git-commit sınırıdır; okuma erişimini kısıtlamaz (permissions.deny yok).
+niteliksel/.env
+niteliksel/.env.*
+niteliksel/**/.env
+niteliksel/data/raw/
+niteliksel/data/identified/
+niteliksel/data/cleaned/
+niteliksel/data/backup/
+niteliksel/**/ham_veri/
+niteliksel/**/transkript*/
+niteliksel/**/transcript*/
+niteliksel/**/de*ifre*/
+niteliksel/**/gorusme*kay*/
+niteliksel/**/*.wav
+niteliksel/**/*.mp3
+niteliksel/**/*.m4a
+
+# new/ ham kaynak (verbatim + doğum tarihi) ve doğum-tarihli türevler yerelde kalır
+niteliksel/new/
+niteliksel/**/triadik_matris_extracted.csv
+niteliksel/**/*_identified.csv
+# Birleşik ham transkript çıktıları (verbatim + konuşmacı etiketi) — 06_tools scriptleri üretir
+niteliksel/**/tum_dokumler*.md
+
+# Zotero MCP köprüsü (iç altyapı; anahtar .env'den; commit edilmez)
+scripts/mcp/zotero_refs_bridge.py
+
+# ── Minerva (Roche-iç) kanıt köprüsü — iç altyapı, sürüm kontrolüne GİRMEZ ──
+# Evidentia'nın yanına bağlanan gravitee vectorstore + rominedb köprüsü yereldir:
+# fonksiyonel kurulum makineye özeldir (kimlik .env/live-env'den), iç Roche
+# gateway host/entegrasyon detayları commit/yayın ağacına dökülmez. Özel repoda
+# istenirse `git add -f` ile eklenebilir. Kayıt: docs/.../*minerva* (yerel).
+.mcp.json
+.vscode/mcp.json
+# Ona-yerel MCP config (galileo-audit koprusu; kimlik .env'den enjekte edilir).
+# `.mcp.json` ile ayni rejim: fonksiyonel config yerel/ignore; sirsiz sablon
+# (.ona/mcp-config.example.json) surum kontrolune izinlidir (asagidaki `!` istisnasi).
+.ona/mcp-config.json
+!.ona/mcp-config.example.json
+scripts/mcp/minerva_evidence_bridge.py
+docs/superpowers/specs/*minerva*.md
+
+# evidentia yerel yapılandırma (operatör-yerel, git-ignore konvansiyonu)
+.claude/evidentia.local.md
+
+# galileo-audit bağımsız denetim katmanı (operatör-yerel, iç Roche gateway)
+scripts/eval/galileo_bridge.py
+scripts/eval/thesis_eval_run.py
+.claude/galileo.local.md
+
+# klinisyen-diline-uyarlama Gemini üretim köprüsü (operatör-yerel, portkey-galileo gateway)
+scripts/eval/gemini_reformulate.py
+
+# CSL smoke-test: ignore ALL render artifacts (any format), keep only the tracked fixtures
+references/_csl_test/*
+!references/_csl_test/test.qmd
+!references/_csl_test/test-refs.bib
+
+**/*.quarto_ipynb
+eksikler/
+
+# Kişisel/PII içeren özgeçmiş belgesi (yalnız yerel; commit edilmez)
+*Curriculum Vitae*.pdf
+*Curriculum Vitae*.PDF
+
+# Ortak yazar DOCX round-trip kanallari (paylasilan/donen tez metni; git disi)
+outbox/
+inbox/
+outputs/coauthor/
+
+# Kimlik/sinav belgesi gorselleri (T.C. kimlik no, vesikalik foto; KVKK - asla commit edilmez)
+IMG-*.jpg
+IMG-*.jpeg
+IMG-*.png
+*_sonuc_belgesi.*
+
+# Ek belgelerinin taranmis kaynak PDF'leri (KVKK - ucuncu kisilere ait
+# maskelenmemis e-posta adresleri icerir). Teze giren sayfa gorselleri
+# docs/assets/ekler/ altinda MASKELENMIS olarak versiyonlanir; kaynaklar
+# yerelde kalir ve scripts/util/ekler_pdf_to_png.py ile yeniden uretilir.
+docs/ekler/

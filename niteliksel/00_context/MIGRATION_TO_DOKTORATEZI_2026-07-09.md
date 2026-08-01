@@ -1,8 +1,8 @@
 # Nitel Repo Migrasyon Kaydı
 
 **Tarih:** 2026-07-09
-**Kaynak:** `/mnt/thunderbolt/workspaces/T1DM Niteliksel`
-**Hedef:** `/mnt/thunderbolt/workspaces/doktoratezi/niteliksel`
+**Kaynak:** `/workspaces/T1DM-Tez/niteliksel`
+**Hedef:** `/workspaces/T1DM-Tez/niteliksel`
 **Durum:** Güvenli kopyalama tamamlandı; kaynak repo silinmedi.
 
 ## Kapsam
@@ -20,8 +20,8 @@ rsync -a \
   --exclude='.git/' \
   --exclude='.env' \
   --exclude='.env.*' \
-  '/mnt/thunderbolt/workspaces/T1DM Niteliksel/' \
-  '/mnt/thunderbolt/workspaces/doktoratezi/niteliksel/'
+  '/workspaces/T1DM-Tez/niteliksel/' \
+  '/workspaces/T1DM-Tez/niteliksel/'
 ```
 
 Taşınmayan öğeler:
@@ -45,7 +45,7 @@ veya aile düzeyi hassas ayrıntılar harici araca gönderilmemelidir.
 ## Uygulama Sonrası Uyarlamalar
 
 Üst repo altında çalışırken `git rev-parse --show-toplevel` artık
-`/mnt/thunderbolt/workspaces/doktoratezi` döndürdüğü için taşınan nitel test
+`/workspaces/T1DM-Tez` döndürdüğü için taşınan nitel test
 ve hook katmanında alt-kök bulma mantığı düzeltildi:
 
 - `plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py`

@@ -1,0 +1,16 @@
+# Çıkarım tablosu — ayırıcı ';' (Türkçe ondalık virgül veri hücrelerinde kullanılır)
+# Tip/birim notları:
+#   hr,ci95_lo,ci95_hi = ondalık VİRGÜL (0,72); kaide: ci95_lo <= hr <= ci95_hi, hr > 0
+#   p = [0,1] ondalık virgül; estimate = medyan ay ('14,2') veya % ('%45')
+#   n_total,events_n = tamsayı; orr = [0,%100]; median_followup = ay
+#   design = RCT | gözlemsel | tek-kol | tanısal
+#   source_locator = PMID/DOI + tablo/şekil (izlenebilirlik ZORUNLU)
+#   source_tier = evidence | context | lead  (KANIT≠BAĞLAM zorlaması, referans 04 §0)
+#     evidence = minerva/openathens/annas + birincil literatür → SAYI verebilir
+#     context  = ich/titck/eudamed/oecd → yalnız metodoloji/uygulanabilirlik
+#     lead     = socius-vigil/yok-akademik → yalnız arama-yönlendirme
+#     KURAL: hr/ci95/orr/estimate DOLU ise source_tier=evidence OLMALI (aksi=blocker)
+#   çözülemeyen alan = 'unverified' (uydurma YASAK)
+# Aşağıdaki satır <PLACEHOLDER> örneğidir; gerçek veriyle DEĞİŞTİRİN, silmeyin ki tip görünür kalsın.
+study_id;pmid_doi;nct;study_name;design;population;histoloji;evre_tnm;biyobelirtec;hat;intervention;comparator;n_total;endpoint;estimate;hr;ci95_lo;ci95_hi;p;orr;events_n;median_followup;funding_coi;source_tier;source_locator;notlar
+<STUDY_ID>;<PMID_veya_DOI>;<NCTxxxxxxxx_veya_unverified>;<CALISMA_ADI>;RCT;<POPULASYON>;adeno;IV;<EGFR/ALK/PD-L1/unverified>;1L;<AJAN>;<KOMPARATOR>;<n>;OS;<medyan_ay_veya_%>;0,72;0,58;0,90;0,001;45;<olay_n>;<takip_ay>;<fon/COI>;evidence;<PMID+Tablo/Şekil>;<örnek: kaideye uygun placeholder — gerçek değerle değiştir>

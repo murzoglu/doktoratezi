@@ -35,20 +35,36 @@ final_publication_strategy <- function() {
   )
 }
 
-final_publication_evidence_map <- function() {
+final_publication_evidence_map <- function(bayes_h1_posterior_table = NULL,
+                                           bayes_h3_posterior_table = NULL) {
+  # H1 BF10 tek dogruluk kaynagi bayes_h1_posterior_table'dir (denetim P0-1:
+  # elle "8.12" literali kanonik 10.55 degerinden kopmustu).
+  .bf_h1 <- tryCatch({
+    b <- bayes_h1_posterior_table
+    v <- as.numeric(b$bf10[grepl("reddetme", b$outcome)][1])
+    if (is.finite(v)) sprintf("%.2f", v) else "NA"
+  }, error = function(e) "NA")
+  # H3 BF10 araligi da kanonik kaynaktan (denetim #27: "0.17-0.25" ust siniri
+  # kanonik 0.23 ile celisiyordu).
+  .bf_h3 <- tryCatch({
+    h <- bayes_h3_posterior_table
+    v <- as.numeric(h$bf10)
+    v <- v[is.finite(v)]
+    if (length(v)) sprintf("%.2f-%.2f", min(v), max(v)) else "NA"
+  }, error = function(e) "NA")
   data.frame(
     manuscript_id = c("M1", "M1", "M1", "M2", "M2", "M2", "M3", "M3", "M3"),
     evidence_block = c("H1", "H5", "KISIM XII", "H3", "H4", "KISIM VI", "KISIM IV", "KISIM XI", "KISIM XII"),
     claim_boundary = c(
       "DM çocuklarında EMBU-C reddetme yükselmiştir",
-      "Anne-cocuk tutarlılığı zayıf ve klinik tutarsızlık örüntüleri yüksektir",
-      "H1 reddetme BF10=8.12 ile Bayesian destek alır",
+      "Anne-cocuk tutarlılığı zayıf ve bilgi-verici ayrışma örüntüleri yüksektir",
+      paste0("H1 reddetme BF10=", .bf_h1, " ile Bayesian destek alır"),
       "Anne öz-raporda DM-Kontrol farkı yoktur",
       "Beck depresyonu EMBU-P latent yollarıyla ilişkilidir",
       "Mediation indirect etkileri sıfırı içerir",
       "Ölçek psikometri ve invariance bulguları ölçüm sınırlarını tanımlar",
       "Multiverse ve TOST H3 negatif bulguyu güçlendirir",
-      "H3 BF10=0.17-0.25 ile H0 lehine kanıt verir"
+      paste0("H3 BF10=", .bf_h3, " ile H0 lehine kanıt verir")
     ),
     primary_artifact = c(
       "apa_t06_h1_primary.csv; h1_forest.png",
@@ -78,14 +94,13 @@ final_publication_evidence_map <- function() {
 
 final_risk_matrix <- function() {
   data.frame(
-    risk_id = sprintf("R%02d", 1:14),
+    risk_id = sprintf("R%02d", 1:13),
     risk = c(
       "H1 grup farkı sıcaklık/aşırı korumada çıkmaz",
       "H2 APIM veya dyadic CFA convergence fail",
       "H3 EMBU-P reddetme zayıf psikometri",
       "H4 SEM identification veya sparse ordinal kategori sorunu",
       "H5 RSA convergence veya yüzey yorumu belirsizliği",
-      "HbA1c tamamlanma oranı düşük",
       "renv veya sistem paket kilidi bozulur",
       "Antidepresan kullanımı karıştırıcı/yorum kaydırıcı rol oynar",
       "ISEI tek başına SES'i karşılamaz",
@@ -95,15 +110,14 @@ final_risk_matrix <- function() {
       "Bayesian Stan/brms compile veya sampling sorunu",
       "Quarto/papaja render problemi"
     ),
-    probability = c("Orta", "Düşük", "Yüksek", "Düşük", "Orta", "Kesin", "Düşük", "Yüksek", "Orta", "Düşük", "Orta", "Yüksek", "Düşük", "Orta"),
-    impact = c("Orta", "Orta", "Yüksek", "Yüksek", "Orta", "Yüksek", "Yüksek", "Yüksek", "Orta", "Orta", "Orta", "Yüksek", "Orta", "Orta"),
+    probability = c("Orta", "Düşük", "Yüksek", "Düşük", "Orta", "Düşük", "Yüksek", "Orta", "Düşük", "Orta", "Yüksek", "Düşük", "Orta"),
+    impact = c("Orta", "Orta", "Yüksek", "Yüksek", "Orta", "Yüksek", "Yüksek", "Orta", "Orta", "Orta", "Yüksek", "Orta", "Orta"),
     mitigation = c(
       "TOST + Bayesian BF + multiverse savunması",
       "Family-mean Welch + moderation yedeği",
       "BSEM/latent yorum + multiverse + TOST + açık sınırlılık",
       "Reduced item multi-group screen + path analysis fallback",
       "ICC/Bland-Altman birincil; RSA keşifsel",
-      "HbA1c keşifsel; dm_yili tam veriyle ana klinik süre göstergesi",
       "Docker + renv.lock + targets manifest",
       "Stratified sensitivity; total-effect model sınırı",
       "Latent SES + Hollingshead + materyal indeks triangülasyonu",
@@ -119,7 +133,6 @@ final_risk_matrix <- function() {
       "alpha/omega ve floor effect sınır altı",
       "ordinal boş kategori veya nonidentification",
       "RSA model status ok değil",
-      "HbA1c n<50",
       "renv::status() uyumsuz",
       "AD strata yön değiştirir",
       "SES SMD veya CFA zayıf",
@@ -130,8 +143,8 @@ final_risk_matrix <- function() {
       "quarto render non-zero exit"
     ),
     status = c(
-      "kapalı", "kapalı", "aktif-izlem", "kapalı", "kapalı", "aktif-izlem", "kapalı",
-      "aktif-izlem", "kapalı", "kapalı", "kapalı", "aktif-izlem", "kapalı", "kapalı"
+      "kapalı", "kapalı", "aktif-izlem", "kapalı", "kapalı", "aktif-izlem",
+      "kapalı", "aktif-izlem", "kapalı", "kapalı", "kapalı", "aktif-izlem", "kapalı"
     ),
     stringsAsFactors = FALSE
   )

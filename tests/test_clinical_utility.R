@@ -28,12 +28,21 @@ stopifnot(
   nrow(base$coef_table) == 5L
 )
 
+# YÖN-MANTIĞI KAPISI (denetim P0-8): optimizm düzeltmesi apparent AUC'yi
+# ASLA artıramaz. Önceki hatalı formül boot-on-boot terimini atlayıp
+# corrected > apparent (imkansız) üretiyordu; bu assert onu yakalar.
+stopifnot(
+  base$performance_table$auc_corrected <= base$performance_table$auc + 1e-9
+)
+
 # Full logistic
 full <- clinical_logistic_risk(prep, clinical_predictors_extended(),
                                 n_boot = 50L, seed = 42L)
 stopifnot(
   full$status == "ok",
-  full$performance_table$auc >= base$performance_table$auc - 0.01
+  full$performance_table$auc >= base$performance_table$auc - 0.01,
+  # yön-mantığı kapısı (P0-8): full modelde de corrected <= apparent
+  full$performance_table$auc_corrected <= full$performance_table$auc + 1e-9
 )
 
 # CART + Random Forest

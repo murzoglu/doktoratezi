@@ -1,4 +1,4 @@
-"""Shared helpers for Claude Code hooks (T1DM Niteliksel).
+"""Shared helpers for Claude Code hooks (doktoratezi).
 
 Claude Code passes one JSON object on stdin to every command hook. Common
 fields: session_id, transcript_path, cwd, hook_event_name. Event-specific

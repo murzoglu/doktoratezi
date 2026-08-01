@@ -2,7 +2,7 @@
 
 Tarih: 2026-06-30
 
-Kapsam: `tez-yazim` resmi kılavuz mimarisi, iki-repo entegrasyon hattı,
+Kapsam: `tez-yazim` resmi kılavuz mimarisi, iki-kol entegrasyon hattı,
 dmnitel tool bridge, MCP/Zotero yüzeyi, Quarto/R ortamı ve AI reliability
 kapıları.
 
@@ -26,7 +26,7 @@ saptanmadı. Final metin üretiminde resmi kaynak sırası korunmalıdır:
 | Route kararı | PASS | `./dmnitel route-tool --query "Marmara tez yazım formatı, joint display ve kaynakça kontrolü"` Marmara official thesis guide + Zotero gate seçti. |
 | AI context | PASS | `./dmnitel ai-context --output 07_reports/t1dm_ai_tool_bridge.md` yeniden üretildi. |
 | Cross-repo status | PASS | `./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md` yeniden üretildi. |
-| Nitel entegrasyon kopyası | PASS | Nitel upstream rapor ile `docs/niteliksel/qualitative_canonical_results_report.md` bire bir aynı. |
+| Nitel entegrasyon kopyası | PASS | Nitel upstream rapor ile `niteliksel/qualitative_canonical_results_report.md` bire bir aynı. |
 
 ## Araç Yüzeyi
 
@@ -66,7 +66,7 @@ saptanmadı. Final metin üretiminde resmi kaynak sırası korunmalıdır:
 2. İçerik iddiasında önce repo içi kaynak ve testlenmiş aggregate artefakt.
 3. Dış literatürde Evidentia D0-D6, ardından Zotero kaynakça mutabakatı.
 4. Karma yorumda nitel tema ile nicel estimate ayrı kanıt türleri olarak kalır.
-5. Harici MCP/plugin sonucu tez cümlesini etkilerse nitel repo AI use log'a kayıt düşülür.
+5. Harici MCP/plugin sonucu tez cümlesini etkilerse nitel kol AI use log'a kayıt düşülür.
 
 ## Bloklayıcı Olmayan Açık Noktalar
 

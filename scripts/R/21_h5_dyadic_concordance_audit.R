@@ -22,7 +22,7 @@ results <- run_h5_dyadic_concordance_pipeline(
   run_rsa = TRUE,
   run_cfa = TRUE,
   run_k = TRUE,
-  n_boot = 200L
+  n_boot = 1000L
 )
 
 write_csv <- function(df, name) {

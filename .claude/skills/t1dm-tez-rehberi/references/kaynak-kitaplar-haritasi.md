@@ -1,10 +1,11 @@
-# Kaynak Kitaplar Haritası — `docs/books/` ile Tez Bölümleri
+# Kaynak Kitaplar Haritası — Temel Referans Kitapları ↔ Tez Bölümleri
 
 **Ne zaman oku:** Bir karar için "hangi kitap?" sorusu; bir tez paragrafına atıf eklerken;
 bir yöntem seçimini gerekçelendirirken; metodolojik tartışmanın kökenine inerken.
 
-**Lokasyon:** `/mnt/thunderbolt/workspaces/doktoratezi/docs/books/` — 16 PDF/EPUB temel
-referans kitabı.
+**Kitaplar:** 16 PDF/EPUB temel referans kitabı — fiziksel dosyalar bu repoda **yer almaz**
+(yazarın yerel referans kütüphanesi). Bu harita atıf planlaması ve `references.bib` doldurma
+içindir; kitap içeriğine erişim gerektiğinde yerel kütüphaneden açılır.
 
 ---
 
@@ -552,8 +553,6 @@ SAP v3.0 §XVIII'deki >100 kaynaktan **projedeki uygulama eşlemesi**:
 | **Streisand & Monaghan** *Curr Diabetes Rep* "Young children with T1DM" | 2014 | Anne savunmacılığı + sosyal istenirlik kompansasyonu hipotezi |
 | **Anderson** *Diabetes Care* "Parenting practices in T1DM" | 2011 | Klinik yönetim ↔ parenting tutum |
 | **Whittemore et al.** *Diabetes Educator* "Parents of T1DM children" | 2012 | Tükenmişlik + maternal mental health |
-| **Demirbilek et al.** *Pediatric Diabetes* "Glycemic control in Turkey" | 2020 | Türk T1DM normu, HbA1c eşikleri |
-| **ISPAD Clinical Practice Guidelines** | 2022 | HbA1c hedef ≤7.5 (pediatrik) |
 
 ### Sibling ve aile sistemleri
 

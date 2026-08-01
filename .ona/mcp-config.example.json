@@ -1,0 +1,27 @@
+{
+  "_comment": "Ona-yerel MCP config (Ona `.ona/mcp-config.json` okur; `.mcp.json` Claude Code icindir). galileo-audit = bagimsiz GPT judge + semantik-tutarlilik denetim koprusu (scripts/eval/galileo_bridge.py); klinisyen-diline-uyarlama skill'inin SOFT-block kademesini besler. Kimlik ${GALILEO_*}/${GRAVITEE_*} calisma-zamaninda .env'den enjekte edilir (deger burada YOK; .env .gitignore'da). galileo_bridge zaten .env'i kendi okur (CLAUDE_PROJECT_DIR fallback); asagidaki env yalnizca acik/dayanikli gecistir. Bu dosya .gitignore *.json ile izlenmez: ic Roche altyapisi surum kontrolune girmez. minerva-evidence ve zotero-refs gibi ek sunucular icin bkz. .mcp.json (Claude Code ikizi).",
+  "mcpServers": {
+    "galileo-audit": {
+      "name": "galileo-audit",
+      "command": "python3",
+      "args": ["scripts/eval/galileo_bridge.py"],
+      "workingDir": "/workspaces/T1DM-Tez",
+      "env": {
+        "CLAUDE_PROJECT_DIR": "/workspaces/T1DM-Tez",
+        "GALILEO_GATEWAY": "${exec:printenv GALILEO_GATEWAY}",
+        "GALILEO_API_KEY": "${exec:printenv GALILEO_API_KEY}",
+        "GALILEO_JUDGE_API_KEY": "${exec:printenv GALILEO_JUDGE_API_KEY}",
+        "GALILEO_JUDGE_MODEL": "${exec:printenv GALILEO_JUDGE_MODEL}",
+        "GALILEO_TEXT_EMBEDDING_API_KEY": "${exec:printenv GALILEO_TEXT_EMBEDDING_API_KEY}",
+        "GALILEO_TEXT_EMBEDDING_MODEL": "${exec:printenv GALILEO_TEXT_EMBEDDING_MODEL}",
+        "GRAVITEE_AZURE_OPENAI_GATEWAY": "${exec:printenv GRAVITEE_AZURE_OPENAI_GATEWAY}",
+        "GRAVITEE_AZURE_OPENAI_API_KEY": "${exec:printenv GRAVITEE_AZURE_OPENAI_API_KEY}",
+        "GRAVITEE_AZURE_OPENAI_DEPLOYMENT": "${exec:printenv GRAVITEE_AZURE_OPENAI_DEPLOYMENT}",
+        "GRAVITEE_AZURE_OPENAI_API_VERSION": "${exec:printenv GRAVITEE_AZURE_OPENAI_API_VERSION}",
+        "CURL_CA_BUNDLE": "${exec:printenv CURL_CA_BUNDLE}"
+      },
+      "timeout": 120
+    }
+  },
+  "globalTimeout": 60
+}

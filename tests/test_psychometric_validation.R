@@ -103,6 +103,76 @@ srq_scores <- psychval_score_srq_subscales(
 stopifnot(all(paste0(names(srq_map), "_mean") %in% names(srq_scores)))
 stopifnot(nrow(srq_scores) == 8)
 
+# --- KIA/SRQ + Beck guvenirlik tablolari (Ek 7 kaynak-tekilligi) ---
+srq_reliability <- psychval_srq_reliability_table(
+  srq_fixture,
+  prefix = "srq",
+  scale = "KIA/SRQ test"
+)
+stopifnot(nrow(srq_reliability) == 5L)
+stopifnot(all(c(
+  "scale", "subscale", "subscale_label", "n_items", "n_complete",
+  "alpha_raw", "alpha_std", "alpha_ci_lower", "alpha_ci_upper",
+  "omega_total", "omega_h", "mean_interitem_r"
+) %in% names(srq_reliability)))
+stopifnot(identical(
+  srq_reliability$subscale,
+  c("sicaklik_yakinlik", "statu_guc", "catisma", "rekabet", "toplam")
+))
+stopifnot(identical(
+  srq_reliability$n_items,
+  c(21L, 12L, 6L, 9L, 48L)
+))
+
+beck_map <- psychval_beck_block_map()
+stopifnot(identical(names(beck_map), c("toplam", "bilissel_afektif", "somatik")))
+stopifnot(identical(lengths(beck_map), c(toplam = 21L, bilissel_afektif = 13L, somatik = 8L)))
+# Bilissel-afektif (q01-q13) ve somatik (q14-q21) bloklari ortusmez ve toplami kapsar
+stopifnot(length(intersect(beck_map$bilissel_afektif, beck_map$somatik)) == 0L)
+stopifnot(identical(
+  sort(c(beck_map$bilissel_afektif, beck_map$somatik)),
+  beck_map$toplam
+))
+
+beck_fixture <- as.data.frame(matrix(rep(0:3, length.out = 10 * 21), nrow = 10))
+names(beck_fixture) <- paste0("beck_", 1:21)
+beck_reliability <- psychval_beck_reliability_table(
+  beck_fixture,
+  prefix = "beck",
+  scale = "BDI test"
+)
+stopifnot(nrow(beck_reliability) == 3L)
+stopifnot(identical(beck_reliability$n_items, c(21L, 13L, 8L)))
+stopifnot(all(beck_reliability$scale == "BDI test"))
+
+# --- Skor duzeyi dagilim tablosu: taban/tavan yon-savi ---
+dist_fixture <- data.frame(
+  sicaklik_mean = c(1, 1, 2.5, 4, NA),
+  reddetme_mean = c(1, 2, 3, 4, 4)
+)
+dist_tbl <- psychval_score_distribution_table(
+  dist_fixture,
+  c("sicaklik_mean", "reddetme_mean"),
+  scale = "EMBU test",
+  score_min = 1,
+  score_max = 4,
+  labels = c("Sicaklik", "Reddetme")
+)
+stopifnot(nrow(dist_tbl) == 2L)
+stopifnot(all(c(
+  "scale", "score", "score_label", "n", "missing_n", "mean", "sd", "median",
+  "iqr", "min", "max", "skew", "kurtosis", "floor_pct", "ceiling_pct"
+) %in% names(dist_tbl)))
+stopifnot(dist_tbl$n[dist_tbl$score == "sicaklik_mean"] == 4L)
+stopifnot(dist_tbl$missing_n[dist_tbl$score == "sicaklik_mean"] == 1L)
+# 4 gecerli degerin 2'si tabanda (1), 1'i tavanda (4)
+stopifnot(abs(dist_tbl$floor_pct[dist_tbl$score == "sicaklik_mean"] - 50) < 1e-8)
+stopifnot(abs(dist_tbl$ceiling_pct[dist_tbl$score == "sicaklik_mean"] - 25) < 1e-8)
+stopifnot(abs(dist_tbl$ceiling_pct[dist_tbl$score == "reddetme_mean"] - 40) < 1e-8)
+# Taban ve tavan oranlari 0-100 bandinda kalir
+stopifnot(all(dist_tbl$floor_pct >= 0 & dist_tbl$floor_pct <= 100))
+stopifnot(all(dist_tbl$ceiling_pct >= 0 & dist_tbl$ceiling_pct <= 100))
+
 collapsed_binary <- psychval_collapse_likert_frame(
   fixture,
   c("embu_p_q01", "embu_p_q05"),
@@ -131,5 +201,57 @@ stopifnot(grepl("reddetme =~", model_without_q12, fixed = TRUE))
 bifactor_model <- psychval_lavaan_model("embu_p", model = "bifactor")
 stopifnot(grepl("general =~", bifactor_model, fixed = TRUE))
 stopifnot(grepl("general ~~ 0*sicaklik", bifactor_model, fixed = TRUE))
+
+# --- Kriter gecerligi FDR yon-savlari (Sayisal Butunluk kaidesi) ---
+# Uretici artefakt varsa: (a) BH-FDR duzeltilmis p ham p'den kucuk olamaz
+# (monotonluk), (b) 14 korelasyon ailesinde FDR sonrasi anlamlilik oruntusu
+# metin/tablo ile ayni sayida sonucu anlamli birakmalidir.
+validity_csv <- file.path("outputs", "tables", "psychval_validity_correlations.csv")
+if (file.exists(validity_csv)) {
+  vd <- utils::read.csv(validity_csv, check.names = FALSE, stringsAsFactors = FALSE)
+  stopifnot("p_adjusted" %in% names(vd))
+  stopifnot(nrow(vd) == 14L)
+  finite_rows <- is.finite(vd$p_value) & is.finite(vd$p_adjusted)
+  # (a) BH monotonlugu: duzeltilmis p >= ham p (kucuk numerik tolerans)
+  stopifnot(all(vd$p_adjusted[finite_rows] >= vd$p_value[finite_rows] - 1e-9))
+  # (b) 4.2 metninde raporlanan 6 anlamli korelasyon FDR sonrasi da anlamli;
+  #     6 anlamli / 8 anlamsiz oruntusu metin ile birebir tutarli olmalidir.
+  stopifnot(sum(vd$p_adjusted < 0.05, na.rm = TRUE) == 6L)
+}
+
+# --- KIA/SRQ + Beck guvenirlik artefakti yon-savlari ---
+# Ek 7 bu artefakti dogrudan render eder; alfa nokta kestirimi kendi %95 guven
+# araliginin icinde kalmali ve katsayilar teorik ust sinira uymalidir.
+scale_rel_csv <- file.path("outputs", "tables", "psychval_reliability_srq_beck.csv")
+if (file.exists(scale_rel_csv)) {
+  sr <- utils::read.csv(scale_rel_csv, check.names = FALSE, stringsAsFactors = FALSE)
+  stopifnot(all(c(
+    "scale", "subscale", "n_items", "n_complete", "alpha_raw",
+    "alpha_ci_lower", "alpha_ci_upper", "omega_total", "mean_interitem_r"
+  ) %in% names(sr)))
+  stopifnot(nrow(sr) == 8L)
+  stopifnot(all(sr$n_items > 1L))
+  ci_rows <- is.finite(sr$alpha_raw) & is.finite(sr$alpha_ci_lower) & is.finite(sr$alpha_ci_upper)
+  stopifnot(all(sr$alpha_ci_lower[ci_rows] <= sr$alpha_raw[ci_rows] + 1e-9))
+  stopifnot(all(sr$alpha_raw[ci_rows] <= sr$alpha_ci_upper[ci_rows] + 1e-9))
+  stopifnot(all(sr$alpha_raw[is.finite(sr$alpha_raw)] <= 1 + 1e-9))
+  omega_rows <- is.finite(sr$omega_total)
+  stopifnot(all(sr$omega_total[omega_rows] <= 1 + 1e-9))
+}
+
+# --- Skor dagilimi artefakti yon-savlari ---
+score_dist_csv <- file.path("outputs", "tables", "psychval_score_distributions.csv")
+if (file.exists(score_dist_csv)) {
+  sd_tbl <- utils::read.csv(score_dist_csv, check.names = FALSE, stringsAsFactors = FALSE)
+  stopifnot(all(c(
+    "scale", "score", "n", "mean", "sd", "min", "max", "floor_pct", "ceiling_pct"
+  ) %in% names(sd_tbl)))
+  stopifnot(all(sd_tbl$n > 0L))
+  ok <- is.finite(sd_tbl$mean) & is.finite(sd_tbl$min) & is.finite(sd_tbl$max)
+  stopifnot(all(sd_tbl$min[ok] <= sd_tbl$mean[ok] + 1e-9))
+  stopifnot(all(sd_tbl$mean[ok] <= sd_tbl$max[ok] + 1e-9))
+  pct_ok <- is.finite(sd_tbl$floor_pct) & is.finite(sd_tbl$ceiling_pct)
+  stopifnot(all(sd_tbl$floor_pct[pct_ok] + sd_tbl$ceiling_pct[pct_ok] <= 100 + 1e-9))
+}
 
 cat("Psychometric validation helper tests passed\n")

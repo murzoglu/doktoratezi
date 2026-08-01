@@ -1,0 +1,11 @@
+# Yanlılık riski (RoB) — ayırıcı ';'
+# arac: RoB2 (RCT) | ROBINS-I (gözlemsel) | QUADAS-2 (tanısal)
+# RoB2 domainleri: randomizasyon, sapma(atanan müdahale), eksik veri, sonuç ölçümü, seçici raporlama, genel
+# yargi (RoB2): dusuk | bazı_endişeler | yuksek
+# yargi (ROBINS-I): dusuk | orta | ciddi | kritik | bilgi_yok
+# kaynak_alinti = PMID/DOI + tablo/şekil (gerekçe izlenebilirliği)
+# Üretim: /evidentia:evidentia-appraise çıktısı buraya normalize edilir.
+# Aşağıdaki satırlar <PLACEHOLDER> örneğidir; gerçek yargıyla DEĞİŞTİRİN.
+study_id;arac;domain;yargi;gerekce;kaynak_alinti
+<STUDY_ID>;RoB2;randomizasyon;dusuk;<gizli tahsis + dengeli başlangıç>;<PMID+Yöntem>
+<STUDY_ID>;RoB2;genel;bazı_endişeler;<açık-etiketli sonuç ölçümü>;<PMID+Tablo S1>

@@ -49,28 +49,28 @@ belgeleri + `t1dm-tez-rehberi/references/karma-yontem.md` ile yürür.
 ## 2. Teze giren güvenli nitel çıktılar
 
 Teze yalnız araştırmacı-onaylı **anonim/türetilmiş** çıktı girer. Kaynak
-haritası (paired nitel repo: `/mnt/thunderbolt/workspaces/T1DM Niteliksel`):
+haritası (nitel kol (niteliksel/): `/workspaces/T1DM-Tez/niteliksel`):
 
 | Çıktı | Kaynak | Tezde kullanım |
 |---|---|---|
-| Kanonik nitel sonuç raporu | `docs/niteliksel/qualitative_canonical_results_report.md` (doktoratezi kopyası) | Nitel kolun **varsayılan temsil kaynağı** (Bulgular). |
-| Aktarım kaynağı (hash eşli) | Nitel repo `06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` | Doktoratezi kopyasıyla hash mutabakatı. |
-| Codebook | Nitel repo `03_analysis/codebook/codebook_v2.md` (kanonik; v3.csv draft) | Tema/kod tanımı. |
-| COREQ 32 madde | Nitel repo `03_analysis/methodology/coreq_32_completed.md` | Gereç ve Yöntem + Ekler. |
-| Audit trail | Nitel repo `03_analysis/methodology/audit_trail.md` | Yöntem güvenilirlik izi. |
-| Positionality (OM/BA) | Nitel repo `03_analysis/methodology/positionality_*.md` | Refleksivite / konum bildirimi. |
-| LLM kullanım beyanı | Nitel repo `03_analysis/methodology/llm_use_statement.md` | Yöntem + AI şeffaflık. |
-| Triadik matrisler | Nitel repo `04_triadic_matrices/` | Rol karşılaştırması (anne/çocuk/kardeş). |
-| Nitel AI-reliability | Nitel repo `07_reports/ai_reliability_qualitative_canonical_results_report.md` | Quote-ID/code-ID/copy-parity; ham alıntı yok. |
+| Kanonik nitel sonuç raporu | `niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd` | Nitel kolun **tek kanonik temsil kaynağı** (Bulgular). |
+| Markdown kopya | `niteliksel/qualitative_canonical_results_report.md` | Kanonik QMD'nin mekanik Markdown kopyası; ayrı içerik otoritesi değildir. |
+| Codebook | Nitel kol `03_analysis/codebook/codebook_v2.md` (kanonik; v3.csv draft) | Tema/kod tanımı. |
+| COREQ 32 madde | Nitel kol `03_analysis/methodology/coreq_32_completed.md` | Gereç ve Yöntem + Ekler. |
+| Audit trail | Nitel kol `03_analysis/methodology/audit_trail.md` | Yöntem güvenilirlik izi. |
+| Positionality (OM/BA) | Nitel kol `03_analysis/methodology/positionality_*.md` | Refleksivite / konum bildirimi. |
+| LLM kullanım beyanı | Nitel kol `03_analysis/methodology/llm_use_statement.md` | Yöntem + AI şeffaflık. |
+| Triadik matrisler | Nitel kol `04_triadic_matrices/` | Rol karşılaştırması (anne/çocuk/kardeş). |
+| Nitel doğrulama/provenans notu | Kanonik QMD `# Doğrulama Durumu` | Quote-ID/code-ID/provenans sınırlılıkları; ham alıntı yok. |
 
-**Varsayılan olmayan:** Ham transcript, demografi satırı veya geniş nitel repo
+**Varsayılan olmayan:** Ham transcript, demografi satırı veya geniş nitel kol
 yeniden taraması. Bunlar teze girmez, dış araca gönderilmez.
 
 ---
 
 ## 3. Alıntı bütünlüğü ve negatif vaka — transkript AÇMADAN
 
-- **Alıntı bütünlüğü** transcript açarak değil, paired nitel repoda
+- **Alıntı bütünlüğü** transcript açarak değil, nitel kolda (niteliksel/)
   `./dmnitel check-quotes --source <deidentified-source> --quotes <quotes.csv>`
   ile denetlenir.
 - **Negatif/alternatif vaka** `./dmnitel find-negative-cases --coded-data
@@ -100,7 +100,7 @@ Bölüm 7).
 4. **IRR otomatik gereklilik değildir** — jüri/IRB isterse uzlaşma stratejisi:
    anlaşmazlık çözümünü dokümante et + opsiyonel **Krippendorff α / Gwet AC1**
    (kappa paradoksuna karşı) + raporlamanın anlamını açıkla.
-   `./dmnitel` çıktıları ve nitel repo `outputs/qualitative/irr/` bu kararı besler.
+   `./dmnitel` çıktıları ve nitel kol `outputs/qualitative/irr/` bu kararı besler.
 5. **Refleksivite süreçtir** — konum bildirimi + refleksif günlük + audit trail;
    Yöntem'de özet, Ekler'de örnek.
 6. **Etik dinamiktir** — process consent; anonimleştirme kompozit pseudonym +
@@ -108,7 +108,7 @@ Bölüm 7).
    verisi).
 7. **LLM-destekli kodlama tek katman değildir** — birincil analiz LLM'e
    devredilmez; halüsinasyon kontrolü + OSF prompt zinciri arşivleme; LLM Use
-   Statement (nitel repo `llm_use_statement.md`).
+   Statement (nitel kol `llm_use_statement.md`).
 8. **Tema = "central organizing concept"** — katılımcı sözünün başlığı değil;
    "şu üç katılımcı söyledi" sayması tema değildir.
 
@@ -154,7 +154,7 @@ Nitel çıktı da resmi Marmara biçimine uyar
 | RTA fazı, kodlama, tema, kaç dyad, IRR, jüri savunması | → `niteliksel-arastirma-rehberi-t1dm` skill (`references/`) |
 | Karma yöntem joint display / MMAT / convergence | → `t1dm-tez-rehberi/references/karma-yontem.md` |
 | EMBU-C CFA / ICC-Bland-Altman nicel (H5) | → `t1dm-tez-rehberi` (KISIM IV/V, `h5-diadik-tutarlilik.md`) |
-| Nitel iç veri denetimi (quote/codebook/COREQ/matris) | → paired nitel repo `./dmnitel` komutları |
+| Nitel iç veri denetimi (quote/codebook/COREQ/matris) | → nitel kol (niteliksel/) `./dmnitel` komutları |
 | Nitel metin adli denetimi + Türkçe imla (COREQ/SRQR uyumu, AI-şeffaflık, imla) | → `sci-audit` plugin (axis E `--type coreq/srqr`, axis F, axis G) |
 | Dış literatür (nitel metodoloji referansı: Braun-Clarke, Malterud, Tracy) | → Evidentia (`01_mimari/evidentia-entegrasyon-cercevesi.md`) |
 | Tez / tema haritası render | → `carbon-quarto-scientific` / `carbon-html-report` |
@@ -165,7 +165,7 @@ Nitel çıktı da resmi Marmara biçimine uyar
 
 Ham görüşme metinleri özel nitelikli **sağlık + çocuk** verisidir (KVKK).
 
-- Korumalı alanlar (paired nitel repo): `01_raw_data/`,
+- Korumalı alanlar (nitel kol (niteliksel/)): `01_raw_data/`,
   `02_processed/transcripts/`, `01_deidentified/`, `00_raw_locked/`, `.remember/`.
 - Bu alanlardan satır düzeyi içerik, aile düzeyi hassas detay, ham alıntı,
   demografi satırı, onam/protokol kişisel içeriği **bu tez-yazim reposuna

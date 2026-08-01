@@ -16,11 +16,13 @@ sürecinin **tek kanonik yeri**. Tek-otorite ilkesi geçerlidir (bkz.
 | Dosya | Otorite alanı | Diğer dosyalarla ilişki |
 |---|---|---|
 | `bolum-finalizasyon-sertifikasyon-playbook.md` | **Master sertifikasyon** (kanonik): Kapı 0–5 süreci, sertifikasyon durumları, artefakt, AI-reliability katman sınırı, nihai karar kuralı. | Bölüm kapanışının tek otoritesi. Checklistler ve sertifika iskeleti buna bağlı. |
+| `tez-kontrol-checklisti.md` | **Kapsamlı kontrol checklisti** (8 eksen · 26 madde, A bölüm-düzeyi + B tez-düzeyi + kapsama matrisi). Her madde bir araca/mekanizmaya bağlı; otomasyon `scripts/util/tez_checklist_verify.py`. | Operasyonel checklistleri (format/kanıt-gizlilik/ai-mcp/Türkçe) **birleştiren** insan-okunur yansıma; kural tanımlamaz, ID'ler script kaydına birebir eşleşir (`--audit-doc`). |
 | `bolum-finalizasyon-sertifikasi-sablonu.md` | **Sertifika iskeleti** (fill-in): Kapı 0–5 doldurulabilir form. | Playbook'un doldurulacak hâli; `sertifikalar/<bölüm>-sertifika-YYYY-MM-DD.md`'ye kopyalanır. |
 | `format-kontrol-listesi.md` | **Kapı 3** format operasyonel checklist. | marmara §12'nin bölüm-kapanışı operasyonel örneği; kural marmara'da. |
 | `kanit-ve-gizlilik-kontrol-listesi.md` | **Kapı 0/1/2** kanıt + gizlilik operasyonel checklist. | Veri sınırı → talimatname §2; kanıt → `02` ledger. |
 | `ai-mcp-kullanim-kontrol-listesi.md` | **Kapı 5** + araç kullanımı operasyonel checklist. | Araç otoritesi → `01_mimari/yetkinlik-ve-arac-mimarisi.md`; süreç → talimatname. |
-| `turkce-bilimsel-yazim-denetimi.md` | **Kapı 4** sci-audit axis G (kanonik kullanım). | Türkçe imla/yazım denetiminin tek yeri (plugin bundled). |
+| `turkce-bilimsel-yazim-denetimi.md` | **Kapı 4** sci-audit axis G (kanonik kullanım) — **denetim tarafı**. | Türkçe imla/yazım denetiminin tek yeri (plugin bundled). |
+| `insan-turkcesi-retorik-playbook.md` | **Kapı 4** insan-Türkçesi retorik üretimi — **üretim tarafı**. | Denetçinin yakaladığı yapaylığı baştan önler; register otoritesi marmara §1–§5. |
 
 ## Alt klasörler ve tarihli kanıt
 
@@ -40,6 +42,12 @@ sürecinin **tek kanonik yeri**. Tek-otorite ilkesi geçerlidir (bkz.
 | Kapı 3 | Bölüm metni, kılavuz ve iç tutarlılık | `format-kontrol-listesi.md` | `marmara-tez-formati-talimatnamesi.md` §12 (+ §1–§5, §8) |
 | Kapı 4 | Türkçe imla, anlam akışı, mantık | `turkce-bilimsel-yazim-denetimi.md` | sci-audit **axis G** |
 | Kapı 5 | AI-reliability, render, repo | `ai-mcp-kullanim-kontrol-listesi.md` | sci-audit **axes A–F** + repo ai-audit + `talimatname` §6 |
+
+> **Birleşik otomasyon:** Yukarıdaki tüm kapıların otomatik-doğrulanabilir
+> maddeleri `tez-kontrol-checklisti.md` altında 26 ID'ye bölünmüş ve
+> `scripts/util/tez_checklist_verify.py` orkestratörüne bağlıdır. Tek komutla
+> tam tez/bölüm denetimi: `python3 scripts/util/tez_checklist_verify.py
+> [--fast|--section K3|--chapter <yol>]`. Belge↔script senkronu: `--audit-doc`.
 
 ## AI-Reliability katman sınırı (çakışmaz)
 

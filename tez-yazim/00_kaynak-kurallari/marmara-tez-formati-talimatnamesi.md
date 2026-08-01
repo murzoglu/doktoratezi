@@ -455,7 +455,7 @@ ve SONUÇ` yazımında şablondaki bağlaç biçimi korunur.
 
 ## 6. KARMA TEZ İÇİN BÖLÜM-KAYNAK-KAPI HARİTASI
 
-Bu tez **karma yöntem**tir; her bölüm nicel (bu repo) ve nitel (paired repo)
+Bu tez **karma yöntem**tir; her bölüm nicel (kök) ve nitel (nitel kol, niteliksel/)
 kolun ilgili kesimini birleştirir. Ayrıntılı kaynak/kapı için
 `01_mimari/iki-repo-entegrasyon-plani.md` ve
 `05_entegrasyon/nitel-cikti-cercevesi.md`.

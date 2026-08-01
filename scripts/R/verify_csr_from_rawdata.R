@@ -75,11 +75,8 @@ chk("beck severity mod Kontrol", sev_k, "Minimal", fmt="%s"); chk("beck severity
 cat("beck severity bantlari (kanonik cut):", paste(levels(fams$beck_severity), collapse=" / "), "\n")
 cat("beck clinical (>=17) tablo:\n"); print(table(fams$beck_clinical))
 
-cat("================ HbA1c + STRATA (DM) ================\n")
+cat("================ TANI YASI STRATA (DM) ================\n")
 dm <- fam[g=="DM", ]
-n_h <- sum(!is.na(dm$hba1c)); chk("HbA1c non-missing n", n_h, 39, 0, "%d")
-chk("HbA1c medyan", median(dm$hba1c, na.rm=TRUE), 9.0, 0.2, "%.1f")
-u7 <- sum(dm$hba1c < 7, na.rm=TRUE); chk("HbA1c <7 sayisi", u7, 8, 0, "%d"); chk("HbA1c <7 %", 100*u7/n_h, 20.5, 1.0, "%.1f")
 # tani yasi = cocuk_yas - dm_yili
 ty <- dm$cocuk_yas - dm$dm_yili
 strata <- cut(ty, breaks=c(-Inf,5,10,Inf), right=FALSE, labels=c("erken<5","okul5-10","ergen>=10"))

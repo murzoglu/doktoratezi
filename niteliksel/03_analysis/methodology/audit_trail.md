@@ -174,9 +174,27 @@ Her kayıt: **Tarih · Karar · Gerekçe · Etki · Kayıt Eden**
 | Triadik matris | `04_triadic_matrices/triadic_matrix_from_cleaned_thesis.csv` üretildi; 57 aile-tema-alt tema satırı oluşturuldu. | Özet, uyum, gerilim, negatif vaka ve analitik memo alanları otomatik yorum olarak doldurulmadı; araştırmacı yorumu gerektirir. |
 | Alıntı bütünlüğü | `07_reports/quote_integrity_report.md` kritik bulgu, uyarı veya öneri üretmedi. | Alıntılar yeniden yazılmamalı; yalnız izin verilen maskeleme, kısaltma ve açıklayıcı ekler kullanılmalı. |
 | Negatif vaka ön-tarama | Tema 4 için `07_reports/negative_case_report_tema_4_triadic.md` üretildi. | Rapor kesin negatif vaka kararı değildir; B.4/B.5 yazımında araştırmacı tarafından yorumlanmalı. |
-| Kanonik sonuç raporu | `06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` oluşturuldu ve `doktoratezi/niteliksel/qualitative_canonical_results_report.md` entegrasyon kopyası üretildi. | Tez chapter'larına doğrudan ham haliyle yapıştırılmamalı; yöntem paragrafı, bulgular omurgası ve tartışma köprüsü ayrı ayrı entegre edilmeli. |
+| Kanonik sonuç raporu | `06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd` tek kanonik Quarto kaynak olarak belirlendi; `qualitative_canonical_results_report.md` bu dosyanın mekanik Markdown kopyasıdır. | Tez chapter'larına doğrudan ham haliyle yapıştırılmamalı; yöntem paragrafı, bulgular omurgası ve tartışma köprüsü ayrı ayrı entegre edilmeli. |
 | Kanonik bilimsel sonuç raporu v2.0 | Kullanıcı talebiyle rapor genişletildi: metodoloji, bilgi gücü, triadik tasarım, reflexivity, KVKK/AI sınırı, codebook, tema mimarisi, alt-tema sonuçları, çapraz bilimsel neticeler, negatif vaka, karma tez entegrasyonu, COREQ/trustworthiness ve sınırlılıklar tek dosyada toplandı. | Bu belge artık niteliksel kolun tez yazımı için ana kanonik sonuç kaynağıdır; doğrudan alıntı metinleri yine `quotes_used.csv` ID'leriyle kaynak metinden bire bir alınmalıdır. |
-| Kanonik sonuç raporu AI reliability kontrolü | `07_reports/ai_reliability_qualitative_canonical_results_report.md` üretildi; sayı, quote ID, code ID, COREQ, kopya eşitliği, gizlilik ve reliability gate kontrolleri yapıldı. | Beş codebook placeholder quote ID, COREQ Madde 16/31 kısmi durumları ve final doğrudan alıntı seçimi araştırmacı kararı olarak korunmalıdır. |
+| Kanonik sonuç raporu doğrulama notu | AI-reliability/provenans bulguları artık kanonik QMD içinde `# Doğrulama Durumu` bölümünde tutulur; ayrı `ai_reliability_qualitative_canonical_results_report.md` dosyası kaldırılmıştır. | Beş codebook placeholder quote ID, COREQ Madde 16/31 kısmi durumları ve final doğrudan alıntı seçimi araştırmacı kararı olarak korunmalıdır. |
+
+## 5.3 Materyalizasyon Durumu Mutabakatı — 2026-07-13
+
+§5.2'de "üretildi" olarak kaydedilen CSV artefaktları, **mevcut checkout'ta materyalize değildir**
+ve kanonik QMD'nin `# Doğrulama Durumu` bölümüyle mutabık kılınmıştır. Bu mutabakat, §5.2 tarihsel
+kaydını silmez; mevcut durumu şeffaf biçimde ekleyerek provenans drift'ini kapatır.
+
+| Artefakt | §5.2 tarihsel kaydı | Mevcut checkout durumu |
+|---|---|---|
+| `06_manuscript_outputs/quotes_used.csv` | 116 kayıt | **54 satır, ID-only** (`quote_text_used` alanı yok) |
+| `01_deidentified/coded_segments.csv` | 116 kayıt | **Materyalize değil** |
+| `04_triadic_matrices/triadic_matrix_from_cleaned_thesis.csv` | 57 satır | **Materyalize değil** |
+| `07_reports/quote_integrity_report.md` | "kritik bulgu yok" | Tarihsel; ID-only registry ile quote-parity kapısı **yeniden koşulmalı** |
+
+Dolayısıyla 116 quote ID / 116 ön-kodlu segment / 57 triadik satır sayıları ve "temiz alıntı
+bütünlüğü" ifadeleri **kanonik v2.0 Markdown düzeyinde** izlenebilir provenanstır; bu checkout'ta
+**CSV-level doğrulanmış** olarak sunulamaz. Bu satır sayıları CSV materyalize edildiğinde yeniden
+doğrulanmalıdır.
 
 ---
 
@@ -190,6 +208,7 @@ Bu belge **canlı bir kayıt**tır. Yeni bir metodolojik karar, codebook revizyo
 4. Sürüm geçmişi güncellenir
 
 **Sürüm geçmişi:**
+
 - **v1 (2026-05-04):** İlk audit trail; A.5 paketi. 15 metodolojik karar + 2 codebook sürüm + 4 critical friend özeti + 10 açık konu kayıtlandı.
 - **v2 (2026-06-30):** Blokaj çözümleme kaydı eklendi. Quote registry, coded segments, triadik matris, alıntı bütünlüğü ve Tema 4 negatif vaka ön-tarama çıktıları audit trail'e bağlandı; kalan beş codebook quote ID boşluğu araştırmacı kararı olarak korundu.
 - **v3 (2026-06-30):** Doktoratezi entegrasyonu için niteliksel kanonik sonuç raporu oluşturuldu ve güvenli entegrasyon kopyası üretildi.
@@ -201,10 +220,12 @@ Bu belge **canlı bir kayıt**tır. Yeni bir metodolojik karar, codebook revizyo
 ## 7. Tezde Bu Belgenin Konumu
 
 ### Direkt kullanım
+
 - **Tez Eki (Marmara Ek-X — Audit Trail):** Bu belgenin **özetlenmiş hâli** (§ 2 son sütun + § 3 sürüm + § 4 başlıklar) ek olarak yer alacak. Tam belge OSF supplementary olarak paylaşılabilir
 - **Tez Yöntem § Veri Analizi:** "**Audit trail:** Bu çalışmanın metodolojik kararları, codebook revizyonları ve critical friend tartışmalarının özetleri ayrı bir audit trail belgesinde (`audit_trail.md`) sürekli olarak kayıt altına alınmıştır." şeklinde 1-cümle referans
 
 ### Trustworthiness raporlaması
+
 COREQ tek başına yetmez; tezin Tartışma bölümünde **Lincoln-Guba** çerçevesi açıkça kullanılacaksa, audit trail **dependability + confirmability** kanıtı olarak öne çıkarılmalıdır:
 
 > "Çalışmanın **dependability** (tutarlılık) ve **confirmability** (doğrulanabilirlik) ölçütleri, tarihli audit trail belgesi (Ek-X) ile operasyonelleştirilmiştir. Bu belge, tüm metodolojik kararların, codebook revizyonlarının ve critical friend tartışmalarının kayıtlarını içermektedir."

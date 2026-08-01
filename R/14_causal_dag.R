@@ -1,7 +1,12 @@
 causal_dag_nodes <- function() {
+  # Denetim #4.2: Merkez/takvim donemi, grup ile yapisal olarak ortusen (kontrol
+  # yalniz birincil merkez ve 2023; ikinci merkez yalniz T1DM) OLCULMEMIS ortak
+  # nedendir. Gozlenemedigi (grup ile tam kesisim) icin unobserved dugum olarak
+  # eklenir; boylece "T1DM'nin toplam etkisi tanimlanabilir" iddiasi yapilamaz.
   data.frame(
     node = c(
       "GeneticLiability",
+      "CenterPeriod",
       "SES",
       "AgeGap",
       "FamilySize",
@@ -14,6 +19,7 @@ causal_dag_nodes <- function() {
     ),
     label = c(
       "Genetik yatkinlik",
+      "Merkez / takvim donemi",
       "SES",
       "Kardes yas farki",
       "Aile buyuklugu",
@@ -26,6 +32,7 @@ causal_dag_nodes <- function() {
     ),
     role = c(
       "unobserved_exposure_cause",
+      "unobserved_confounder",
       "confounder",
       "confounder",
       "confounder",
@@ -36,8 +43,9 @@ causal_dag_nodes <- function() {
       "outcome",
       "downstream_outcome"
     ),
-    observed = c(FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE),
+    observed = c(FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE),
     primary_proxy = c(
+      NA_character_,
       NA_character_,
       "ses_latent",
       "age_gap",
@@ -49,8 +57,8 @@ causal_dag_nodes <- function() {
       "embu_c_*_mean",
       "srq_ho_*_mean"
     ),
-    x = c(0, 0, 0, 0, 2, 4, 5, 6, 8, 10),
-    y = c(4, 3, 2, 1, 2.5, 4, 3, 2, 2.5, 2.5),
+    x = c(0, 1, 0, 0, 0, 2, 4, 5, 6, 8, 10),
+    y = c(4, 4.6, 3, 2, 1, 2.5, 4, 3, 2, 2.5, 2.5),
     stringsAsFactors = FALSE
   )
 }
@@ -59,6 +67,7 @@ causal_dag_edges <- function() {
   data.frame(
     from = c(
       "GeneticLiability",
+      "CenterPeriod", "CenterPeriod",
       "SES", "SES", "SES", "SES",
       "AgeGap", "AgeGap", "AgeGap",
       "FamilySize", "FamilySize", "FamilySize",
@@ -70,6 +79,7 @@ causal_dag_edges <- function() {
     ),
     to = c(
       "T1DM_status",
+      "T1DM_status", "ChildPerception",
       "T1DM_status", "Beck", "ParentingStyle", "ChildPerception",
       "T1DM_status", "ChildPerception", "SiblingRelations",
       "T1DM_status", "ParentingStyle", "ChildPerception",
@@ -81,6 +91,7 @@ causal_dag_edges <- function() {
     ),
     edge_role = c(
       "exposure_background",
+      rep("unobserved_backdoor", 2L),
       rep("backdoor_or_selection", 10L),
       rep("exposure_to_mediator_or_outcome", 4L),
       rep("mediator_path", 5L),

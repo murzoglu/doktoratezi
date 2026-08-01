@@ -81,5 +81,38 @@ class QuoteIntegrityTests(unittest.TestCase):
         }
 
 
+    def test_triadik_eksen_column_tolerated(self):
+        """V3 şema (quote_text_used yok, triadik_eksen var) check_quotes kritik sorun üretmemeli.
+
+        Kanonik quotes_used.csv şeması: quote_id,aile_no,rol,tema,triadik_eksen,kaynak_dosya
+        Bu şemada verbatim sütunu yoktur; triadik_eksen opsiyonel meta alanıdır.
+        """
+        with tempfile.TemporaryDirectory() as tmpdir:
+            source = self._source(tmpdir)
+            quotes = Path(tmpdir) / "quotes.csv"
+
+            # V3 şema: verbatim içermez, triadik_eksen içerir
+            v3_fields = ["quote_id", "aile_no", "rol", "tema", "triadik_eksen", "kaynak_dosya"]
+            with quotes.open("w", newline="", encoding="utf-8") as handle:
+                writer = csv.DictWriter(handle, fieldnames=v3_fields)
+                writer.writeheader()
+                writer.writerow({
+                    "quote_id": "011_mother_q006",
+                    "aile_no": "011",
+                    "rol": "mother",
+                    "tema": "Tema 4",
+                    "triadik_eksen": "A1",
+                    "kaynak_dosya": "family_011_mother.md",
+                })
+
+            issues = check_quotes(source, quotes)
+
+            critical = [i for i in issues if i.severity == "critical"]
+            self.assertEqual(
+                critical, [],
+                msg="triadik_eksen içeren V3 şemasında kritik sorun olmamalı",
+            )
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -39,8 +39,8 @@ bağlayıcıdır. Sırasıyla:
 3. Bölüm işiyse ilgili briefi aç: `tez-yazim/03_bolum-hazirlik/<bölüm>.md`;
    kanıt eşlemesi için `tez-yazim/06_kritik-kaynaklar/kritik-dosya-manifesti.tsv`.
 4. Nitel kolun kanıtı gerekiyorsa kanonik kaynak
-   `docs/niteliksel/qualitative_canonical_results_report.md`'dir; ham transcript
-   veya nitel repo geniş taraması default değildir.
+   `niteliksel/qualitative_canonical_results_report.md`'dir; ham transcript
+   veya nitel kol geniş taraması default değildir.
 5. Veri sınırını hatırla: `data/raw|identified|cleaned|backup` ve satır-düzeyi
    `data/processed`/`outputs` içeriği açılmaz; analiz targets pipeline'ı ve
    aggregate çıktılar üzerinden yürür.

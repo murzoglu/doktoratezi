@@ -1,0 +1,14 @@
+tasks:
+  - init: |
+      if ! command -v build-cli &> /dev/null; then
+        echo "📦 Installing build-cli..."
+        curl -fsSL https://build-cli-prd-euc1.aws.cloud.roche.com/install/install.sh | bash
+        echo "✅ build-cli installed to ~/.local/bin/build-cli"
+      else
+        echo "✅ build-cli already installed"
+      fi
+
+ports:
+  - port: 61234
+    onOpen: ignore
+    visibility: public

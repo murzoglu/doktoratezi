@@ -49,7 +49,7 @@ alt başlık bir konu cümlesiyle açılır, sonrakine geçişle bağlanır.
 | Veri toplama araçları | EMBU-P/C (29 madde, 4'lü Likert), Beck (21 madde), KİA/SRQ, demografik-tıbbi form; kim doldurdu, nasıl. | `docs/protokol/KANONIK_*` ölçek dosyaları | Ölçek maddelerinin tam dökümü (telif). |
 | Veri yönetimi ve kanonik baz | Hash-kilitli kanonik CSV, `validate_and_load()`, `targets` orkestrasyonu; tekrarlanabilirlik altyapısı (renv). | `_targets.R`, `R/01_io.R`, `.lock` | Satır içeriği. |
 | İstatistiksel analiz | Her hipotez için yöntem (aşağıda §4). Anlamlılık, çoklu karşılaştırma stratejisi, yazılım/paket. | `docs/analiz_planlari/`, `tests/` | Bulgu/etki büyüklüğü değeri. |
-| Eksik veri | Yapısal missing (kontrol grubunda hba1c/dm_yili), FIML/MI (m, maxit), NMAR duyarlılığı çerçevesi. | `docs/analiz_planlari/`, `R/` | Sonuç. |
+| Eksik veri | DM-spesifik zamanlama değişkenleri için tasarım sınırı, FIML/MI (m, maxit) ve NMAR duyarlılığı çerçevesi. | `docs/analiz_planlari/`, `R/` | Sonuç. |
 | Nedensel çıkarım sınırı | DAG-temelli kovaryat seti, propensity/IPTW, sensemakr — *tasarım* olarak; nedensellik iddiası kurulmaz. | SAP | Nedensel sonuç. |
 | Etik onay | Etik kurul tarih + sayı; üç katmanlı onam/assent; KVKK veri yönetim planı özeti. | Etik kaynak + `06_kritik-kaynaklar` | Katılımcı kimliği. |
 
@@ -57,7 +57,7 @@ alt başlık bir konu cümlesiyle açılır, sonrakine geçişle bağlanır.
 
 | Alt başlık | Yazım işlevi | Kaynak | Kaçınılacak taşma |
 |---|---|---|---|
-| Nitel desen ve paradigma | Refleksif Tematik Analiz (Braun-Clarke); konstrüktivist epistemoloji + kritik realist ontoloji; RTA seçim gerekçesi (IPA/GT değil). | Kanonik nitel rapor + nitel repo methodology pack | — |
+| Nitel desen ve paradigma | Refleksif Tematik Analiz (Braun-Clarke); konstrüktivist epistemoloji + kritik realist ontoloji; RTA seçim gerekçesi (IPA/GT değil). | Kanonik nitel rapor + nitel kol methodology pack | — |
 | Katılımcı yapısı ve bilgi gücü | 7 aile × 3 = 21 görüşme; triad (anne + T1DM'li çocuk + sağlıklı kardeş); **information power (Malterud)** — "saturasyon" terimi kullanılmaz. | Kanonik nitel rapor | Aile kodu/kimlik detayı. |
 | Veri toplama | Yarı-yapılandırılmış görüşme + çocuk-uyumlu protokol; ayrı görüşme (dyadic conjoint değil); alan notu. | Nitel methodology pack | Ham transcript. |
 | Analiz süreci | RTA 6 faz (tanışıklık → kod → tema üretimi → gözden geçirme → tanımlama → yazım); codebook v2 (23 kod × tema); IRR tartışması (Gwet AC1/Krippendorff α opsiyonel, uzlaşma süreci dokümante). | Kanonik nitel rapor, audit trail | Ham kod/aile eşlemesi. |
@@ -129,7 +129,7 @@ skill referansları esastır (bu talimatname yöntem *seçimini* tekrar tanımla
 | Değişken sözleşmesi | `docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md` | Tanım; ham değer yok. |
 | Ölçekler | `docs/protokol/KANONIK_*` | Ne ölçtüğü; madde dökümü yok. |
 | Pipeline/tekrarlanabilirlik | `_targets.R`, `R/01_io.R`, `tests/` | Altyapı; çıktı değeri yok. |
-| Nitel yöntem | `docs/niteliksel/qualitative_canonical_results_report.md` + nitel repo methodology pack | De-identified; ham veri yok. |
+| Nitel yöntem | `niteliksel/qualitative_canonical_results_report.md` + nitel kol methodology pack | De-identified; ham veri yok. |
 | Kritik kaynak/etik | `06_kritik-kaynaklar/kritik-dosya-manifesti.tsv` | Erişim/doğrulama kuralına uygun seçim. |
 
 ## 10. Kapanış kapıları
@@ -141,5 +141,5 @@ skill referansları esastır (bu talimatname yöntem *seçimini* tekrar tanımla
 - [ ] Faz II/post-hoc `[KEŞİFSEL]` olarak ayrıldı; HARKing yok.
 - [ ] Sayısal biçim: ondalık virgül, `p` yazımı (marmara §8/§1.4).
 - [ ] Format §12 checklist + `sci-audit` axis G/A–F blocker'sız.
-- [ ] Referanslı kısımda çift AI-reliability (`talimatname` §6) + ledger `cite-ok`.
+- [ ] Referanslı kısımda iki-kol AI-reliability (`talimatname` §6) + ledger `cite-ok`.
 - [ ] Kapı 0–5 sertifikasyonu (`04_kalite-kontrol/bolum-finalizasyon-sertifikasyon-playbook.md`) + açık onay.

@@ -14,6 +14,9 @@ targets::tar_load(c(
   ses_component_summary_table,
   ses_cfa_fit_measures_table,
   h1_primary_fixed_effects_table,
+  h1_primary_group_main_effect_table,
+  h1_primary_within_group_role_contrast_table,
+  h1_primary_period2023_group_main_effect_table,
   h1_primary_anova_table,
   h2_family_mean_welch_tests_table,
   h2_apim_fixed_effects_table,
@@ -23,10 +26,14 @@ targets::tar_load(c(
   robust_tost_equivalence_table,
   h4_latent_sem_fit_measures_table,
   h4_latent_sem_structural_paths_table,
+  h4_multigroup_fit_measures_table,
+  h4_multigroup_comparison_table,
   h5_icc_bland_altman_table,
   h5_dyadic_cfa_latent_corr_table,
   h5_k_coefficient_table,
   h5_inconsistency_patterns_table,
+  h5_rsa_parameters_table,
+  h5_common_fate_regressions_table,
   mediation_simple_effect_table,
   mediation_multilevel_effect_table,
   mediation_conditional_effect_table,
@@ -41,7 +48,6 @@ targets::tar_load(c(
   clinical_full_performance,
   clinical_nri_idi_table,
   dm_n_summary_table,
-  dm_hba1c_interaction_table,
   dm_duration_spline_table,
   dm_strata_tests_table,
   robust_multiverse_summary_table,
@@ -66,6 +72,9 @@ bundle <- apa_build_table_bundle(
   ses_component_summary_table = ses_component_summary_table,
   ses_cfa_fit_measures_table = ses_cfa_fit_measures_table,
   h1_primary_fixed_effects_table = h1_primary_fixed_effects_table,
+  h1_primary_group_main_effect_table = h1_primary_group_main_effect_table,
+  h1_primary_within_group_role_contrast_table = h1_primary_within_group_role_contrast_table,
+  h1_primary_period2023_group_main_effect_table = h1_primary_period2023_group_main_effect_table,
   h1_primary_anova_table = h1_primary_anova_table,
   bayes_h1_posterior_table = bayes_h1_posterior_table,
   bayes_h1_diagnostics_table = bayes_h1_diagnostics_table,
@@ -79,10 +88,14 @@ bundle <- apa_build_table_bundle(
   robust_tost_equivalence_table = robust_tost_equivalence_table,
   h4_latent_sem_fit_measures_table = h4_latent_sem_fit_measures_table,
   h4_latent_sem_structural_paths_table = h4_latent_sem_structural_paths_table,
+  h4_multigroup_fit_measures_table = h4_multigroup_fit_measures_table,
+  h4_multigroup_comparison_table = h4_multigroup_comparison_table,
   h5_icc_bland_altman_table = h5_icc_bland_altman_table,
   h5_dyadic_cfa_latent_corr_table = h5_dyadic_cfa_latent_corr_table,
   h5_k_coefficient_table = h5_k_coefficient_table,
   h5_inconsistency_patterns_table = h5_inconsistency_patterns_table,
+  h5_rsa_parameters_table = h5_rsa_parameters_table,
+  h5_common_fate_regressions_table = h5_common_fate_regressions_table,
   mediation_simple_effect_table = mediation_simple_effect_table,
   mediation_multilevel_effect_table = mediation_multilevel_effect_table,
   mediation_conditional_effect_table = mediation_conditional_effect_table,
@@ -97,7 +110,6 @@ bundle <- apa_build_table_bundle(
   clinical_full_performance = clinical_full_performance,
   clinical_nri_idi_table = clinical_nri_idi_table,
   dm_n_summary_table = dm_n_summary_table,
-  dm_hba1c_interaction_table = dm_hba1c_interaction_table,
   dm_duration_spline_table = dm_duration_spline_table,
   dm_strata_tests_table = dm_strata_tests_table,
   robust_multiverse_summary_table = robust_multiverse_summary_table,
@@ -107,7 +119,9 @@ bundle <- apa_build_table_bundle(
   bayes_loo_waic_table = bayes_loo_waic_table
 )
 
-stopifnot(length(bundle) == 22L)
+stopifnot(length(bundle) == 26L)
+stopifnot("t06d_h1_within_group_contrast" %in% names(bundle))
+stopifnot(nrow(bundle[["t06d_h1_within_group_contrast"]]) == 8L)
 stopifnot(!anyDuplicated(names(bundle)))
 stopifnot(all(vapply(bundle, is.data.frame, logical(1))))
 stopifnot(all(vapply(bundle, nrow, integer(1)) > 0L))
@@ -116,7 +130,7 @@ stopifnot(all(nzchar(vapply(bundle, attr, character(1), which = "title", exact =
 tmp_dir <- tempfile("apa_tables_")
 paths <- save_apa_table_bundle(bundle, tmp_dir)
 manifest <- apa_table_manifest(paths, bundle)
-stopifnot(nrow(manifest) == 22L)
+stopifnot(nrow(manifest) == 26L)
 stopifnot(all(manifest$exists))
 stopifnot(all(manifest$bytes > 0))
 stopifnot(all(file.exists(paths)))

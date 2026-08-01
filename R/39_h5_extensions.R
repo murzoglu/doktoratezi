@@ -439,13 +439,66 @@ h5ext_sibling_pair_pipeline <- function(df_family_scored, df_long_scored,
 # ============================================================================
 
 h5ext_strategy_estimates_default <- function() {
-  # CSR §11.5 raporlanan H5 strateji estimate'leri (DM grubu odak)
+  # CSR §11.5 raporlanan H5 ANNE-COCUK konkordans strateji estimate'leri (kesifsel).
+  # DIKKAT (denetim P0-6): Bes strateji ayni 241 aileden ve ayni yanit setinden
+  # turetildiginden bagimsiz calismalar degildir; klasik REML havuzlamasi bu
+  # bagimliligi hesaba katmaz ve havuzlanmis SE'yi kucuk kestirebilir. Bu havuzlama
+  # kardes-kardes ICC'sinden AYRI bir diyad turune (anne-cocuk) iliskindir; ikisi
+  # birbirini dogrulayan/curuten kanit olarak okunmamalidir (bkz. Tartisma).
   data.frame(
     strategy = c("ICC", "RSA", "CFM", "OlsenKenny", "k_coef"),
     estimate_dm = c(0.06, 0.18, 0.22, 0.29, 0.15),
     estimate_kontrol = c(0.10, 0.12, 0.18, 0.17, 0.09),
     se = c(0.05, 0.06, 0.07, 0.05, 0.06),
     source = "CSR §11.5 raporlanan degerler",
+    stringsAsFactors = FALSE
+  )
+}
+
+# Denetim P0-6 (kaynak-tekilligi): strateji havuz girdilerini gomulu literal
+# yerine R/20 (H5 diadik konkordans) CIKTISINDAN turetir. Yalnizca grup-bazli
+# (DM/Kontrol) tek bir konkordans skalarini net ureten iki strateji kullanilir:
+#   (1) ICC  — anne-cocuk (anne_idx + anne_sib) ICC'lerinin dort alt olcek
+#              uzerindeki grup ortalamasi (h5_icc_bland_altman_table).
+#   (2) OlsenKenny — gizil "true_concordance" (h5_dyadic_cfa_latent_corr_table).
+# RSA (yuzey parametreleri), Common Fate (havuzlanmis group_dm katsayisi) ve
+# k-katsayisi (havuzlanmis, kararsiz) grup-bazli tek bir konkordans skalari
+# uretmediginden bu havuza dahil edilmez; bu, karsilastirilabilir estimand
+# ilkesiyle de tutarlidir (yalniz grup-tanimli konkordanslar havuzlanir).
+h5ext_strategy_estimates_from_h5 <- function(icc_table, cfa_latent_table) {
+  if (is.null(icc_table) || is.null(cfa_latent_table) ||
+        !is.data.frame(icc_table) || !is.data.frame(cfa_latent_table) ||
+        nrow(icc_table) == 0L || nrow(cfa_latent_table) == 0L) {
+    return(NULL)
+  }
+  mc <- icc_table[icc_table$dyad %in% c("anne_idx", "anne_sib") &
+                    icc_table$group %in% c("DM", "Kontrol"), , drop = FALSE]
+  icc_stat <- function(g) {
+    v <- suppressWarnings(as.numeric(mc$icc[mc$group == g]))
+    v <- v[is.finite(v)]
+    if (length(v) == 0L) return(c(est = NA_real_, se = NA_real_))
+    c(est = mean(v), se = stats::sd(v) / sqrt(length(v)))
+  }
+  icc_dm <- icc_stat("DM"); icc_ko <- icc_stat("Kontrol")
+
+  ok_val <- function(g) {
+    r <- suppressWarnings(as.numeric(cfa_latent_table$true_concordance[cfa_latent_table$group == g]))
+    if (length(r) == 0L) NA_real_ else r[[1L]]
+  }
+  n_grp <- function(g) {
+    nn <- suppressWarnings(as.integer(icc_table$n[icc_table$dyad == "anne_idx" & icc_table$group == g]))
+    if (length(nn) == 0L || is.na(nn[[1L]])) 120L else nn[[1L]]
+  }
+  # Gizil konkordans korelasyon-benzeri oldugundan Fisher-z SE (1/sqrt(n-3)).
+  ok_se <- mean(c(1 / sqrt(max(n_grp("DM") - 3L, 1L)),
+                  1 / sqrt(max(n_grp("Kontrol") - 3L, 1L))))
+
+  data.frame(
+    strategy = c("ICC", "OlsenKenny"),
+    estimate_dm = c(unname(icc_dm[["est"]]), ok_val("DM")),
+    estimate_kontrol = c(unname(icc_ko[["est"]]), ok_val("Kontrol")),
+    se = c(mean(c(unname(icc_dm[["se"]]), unname(icc_ko[["se"]])), na.rm = TRUE), ok_se),
+    source = "R/20 ciktisi (h5_icc_bland_altman + h5_dyadic_cfa_latent_corr)",
     stringsAsFactors = FALSE
   )
 }
@@ -566,6 +619,8 @@ h5ext_strategy_pooling_pipeline <- function(strategy_estimates =
 
 run_h5_extensions_pipeline <- function(df_family_ses, df_long_scored,
                                        df_family_scored = NULL,
+                                       h5_icc_table = NULL,
+                                       h5_cfa_latent_table = NULL,
                                        bootstrap_n = 2000L,
                                        brms_chains = 2L,
                                        brms_iter = 2000L,
@@ -607,9 +662,14 @@ run_h5_extensions_pipeline <- function(df_family_ses, df_long_scored,
   # 63 — Sibling-pair ICC
   sibling_icc <- h5ext_sibling_pair_pipeline(df_family_scored, df_long_scored)
 
-  # 64 — Strategy pooling
+  # 64 — Strategy pooling. Denetim P0-6: girdiler R/20 ciktisindan turetilir
+  # (gomulu literal degil). R/20 tablolari saglanmadiysa geriye donuk uyumluluk
+  # icin literal default'a duser.
   pooling_result <- if (run_pooling) {
-    h5ext_strategy_pooling_pipeline(chains = brms_chains, iter = brms_iter)
+    derived <- h5ext_strategy_estimates_from_h5(h5_icc_table, h5_cfa_latent_table)
+    strat_est <- if (!is.null(derived)) derived else h5ext_strategy_estimates_default()
+    h5ext_strategy_pooling_pipeline(strategy_estimates = strat_est,
+      chains = brms_chains, iter = brms_iter)
   } else {
     list(strategy_estimates = NULL, pooled_summary = NULL)
   }

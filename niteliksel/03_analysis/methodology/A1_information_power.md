@@ -12,7 +12,7 @@
 
 Mevcut YÖNTEM metni, örneklem yeterliliğini "**tematik doygunluk** ilkeleri doğrultusunda" ve "**veri doygunluğuna ulaşıldığı** kabul edilerek" gerekçelendirmektedir. Braun ve Clarke (2019, 2021), refleksif tematik analizin (RTA) epistemolojisi ile veri/tematik doygunluk kavramının **uyumsuz** olduğunu vurgular: doygunluk, kodları "keşfedilecek nesne" olarak gören post-pozitivist bir varsayım taşır; oysa RTA'da tema, veri ile araştırmacı yorumu arasında inşa edilen **merkezi düzenleyici bir kavramdır** (central organizing concept) ve sonsuz potansiyele sahip yeni okumalara açıktır. Bu nedenle Braun-Clarke, RTA çalışmalarında "saturation" / "doygunluk" terminolojisinden açık olarak vazgeçmeyi ve örneklem yeterliliğini **bilgi gücü (information power)** çerçevesinde gerekçelendirmeyi önermektedir.
 
-Bu çalışma için bilgi gücü çerçevesi, Malterud, Siersma ve Guassora'nın (2016) önerdiği beş boyut üzerinden değerlendirilmiştir: (1) çalışmanın amaç darlığı, (2) örneklem özgüllüğü, (3) yerleşik kuram kullanımı, (4) görüşme/diyalog kalitesi ve (5) analiz stratejisi. Çalışmanın bu beş boyutta dört yüksek + bir orta-yüksek profil göstermesi, **7 aile triadından (21 görüşme) elde edilen verinin araştırma sorularına yanıt üretmek için yeterli bilgi gücüne sahip olduğunu** desteklemektedir.
+Bu çalışma için bilgi gücü çerçevesi, Malterud, Siersma ve Guassora'nın (2016) önerdiği beş boyut üzerinden değerlendirilmiştir: (1) çalışmanın amaç darlığı, (2) örneklem özgüllüğü, (3) yerleşik kuram kullanımı, (4) görüşme/diyalog kalitesi ve (5) analiz stratejisi. Çalışmanın bu beş boyutta üç yüksek + iki orta-yüksek profil göstermesi, **7 aile triadından (21 görüşme) elde edilen verinin araştırma sorularına yanıt üretmek için yeterli bilgi gücüne sahip olduğunu** desteklemektedir.
 
 ---
 
@@ -51,14 +51,14 @@ Bu çalışma için bilgi gücü çerçevesi, Malterud, Siersma ve Guassora'nın
 **Tablo X.X.** Çalışmanın bilgi gücü (information power) profili: Beş boyutta değerlendirme.
 
 | Boyut | Yüksek bilgi gücü işaretleri (küçük N yeter) | Düşük bilgi gücü işaretleri (büyük N gerek) | Bu çalışma | Profil |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | **1. Çalışmanın amaç darlığı** | Dar ve odaklı amaç; tek bir olgu/durum etrafında derinlemesine | Geniş, kapsayıcı, çok-amaçlı tasarım | T1DM tanılı çocuğa sahip ailelerde anne–hasta–sağlıklı kardeş üçlüsünün aile yaşamı, rol değişimi, sorumluluk dağılımı, adalet algısı, kardeş ilişkileri ve duygusal deneyimi. Genel ebeveynlik veya genel kronik hastalık deneyimi *değil*. | **Yüksek** |
 | **2. Örneklem özgüllüğü** | Hedef özelliklere yoğun şekilde sahip homojen örneklem | Heterojen / genel popülasyon örneklemi | Tüm aileler T1DM tanılı; tüm ailelerde en az bir sağlıklı kardeş; tek merkez (Marmara Üniv. Hast. Çocuk Endokrinoloji); tanı süresi farklı dalgaları (görece kısa ve uzun) içeren amaçlı örnekleme | **Yüksek** |
 | **3. Yerleşik kuram kullanımı** | Çalışma yerleşik bir kuramsal/kavramsal çerçeveden besleniyor | Tamamen induktif/keşifsel; teorik dayanak zayıf | Multi-informant family design (Vaughn ve diğerleri, 2017); aile sistemleri yaklaşımı (Bowen) ve pediatrik kronik hastalıkta aile yükü literatürü; teori-test eden değil teori-bilgilendirilmiş tasarım | **Orta–yüksek** |
-| **4. Görüşme/diyalog kalitesi** | Deneyimli görüşmeci, güvenli ortam, derin diyalog, paralinguistik veri | Yüzeysel diyalog, kısa görüşmeler, deneyimsiz görüşmeci | Klinik deneyimli pediatrist + sosyal pediatri doktora öğrencisi (OM); klinik otoriteden uzaklaştırılmış ortam (önlüksüz, ayrı oda); gözlemci pediatrist (BA) tarafından paralinguistik kayıt (sessizlik, ağlama, beden tepkisi); bireysel görüşmeler 15–25 dk, aile başına ~40–70 dk | **Yüksek** |
+| **4. Görüşme/diyalog kalitesi** | Deneyimli görüşmeci, güvenli ortam, derin diyalog, paralinguistik veri | Yüzeysel diyalog, kısa görüşmeler, deneyimsiz görüşmeci | Klinik deneyimli pediatrist + sosyal pediatri doktora öğrencisi (OM); klinik otoriteden uzaklaştırılmış ortam (önlüksüz, ayrı oda); gözlemci pediatrist (BA) tarafından paralinguistik kayıt (sessizlik, ağlama, beden tepkisi); bireysel görüşmeler 20–40 dk, aile başına ~60–90 dk | **Yüksek** |
 | **5. Analiz stratejisi** | Vaka-merkezli, derin yorum (within-case); az sayıda derin vaka yeterli | Çok sayıda vaka arası karşılaştırma (cross-case); büyük N gerek | İki-katmanlı tasarım: (a) **within-case (aile-içi triadik karşılaştırma)** — her ailede üç perspektifin örtüşme/ayrışmasının haritalanması (triadic matrices v3, 6 tema); (b) **cross-case (aileler-arası tema karşılaştırması)** — temaların farklı aile bağlamlarında nasıl şekillendiğinin değerlendirilmesi | **Orta–yüksek** (within-case yüksek + cross-case orta dengesi) |
 
-**Sonuç profili:** Beş boyutun dördünde yüksek, birinde orta-yüksek bilgi gücü → **küçük ama bilgi yoğun bir örneklem (N = 7 aile triadı, 21 katılımcı) araştırma sorularını yanıtlamak için yeterli kabul edilmiştir.**
+**Sonuç profili:** Beş boyutun üçünde yüksek (amaç darlığı, örneklem özgüllüğü, görüşme kalitesi), ikisinde orta-yüksek (yerleşik kuram kullanımı, analiz stratejisi) bilgi gücü → **küçük ama bilgi yoğun bir örneklem (N = 7 aile triadı, 21 katılımcı) araştırma sorularını yanıtlamak için yeterli kabul edilmiştir.**
 
 ---
 
@@ -97,7 +97,7 @@ Vaughn, L. M., Jacquez, F., Lindquist-Grantz, R., Parsons, A., & Melink, K. (201
 **Olası soru 1:** *"Doygunluk hesaplamadınız mı? 7 aile az değil mi?"*
 
 **Yanıt çekirdeği:**
-> Refleksif tematik analizin epistemolojisi (Braun ve Clarke, 2019, 2021), doygunluk kavramının post-pozitivist bir varsayım taşıdığını ve RTA'nın yorumlayıcı duruşuyla çeliştiğini açıkça vurgular. Bu nedenle çalışma örneklemi, sayısal bir doygunluk eşiği üzerinden değil, Malterud ve diğerlerinin (2016) önerdiği bilgi gücü çerçevesi üzerinden gerekçelendirilmiştir. Beş boyutun dördünde yüksek bilgi gücü profili gösteren bu çalışma için, küçük ve odaklı bir örneklem RTA paradigmatik konumuyla tutarlıdır. Üstelik 7 aile × 3 perspektif yapılanması, 21 birey görüşmesi anlamına gelmekte ve aile-içi (within-case) triadik karşılaştırmanın da bilgi gücüne katkıda bulunduğu unutulmamalıdır.
+> Refleksif tematik analizin epistemolojisi (Braun ve Clarke, 2019, 2021), doygunluk kavramının post-pozitivist bir varsayım taşıdığını ve RTA'nın yorumlayıcı duruşuyla çeliştiğini açıkça vurgular. Bu nedenle çalışma örneklemi, sayısal bir doygunluk eşiği üzerinden değil, Malterud ve diğerlerinin (2016) önerdiği bilgi gücü çerçevesi üzerinden gerekçelendirilmiştir. Beş boyutun üçünde yüksek, ikisinde orta-yüksek bilgi gücü profili gösteren bu çalışma için, küçük ve odaklı bir örneklem RTA paradigmatik konumuyla tutarlıdır. Üstelik 7 aile × 3 perspektif yapılanması, 21 birey görüşmesi anlamına gelmekte ve aile-içi (within-case) triadik karşılaştırmanın da bilgi gücüne katkıda bulunduğu unutulmamalıdır.
 
 **Olası soru 2:** *"Bu bulgular kaç aileyi kapsayacak şekilde genellenebilir?"*
 
@@ -136,7 +136,7 @@ Bu paket aşağıdaki paketlerin **ön koşulu** veya **paralel partneri**:
 
 1. Bu pakette üretilen iki paragraf ve tablo, **tezin niteliksel kolu için zorunlu**dur; çünkü mevcut metin, bir RTA çalışması için epistemolojik açıdan tutarsız bir gerekçelendirme içermektedir. Düzelti yapılmazsa, jüride veya hakem sürecinde Braun-Clarke 2021'e atıfla itiraza açık kalır.
 
-2. Reframe **uydurma** değildir: çalışma fiilen Malterud 5-boyutunun dördünde yüksek bilgi gücü profili göstermektedir. Reframe, mevcut güçlü tasarımı doğru epistemolojik dilde yeniden ifade etmektedir.
+2. Reframe **uydurma** değildir: çalışma fiilen Malterud 5-boyutunun üçünde yüksek, ikisinde orta-yüksek bilgi gücü profili göstermektedir. Reframe, mevcut güçlü tasarımı doğru epistemolojik dilde yeniden ifade etmektedir.
 
 3. "7 aile / 21 görüşme" rakamı değişmemekte; sadece **gerekçesi** değişmektedir.
 

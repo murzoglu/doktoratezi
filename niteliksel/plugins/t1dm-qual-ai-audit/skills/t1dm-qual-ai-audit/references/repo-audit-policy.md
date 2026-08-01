@@ -17,8 +17,8 @@ This policy adapts the AI reliability scaffold to the T1DM qualitative thesis re
 - Project rules: `CLAUDE.md`, `AGENTS.md`
 - Live process: `00_context/TRACKER.md`, `00_context/ROADMAP_v1.md`
 - Codex operations: `00_context/CODEX_PLAYBOOK.md`
-- Cross-repo thesis writing source: `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim/README.md`
-- Official thesis guide/templates: `/mnt/thunderbolt/workspaces/doktoratezi/docs/tez-kilavuz/`
+- Cross-repo thesis writing source: `/workspaces/T1DM-Tez/tez-yazim/README.md`
+- Official thesis guide/templates: `/workspaces/T1DM-Tez/docs/tez-kilavuz/`
 - Architecture: `00_context/REPO_CONTEXT.md`
 - Current analysis: `03_analysis/codebook/codebook_v2.md`, `03_analysis/methodology/*`, `03_analysis/reflexive/*`
 - Active thesis writing source: `02_processed/cleaned_text/thesis_qualitative_cleaned_current.md`
@@ -28,8 +28,8 @@ This policy adapts the AI reliability scaffold to the T1DM qualitative thesis re
 
 - Qualitative-arm numeric claims such as family count, interview count, code count, theme count, COREQ/SRQR/JARS-Qual item count, and phase/package count need a checked repo source marker.
 - RTA language must distinguish information power, reflexivity, and interpretive depth from positivist saturation or inter-coder reliability language.
-- Tool routing should prefer local `./dmnitel` for repo checks, Evidentia MCP for external evidence, and the paired quantitative repo only for H1-H5/EMBU/Beck/KIA/R-pipeline claims.
-- Thesis writing and formatting should prefer the paired repo `tez-yazim` contract and official Marmara guide/templates before older style notes.
+- Tool routing should prefer local `./dmnitel` for repo checks, Evidentia MCP for external evidence, and the nicel kök only for H1-H5/EMBU/Beck/KIA/R-pipeline claims.
+- Thesis writing and formatting should prefer the nicel kök `tez-yazim` contract and official Marmara guide/templates before older style notes.
 - External MCP use should be followed by `./dmnitel log-ai-use` when it materially informs thesis work.
 
 ## Recommended Validation

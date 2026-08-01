@@ -60,12 +60,10 @@ write_result_list <- function(res, prefix) {
 
 cat("=== Faz IV audit runner — KISIM XLII-XLIX ===\n")
 
-# --- §134-135 (yurutme onceligi #1: gecerlik denetimleri) ---
+# --- §135 (yurutme onceligi #1: gecerlik denetimleri) ---
 res_selb <- run_phase4_selection_batch_pipeline(df_family_ses)
 write_result_list(res_selb, "selb")
-f <- res_selb$hba1c_ad_fisher; cc <- res_selb$year_collinearity
-cat(sprintf("[§134] HbA1c-avail x AD: OR=%.2f [%.2f,%.2f] p=%.6f (n_dm=%d, var=%d)\n",
-  f$odds_ratio, f$or_ci_lower, f$or_ci_upper, f$p_value, f$n_dm, res_selb$target_summary$n_hba1c_var))
+cc <- res_selb$year_collinearity
 cat(sprintf("[§135] yil x grup kollinearite: LR chisq=%.1f df=%d p=%.2e V=%.3f\n",
   cc$lr_chisq, cc$lr_df, cc$p_value, cc$cramers_v))
 
@@ -87,7 +85,7 @@ cat(sprintf("[§117] 14-faset forest: FDR-hayatta=%d/%d (dusuk-guvenilir=%d)\n",
 res_clmod <- run_phase4_child_moderators_pipeline(df_long_scored, df_family_ses)
 write_result_list(res_clmod, "clmod")
 
-# --- §121-122 (onset/metabolik, DM-only) ---
+# --- §121 (onset, DM-only) ---
 res_onmet <- run_phase4_onset_metabolic_pipeline(df_family_ses)
 write_result_list(res_onmet, "onmet")
 

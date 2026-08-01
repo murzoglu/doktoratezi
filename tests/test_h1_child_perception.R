@@ -58,6 +58,40 @@ stopifnot(length(frequentist$models) == 4L)
 stopifnot(all(c("outcome", "term", "estimate", "std_error", "p_value", "ci_low", "ci_high") %in% names(frequentist$fixed_effects)))
 stopifnot(any(frequentist$fixed_effects$term == "role_fDM_Hasta_Indeks"))
 stopifnot(nrow(frequentist$role_pairwise) == 24L)
+
+# --- Grup-ici (within-group) rol kontrasti: yapi + yon-mantigi ---
+wgc <- frequentist$within_group_role_contrast
+# 2 kontrast (DM / Kontrol indeks-eksi-kardes) x 4 alt olcek = 8 satir
+stopifnot(nrow(wgc) == 8L)
+stopifnot(all(c("outcome", "contrast", "estimate", "std_error", "ci_low",
+                "ci_high", "p_value", "p_fdr_within_family") %in% names(wgc)))
+stopifnot(all(sort(unique(wgc$contrast)) ==
+              sort(c("DM_indeks_eksi_kardes", "Kontrol_indeks_eksi_kardes"))))
+# Her kontrast icin tam 4 alt olcek
+stopifnot(sum(wgc$contrast == "DM_indeks_eksi_kardes") == 4L)
+stopifnot(sum(wgc$contrast == "Kontrol_indeks_eksi_kardes") == 4L)
+# GA nokta tahminini icermeli (tutarlilik)
+stopifnot(all(wgc$ci_low <= wgc$estimate & wgc$estimate <= wgc$ci_high))
+# BH-FDR ham p'den kucuk olamaz (monotonluk)
+stopifnot(all(wgc$p_fdr_within_family >= wgc$p_value - 1e-9))
+
+# --- Yon-mantigi: DM indeks cocuguna kasitli +etki, kontrol kolu bozulmadan ---
+long_dir <- long
+dm_idx <- long_dir$role_f == "DM_Hasta_Indeks"
+long_dir$embu_c_reddetme_mean <- 1.4 + 0.6 * dm_idx +
+  stats::rnorm(nrow(long_dir), 0, 0.10)
+frame_dir <- h1_prepare_analysis_frame(long_dir, family)
+wgc_dir <- run_h1_frequentist(frame_dir)$within_group_role_contrast
+red_dm <- wgc_dir[wgc_dir$outcome == "embu_c_reddetme_mean" &
+                    wgc_dir$contrast == "DM_indeks_eksi_kardes", ]
+red_kontrol <- wgc_dir[wgc_dir$outcome == "embu_c_reddetme_mean" &
+                         wgc_dir$contrast == "Kontrol_indeks_eksi_kardes", ]
+# DM indeks-kardes farki pozitif ve anlamli (kasitli etki yakalanmali)
+stopifnot(red_dm$estimate > 0.3)
+stopifnot(red_dm$p_fdr_within_family < 0.05)
+# Kontrol kolunda ayni boyutta fark null kalmali (etki yalniz DM indeks'e verildi)
+stopifnot(abs(red_kontrol$estimate) < 0.2)
+stopifnot(red_kontrol$p_value > 0.05)
 stopifnot(all(c("icc", "r2_marginal", "r2_conditional", "singular") %in% names(frequentist$diagnostics)))
 
 three_way <- run_h1_three_way(frame)
@@ -73,6 +107,9 @@ stopifnot(all(bayes_plan$default_execution == "manual_not_in_targets_or_audit"))
 pipeline <- run_h1_child_perception_pipeline(long, family, run_irt = FALSE)
 stopifnot(pipeline$target_summary$analysis_rows == nrow(long))
 stopifnot(pipeline$target_summary$primary_models == 4L)
+stopifnot(pipeline$target_summary$within_group_contrast_tests == 8L)
+stopifnot(!is.null(pipeline$primary_within_group_role_contrast))
+stopifnot(nrow(pipeline$primary_within_group_role_contrast) == 8L)
 stopifnot(pipeline$target_summary$three_way_models == 4L)
 stopifnot(pipeline$target_summary$irt_success_n == 0L)
 

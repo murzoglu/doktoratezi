@@ -56,24 +56,91 @@ clinical_logistic_risk <- function(df, predictors,
                            ret = c("threshold", "specificity", "sensitivity",
                                    "ppv", "npv", "youden"))
   if (is.matrix(optimal) || is.data.frame(optimal)) optimal <- optimal[1, , drop = TRUE]
-  boot_aucs <- numeric(n_boot)
+  # Harrell/Efron optimism-corrected bootstrap. Her tekrar icin iyimserlik =
+  # AUC(boot-model ustunde boot-ornek) - AUC(boot-model ustunde orijinal ornek).
+  # ONCEKI HATA: yalniz boot-model'in orijinal ornekteki AUC'si tutuluyor ve
+  # apparent'tan cikariliyordu; bu, boot-on-boot terimini atladigi icin cogu
+  # kez negatif "iyimserlik" -> duzeltilmis AUC'nin apparent'tan YUKSEK cikmasi
+  # gibi imkansiz bir sonuc uretiyordu (bkz. denetim P0-8).
+  boot_optimism <- numeric(n_boot)
+  # P1-13: Kalibrasyon intercept/slope de ayni Harrell/Efron dongusunde
+  # optimizm-duzeltilir. Slope: glm(y ~ lp) egimi; intercept: glm(y ~
+  # offset(lp)) sabiti. Iyimserlik = boot-ornek performansi - orijinal-ornek
+  # performansi (AUC ile ayni yon-mantigi). Apparent slope 1'e, intercept 0'a
+  # yaklastikca iyi kalibrasyon; optimizm duzeltmesi slope'u tipik olarak
+  # 1'in altina ceker (denetim P1-13: deger gomulmez, hesaplanir).
+  boot_slope_opt <- numeric(n_boot)
+  boot_int_opt   <- numeric(n_boot)
+  y <- sub_df[[clinical_outcome()]]
+  lp_apparent <- stats::predict(fit, type = "link")
+  cal_slope_apparent <- tryCatch(
+    unname(stats::coef(suppressWarnings(stats::glm(
+      y ~ lp_apparent, family = "binomial")))[2]),
+    error = function(e) NA_real_
+  )
+  cal_int_apparent <- tryCatch(
+    unname(stats::coef(suppressWarnings(stats::glm(
+      y ~ 1, family = "binomial", offset = lp_apparent)))[1]),
+    error = function(e) NA_real_
+  )
+  .cal_slope <- function(yv, lp) tryCatch(
+    unname(stats::coef(suppressWarnings(stats::glm(
+      yv ~ lp, family = "binomial")))[2]),
+    error = function(e) NA_real_)
+  .cal_int <- function(yv, lp) tryCatch(
+    unname(stats::coef(suppressWarnings(stats::glm(
+      yv ~ 1, family = "binomial", offset = lp)))[1]),
+    error = function(e) NA_real_)
   for (b in seq_len(n_boot)) {
     idx <- sample(seq_len(nrow(sub_df)), replace = TRUE)
+    boot_df <- sub_df[idx, , drop = FALSE]
     fit_b <- tryCatch(
       suppressWarnings(stats::glm(stats::as.formula(formula_str),
-                                   data = sub_df[idx, , drop = FALSE],
+                                   data = boot_df,
                                    family = "binomial")),
       error = function(e) NULL
     )
-    if (is.null(fit_b)) { boot_aucs[b] <- NA_real_; next }
-    pred_b <- stats::predict(fit_b, newdata = sub_df, type = "response")
-    boot_aucs[b] <- tryCatch(
-      as.numeric(pROC::auc(suppressMessages(pROC::roc(sub_df[[clinical_outcome()]], pred_b)))),
+    if (is.null(fit_b)) {
+      boot_optimism[b] <- NA_real_
+      boot_slope_opt[b] <- NA_real_
+      boot_int_opt[b]   <- NA_real_
+      next
+    }
+    # (a) boot-model, uzerinde egitildigi boot-ornekte
+    pred_bb <- stats::predict(fit_b, newdata = boot_df, type = "response")
+    auc_bb <- tryCatch(
+      as.numeric(pROC::auc(suppressMessages(pROC::roc(boot_df[[clinical_outcome()]], pred_bb)))),
       error = function(e) NA_real_
     )
+    # (b) ayni boot-model, orijinal (out-of-sample) ornekte
+    pred_bo <- stats::predict(fit_b, newdata = sub_df, type = "response")
+    auc_bo <- tryCatch(
+      as.numeric(pROC::auc(suppressMessages(pROC::roc(y, pred_bo)))),
+      error = function(e) NA_real_
+    )
+    boot_optimism[b] <- auc_bb - auc_bo
+    # Kalibrasyon iyimserligi: lineer prediktor boot-model'den uretilir.
+    lp_bb <- stats::predict(fit_b, newdata = boot_df, type = "link")
+    lp_bo <- stats::predict(fit_b, newdata = sub_df,  type = "link")
+    boot_slope_opt[b] <- .cal_slope(boot_df[[clinical_outcome()]], lp_bb) -
+                         .cal_slope(y, lp_bo)
+    boot_int_opt[b]   <- .cal_int(boot_df[[clinical_outcome()]], lp_bb) -
+                         .cal_int(y, lp_bo)
   }
-  optimism <- mean(boot_aucs, na.rm = TRUE) - auc_val
+  optimism <- mean(boot_optimism, na.rm = TRUE)
   auc_corrected <- auc_val - optimism
+  cal_slope_optimism <- mean(boot_slope_opt, na.rm = TRUE)
+  cal_int_optimism   <- mean(boot_int_opt, na.rm = TRUE)
+  cal_slope_corrected <- cal_slope_apparent - cal_slope_optimism
+  cal_int_corrected   <- cal_int_apparent - cal_int_optimism
+  # Optimizm-duzeltilmis metrigin bootstrap-yuzdelik GA'si: apparent'tan
+  # iyimserlik dagiliminin ust/alt yuzdelikleri cikarilir.
+  .slope_q <- stats::quantile(boot_slope_opt, c(0.975, 0.025), na.rm = TRUE)
+  .int_q   <- stats::quantile(boot_int_opt,   c(0.975, 0.025), na.rm = TRUE)
+  cal_slope_corr_lo <- cal_slope_apparent - unname(.slope_q[1])
+  cal_slope_corr_hi <- cal_slope_apparent - unname(.slope_q[2])
+  cal_int_corr_lo   <- cal_int_apparent - unname(.int_q[1])
+  cal_int_corr_hi   <- cal_int_apparent - unname(.int_q[2])
   coefs <- summary(fit)$coefficients
   coef_table <- data.frame(
     term     = rownames(coefs),
@@ -93,6 +160,14 @@ clinical_logistic_risk <- function(df, predictors,
     auc_ci_lo      = ci_auc[1],
     auc_ci_hi      = ci_auc[3],
     auc_corrected  = auc_corrected,
+    cal_intercept_apparent  = cal_int_apparent,
+    cal_intercept_corrected = cal_int_corrected,
+    cal_intercept_corr_lo   = cal_int_corr_lo,
+    cal_intercept_corr_hi   = cal_int_corr_hi,
+    cal_slope_apparent      = cal_slope_apparent,
+    cal_slope_corrected     = cal_slope_corrected,
+    cal_slope_corr_lo       = cal_slope_corr_lo,
+    cal_slope_corr_hi       = cal_slope_corr_hi,
     youden_threshold = unname(optimal["threshold"]),
     sensitivity    = unname(optimal["sensitivity"]),
     specificity    = unname(optimal["specificity"]),

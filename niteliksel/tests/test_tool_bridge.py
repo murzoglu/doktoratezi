@@ -26,7 +26,7 @@ class ToolBridgeTests(unittest.TestCase):
         self.assertIn("turkish_legislation", context)
         self.assertIn("life-science-research:research-router-skill", context)
         self.assertIn("zotero:Zotero", context)
-        self.assertIn("/mnt/thunderbolt/workspaces/doktoratezi", context)
+        self.assertIn("/workspaces/T1DM-Tez", context)
         self.assertIn("tez-yazim/README.md", context)
 
     def test_thesis_writing_query_routes_to_official_guide(self):
@@ -34,7 +34,7 @@ class ToolBridgeTests(unittest.TestCase):
 
         self.assertIn("Anamnesis context management gate", route.gate_order)
         self.assertIn("Marmara official thesis guide gate", route.gate_order)
-        self.assertEqual(route.paired_repo, "/mnt/thunderbolt/workspaces/doktoratezi")
+        self.assertEqual(route.paired_repo, "/workspaces/T1DM-Tez")
         self.assertTrue(any("ana merkez" in action for action in route.recommended_actions))
         self.assertTrue(any("kanonik nitel sonuç raporu" in action for action in route.recommended_actions))
         self.assertFalse(any("cross-repo-status" in command for command in route.dmnitel_commands))
@@ -54,7 +54,7 @@ class ToolBridgeTests(unittest.TestCase):
         route = route_query("H5 EMBU Beck KIA targets pipeline joint display")
 
         self.assertIn("paired doktoratezi + t1dm-tez-rehberi", route.gate_order)
-        self.assertEqual(route.paired_repo, "/mnt/thunderbolt/workspaces/doktoratezi")
+        self.assertEqual(route.paired_repo, "/workspaces/T1DM-Tez")
 
     def test_biomedical_query_routes_to_life_science_plugin(self):
         route = route_query("HLA genetik mekanizma ve beta cell pathway")

@@ -6,7 +6,9 @@
 > **§12**'dir (tam biçim kuralları §1–§5, §8). Bu liste onun bölüm-kapanışı
 > operasyonel örneğidir; çakışırsa §12 esastır. Master süreç:
 > `bolum-finalizasyon-sertifikasyon-playbook.md` Kapı 3. Klasör haritası:
-> `04_kalite-kontrol/README.md`.
+> `04_kalite-kontrol/README.md`. Otomatik denetim: bu listenin
+> makine-doğrulanabilir maddeleri `tez-kontrol-checklisti.md` (K3-*) altında
+> `scripts/util/tez_checklist_verify.py --section K3` ile koşulur.
 
 - [ ] A4, tek sütun, beyaz zemin.
 - [ ] Kenar boşlukları sol/sağ 2,5 cm; üst/alt 2 cm.

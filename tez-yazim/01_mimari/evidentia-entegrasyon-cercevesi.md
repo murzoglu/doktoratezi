@@ -18,7 +18,7 @@ yeridir; klasör tek-otorite haritası: `01_mimari/README.md`.
 | Katman | Belge | Ne belirler |
 |---|---|---|
 | Skill çerçevesi | `t1dm-tez-rehberi/references/literatur-kanit-evidentia.md` | İç-veri ↔ dış-kanıt görev ayrımı, giriş noktaları, tez-artefaktı besleme haritası, prior-HARKing kuralı, uydurma-referans yasağı. **Birincil çerçeve.** |
-| Repo-router | `doktoratezi/.claude/evidentia.local.md` | Bu repoda varsayılan aktif çekirdek + koşullu connector'lar + `coverage_set` + tam-metin kaskadı + `evidence_mode`. **Repo-özel yapılandırma.** |
+| Repo-router | `.claude/evidentia.local.md` | Bu kurulumun **tek doğruluk kaynağı**: `known_connected` bağlı connector listesi + narratif-derin-lit modu + tam-metin kaskadı + proje-scoped enrichment modülü. **Repo-özel yapılandırma.** |
 | Süreç talimatnamesi | `00_kaynak-kurallari/talimatname-claude-code.md` (Bölüm 4–5) | Araç kapıları, tam metin kaskadı, zorunlu referans kapısı sırası. |
 | Referans ledgeri | `02_kanit-haritalari/referans-denetim-ledgeri.md` | Her künyenin durum makinesi (candidate → cite-ok). |
 | Biçim | `00_kaynak-kurallari/marmara-tez-formati-talimatnamesi.md` (Bölüm 4) | Künyenin nihai AMA-11 biçimi. |
@@ -26,7 +26,7 @@ yeridir; klasör tek-otorite haritası: `01_mimari/README.md`.
 **Kural:** Evidentia, `t1dm-tez-rehberi` ana kapısını bypass etmez. Önce skill
 kapsam/OSF/PII/artefakt kararı verir; sonra Evidentia dış-kanıt, bağlam yönetimi
 ve tam-metin çıkarımı için çağrılır. Nitel kolda köprü ikizi:
-`niteliksel-arastirma-rehberi-t1dm/references/13-mcp-ve-skill-baglantilari.md`.
+`.claude/skills/niteliksel-arastirma-rehberi-t1dm/references/literatur-kanit-evidentia.md`.
 
 ---
 
@@ -57,9 +57,13 @@ Bu tez **gelişimsel/psikososyal** (ebeveynlik tutumu, depresyon, kardeş
 ilişkisi); diyabet medikal çapadır. `evidentia.local.md` repo-router'ı önce
 soru tipini belirler, sonra havuzu açar.
 
-**Varsayılan aktif çekirdek** (maksimum derinlikte çalışır):
-`pubmed-epmc`, `paper-search`, `openalex`, `semantic-scholar`, `psyarxiv-osf`,
-`yoktez-mcp`, `anamnesis`, `evidentia-kb`, `annas-reader`.
+**Varsayılan aktif çekirdek** (bu Claude Code kurulumunda bağlı — kaynak
+`.claude/evidentia.local.md` `known_connected`; maksimum derinlikte çalışır):
+`pubmed-epmc`, `openalex`, `semantic-scholar`, `anamnesis`, `evidentia-kb`,
+`annas-reader`, `openathens`, `yok-akademik`, `minerva-evidence`.
+`paper-search`, `psyarxiv-osf`, `yoktez-mcp` bu kurulumda **bulunmaz** (bkz.
+`literatur-kanit-evidentia.md` §1.1); işlevleri OpenAlex/EPMC `AFF:"Turkey"` +
+Semantic Scholar ile karşılanır, karşılanamazsa `gap_log`'a "connector yok" yazılır.
 
 **Koşullu katmanlar** (yalnız açık tetikleyici sinyalle kaskada eklenir; sinyal
 yoksa çağrılmaz ve preflight gürültüsü sayılmaz): `clinical-trials`,
@@ -105,12 +109,14 @@ dökülmez.
 
 Tam metin erişiminin **tek kanonik otoritesi**
 `00_kaynak-kurallari/tam-metin-erisim-kaskadi.md`'dir (T0 preflight → T1
-OpenAthens/Millet Kütüphanesi → T2 Anna's → T3 OA/diğer → Zotero kapanışı →
+OpenAthens/Millet Kütüphanesi → T1.5 Minerva (Roche korpus) → T2 Anna's →
+T3 OA/diğer → Zotero kapanışı →
 ledger durumları → yasaklar). Burada tekrarlanmaz; Evidentia D4 aşaması o
 kaskadı çalıştırır.
 
-Özet: kurumsal (OpenAthens) → Anna's → PMC/OA → istisna; OA + kurumsal + Anna's
-tüketilmeden `full-text-exception` yazılamaz; credential/`.env` asla tool-
+Özet: kurumsal (OpenAthens) → Minerva (Roche korpus) → Anna's → PMC/OA → istisna;
+OA + kurumsal + Minerva + Anna's tüketilmeden `full-text-exception` yazılamaz;
+credential/`.env` (Minerva `${GRAVITEE_*}` dahil) asla tool-
 çağrısına yazılmaz (bkz. memory: Wiley → OpenAthens+Playwright); hiçbir katılımcı
 verisi/transkript tam metin araçlarına gönderilmez.
 
@@ -123,7 +129,7 @@ girmez:
 
 **bağlam → bibliyografik kimlik (DOI/PMID/PMCID/OpenAlex/YÖK) → tam metin
 kanıtı → Zotero mutabakatı (item key + BibTeX key; ikisi farklıdır) →
-claim/pasaj notu → ledger kaydı + çift AI-reliability**.
+claim/pasaj notu → ledger kaydı + iki-kol AI-reliability**.
 
 - Ledger: `02_kanit-haritalari/referans-denetim-ledgeri.md`.
 - Durumlar: `candidate → full-text-ok / full-text-exception → zotero-ok →
@@ -136,7 +142,7 @@ claim/pasaj notu → ledger kaydı + çift AI-reliability**.
   referans kapısını metin düzeyinde tamamlar. Uydurma/yanlış-atıf/geri-çekilmiş
   künye burada yakalanır.
 - **Repo/veri invaryantı:** `doktoratezi-ai-audit` (bu repo) + `t1dm-qual-ai-audit`
-  (paired nitel repo) — KVKK/ham veri/quote-parity; referans içeren her bölüm
+  (nitel kol (niteliksel/)) — KVKK/ham veri/quote-parity; referans içeren her bölüm
   kapanışında birlikte koşulur. Bu katman `sci-audit` metin adli denetimiyle
   **çakışmaz** (sınır: `04_kalite-kontrol/bolum-finalizasyon-sertifikasyon-playbook.md`).
 
@@ -171,7 +177,7 @@ PsyArXiv-ID/OSF-registration-ID), `canonical_artifacts`, `candidate_sources`,
 `tez_artefakti`, `bibtex_durumu`, `gap_log`.
 
 Her harici Evidentia/MCP kullanımı, tez içeriğini etkilediyse oturum bitmeden
-`./dmnitel log-ai-use … --external-api-used yes` (paired nitel repoda) veya
+`./dmnitel log-ai-use … --external-api-used yes` (nitel kolda (niteliksel/)) veya
 `/ai-kayit` ile LLM beyanına işlenir; `--data-type` daima "anonim/türetilmiş".
 
 ---
@@ -181,6 +187,6 @@ Her harici Evidentia/MCP kullanımı, tez içeriğini etkilediyse oturum bitmede
 Ham hasta/aile verisi, transkript, satır-düzeyi veri, demografi ve kimlikleyici
 **hiçbir Evidentia connector'ına, RAG substratına (anamnesis/qdrant/evidentia-kb)
 veya memory'ye** gönderilmez. Yalnız yayın metni (dış literatür) ve anonim/
-türetilmiş karar bağlamı persist edilir. Paired nitel repo çıktılarından yalnız
+türetilmiş karar bağlamı persist edilir. Nitel kol (niteliksel/) çıktılarından yalnız
 de-identified tema/codebook/COREQ/audit-trail ve araştırmacı onaylı anonim
 alıntılar karma sentezde kullanılır.

@@ -28,7 +28,6 @@ Tablo 1 aile düzeyi demografi, SES, aile yapısı, materyal kaynak ve anne klin
 - Materyal: `ev_sahipligi`, `ev_oda_sayisi`, `arabaniz_var_mi`
 - Klinik: `kronik_hastalik_durumu`, `anne_antidepresan`, `beck_total`, `beck_severity`
 
-`hba1c` ve `dm_yili` kontrol grubunda structural missing olduğu için Tablo 1 DM-Kontrol SMD dengesine dahil edilmez; DM-klinik duyarlılık hattında ele alınır.
 
 ## 4. SMD Kuralları
 

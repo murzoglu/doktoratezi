@@ -1,20 +1,11 @@
 {
-  "_comment": "Doktoratezi — Claude Code AI-reliability katmanı. Codex ikizi: .codex/hooks.json + .codex/hooks/. Politika değişiklikleri iki ağaca birlikte işlenir; tests/test_claude_hooks.py bu yüzeyi korur. permissions.deny veri-yönetişimi sınırını dosya araçları düzeyinde zorlar (data/processed altındaki .lock ve veri haritası METADATA dosyaları okunabilir kalır; satır-düzeyi csv/rds/parquet kapalıdır).",
+  "_comment": "Doktoratezi — Claude Code AI-reliability katmanı. Codex ikizi: .codex/hooks.json + .codex/hooks/. Politika değişiklikleri iki ağaca birlikte işlenir; tests/test_claude_hooks.py bu yüzeyi korur. Üç-katmanlı veri-yönetişimi (owner onaylı revizyon 2026-07-13): (1) PII/ön-temizlik kaynak dosyaları (data/raw|identified|cleaned|backup) ve credential'lar okuma/erişime KAPALI; (2) de-identified analiz yüzeyi (data/processed işlenmiş kanonik baz + outputs aggregate çıktı) owner onayıyla Read + R/python hesaplamasına AÇIK — de-identifikasyon Stage 1'de tamamlanır; (3) kanonik bazın Edit ile elle değiştirilmesi (Edit data/**), _targets store okuması ve verinin dışa-kopyalanması (pre_tool_use exfil kuralı) KAPALI. Nitel kol (niteliksel/.claude) ayrı ve dokunulmadı.",
   "permissions": {
     "deny": [
       "Read(./data/raw/**)",
       "Read(./data/identified/**)",
       "Read(./data/cleaned/**)",
       "Read(./data/backup/**)",
-      "Read(./data/processed/**/*.csv)",
-      "Read(./data/processed/**/*.tsv)",
-      "Read(./data/processed/**/*.rds)",
-      "Read(./data/processed/**/*.parquet)",
-      "Read(./data/processed/**/*.xlsx)",
-      "Read(./outputs/**/*.csv)",
-      "Read(./outputs/**/*.tsv)",
-      "Read(./outputs/**/*.rds)",
-      "Read(./outputs/**/*.parquet)",
       "Read(./_targets/**)",
       "Edit(./data/**)",
       "Edit(./_targets/**)",
@@ -76,6 +67,17 @@
             "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/post_tool_use_review.py\"",
             "timeout": 15,
             "statusMessage": "Reviewing tool output"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/post_tool_use_review.py\"",
+            "timeout": 200,
+            "statusMessage": "references.bib düzenlendiyse bib hijyen kapısı"
           }
         ]
       }

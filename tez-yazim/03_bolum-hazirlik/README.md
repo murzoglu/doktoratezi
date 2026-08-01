@@ -61,7 +61,7 @@ chapters/0X_*.qmd  →  thesis.qmd        (üretim: gerçek tez metni)
   `docs/CLINICAL-STUDY-REPORT-FINAL.md`, `_targets.R`.
 - **Nitel kol:** 7 aile × 3 = 21 görüşme (triad: anne + T1DM'li çocuk + sağlıklı
   kardeş); RTA; **tez = 4 makro tema** (journal = 6 tema — karıştırma). Aktarım
-  kaynağı: `docs/niteliksel/qualitative_canonical_results_report.md`.
+  kaynağı: `niteliksel/qualitative_canonical_results_report.md`.
 - İki kol **ayrı kanıt türü**; joint display kanıt türünü açık etiketler
   (marmara §6).
 

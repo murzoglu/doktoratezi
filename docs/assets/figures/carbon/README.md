@@ -1,16 +1,15 @@
 # Carbon SVG Figure Dizin ve Cross-Reference Haritası
 
-Üretim zamanı: `2026-05-01 15:48:49 UTC`
+Üretim zamanı: `2026-07-26 11:53:25 UTC`
 
-Bu dizin, tez analizleri kapsamında şu ana dek üretilmiş benzersiz görsel çıktıların Carbon uyumlu SVG karşılıklarını tek klasör ağacında toplar. Kaynak envanter dört yüzeyden derlenmiştir: aktif `_targets`/`outputs/figures` figür seti, psikometrik validasyon Quarto görselleri, demografik-tıbbi Quarto görselleri ve Faz II post-hoc Carbon figürleri.
+Bu dizin, tez analizleri kapsamında şu ana dek üretilmiş benzersiz görsel çıktıların Carbon uyumlu SVG karşılıklarını tek klasörde toplar. Kaynak envanter üç yüzeyden derlenmiştir: aktif `_targets`/`outputs/figures` figür seti, psikometrik validasyon Quarto freeze görselleri ve demografik-tıbbi Quarto freeze görselleri.
 
 ## Kapsam ve Üretim Modu
 
-- Toplam SVG: **64**
+- Toplam SVG: **50**
 - Aktif bulgular / `_targets` SVG: **25**
 - Psikometrik validasyon Quarto SVG: **7**
 - Demografik-tıbbi Quarto SVG: **20**
-- Faz II post-hoc Carbon SVG: **12**
 - Dışlananlar: `.quarto/_freeze` altındaki birebir kopyalar, `tmp/pdfs/*` sayfa görüntüleri, form/book PDF'leri ve Carbon HTML/PDF rapor çıktıları. Bunlar analiz figürü değil, render kopyası ya da kaynak belgedir.
 
 ## Aslına Uygunluk Denetimi
@@ -53,7 +52,7 @@ Ayrıntılı makine-okunur kayıtlar: [manifest.csv](audits/manifest.csv), [fide
 | clinical_cart_rf | [fig-21-clinical-cart-rf.svg](primary/fig-21-clinical-cart-rf.svg) | `@fig-clinical-cart-rf` | KISIM IX CART/RF | targets-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
 | specification_curve | [fig-22-specification-curve.svg](primary/fig-22-specification-curve.svg) | `@fig-specification-curve` | KISIM XI multiverse | targets-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
 | sensemakr_contour | [fig-23-sensemakr-contour.svg](primary/fig-23-sensemakr-contour.svg) | `@fig-sensemakr-contour` | KISIM XI sensemakr/E-value | targets-native-vector | PASS: native SVG; heatmap/surface benzeri raster katman içeriyor | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts; raster/gradient istisnası notlandı | N/A |
-| bayesian_forest | [fig-24-bayesian-forest.svg](primary/fig-24-bayesian-forest.svg) | `@fig-bayesian-forest` | KISIM XII Bayesçi forest | targets-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
+| bayesian_forest | [fig-24-bayesian-forest.svg](primary/fig-24-bayesian-forest.svg) | `@fig-bayesian-forest` | KISIM XII Bayesçi forest | targets-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | REVIEW: renk/metadata elle bakılmalı | N/A |
 | bayesian_diagnostics | [fig-25-bayesian-diagnostics.svg](primary/fig-25-bayesian-diagnostics.svg) | `@fig-bayesian-diagnostics` | KISIM XII MCMC tanıları | targets-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
 
 ## Psikometrik Validasyon Figürleri
@@ -84,31 +83,12 @@ Ayrıntılı makine-okunur kayıtlar: [manifest.csv](audits/manifest.csv), [fide
 | ses-density | [demo-10-ses-density.svg](demographic/demo-10-ses-density.svg) | `@fig-ses-density` | Latent SES dağılımı | quarto-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
 | egitim | [demo-11-egitim.svg](demographic/demo-11-egitim.svg) | `@fig-egitim` | Anne/eş eğitim düzeyi | quarto-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
 | dm-eksik | [demo-12-dm-eksik.svg](demographic/demo-12-dm-eksik.svg) | `@fig-dm-eksik` | DM klinik gösterge tamamlanması | quarto-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
-| hba1c | [demo-13-hba1c.svg](demographic/demo-13-hba1c.svg) | `@fig-hba1c` | HbA1c dağılımı | quarto-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
-| hba1c-target | [demo-14-hba1c-target.svg](demographic/demo-14-hba1c-target.svg) | `@fig-hba1c-target` | HbA1c hedef kategorileri | quarto-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
 | dm-suresi | [demo-15-dm-suresi.svg](demographic/demo-15-dm-suresi.svg) | `@fig-dm-suresi` | DM süresi ve tanı yaşı | quarto-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
 | tani-strata | [demo-16-tani-strata.svg](demographic/demo-16-tani-strata.svg) | `@fig-tani-strata` | Tanı yaşı üç strata | quarto-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
 | smd-love | [demo-17-smd-love.svg](demographic/demo-17-smd-love.svg) | `@fig-smd-love` | Ham kovaryat dengesi | quarto-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
 | ps-density | [demo-18-ps-density.svg](demographic/demo-18-ps-density.svg) | `@fig-ps-density` | Logit propensity yoğunluğu | quarto-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
 | iptw-balance | [demo-19-iptw-balance.svg](demographic/demo-19-iptw-balance.svg) | `@fig-iptw-balance` | IPTW dengeleme etkisi | quarto-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
 | eksik-degisken | [demo-20-eksik-degisken.svg](demographic/demo-20-eksik-degisken.svg) | `@fig-eksik-degisken` | Aile düzeyi eksik veri | quarto-native-vector | PASS: native SVG, kaynak PNG mevcut | PASS: IBM Plex + Carbon Charts metadata/palette | PASS: Carbon Charts | N/A |
-
-## Faz II Post-Hoc Figürleri
-
-| ID | SVG | CSR yeri | İlişkili analiz |
-|---|---|---|---|
-| F2-F01 | [phase2_f01_trifactor.svg](phase2/phase2_f01_trifactor.svg) | CSR 18.3 | Trifactor T-CFA |
-| F2-F02 | [phase2_f02_xinfo.svg](phase2/phase2_f02_xinfo.svg) | CSR 18.3 | Cross-informant edge oranı |
-| F2-F03 | [phase2_f03_floor_irt.svg](phase2/phase2_f03_floor_irt.svg) | CSR 18.4 | Floor-aware IRT |
-| F2-F04 | [phase2_f04_h5_strat.svg](phase2/phase2_f04_h5_strat.svg) | CSR 18.5-18.6 | H5 antidepresan strata |
-| F2-F05 | [phase2_f05_h1_spec_curve.svg](phase2/phase2_f05_h1_spec_curve.svg) | CSR 18.9 | H1 specification curve |
-| F2-F06 | [phase2_f06_meta_forest.svg](phase2/phase2_f06_meta_forest.svg) | CSR 18.9 | Meta-analitik forest |
-| F2-F07 | [phase2_f07_xinfo_network.svg](phase2/phase2_f07_xinfo_network.svg) | CSR 18.3 | Cross-informant GGM |
-| F2-F08 | [phase2_f08_dx_age_spline.svg](phase2/phase2_f08_dx_age_spline.svg) | CSR 18.7 | Tanı yaşı spline |
-| F2-F09 | [phase2_f09_imai_sensitivity.svg](phase2/phase2_f09_imai_sensitivity.svg) | CSR 18.8 | Imai duyarlılık |
-| F2-F10 | [phase2_f10_dag_validation.svg](phase2/phase2_f10_dag_validation.svg) | CSR 18.8 | DAG validasyon |
-| F2-F11 | [phase2_f11_ppc_replication.svg](phase2/phase2_f11_ppc_replication.svg) | CSR 18.9 | Posterior predictive replication |
-| F2-F12 | [phase2_f12_dca_heatmap.svg](phase2/phase2_f12_dca_heatmap.svg) | CSR 18.10 | Klinik karar DCA heatmap |
 
 ## Analitik İlişki Haritası
 
@@ -117,7 +97,6 @@ Ayrıntılı makine-okunur kayıtlar: [manifest.csv](audits/manifest.csv), [fide
 - **Genişletilmiş analiz katmanı:** `fig-14` ile `fig-17` mediation, LPA ve ağ analizlerini; `fig-18` ile `fig-21` klinik fayda hattını; `fig-22` ile `fig-25` multiverse/sensemakr/Bayesçi sağlamlık katmanını taşır.
 - **Psikometrik geçerlik katmanı:** `psychval-*` seti EMBU-P/EMBU-C/KİA/SRQ ölçeklerinin güvenirlik, taban etkisi, CFA, invaryans, ICC, yakınsak geçerlik ve reddetme multiverse kararlarını destekler.
 - **Tanımlayıcı-demografik katman:** `demo-*` seti örneklem dağılımı, çocuk/anne yaşı, cinsiyet kompozisyonu, Beck ve antidepresan yükü, SES, DM klinik göstergeleri, ham denge, IPTW ve eksik veri görsellerini kapsar.
-- **Faz II katmanı:** `phase2_f*` seti CSR Bölüm 18 ve Ek F içine gömülen keşifsel post-hoc figürleri kalıcı SVG asset olarak taşır.
 
 ## Yeniden Üretim
 

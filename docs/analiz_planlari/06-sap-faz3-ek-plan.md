@@ -83,7 +83,6 @@ Kanonik `srq_ho_rivalry_mean` **`srq_higher_order_map()` (R/10)** üzerinden tü
 `R/11_ses_composites.R` hâlihazırda türetir: `material_index` (ev_sahipligi[ters]/ev_oda_sayisi/arabaniz tek-bileşen polychoric PCA), `material_z`, `material_quintile`, `kalabalik_indeksi` (= `cocuk_sayisi/(ev_oda_sayisi+1)`), `egitim_fark` (= `|anne_edu − baba_edu|`, eğitim heterogamisi), `cift_kazanc` (iki ebeveyn de çalışıyor), `max_aile_egitim`, `mean_aile_egitim`, `edu_z`, `isei_z`, `ses_latent`. **Bu nedenle §102 "yeni indeks" değil, `ses_latent`'i facet'lerine (edu_z, isei_z, material_z) ayrıştırıp materyal-z'yi prestij-bloğu üzerine artımsal test etmektir.** ⚠️ **Çift-sayım tuzağı:** `ses_latent` zaten `material_z`'yi içerir → materyal faceti `ses_latent + material_z` olarak DEĞİL, "prestij bloğu (`edu_z + isei_z`) → materyal-z artımı" hiyerarşik kurgusuyla test edilir.
 
 **(C4) R modül numaralandırması — v0.1 §113 çakışıyor.**
-Mevcut ağaç `R/00`–`R/50`'ye kadar dolu (`R/50_statistical_audit.R` son; Faz II R/32–49'u ekledi). v0.1'in önerdiği `R/40`–`R/44` **çakışır** (40=hba1c_joint, 41=causal_mediation, 42=dag_pc_fci, 43=distributional, 44=multiverse_extension). Faz III modülleri **`R/51`+** olmalı (bkz. düzeltilmiş §113).
 
 ### 1.5.4 Fizibiliteye göre yeniden-sınıflandırma (v0.1 Tier'larının revizyonu)
 
@@ -112,7 +111,7 @@ Mevcut ağaç `R/00`–`R/50`'ye kadar dolu (`R/50_statistical_audit.R` son; Faz
 | McHale ve ark. 2000 | ✅ CONFIRMED | N=385; adalet algısı, PDT büyüklüğünden daha tutarlı biçimde iyi-oluş/kardeş-pozitifliğiyle ilişkili |
 | Edwards & Parry 1993 | ✅ CONFIRMED | Fark-skoru yerine polinom regresyon; kısıt dayatma yasağı doğrulandı |
 | Laird & De Los Reyes 2013 | ✅ CONFIRMED | Informant fark-skoru → polinom regresyon önerisi doğrulandı |
-| Van Gampelaere ve ark. 2020 | ✅ CONFIRMED | Yalnız anneler↑distres (stres/depresyon/kaygı); her iki ebeveyn↓duyarlılık; yalnız babalar↓korumacılık; suboptimal HbA1c→↑maternal distres |
+| Van Gampelaere ve ark. 2020 | ✅ CONFIRMED | Yalnız anneler↑distres (stres/depresyon/kaygı); her iki ebeveyn↓duyarlılık; yalnız babalar↓korumacılık; suboptimal glisemik kontrol→↑maternal distres |
 | Ganzeboom & Treiman 1996 | ✅ CONFIRMED | ISEI eğitim+meslekte en verimli; **gelirde üç ölçü ~eşit** (nüans eklendi) |
 | Downey 1995 | ✅ CONFIRMED | Resource dilution: sibship↑→kaynak↓→başarı↓; kaynak kontrolüyle etki sıfıra/yarıya iner (Table 3) |
 | Coldwell, Pike & Dunn 2008 | ✅ CONFIRMED | Fark skorları favoritizm skorlarından daha güçlü yordayıcı |
@@ -360,8 +359,6 @@ Aşağıdaki dört yüzey `FINAL_REFERENCE__*` içinde hazır, literatürde merk
 
 # KISIM XL — DM-SPESİFİK MARUZİYET YOĞUNLUĞU (DM-only, ağır kısıtlı)
 
-> **Uyarı:** Bu KISIM yalnız DM alt-örnekleminde (indeks aile n=120; HbA1c yalnız n=39/120) yürür. **İmputation yapılmaz** (Skill Kuralı 19). Bulgular hipotez-üretici tavan; her tabloda `n` açık.
-> **Literatür bağlamı (tam-metin doğrulı — §1.5.5):** T1DM ebeveynlik yolağı **Prikken et al. (2019)**, *Psychol Health* 34(5), DOI 10.1080/08870446.2018.1538451 (317 hasta-anne + 277 hasta-baba dyadı, 264 ortak). ⚠️ **DÜZELTME:** illness intrusiveness → depresif belirti hem aşırı korumayı hem psikolojik kontrolü yordar; **ancak çocuk-işlevselliğine (uyum, tedavi uyumu, HbA1c) giden operatif mediyatör AŞIRI KORUMA DEĞİL, PSİKOLOJİK KONTROL'dür** — aşırı-koruma→uyum yolları her iki dyadda **non-anlamlı**. Toplam dolaylı etki (intrusiveness→HbA1c, yalnız psikolojik kontrol üzerinden): anne .107 (SE .039, p=.006), baba .061 (SE .022, p=.005). **Yorumsal sonuç (§110):** T1DM'de aşırı-korumanın klinik çıktıya doğrudan operatif etkisi bu çalışmada gösterilmedi → §110 aşırı-koruma odağı ihtiyatlı çerçevelenir, psikolojik-kontrol boyutu (EMBU-C reddetme/karşılaştırma proxy) yan-analiz olarak düşünülür. Ölçekli "miscarried helping" **Fales et al. (2014)**, *J Pediatr Psychol*, DOI 10.1093/jpepsy/jsu003; gelişimsel moderasyon **Mullins et al. (2007)**, *J Pediatr Psychol*, DOI 10.1093/jpepsy/jsm044; tanı-yaşı × gelişim **Malik & Koot (2009)**, *Diabetes Care* 32(5), DOI 10.2337/dc08-1306. ⚠️ **Anderson & Coyne (1991) "miscarried helping" seminal kitap-bölümü → DOI YOK** (yalnız türev ölçekler DOI'li).
 
 ## 110. Yaşam-oranı maruziyet × aşırı koruma
 
@@ -401,7 +398,6 @@ Saf fonksiyon `R/`, runner `scripts/R/`, doğrulama `tests/`. **Numaralandırma 
 | `R/52_social_stratification.R` | §100–102b EGP/ölçüm-yarışı/eğitim-DRM/materyal/FSM/istihdam | `R/11` (SES kompozit: material_z, egitim_fark, cift_kazanc), `R/23`/`R/41` (mediation) |
 | `R/53_maternal_comorbidity.R` | §103–106 komorbidite/distres/negatif-kontrol | `R/38` (antidepresan yolağı), `R/23` (mediation) |
 | `R/54_family_structure_sibship.R` | §107–109 yapı/konstelasyon/karşılıklılık | `R/20`/`R/39` (Olsen-Kenny), `R/17` (APIM) |
-| `R/55_dm_exposure_intensity.R` | §110–111 DM-only maruziyet | `R/27` (tanı-yaşı spline), `R/40` (hba1c) |
 
 Her modül için: `tar_target` hash-bağımlılığı `_targets.R` üzerinden; `format = "file"` kanonik CSV ihlal edilmez; `tests/` altında `stopifnot()` boyut/aralık + **ρ_DD/RSA parametre-sınırı** kontrolü; audit hattı (`scripts/R/09_reporting_standards_audit.R`) yeni çıktıları kapsar. `renv::status()` temiz + yeni bağımlılık (`gnm` [DRM], `RSA` veya `lavaan`-polinom) lock'a eklenir ve commit mesajında gerekçelenir.
 
@@ -420,7 +416,6 @@ Her modül için: `tar_target` hash-bağımlılığı `_targets.R` üzerinden; `
 
 - [ ] Her sürekli değişken ortalama **+ medyan**; her alt-grupta `n` açık.
 - [ ] Fark-skoru (§96) **ρ_DD hesaplanıp raporlandı**; RSA/polinom birincil, LDS elendi (gerekçeli); Trafimow nüansı dipnot.
-- [ ] Küçük hücre (otoimmün n=1, tek-ebeveyn n≈3, mental n=2) → **betimsel/Tier D**; kesin testler + geniş GA; **imputation yok** (HbA1c/klinik).
 - [ ] Null iddialar (buffering, kardeş-uyumu) için **önceden-kayıtlı SESOI |r|≈.10 + TOST** — non-significant ≠ "etki yok".
 - [ ] Çoklu karşılaştırma: her KISIM içinde aile-düzeyi FDR/Holm; KISIM'ler arası **birleştirme yok**.
 - [ ] **Simpson denetimi (§100 zorunlu):** EGP grupla ağır confounded → grup-içi + havuzlanmış ayrı.

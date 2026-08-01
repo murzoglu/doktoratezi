@@ -292,6 +292,134 @@ psychval_reliability_table <- function(data, prefix, form) {
   do.call(rbind, rows)
 }
 
+psychval_generic_reliability_row <- function(items, scale, subscale, subscale_label) {
+  alpha <- psychval_safe_alpha(items)
+  omega <- psychval_safe_omega(items)
+  n_complete <- sum(stats::complete.cases(items))
+  n_items <- ncol(items)
+
+  if (inherits(alpha, "error")) {
+    alpha_raw <- NA_real_
+    alpha_std <- NA_real_
+    mean_interitem_r <- NA_real_
+    alpha_error <- conditionMessage(alpha)
+  } else {
+    alpha_raw <- unname(alpha$total[["raw_alpha"]])
+    alpha_std <- unname(alpha$total[["std.alpha"]])
+    mean_interitem_r <- unname(alpha$total[["average_r"]])
+    alpha_error <- NA_character_
+  }
+
+  alpha_ci <- psychval_alpha_ci(alpha_raw, n_complete, n_items)
+
+  data.frame(
+    scale = scale,
+    subscale = subscale,
+    subscale_label = subscale_label,
+    n_items = n_items,
+    n_complete = n_complete,
+    alpha_raw = alpha_raw,
+    alpha_std = alpha_std,
+    alpha_ci_lower = unname(alpha_ci["lower"]),
+    alpha_ci_upper = unname(alpha_ci["upper"]),
+    omega_total = omega$omega_total,
+    omega_h = omega$omega_h,
+    mean_interitem_r = mean_interitem_r,
+    alpha_error = alpha_error,
+    omega_error = omega$omega_error,
+    stringsAsFactors = FALSE
+  )
+}
+
+psychval_srq_reliability_table <- function(data, prefix = "srq", scale = "KIA/SRQ") {
+  map <- psychval_srq_subscale_map()
+  blocks <- c(
+    stats::setNames(lapply(names(map), function(s) map[[s]]), names(map)),
+    list(toplam = sort(unlist(map, use.names = FALSE)))
+  )
+  labels <- c(psychval_srq_subscale_labels(), toplam = "Toplam")
+
+  rows <- lapply(names(blocks), function(subscale) {
+    cols <- psychval_srq_item_columns(prefix, blocks[[subscale]])
+    items <- psychval_numeric_frame(data, cols)
+    psychval_generic_reliability_row(
+      items,
+      scale = scale,
+      subscale = subscale,
+      subscale_label = unname(labels[subscale])
+    )
+  })
+  do.call(rbind, rows)
+}
+
+psychval_beck_block_map <- function() {
+  list(
+    toplam = 1:21,
+    bilissel_afektif = 1:13,
+    somatik = 14:21
+  )
+}
+
+psychval_beck_block_labels <- function() {
+  c(
+    toplam = "Toplam",
+    bilissel_afektif = "Bilissel-afektif",
+    somatik = "Somatik"
+  )
+}
+
+psychval_beck_reliability_table <- function(data, prefix = "beck",
+                                            scale = "Beck Depresyon Envanteri") {
+  blocks <- psychval_beck_block_map()
+  labels <- psychval_beck_block_labels()
+
+  rows <- lapply(names(blocks), function(block) {
+    cols <- paste0(prefix, "_", blocks[[block]])
+    items <- psychval_numeric_frame(data, cols)
+    psychval_generic_reliability_row(
+      items,
+      scale = scale,
+      subscale = block,
+      subscale_label = unname(labels[block])
+    )
+  })
+  do.call(rbind, rows)
+}
+
+psychval_score_distribution_table <- function(scores, score_cols, scale,
+                                              score_min, score_max,
+                                              labels = NULL) {
+  if (length(score_min) == 1L) score_min <- rep(score_min, length(score_cols))
+  if (length(score_max) == 1L) score_max <- rep(score_max, length(score_cols))
+
+  rows <- lapply(seq_along(score_cols), function(i) {
+    col <- score_cols[[i]]
+    values <- suppressWarnings(as.numeric(scores[[col]]))
+    observed <- values[!is.na(values)]
+    n <- length(observed)
+    tol <- 1e-8
+    data.frame(
+      scale = scale,
+      score = col,
+      score_label = if (is.null(labels)) col else unname(labels[[i]]),
+      n = n,
+      missing_n = sum(is.na(values)),
+      mean = if (n > 0) mean(observed) else NA_real_,
+      sd = if (n > 1) stats::sd(observed) else NA_real_,
+      median = if (n > 0) stats::median(observed) else NA_real_,
+      iqr = if (n > 0) stats::IQR(observed) else NA_real_,
+      min = if (n > 0) min(observed) else NA_real_,
+      max = if (n > 0) max(observed) else NA_real_,
+      skew = psychval_moment_skew(values),
+      kurtosis = psychval_moment_kurtosis(values),
+      floor_pct = if (n > 0) mean(abs(observed - score_min[[i]]) < tol) * 100 else NA_real_,
+      ceiling_pct = if (n > 0) mean(abs(observed - score_max[[i]]) < tol) * 100 else NA_real_,
+      stringsAsFactors = FALSE
+    )
+  })
+  do.call(rbind, rows)
+}
+
 psychval_item_total_table <- function(data, prefix, form) {
   map <- psychval_embu_subscale_map()
   rows <- lapply(names(map), function(subscale) {

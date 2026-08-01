@@ -69,7 +69,6 @@
 29. Calibration + NRI/IDI (Pencina 2008)
 
 **KISIM X — KLİNİK ALT-ANALİZLER (DM)**
-30. HbA1c × Ebeveynlik Etkileşimi
 31. DM Süresi Spline Modeli
 32. Tanı Yaşı Stratifikasyonu
 
@@ -156,7 +155,6 @@
 | 27 | IX | Risk Skor + ROC + Decision Curve Analysis | `verified` | `R/25_clinical_utility.R::clinical_logistic_risk + clinical_decision_curve`, `tests/test_clinical_utility.R`, target `clinical_full_performance` + `clinical_decision_curve_table`; AUC + bootstrap optimism + DCA |
 | 28 | IX | CART Karar Ağacı + Random Forest | `verified` | `R/25_clinical_utility.R::clinical_cart_rf`, target `clinical_cart_cp_table` + `clinical_rf_importance_table`; rpart 1-SE pruning + RF ntree=500 + OOB error |
 | 29 | IX | Calibration + NRI/IDI | `verified` | `R/25_clinical_utility.R::clinical_calibration + clinical_nri_idi`, target `clinical_calibration_table` + `clinical_nri_idi_table`; Hosmer-Lemeshow 5-grup + reclassification |
-| 30 | X | HbA1c x Ebeveynlik Etkileşimi | `verified` | `R/27_dm_subanalyses.R::dm_hba1c_interaction`, `tests/test_dm_subanalyses.R`, target `dm_hba1c_interaction_table`; **n=39 keşifsel** — kural #19 imputation yok |
 | 31 | X | DM Süresi Spline Modeli | `verified` | `R/27_dm_subanalyses.R::dm_duration_spline`, target `dm_duration_spline_table`; ns(df=3) cubic vs linear LRT — linear sufficient |
 | 32 | X | Tanı Yaşı Stratifikasyonu | `verified` | `R/27_dm_subanalyses.R::dm_strata_analysis + dm_strata_test`, target `dm_strata_descriptive_table` + `dm_strata_tests_table`; 3 strata, F NS |
 | 33 | XI | Multiverse Specification Curve | `verified` | `R/21_robustness_sensitivity.R::robust_multiverse`, `tests/test_robustness_sensitivity.R`, target `robust_multiverse_spec_table` (120 satır) + `robust_multiverse_summary_table`; reddetme median d=−0.13 |
@@ -170,7 +168,7 @@
 | 41 | XIII | Tez Bölüm Eşlemesi | `verified` | `R/30_thesis_mapping.R`, `scripts/R/31_thesis_mapping_audit.R`, `tests/test_thesis_mapping.R`; 5 chapter, 24 figür referansı, 22 tablo referansı ve `outputs/quarto/thesis.html` doğrulandı |
 | 42 | XIII | 3-Makale Yayın Stratejisi | `verified` | `references/diseminasyon-ve-yayin.md`, `R/31_final_plans.R::final_publication_strategy`, `scripts/R/32_final_plans_audit.R`, `tests/test_final_plans.R`; 3 makale + evidence map CSV doğrulandı |
 | 43 | XIII | Open Data + Code Plan | `verified` | OSF kayıtları (`pytfe`, `d524q`); FAIR + Zenodo planı `references/diseminasyon-ve-yayin.md` |
-| 44 | XV | Risk Yönetimi ve Yedek Stratejiler | `verified` | `references/risk-ve-zaman-cizelgesi.md`, target `final_risk_matrix_table`; 14 risk + aktif izlem özeti audit edildi |
+| 44 | XV | Risk Yönetimi ve Yedek Stratejiler | `verified` | `references/risk-ve-zaman-cizelgesi.md`, target `final_risk_matrix_table`; 13 risk + aktif izlem özeti audit edildi |
 | 45 | XVI | 24-Haftalık Plan | `verified` | `references/risk-ve-zaman-cizelgesi.md`, target `final_timeline_24_week_table`; 24 haftalık plan + durum özeti audit edildi |
 
 **Tracker notu:** SAP gövdesinde KISIM XIV ve sonrası bazı başlık numaraları içerik geliştirme sırasında kaymış durumda; canlı tracker, İçindekiler'deki ana analiz numaralarını esas alır ve bundan sonraki uygulama turlarında bu tablo birincil ilerleme kaydı olarak güncellenecektir.
@@ -388,9 +386,7 @@ list(
   tar_target(calibration,   run_calibration_analysis(risk_score, df_family_ses)),
 
   # KISIM X — Klinik alt-analizler
-  tar_target(hba1c_mod,     run_hba1c_moderation(df_family_ses)),
   tar_target(dm_duration,   run_dm_duration_spline(df_family_ses)),
-  tar_target(diagnosis_age, run_diagnosis_age_strata(df_family_ses)),
 
   # KISIM XI — Robustluk
   tar_target(multiverse,    run_multiverse(df_family_ses, df_long)),
@@ -562,7 +558,7 @@ Satır-düzeyi veri `outputs/` altına yazılmaz.
 
 | Veri | Eklenen alanlar |
 |---|---|
-| Family | `aile_no_f`, `group_f`, `cinsiyet_idx_f`, `cinsiyet_sib_f`, `egitim_ord`, `age_gap`, `same_sex`, `birth_order_diff`, `tani_yasi`, `hba1c_target` |
+| Family | `aile_no_f`, `group_f`, `cinsiyet_idx_f`, `cinsiyet_sib_f`, `egitim_ord`, `age_gap`, `same_sex`, `birth_order_diff`, `tani_yasi` |
 | Long | `aile_no_f`, `role_f`, `group_f`, `family_role_f`, `cinsiyet_f`, `age_cat` |
 
 Hazırlık katmanı, gerekli kolon eksikse hata verir. EMBU, Beck/BDI veya KIA/SRQ toplam/alt ölçek skorları burada üretilmez; bu kararlar KISIM II / 6 türetilmiş skor ekosistemine bırakılmıştır.
@@ -824,7 +820,7 @@ Eksik veri katmanı final CSV'leri değiştirmez. Satır-düzeyi FIML/MI frame'l
 Tarama üç ayrımı aynı tabloda yapar:
 
 1. **Toplam eksiklik:** değişken bazında `missing_n` ve `missing_pct`.
-2. **Structural missing:** tasarım kaynaklı eksiklik. Bu çalışmada `hba1c` ve `dm_yili` kontrol grubunda structural missing kabul edilir.
+2. **Structural missing:** tasarım kaynaklı eksiklik. Bu çalışmada `dm_yili` kontrol grubunda structural missing kabul edilir.
 3. **Analitik missing:** structural olmayan, modelleme stratejisi gerektiren eksiklik.
 
 `missing_variable_summary`, `missing_block_summary`, `missing_group_summary` ve `missing_pattern_summary` tabloları bu ayrımı makinece denetlenebilir biçimde üretir. Little MCAR testi `fiml_primary` frame'i üzerinde çalıştırılır; structural DM-klinik kolonlar bu primary taramanın dışında tutulur.
@@ -845,9 +841,7 @@ Tarama üç ayrımı aynı tabloda yapar:
 | `fiml_primary` | Birincil analiz değişkenleri, eksikler korunmuş | SEM/FIML |
 | `complete_case_primary` | Primary frame üzerinde complete-case alt küme | Bilgi kaybı kıyası |
 | `mi_primary` | Structural eksik içermeyen primary MI frame | MAR altında ana MI |
-| `mi_clinical_sensitivity` | `mi_primary` + `hba1c`, `dm_yili` | DM-klinik duyarlılık |
 
-`hba1c` için kontrol satırları imputasyona açılmaz; `mice` `where` matrisi yalnız DM grubundaki analitik eksik hücreleri doldurur.
 
 ### 8.4 Multiple Imputation (m=50)
 
@@ -857,7 +851,7 @@ Primary ve DM-klinik sensitivity imputasyon nesneleri `_targets.R` içindeki `mi
 
 ### 8.5 NMAR Sensitivity (Delta-Adjustment)
 
-`missing_nmar_delta_grid` hedefi `beck_total`, `aile_isei08` ve `hba1c` için `delta = {-1, -0.5, 0, 0.5, 1}` duyarlılık şablonunu üretir. `apply_nmar_delta_adjustment()` yalnız structural olmayan orijinal eksik hücreleri ayarlar; kontrol grubundaki DM-klinik structural `NA` hücreleri dokunulmadan kalır. Model-spesifik delta sonuçları H1-H5 hedefleri eklendikten sonra raporlanacaktır.
+`missing_nmar_delta_grid` hedefi `beck_total` ve `aile_isei08` için `delta = {-1, -0.5, 0, 0.5, 1}` duyarlılık şablonunu üretir. `apply_nmar_delta_adjustment()` yalnız structural olmayan orijinal eksik hücreleri ayarlar; kontrol grubundaki DM-klinik structural `NA` hücreleri dokunulmadan kalır. Model-spesifik delta sonuçları H1-H5 hedefleri eklendikten sonra raporlanacaktır.
 
 ---
 
@@ -2402,45 +2396,6 @@ nri_result <- reclassification(df_family,
 
 # KISIM X — KLİNİK ALT-ANALİZLER (DM)
 
-## 30. HbA1c × Ebeveynlik Etkileşimi
-
-### 30.1 Sınırlılık ve Strateji
-
-HbA1c yalnız 39/120 mevcut. **İmputation YAPILMAZ** — klinik biyobelirteç tahmin kabul edilemez. Bu nedenle:
-- Birincil: `dm_yili` (n=120 tam veri)
-- Sensitivite: HbA1c (n=39, keşifsel)
-
-### 30.2 Modeller
-
-```r
-run_hba1c_moderation <- function(df_family) {
-  df_dm <- df_family |> filter(group_f == "DM")
-  df_dm_hba1c <- df_dm |> filter(!is.na(hba1c))
-
-  # ADA hedef stratifikasyon
-  df_dm_hba1c$glycemic_control <- factor(
-    if_else(df_dm_hba1c$hba1c <= 7.5, "Hedef altı", "Hedef üstü"),
-    levels = c("Hedef altı", "Hedef üstü")
-  )
-
-  # HbA1c × ebeveynlik
-  m_hba1c <- lm(embu_p_asiri_koruma_mean ~ scale(hba1c) + scale(anne_yas) +
-                 scale(ses_latent), data = df_dm_hba1c)
-
-  # Glycemic control kategorik
-  t_glycemic <- t.test(embu_p_asiri_koruma_mean ~ glycemic_control,
-                         data = df_dm_hba1c)
-  d_glycemic <- effectsize::cohens_d(embu_p_asiri_koruma_mean ~ glycemic_control,
-                                       data = df_dm_hba1c)
-
-  list(continuous = broom::tidy(m_hba1c, conf.int = TRUE),
-        categorical_t = t_glycemic, categorical_d = d_glycemic,
-        n_total = nrow(df_dm), n_hba1c = nrow(df_dm_hba1c))
-}
-```
-
----
-
 ## 31. DM Süresi Spline Modeli
 
 ### 31.1 Doğrusal Olmayan Etki
@@ -2843,14 +2798,16 @@ m_short <- lm(embu_p_asiri_koruma_mean ~ group_f + scale(ses_latent),
 summary(m_short)$coefficients["group_fDM", ]
 # Beklenen: küçük/anlamsız etki — çünkü hastalık yükü henüz birikmemiş
 
-# Falsification 2: HbA1c hedefte olan DM aileleri (iyi kontrol)
-# DM-Kontrol farkı zayıflamalı
-df_good_control <- df_family |>
-  filter((group_f == "DM" & hba1c <= 7.5) | group_f == "Kontrol")
+# Falsification 2: DM süresi uzun (>=5 yıl) olan ailelerde
+# DM-Kontrol farkı korunmalı/güçlenmeli (birikimli yük hipotezi)
+df_long_dm <- df_family |>
+  filter((group_f == "DM" & dm_yili >= 5) | group_f == "Kontrol")
 
-m_good <- lm(embu_p_asiri_koruma_mean ~ group_f + scale(ses_latent),
-              data = df_good_control)
-# Beklenen: zayıf etki — iyi kontrol → düşük yük → küçük fark
+m_long <- lm(embu_p_asiri_koruma_mean ~ group_f + scale(ses_latent),
+              data = df_long_dm)
+summary(m_long)$coefficients["group_fDM", ]
+# Beklenen: en az ana etki kadar güçlü — uzun süreli kronik yük birikmiş
+
 ```
 
 ---
@@ -3408,7 +3365,7 @@ Eğer *herhangi bir alt-grupta yön tersine dönerse* → Tartışma'da açıkç
 
 ## 45. Final Risk Tablosu
 
-**Uygulama durumu (2026-04-28):** Risk matrisi `references/risk-ve-zaman-cizelgesi.md` içinde kalıcılaştırılmış ve `R/31_final_plans.R::final_risk_matrix()` ile 14-risk aggregate tabloya dönüştürülmüştür. Niteliksel veri kapsam dışı olduğu için niteliksel doygunluk/inter-coder riski çıkarılmıştır. `scripts/R/32_final_plans_audit.R` çıktıları `outputs/tables/final_plan_risk_matrix.csv` ve `outputs/tables/final_plan_risk_summary.csv` dosyalarını üretir.
+**Uygulama durumu (2026-04-28):** Risk matrisi `references/risk-ve-zaman-cizelgesi.md` içinde kalıcılaştırılmış ve `R/31_final_plans.R::final_risk_matrix()` ile 13-risk aggregate tabloya dönüştürülmüştür. Niteliksel veri kapsam dışı olduğu için niteliksel doygunluk/inter-coder riski çıkarılmıştır. `scripts/R/32_final_plans_audit.R` çıktıları `outputs/tables/final_plan_risk_matrix.csv` ve `outputs/tables/final_plan_risk_summary.csv` dosyalarını üretir.
 
 | # | Risk | Olasılık | Etki | Yedek Strateji |
 |---|---|---|---|---|
@@ -3417,15 +3374,14 @@ Eğer *herhangi bir alt-grupta yön tersine dönerse* → Tartışma'da açıkç
 | 3 | H3 EMBU-P Reddetme zayıf psikometri | Yüksek | Bilinen sorun | BSEM latent factor + multiverse + 3-strata sensitivity |
 | 4 | H4 SEM identification fail | Düşük | Latent factor sayısı azalt | Reddetme sum score yedek + path analysis fallback |
 | 5 | H5 RSA convergence fail | Orta | Polynomial regression yedek | Mutlak fark + Bland-Altman birincil; RSA exploratory |
-| 6 | HbA1c %32.5 mevcut → power yetersiz | KESIN | Klinik moderasyon zayıf | dm_yili (n=120 tam) birincil; HbA1c sensitive |
-| 7 | renv lock bozulur | Düşük | Reprodüksiyon kaybı | Docker container yedek + GitHub immutable history |
-| 8 | Antidepresan confounder ana etkiyi siler | YÜKSEK | H3 hipotezi başka şekilde yorumlanmalı | Multiple frame: "Hastalığın anne ruh sağlığına etkisi" çerçevesi |
-| 9 | ISEI tek kovaryat olarak yetersiz | Orta | SES ayrımı belirsiz | Latent SES + Hollingshead + sensitivity |
-| 10 | LPA convergence fail | Düşük | Tipoloji yapısı kayıp | k-means yedek + cluster validity |
-| 11 | Network EBIC-LASSO çıktı belirsiz | Orta | Ağ yorumu zayıf | Pearson partial correlation yedek + bootstrapped edges |
-| 12 | Karar ağacı overfit | Yüksek | Klinik öneri güvenilirsiz | Cross-validation + Random Forest comparison |
-| 13 | Bayesian Stan compile fail | Düşük | Bayesian hat çalışmaz | rstanarm fallback + manual Stan model |
-| 14 | papaja render fail (LaTeX errors) | Orta | Final rapor yok | apaquarto fallback + Word docx tek format |
+| 6 | renv lock bozulur | Düşük | Reprodüksiyon kaybı | Docker container yedek + GitHub immutable history |
+| 7 | Antidepresan confounder ana etkiyi siler | YÜKSEK | H3 hipotezi başka şekilde yorumlanmalı | Multiple frame: "Hastalığın anne ruh sağlığına etkisi" çerçevesi |
+| 8 | ISEI tek kovaryat olarak yetersiz | Orta | SES ayrımı belirsiz | Latent SES + Hollingshead + sensitivity |
+| 9 | LPA convergence fail | Düşük | Tipoloji yapısı kayıp | k-means yedek + cluster validity |
+| 10 | Network EBIC-LASSO çıktı belirsiz | Orta | Ağ yorumu zayıf | Pearson partial correlation yedek + bootstrapped edges |
+| 11 | Karar ağacı overfit | Yüksek | Klinik öneri güvenilirsiz | Cross-validation + Random Forest comparison |
+| 12 | Bayesian Stan compile fail | Düşük | Bayesian hat çalışmaz | rstanarm fallback + manual Stan model |
+| 13 | papaja render fail (LaTeX errors) | Orta | Final rapor yok | apaquarto fallback + Word docx tek format |
 
 ---
 
@@ -3452,7 +3408,7 @@ Eğer *herhangi bir alt-grupta yön tersine dönerse* → Tartışma'da açıkç
 | 15 | Faz 22-23: LCA + Bifactor S-1 | Sensitivity tabloları |
 | 16 | Faz 24-26: Network analiz + NCT + Beck item-network | Tablo 12, Şekil 15-16 |
 | 17 | Faz 27-29: ROC + DCA + CART + Random Forest + Calibration | Tablo 13, Şekil 17, 20 |
-| 18 | Faz 30-32: Klinik alt-analizler (HbA1c + DM süresi spline + tanı yaşı) | Tablo 14-15 |
+| 18 | Faz 31-32: Klinik alt-analizler (DM süresi spline + tanı yaşı strata) | Tablo 14-15 |
 | 19 | Faz 33-36: Multiverse + TOST + Sensemakr + Negative control | Tablo 16, Şekil 18-19 |
 | 20-21 | Faz 37-39: Tüm Bayesian analizler (H1-H5) + WAIC/LOO | Tablo 17, Şekil 21-22 |
 | 22 | Faz 40-41: APA tablo + papaja rapor + tez bölüm eşleme | Final Quarto rapor |
@@ -3600,12 +3556,12 @@ Eğer *herhangi bir alt-grupta yön tersine dönerse* → Tartışma'da açıkç
 ✅ Üçlü Latent Variable: LPA + LCA + Bifactor S-1
 ✅ Network analizi: GGM + NCT + Beck item-level
 ✅ Klinik fayda: ROC + DCA + Calibration + NRI/IDI + CART + Random Forest
-✅ DM-içi alt-analiz: HbA1c × DM süresi spline × tanı yaşı strata
+✅ DM-içi alt-analiz: DM süresi spline × tanı yaşı strata
 ✅ Robustluk: Multiverse + TOST + Sensemakr + E-value + Negative control
 ✅ Yedi uyarıcı ilke (devstats) aktif denetim
 ✅ Pre-registration (OSF) + Reproducibility (Docker + renv) + FAIR data
 ✅ Tez bölüm eşlemesi + 3-makale yayın stratejisi
-✅ Risk matrisi (14 risk, hepsi yedek strateji ile)
+✅ Risk matrisi (13 risk, hepsi yedek strateji ile)
 ✅ Tam referans listesi (>100 kaynak, hepsinde DOI/yıl)
 ℹ Niteliksel/karma yöntem analizi kapsam dışıdır (ayrı proje)
 

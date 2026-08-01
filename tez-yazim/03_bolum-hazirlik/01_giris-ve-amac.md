@@ -43,7 +43,7 @@ dated Uygulama Notlarında (2026-07-02, 2026-07-05) belgelidir.
 ## Kaynak Kapıları
 
 - Repo içi: `docs/CLINICAL-STUDY-REPORT-FINAL.md`, `docs/analiz_planlari/`.
-- Nitel: `docs/niteliksel/qualitative_canonical_results_report.md`.
+- Nitel: `niteliksel/qualitative_canonical_results_report.md`.
 - Bağlam: `./dmnitel ai-context` ve Anamnesis/context gate.
 - Dış literatür: Evidentia D0-D6 kaskadı.
 - Tam metin: önce OpenAthens/kurumsal yayıncı erişimi, başarısızsa Anna's
@@ -93,7 +93,7 @@ dated Uygulama Notlarında (2026-07-02, 2026-07-05) belgelidir.
   `chen2023parentDepression`, `ludvigsen2026siblingT1D`,
   `furmanBuhrmester1985srq`, `eviz2026turkiyeCare`, `tuncay2025yoktez`,
   `demirkiran2025yoktez`, `ayranci2025yoktez`.
-- `pinquart2013` için bekleyen çift AI-reliability koşusu 2026-07-02'de
+- `pinquart2013` için bekleyen iki-kol AI-reliability koşusu 2026-07-02'de
   kapatıldı (nitel 55/55, nicel 142/142) → ledger durumu `cite-ok`.
 - Ledger'da GİRİŞ'te yeniden kullanılan sekiz GENEL BİLGİLER kaynağının bölüm
   sütunu `GİRİŞ ve AMAÇ, GENEL BİLGİLER` olarak genişletildi.

@@ -219,16 +219,18 @@ propensity_smd_for_variable <- function(x, treatment, weights = NULL, type = pro
 }
 
 propensity_balance_flag <- function(abs_smd) {
+  # Denetim #6: denge sinif esikleri metin sozlesmesiyle birebir (0,25/0,50);
+  # table1_balance_flag ile ayni.
   if (is.na(abs_smd)) {
     return("degerlendirilemedi")
   }
   if (abs_smd < 0.10) {
     return("iyi_denge")
   }
-  if (abs_smd < 0.20) {
+  if (abs_smd < 0.25) {
     return("sinirda")
   }
-  if (abs_smd < 0.40) {
+  if (abs_smd < 0.50) {
     return("dengesiz")
   }
   "ciddi_dengesizlik"

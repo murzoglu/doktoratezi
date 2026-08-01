@@ -7,6 +7,12 @@ ps <- meta_prior_studies()
 stopifnot(nrow(ps) == 4L)
 stopifnot(all(c("Pinquart_2013_chronic_illness_parenting",
   "Lovejoy_2000_maternal_depression_parenting") %in% ps$study))
+# Metrik manifest (denetim #4.25): her dis calisma ozgun etki-buyuklugu
+# metrigiyle etiketli olmali; bos/eksik metrik kabul edilmez.
+stopifnot("orig_metric" %in% names(ps))
+stopifnot(all(!is.na(ps$orig_metric) & nzchar(ps$orig_metric)))
+stopifnot(grepl("r", ps$orig_metric[ps$study ==
+  "Lovejoy_2000_maternal_depression_parenting"], fixed = TRUE))
 
 # 2) Synthetic family + long fixture
 n <- 150L
@@ -68,5 +74,9 @@ result <- run_bayesian_meta_pipeline(family, long, outcomes = "reddetme",
   brms_chains = 2L, brms_iter = 500L, ppc_replicates = 50L)
 stopifnot(grepl("KESIFSEL", result$target_summary$kanit_kategorisi, fixed = TRUE))
 stopifnot(!is.null(result$combined_studies))
+# Metrik manifest, bu calisma satirlari dahil combined_studies'e akmali.
+stopifnot("orig_metric" %in% names(result$combined_studies))
+stopifnot(all(!is.na(result$combined_studies$orig_metric)))
+stopifnot(any(result$combined_studies$orig_metric == "Hedges g"))
 
 cat("PASS: tests/test_bayesian_meta.R\n")

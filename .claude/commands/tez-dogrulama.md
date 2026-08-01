@@ -29,4 +29,4 @@ Rscript tests/test_data_governance.R
    (dosya-yolu izlenebilirliği, veri sınırı, ledger güncelliği, commit
    yapılmamış olması) tek tek doğrula ve bildir.
 5. Referanslı bölüm kapanışında nitel taraftaki çift kapıyı hatırlat:
-   `cd "/mnt/thunderbolt/workspaces/T1DM Niteliksel" && PYTHONDONTWRITEBYTECODE=1 python3 plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py`
+   `cd niteliksel && PYTHONDONTWRITEBYTECODE=1 python3 plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py`

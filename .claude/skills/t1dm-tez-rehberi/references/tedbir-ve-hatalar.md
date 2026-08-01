@@ -185,9 +185,9 @@ AD kullanımı:
 
 → Total-effect modelde KOVARYAT YAPILMAZ. AD-stratifiye duyarlılık zorunlu.
 
-#### 9. HbA1c'yi Kontrole Imput Etmek
+#### 9. DM-only Klinik Değişkeni Kontrole Imput Etmek
 
-Yapısal eksiklik. İmput etme = hastalığı imput etmek. Sadece DM altkümede sensitivity.
+`dm_yili` gibi yalnız DM grubunda tanımlı klinik değişkenlerde yapısal eksiklik vardır. Kontrole imput etmek = hastalığı imput etmek. Sadece DM altkümede duyarlılık analizi yapılır.
 
 #### 10. IPTW'yi Trim Etmemek
 

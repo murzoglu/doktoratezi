@@ -11,14 +11,14 @@ bayes_subscales <- function() {
 }
 
 bayes_pinquart_priors_h3 <- function() {
-  # Pinquart 2013 meta-analiz: kronik hastalık × ebeveynlik d ≈ 0.20-0.30
+  # Pinquart 2013 yönünden esinlenen zayıf bilgi verici çıpalar (SD=0.50).
   # SAP §12.4, §37.2 ile uyumlu — 3× geniş prior
   data.frame(
     outcome  = paste0("embu_p_", bayes_subscales(), "_mean"),
     prior_mean = c(0.20, 0.30, -0.15, 0.10),
     prior_sd   = c(0.50, 0.50,  0.50, 0.50),
     rationale  = c(
-      "Pinquart sıcak/destek beklentisi: DM aileler kontrol≈ veya hafif ↑",
+      "Telafi edici sıcaklık beklentisi (Pinquart yönünün TERSİ; Pinquart sıcaklık g≈-0.22): DM aileler kontrol≈ veya hafif ↑",
       "Aşırı koruma DM'de ↑ beklenir (Cameron 2007)",
       "Reddetme DM'de ↓ beklenir (savunmacı self-report)",
       "Karşılaştırma — zayıf bilgi, geniş 0 etrafı"
@@ -109,7 +109,7 @@ bayes_bf_classify <- function(bf10) {
 # === H3 Bayesian (frequentist analog: ANCOVA) =========================
 
 bayes_h3_one_outcome <- function(df_family, outcome, prior_mean, prior_sd,
-                                  iter = 2000L, warmup = 1000L,
+                                  iter = 4000L, warmup = 1500L,
                                   chains = 4L, seed = 20260428L) {
   if (!requireNamespace("brms", quietly = TRUE)) {
     return(list(status = "package_unavailable"))
@@ -160,7 +160,7 @@ bayes_h3_one_outcome <- function(df_family, outcome, prior_mean, prior_sd,
   )
 }
 
-bayes_run_h3 <- function(df_family, iter = 2000L, warmup = 1000L,
+bayes_run_h3 <- function(df_family, iter = 4000L, warmup = 1500L,
                           chains = 4L, seed = 20260428L) {
   priors_table <- bayes_pinquart_priors_h3()
   rows <- list()
@@ -227,7 +227,7 @@ bayes_run_h3 <- function(df_family, iter = 2000L, warmup = 1000L,
 # === H1 Bayesian (multilevel) =========================================
 
 bayes_h1_one_outcome <- function(df_long, outcome,
-                                  iter = 2000L, warmup = 1000L,
+                                  iter = 4000L, warmup = 1500L,
                                   chains = 4L, seed = 20260428L) {
   if (!requireNamespace("brms", quietly = TRUE)) {
     return(list(status = "package_unavailable"))
@@ -273,7 +273,7 @@ bayes_h1_one_outcome <- function(df_long, outcome,
 }
 
 bayes_run_h1 <- function(df_long_prepared, subscales = c("sicaklik", "reddetme"),
-                         iter = 2000L, warmup = 1000L, chains = 4L, seed = 20260428L) {
+                         iter = 4000L, warmup = 1500L, chains = 4L, seed = 20260428L) {
   rows <- list()
   diag_rows <- list()
   fits <- list()
@@ -322,12 +322,82 @@ bayes_run_h1 <- function(df_long_prepared, subscales = c("sicaklik", "reddetme")
   )
 }
 
+# === H1 reddetme Bayes faktoru onsel-genislik duyarliligi =============
+# P1-8: Savage-Dickey BF onsel SD'ye duyarli oldugundan, H1 reddetme
+# bulgusu birden fazla onsel genisliginde yeniden hesaplanir. Deger
+# gomulmez; her genislik icin model yeniden fit edilip BF10 uretilir.
+
+bayes_h1_rejection_prior_sensitivity <- function(df_long_prepared,
+                                                 prior_sds = c(0.25, 0.50, 1.00),
+                                                 prior_mean = 0.20,
+                                                 iter = 4000L, warmup = 1500L,
+                                                 chains = 4L, seed = 20260428L) {
+  outcome <- "embu_c_reddetme_mean"
+  rows <- list()
+  for (psd in prior_sds) {
+    if (!requireNamespace("brms", quietly = TRUE) ||
+        !outcome %in% names(df_long_prepared)) {
+      rows[[length(rows) + 1L]] <- data.frame(
+        outcome = outcome, prior_mean = prior_mean, prior_sd = psd,
+        bf10 = NA_real_, bf_class = "Indeterminate",
+        estimate = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_,
+        pd = NA_real_, status = "unavailable", stringsAsFactors = FALSE
+      )
+      next
+    }
+    formula_str <- sprintf(
+      "%s ~ group_f * family_role_f + anne_yas_z + ses_latent_z + (1 | aile_no_f)",
+      outcome
+    )
+    priors <- c(
+      brms::set_prior(sprintf("normal(%.3f, %.3f)", prior_mean, psd),
+                      class = "b", coef = "group_fDM"),
+      brms::set_prior("normal(0, 0.50)", class = "b"),
+      brms::set_prior("normal(0, 2)", class = "Intercept"),
+      brms::set_prior("student_t(3, 0, 2.5)", class = "sigma"),
+      brms::set_prior("student_t(3, 0, 2.5)", class = "sd")
+    )
+    fit <- tryCatch(
+      suppressMessages(suppressWarnings(brms::brm(
+        formula = stats::as.formula(formula_str),
+        data = df_long_prepared, prior = priors, sample_prior = "yes",
+        iter = iter, warmup = warmup, chains = chains, seed = seed,
+        cores = chains, backend = "rstan", refresh = 0,
+        control = list(adapt_delta = 0.95, max_treedepth = 12)
+      ))),
+      error = function(e) e
+    )
+    if (inherits(fit, "error")) {
+      rows[[length(rows) + 1L]] <- data.frame(
+        outcome = outcome, prior_mean = prior_mean, prior_sd = psd,
+        bf10 = NA_real_, bf_class = "Indeterminate",
+        estimate = NA_real_, ci_lo = NA_real_, ci_hi = NA_real_,
+        pd = NA_real_, status = paste0("error:", conditionMessage(fit)),
+        stringsAsFactors = FALSE
+      )
+      next
+    }
+    summ <- bayes_extract_summary(fit, "^b_group_fDM")
+    bf10 <- bayes_savage_dickey_bf(fit, "b_group_fDM", prior_sd = psd)
+    rows[[length(rows) + 1L]] <- data.frame(
+      outcome = outcome, prior_mean = prior_mean, prior_sd = psd,
+      bf10 = bf10, bf_class = bayes_bf_classify(bf10),
+      estimate = if (!is.null(summ)) summ$estimate[1] else NA_real_,
+      ci_lo = if (!is.null(summ)) summ$ci_lo[1] else NA_real_,
+      ci_hi = if (!is.null(summ)) summ$ci_hi[1] else NA_real_,
+      pd = if (!is.null(summ)) summ$pd[1] else NA_real_,
+      status = "ok", stringsAsFactors = FALSE
+    )
+  }
+  do.call(rbind, rows)
+}
+
 # === Pipeline orchestrator =============================================
 
 run_bayesian_parallel_pipeline <- function(df_family_ses, df_long_scored,
                                             run_h1 = TRUE, run_h3 = TRUE,
-                                            iter = 2000L, warmup = 1000L,
-                                            chains = 2L, seed = 20260428L) {
+                                            iter = 4000L, warmup = 1500L,
+                                            chains = 4L, seed = 20260428L) {
   prepared_family <- bayes_prepare_family(df_family_ses)
   prepared_long   <- bayes_prepare_long(df_long_scored, df_family_ses)
 
@@ -336,9 +406,17 @@ run_bayesian_parallel_pipeline <- function(df_family_ses, df_long_scored,
   } else list(posterior_table = data.frame(), diagnostics_table = data.frame(), fits = list())
 
   h1 <- if (run_h1) {
-    bayes_run_h1(prepared_long, subscales = c("sicaklik", "reddetme"),
+    # Denetim P0-1: dogrulayici grup ana etkisi ailesi dort EMBU-C alt olcegini
+    # kapsadigindan Bayesci cift raporlama da dort alt olcek icin uretilir.
+    bayes_run_h1(prepared_long, subscales = bayes_subscales(),
                  iter = iter, warmup = warmup, chains = chains, seed = seed)
   } else list(posterior_table = data.frame(), diagnostics_table = data.frame(), fits = list())
+
+  h1_prior_sensitivity <- if (run_h1) {
+    bayes_h1_rejection_prior_sensitivity(
+      prepared_long, prior_sds = c(0.25, 0.50, 1.00),
+      iter = iter, warmup = warmup, chains = chains, seed = seed)
+  } else data.frame()
 
   priors_table <- bayes_pinquart_priors_h3()
 
@@ -377,9 +455,11 @@ run_bayesian_parallel_pipeline <- function(df_family_ses, df_long_scored,
 
   target_summary <- data.frame(
     component = c("priors", "h1_posterior", "h1_diagnostics",
-                  "h3_posterior", "h3_diagnostics", "loo_waic"),
+                  "h3_posterior", "h3_diagnostics", "loo_waic",
+                  "h1_prior_sensitivity"),
     n_rows = c(nrow(priors_table), nrow(h1$posterior_table), nrow(h1$diagnostics_table),
-               nrow(h3$posterior_table), nrow(h3$diagnostics_table), nrow(loo_table)),
+               nrow(h3$posterior_table), nrow(h3$diagnostics_table), nrow(loo_table),
+               nrow(h1_prior_sensitivity)),
     stringsAsFactors = FALSE
   )
 
@@ -387,6 +467,7 @@ run_bayesian_parallel_pipeline <- function(df_family_ses, df_long_scored,
     priors_table              = priors_table,
     h1_posterior_table        = h1$posterior_table,
     h1_diagnostics_table      = h1$diagnostics_table,
+    h1_prior_sensitivity_table = h1_prior_sensitivity,
     h3_posterior_table        = h3$posterior_table,
     h3_diagnostics_table      = h3$diagnostics_table,
     loo_waic_table            = loo_table,

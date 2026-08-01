@@ -27,7 +27,7 @@ cümlelerini tekrarlamadan `GEREÇ ve YÖNTEM` bölümündeki tasarım, örnekle
 
 - Ham klinik veri, satır düzeyi veri, ham nitel transcript, aile düzeyi hassas
   ayrıntı veya doğrudan alıntı kullanılmaz.
-- Nitel repo yalnız kanonik tema/denetim katmanı olarak kullanılır; ayrıntılı
+- Nitel kol yalnız kanonik tema/denetim katmanı olarak kullanılır; ayrıntılı
   nitel bulgu anlatımı `BULGULAR` ve `TARTIŞMA ve SONUÇ` bölümlerine kalır.
 - Bölüm resmi kılavuza uygun biçimde alt başlıkla yapılandırılabilir.
 - Görünür tez metninde araç, connector, MCP, API çağrısı, sorgu DSL'i veya
@@ -45,7 +45,7 @@ niteliğinde bir bölüm olarak yazılmıştır.
 
 | Alt başlık | Yazım işlevi | Tez bağlantısı | Kaçınılacak taşma |
 |---|---|---|---|
-| `2.1 Çocukluk Çağında Tip 1 Diyabet` | T1DM tanımı, kısa patofizyoloji, klinik seyir, öz yönetim, insülin, glukoz izlemi, HbA1c ve teknoloji. | Klinik bağlam, HbA1c ve hastalık süresi değişkenleri. | Tedavi protokolü veya ilaç/farmakoloji ayrıntısı. |
+| `2.1 Çocukluk Çağında Tip 1 Diyabet` | T1DM tanımı, kısa patofizyoloji, klinik seyir, öz yönetim, insülin, glukoz izlemi, glisemik kontrol ve teknoloji. | Klinik bağlam, hastalık süresi değişkenleri. | Tedavi protokolü veya ilaç/farmakoloji ayrıntısı. |
 | `2.2 Pediatrik T1DM'de Psikososyal Bakım` | ADA/ISPAD çizgisinde yaşam kalitesi, diyabet sıkıntısı, hipoglisemi korkusu, okul, akran ve özerklik. | Psikososyal değişkenlerin tıbbi bakım bağlamından kopmaması. | Müdahale önerisi veya sonuç yorumu. |
 | `2.3 Türkiye Bağlamında Pediatrik T1DM` | Türkiye'de bakım ekosistemi, aile eğitimi, okul/teknoloji erişimi, YÖK tez katmanı ve yerel literatür görünürlüğü. | Türkiye örnekleminin yorum zemini. | Tek tip kültürel genelleme. |
 | `2.4 Çocukluk ve Ergenlik Döneminde Kronik Hastalık` | Gelişimsel görevler, beden algısı, akran yaşamı, tedaviye uyum ve özerklik. | Yaş, kardeş yaşı, tanı yaşı ve DM süresinin kavramsal yeri. | Yaşa göre çalışma bulgusu vermek. |
@@ -58,14 +58,14 @@ niteliğinde bir bölüm olarak yazılmıştır.
 | `2.11 Sağlıklı Kardeş Deneyimi` | Görünmez yük, ilgi adaleti, kıskançlık, koruyuculuk, teknoloji alarmı ve dahil edilme. | Sağlıklı kardeşin bağımsız aile üyesi ve bilgi kaynağı olarak konumu. | Kardeşi tek yönlü mağduriyet anlatısına indirgemek. |
 | `2.12 Kardeş İlişkileri ve KİA/SRQ` | Sıcaklık/yakınlık, çatışma, rekabet, statü/güç, yaş farkı ve doğum sırası. | KİA/SRQ'nun kavramsal boyutları. | KİA sonuçlarını vermek. |
 | `2.13 Sosyoekonomik ve Kültürel Bağlam` | SES, anne eğitimi/çalışma durumu, teknoloji ve sağlık hizmetine erişim. | Kovaryat ve bağlam değişkenleri. | Kültürü tek değişken gibi kullanmak. |
-| `2.14 Demografik ve Klinik Değişkenlerin Kavramsal Yeri` | Yaş, aile büyüklüğü, DM süresi, tanı yaşı ve HbA1c. | Analizlerdeki bağlamsal değişkenler. | Bulgu tablosunu önden yazmak. |
+| `2.14 Demografik ve Klinik Değişkenlerin Kavramsal Yeri` | Yaş, aile büyüklüğü, DM süresi ve tanı yaşı. | Analizlerdeki bağlamsal değişkenler. | Bulgu tablosunu önden yazmak. |
 | `2.15 Ölçüm Araçlarının Kuramsal Temeli` | EMBU-P/C, Beck, KİA/SRQ ve demografik-tıbbi formun neyi ölçtüğü; ebeveynlik, depresif belirti ve kardeş ilişkisi için mevcut alternatif ölçek aileleri; Türkiye validasyon/uyarlama katmanı. | Ölçek seçiminin gerekçesi, hangi ölçüm için hangi araç ailesinin uygun olduğu ve tez araçlarının sınırları. | Tez örneklemindeki psikometrik sonuçları veya kesme noktası sınıflamalarını vermek. |
 | `2.16 Psikometrik Kavramlara Kısa Giriş` | COSMIN ölçüm özellikleri, içerik/yapısal geçerlik, güvenirlik katsayılarının sınırları, uçta yığılma, ölçüm değişmezliği, latent değişken ve Türkiye validasyonu ayrımı. | Ölçek puanlarının kavramsal yorum sınırı. | Formül yoğun yöntem anlatısı, estimator adı veya bulgu düzeyi model uyumu. |
 | `2.17 Çoklu Bilgi Kaynağı Yaklaşımı` | Anne, çocuk ve kardeş bildirimlerinin birbirinin yerine geçmemesi. | Triadik aile bakışı ve role özgü algılar. | Informant farklarını hata diye yazmak. |
 | `2.18 Diadik Uyum ve Tutarsızlık` | Anne ve çocuk bildirimlerinin benzerlik/ayrışma anlamı; uyumun tek bir sayıdan ibaret olmaması. | Anne-çocuk algı farklarının aile konumu olarak okunması. | Analiz adı, katsayı, yöntem uygulaması veya hipotez sonucu. |
 | `2.19 Triadik Aile Tasarımı` | Anne-hasta çocuk-sağlıklı kardeş üçgeni ve aynı olayın üç konumdan görülmesi. | Nitel triadik görüşmelerin gerekçesi. | Ham alıntı veya tema bulgusu. |
 | `2.20 Karma Yöntem Mantığı` | Nicel ölçekler ve nitel anlatıların tamamlayıcılık/ayrışma mantığı. | Farklı kanıt türlerini birlikte okuma zemini. | Nitel veriyi nicelin kanıtı gibi sunmak veya bütünleştirme tekniği anlatmak. |
-| `2.21 Bağlam Değişkenleri ve Yorum Sınırları` | SES, anne eğitimi, aile büyüklüğü, yaş farkı, DM süresi ve HbA1c'nin bağlamsal anlamı. | Bulguların aile ve klinik bağlamdan kopmadan okunması. | Model, eksik veri yöntemi veya teknik duyarlılık analizi anlatmak. |
+| `2.21 Bağlam Değişkenleri ve Yorum Sınırları` | SES, anne eğitimi, aile büyüklüğü, yaş farkı, DM süresinin bağlamsal anlamı. | Bulguların aile ve klinik bağlamdan kopmadan okunması. | Model, eksik veri yöntemi veya teknik duyarlılık analizi anlatmak. |
 | `2.22 Keşifsel Okuma ve Kanıt Dili` | Hipotez, ikincil gözlem, ölçüm özelliği, nitel tema ve literatür bağlantısının farklı kanıt ağırlığı. | Sonuç dilinin temkinli kurulması. | Analiz adı, ek yöntem listesi veya doğrulayıcı sonuç iddiası. |
 | `2.23 Etik, Açık Bilim ve Veri Mahremiyeti` | Çocuk sağlık verisi, KVKK, açık bilim-mahremiyet dengesi ve ham verinin paylaşılmaması. | Veri mahremiyeti ve açık bilim. | Yöntem bölümündeki onam/prosedür ayrıntısı veya araç/iş akışı anlatısı. |
 | `2.24 Tezin Kavramsal Sentez Modeli` | T1DM'nin aile düzenini değiştirmesi ve bunun ebeveynlik, anne ruhsal yükü, kardeş ilişkisi ve çoklu bilgi kaynağı farklarında görünmesi. | Bölüm sonu kavramsal model. | Tartışma sonucunu önden vermek. |
@@ -162,20 +162,20 @@ Türkiye tez literatüründe daha az görünür olabileceğine dair denetlenebil
 | Kaynak | Kimlik | Durum | Bölümde kullanılacak claim | Not |
 |---|---|---|---|---|
 | ADA Professional Practice Committee 2026 | DOI `10.2337/dc26-S014`; PMID `41358890`; PMCID `PMC12690182` | `cite-ok` | Pediatrik diyabet bakımında yaşa/gelişime uygun bakım ve psikososyal izlem bağlamı. | Zotero/ledger kapısı kapalı. |
-| Bell ve Lain 2025 | DOI `10.1111/dom.16501`; PMID `40536127`; PMCID `PMC12312823` | `cite-ok` | Küresel T1DM epidemiolojisi, artan çocuk/ergen yükü, kayıt/veri boşlukları, DKA ve teknoloji bağlamının dikkatli yorumlanması. | PMC tam metin; çift reliability geçti. |
+| Bell ve Lain 2025 | DOI `10.1111/dom.16501`; PMID `40536127`; PMCID `PMC12312823` | `cite-ok` | Küresel T1DM epidemiolojisi, artan çocuk/ergen yükü, kayıt/veri boşlukları, DKA ve teknoloji bağlamının dikkatli yorumlanması. | PMC tam metin; iki-kol AI-reliability geçti. |
 | ISPAD psikolojik bakım kılavuzu | DOI `10.1111/pedi.13428`; PMID `36464988`; PMCID `PMC10107478`; 2024 ISPAD Chapter 15 sayfası | `cite-ok` | Pediatrik diyabette psikolojik bakım ve aile/çocuk ruhsal gereksinimleri. | Peer-reviewed anchor ve resmi ISPAD web yüzeyi birlikte izlendi. |
-| ISPAD 2024 glukoz izlem kılavuzu | DOI `10.1159/000543156`; PMID `39884260`; PMCID `PMC11854985` | `cite-ok` | BGM, CGM, AID, erken CGM başlatma, kapiller ölçümün kalan rolü ve teknoloji-aile yükü. | PMC tam metin; çift reliability geçti. |
-| ISPAD 2022 diyabet eğitimi kılavuzu | DOI `10.1111/pedi.13418`; PMID `36120721`; PMCID `PMC10107631` | `cite-ok` | Yapılandırılmış diyabet eğitiminin sürekli, aileyi içeren ve psikososyal uyum/öz-yeterlik hedefli bir süreç olması. | PMC tam metin; çift reliability geçti. |
-| ISPAD 2022 hipoglisemi kılavuzu | DOI `10.1111/pedi.13443`; PMID `36537534`; PMCID `PMC10107518` | `cite-ok` | Hipoglisemi ve hipoglisemi korkusunun fizyolojik-psikolojik bariyer, gece izlem ve kaçınma davranışı bağlamı. | PMC tam metin; çift reliability geçti. |
-| Eviz ve ark. 2026 | DOI `10.4274/jcrpe.galenos.2025.2025-1-7`; PMID `41090400`; PMCID `PMC12989894` | `cite-ok` | Türkiye'de pediatrik T1DM bakımında ekip çalışması, aile eğitimi, yazılı plan, teknoloji ve ulusal veri sınırlılığı. | Zotero item `DZD64HM5`; çift reliability geçti. |
+| ISPAD 2024 glukoz izlem kılavuzu | DOI `10.1159/000543156`; PMID `39884260`; PMCID `PMC11854985` | `cite-ok` | BGM, CGM, AID, erken CGM başlatma, kapiller ölçümün kalan rolü ve teknoloji-aile yükü. | PMC tam metin; iki-kol AI-reliability geçti. |
+| ISPAD 2022 diyabet eğitimi kılavuzu | DOI `10.1111/pedi.13418`; PMID `36120721`; PMCID `PMC10107631` | `cite-ok` | Yapılandırılmış diyabet eğitiminin sürekli, aileyi içeren ve psikososyal uyum/öz-yeterlik hedefli bir süreç olması. | PMC tam metin; iki-kol AI-reliability geçti. |
+| ISPAD 2022 hipoglisemi kılavuzu | DOI `10.1111/pedi.13443`; PMID `36537534`; PMCID `PMC10107518` | `cite-ok` | Hipoglisemi ve hipoglisemi korkusunun fizyolojik-psikolojik bariyer, gece izlem ve kaçınma davranışı bağlamı. | PMC tam metin; iki-kol AI-reliability geçti. |
+| Eviz ve ark. 2026 | DOI `10.4274/jcrpe.galenos.2025.2025-1-7`; PMID `41090400`; PMCID `PMC12989894` | `cite-ok` | Türkiye'de pediatrik T1DM bakımında ekip çalışması, aile eğitimi, yazılı plan, teknoloji ve ulusal veri sınırlılığı. | Zotero item `DZD64HM5`; iki-kol AI-reliability geçti. |
 | Whittemore ve ark. | DOI `10.1177/0145721712445216`; PMID `22581804`; PMCID `PMC3401246` | `cite-ok` | T1DM ebeveynlerinde psikolojik sıkıntı, aile rutini ve bakım yükü. | `GİRİŞ ve AMAÇ` ledger'ında kapalı. |
 | Crandell ve ark. | DOI `10.1037/fsh0000305`; PMID `29172624`; PMCID `PMC5880719` | `cite-ok` | Kronik fiziksel hastalığı olan çocuklarda ebeveynlik boyutları ve çocuk iyilik hali. | T1DM'ye dolaylı aktarılacak; nedensellik iddiası kurulmayacak. |
-| Pinquart 2013 | DOI `10.1093/jpepsy/jst020`; PMID `23660152` | `cite-ok` | Kronik fiziksel hastalıkta ebeveyn-çocuk ilişkisi, kontrol ve aşırı koruyuculuk meta-analizi. | 2026-07-02 giriş koşusunda çift AI-reliability geçti; §2.5'te kullanıldı; ledger Bölüm sütunu GENEL BİLGİLER'e genişletildi. |
+| Pinquart 2013 | DOI `10.1093/jpepsy/jst020`; PMID `23660152` | `cite-ok` | Kronik fiziksel hastalıkta ebeveyn-çocuk ilişkisi, kontrol ve aşırı koruyuculuk meta-analizi. | 2026-07-02 giriş koşusunda iki-kol AI-reliability geçti; §2.5'te kullanıldı; ledger Bölüm sütunu GENEL BİLGİLER'e genişletildi. |
 | Trojanowski ve ark. | DOI `10.1093/jpepsy/jsab064`; PMID `34657955` | `cite-ok` | T1DM gençlerinde ebeveynlik, aile çatışması/destek/ilişki kalitesi ve psikolojik sağlık. | OpenAthens/OUP resmi HTML tam metin kapısı kapalı. |
 | Chen ve ark. 2023 | DOI `10.3389/fendo.2023.1095729`; PMID `36936139`; PMCID `PMC10014558` | `cite-ok` | T1DM çocuk/ergen ebeveynlerinde depresyon/depresif belirti prevalansı ve anne-baba farkları. | PMC ve Zotero/ledger kapısı kapalı. |
-| Sangha ve ark. 2026 | DOI `10.3389/fcdhc.2026.1652578`; PMID `42368394`; PMCID `PMC13293899` | `cite-ok` | Ergen ve ebeveyn diabetes distress deneyiminin günlük yaşam, okul/akran, stigma, gelecek maliyeti ve sorumluluk devri bağlamında ilişkisel yaşanması. | PMC tam metin; çift reliability geçti. |
-| Vieira ve ark. 2026 | DOI `10.3390/bs16060942`; PMID `42352775`; PMCID `PMC13295629` | `cite-ok` | Ebeveyn hipoglisemi korkusu, emotion regulation ve parental diabetes distress ilişkisini kesitsel/ilişkisel çerçevede kurmak. | PMC tam metin; nedensel dil yok; çift reliability geçti. |
-| Quinn ve ark. 2026 | DOI `10.1007/s00125-026-06717-2`; PMID `42065735`; PMCID `PMC13236767` | `cite-ok` | Pediatrik T1DM erken tarama/risk bilgisinin aile kaygısı, ortak karar ve veri mahremiyeti boyutunu sınırlı etik arka plan olarak vermek. | PMC tam metin; tezin tanı almış çocuk odağı korunacak; çift reliability geçti. |
+| Sangha ve ark. 2026 | DOI `10.3389/fcdhc.2026.1652578`; PMID `42368394`; PMCID `PMC13293899` | `cite-ok` | Ergen ve ebeveyn diabetes distress deneyiminin günlük yaşam, okul/akran, stigma, gelecek maliyeti ve sorumluluk devri bağlamında ilişkisel yaşanması. | PMC tam metin; iki-kol AI-reliability geçti. |
+| Vieira ve ark. 2026 | DOI `10.3390/bs16060942`; PMID `42352775`; PMCID `PMC13295629` | `cite-ok` | Ebeveyn hipoglisemi korkusu, emotion regulation ve parental diabetes distress ilişkisini kesitsel/ilişkisel çerçevede kurmak. | PMC tam metin; nedensel dil yok; iki-kol AI-reliability geçti. |
+| Quinn ve ark. 2026 | DOI `10.1007/s00125-026-06717-2`; PMID `42065735`; PMCID `PMC13236767` | `cite-ok` | Pediatrik T1DM erken tarama/risk bilgisinin aile kaygısı, ortak karar ve veri mahremiyeti boyutunu sınırlı etik arka plan olarak vermek. | PMC tam metin; tezin tanı almış çocuk odağı korunacak; iki-kol AI-reliability geçti. |
 | Chan ve Shorey 2022 | DOI `10.1016/j.pedn.2021.12.002`; PMID `34929508` | `full-text-exception` | T1DM tanılı çocukların sağlıklı kardeşlerinin deneyim ve gereksinimleri. | Tam metin kapanmadığı için metinde final citation olarak kullanılmadı. |
 | Lummer-Aikey ve Goldstein 2021 | DOI `10.1177/1074840720977177`; PMID `33305651` | `cite-ok` | Kronik hastalık bağlamında kardeş uyumu, baş etme, iletişim ve psikososyal uyum. | T1DM dışı/lateral kanıt olarak etiketlenecek. |
 | De Los Reyes ve ark. 2015 | DOI `10.1037/a0038498`; PMID `25915035`; PMCID `PMC4486608` | `cite-ok` | Çoklu bilgi kaynağı yaklaşımında düşük-orta örtüşmenin bağlama özgü bilgi olarak yorumlanması. | Triadik aile bakışı için kavramsal anchor. |
@@ -190,14 +190,14 @@ Türkiye tez literatüründe daha az görünür olabileceğine dair denetlenebil
 | Furman ve Buhrmester 1985 | PMID `3987418`; University of Denver PDF | `cite-ok` | SRQ/KİA için sıcaklık/yakınlık, göreli statü/güç, çatışma ve rekabet boyutları. | Açık PDF ve PubMed kaydı doğrulandı. |
 | YÖK Apalaçi 1996 | YÖK Tez No. `52148` | `cite-ok` | KİA/SRQ'nun Türkiye uyarlama/kullanım tarihçesinde YÖK tez katmanı. | YÖK MCP details ve PDF gate doğrulandı; taranmış PDF nedeniyle OCR sınırlı. |
 | Aktaş 2017 | DOI `10.21764/maeuefd.340206` | `cite-ok` | Türkiye'de kardeş ilişkileri için yerel ölçek geliştirme örneği. | DergiPark PDF tam metin; tezde kullanılan KİA/SRQ ile alternatif ölçek olarak ayrılacak. |
-| YÖK Tuncay 2025 | YÖK Tez No. `935669` | `cite-ok` | Türkiye'de T1DM'li çocuk/ergenlerde ebeveyn tutumu, öz bakım ve hastalığa yönelik tutum. | YÖK izinli PDF page 1 erişimi, Zotero item `N3ZEJMDK`, çift reliability geçti. |
-| YÖK Tatar 2023 | YÖK Tez No. `793371` | `cite-ok` | Türkiye'de T1DM'li ergenlerde ebeveyn izlemi ve diyabetin aileye etkisi. | YÖK izinli PDF page 1 erişimi, Zotero item `V5FAQHKR`, çift reliability geçti. |
-| YÖK Avan 2017 | YÖK Tez No. `473884` | `cite-ok` | Ebeveyn izlemi, tedaviye uyum ve metabolik parametreler. | YÖK izinli PDF page 1 erişimi, Zotero item `EGSQ5W2Z`, çift reliability geçti. |
-| YÖK Kesen Yener 2024 | YÖK Tez No. `915866` | `cite-ok` | Hipoglisemi korkusu çocuk ve ebeveyn formlarının geliştirilmesi. | YÖK izinli PDF page 1 erişimi, Zotero item `Z7VJNS2A`, çift reliability geçti. |
-| YÖK Demirkıran 2025 | YÖK Tez No. `956108` | `cite-ok` | Helikopter ebeveynlik, diyabet yönetimi/öz yeterlilik, uyum, psikolojik sağlamlık ve anksiyete/depresyon. | YÖK izinli PDF page 1 erişimi, Zotero item `BETBXWXD`, çift reliability geçti. |
-| YÖK Ayrancı 2025 | YÖK Tez No. `953420` | `cite-ok` | Diyabet yönetim yöntemi, akran zorbalığı, depresyon/anksiyete ve yaşam kalitesi kesişimini yerel okul-akran/psikososyal tez katmanı olarak göstermek. | YÖK izinli PDF page 1 erişimi, Zotero item `IFB9XK34`; çift reliability geçti. |
-| YÖK Türk 2015 | YÖK Tez No. `448907` | `cite-ok` | Diyabet bakımında ebeveyn izlemi ölçeği geçerlik-güvenirliği. | YÖK izinli PDF page 1 erişimi, Zotero item `AWJNJ8HR`, çift reliability geçti. |
-| YÖK Çetintaş 2019 | YÖK Tez No. `612448` | `cite-ok` | Diyabetin aileye etkisi ölçeği Türkçe geçerlik-güvenirliği. | YÖK izinli PDF page 1 erişimi, Zotero item `PQN4W2PK`, çift reliability geçti. |
+| YÖK Tuncay 2025 | YÖK Tez No. `935669` | `cite-ok` | Türkiye'de T1DM'li çocuk/ergenlerde ebeveyn tutumu, öz bakım ve hastalığa yönelik tutum. | YÖK izinli PDF page 1 erişimi, Zotero item `N3ZEJMDK`, iki-kol AI-reliability geçti. |
+| YÖK Tatar 2023 | YÖK Tez No. `793371` | `cite-ok` | Türkiye'de T1DM'li ergenlerde ebeveyn izlemi ve diyabetin aileye etkisi. | YÖK izinli PDF page 1 erişimi, Zotero item `V5FAQHKR`, iki-kol AI-reliability geçti. |
+| YÖK Avan 2017 | YÖK Tez No. `473884` | `cite-ok` | Ebeveyn izlemi, tedaviye uyum ve metabolik parametreler. | YÖK izinli PDF page 1 erişimi, Zotero item `EGSQ5W2Z`, iki-kol AI-reliability geçti. |
+| YÖK Kesen Yener 2024 | YÖK Tez No. `915866` | `cite-ok` | Hipoglisemi korkusu çocuk ve ebeveyn formlarının geliştirilmesi. | YÖK izinli PDF page 1 erişimi, Zotero item `Z7VJNS2A`, iki-kol AI-reliability geçti. |
+| YÖK Demirkıran 2025 | YÖK Tez No. `956108` | `cite-ok` | Helikopter ebeveynlik, diyabet yönetimi/öz yeterlilik, uyum, psikolojik sağlamlık ve anksiyete/depresyon. | YÖK izinli PDF page 1 erişimi, Zotero item `BETBXWXD`, iki-kol AI-reliability geçti. |
+| YÖK Ayrancı 2025 | YÖK Tez No. `953420` | `cite-ok` | Diyabet yönetim yöntemi, akran zorbalığı, depresyon/anksiyete ve yaşam kalitesi kesişimini yerel okul-akran/psikososyal tez katmanı olarak göstermek. | YÖK izinli PDF page 1 erişimi, Zotero item `IFB9XK34`; iki-kol AI-reliability geçti. |
+| YÖK Türk 2015 | YÖK Tez No. `448907` | `cite-ok` | Diyabet bakımında ebeveyn izlemi ölçeği geçerlik-güvenirliği. | YÖK izinli PDF page 1 erişimi, Zotero item `AWJNJ8HR`, iki-kol AI-reliability geçti. |
+| YÖK Çetintaş 2019 | YÖK Tez No. `612448` | `cite-ok` | Diyabetin aileye etkisi ölçeği Türkçe geçerlik-güvenirliği. | YÖK izinli PDF page 1 erişimi, Zotero item `PQN4W2PK`, iki-kol AI-reliability geçti. |
 
 ## Repo İçi Kanıt Eşlemesi
 
@@ -205,7 +205,7 @@ Türkiye tez literatüründe daha az görünür olabileceğine dair denetlenebil
 |---|---|---|
 | Çalışma tasarımı ve örneklem | `docs/protokol/KLINIK_CALISMA_PROTOKOLU.md`; `docs/CLINICAL-STUDY-REPORT-FINAL.md` | Yöntem gerekçesi için aggregate düzey; sonuç yorumu yok. |
 | Ölçekler | `docs/protokol/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md`; `docs/protokol/KANONIK_KISALTILMIS_EMBU_COCUK.md`; `docs/protokol/KANONIK_BECK_DEPRESYON_ENVANTERI.md`; `docs/protokol/KANONIK_KARDES_ILISKILERI_ANKETI.md`; `dirik2015sEmbuTurkish`; `hisli1989bdiTurkishUniversity`; `akturk2005bdipcTurkish`; `furmanBuhrmester1985srq`; `apalaci1996yoktez`; `aktas2017kardesIliskileriOlcegi` | Kavram ve ölçüm alanı tanımı; alternatif araç aileleri; Türkiye validasyon/uyarlama katmanı. Tez örneklemindeki psikometrik sonuç tartışması yok. |
-| Nitel temsil | `docs/niteliksel/qualitative_canonical_results_report.md` | Triadik aile tasarımını gerekçelendirmek için de-identified tema düzeyi; ham alıntı yok. |
+| Nitel temsil | `niteliksel/qualitative_canonical_results_report.md` | Triadik aile tasarımını gerekçelendirmek için de-identified tema düzeyi; ham alıntı yok. |
 | Kritik kaynak manifesti | `tez-yazim/06_kritik-kaynaklar/kritik-dosya-manifesti.tsv` | Hangi repo artefaktının hangi bölümde kullanılacağını denetler. |
 | Referans ledgeri | `tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md` | DOI/PMID, full-text, Zotero key, claim ve reliability kapanışını izler. |
 
@@ -246,7 +246,7 @@ Türkiye tez literatüründe daha az görünür olabileceğine dair denetlenebil
 Yazım aşamasında önerilen dar doğrulama sırası:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 python3 scripts/util/zotero_env_bridge.py status --json
 rg -n 'candidate|full-text-exception|zotero-ok|cite-ok' \
   tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md
@@ -254,14 +254,14 @@ quarto check
 quarto render thesis.qmd
 ```
 
-Referanslı bölüm kapanışında çift AI-reliability:
+Referanslı bölüm kapanışında iki-kol AI-reliability:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/T1DM\ Niteliksel
+cd /workspaces/T1DM-Tez/niteliksel
 PYTHONDONTWRITEBYTECODE=1 python3 \
   plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py
 
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 PYTHONDONTWRITEBYTECODE=1 python3 \
   plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py
 ```
@@ -284,6 +284,6 @@ PYTHONDONTWRITEBYTECODE=1 python3 \
   sütunu `GİRİŞ ve AMAÇ` → `GİRİŞ ve AMAÇ, GENEL BİLGİLER` olarak genişletildi;
   bu briefin matrisinde `pinquart2013` durumu `zotero-ok` → `cite-ok` düzeltildi.
 - Harici MCP kullanılmadı (yalnız ledger yeniden kullanımı) → `/ai-kayit`
-  gerekmedi. Kapanış: çift AI-reliability + `quarto render`.
+  gerekmedi. Kapanış: iki-kol AI-reliability + `quarto render`.
 - Bölüm statüsü taslak/`textbook-taslak-zenginlestirildi`; Kapı 0–5 bölüm
   sertifikasyonu bu sürüm için yeniden koşulmadı.

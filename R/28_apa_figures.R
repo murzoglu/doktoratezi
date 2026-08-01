@@ -674,10 +674,10 @@ apa_plot_sensemakr_contour <- function(robust_sensemakr_evalue_table) {
     ggplot2::coord_cartesian(xlim = c(0, dat$max_axis), ylim = c(0, dat$max_axis), clip = "off") +
     ggplot2::labs(
       title = "Sensemakr duyarlılık konturu",
-      subtitle = "Noktalar tedavi kısmi R² ve RVq kesişimini; arka plan ortak karıştırıcı gücü konturlarını gösterir",
-      x = "Karıştırıcı–tedavi ilişkisi (kısmi R² ölçeği)",
+      subtitle = "Noktalar grup (T1DM maruziyeti) kısmi R² ve RVq kesişimini; arka plan ortak karıştırıcı gücü konturlarını gösterir",
+      x = "Karıştırıcı–grup (maruziyet) ilişkisi (kısmi R² ölçeği)",
       y = "Karıştırıcı–sonuç ilişkisi / RVq",
-      caption = "Not. Kontur görselleştirmesi sensemakr özet istatistiklerinden türetilmiş karar yüzeyidir."
+      caption = "Not. Kontur görselleştirmesi sensemakr özet istatistiklerinden türetilmiş karar yüzeyidir. sensemakr çerçevesinin \"treatment\" ekseni bu gözlemsel tasarımda müdahaleyi değil grup/maruziyet göstergesini temsil eder."
     ) +
     apa_plot_theme(base_size = 10)
 }
@@ -757,7 +757,7 @@ apa_plot_clinical_roc <- function(df_family_ses, clinical_base_performance, clin
   roc <- apa_clinical_roc_data(df_family_ses)
   auc_labels <- data.frame(
     model = factor(c("Temel model", "Geniş model"), levels = c("Temel model", "Geniş model")),
-    x = c(0.62, 0.62),
+    x = c(0.42, 0.42),
     y = c(0.20, 0.12),
     label = c(
       sprintf("Temel AUC = %.2f [%.2f, %.2f]", clinical_base_performance$auc, clinical_base_performance$auc_ci_lo, clinical_base_performance$auc_ci_hi),
@@ -777,10 +777,10 @@ apa_plot_clinical_roc <- function(df_family_ses, clinical_base_performance, clin
       hjust = 0,
       size = 3.1
     ) +
-    ggplot2::scale_color_manual(values = c("Temel model" = "#6f6f6f", "Geniş model" = "#0f62fe"), name = "Risk skoru") +
+    ggplot2::scale_color_manual(values = c("Temel model" = "#6f6f6f", "Geniş model" = "#0f62fe"), name = "Sınıflandırma skoru") +
     ggplot2::coord_equal(xlim = c(0, 1), ylim = c(0, 1), expand = TRUE) +
     ggplot2::labs(
-      title = "Klinik fayda: yüksek Beck riski için ROC eğrisi",
+      title = "Klinik fayda: orta ve üzeri güncel Beck belirti düzeyi için ROC eğrisi",
       subtitle = "Temel model demografi/SES; geniş model EMBU-P alt ölçeklerini ekler",
       x = "1 − Özgüllük",
       y = "Duyarlılık",
@@ -798,23 +798,23 @@ apa_clinical_dca_data <- function(clinical_decision_curve_table, clinical_full_p
   model <- data.frame(
     threshold = rows$threshold,
     net_benefit = rows$net_benefit,
-    model = "Geniş risk skoru",
+    model = "Geniş sınıflandırma skoru",
     stringsAsFactors = FALSE
   )
   treat_all <- data.frame(
     threshold = rows$threshold,
     net_benefit = prevalence - (1 - prevalence) * rows$threshold / (1 - rows$threshold),
-    model = "Treat all",
+    model = "Herkesi tara",
     stringsAsFactors = FALSE
   )
   treat_none <- data.frame(
     threshold = rows$threshold,
     net_benefit = 0,
-    model = "Treat none",
+    model = "Kimseyi tarama",
     stringsAsFactors = FALSE
   )
   out <- rbind(model, treat_all, treat_none)
-  out$model <- factor(out$model, levels = c("Geniş risk skoru", "Treat all", "Treat none"))
+  out$model <- factor(out$model, levels = c("Geniş sınıflandırma skoru", "Herkesi tara", "Kimseyi tarama"))
   out
 }
 
@@ -824,14 +824,14 @@ apa_plot_clinical_dca <- function(clinical_decision_curve_table, clinical_full_p
   ggplot2::ggplot(dca, ggplot2::aes(x = threshold, y = net_benefit, color = model, linetype = model)) +
     ggplot2::geom_hline(yintercept = 0, color = "grey55", linewidth = 0.3) +
     ggplot2::geom_line(linewidth = 0.9) +
-    ggplot2::scale_color_manual(values = c("Geniş risk skoru" = "#0f62fe", "Treat all" = "#6f6f6f", "Treat none" = "#a8a8a8"), name = NULL) +
-    ggplot2::scale_linetype_manual(values = c("Geniş risk skoru" = "solid", "Treat all" = "dashed", "Treat none" = "dotted"), name = NULL) +
+    ggplot2::scale_color_manual(values = c("Geniş sınıflandırma skoru" = "#0f62fe", "Herkesi tara" = "#6f6f6f", "Kimseyi tarama" = "#a8a8a8"), name = NULL) +
+    ggplot2::scale_linetype_manual(values = c("Geniş sınıflandırma skoru" = "solid", "Herkesi tara" = "dashed", "Kimseyi tarama" = "dotted"), name = NULL) +
     ggplot2::labs(
-      title = "Klinik fayda: decision curve analysis",
-      subtitle = "Yüksek Beck riski için eşik olasılıklarına göre net benefit",
+      title = "Klinik fayda: karar eğrisi analizi (DCA)",
+      subtitle = "Orta ve üzeri güncel Beck belirti düzeyi için eşik olasılıklarına göre net fayda",
       x = "Eşik olasılığı",
-      y = "Net benefit",
-      caption = "Not. Treat all çizgisi örneklem olay prevalansından türetilmiştir; model eğrisi KISIM IX DCA target çıktısıdır."
+      y = "Net fayda",
+      caption = "Not. 'Herkesi tara' çizgisi örneklem olay prevalansından türetilmiştir; model eğrisi KISIM IX DCA hedef çıktısıdır."
     ) +
     apa_plot_theme()
 }
@@ -849,10 +849,10 @@ apa_plot_clinical_calibration <- function(clinical_calibration_table) {
     ggplot2::scale_size(range = c(2.8, 6), name = "n") +
     ggplot2::coord_equal(xlim = c(0, 1), ylim = c(0, 1), expand = TRUE) +
     ggplot2::labs(
-      title = "Klinik fayda: calibration plot",
-      subtitle = "Geniş risk skoru için tahmin edilen ve gözlenen yüksek-risk oranları",
-      x = "Ortalama tahmin edilen risk",
-      y = "Gözlenen risk",
+      title = "Klinik fayda: kalibrasyon grafiği",
+      subtitle = "Geniş sınıflandırma skoru için tahmin edilen olasılık ve gözlenen oranlar",
+      x = "Ortalama tahmin edilen olasılık",
+      y = "Gözlenen oran",
       caption = "Not. Nokta büyüklüğü kalibrasyon binindeki aile sayısını gösterir."
     ) +
     apa_plot_theme()
@@ -864,26 +864,28 @@ apa_plot_study_flow <- function(df_family_ses, table1_group_counts_table) {
   n_rows <- n_families * 2L
   n_dm <- table1_group_counts_table$n[table1_group_counts_table$group == "DM"][[1L]]
   n_control <- table1_group_counts_table$n[table1_group_counts_table$group == "Kontrol"][[1L]]
-  hba1c_n <- sum(!is.na(df_family_ses$hba1c))
+  dm_clinical_n <- sum(!is.na(df_family_ses$dm_yili))
   boxes <- data.frame(
     id = c("lock", "family", "group_dm", "group_control", "clinical"),
     x = c(2.5, 2.5, 1.35, 3.65, 2.5),
     y = c(4.7, 3.55, 2.35, 2.35, 1.15),
     label = c(
-      "Kanonik veri kilidi\nLOCKED_CANONICAL_ANALYSIS_BASE",
+      "Kanonik veri kilidi\n(kilitli kanonik analiz tabanı)",
       sprintf("Analitik aile tabanı\n%d aile · %d çocuk satırı", n_families, n_rows),
       sprintf("DM indeks aile\nn = %d", n_dm),
       sprintf("Kontrol indeks aile\nn = %d", n_control),
-      sprintf("DM klinik alt-analiz\nHbA1c gözlenen n = %d", hba1c_n)
+      sprintf("DM klinik alt-analiz\nDM süresi gözlenen n = %d", dm_clinical_n)
     ),
     fill = c("#edf5ff", "#f4f4f4", "#d0e2ff", "#e0e0e0", "#d9fbfb"),
     stringsAsFactors = FALSE
   )
+  # Denetim #1: DM klinik alt-analiz yalniz DM indeks kolundan turer; klinik
+  # alanlar kontrol satirlarinda yapisal NA oldugundan kontrol->klinik oku kaldirildi.
   arrows <- data.frame(
-    x = c(2.5, 2.5, 2.5, 1.35, 3.65),
-    y = c(4.35, 3.20, 3.20, 2.00, 2.00),
-    xend = c(2.5, 1.35, 3.65, 2.5, 2.5),
-    yend = c(3.88, 2.72, 2.72, 1.48, 1.48)
+    x = c(2.5, 2.5, 2.5, 1.35),
+    y = c(4.35, 3.20, 3.20, 2.00),
+    xend = c(2.5, 1.35, 3.65, 2.5),
+    yend = c(3.88, 2.72, 2.72, 1.48)
   )
   ggplot2::ggplot() +
     ggplot2::geom_segment(
@@ -931,7 +933,8 @@ apa_plot_causal_dag <- function(causal_dag_nodes_table, causal_dag_edges_table) 
     mediator_or_sensitivity = "#fcf4d6",
     outcome = "#ffd7d9",
     downstream_outcome = "#e8daff",
-    unobserved_exposure_cause = "#e0e0e0"
+    unobserved_exposure_cause = "#e0e0e0",
+    unobserved_confounder = "#ffb3b3"
   )
   nodes$fill <- role_colors[nodes$role]
   nodes$fill[is.na(nodes$fill)] <- "#f4f4f4"
@@ -959,17 +962,18 @@ apa_plot_causal_dag <- function(causal_dag_nodes_table, causal_dag_edges_table) 
         exposure_to_mediator_or_outcome = "solid",
         mediator_path = "longdash",
         total_effect_path = "solid",
-        downstream_path = "dashed"
+        downstream_path = "dashed",
+        unobserved_backdoor = "dotdash"
       ),
       name = "Kenar rolü"
     ) +
-    ggplot2::coord_cartesian(xlim = c(-0.8, 10.8), ylim = c(0.5, 4.45), clip = "off") +
+    ggplot2::coord_cartesian(xlim = c(-0.8, 10.8), ylim = c(0.5, 4.9), clip = "off") +
     ggplot2::labs(
-      title = "Causal DAG: total-effect ayarlama stratejisi",
-      subtitle = "SES, kardeş yaş farkı ve aile büyüklüğü baseline/design karıştırıcıları olarak sabitlenmiştir",
+      title = "Nedensel DAG: total-effect ayarlama stratejisi ve ölçülmemiş karıştırıcı",
+      subtitle = "SES/kardeş yaş farkı/aile büyüklüğü ölçülen karıştırıcılar; merkez-takvim dönemi ölçülmemiş (grupla örtüşen) karıştırıcıdır",
       x = NULL,
       y = NULL,
-      caption = "Not. Beck ve antidepresan kullanımı total-effect modellerinde ana ayarlama setine alınmaz; sensitivite katmanında izlenir."
+      caption = "Not. Merkez/takvim dönemi grupla yapısal olarak örtüştüğünden ölçülemez; bu nedenle T1DM'nin toplam nedensel etkisi tanımlanabilir sayılmaz. Beck ve antidepresan kullanımı total-effect ana ayarlama setine alınmaz, sensitivite katmanında izlenir."
     ) +
     apa_plot_theme(base_size = 10) +
     ggplot2::theme(
@@ -1030,13 +1034,17 @@ apa_plot_propensity_overlap <- function(df_family_propensity, propensity_overlap
     ggplot2::scale_fill_manual(values = c("Kontrol" = "#6f6f6f", "DM" = "#0f62fe"), name = "Grup") +
     ggplot2::scale_color_manual(values = c("Kontrol" = "#525252", "DM" = "#0043ce"), name = "Grup") +
     ggplot2::labs(
-      title = "Propensity score overlap",
-      subtitle = sprintf("Ortak destek aralığı %.3f–%.3f; ortak destek dışında n = %d", support$common_support_low, support$common_support_high, support$outside_common_support_n),
-      x = "Propensity score P(DM)",
+      title = "Eğilim skoru örtüşmesi",
+      subtitle = sprintf("Ortak destek aralığı %.3f–%.3f;\nortak destek dışında n = %d", support$common_support_low, support$common_support_high, support$outside_common_support_n),
+      x = "Eğilim skoru P(DM)",
       y = "Yoğunluk",
-      caption = "Not. Mavi arka plan ortak destek aralığını gösterir; rug çizgileri aile-düzeyi gözlemlerdir."
+      caption = "Not. Mavi arka plan ortak destek aralığını gösterir;\nrug çizgileri aile-düzeyi gözlemlerdir."
     ) +
-    apa_plot_theme()
+    apa_plot_theme() +
+    ggplot2::theme(
+      plot.subtitle = ggplot2::element_text(lineheight = 1.05),
+      plot.caption = ggplot2::element_text(lineheight = 1.05)
+    )
 }
 
 apa_plot_ses_correlation <- function(ses_correlation_summary_table) {
@@ -1062,14 +1070,80 @@ apa_plot_ses_correlation <- function(ses_correlation_summary_table) {
     ggplot2::scale_fill_gradient2(low = "#da1e28", mid = "#f4f4f4", high = "#0f62fe", midpoint = 0, limits = c(-1, 1), name = "r") +
     ggplot2::coord_equal() +
     ggplot2::labs(
-      title = "SES kompozit doğrulama korelasyon matrisi",
-      subtitle = "Latent SES eğitim ve mesleki statü bileşenleriyle yüksek, materyal bileşenle orta korelasyon göstermektedir",
+      title = "SES kompozit bileşen korelasyon matrisi",
+      subtitle = "Latent SES; eğitim ve mesleki statü ile yüksek,\nmateryal bileşenle orta korelasyon",
       x = NULL,
       y = NULL,
       caption = "Not. Korelasyonlar aile-düzeyi kanonik analiz tabanından hesaplanmıştır."
     ) +
     apa_plot_theme(base_size = 10) +
-    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 35, hjust = 1))
+    ggplot2::theme(
+      axis.text.x = ggplot2::element_text(angle = 35, hjust = 1),
+      plot.subtitle = ggplot2::element_text(lineheight = 1.05)
+    )
+}
+
+apa_plot_missing_pattern <- function(missing_frame) {
+  apa_require_plot_packages()
+  if (!requireNamespace("naniar", quietly = TRUE)) {
+    stop("naniar package is required for missing_pattern plot", call. = FALSE)
+  }
+  df <- missing_frame
+  # Anahtar/gosterge kolonlari analitik eksik oruntude anlamli degil; cikar.
+  drop_cols <- c("aile_no", "group", "group_dm")
+  df <- df[, setdiff(names(df), drop_cols), drop = FALSE]
+  # snake_case -> okunabilir Turkce etiket
+  labmap <- c(
+    cocuk_yas = "Çocuk yaşı",
+    kardes_yas = "Kardeş yaşı",
+    katilimci_cocuk_cinsiyet = "Çocuk cinsiyeti",
+    kardes_cinsiyet = "Kardeş cinsiyeti",
+    anne_yas = "Anne yaşı",
+    anne_antidepresan = "Anne antidepresan",
+    cocuk_sayisi = "Çocuk sayısı",
+    egitim_durumu = "Eğitim durumu",
+    es_egitim_durumu = "Eş eğitim durumu",
+    aile_isei08 = "ISEI-08",
+    material_index = "Maddi olanak",
+    ses_composite_eq = "SES (eşit ağırlık)",
+    ses_latent = "Latent SES",
+    embu_p_sicaklik_mean = "EMBU-P Sıcaklık",
+    embu_p_asiri_koruma_mean = "EMBU-P Aşırı koruma",
+    embu_p_reddetme_mean = "EMBU-P Reddetme",
+    embu_p_karsilastirma_mean = "EMBU-P Karşılaştırma",
+    embu_c_idx_sicaklik_mean = "EMBU-C(İ) Sıcaklık",
+    embu_c_idx_asiri_koruma_mean = "EMBU-C(İ) Aşırı koruma",
+    embu_c_idx_reddetme_mean = "EMBU-C(İ) Reddetme",
+    embu_c_idx_karsilastirma_mean = "EMBU-C(İ) Karşılaştırma",
+    embu_c_sib_sicaklik_mean = "EMBU-C(K) Sıcaklık",
+    embu_c_sib_asiri_koruma_mean = "EMBU-C(K) Aşırı koruma",
+    embu_c_sib_reddetme_mean = "EMBU-C(K) Reddetme",
+    embu_c_sib_karsilastirma_mean = "EMBU-C(K) Karşılaştırma",
+    srq_ho_warmth_mean = "KİA Sıcaklık",
+    srq_ho_status_mean = "KİA Statü",
+    srq_ho_conflict_mean = "KİA Çatışma",
+    srq_ho_rivalry_mean = "KİA Rekabet",
+    srq_sib_ho_warmth_mean = "KİA(K) Sıcaklık",
+    srq_sib_ho_status_mean = "KİA(K) Statü",
+    srq_sib_ho_conflict_mean = "KİA(K) Çatışma",
+    srq_sib_ho_rivalry_mean = "KİA(K) Rekabet",
+    beck_total = "Beck toplam"
+  )
+  nm <- names(df)
+  new_nm <- ifelse(nm %in% names(labmap), labmap[nm], nm)
+  names(df) <- make.unique(unname(new_nm))
+  naniar::vis_miss(df, sort_miss = TRUE) +
+    ggplot2::labs(
+      title = "Birincil analiz çerçevesi eksik veri örüntüsü",
+      subtitle = "FIML/çoklu atama çerçevesine giren değişkenler (aile düzeyi)"
+    ) +
+    ggplot2::theme(
+      axis.text.x = ggplot2::element_text(angle = 90, hjust = 1, vjust = 0.5, size = 8),
+      axis.text.y = ggplot2::element_text(size = 8),
+      plot.title = ggplot2::element_text(face = "bold", size = 13),
+      plot.subtitle = ggplot2::element_text(color = "grey30", size = 10),
+      plot.margin = ggplot2::margin(10, 16, 10, 10)
+    )
 }
 
 apa_h1_three_way_emm_data <- function(h1_three_way_emmeans_grid_table) {
@@ -1116,7 +1190,7 @@ apa_plot_h1_three_way_emm <- function(h1_three_way_emmeans_grid_table) {
       guide = "none"
     ) +
     ggplot2::labs(
-      title = "H1 role × yaş × cinsiyet EMM paneli",
+      title = "H1 rol × yaş × cinsiyet EMM paneli",
       subtitle = "8, 12 ve 16 yaş ankrajlarında estimated marginal mean ve %95 güven aralıkları",
       x = "Çocuk yaşı (yıl)",
       y = "EMBU-C tahmini ortalama",
@@ -1147,9 +1221,9 @@ apa_mediation_effects_data <- function(mediation_simple_effect_table,
     a = "a: Beck → EMBU-P",
     b = "b: EMBU-P → EMBU-C",
     cprime = "c′: DM → EMBU-C",
-    indirect = "a×b indirect",
-    cond_indirect_kontrol = "Indirect Kontrol",
-    cond_indirect_dm = "Indirect DM",
+    indirect = "a×b dolaylı",
+    cond_indirect_kontrol = "Dolaylı (Kontrol)",
+    cond_indirect_dm = "Dolaylı (DM)",
     index_mod_mediation = "IMM"
   )
   rows$parameter_label <- labels[rows$parameter]
@@ -1176,8 +1250,8 @@ apa_plot_mediation_effects <- function(mediation_simple_effect_table,
     ggplot2::facet_wrap(~ model_label, scales = "free_y", ncol = 1) +
     ggplot2::scale_color_manual(values = c(`FALSE` = "#0f62fe", `TRUE` = "#da1e28"), labels = c(`FALSE` = "p ≥ .05", `TRUE` = "p < .05"), name = NULL) +
     ggplot2::labs(
-      title = "KISIM VI mediation: yol ve indirect etki özeti",
-      subtitle = "Nokta tahmini ve %95 güven aralığı; indirect etkiler sıfırı içerir",
+      title = "KISIM VI aracılık: yol ve dolaylı etki özeti",
+      subtitle = "Nokta tahmini ve %95 güven aralığı; dolaylı etkiler sıfırı içerir",
       x = "Katsayı",
       y = NULL,
       caption = "Not. Bootstrap/FIML ayrıntıları yöntem bölümünde; conditional process Hayes Model 14 indeksini içerir."
@@ -1202,18 +1276,38 @@ apa_lpa_fit_data <- function(lpa_fit_table) {
 apa_plot_lpa_fit <- function(lpa_fit_table) {
   apa_require_plot_packages()
   fit <- apa_lpa_fit_data(lpa_fit_table)
+  # Denetim #10: BIC sayisal minimumu (4 profil) ile parsimoni-secili cozum
+  # (Raftery 1995 DeltaBIC<=2 "bare mention" esigi ile secilen en kucuk profil)
+  # ayri isaretlenir; her iki deger kaynak tablodan turetilir, gomulu degil.
   best_bic <- lpa_fit_table$Classes[which.min(lpa_fit_table$BIC)]
+  min_bic <- min(lpa_fit_table$BIC, na.rm = TRUE)
+  within2 <- lpa_fit_table$Classes[is.finite(lpa_fit_table$BIC) & (lpa_fit_table$BIC - min_bic) <= 2]
+  selected_profile <- min(within2)
+  markers <- data.frame(
+    xint = c(best_bic, selected_profile),
+    Karar = c("BIC minimumu", "Seçilen parsimoni çözümü"),
+    stringsAsFactors = FALSE
+  )
+  markers$Karar <- factor(markers$Karar, levels = c("BIC minimumu", "Seçilen parsimoni çözümü"))
   ggplot2::ggplot(fit, ggplot2::aes(x = Classes, y = value)) +
-    ggplot2::geom_vline(xintercept = best_bic, color = "#0f62fe", linetype = "dashed", linewidth = 0.35) +
+    ggplot2::geom_vline(
+      data = markers,
+      ggplot2::aes(xintercept = xint, color = Karar, linetype = Karar),
+      linewidth = 0.4
+    ) +
     ggplot2::geom_line(color = "#525252", linewidth = 0.65) +
-    ggplot2::geom_point(color = "#0f62fe", size = 2.2) +
+    ggplot2::geom_point(color = "#161616", size = 2.2) +
     ggplot2::facet_wrap(~ metric, scales = "free_y", ncol = 1) +
     ggplot2::scale_x_continuous(breaks = sort(unique(fit$Classes))) +
+    ggplot2::scale_color_manual(values = c("BIC minimumu" = "#8d8d8d", "Seçilen parsimoni çözümü" = "#0f62fe")) +
+    ggplot2::scale_linetype_manual(values = c("BIC minimumu" = "dotted", "Seçilen parsimoni çözümü" = "dashed")) +
     ggplot2::labs(
       title = "KISIM VII LPA model seçim tanıları",
-      subtitle = sprintf("Kesikli çizgi BIC minimum çözümü gösterir: %s profil", best_bic),
+      subtitle = sprintf("BIC sayısal minimumu: %s profil · Seçilen parsimoni çözümü (ΔBIC ≤ 2): %s profil", best_bic, selected_profile),
       x = "Profil sayısı",
       y = NULL,
+      color = NULL,
+      linetype = NULL,
       caption = "Not. Profil ortalama tabloları tidyLPA sınıf çıkarımı sınırı nedeniyle ayrı denetlenir; bu figür model seçim kanıtını gösterir."
     ) +
     apa_plot_theme(base_size = 10)
@@ -1280,13 +1374,13 @@ apa_plot_network_graph <- function(network_edges_table, network_centrality_table
       fontface = "bold"
     ) +
     ggplot2::scale_color_gradient2(low = "#da1e28", mid = "#c6c6c6", high = "#0f62fe", midpoint = 0, name = "Kısmi r") +
-    ggplot2::scale_fill_gradient2(low = "#da1e28", mid = "#f4f4f4", high = "#0f62fe", midpoint = 0, name = "Expected\ninfluence") +
+    ggplot2::scale_fill_gradient2(low = "#da1e28", mid = "#f4f4f4", high = "#0f62fe", midpoint = 0, name = "Beklenen\netki") +
     ggplot2::scale_linewidth(range = c(0.25, 2.1), guide = "none") +
-    ggplot2::scale_size(range = c(4, 9), name = "Strength") +
+    ggplot2::scale_size(range = c(4, 9), name = "Strength\n(güç)") +
     ggplot2::coord_equal(xlim = c(-1.45, 1.45), ylim = c(-1.35, 1.35), clip = "off") +
     ggplot2::labs(
-      title = "KISIM VIII GGM network haritası",
-      subtitle = "EBIC-LASSO havuzlanmış ağ; kenar kalınlığı |partial r|, düğüm boyutu strength merkeziyetidir",
+      title = "KISIM VIII GGM ağ haritası",
+      subtitle = "EBIC-LASSO havuzlanmış ağ; kenar kalınlığı |kısmi r|, düğüm boyutu strength merkeziyetidir",
       x = NULL,
       y = NULL,
       caption = "Not. Network koşullu bağımlılık haritasıdır; nedensel yön olarak yorumlanmaz."
@@ -1320,7 +1414,7 @@ apa_plot_network_nct <- function(network_nct_table) {
     ggplot2::scale_fill_manual(values = c(`FALSE` = "#0f62fe", `TRUE` = "#da1e28"), guide = "none") +
     ggplot2::coord_cartesian(xlim = c(0, 1)) +
     ggplot2::labs(
-      title = "Network Comparison Test: DM × Kontrol",
+      title = "Ağ Karşılaştırma Testi (NCT): DM × Kontrol",
       subtitle = "Ağ yapısı ve global strength farkı için permütasyon p-değerleri",
       x = "p-değeri",
       y = NULL,

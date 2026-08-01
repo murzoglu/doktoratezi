@@ -1,6 +1,6 @@
 # Figma Technical Diagram Library Uyum Audit
 
-Üretim zamanı: `2026-05-01 15:48:49 UTC`
+Üretim zamanı: `2026-07-26 11:53:25 UTC`
 
 Bu dosya, Carbon SVG setindeki flow/diagram nitelikli figürlerin IBM Technical Diagram Library kaynaklı bileşen rollerine göre nasıl iyileştirildiğini belgeler.
 
@@ -23,11 +23,11 @@ Bu dosya, Carbon SVG setindeki flow/diagram nitelikli figürlerin IBM Technical 
 
 | ID | SVG | Figma Technical Diagram rolü | Native renderer | Durum | Carbon audit |
 |---|---|---|---|---|---|
-| strobe_flow | [fig-01-strobe-flow.svg](primary/fig-01-strobe-flow.svg) | Flow shape + Flow number + Connector + Label pill | PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer | PASS: full Figma Technical Diagram Library SVG | PASS: Carbon Charts |
-| causal_dag | [fig-02-causal-dag.svg](primary/fig-02-causal-dag.svg) | Large node + Connector + Legend | PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer | PASS: full Figma Technical Diagram Library SVG | PASS: Carbon Charts |
-| h2_apim_path | [fig-09-h2-apim-path.svg](primary/fig-09-h2-apim-path.svg) | Large node + Connector line ending + Label text | PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer | PASS: full Figma Technical Diagram Library SVG | PASS: Carbon Charts |
-| h4_sem_path | [fig-11-h4-sem-path.svg](primary/fig-11-h4-sem-path.svg) | Large node + Connector line ending + Label text | PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer | PASS: full Figma Technical Diagram Library SVG | PASS: Carbon Charts |
-| network_graph | [fig-16-network-graph.svg](primary/fig-16-network-graph.svg) | Small node + Connector + Legend | PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer | PASS: full Figma Technical Diagram Library SVG | PASS: Carbon Charts |
+| strobe_flow | [fig-01-strobe-flow.svg](../primary/fig-01-strobe-flow.svg) | Flow shape + Flow number + Connector + Label pill | PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer | PASS: full Figma Technical Diagram Library SVG | PASS: Carbon Charts |
+| causal_dag | [fig-02-causal-dag.svg](../primary/fig-02-causal-dag.svg) | Large node + Connector + Legend | PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer | PASS: full Figma Technical Diagram Library SVG | PASS: Carbon Charts |
+| h2_apim_path | [fig-09-h2-apim-path.svg](../primary/fig-09-h2-apim-path.svg) | Large node + Connector line ending + Label text | PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer | PASS: full Figma Technical Diagram Library SVG | PASS: Carbon Charts |
+| h4_sem_path | [fig-11-h4-sem-path.svg](../primary/fig-11-h4-sem-path.svg) | Large node + Connector line ending + Label text | PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer | PASS: full Figma Technical Diagram Library SVG | PASS: Carbon Charts |
+| network_graph | [fig-16-network-graph.svg](../primary/fig-16-network-graph.svg) | Small node + Connector + Legend | PASS: custom Technical Diagram SVG; no chart grid/axis/raster layer | PASS: full Figma Technical Diagram Library SVG | PASS: Carbon Charts |
 
 ## Notlar
 

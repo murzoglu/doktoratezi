@@ -357,7 +357,6 @@ Final referans veri seti hedef örnekleme çok yakın tamamlanmıştır:
 | `Kontrol_Indeks` | 121 |
 | `Kontrol_Kardes` | 121 |
 
-HbA1c klinik kayıt entegrasyonu sonrasında T1DM indeks çocukların 39/120'sinde son ölçülmüş HbA1c değeri final CSV'lerde tescillenmiştir. HbA1c yalnız `DM_Hasta_Indeks` satırlarında doludur; DM kardeş, kontrol indeks ve kontrol kardeş satırlarında yapısal `NA` olarak kalır. Eşleştirme hasta/aile kimliği üzerinden kesinleştirildiği için HbA1c dışındaki ara eşleştirme alanları final veri kapsamı dışında bırakılmıştır.
 
 ---
 
@@ -444,9 +443,7 @@ Tüm tarih alanları **`gg.aa.yyyy`** metin formatındadır. Yaş ve süre alanl
 | `anne_antidepresan` | Anne antidepresan kullanıyor mu | `0 = Hayır`, `1 = Evet` |
 | `dm_tani_tarihi` | DM tanı tarihi | Yalnız `DM_Hasta_Indeks` |
 | `dm_yili` | DM süresi (yıl) | Yalnız `DM_Hasta_Indeks` |
-| `hba1c` | Son ölçülmüş klinik HbA1c değeri (%) | Ondalık sayı; yalnız `DM_Hasta_Indeks`; plauzibilite aralığı `4.5 – 18.0`% |
 
-> **HbA1c final kapsamı:** `hba1c`, final analiz veri setinde T1DM indeks çocuk için saklanan son ölçülmüş klinik HbA1c yüzdesidir. Kontrol ailelerinde, DM kardeş satırlarında ve kontrol kardeş satırlarında yapısal `NA`dır. Mevcut final veride 120 T1DM indeks çocuğun 39'unda HbA1c değeri vardır; tüm değerler klinik plauzibilite aralığındadır (`5.8`–`15.1`%). HbA1c, glisemik kontrolün ebeveynlik tutumu ile ilişkisini araştırırken birincil klinik kovaryat olarak kullanılır.
 
 Hastalık/engel serbest metinleri final analiz veri setinde şu ana kategori dummy alanlarına dönüştürülür: `endokrin`, `kardiyovaskuler`, `solunum`, `gastrointestinal`, `renal`, `kas_iskelet`, `mental`, `sinir`, `otoimmun`, `duyu`, `hematolojik`, `dermatolojik`, `neoplazm`, `diger`.
 
@@ -606,8 +603,8 @@ Poliklinik başvurusu (Çocuk Endokrinoloji [hasta] / Hasta Çocuk Kliniği [kon
                 Beck Depresyon Envanteri (anne)
         │
         ▼
-  T1DM grubunda ek: tanı tarihi, DM süresi ve HbA1c (klinik kayıt) →
-                dm_tani_tarihi, dm_yili, hba1c
+  T1DM grubunda ek: tanı tarihi ve DM süresi →
+                dm_tani_tarihi, dm_yili
         │
         ▼
   Niteliksel altörnekleme (rastgele 6 aile) → birebir görüşme

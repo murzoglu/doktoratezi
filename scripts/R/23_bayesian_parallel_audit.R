@@ -15,12 +15,11 @@ dir.create(out_models, showWarnings = FALSE, recursive = TRUE)
 
 tar_load(c(df_family_ses, df_long_scored))
 
-# Pratik MCMC ayarları (auto mod, makul süre):
-# chains=2, iter=2000, warmup=1000 → ~1-2 dk per model × 6 model = 10-15 dk
+# MCMC ayarları (yöntem bölümüyle hizalı): dört zincir, 4000 yineleme, 1500 ısınma
 results <- run_bayesian_parallel_pipeline(
   df_family_ses, df_long_scored,
   run_h1 = TRUE, run_h3 = TRUE,
-  iter = 2000L, warmup = 1000L, chains = 2L, seed = 20260428L
+  iter = 4000L, warmup = 1500L, chains = 4L, seed = 20260428L
 )
 
 write_csv <- function(df, name) {
@@ -39,6 +38,7 @@ write_csv(results$h1_diagnostics_table, "bayes_h1_diagnostics")
 write_csv(results$h3_posterior_table,   "bayes_h3_posterior")
 write_csv(results$h3_diagnostics_table, "bayes_h3_diagnostics")
 write_csv(results$loo_waic_table,       "bayes_loo_waic")
+write_csv(results$h1_prior_sensitivity_table, "bayes_h1_prior_sensitivity")
 write_csv(results$target_summary,       "bayes_target_summary")
 
 # Persist a representative fit for downstream use

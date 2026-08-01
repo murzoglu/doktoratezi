@@ -1,0 +1,593 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  turkish,
+  12pt,
+  a4paper,
+]{report}
+\usepackage{xcolor}
+\usepackage[top=2cm,bottom=2cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{TeX Gyre Termes}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off]{babel}
+\else
+\usepackage[bidi=default,shorthands=off]{babel}
+\fi
+\ifPDFTeX
+\else
+\babelfont{rm}[]{TeX Gyre Termes}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+% --- Marmara §1.2: 1,5 satir araligi + paragraf 6 nk + girinti yok ---
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 1pt}
+% --- §1.2: iki yana yasli, satir sonunda kelime bolme yok ---
+\usepackage[none]{hyphenat}
+\sloppy
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+% --- Turkce heceleme/karakter (polyglossia XeLaTeX icin) ---
+\usepackage{polyglossia}
+\setmainlanguage{turkish}
+% --- §5 dizin basligi ezimi include-before-body'de yapilir; Quarto
+% kendi \AtBeginDocument ezimini enjekte ettiginden (ve o bizimkinden
+% sonra calistigindan) yeniden-adlandirma \listoffigures'tan hemen
+% once, govde basinda uygulanir (bkz. include-before-body). ---
+% --- §1.9: sayfa numarasi alt-orta ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+% --- §1.3: bolum basligi bold 14 pt, alt basliklar bold 12 pt ---
+\usepackage{titlesec}
+\titleformat{\chapter}{\normalfont\fontsize{14}{17}\bfseries}{\thechapter.}{1em}{}
+\titleformat{\section}{\normalfont\fontsize{12}{15}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\fontsize{12}{15}\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\fontsize{12}{15}\bfseries}{\thesubsubsection}{1em}{}
+% bolum basligi sayfanin tepesinden baslasin (buyuk ust bosluk olmasin)
+\titlespacing*{\chapter}{0pt}{0pt}{1\baselineskip}
+% --- §1.9: kapak/onay/icindekiler/dizin sayfalari numarasiz baslar;
+% Kisaltmalar'dan itibaren Romen, Ozet'ten itibaren Arap rakami
+% (gecisler chapters/00b ve 00c icindeki ham LaTeX bloklariyla). ---
+\pagenumbering{gobble}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{İçindekiler}
+\else
+  \newcommand\contentsname{İçindekiler}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Şekil Listesi}
+\else
+  \newcommand\listfigurename{Şekil Listesi}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Tablo Listesi}
+\else
+  \newcommand\listtablename{Tablo Listesi}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Şekil}
+\else
+  \newcommand\figurename{Şekil}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tablo}
+\else
+  \newcommand\tablename{Tablo}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listeleme}
+\newcommand*\listoflistings{\listof{codelisting}{İlan Listesi}}
+\captionsetup{labelsep=period}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdflang={tr},
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\author{}
+\date{}
+\begin{document}
+
+% §5: Quarto'nun Turkce LOF/LOT ad ezimi \AtBeginDocument ile bizim
+% header ezimimizi geciyor; govde basinda (tum \AtBeginDocument
+% hook'lari calistiktan SONRA) yeniden adlandirarak sabitliyoruz.
+\renewcommand{\listfigurename}{ŞEKİLLER DİZİNİ}
+\renewcommand{\listtablename}{TABLOLAR DİZİNİ}
+
+\renewcommand*\contentsname{İÇİNDEKİLER}
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\listoffigures
+\listoftables
+
+\chapter{Spec --- Kapsamlı Tez Kontrol Checklisti + Doğrulama
+Script'i}\label{spec-kapsamlux131-tez-kontrol-checklisti-doux11frulama-scripti}
+
+\section{Problem Tanımı}\label{problem-tanux131mux131}
+
+Repo, olgun bir kalite-kontrol katmanına sahip:
+\texttt{tez-yazim/04\_kalite-kontrol/} altında 6-kapı (Kapı 0--5)
+sertifikasyon playbook'u, sertifika şablonu ve eksen bazlı
+alt-checklistler (\texttt{format-kontrol-listesi.md},
+\texttt{kanit-ve-gizlilik-kontrol-listesi.md},
+\texttt{ai-mcp-kullanim-kontrol-listesi.md},
+\texttt{turkce-bilimsel-yazim-denetimi.md},
+\texttt{render-bagimliliklari.md}) mevcut. Ayrıca \texttt{scripts/util/}
+altında çalışan doğrulama araçları var (\texttt{bib\_hygiene.py},
+\texttt{karma\_ledger\_check.py}, \texttt{claim\_certification.py},
+\texttt{csr\_numeric\_trace\_audit.py},
+\texttt{csr\_causal\_label\_audit.py}, \texttt{csr\_block\_review.py},
+\texttt{tr\_corpus\_audit.py}) ve slash komutları (\texttt{/tez-oturum},
+\texttt{/bolum-sertifika}, \texttt{/referans-kapisi},
+\texttt{/tez-literatur}, \texttt{/tez-dogrulama}).
+
+Ancak \textbf{tek, uçtan uca, tüm tezi kapsayan bir ``master kontrol
+checklisti'' yok}. Mevcut checklistler eksen-parçalıdır ve her madde
+için (a) somut kontrol mekanizması, (b) çalıştırılabilir komut/eşik ve
+(c) oto/manuel etiketi tek yerde toplanmış değildir. Bunun sonucu:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Dağınık doğrulama:} Bir bölümü veya tüm tezi teslim-öncesi
+  kontrol etmek için hangi aracın hangi sırada koşacağı ve neyin PASS
+  sayılacağı tek bir izlenebilir belgede yok.
+\item
+  \textbf{Otomasyon boşluğu:} Araçlar tek tek elle koşuluyor; hepsini
+  sırayla koşup birleşik PASS/FAIL raporu üreten tek bir orkestratör
+  script yok.
+\item
+  \textbf{Tez-düzeyi eksenler eksik:} Format bütünlüğü (Marmara §1),
+  render/crossref bütünlüğü, targets pipeline tazeliği, PII/gizlilik
+  sınırları, sayısal-iddia izlenebilirliği gibi eksenler
+  bölüm-sertifikasında kısmen var ama tez-düzeyi toplu kapıda
+  birleştirilmemiş.
+\end{enumerate}
+
+\section{Kapsam}\label{kapsam}
+
+Kullanıcı kararları: - \textbf{Kapsam:} İki katmanlı --- hem
+\textbf{bölüm-düzeyi} (her \texttt{chapters/*.qmd} için tekrar
+koşulabilir) hem \textbf{tez-düzeyi} (kapanış/teslim öncesi bütün tez)
+checklist, tek belgede. - \textbf{Mevcut sistemle ilişki:} Mevcut 6-kapı
+checklistlerini \textbf{genişlet} --- eksik eksenleri var olan yapıya
+ekle, master checklist onları birleştirip bağlar (sıfırdan paralel
+sistem değil). - \textbf{Madde mekanizması:} Her madde için \textbf{hem}
+çalıştırılabilir komut + beklenen çıktı + PASS eşiği \textbf{hem}
+Otomatik/Manuel etiketi + kanıt konumu. - \textbf{Çıktı:}
+\textbf{Markdown master checklist + Python doğrulama script'i}
+(\texttt{scripts/util/} deseninde). - \textbf{Dil:} Türkçe, çok
+kapsamlı.
+
+\subsection{Script davranışı
+(kritik)}\label{script-davranux131ux15fux131-kritik}
+
+Doğrulama script'i \textbf{tüm otomatikleştirilebilir araçları sırayla
+koşar ve birleşik rapor üretir}; hiçbir dosyayı değiştirmez (salt-okuma
+denetim). Her madde için PASS/FAIL/SKIP + kısa kanıt satırı basar.
+Manuel maddeler ``MANUEL --- elle kontrol gerekli'' olarak işaretlenir
+(script bunları FAIL saymaz, raporda ayrı listeler). Script bir özet
+exit kodu döndürür (0 = tüm otomatik maddeler PASS; \textgreater0 = en
+az bir otomatik HARD fail) ki hem elde hem CI/pre-teslim akışında
+kullanılabilsin.
+
+\subsection{Kapsam dışı}\label{kapsam-dux131ux15fux131}
+
+\begin{itemize}
+\tightlist
+\item
+  Mevcut chapter içeriğini düzeltmek/yeniden yazmak (checklist tespit
+  eder, düzeltme ayrı iştir).
+\item
+  Yeni bilimsel analiz veya pipeline hedefi eklemek.
+\item
+  CI altyapısı (GitHub Actions vb.) kurmak --- script CI-uyumlu yazılır
+  ama workflow tanımı bu iş kapsamında değil.
+\end{itemize}
+
+\section{Gereksinimler}\label{gereksinimler}
+
+\subsection{R1 --- Master checklist
+belgesi}\label{r1-master-checklist-belgesi}
+
+\begin{itemize}
+\tightlist
+\item
+  Yeni dosya:
+  \texttt{tez-yazim/04\_kalite-kontrol/tez-kontrol-checklisti.md}.
+\item
+  Türkçe, çok kapsamlı; iki ana bölüm: \textbf{(A) Bölüm-düzeyi kapı
+  seti} ve \textbf{(B) Tez-düzeyi kapanış seti}.
+\item
+  Belge, mevcut 6-kapı playbook'unu ve alt-checklistleri \textbf{kanonik
+  otorite} olarak referanslar; onların yerine geçmez, üstlerinde
+  birleştirici indeks olur.
+\item
+  Her checklist maddesi standart bir satır/blok şemasıyla yazılır (bkz.
+  R3).
+\end{itemize}
+
+\subsection{R2 --- Eksen kapsamı (checklist neyi kontrol
+eder)}\label{r2-eksen-kapsamux131-checklist-neyi-kontrol-eder}
+
+Master checklist en az şu eksenleri madde madde kapsar: 1.
+\textbf{Kapsam \& Gizlilik (Kapı 0):} PII sınırları (\texttt{ad/soyad}
+düşürme,
+\texttt{data/raw\textbar{}\ \ \ \ identified\textbar{}cleaned\textbar{}backup}
+git-dışı), credential/\texttt{.lock} erişimi,
+\texttt{.claude/settings.json} deny uyumu. 2. \textbf{Kanıt \& Literatür
+(Kapı 1--2):} kaynaksız-sayı taraması, atıf künye bütünlüğü, ledger
+mutabakatı, full-text/Zotero izi. 3. \textbf{Bölüm metni \& kılavuz
+uyumu (Kapı 3):} Marmara format kontratı §1 (kenar boşluk, satır
+aralığı, font, başlık düzeni, tablo/şekil başlık biçimi), bölüm sırası,
+başlık numaralandırma (çift-numara yok). 4. \textbf{Türkçe imla, akış,
+mantık (Kapı 4):} Türkçe bilimsel yazım denetimi, ondalık virgül,
+retorik/insan-Türkçesi kontrolleri. 5. \textbf{AI-reliability \& teknik
+doğrulama (Kapı 5):} iki-kol hook derlemesi, render (quarto),
+crossref/atıf bütünlüğü, sayısal-iddia → CSV izi, nedensel-etiket
+denetimi. 6. \textbf{Pipeline \& üretilebilirlik (tez-düzeyi):}
+\texttt{renv::status()} temiz, \texttt{targets::tar\_make()} tazeliği
+(outdated hedef yok), üretilmiş tablo/şekil artefaktlarının varlığı. 7.
+\textbf{Render \& çıktı bütünlüğü (tez-düzeyi):}
+\texttt{quarto\ render\ thesis.qmd} exit 0; HTML/PDF'te 0 çözülmemiş
+\texttt{?@}; 0 kırık atıf; şekil gömme; PDF Marmara format ölçüleri (A4,
+kenar boşluk, font). 8. \textbf{Ön/arka bölümler \& teslim
+(tez-düzeyi):} özet/summary kelime sınırı + anahtar sözcükler,
+kısaltmalar, içindekiler/şekil/tablo listeleri, 00a resmi alanlar, 06
+özgeçmiş, 07 ek yer-tutucuları, referans listesi.
+
+\subsection{R3 --- Madde şeması (her checklist maddesi
+için)}\label{r3-madde-ux15femasux131-her-checklist-maddesi-iuxe7in}
+
+Her madde şu alanları içerir: - \textbf{ID:} kısa benzersiz kod (ör.
+\texttt{K0-PII-01}). - \textbf{Kontrol maddesi:} ne doğrulanıyor
+(Türkçe, tek cümle). - \textbf{Mekanizma:} nasıl kontrol edilir (araç
+adı / gözle bakış yöntemi). - \textbf{Komut:} çalıştırılabilir komut
+satırı (otomatik maddelerde) veya ``MANUEL'' (gözle kontrol
+maddelerinde). - \textbf{PASS ölçütü:} beklenen çıktı / eşik (ör. ``exit
+0'', ``HARD=0'', ``0 çözülmemiş crossref''). - \textbf{Tür:}
+\texttt{OTOMATIK} \textbar{} \texttt{MANUEL} \textbar{} \texttt{YARI}
+(araç + gözle teyit). - \textbf{Kanıt konumu:} çıktının/kanıtın nereye
+yazıldığı (rapor, sertifika, log). - \textbf{Kapı/Kaynak:} hangi kapıya
+(0--5) ve hangi kanonik kural dosyasına bağlı.
+
+\subsection{R4 --- Doğrulama script'i}\label{r4-doux11frulama-scripti}
+
+\begin{itemize}
+\tightlist
+\item
+  Yeni dosya: \texttt{scripts/util/tez\_checklist\_verify.py} (mevcut
+  util Python desenine uygun: \texttt{PYTHONDONTWRITEBYTECODE},
+  salt-okuma, satır-düzeyi veri sızdırmaz).
+\item
+  Script, R2'deki \textbf{otomatikleştirilebilir} maddeleri sırayla
+  koşar: mevcut araçları (\texttt{bib\_hygiene.py},
+  \texttt{karma\_ledger\_check.py}, \texttt{claim\_certification.py},
+  \texttt{csr\_numeric\_trace\_audit.py},
+  \texttt{csr\_causal\_label\_audit.py}, \texttt{tr\_corpus\_audit.py})
+  alt-süreç olarak çağırır; ek olarak render-crossref taraması, format
+  ölçüm ve targets/renv durum kontrollerini kapsar (araç yoksa SKIP +
+  neden).
+\item
+  Her madde için satır:
+  \texttt{MADDE-ID\ \ DURUM(PASS/FAIL/SKIP/MANUEL)\ \ kısa\ kanıt}.
+\item
+  Sonda özet: toplam/PASS/FAIL/SKIP/MANUEL sayacı + genel sonuç.
+\item
+  \texttt{-\/-section\ \textless{}kod\textgreater{}} ile tek eksen;
+  \texttt{-\/-chapter\ \textless{}dosya\textgreater{}} ile bölüm-düzeyi
+  alt-küme; argümansız tam tez-düzeyi koşum.
+\item
+  Hiçbir dosyayı değiştirmez. Exit: 0 = otomatik maddelerin tümü
+  PASS/SKIP; 1 = en az bir otomatik HARD FAIL.
+\item
+  Marmara format ölçümü (PDF varsa) ve render taraması ağır olabilir;
+  bunlar \texttt{-\/-fast} ile atlanabilir (SKIP olarak işaretlenir).
+\end{itemize}
+
+\subsection{R5 --- Mevcut checklistleri
+genişletme}\label{r5-mevcut-checklistleri-geniux15fletme}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{format-kontrol-listesi.md},
+  \texttt{kanit-ve-gizlilik-kontrol-listesi.md} ve
+  \texttt{render-bagimliliklari.md} içinde master checklist'e ve
+  script'e \textbf{çapraz bağlantı} eklenir (hangi madde script'in hangi
+  kontrolüne karşılık geliyor).
+\item
+  Yeni eksenler (pipeline tazeliği, PDF format ölçümü) uygun mevcut
+  dosyaya veya master belgeye eklenir; içerik tekrarı yerine referans
+  tercih edilir.
+\item
+  \texttt{04\_kalite-kontrol/README.md}, yeni master checklist ve
+  script'i akış içinde konumlandıracak biçimde güncellenir.
+\end{itemize}
+
+\subsection{R6 --- Araç-madde eşleme
+tablosu}\label{r6-arauxe7-madde-eux15fleme-tablosu}
+
+\begin{itemize}
+\tightlist
+\item
+  Master belgede, her mevcut aracın (\texttt{scripts/util/*.py}, slash
+  komutlar) hangi checklist maddelerini kapsadığını gösteren bir
+  \textbf{kapsama matrisi} bulunur. Böylece hangi maddenin otomatik,
+  hangisinin manuel kaldığı ve otomasyon boşlukları görünür olur.
+\end{itemize}
+
+\subsection{R7 --- Doğrulama (bu işin kendi
+kontrolü)}\label{r7-doux11frulama-bu-iux15fin-kendi-kontroluxfc}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{tez\_checklist\_verify.py} repo mevcut durumunda koşulur; hata
+  vermeden (kod hatası anlamında) tamamlanır ve tutarlı bir rapor
+  üretir.
+\item
+  Script'in raporladığı otomatik maddeler, elle koşulan tekil araç
+  sonuçlarıyla tutarlı olmalı (ör. \texttt{bib\_hygiene} HARD sayısı
+  script raporuyla aynı).
+\item
+  Master checklist'teki her OTOMATIK madde, script'te karşılık gelen bir
+  kontrole sahip (yetim madde yok); her script kontrolü belgede bir
+  maddeye bağlı.
+\end{itemize}
+
+\section{Kabul Kriterleri}\label{kabul-kriterleri}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  \texttt{tez-yazim/04\_kalite-kontrol/tez-kontrol-checklisti.md}
+  mevcut; Türkçe; bölüm-düzeyi (A) + tez-düzeyi (B) iki katman içeriyor.
+\item[$\square$]
+  Belge R2'deki 8 eksenin tümünü madde madde kapsıyor.
+\item[$\square$]
+  Her madde R3 şemasındaki alanları (ID, mekanizma, komut, PASS ölçütü,
+  tür, kanıt konumu, kapı/kaynak) taşıyor.
+\item[$\square$]
+  \texttt{scripts/util/tez\_checklist\_verify.py} mevcut; salt-okuma;
+  argümansız tam koşum + \texttt{-\/-section} + \texttt{-\/-chapter} +
+  \texttt{-\/-fast} destekli.
+\item[$\square$]
+  Script tüm otomatik araçları çağırıp birleşik PASS/FAIL/SKIP/MANUEL
+  raporu ve özet exit kodu üretiyor; repo mevcut durumunda hatasız
+  koşuyor.
+\item[$\square$]
+  Script çıktısı tekil araç sonuçlarıyla tutarlı (ör. bib\_hygiene HARD
+  sayısı eşleşiyor).
+\item[$\square$]
+  Master belgede araç→madde kapsama matrisi var; her OTOMATIK madde
+  script kontrolüyle, her script kontrolü bir maddeyle eşleşiyor (yetim
+  yok).
+\item[$\square$]
+  Mevcut checklistler + \texttt{04\_kalite-kontrol/README.md} yeni
+  belge/script'e çapraz-bağlı; içerik tekrarı yerine referans
+  kullanılmış.
+\item[$\square$]
+  Değişiklikler tek toplu commit (Türkçe mesaj +
+  \texttt{Co-authored-by:\ Ona\ \ \ \ \ \textless{}no-reply@ona.com\textgreater{}});
+  yalnız QC katmanı dosyaları + yeni script.
+\end{itemize}
+
+\section{Uygulama Adımları
+(sıralı)}\label{uygulama-adux131mlarux131-sux131ralux131}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Envanter sabitleme:} \texttt{scripts/util/} araçlarının her
+  birinin gerçek arayüzünü (argümanlar, exit kodları, çıktı biçimi) ve
+  slash komutların koştuğu komutları çıkar. Her aracın hangi eksen(ler)i
+  kapsadığını netleştir (R6 matrisinin ham verisi).
+\item
+  \textbf{Eksen → madde ayrıştırması:} R2'deki 8 ekseni somut, atomik
+  maddelere böl; her maddeye R3 şemasını doldur (ID, mekanizma, komut,
+  PASS eşiği, tür, kanıt konumu, kapı/kaynak). Otomatik vs manuel
+  ayrımını burada sabitle.
+\item
+  \textbf{Master checklist yaz (R1):} \texttt{tez-kontrol-checklisti.md}
+  oluştur; (A) bölüm-düzeyi + (B) tez-düzeyi katmanlar; her eksen için
+  madde tablosu + R6 kapsama matrisi + kanonik otorite referansları.
+\item
+  \textbf{Doğrulama script'i yaz (R4):}
+  \texttt{tez\_checklist\_verify.py} --- mevcut araçları alt-süreç
+  olarak çağıran orkestratör; render-crossref taraması, targets/renv
+  durumu, (opsiyonel) PDF format ölçümü;
+  \texttt{-\/-section/-\/-chapter/-\/-fast}; birleşik rapor + özet exit
+  kodu; salt-okuma.
+\item
+  \textbf{Script--belge senkronu:} Her OTOMATIK maddenin script'te
+  karşılığı, her script kontrolünün belgede maddesi olduğunu doğrula
+  (yetim madde/kontrol yok).
+\item
+  \textbf{Mevcut checklistleri genişlet (R5):}
+  \texttt{format-kontrol-listesi.md},
+  \texttt{kanit-ve-gizlilik-kontrol-listesi.md},
+  \texttt{render-bagimliliklari.md} ve \texttt{README.md}'ye
+  çapraz-bağlantı + yeni eksen referansları ekle.
+\item
+  \textbf{Script'i koş ve doğrula (R7):}
+  \texttt{tez\_checklist\_verify.py} repo mevcut durumunda koştur;
+  raporun tutarlı ve hatasız üretildiğini, exit kodunun beklendiği gibi
+  olduğunu, tekil araç sonuçlarıyla eşleştiğini teyit et.
+\item
+  \textbf{Teslim:} QC dosyaları + yeni script'i tek toplu commit ile ver
+  (Türkçe mesaj + co-author).
+\end{enumerate}
+
+\section{Riskler / Notlar}\label{riskler-notlar}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Araç exit-kod tutarsızlığı:} Bazı araçlar (ör.
+  \texttt{bib\_hygiene}) mevcut repo durumunda HARD fail (exit 1)
+  döndürüyor olabilir. Script bunu doğru şekilde FAIL raporlar; bu,
+  script'in bozuk olduğu anlamına gelmez --- checklist gerçek durumu
+  yansıtır. Bu maddeler raporda net ayrılır.
+\item
+  \textbf{Ağır kontroller:} Tam \texttt{tar\_make()} ve PDF render
+  dakikalar sürebilir; \texttt{-\/-fast} ile bunlar SKIP edilebilir,
+  böylece hızlı ön-kontrol mümkün olur.
+\item
+  \textbf{Manuel maddeler kaçınılmaz:} Retorik akış, thick-description,
+  jüri/kişisel alan doğruluğu gibi maddeler otomatikleştirilemez; belge
+  bunları açıkça MANUEL işaretler ve script FAIL saymaz.
+\item
+  \textbf{PII sınırı:} Script salt-okuma ve satır-düzeyi veri sızdırmaz;
+  \texttt{data/raw\textbar{}\ identified\textbar{}cleaned\textbar{}backup}
+  içeriğini okumaz, yalnız varlık/gitignore durumunu denetler.
+\item
+  \textbf{Kapsam disiplini:} Checklist tespit eder; bulunan içerik
+  eksiklerini düzeltmek ayrı iştir (bu iş yalnız kontrol altyapısını
+  kurar).
+\end{itemize}
+
+
+
+
+\end{document}

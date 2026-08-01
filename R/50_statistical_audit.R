@@ -130,40 +130,6 @@ audit_data_contract <- function(df_family, df_long) {
         message = "Family analysis base must have one row per aile_no."
       )
     }
-
-    if ("hba1c" %in% names(df_family)) {
-      hba1c <- stat_audit_numeric(df_family$hba1c)
-      control_with_hba1c <- !is.na(hba1c) & as.character(df_family$group) != "DM"
-      if (any(control_with_hba1c, na.rm = TRUE)) {
-        findings[[length(findings) + 1L]] <- stat_audit_finding(
-          domain = "data_contract",
-          table_id = "family",
-          check_id = "hba1c_structural_missingness",
-          severity = "critical",
-          row_index = which(control_with_hba1c)[1L],
-          column = "hba1c",
-          observed = paste(unique(as.character(df_family$group[control_with_hba1c])), collapse = ","),
-          expected = "hba1c only populated for DM index families",
-          message = "HbA1c is structurally missing outside the DM index stratum."
-        )
-      }
-      hba1c_min <- 4.5
-      hba1c_max <- 18.0
-      out_of_range_hba1c <- !is.na(hba1c) & (hba1c < hba1c_min | hba1c > hba1c_max)
-      if (any(out_of_range_hba1c, na.rm = TRUE)) {
-        findings[[length(findings) + 1L]] <- stat_audit_finding(
-          domain = "data_contract",
-          table_id = "family",
-          check_id = "hba1c_plausibility_range",
-          severity = "review",
-          row_index = which(out_of_range_hba1c)[1L],
-          column = "hba1c",
-          observed = hba1c[out_of_range_hba1c],
-          expected = sprintf("%.1f <= hba1c <= %.1f", hba1c_min, hba1c_max),
-          message = "HbA1c value is outside the canonical clinical plausibility range."
-        )
-      }
-    }
   }
 
   if (all(c("aile_no", "group") %in% names(df_long))) {

@@ -1,0 +1,145 @@
+# Bib Hijyen Raporu
+
+- Künye: 333 · Atıflı anahtar: 211
+
+## HARD — Atıflı ama tanımsız (render kırar)
+- (yok)
+
+## SOFT — AMA-11 alan eksik
+- `simonsohn2015specification` (article): volume, pages
+
+## SOFT — DOI eksik/bozuk + yinelenen
+- eksik DOI: `sumer2010anneBabaTutum`
+
+## BİLGİ — DOI yok ama PMID/URL ile erişilebilir (SOFT değil)
+- `akturk2005bdipcTurkish`
+- `dirik2015sEmbuTurkish`
+- `furmanBuhrmester1985srq`
+- `hisli1989bdiTurkishUniversity`
+
+## SOFT — yakın-duplikat
+- (yok)
+
+## INFO — orphan (tanımlı, atıfsız)
+- `ackerman2011positiveEngagement`
+- `adams1991siblings`
+- `affrunti2015maternal`
+- `alAnsari2021mothers`
+- `alazmi2024t1dReview`
+- `avan2017yoktez`
+- `ayranci2025yoktez`
+- `bakkKuha2021latentExternal`
+- `barlowEllard2006chronic`
+- `barnard2010fear`
+- `bassi2020parentalStressT1DM`
+- `beacham2019children`
+- `borelli2010discrepancies`
+- `borsboom2021network`
+- `braunClarke2019saturate`
+- `camberis2016maternal`
+- `cameron2007screening`
+- `campbellFiske1959mtmm`
+- `cao2021family`
+- `carlsund2025stress`
+- `cetintas2019yoktez`
+- `chanShorey2022`
+- `chen2026overreactive`
+- `chiHinshaw2002depression`
+- `conger2010ses`
+- `corden2006quotations`
+- `cousinoHazen2013parentingStress`
+- `cuijpers2015maternal`
+- `cusson2020evalue`
+- `deBock2024ispadGlycemicTargets`
+- `deLosReyes2011discrepancies`
+- `deLosReyesOhannessian2016`
+- `deatrick1999normalization`
+- `delosReyes2013strategic`
+- `demirkiran2025yoktez`
+- `downey1995resourceDilution`
+- `dumenci2000mtmm`
+- `duru2016qolT1dm`
+- `eccleston2012parents`
+- `emergingadults2024lifestyle`
+- `eradus2024differentialWarmth`
+- `fetters2013integration`
+- `floresKanter2018bifactor`
+- `guetterman2015jointDisplay`
+- `hansen2014agreementChronic`
+- `heckman1979sample`
+- `heinrich2021pfactor`
+- `hertwig2002parentalInvestment`
+- `higgins2011sequential`
+- `imai2010mediation`
+- `jensenMcHale2017pdt`
+- `jensenThomsen2024pdt`
+- `katz2014t1dmFamily`
+- `kavanaugh2018economicPressure`
+- `kelada2022siblings`
+- `kesenYener2024yoktez`
+- `kim2022illness`
+- `knafl2011famm`
+- `knafl2012continued`
+- `knafl2013patterns`
+- `kobos2023loneliness`
+- `koenkerBassett1978quantile`
+- `kruschke2017bayesian`
+- `lancaster2015concordance`
+- `lanza2013latent`
+- `liskola2021informant`
+- `loeser2016fairness`
+- `luo2025maternalDepression`
+- `mackinnon2007mediation`
+- `makowski2019bayestestr`
+- `marshHauWen2004goldenRules`
+- `mchale2005mexican`
+- `mcneish2018coefficientAlpha`
+- `milan2017attachment`
+- `neo2022t1dCovid`
+- `newland2013familyStress`
+- `ng2020differential`
+- `palmer2022kenya`
+- `papp2022informant`
+- `pedersen2017missingImputation`
+- `pinquart2019ptss`
+- `pinquartKauser2018culture`
+- `piotrowski2022ckdSiblings`
+- `ponterotto2006thick`
+- `preacher2015advances`
+- `prikken2019`
+- `prinsen2018cosminGuideline`
+- `procaccia2026maternalPtsd`
+- `rankin2014pathways`
+- `reise2012bifactor`
+- `rhemtulla2012categoricalSem`
+- `rijnhart2021mediation`
+- `robinson1993normalization`
+- `rohrer2015birthOrder`
+- `sattoe2012proxy`
+- `saunders2018saturation`
+- `schafer2019meaningfulness`
+- `schisterman2009overadjustment`
+- `silina2023mediating`
+- `silva2015disagreement`
+- `simonsohn2015specification`
+- `solmeyerMcHale2017differential`
+- `spirtes2000causation`
+- `sterne2009multipleImputation`
+- `tatar2023yoktez`
+- `terwee2007qualityCriteria`
+- `tuncay2025yoktez`
+- `turk2015yoktez`
+- `uganda2022lived`
+- `vehtari2021rhat`
+- `vermaes2012siblings`
+- `vickers2016netbenefit`
+- `walterEliasziwDonner1998`
+- `wang2023evalue`
+- `whiteCarlin2010`
+- `wiebe2016social`
+- `williams2009conflict`
+- `wolff2019probast`
+- `wysocki2008bfst`
+- `yangzong2016tibetanEmbu`
+- `zhang2020sensitivity`
+- `zietz2022fsm`

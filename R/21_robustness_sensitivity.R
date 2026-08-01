@@ -184,8 +184,17 @@ robust_tost <- function(df, sesoi_d = 0.30) {
     } else {
       "Indeterminate"
     }
-    obs_d <- fit$effsize$estimate[fit$effsize$type == "Cohen's d(av)"][1]
-    if (length(obs_d) == 0L) obs_d <- fit$effsize$estimate[1]
+    # observed_d: once TOSTER effsize tablosundan cekilir; surum farki nedeniyle
+    # tur etiketi eslemezse Cohen's d(av) elle hesaplanir (Denetim #16: onceki
+    # kod NA uretip tabloda bos "d=" birakiyordu).
+    obs_d <- suppressWarnings(as.numeric(
+      fit$effsize$estimate[fit$effsize$type == "Cohen's d(av)"][1]))
+    if (length(obs_d) == 0L || is.na(obs_d)) {
+      sd_av <- sqrt((stats::var(dm_vals) + stats::var(ko_vals)) / 2)
+      obs_d <- if (is.finite(sd_av) && sd_av > 0) {
+        (mean(dm_vals) - mean(ko_vals)) / sd_av
+      } else NA_real_
+    }
     rows[[length(rows) + 1L]] <- data.frame(
       outcome = oc, status = "ok",
       sesoi = sesoi_d, n_dm = length(dm_vals), n_kontrol = length(ko_vals),
@@ -208,18 +217,24 @@ evalue_from_d <- function(d, lower_d = NA_real_, upper_d = NA_real_) {
     rr_inv <- 1 / rr
     rr_inv + sqrt(rr_inv * (rr_inv - 1))
   }
+  # E-değeri CI: VanderWeele & Ding (2017). CI null'ı (RR = 1) içeriyorsa
+  # gözlenen ilişkinin CI sınırını null'a çekmek için karıştırıcı gerekmez → E-CI = 1.
+  # Aksi halde CI'nin null'a en yakın ucu (RR>=1'de alt, RR<1'de üst sınır) E-değerine çevrilir.
   ci_e <- if (is.finite(rr_lo) && is.finite(rr_hi)) {
-    bound <- if (rr >= 1) rr_lo else rr_hi
-    if (is.finite(bound)) {
-      if (bound <= 1 && bound >= 1 / 1) {
-        1
-      } else if (bound > 1) {
-        bound + sqrt(bound * (bound - 1))
-      } else {
-        bound_inv <- 1 / bound
-        bound_inv + sqrt(bound_inv * (bound_inv - 1))
-      }
-    } else NA_real_
+    if (rr_lo <= 1 && rr_hi >= 1) {
+      # CI null'ı içeriyor: dayanıklılık yok
+      1
+    } else {
+      bound <- if (rr >= 1) rr_lo else rr_hi
+      if (is.finite(bound)) {
+        if (bound > 1) {
+          bound + sqrt(bound * (bound - 1))
+        } else {
+          bound_inv <- 1 / bound
+          bound_inv + sqrt(bound_inv * (bound_inv - 1))
+        }
+      } else NA_real_
+    }
   } else NA_real_
   list(rr = rr, evalue = evalue_point, evalue_ci = ci_e)
 }
@@ -329,9 +344,9 @@ robust_falsification <- function(df) {
       filter = function(x) (x$group_f == "DM" & !is.na(x$dm_yili) & x$dm_yili < 1) | x$group_f == "Kontrol",
       label  = "DM süresi <1 yıl"
     ),
-    good_control = list(
-      filter = function(x) (x$group_f == "DM" & !is.na(x$hba1c) & x$hba1c <= 7.5) | x$group_f == "Kontrol",
-      label  = "HbA1c <=7.5"
+    long_dm = list(
+      filter = function(x) (x$group_f == "DM" & !is.na(x$dm_yili) & x$dm_yili >= 5) | x$group_f == "Kontrol",
+      label  = "DM süresi >=5 yıl"
     )
   )
   for (oc in robust_p_outcomes()) {

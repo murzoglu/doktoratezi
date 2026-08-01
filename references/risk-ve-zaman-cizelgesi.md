@@ -4,14 +4,14 @@ Bu dosya KISIM XV/44 risk yönetimi ve KISIM XVI/45 24-haftalık plan için yür
 
 ## Risk Yönetimi
 
-Risk matrisi 14 ana riski kapsar. Niteliksel veri bu proje kapsamından çıkarıldığı için niteliksel doygunluk veya inter-coder reliability riski bu matriste yer almaz.
+Risk matrisi 13 ana riski kapsar. Niteliksel veri bu proje kapsamından çıkarıldığı için niteliksel doygunluk veya inter-coder reliability riski bu matriste yer almaz.
 
 Aktif izlem gerektiren başlıklar:
 
-- **R03:** EMBU-P reddetme zayıf psikometri. Savunma: BSEM/latent yorum, multiverse, TOST, açık sınırlılık.
-- **R06:** HbA1c tamamlanma oranı düşük. Savunma: HbA1c keşifsel, `dm_yili` tam veri klinik süre göstergesi.
-- **R08:** Antidepresan kullanımı yorum kaydırıcı olabilir. Savunma: stratified sensitivity ve total-effect dil sınırı.
-- **R12:** Klinik karar ağacı/RF overfit riski. Savunma: calibration, DCA, optimism correction ve dış validasyon notu.
+- **R03:** H3 EMBU-P reddetme zayıf psikometri. Savunma: BSEM/latent yorum, multiverse, TOST, açık sınırlılık.
+- **R06:** renv veya sistem paket kilidi bozulur. Savunma: Docker, `renv.lock` ve targets manifesti.
+- **R08:** ISEI tek başına SES'i karşılamaz. Savunma: latent SES, Hollingshead ve materyal indeks triangülasyonu.
+- **R12:** Bayesian Stan/brms compile veya sampling sorunu. Savunma: CSV/RDS smoke testi; divergent/R-hat/ESS tanıları.
 
 ## 24 Haftalık Plan
 

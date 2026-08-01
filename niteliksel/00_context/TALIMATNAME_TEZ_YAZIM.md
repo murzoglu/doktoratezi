@@ -6,7 +6,7 @@ nitel kanıt, referans ve karma sentez oturumları** (Claude Code).
 Bu belge bir öneri değil, **zorunlu uyulması gereken talimatnamedir**. Codex
 ikizi `00_context/CODEX_PLAYBOOK.md`'dir; iki belge aynı süreci iki ayrı ajan
 harness'ında zorlar. Doktoratezi tarafındaki eş talimatname:
-`/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim/00_kaynak-kurallari/talimatname-claude-code.md`.
+`/workspaces/T1DM-Tez/tez-yazim/00_kaynak-kurallari/talimatname-claude-code.md`.
 
 ## 0. Bağlayıcılık ve zorlama katmanları
 
@@ -31,17 +31,17 @@ ile korunur.
 1. `/tez-oturum "<görev>"` çalıştır → `./dmnitel ai-context` + `./dmnitel
    route-tool` + TRACKER özeti otomatik gelir.
 2. Görevi üç koldan birine yerleştir ve **açıkça bildir**:
-   - **Yerel nitel**: RTA/codebook/COREQ/alıntı/triadik matris → `dmnitel` + bu repo.
+   - **Yerel nitel**: RTA/codebook/COREQ/alıntı/triadik matris → `dmnitel` + bu kol (niteliksel/).
    - **Dış kanıt**: literatür/tam metin/citation → Evidentia v1.7.0
      `medical-research` v8.5.0 native-first hattı (Bölüm 4).
    - **Nicel/karma**: H1–H5, EMBU/Beck/KİA, joint display → paired
      `doktoratezi` + `t1dm-tez-rehberi` skill.
 3. Tez yazımı/format/bölüm sırası işiyse ana operasyon merkezi
-   `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim`'dir; önce oradaki
+   `/workspaces/T1DM-Tez/tez-yazim`'dir; önce oradaki
    `README.md`, `06_kritik-kaynaklar/README.md` + `kritik-dosya-manifesti.tsv`
    ve resmi `docs/tez-kilavuz/` kaynakları esas alınır. Çakışmada resmi kılavuz
    eski repo notlarını ezer.
-4. Karma tez / joint display / iki-repo sentezi isteniyorsa `/capraz-repo` çalıştır.
+4. Karma tez / joint display / iki-kol sentezi isteniyorsa `/capraz-repo` çalıştır.
 5. Skill kapıları: nitel metodoloji sorusunda `niteliksel-arastirma-rehberi-t1dm`,
    nicel/karma soruda `t1dm-tez-rehberi`, render işinde `carbon-quarto-scientific`.
    İki rehber skill ile Evidentia **tek entegre hat**tır: dış literatür/tam metin/
@@ -72,14 +72,14 @@ ile korunur.
   `03_analysis/**`, `04_triadic_matrices/`, `06_manuscript_outputs/`,
   `07_reports/`, `00_context/**`.
 
-## 3. İki-repo yazım modeli (bölüm → kaynak → kapı)
+## 3. İki-kol yazım modeli (bölüm → kaynak → kapı)
 
-| Tez bölümü | Nitel kaynak (bu repo) | Nicel kaynak (doktoratezi) | Zorunlu kapı |
+| Tez bölümü | Nitel kaynak (bu kol (niteliksel/)) | Nicel kaynak (doktoratezi) | Zorunlu kapı |
 |---|---|---|---|
-| GİRİŞ ve AMAÇ / GENEL BİLGİLER | Kanonik nitel rapor yalnız arka plan | `tez-yazim/03_bolum-hazirlik/01…02*.md`, CSR, SAP | Referans kapısı (Bölüm 5) + çift AI-reliability |
+| GİRİŞ ve AMAÇ / GENEL BİLGİLER | Kanonik nitel rapor yalnız arka plan | `tez-yazim/03_bolum-hazirlik/01…02*.md`, CSR, SAP | Referans kapısı (Bölüm 5) + iki-kol AI-reliability |
 | GEREÇ ve YÖNTEM | COREQ, audit trail, positionality, LLM beyanı (`03_analysis/methodology/`) | `03_gerec-ve-yontem.md`, `_targets.R`, veri haritası | Kanonik Marmara format talimatnamesi (`doktoratezi/tez-yazim/00_kaynak-kurallari/marmara-tez-formati-talimatnamesi.md`) + kanonik yöntem kanıtı + sci-audit |
 | BULGULAR | Kanonik nitel sonuç raporu (doktoratezi'ye aktarılmış), 4 makro tema, quote integrity | `04_bulgular.md`, H1–H5 | Repo artefaktı + test kanıtı; ham transcript taraması default değil |
-| TARTIŞMA ve SONUÇ | Negatif vaka, refleksivite, triadik yorum | `05_tartisma-ve-sonuc.md`, post-hoc sınırları | Kanıt ayrımı + çift AI-reliability |
+| TARTIŞMA ve SONUÇ | Negatif vaka, refleksivite, triadik yorum | `05_tartisma-ve-sonuc.md`, post-hoc sınırları | Kanıt ayrımı + iki-kol AI-reliability |
 | KAYNAKLAR / EKLER | COREQ, codebook, audit trail, LLM beyanı | `06_kaynaklar-ekler.md`, `references.bib` | Ledger + Zotero + format kontrol |
 
 Kanıt ayrımı: **tez = 4 makro tema, journal = 6 tema** — karıştırılmaz. Nitel
@@ -93,9 +93,9 @@ kanıtı yapılmaz; joint display iki kolu yan yana getirir ve kanıt türünü 
   `audit-coreq`, `find-negative-cases`, `log-ai-use`.
 - **Dış kanıt çekirdeği (bağlı connectorlar)**: Evidentia v1.7.0 `medical-research`
   v8.5.0 flagship hattı. Tek doğruluk kaynağı
-  `/mnt/thunderbolt/workspaces/evidentia-cc/plugins/evidentia/CONNECTORS.md`;
+  `~/.claude/plugins/cache/cureonics-marketplace/evidentia/<sürüm>/CONNECTORS.md`;
   tek-fetch/retrieve-don't-dump sözleşmesi
-  `/mnt/thunderbolt/workspaces/evidentia-cc/plugins/evidentia/shared/canonical-cache-contract.md`.
+  `~/.claude/plugins/cache/cureonics-marketplace/evidentia/<sürüm>/shared/canonical-cache-contract.md`.
   Bağlı çekirdek: `pubmed-epmc`, `PubMed`, `Paper Search`, `openalex`,
   `semantic-scholar`, `Consensus`, `Elicit`, `Scholar Gateway`, `yoktez-mcp`,
   `yok-akademik`, `anamnesis`, `evidentia-kb`, `annas-reader`. **Dış literatür
@@ -162,11 +162,13 @@ kanıtı yapılmaz; joint display iki kolu yan yana getirir ve kanıt türünü 
 Her dış referans için `/referans-kapisi "<künye>"` işletilir. Sıra sabittir:
 **bağlam → bibliyografik kimlik (DOI/PMID/PMCID/OpenAlex/YÖK) → tam metin
 kanıtı → Zotero mutabakatı (item key + BibTeX key; ikisi farklıdır) →
-claim/pasaj notu → ledger kaydı + çift AI-reliability**. Ledger:
+claim/pasaj notu → ledger kaydı + iki-kol AI-reliability**. Ledger:
 `doktoratezi/tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md`
 (durumlar: `candidate → full-text-ok/full-text-exception → zotero-ok →
 reliability-ok → cite-ok`). Kapı kapanmadan referans tez metnine girmez.
 Zotero'ya yazma/import açık onay ister.
+
+**Referans Bütünlük Şiarı (RBŞ — konstitüsyonel; `tez-yazim/00_kaynak-kurallari/talimatname-claude-code.md` §4.1):** Bir referanstan zenginleştirme/analiz yaparken makalenin **bir parçasını değil tamamını geniş bağlamda semantik kavra**, bu bağlamı **rafine ederek** revize et; **hem kaynağın hem tez metninin somut bilimsel iddialarını çarpıtma** (cherry-pick / düzleştirme / abartma yok; kaynak kendi kapsam+koşuluyla aktarılır).
 
 ## 6. Doğrulama paketi ve iş bitirme kriterleri
 
@@ -196,7 +198,7 @@ plugin'inde**; kanonik davranış doktoratezi
 
 Referanslı bölüm kapanışında doktoratezi tarafında da
 `plugins/doktoratezi-ai-audit/.../test_repo_ai_reliability.py` koşulur
-(çift AI-reliability kuralı).
+(iki-kol AI-reliability kuralı).
 
 İş "tamam" sayılmaz, eğer:
 - [ ] Hangi repo koluna dokunulduğu açık değilse,

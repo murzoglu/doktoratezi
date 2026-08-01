@@ -11,13 +11,13 @@
 ### A.1 Tasarım sabitleri (doğrulanmış)
 
 | Boyut | Değer | Kaynak |
-|---|---|---|
+| --- | --- | --- |
 | Tasarım | Niteliksel tanımlayıcı + fenomenolojik duyarlılık + multi-informant family | `02_processed/cleaned_text/thesis_qualitative_cleaned_current.md` |
 | Birim | **Triad** (anne + T1DM çocuk + sağlıklı kardeş) — *dyad değil* | Aynı |
 | Örneklem | 7 aile × 3 katılımcı = **21 görüşme** | Aynı |
 | Aile kodları | 011, 014, 019, 020, 026, 201, 202 (tümü DM; "kontrol" niteliksel kolda yok) | `01_raw_data/interviews_docx/` |
 | Saha | Marmara Üniv. Hastanesi Çocuk Endokrinoloji polikliniği | Method metni |
-| Görüşme süresi | 15-25 dk/birey, 40-70 dk/aile | Method metni |
+| Görüşme süresi | 20-40 dk/birey, 60-90 dk/aile | Method metni |
 | Analiz çerçevesi | Braun-Clarke refleksif tematik analiz | Method metni |
 | Yazılım | Manuel — MS Word + Excel (renk kodlama) | Method metni |
 | Analist | OM (birinci) + BA (gözlemci + critical friend) | Method metni |
@@ -27,7 +27,7 @@
 ### A.2 Tamamlanmış işler ✅
 
 | # | Çıktı | Yer | Durum |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 1 | Etik protokol (2023-02) | `01_raw_data/ethics_protocol/` | Onaylı |
 | 2 | Görüşme rehberi (anne/hasta/kardeş) | `01_raw_data/interview_guides/` | Tamam |
 | 3 | Demografik form | `01_raw_data/demographics/` | Tamam |
@@ -46,7 +46,7 @@
 ### A.3 Kritik eksikler (skill referansı + neden önemli)
 
 | # | Eksik | Skill Ref | Neden Kritik |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | E1 | "Tematik doygunluk" kavramı methodda kullanılmış (`İlke 3` ihlali) | `02-orneklem-bilgi-gucu.md` | Braun-Clarke 2021 RTA'da saturation eleştirilir; jüri "doygunluğu nasıl ölçtün" diye sorabilir → **Malterud information power**'a çevirilmeli |
 | E2 | COREQ 32-madde **doldurulmuş** checklist yok | `assets/coreq-32-madde-tr.md`, `scripts/coreq-checklist-validator.py` | Yöntem bölümünün her maddenin hangi paragrafta karşılandığını gösteren tablo şart |
 | E3 | Positionality statement ayrı dosya değil | `assets/positionality-tr.md` | Refleksivite süreçtir; tek paragrafta gömülü kalmamalı (`İlke 5`) |
@@ -66,6 +66,7 @@
 ### A.4 Methodda dikkat çeken karar noktaları
 
 **Pozitif (savunulabilir):**
+
 - ✅ Critical friend yaklaşımı (BA), inter-coder agreement zorlamaması — Braun-Clarke 2021 ile uyumlu
 - ✅ Önlüksüz görüşme, klinik otoriteden uzaklaşma — power dynamics farkındalığı
 - ✅ Saha notları + paralinguistik veri (BA) — multi-modal triangulation
@@ -73,6 +74,7 @@
 - ✅ Member checking yerine **görüşme içi özetleme** kararı (sebep belirtilmiş)
 
 **Risk noktaları (düzeltme gerekli):**
+
 - ⚠️ "Veri doygunluğuna ulaşıldı" ifadesi — RTA epistemolojisiyle çelişir
 - ⚠️ "Konsensüs üretmemek" doğru karar ama jüriye karşı reframe edilmeli
 - ⚠️ "Müsait olunan ailelerle 7'de durdu" → ÖRNEKLEM KAPSAMI sınırı + bilgi gücü argümanı yapılmalı
@@ -90,7 +92,7 @@
 **Öncelikli paketler:**
 
 | Paket | İş | Çıktı | Skill ref |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | A.1 | "Doygunluk" → "bilgi gücü" reframe | YÖNTEM bölümünde Malterud 5 boyut tablosu + 1 paragraf yeniden yazım | `02-orneklem-bilgi-gucu.md` |
 | A.2 | COREQ 32-madde doldurma | `04_manuscripts/thesis/coreq_32_completed.md` (her madde + sayfa eşleştirme) | `assets/coreq-32-madde-tr.md` + `scripts/coreq-checklist-validator.py` |
 | A.3 | Positionality statement (TR + EN) | `03_analysis/methodology/positionality_OM.md`, `_BA.md` | `assets/positionality-tr.md` |
@@ -112,7 +114,7 @@
 **Bölüm bazlı:**
 
 | Bölüm | Anahtar içerik | Skill ref | Tahmini süre |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | B.1 — Giriş & Amaç | T1DM aile yükü literatürü; ana ve alt araştırma soruları | — | 1 hafta |
 | B.2 — Genel Bilgiler | T1DM epidemiyolojisi + aile sistemleri teorisi (Bowen) + bakım yükü literatürü | `05_references/literature/` (zaten 11 PDF var) | 1.5 hafta |
 | B.3 — Yöntem | A.1-A.10 çıktılarını entegre et; mevcut taslağı genişlet | `03-gorusme-protokolu-tasarim.md`, `04-rta-6-faz-derinlemesine.md` | 1 hafta (FAZ A çıktıları varsa) |
@@ -126,7 +128,7 @@ Mevcut journal manuscript v2 = 6-tema yapısı. Tez ise 4-makro-tema önerilmiş
 ### FAZ C — Format & Compliance (2-3 hafta, FAZ B sonu paralel)
 
 | Paket | Çıktı | Kontrol |
-|---|---|---|
+| --- | --- | --- |
 | C.1 | Marmara şablonu uygulama (kapak, onay, beyan, içindekiler) | `marmara_thesis_writing_guide.md` |
 | C.2 | Kaynakça (Marmara stilinde) | Anılan tüm kaynakların `references.bib` veya manuel listesi |
 | C.3 | Ekler — görüşme rehberi, COREQ tablosu, codebook, demografik tablo, positionality, refleksif günlük örnekleri, audit trail | Marmara 3.2.9 |
@@ -137,7 +139,7 @@ Mevcut journal manuscript v2 = 6-tema yapısı. Tez ise 4-makro-tema önerilmiş
 ### FAZ D — Yayım & Savunma (paralel + son)
 
 | Paket | İş | Anahtar |
-|---|---|---|
+| --- | --- | --- |
 | D.1 | OSF projesi açma + ön-kayıt sapma tablosu (retrospektif) | OSF page → tez bölümü "açık bilim" alt-başlığında belirtilebilir |
 | D.2 | Pediatric Diabetes manuscript revizyonu | Tezdeki refleksif/COREQ artefaktlarla uyumlandırma |
 | D.3 | Tez ön-savunma | Önceki yapılan ön savunma feedback'ini topla → düzelt |
@@ -166,7 +168,7 @@ Aşağıdakiler yola çıkmadan önce netleşmeli:
 `niteliksel-arastirma-rehberi-t1dm/SKILL.md` "Tezin Sabitleri" bölümünde şu **yanlış varsayımlar** düzeltilmeli:
 
 | Yanlış varsayım (eski) | Doğru (gerçek) |
-|---|---|
+| --- | --- |
 | "~12-20 dyad" | 7 aile triadı = 21 katılımcı |
 | "anne-çocuk dyadik görüşme" | anne + T1DM çocuk + sağlıklı kardeş **triadik** |
 | "EMBU paralel sorular" | EMBU paralel **değil**; aile yaşamı/rol/yük/adalet temalı |

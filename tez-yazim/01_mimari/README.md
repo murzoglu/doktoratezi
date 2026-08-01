@@ -1,14 +1,14 @@
 # 01_mimari — Mimari Katmanı
 
 Bu klasör tez yazımının **mimari katmanı**dır: yürütme planı, araç/yetkinlik
-seçimi, dış-kanıt hattı ve iki-repo yazım modelinin **tek kanonik yeri**.
+seçimi, dış-kanıt hattı ve iki-kol yazım modelinin **tek kanonik yeri**.
 Tek-otorite ilkesi geçerlidir — bir karar yalnız bir dosyada tanımlanır; diğer
 dosyalar onu **yeniden yazmaz, işaret eder**. Duplikasyon bu klasörde policy
 ihlalidir (bkz. `00_kaynak-kurallari/README.md`).
 
 Ayrım: **`00_kaynak-kurallari`** *ne yazılacağının* kaynak-otorite katmanı
 (biçim, süreç, tam-metin erişimi); **`01_mimari`** *nasıl yürütüleceğinin*
-mimari katmanı (plan, araç, dış-kanıt, iki-repo). Kural çakışmasında biçim/süreç
+mimari katmanı (plan, araç, dış-kanıt, iki-kol). Kural çakışmasında biçim/süreç
 kararı daima 00'a devredilir.
 
 ## Tek-Otorite Haritası
@@ -18,7 +18,7 @@ kararı daima 00'a devredilir.
 | `tez-yazim-ana-plani.md` | **Uçtan uca yürütme planı** (kanonik): Faz 0–10 sırası, dosya/sorumluluk haritası, iş paketleri, gap register, self-review. | Yürütme sırasının tek kaynağı. Araç/oturum/referans detayını aşağıdaki otoritelere **devreder**, tekrar etmez. |
 | `yetkinlik-ve-arac-mimarisi.md` | **Araç/yetkinlik mimarisi** (kanonik): L0–L4 kaynak katmanları, tool gate, MCP/skill/plugin seçim matrisi, çıkış kriterleri. | Tüm tool/MCP/skill/plugin seçiminin tek kaynağı. Oturum ritüelini `00`'a devreder. |
 | `evidentia-entegrasyon-cercevesi.md` | **Dış-kanıt mimarisi** (kanonik): evidentia D0–D6 kaskadı, psikososyal kapsam kapısı, giriş noktaları, kanıt paketi. | Dış literatür/citation hattının tek kaynağı (`t1dm-tez-rehberi` çerçevesi). Tam-metin ve ledger'ı `00`/`02`'ye devreder. |
-| `iki-repo-entegrasyon-plani.md` | **İki-repo entegrasyon modeli** (kanonik): resmi bölüm ↔ nicel/nitel kaynak eşlemesi, repo-düzeyi gizlilik sınırı. | Cross-repo yazım modelinin tek kaynağı. Joint display alanlarını `05`'e devreder. |
+| `iki-repo-entegrasyon-plani.md` | **İki-kol entegrasyon modeli (nicel kök ↔ nitel kol)** (kanonik): resmi bölüm ↔ nicel/nitel kaynak eşlemesi, repo-düzeyi gizlilik sınırı. | Cross-repo yazım modelinin tek kaynağı. Joint display alanlarını `05`'e devreder. |
 
 ## Mimari katmanı dışı bağlı omurga (devredilen otoriteler)
 
@@ -38,7 +38,7 @@ kararı daima 00'a devredilir.
 2. **Yürütme fazı** → `tez-yazim-ana-plani.md` (bölümün hangi faza düştüğü).
 3. **Araç/MCP seçimi** → `yetkinlik-ve-arac-mimarisi.md` (tool gate + matris).
 4. **Dış literatür gerekiyorsa** → `evidentia-entegrasyon-cercevesi.md`.
-5. **Karma/iki-repo kesim ise** → `iki-repo-entegrasyon-plani.md` + `05_entegrasyon/`.
+5. **Karma/iki-kol kesim ise** → `iki-repo-entegrasyon-plani.md` + `05_entegrasyon/`.
 
 ## Öncelik zinciri
 

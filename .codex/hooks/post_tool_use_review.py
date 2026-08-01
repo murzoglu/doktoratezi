@@ -14,12 +14,60 @@ from __future__ import annotations
 import json
 import os
 import re
+import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _common import read_event  # noqa: E402
 
 ERROR_SIGNATURES = ("Traceback (most recent call last)", "FATAL:", "segfault")
+
+_WRITE_TOOLS = {"Write", "Edit", "MultiEdit"}
+
+
+def _git_root() -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "--show-toplevel"], text=True).strip()
+    except Exception:
+        return os.environ.get("CLAUDE_PROJECT_DIR") or os.getcwd()
+
+
+def _is_bib_target(event: dict) -> bool:
+    """Write/Edit target references/references.bib? (bib write-time gate; Claude twin)"""
+    if event.get("tool_name") not in _WRITE_TOOLS:
+        return False
+    ti = event.get("tool_input") or {}
+    fp = (ti.get("file_path") or ti.get("filePath") or "").replace("\\", "/")
+    return fp.endswith("references/references.bib") or fp.endswith("/references.bib") \
+        or fp == "references.bib"
+
+
+def bib_gate(event: dict) -> str | None:
+    """references.bib edit → bib_hygiene HARD feedback (etüt madde C). Fail-open."""
+    if not _is_bib_target(event):
+        return None
+    root = _git_root()
+    tool = os.path.join(root, "scripts", "util", "bib_hygiene.py")
+    if not os.path.exists(tool):
+        return None
+    try:
+        proc = subprocess.run(
+            [sys.executable, tool, "all"], cwd=root,
+            capture_output=True, text=True, timeout=180,
+            env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+        )
+    except Exception:
+        return None
+    if proc.returncode == 1:
+        out = (proc.stdout or "") + (proc.stderr or "")
+        hard = len(re.findall(r"\bHARD\b", out))
+        return (
+            f"references.bib duzenlendi; bib_hygiene HARD={hard} (tanimsiz/"
+            "cozumsuz atif render'i kirar). /referans-kapisi ile kapatin ve "
+            "referans-denetim-ledgeri.md'de cite-ok satirini dogrulayin."
+        )
+    return None
 SECRET_PATTERNS = [
     (r"sk-(?:proj|svcacct)-[A-Za-z0-9_\-]{20,}", "OpenAI project/service account key"),
     (r"sk-[A-Za-z0-9]{20,}", "OpenAI-style secret key"),
@@ -60,6 +108,12 @@ def extract_response_text(event: dict) -> str:
 
 def main() -> None:
     event = read_event()
+
+    bib_msg = bib_gate(event)
+    if bib_msg:
+        sys.stdout.write(json.dumps({"decision": "block", "reason": bib_msg}))
+        sys.exit(0)
+
     text = extract_response_text(event)
 
     leaked_labels = sorted({label for pattern, label in SECRET_PATTERNS if re.search(pattern, text)})

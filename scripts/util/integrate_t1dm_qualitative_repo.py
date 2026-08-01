@@ -9,8 +9,8 @@ import time
 from pathlib import Path
 
 
-SOURCE_REPO = Path("/mnt/thunderbolt/workspaces/doktoratezi")
-TARGET_REPO = Path("/mnt/thunderbolt/workspaces/T1DM Niteliksel")
+SOURCE_REPO = Path("/workspaces/T1DM-Tez")
+TARGET_REPO = Path("/workspaces/T1DM-Tez/niteliksel")
 BACKUP_SUFFIX = f".bak.{int(time.time())}"
 
 
@@ -239,7 +239,7 @@ from typing import Any
 from .common import normalize_key
 
 
-PAIRED_QUANTITATIVE_REPO = "/mnt/thunderbolt/workspaces/doktoratezi"
+PAIRED_QUANTITATIVE_REPO = "/workspaces/T1DM-Tez"
 
 DEFAULT_EVIDENTIA_SERVERS = [
     "evidentia-skills",
@@ -268,7 +268,7 @@ CONDITIONAL_PLUGIN_LAYERS = [
 ]
 
 ZOTERO_WEB_BRIDGE = "scripts/util/zotero_env_bridge.py"
-ZOTERO_DESKTOP_HELPER = "/home/mahirkurt/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py"
+ZOTERO_DESKTOP_HELPER = "~/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py"
 
 ZOTERO_COMMANDS = [
     f"python3 {ZOTERO_WEB_BRIDGE} status --json",
@@ -547,7 +547,6 @@ def route_query(query: str) -> RouteResult:
             "kia",
             "kİa",
             "srq",
-            "hba1c",
             "targets",
             "_targets",
             "r pipeline",
@@ -927,7 +926,7 @@ class ToolBridgeTests(unittest.TestCase):
         self.assertIn("annas-reader", context)
         self.assertIn("life-science-research:research-router-skill", context)
         self.assertIn("zotero:Zotero", context)
-        self.assertIn("/mnt/thunderbolt/workspaces/doktoratezi", context)
+        self.assertIn("/workspaces/T1DM-Tez", context)
 
     def test_literature_query_routes_to_evidentia(self):
         route = route_query("RTA bilgi gücü için PubMed ve tam metin kaynak taraması")
@@ -939,7 +938,7 @@ class ToolBridgeTests(unittest.TestCase):
         route = route_query("H5 EMBU Beck KIA targets pipeline joint display")
 
         self.assertIn("paired doktoratezi + t1dm-tez-rehberi", route.gate_order)
-        self.assertEqual(route.paired_repo, "/mnt/thunderbolt/workspaces/doktoratezi")
+        self.assertEqual(route.paired_repo, "/workspaces/T1DM-Tez")
 
     def test_biomedical_query_routes_to_life_science_plugin(self):
         route = route_query("HLA genetik mekanizma ve beta cell pathway")
@@ -1063,7 +1062,7 @@ Zotero Desktop local API yalnız Zotero uygulamasındaki lokal full-text index, 
 connector import gibi işler gerektiğinde kullanılır:
 
 ```bash
-python3 /home/mahirkurt/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py status --json
+python3 ~/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py status --json
 ```
 
 ### Kısa Kullanım
@@ -1120,7 +1119,7 @@ tez/makale taslakları ve yerel belge-denetim araçlarından oluşur.
 2. Niteliksel işlerde ana gate `niteliksel-arastirma-rehberi-t1dm` mantığıdır: RTA, COREQ/SRQR,
    JARS-Qual, KVKK, refleksivite, audit trail ve triadik anne-cocuk-kardes yorum çerçevesi.
 3. Nicel R pipeline, H1-H5, EMBU/Beck/KIA analizleri veya karma tez joint display gerekiyorsa
-   paired repo `/mnt/thunderbolt/workspaces/doktoratezi` ve `t1dm-tez-rehberi` ile koordine et.
+   paired repo `/workspaces/T1DM-Tez` ve `t1dm-tez-rehberi` ile koordine et.
 4. Dış literatür, citation audit, tam metin, YÖK tez, OSF/PsyArXiv veya KOL gereksiniminde
    Evidentia MCP çekirdeğini kullan; ham katılımcı verisini connector'a gönderme.
 5. Araç seçimi belirsizse önce `./dmnitel route-tool --query "<soru>"`; kapsamı sabitlemek için
@@ -1149,7 +1148,7 @@ tez/makale taslakları ve yerel belge-denetim araçlarından oluşur.
 - Test: `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests`.
 - MCP roster kontrolü: `python3 .codex/tools/codex_mcp_roster_redacted.py`.
 - Zotero Web API durum kontrolü: `python3 scripts/util/zotero_env_bridge.py status --json`.
-- Zotero Desktop local API durum kontrolü: `python3 /home/mahirkurt/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py status --json`.
+- Zotero Desktop local API durum kontrolü: `python3 ~/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py status --json`.
 - Ham `codex mcp list` kullanma; stdio argümanlarında token yazdırabilir.
 - Harici Evidentia/Codex/MCP kullanımı sonrası `./dmnitel log-ai-use ... --external-api-used yes`
   ile LLM kullanım günlüğüne kayıt düş.
@@ -1169,11 +1168,11 @@ These rules are loaded into Codex context by `.codex/hooks/session_start.py`.
 
 1. Use Turkish for thesis/repo explanations unless the user asks otherwise.
 2. Ground repo facts in `CLAUDE.md`, `00_context/TRACKER.md`, `00_context/REPO_CONTEXT.md`,
-   `03_analysis/codebook/codebook_v2.md`, methodology files, or checked toolkit/tests.
+   `03_analysis/codebook/codebook_v3.md`, methodology files, or checked toolkit/tests.
 3. Do not print, summarize broadly, or export row-level/participant-level content from
    `01_raw_data/`, `02_processed/transcripts/`, `.remember/`, `00_raw_locked/`, or `01_deidentified/`.
 4. Distinguish qualitative-arm facts from quantitative-arm facts. Quantitative pipeline claims belong
-   to `/mnt/thunderbolt/workspaces/doktoratezi`; qualitative RTA/COREQ/codebook claims belong here.
+   to `/workspaces/T1DM-Tez`; qualitative RTA/COREQ/codebook claims belong here.
 5. Tool orchestration is task-gated: qualitative writing/methodology stays in this repo; external
    literature/citation/full-text/KOL/OSF/YOK evidence goes through Evidentia; quantitative R analysis
    goes through the paired `doktoratezi` repo.
@@ -1201,7 +1200,7 @@ These rules are loaded into Codex context by `.codex/hooks/session_start.py`.
 13. Log external Evidentia/Codex/MCP/plugin use with `./dmnitel log-ai-use`; raw/identifiable flags must stay
     `no` because those data must not be sent.
 14. For toolkit code changes, prefer `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests`.
-15. The paired quantitative repo is `/mnt/thunderbolt/workspaces/doktoratezi`; cross-repo synthesis may
+15. The paired quantitative repo is `/workspaces/T1DM-Tez`; cross-repo synthesis may
     use de-identified themes, methodology, COREQ/audit trail outputs, and researcher-approved excerpts,
     never raw transcripts or demographic rows.
 """,
@@ -1214,7 +1213,7 @@ def materialize_evidentia_settings() -> None:
         """---
 enabled: true
 project_profile: t1dm_qualitative_thesis
-paired_quantitative_repo: "/mnt/thunderbolt/workspaces/doktoratezi"
+paired_quantitative_repo: "/workspaces/T1DM-Tez"
 repo_gate: niteliksel-arastirma-rehberi-t1dm
 local_tool_bridge: "./dmnitel ai-context"
 local_tool_router: "./dmnitel route-tool --query '<soru>'"
@@ -1222,7 +1221,7 @@ ai_use_log_command: "./dmnitel log-ai-use"
 zotero_web_api_key_env: "ZOTERO_API_KEY"
 zotero_web_status_command: "python3 scripts/util/zotero_env_bridge.py status --json"
 zotero_web_export_command: "python3 scripts/util/zotero_env_bridge.py export-bibtex --out references/references.bib"
-zotero_desktop_status_command: "python3 /home/mahirkurt/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py status --json"
+zotero_desktop_status_command: "python3 ~/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py status --json"
 context_budget_mode: qualitative_t1dm_max_depth
 evidence_mode: maximum_depth_uncapped
 default_cascade: D0-D6
@@ -1384,7 +1383,7 @@ qualitative methodology judgement; it enforces source grounding, privacy boundar
    from `.env` and must never print the key. Use the Desktop helper only for local full-text,
    attachment, or connector workflows. Require confirmation for Zotero writes/imports.
 8. For quantitative H1-H5/EMBU/Beck/KIA/R-pipeline questions, switch to the paired repo
-   `/mnt/thunderbolt/workspaces/doktoratezi` and `t1dm-tez-rehberi`.
+   `/workspaces/T1DM-Tez` and `t1dm-tez-rehberi`.
 9. For MCP checks, use `python3 .codex/tools/codex_mcp_roster_redacted.py`; never raw
    `codex mcp list`.
 10. After external Evidentia/Codex/MCP/plugin use, record the operation with `./dmnitel log-ai-use`.

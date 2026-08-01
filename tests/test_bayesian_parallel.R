@@ -64,9 +64,22 @@ stopifnot(
 
 post_h1 <- read.csv(file.path(out_dir, "bayes_h1_posterior.csv"))
 stopifnot(
-  nrow(post_h1) == 2L,
+  # Denetim P0-1: dogrulayici grup ana etkisi ailesi dort EMBU-C alt olcegini
+  # kapsadigindan Bayesci cift raporlama da dort alt olcek icin uretilir.
+  nrow(post_h1) == 4L,
   all(post_h1$status == "ok")
 )
+
+# SINIFLANDIRMA TUTARLILIK KAPISI (denetim P0-1): CSV'de saklanan bf_class
+# etiketi, bf10 değerinin Jeffreys bandıyla birebir örtüşmelidir. Önceki
+# drift'te bir tablo BF=5,68'i "Strong H1" (>10 bandı) olarak etiketliyordu.
+for (df_bf in list(post_h1, post_h3)) {
+  ok_rows <- is.finite(df_bf$bf10)
+  stopifnot(all(
+    mapply(function(v, lbl) identical(bayes_bf_classify(v), lbl),
+           df_bf$bf10[ok_rows], df_bf$bf_class[ok_rows])
+  ))
+}
 
 # Diagnostics — R̂ < 1.01 eşiği
 diag_h3 <- read.csv(file.path(out_dir, "bayes_h3_diagnostics.csv"))

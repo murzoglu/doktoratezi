@@ -3,6 +3,11 @@
 Sürüm: 2.0 · 2026-07-06 · **Kanonik araç: `sci-audit@cureonics-marketplace`
 plugin, axis G (Türkçe bilimsel yazım/imla).**
 
+> **Birleşik checklist bağı:** Bu denetimin Kapı 4 maddeleri
+> `tez-kontrol-checklisti.md` (K3-SEQ-01 headings, K4-COH-01 coherence,
+> K4-REF-01 reference-prose) altında `scripts/util/tez_checklist_verify.py
+> --section K4` (ve `--section K3`) ile birleşik olarak koşulur.
+
 > **Rafine notu (v1 → v2):** Bu denetimin eski sürümü, repo içinde ayrı bir
 > `scripts/util/tr_sciaudit.py` + `.venv-tr-sciaudit` + `gecturk_selfhost_endpoint.py`
 > + `requirements/tr-sciaudit.txt` + `tests/test_tr_sciaudit.py` kopyası
@@ -42,7 +47,7 @@ ai-audit plugin'lerindedir (bkz. playbook "AI-Reliability Katman Sınırı").
   [--abbreviations project-abbr.txt]
 
 # Deterministik CLI (CI/rapor; plugin-bundled — repo-local kopya değil):
-SCIA="$(ls -d /home/mahirkurt/.claude/plugins/cache/cureonics-marketplace/sci-audit/*/ | sort -V | tail -1)"
+SCIA="$(ls -d $HOME/.claude/plugins/cache/cureonics-marketplace/sci-audit/*/ | sort -V | tail -1)"
 python3 "${SCIA}skills/turkish-sci-style/scripts/tr_sciaudit.py" chapters/<bolum>.qmd \
   --strictness certification --format md --fail-on error \
   --out tez-yazim/04_kalite-kontrol/raporlar/<bolum>-tr-sciaudit.md

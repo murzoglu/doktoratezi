@@ -1,41 +1,17 @@
 ---
 name: t1dm-tez-rehberi
 description: >
-  Doktora tezi (Tip 1 Diyabet & Ebeveynlik Tutumu — 482 satır = 241 aile × 2 katılımcı, EMBU/Beck/KİA)
-  için R analiz pipeline'ından (targets + lavaan + lme4 + brms + mice + WeightIt + tidyLPA + qgraph +
-  specr + sensemakr + papaja) tez yazımına (Quarto + Türkçe APA 7 + JARS-Mixed + apaquarto) kadar
-  SAP v3.0 KISIM I-XVIII tam uçtan uca yetkin rehber. Her hipotez bazlı analiz (H1 multilevel child
-  perception, H2 APIM/Olsen-Kenny dyadic, H3 IPTW ANCOVA, H4 WLSMV ordinal SEM, **H5 dyadic
-  concordance: ICC + Bland-Altman + RSA + Common Fate + k-coefficient**), KISIM VI tek-mediator/
-  multilevel/conditional process/Bayesian mediation, KISIM VII LPA/LCA/Bifactor S-1, KISIM VIII GGM
-  + NCT + Beck symptom network, KISIM IX risk skor + ROC + DCA + CART + RF + NRI/IDI calibration,
-  KISIM X DM klinik (HbA1c interaction + spline + tanı yaşı strata), KISIM XI multiverse + TOST +
-  sensemakr + E-value + negative control + falsification, KISIM XII Bayesian dual reporting (brms +
-  BF + WAIC/LOO + stacking), KISIM XIII karma yöntem (RTA + joint display + convergence), KISIM XIV
-  papaja + 3-makale plan + FAIR/Zenodo/OSF, KISIM XV-XVII devstats yedi tedbir + risk matrisi +
-  24-haftalık plan için kullan. Her psikometrik karar (CFA/ω/invariance/IRT GRM), her eksik veri
-  çerçevesi (FIML/MI m=50/NMAR delta), her nedensellik adımı (DAG/IPTW/sensemakr/E-value), her etki
-  büyüklüğü ve güç (Cohen's d, ω², simr, Pinquart priors), her açık bilim kararı (OSF, renv,
-  multiverse, sensitivity, FAIR, Zenodo) ve her tez bölümü (Yöntem, Bulgular, Tartışma, 18 alt-bölüm
-  master mapping) için tetikle. Bu projede her R kodu, her .qmd düzenlemesi, her istatistik kararı,
-  her raporlama paragrafı, her psikometri sorusu, her metodoloji tartışması, her dyadic analiz, her
-  Bayesian preflight, her sensitivity, her latent profil, her klinik fayda, her DM alt-analiz, her
-  yayın kararı ve her runbook güncellemesi geldiğinde MUTLAKA bu skill'i tetikle. Anahtar kelimeler:
-  T1DM, EMBU, EMBU-P, EMBU-C, Beck, KİA, SRQ, aile-içi ICC, multilevel, APIM, dyadic, Olsen-Kenny,
-  RSA, response surface, Edwards-Parry, common fate, k-coefficient, lavaan, lmer, brms, blavaan,
-  mice, FIML, IPTW, propensity, doubly robust, sensemakr, E-value, multiverse, specr, TOST, ROPE,
-  Bayes factor, WAIC, LOO, stacking, ω-McDonald, invariance, IRT, WLSMV, GRM, LPA, LCA, mixture,
-  bifactor S-1, GGM, EBIC-LASSO, NCT, network comparison, symptom network, ROC, DCA, CART, random
-  forest, NRI, IDI, calibration, HbA1c, spline, tanı yaşı, joint display, RTA, Braun-Clarke,
-  Gwet AC1, papaja, apaquarto, JARS-Mixed, STROBE, OSF, ön-kayıt, FAIR, Zenodo, türetilmiş skor,
-  kanonik kilit, _targets, Pinquart, simr, multiverse, falsification, negative control. **Dış
-  literatür kanıtı, alanyazın taraması, kanıt sentezi, Giriş/Tartışma literatürü, benchmark
-  doğrulama, Bayesian prior türetimi, psikometrik referans, T1DM epidemiyoloji, references.bib /
-  citation audit, KOL/hakem haritası, tam-metin getirme, sistematik derleme gerektiğinde
-  `evidentia` plug-in'i ile entegre çalış** (anahtar kelimeler: evidentia, medical-research,
-  literatür sentezi, PubMed, EuropePMC, Consensus, YÖK Tez, OpenAlex, Semantic Scholar,
-  PsyArXiv, OSF registrations/preregistration, tam metin, evidence-synthesizer, kaynak doğrulama).
-  Şüphede mutlaka KULLAN.
+  Doktora tezi (Tip 1 Diyabet & Ebeveynlik Tutumu; 482 satır = 241 aile × 2 katılımcı,
+  EMBU/Beck/KİA) için R analiz pipeline'ından (targets, lavaan, lme4, brms, mice, WeightIt,
+  tidyLPA, qgraph, specr, sensemakr) tez yazımına (Quarto, Türkçe APA 7, JARS-Mixed, apaquarto)
+  kadar SAP v3.0 KISIM I-XVIII uçtan uca rehber. BU DEPODA tez/veri/istatistik/yazım işinin ANA
+  KAPISI: her R kodu, her .qmd düzenlemesi, her istatistik ve raporlama kararı için tetikle.
+  Kapsam: H1 multilevel, H2 APIM/dyadic, H3 IPTW ANCOVA, H4 WLSMV ordinal SEM, H5 dyadic
+  concordance (ICC/Bland-Altman/RSA); mediation, LPA/LCA/bifactor S-1, GGM/NCT ağ,
+  ROC/DCA/kalibrasyon, DM klinik alt-analiz, multiverse/TOST/E-value, Bayesian brms+BF+LOO, joint display,
+  psikometri (CFA/ω/invariance/IRT GRM), eksik veri (FIML/MI/NMAR), nedensellik
+  (DAG/PS/sensemakr), açık bilim (OSF/renv/FAIR). Dış literatür `evidentia`, bölüm kapanışı yedi
+  eksenli `sci-audit` ile entegre. Şüphede KULLAN.
 ---
 
 # T1DM Doktora Tezi — Analiz ve Yazım Rehberi
@@ -100,7 +76,7 @@ Bu skill aşağıdaki sabitler üzerine kuruludur. **Hepsi referans modeldir; bi
 3. **Ölçüm teorisiz olamaz.** EMBU-C alpha değerleri tarihsel olarak .49–.69 aralığında — bu
    skorlar "varolduğu varsayılarak" kullanılamaz; her alt ölçek için **CFA + ω + invariance**
    önceliği vardır.
-4. **Eksik veri yapısaldır.** `hba1c` ve `dm_yili` kontrol grubunda **structural missing**
+4. **Eksik veri yapısaldır.** `dm_yili` ve `dm_tani_tarihi` kontrol grubunda **structural missing**
    (tasarım kaynaklı). Listwise asla varsayılan değildir; FIML, MI (m=50, maxit=30) ve
    NMAR delta duyarlılığı üç katmanlı çerçeve olarak yürütülür.
 5. **Etik kısıtlar deneysel kontrolü engeller.** "Diyabet kazanma" rastgelelenemez → propensity
@@ -176,7 +152,7 @@ Sorgunun tipini belirle ve ilgili reference dosyasını oku:
 | LPA, LCA, mixture regression, Bifactor S-1 | `references/latent-degisken-yontemleri.md` |
 | GGM (EBIC-LASSO), NCT, Beck symptom network, qgraph, bootnet | `references/network-analizi.md` |
 | Risk skoru, ROC, DCA, CART, Random Forest, calibration, NRI/IDI | `references/klinik-fayda.md` |
-| HbA1c moderation, DM süresi spline, tanı yaşı strata (DM-only) | `references/dm-klinik-altanalizler.md` |
+| DM süresi spline, tanı yaşı strata (DM-only) | `references/dm-klinik-altanalizler.md` |
 | Multiverse, TOST, Bayesian ROPE, sensemakr, E-value, negative control, falsification | `references/robustluk-ve-sensitivite.md` |
 | brms multilevel, BF Savage-Dickey, WAIC/LOO, model stacking, blavaan | `references/bayesci-paralel-hat.md` |
 | RTA (Braun-Clarke), joint display, convergence, Gwet AC1 | `references/karma-yontem.md` |
@@ -204,6 +180,13 @@ Sorgunun tipini belirle ve ilgili reference dosyasını oku:
 |------------|----------|
 | Alanyazın taraması, Giriş/Tartışma literatürü, benchmark doğrulama, Bayesian prior türetimi, psikometrik referans, T1DM epidemiyoloji, references.bib/citation audit, KOL/hakem haritası, tam-metin | `references/literatur-kanit-evidentia.md` → sonra `evidentia` |
 
+#### Manüskript denetimi (sci-audit entegrasyonu)
+
+| Sorgu Tipi | Önce Oku |
+|------------|----------|
+| Yazılan bölüm/paragraf kapanışı, kaynak/DOI doğrulama, uydurma referans, claim grounding, statcheck/GRIM istatistik tutarlılığı, halüsinasyon sinyali, raporlama kılavuzu (PRISMA/STROBE/COREQ/JARS) uyumu, AI-şeffaflık beyanı, Türkçe imla/ondalık-virgül denetimi | `references/manuskript-denetimi-sciaudit.md` → sonra `sci-audit` |
+| Semantik yakın-duplikat / bölüm-tekrarı, karma joint-display uyum/ayrışma, HARKing / aşırı-iddia / anlatı-tutarlılık judge, ledger drift semantik rescue (Şerit B, embedding CANLI, SOFT/advisory) | `references/manuskript-denetimi-sciaudit.md` §galileo → `scripts/util/thesis_semantic.py` / `galileo-audit` judge'ları / `karma_ledger_check.py --semantic` |
+
 **Birden fazla dosya gerekiyorsa hepsini oku** (devstats progressive disclosure pattern).
 
 ### Faz 1.5 — Dış Literatür Kanıtı mı? (evidentia'ya Delegasyon)
@@ -211,6 +194,11 @@ Sorgunun tipini belirle ve ilgili reference dosyasını oku:
 Bu repoda **ana gate her zaman bu skill'dir**. Evidentia, ana gate'i bypass etmez; yalnız
 `t1dm-tez-rehberi` kapsam/OSF/PII/artefakt kararından sonra dış-kanıt, bağlam yönetimi, derinlik
 kontrolü ve tam-metin çıkarımı için çağrılır.
+
+**Varsayılan mod (bu repo):** Giriş/Genel Bilgiler/Tartışma literatür işi
+**narratif derin-lit** modunda yürür (bkz. köprü §"Narratif Derin-Lit Modu";
+PRISMA akış/RoB/GRADE yok). PRISMA P0→P7 yalnız kullanıcı açıkça
+"sistematik/kapsam derleme" isterse (`/evidentia:evidentia`).
 
 **Sorulması gereken ayrım:** Bu soru **iç-veri analizi** mi (kendi 482-satır verimiz → bu skill'de
 kal) yoksa **dış literatür kanıtı** mı (dünyadan gelen kanıt → `evidentia` plug-in'ine delege et)?
@@ -243,6 +231,8 @@ repo/platform/UI/web otomasyon sinyali yoksa çağrılmaz. MCP roster kontrolü 
 | `/evidentia-kol <alan>` | Jüri/hakem/ortak-yazar/alan otoritesi |
 | `evidence-synthesizer` (alt-ajan) | Ağır fan-out (Giriş'in tamamı vb. — izole derin semantik değerlendirme) |
 | `academic-archival-distiller` (alt-ajan) | TR psikoloji/gelişim tezleri (YÖK), arşiv literatürü; Codex'te yoksa `yoktez-mcp` doğrudan akışı |
+| **`minerva_literature_search` / `minerva_rominedb_*` (proje MCP `minerva-evidence`)** | **Roche Minerva dev makale vektör-korpusu (semantik/hibrit) + rominedb tam-metin — D2 keşif, D4 tam-metin (annas ÖNCESİ) → anamnesis sentez. Detay köprü §1.2; YALNIZ literatür terimi (KVKK)** |
+| `/tez-literatur <bölüm> <konu>` | Marmara narratif derin-lit (SR değil); bölüm ∈ giris\|genel-bilgiler\|tartisma |
 
 **Üç bağlayıcı kural** (detay köprü dosyasında):
 1. **KAPSAM KAPISI** — bu tez psikososyal; evidentia önce `.claude/evidentia.local.md` repo-router'ını
@@ -266,6 +256,8 @@ ve ilgili `.qmd`/reference dosyasına işlenir. Her dış-kanıt koşumu tam izl
 `validation_gates`, `tez_artefakti`, `bibtex_durumu`. Evidentia önce repo-router ile aktif ve
 koşullu connector'ları ayırır; ilgili katmanlar maksimum derinlikte çalıştırılır, tetiklenmemiş
 pasif katmanlar çağrılmaz, tetiklenip erişilemeyen katmanlar gerekçeli `gap_log` olarak kalır.
+
+**Referans Bütünlük Şiarı (RBŞ — konstitüsyonel; `tez-yazim/00_kaynak-kurallari/talimatname-claude-code.md` §4.1):** Bir referanstan zenginleştirme/analiz yaparken makalenin **bir parçasını değil tamamını geniş bağlamda semantik kavra**, bu bağlamı **rafine ederek** revize et; **hem kaynağın hem tez metninin somut bilimsel iddialarını çarpıtma** (cherry-pick / düzleştirme / abartma yok; kaynak kendi kapsam+koşuluyla aktarılır).
 
 ### Faz 2 — Yürütme
 
@@ -310,6 +302,57 @@ Türkçe APA 7 sablonu için her zaman `references/raporlama-sablonlari.md`. Tez
 
 Tez bölümü düzenlemeleri için `references/tez-yazim-rehberi.md` (Quarto YAML, papaja, JARS-Mixed,
 STROBE, freeze: auto, lang: tr).
+
+### Faz 3.6 — Manüskript Adli Denetimi (sci-audit — ÜRETİMDEN SONRA ZORUNLU)
+
+Bir bölüm/paragraf **yazıldıktan sonra**, kapanış veya sertifikasyon öncesinde metin
+`sci-audit` plug-in'inin yedi ekseninden **adım adım, eksiksiz** geçer. Önce
+[`references/manuskript-denetimi-sciaudit.md`](references/manuskript-denetimi-sciaudit.md)
+köprü protokolünü oku. Katman sınırı: **evidentia dış-kanıtı getirir → bu skill metni üretir →
+sci-audit yazılanı denetler → repo `doktoratezi-ai-audit` ham-veri/KVKK sınırını korur** (çakışmaz).
+
+| Eksen | Komut / skill | Ne yakalar |
+|-------|---------------|------------|
+| A Referans bütünlüğü | `/sci-audit:verify-citations` · `citation-forensics` | Uydurma/yanlış-atıf/geri-çekilmiş DOI/PMID |
+| B Claim grounding | (`/sci-audit:audit` kapsar) · `claim-grounding` | Kaynaksız sayısal/olgusal iddia |
+| C İstatistik tutarlılığı | `/sci-audit:check-stats` · `stats-forensics` | statcheck, GRIM/GRIMMER, yüzde/altgrup, ondalık virgül |
+| D Halüsinasyon | (`/sci-audit:audit` kapsar) · `hallucination-signals` | Aşırı-kesinlik, uydurma yöntem/varlık, checksum |
+| E Raporlama kılavuzu | `/sci-audit:guideline-check --type <k>` | PRISMA/STROBE/COREQ/JARS madde uyumu |
+| F AI-şeffaflık | (`/sci-audit:audit` kapsar) · `ai-transparency` | ICMJE/COPE AI-kullanım beyanı |
+| G Türkçe imla | `/sci-audit:check-turkish --strictness certification` | Ondalık-nokta `p` (blocker), register, imla |
+
+Tam koşum ve birleştirme:
+
+```bash
+/sci-audit:audit chapters/<bolum>.qmd --lang tr --strictness certification --type <coreq|strobe|jars>
+/sci-audit:audit-report --out tez-yazim/04_kalite-kontrol/raporlar/<bolum>-sci-audit.md
+/sci-audit:check-turkish chapters/<bolum>.qmd --strictness certification   # Türkçe: axis G daima
+```
+
+Kural: **yedi eksen atlanmaz**; Türkçe metinde axis G daima çalışır; `error`/`blocker` sıfırlanmadan
+bölüm final değildir. Detay + adım adım protokol + tez-artefaktı haritası:
+[`references/manuskript-denetimi-sciaudit.md`](references/manuskript-denetimi-sciaudit.md).
+
+**Galileo bağımsız judge (sci-audit'in YANINDA — model-çeşitliliği):** 7-eksenden sonra
+`galileo-audit` (Roche-içi GPT-5.4 judge + semantik-tutarlılık; MCP `galileo-audit`) advisory/
+soft-block pass'i çalışır. **three-tier:** HARD (sci-audit, değişmez) / **SOFT-block**
+(groundedness/faithfulness<0,60 · `citation_support=unsupported` · bölümler-arası çelişki ·
+büyük Claude↔GPT bütünlük çelişkisi → `certified-final` durur, insan-override kayıtlı) / advisory.
+Galileo'nun **başlık/tutarlılık/referans-nesri** katmanı (`galileo_heading_cascade` Marmara
+§1.3+§5 deterministik başlık kaskad+sıra, code-fence-aware; `galileo_coherence` embedding
+paragraf akışı; `galileo_reference_prose` atıf yoğunluğu+monotonluk+Tartışma-sıfır-atıf) `bölüm-sertifika`
+Kapı 3/4'ün advisory genişlemesidir.
+
+**Şerit B ham-vektör + judge uzantıları (2026-07-21, embedding CANLI — Azure `text-embedding-3-large`):**
+`scripts/eval/semantic_core.py` (embed/cosine/dedup/redundancy/match + KVKK tripwire) üstünde
+CLI `scripts/util/thesis_semantic.py` — `bib-dup` (semantik yakın-duplikat; embedding yoksa
+`bib_hygiene` Jaccard'a degrade; HARD yalnız `--strict`) ve `redundancy` (bölüm-tekrarı).
+Judge uzantıları (hepsi SOFT/advisory, "critical friend"): `galileo_convergence_judge` (karma
+joint-display uyum/tamamlayıcılık/ayrışma/genişleme + aşırı-entegrasyon), `galileo_harking_judge`,
+`galileo_overclaim_judge`, `galileo_coherence_judge`; `classify_gate` bunları katlar. Ayrıca
+`karma_ledger_check.py --semantic` (substring-drift semantik rescue: parafraz-sadık=INFO).
+**Doktrin: HARD asla LLM judge'dan gelmez** (`classify_gate` `hard=[]` her zaman).
+KVKK: yalnız manuskript/literatür (`semantic_core` tripwire zorlar). Doktrin: `references/manuskript-denetimi-sciaudit.md` §6.
 
 ### Faz 4 — Açık Bilim Çapraz Kontrolü
 
@@ -413,7 +456,7 @@ KISIM'ler `[KEŞİFSEL]` veya gelecek faz olarak tanımlıdır:
 | VII | Latent değişken (LPA tidyLPA, LCA poLCA, mixture flexmix, Bifactor S-1) | ⊝ keşifsel |
 | VIII | Network analizi (GGM EBIC-LASSO, NCT, Beck symptom network) | ⊝ keşifsel |
 | IX | Klinik fayda (risk skor, ROC, DCA, CART, RF, calibration, NRI/IDI) | ⊝ ileri faz |
-| X | DM klinik alt-analiz (HbA1c × parenting, DM süresi spline, tanı yaşı strata) | ⊝ ileri faz / **DM-only** |
+| X | DM klinik alt-analiz (DM süresi spline, tanı yaşı strata) | ⊝ ileri faz / **DM-only** |
 | XI | Robustluk (multiverse specr, TOST, sensemakr RV, E-value, negative control, falsification) | ⊝ **standart gereksinim** — H1-H4 için zorunlu |
 | XII | Bayesci paralel hat (brms, BF, WAIC/LOO, model stacking, blavaan) | ⊝ kısmen aktif (H1 preflight) — **dual reporting standardı** |
 | XIII | Karma yöntem (RTA Braun-Clarke 2022, joint display, convergence, Gwet AC1) | ⊝ keşifsel |
@@ -440,7 +483,7 @@ katmanıdır.
 | `references/pipeline-mimarisi.md` | `_targets.R`, `R/00_paths.R` … `R/19_h4_*.R` modül haritası, kanonik kilit doğrulama, KISIM II–V hedefleri, runbook'lar |
 | `references/psikometri-pipeline.md` | EMBU-P/C 4-faktör CFA, BDI tek-faktör/iki-faktör, KİA 4-faktör, ω vs. α, ölçüm değişmezliği (configural→metric→scalar→strict), graded response IRT |
 | `references/multilevel-aile-yapisi.md` | 241 aile × 2 dyadic veri, ICC hesabı, Hox sample size, group-mean centering, APIM, three-level mother–dyad |
-| `references/eksik-veri-yonetimi.md` | mice (m=50, maxit=30), FIML lavaan, structural missing (DM-only HbA1c/dm_yili), naniar viz, NMAR delta grid |
+| `references/eksik-veri-yonetimi.md` | mice (m=50, maxit=30), FIML lavaan, structural missing (DM-only dm_yili/dm_tani_tarihi), naniar viz, NMAR delta grid |
 | `references/nedensellik-ve-ps.md` | dagitty Causal DAG, backdoor minimal adjustment set, IPTW (logit + 99. persentil trim), 1:1 nearest-neighbor matching, doubly-robust, sensemakr |
 | `references/ileri-yontemler.md` | lavaan WLSMV ordinal SEM, multigroup invariance, growth/CLPM/RI-CLPM, Hayes-style mediation (lavaan + bootstrap), brms Bayesian, blavaan preflight |
 | `references/etki-buyuklugu-ve-guc.md` | Cohen's d/Hedges g, ω², gelişimsel benchmark (Pinquart 2013, Schäfer 2019), simr multilevel power, pwrss mediation power, Bayesian prior derivation |
@@ -460,7 +503,7 @@ katmanıdır.
 | `references/latent-degisken-yontemleri.md` | KISIM VII: tidyLPA 1-6 profil, Akogul-Erisoglu seçim kriterleri (BIC + entropy + LMR-LRT + BLRT), beklenen 4 profil (Adapte/Aşırı Koruyucu/Tükenmiş/Standart), poLCA kategorik, flexmix mixture regression, Eid 2017 Bifactor S-1 (ω_h, ECV, PUC) |
 | `references/network-analizi.md` | KISIM VIII: GGM EBIC-LASSO (gamma=0.5, Spearman), centrality (strength/closeness/betweenness/expected influence), CS-coefficient bootstrap stability, NCT (network/global strength/edge invariance), Beck 21-madde symptom network |
 | `references/klinik-fayda.md` | KISIM IX: high-risk anne (Beck≥17) lojistik risk skoru, ROC + Youden's J + AUC eşikleri, Vickers-Elkin DCA net benefit, CART 1-SE pruning, Random Forest %IncMSE, Harrell calibration, Pencina NRI/IDI + cfNRI |
-| `references/dm-klinik-altanalizler.md` | KISIM X DM-only: HbA1c × ebeveynlik (n=39 keşifsel, ISPAD eşik), DM süresi cubic spline (knots quartile, LRT), tanı yaşı 3-strata (<5, 5-10, ≥10), gelişim penceresi yorumu |
+| `references/dm-klinik-altanalizler.md` | KISIM X DM-only: DM süresi cubic spline (knots quartile, LRT), tanı yaşı 3-strata (<5, 5-10, ≥10), gelişim penceresi yorumu |
 | `references/robustluk-ve-sensitivite.md` | KISIM XI: specr multiverse (1800 spec EMBU-P Reddetme), Simonsohn inferential test, Lakens TOST + ROPE üçlü karar matrisi (Trivial/EQ/Meaningful/IND), sensemakr RV + E-value, Lipsitch negative control, Hernán-Robins falsification |
 | `references/bayesci-paralel-hat.md` | KISIM XII: brms multilevel + Pinquart prior (zayıf bilgi verici 3× geniş), R̂/ESS/divergent kontrolü, PPC, ROPE + pd, Savage-Dickey BF (Jeffreys), WAIC + LOO + Pareto-k, Yao stacking, blavaan SEM + Frequentist+Bayesian dual reporting |
 | `references/karma-yontem.md` | KISIM XIII: Braun-Clarke 2022 RTA 6-faz, Gwet AC1 inter-coder güvenirlik, tema-frekans + ggalluvial, Creswell convergent parallel design, joint display tablosu (8 satır), discrepant bulgu yorumu (sosyal istenirlik kompansasyonu). **Niteliksel kolun uçtan uca derinleşmesi (RTA 6-faz tek tek, dyadik görüşme protokolü, COREQ/JARS-Qual, KVKK + child assent, refleksif günlük, jüri savunma) için ayrı `niteliksel-arastirma-rehberi-t1dm` skill'ine devir; karma yöntem entegrasyonu (joint display, GRAMMS, MMAT) bu skill'de kalır.** |
@@ -487,6 +530,12 @@ katmanıdır.
 |-------|--------|
 | `references/literatur-kanit-evidentia.md` | `t1dm-tez-rehberi` (iç-veri/yazım) ↔ `evidentia` `medical-research` v8.5.0 / plugin v1.7.0 (dış-kanıt/sentez) köprü protokolü: görev ayrımı (iç-veri vs. dış-kanıt), evidentia giriş noktaları (`/evidentia`, `-synthesize`, `-fulltext`, `-kol`, `evidence-synthesizer` alt-ajan, `academic-archival-distiller`), **KAPSAM KAPISI** (`.claude/evidentia.local.md` repo-router + `coverage_set`; varsayılan akademik/RAG/tam-metin çekirdeği, koşullu medikal/farma/mevzuat/terminoloji/ERIC connector'ları), tez-artefaktı besleme haritası (Giriş/Tartışma/benchmark/prior/psikometri/epidemiyoloji/okul-eğitim bağlamı/citation audit), kanıt akışı 7-adım, **prior/HARKing açık-bilim kuralı**, APA 7 ↔ references.bib köprüsü, uydurma referans yasağı, tipik senaryolar |
 
+### Manüskript denetimi (sci-audit köprüsü)
+
+| Dosya | İçerik |
+|-------|--------|
+| `references/manuskript-denetimi-sciaudit.md` | `t1dm-tez-rehberi` (metin üretimi) ↔ `sci-audit@cureonics-marketplace` (yedi eksen adli+dilsel denetim) köprüsü: üç-katman sınırı (evidentia dış-kanıt / bu skill üretim / sci-audit metin denetimi / repo ai-audit veri-invaryantı), yedi eksen tam araç envanteri (komut+skill+alt-ajan: A `verify-citations`/`citation-forensics`/`citation-verifier`, B `claim-grounding`/`claim-extractor`+`claim-refuter`, C `check-stats`/`stats-forensics`/`stats-checker`, D `hallucination-signals`/`entity-verifier`+`entropy-sampler`, E `guideline-check`/`guideline-mapper`, F `ai-transparency`, G `check-turkish`/`turkish-sci-style`/`style-judge`; orkestratör `sci-audit-orchestrator`), 10-adımlı tam denetim protokolü, tez-artefaktı+kapı haritası, davranış kuralları, no-fabrication invaryantı |
+
 ## Davranış Kuralları (Çiğnemediğin)
 
 1. **Asla** kanonik CSV'yi doğrudan değiştirme. Tüm türetilmiş skorlar `R/10_derived_scores.R`
@@ -512,6 +561,9 @@ katmanıdır.
     en az 3'ü uyumlu olmadan "güçlü bulgu" ilan edilmez. Discrepant strateji sonuçları
     tartışmada açıkça raporlanır.
 12. **Asla** H1-H4 birincil bulguları için **multiverse + TOST + sensemakr** üçlüsünü atla.
+13. **Asla** bir referanstan zenginleştirirken kaynağı parça/bağlam-dışı kullan veya kaynağın ya da
+    tez metninin bilimsel iddialarını çarpıt (cherry-pick / düzleştirme / abartma). Bkz. **Referans
+    Bütünlük Şiarı (RBŞ)** — Faz 1.5.
     Bu üçlü standart gereksinimdir; yokluğu "ileri seviye" değil "eksik analiz"dir.
 13. **Asla** brms Bayesian analizinde `sample_prior = "yes"` parametresini atla. Savage-Dickey
     BF için zorunlu; aksi halde BF hesaplaması imkânsız. Pinquart-temelli prior derivation
@@ -528,14 +580,21 @@ katmanıdır.
 18. **Asla** risk skoru (KISIM IX) için bootstrap/CV yapmadan AUC raporla. Optimistic bias
     karşı içsel validasyon (.632+ veya 10-fold) zorunlu. Dış validasyon yoksa "keşifsel"
     etiketi vurgulanır.
-19. **Asla** HbA1c (n=39, %32.5) için imputation yap. Klinik biyobelirteç tahmin edilemez;
-    DM-only sensitivite analizi olarak yürütülür ve **n_hba1c** açıkça raporlanır.
+19. **Asla** DM-only klinik değişkenler için kontrol grubuna imputation yap. `dm_yili` veya
+    `dm_tani_tarihi` gibi değişkenler yalnız DM altkümesinde tanımlıdır; tüm örnekleme imputasyon
+    hastalığı imput etmek anlamına gelir.
 20. **Asla** `references.bib`'e evidentia ile doğrulanmamış künye ekle veya literatür iddiasını
     hafızadan uydur. Dış-kanıt soruları `evidentia` plug-in'ine (`references/literatur-kanit-evidentia.md`
     köprüsüyle, psikososyal kapsam kapısıyla) delege edilir; her künye gerçek PMID/DOI/NCT/YÖK-ID'ye
     iz sürer. **Asla** literatürden türetilen confirmatory (H1–H4) prior'ı veriyi gördükten sonra
     evidentia ile "güçlendir" — bu HARKing'tir; sonradan getirilen kanıt yalnız `[KEŞİFSEL]`
     duyarlılık veya Tartışma yorumu olur.
+21. **Asla** yazılan bir bölümü sci-audit yedi-eksen denetimi olmadan "final" ilan et. Üretimden
+    sonra `sci-audit` (A referans, B claim, C istatistik, D halüsinasyon, E kılavuz, F AI-şeffaflık,
+    G Türkçe imla) **adım adım eksiksiz** koşulur (`references/manuskript-denetimi-sciaudit.md`);
+    Türkçe metinde axis G zorunlu, ondalık-nokta `p` blocker'dır; çözülemeyen kaynak/claim
+    `unverified` kalır, "geçti" denmez. Metin adli denetimi yalnız sci-audit'te; ham-veri/KVKK
+    invaryantı repo `doktoratezi-ai-audit`'te; dış-kanıt getirme evidentia'da — üçü karışmaz.
 
 ## Hızlı Komutlar
 
@@ -623,3 +682,54 @@ Rscript scripts/R/08_ethics_data_governance_audit.R
 **Tek cümlelik özet:** Bu skill, T1DM tezi için her R kodu, her psikometrik karar, her hipotez
 testi, her tez paragrafı ve her açık bilim adımının **kanıt-temelli, projeye-uygun, tek-tutarlı**
 versiyonunu üretir. Reference dosyalarını oku, sonra cevap ver.
+
+---
+
+## Ek: tam tetikleyici kapsamı (arşiv)
+
+Bu skill'in `description` alanı Copilot skill kayıt bütçesine (~1 KB) sığması için
+kısaltılmıştır. Kısaltmadan önceki tam tetikleyici/anahtar-kelime listesi kayıt dışı
+kalmasın diye burada saklanır; kapsam **değişmemiştir**.
+
+> Doktora tezi (Tip 1 Diyabet & Ebeveynlik Tutumu — 482 satır = 241 aile × 2 katılımcı,
+> EMBU/Beck/KİA) için R analiz pipeline'ından (targets + lavaan + lme4 + brms + mice + WeightIt
+> + tidyLPA + qgraph + specr + sensemakr + papaja) tez yazımına (Quarto + Türkçe APA 7 +
+> JARS-Mixed + apaquarto) kadar SAP v3.0 KISIM I-XVIII tam uçtan uca yetkin rehber. Her hipotez
+> bazlı analiz (H1 multilevel child perception, H2 APIM/Olsen-Kenny dyadic, H3 IPTW ANCOVA, H4
+> WLSMV ordinal SEM, **H5 dyadic concordance: ICC + Bland-Altman + RSA + Common Fate +
+> k-coefficient**), KISIM VI tek-mediator/ multilevel/conditional process/Bayesian mediation,
+> KISIM VII LPA/LCA/Bifactor S-1, KISIM VIII GGM + NCT + Beck symptom network, KISIM IX risk
+> skor + ROC + DCA + CART + RF + NRI/IDI calibration, KISIM X DM klinik (spline +
+> tanı yaşı strata), KISIM XI multiverse + TOST + sensemakr + E-value + negative
+> control + falsification, KISIM XII Bayesian dual reporting (brms + BF + WAIC/LOO + stacking),
+> KISIM XIII karma yöntem (RTA + joint display + convergence), KISIM XIV papaja + 3-makale plan
+> + FAIR/Zenodo/OSF, KISIM XV-XVII devstats yedi tedbir + risk matrisi + 24-haftalık plan için
+> kullan. Her psikometrik karar (CFA/ω/invariance/IRT GRM), her eksik veri çerçevesi (FIML/MI
+> m=50/NMAR delta), her nedensellik adımı (DAG/IPTW/sensemakr/E-value), her etki büyüklüğü ve
+> güç (Cohen's d, ω², simr, Pinquart priors), her açık bilim kararı (OSF, renv, multiverse,
+> sensitivity, FAIR, Zenodo) ve her tez bölümü (Yöntem, Bulgular, Tartışma, 18 alt-bölüm master
+> mapping) için tetikle. Bu projede her R kodu, her .qmd düzenlemesi, her istatistik kararı, her
+> raporlama paragrafı, her psikometri sorusu, her metodoloji tartışması, her dyadic analiz, her
+> Bayesian preflight, her sensitivity, her latent profil, her klinik fayda, her DM alt-analiz,
+> her yayın kararı ve her runbook güncellemesi geldiğinde MUTLAKA bu skill'i tetikle. Anahtar
+> kelimeler: T1DM, EMBU, EMBU-P, EMBU-C, Beck, KİA, SRQ, aile-içi ICC, multilevel, APIM, dyadic,
+> Olsen-Kenny, RSA, response surface, Edwards-Parry, common fate, k-coefficient, lavaan, lmer,
+> brms, blavaan, mice, FIML, IPTW, propensity, doubly robust, sensemakr, E-value, multiverse,
+> specr, TOST, ROPE, Bayes factor, WAIC, LOO, stacking, ω-McDonald, invariance, IRT, WLSMV, GRM,
+> LPA, LCA, mixture, bifactor S-1, GGM, EBIC-LASSO, NCT, network comparison, symptom network,
+> ROC, DCA, CART, random forest, NRI, IDI, calibration, spline, tanı yaşı, joint display,
+> RTA, Braun-Clarke, Gwet AC1, papaja, apaquarto, JARS-Mixed, STROBE, OSF, ön-kayıt, FAIR,
+> Zenodo, türetilmiş skor, kanonik kilit, _targets, Pinquart, simr, multiverse, falsification,
+> negative control. **Dış literatür kanıtı, alanyazın taraması, kanıt sentezi, Giriş/Tartışma
+> literatürü, benchmark doğrulama, Bayesian prior türetimi, psikometrik referans, T1DM
+> epidemiyoloji, references.bib / citation audit, KOL/hakem haritası, tam-metin getirme,
+> sistematik derleme gerektiğinde `evidentia` plug-in'i ile entegre çalış** (anahtar kelimeler:
+> evidentia, medical-research, literatür sentezi, PubMed, EuropePMC, Consensus, YÖK Tez,
+> OpenAlex, Semantic Scholar, PsyArXiv, OSF registrations/preregistration, tam metin,
+> evidence-synthesizer, kaynak doğrulama). **Yazılan her tez bölümü/paragrafı kapanıştan önce
+> `sci-audit` plug-in'i ile yedi eksende (A referans bütünlüğü, B claim grounding, C istatistik
+> tutarlılığı, D halüsinasyon, E raporlama kılavuzu, F AI-şeffaflık, G Türkçe imla) adım adım
+> denetlenir** (anahtar kelimeler: sci-audit, manüskript denetimi, kaynak doğrulama, uydurma
+> referans, statcheck, GRIM, claim grounding, halüsinasyon, raporlama kılavuzu
+> PRISMA/CONSORT/STROBE/COREQ/JARS, AI-şeffaflık beyanı, Türkçe imla, ondalık virgül,
+> check-turkish, verify-citations, check-stats, guideline-check, audit). Şüphede mutlaka KULLAN.

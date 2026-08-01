@@ -7,7 +7,6 @@ table1_default_spec <- function() {
       "calisma_durumu",
       "es_calisma_durumu",
       "es_isei08",
-      "aile_isei08",
       "ses_latent",
       "cocuk_sayisi",
       "age_gap",
@@ -21,24 +20,23 @@ table1_default_spec <- function() {
       "beck_severity"
     ),
     label = c(
-      "Anne yas",
-      "Anne egitim durumu",
-      "Es egitim durumu",
-      "Anne calisma durumu",
-      "Es calisma durumu",
-      "Es ISEI-08",
-      "Aile ISEI-08",
+      "Anne yaşı",
+      "Anne eğitim durumu",
+      "Eş eğitim durumu",
+      "Anne çalışma durumu",
+      "Eş çalışma durumu",
+      "Eş ISEI-08",
       "Latent SES",
-      "Cocuk sayisi",
-      "Kardes yas farki",
-      "Ayni cinsiyet kardes cifti",
-      "Ev sahipligi",
-      "Ev oda sayisi",
-      "Araba sahipligi",
-      "Anne kronik hastalik",
-      "Anne antidepresan kullanimi",
+      "Çocuk sayısı",
+      "Kardeş yaş farkı",
+      "Aynı cinsiyet kardeş çifti",
+      "Ev sahipliği",
+      "Ev oda sayısı",
+      "Araba sahipliği",
+      "Anne kronik hastalık",
+      "Anne antidepresan kullanımı",
       "Beck toplam",
-      "Beck siddet kategorisi"
+      "Beck şiddet kategorisi"
     ),
     type = c(
       "continuous",
@@ -46,7 +44,6 @@ table1_default_spec <- function() {
       "categorical",
       "binary",
       "binary",
-      "continuous",
       "continuous",
       "continuous",
       "continuous",
@@ -68,10 +65,9 @@ table1_default_spec <- function() {
       "Demografi",
       "SES",
       "SES",
-      "SES",
-      "Aile yapisi",
-      "Aile yapisi",
-      "Aile yapisi",
+      "Aile yapısı",
+      "Aile yapısı",
+      "Aile yapısı",
       "Materyal",
       "Materyal",
       "Materyal",
@@ -282,16 +278,20 @@ table1_p_value <- function(x, group, type, group_levels = table1_group_levels(gr
 }
 
 table1_balance_flag <- function(abs_smd) {
+  # Denetim #6: sinir esikleri metindeki denge sozlesmesiyle birebir olmalidir
+  # (|SMD| < 0,10 iyi; 0,10-0,25 sinirda; 0,25-0,50 dengesiz; >= 0,50 ciddi).
+  # Onceki 0,20/0,40 kesim noktalari 0,21-0,24 araligini yanlislikla "dengesiz"
+  # etiketliyordu.
   if (is.na(abs_smd)) {
     return("degerlendirilemedi")
   }
   if (abs_smd < 0.10) {
     return("iyi_denge")
   }
-  if (abs_smd < 0.20) {
+  if (abs_smd < 0.25) {
     return("sinirda")
   }
-  if (abs_smd < 0.40) {
+  if (abs_smd < 0.50) {
     return("dengesiz")
   }
   "ciddi_dengesizlik"

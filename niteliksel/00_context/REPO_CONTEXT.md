@@ -3,16 +3,16 @@
 Updated: 2026-07-09
 
 > **Migrasyon notu:** Bu içerik 2026-07-09 tarihinde bağımsız
-> `/mnt/thunderbolt/workspaces/T1DM Niteliksel` reposundan
-> `/mnt/thunderbolt/workspaces/doktoratezi/niteliksel` altına kopyalandı.
+> `/workspaces/T1DM-Tez/niteliksel` reposundan
+> `/workspaces/T1DM-Tez/niteliksel` altına kopyalandı.
 > Yeni canonical çalışma konumu `doktoratezi/niteliksel` alt-ağacıdır.
 
 Bu repo klasik bir yazılım uygulaması değil; Tip 1 Diyabet tanılı çocuk, anne ve sağlıklı kardeş triadlarına ait nitel araştırma korpusu, analiz tabloları, tez/makale taslakları, referanslar ve belge işleme araçlarından oluşur. Reorganizasyon 2026-05-04 tarihinde uygulanmış; ham veri, işlenmiş metin, analiz, manuscript, referans, araç ve arşiv katmanları ayrılmıştır.
 
 ## 1. Project Identity
 
-- `Verified` Root: `/mnt/thunderbolt/workspaces/doktoratezi/niteliksel`.
-- `Historical` Source root: `/mnt/thunderbolt/workspaces/T1DM Niteliksel` (silinmedi; `.git/` ve `.env*` taşınmadı).
+- `Verified` Root: `/workspaces/T1DM-Tez/niteliksel`.
+- `Historical` Source root: `/workspaces/T1DM-Tez/niteliksel` (silinmedi; `.git/` ve `.env*` taşınmadı).
 - `Verified` Repo type: `doktoratezi` ana reposu altında nitel araştırma alt-ağacı; git sürümleme üst repodan yönetilir.
 - `Verified` Primary purpose: T1DM ile yaşayan ailelerde anne, T1DM'li çocuk ve sağlıklı kardeş perspektiflerinin aile yaşamı, bakım yükü, adalet algısı, kardeş ilişkileri, stigma, özerklik ve kontrol gerilimleri üzerinden analiz edilmesi.
 - `Verified` Main design: qualitative descriptive / phenomenological sensitivity, multi-informant family design, Braun & Clarke reflexive thematic analysis, COREQ-aware reporting.

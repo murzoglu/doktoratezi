@@ -6,6 +6,16 @@
 **Skill yığını:** `devstats` × `psychdev` (kompozit validasyon protokolü)
 **Önceki versiyon:** B.1–B.8 (orijinal plan) — bu doküman onun yerini alır.
 
+> **GÜNCELLİK UYARISI (2026-07-26):** Bu belge render edilmeyen bir plan/metodoloji
+> ekidir; içindeki güvenirlik değerleri 26 Nisan 2026 tarihli **ön-hesaplama
+> snapshot'ıdır** ve tarihsel bağlam olarak korunur. İki noktaya dikkat: (1) buradaki
+> `0.660` gibi değerler **alt-ölçek Cronbach α'sıdır** (ör. EMBU-P Karşılaştırma),
+> enstrüman-düzeyi hiyerarşik omega (ω_h) ile **karıştırılmamalıdır**. (2) Enstrüman-düzeyi
+> bifaktör güvenirlik-genellemesi için canlı kanonik değer EMBU-P **ω_h=0,81; ECV=0,47**'dir
+> (kaynak: `outputs/tables/phase2_omegah_metrics_summary.csv`; runner:
+> `scripts/R/37_reliability_generalization_audit.R`). Resmi tez metni (§4.4.6) bu değeri
+> r-call ile kanonik artefakttan okur; aşağıdaki plan tabloları güncel analiz çıktısı değildir.
+
 ---
 
 ## 0. Yönetici Özeti — Plan Niçin Revize Ediliyor?
@@ -73,7 +83,6 @@ Orijinal plan **8 adımdan** oluşuyordu. Güncellenen plan **12 adıma** çıka
 | `analysis_base_family.csv` | rows=241, cols=288 | 241 × 288 | ✓ |
 | `analysis_base_long.csv` | rows=482, cols=203 | 482 × 203 | ✓ |
 | Long role dağılımı | DM_İndeks:120, DM_Kardeş:120, Kontrol_İndeks:121, Kontrol_Kardeş:121 | aynı | ✓ |
-| HbA1c (DM indeks) | 39/120 (final CSV alanı) | 39/120 | ✓ |
 
 ### 1.2 Ölçek Madde Yapısı
 
@@ -955,7 +964,6 @@ Yukarıdaki süreç **iki bağımsız çıktı** üretir:
 | Scalar invariance fail (İndeks × Kardeş) | YÜKSEK | **Bu zaten beklenen bulgu** | PDT teorisi açısından **bulgu olarak raporla** |
 | Multilevel CFA convergence fail | DÜŞÜK | Aile-bağımlılığı düzeltilmemiş kalır | Robust SE (sandwich) + cluster-bootstrap |
 | BSEM Stan convergence fail | DÜŞÜK | Bayesian fallback elden gider | JAGS arka uca geç + R-hat tanı |
-| HbA1c eksik (39/120) klinik korelasyonu zayıflatır | KESİN | Mediation analizi için güç düşük | HbA1c'yi sadece sensitivite analizinde kullan; ana model HbA1c'siz |
 
 ---
 

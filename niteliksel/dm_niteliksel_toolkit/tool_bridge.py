@@ -9,7 +9,7 @@ from .common import normalize_key
 
 
 QUALITATIVE_REPO = str(Path(__file__).resolve().parents[1])
-PAIRED_QUANTITATIVE_REPO = "/mnt/thunderbolt/workspaces/doktoratezi"
+PAIRED_QUANTITATIVE_REPO = "/workspaces/T1DM-Tez"
 CODEX_PLAYBOOK = "00_context/CODEX_PLAYBOOK.md"
 CROSS_REPO_STATUS_COMMAND = "./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md"
 THESIS_WRITING_ROOT = f"{PAIRED_QUANTITATIVE_REPO}/tez-yazim"
@@ -22,13 +22,13 @@ EVIDENTIA_PLUGIN_VERSION = "1.7.0"
 EVIDENTIA_FLAGSHIP_SKILL = "medical-research"
 EVIDENTIA_FLAGSHIP_VERSION = "8.5.0"
 EVIDENTIA_LOCAL_CONFIG = ".claude/evidentia.local.md"
-EVIDENTIA_CONNECTOR_SOURCE = "/mnt/thunderbolt/workspaces/evidentia-cc/plugins/evidentia/CONNECTORS.md"
-EVIDENTIA_CACHE_CONTRACT = "/mnt/thunderbolt/workspaces/evidentia-cc/plugins/evidentia/shared/canonical-cache-contract.md"
+EVIDENTIA_CONNECTOR_SOURCE = "~/.claude/plugins/cache/cureonics-marketplace/evidentia/<sürüm>/CONNECTORS.md"
+EVIDENTIA_CACHE_CONTRACT = "~/.claude/plugins/cache/cureonics-marketplace/evidentia/<sürüm>/shared/canonical-cache-contract.md"
 
 SCI_AUDIT_PLUGIN_NAME = "sci-audit@cureonics-marketplace"
 SCI_AUDIT_PLUGIN_VERSION = "0.2.0"
 SCI_AUDIT_LOCAL_CONFIG = ".claude/sci-audit.local.md"
-SCI_AUDIT_CACHE_ROOT = "/home/mahirkurt/.claude/plugins/cache/cureonics-marketplace/sci-audit"
+SCI_AUDIT_CACHE_ROOT = "~/.claude/plugins/cache/cureonics-marketplace/sci-audit"
 SCI_AUDIT_TURKISH_STYLE_SCRIPT = "skills/turkish-sci-style/scripts/tr_sciaudit.py"
 SCI_AUDIT_TURKISH_RULES = f"{THESIS_WRITING_ROOT}/04_kalite-kontrol/turkce-bilimsel-yazim-denetimi.md"
 SCI_AUDIT_CERTIFICATION_PLAYBOOK = f"{THESIS_WRITING_ROOT}/04_kalite-kontrol/bolum-finalizasyon-sertifikasyon-playbook.md"
@@ -205,7 +205,7 @@ CONDITIONAL_PLUGIN_LAYERS = [
 ]
 
 ZOTERO_WEB_BRIDGE = "scripts/util/zotero_env_bridge.py"
-ZOTERO_DESKTOP_HELPER = "/home/mahirkurt/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py"
+ZOTERO_DESKTOP_HELPER = "~/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py"
 
 ZOTERO_COMMANDS = [
     f"python3 {ZOTERO_WEB_BRIDGE} status --json",
@@ -894,7 +894,6 @@ def route_query(query: str) -> RouteResult:
             "kia",
             "kİa",
             "srq",
-            "hba1c",
             "targets",
             "_targets",
             "r pipeline",

@@ -3,7 +3,7 @@ source("R/30_thesis_mapping.R")
 chapters <- thesis_chapter_mapping()
 stopifnot(nrow(chapters) == 5L)
 stopifnot(all(file.exists(chapters$path)))
-stopifnot(any(chapters$chapter == "03_bulgular"))
+stopifnot(any(chapters$chapter == "04_bulgular"))
 
 figure_manifest <- utils::read.csv("outputs/tables/apa_sprint_a_figure_manifest.csv", fileEncoding = "UTF-8")
 table_manifest <- utils::read.csv("outputs/tables/apa_sprint_a_table_manifest.csv", fileEncoding = "UTF-8")

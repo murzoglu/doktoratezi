@@ -220,6 +220,92 @@ h1_role_pairwise_table <- function(model, outcome) {
   )
 }
 
+# On-kayitli DOGRULAYICI aile: dort EMBU-C alt olceginin GRUP ANA ETKISI
+# (DM eksi Kontrol, indeks+kardes rolleri esit agirlikla ortalanarak). Rol-ozgul
+# hucre kontrastlari (h1_role_pairwise_table) betimsel/kesifsel katmandir; bu
+# fonksiyon ise dort alt olcek uzerinde BH-FDR uygulanan dogrulayici estimand'i
+# uretir (denetim P0-1: kaynak-tekilligi + on-kayit uyumu).
+h1_group_main_effect_table <- function(model, outcome) {
+  if (!requireNamespace("emmeans", quietly = TRUE)) {
+    stop("Required package is not installed: emmeans", call. = FALSE)
+  }
+  emm <- emmeans::emmeans(model, specs = stats::as.formula("~ role_f"))
+  grid_levels <- as.character(summary(emm)$role_f)
+  is_dm <- grepl("^DM", grid_levels)
+  if (!any(is_dm) || all(is_dm)) {
+    stop("H1 grup ana etkisi icin hem DM hem Kontrol rol duzeyleri gereklidir", call. = FALSE)
+  }
+  weights <- ifelse(is_dm, 1 / sum(is_dm), -1 / sum(!is_dm))
+  con <- emmeans::contrast(emm, method = stats::setNames(list(weights), "DM_vs_Kontrol"))
+  con_df <- as.data.frame(con)
+  ci <- as.data.frame(stats::confint(con))
+  p_col <- h1_first_existing_col(con_df, c("p.value", "p_value"))
+  data.frame(
+    outcome = outcome,
+    contrast = "DM_vs_Kontrol_rol_ortalamasi",
+    estimate = con_df$estimate,
+    std_error = con_df$SE,
+    df = con_df$df,
+    statistic = con_df$t.ratio,
+    p_value = con_df[[p_col]],
+    ci_low = ci$lower.CL,
+    ci_high = ci$upper.CL,
+    stringsAsFactors = FALSE
+  )
+}
+
+# [KESIFSEL - POST-HOC] Grup-ici (within-group) rol kontrasti: her grubun kendi
+# indeks cocugu ile saglikli kardesi arasindaki fark. On-kayitli DOGRULAYICI aile
+# (grup ana etkisi) DISINDA; kontrol grubu tamamen dislanip DM ailesi icinde
+# indeks-kardes farki ve simetrik olarak kontrol ailesi icinde indeks-kardes farki
+# ayni cok-duzeyli modelden (aile rastgele kesisimi ile esli/paired bagimlilik
+# dogru modellenerek) emmeans ozel kontrasti olarak kestirilir. Her iki kontrast
+# ham katsayi + %95 GA + BH-FDR (kontrast ailesi ici) ile raporlanir; keşifsel
+# oldugu icin dogrulayici q iddiasi TASIMAZ, yalnizca yon/buyukluk betimlemesi
+# amaclidir. Sayilar modelden okunur, koda gomulmez (K5-LIT-01 uyumu).
+h1_within_group_role_contrast_table <- function(model, outcome) {
+  if (!requireNamespace("emmeans", quietly = TRUE)) {
+    stop("Required package is not installed: emmeans", call. = FALSE)
+  }
+  emm <- emmeans::emmeans(model, specs = stats::as.formula("~ role_f"))
+  grid_levels <- as.character(summary(emm)$role_f)
+
+  make_weights <- function(index_level, sibling_level) {
+    if (!index_level %in% grid_levels || !sibling_level %in% grid_levels) {
+      stop(sprintf(
+        "Within-grup rol kontrasti icin '%s' ve '%s' rol duzeyleri gereklidir",
+        index_level, sibling_level
+      ), call. = FALSE)
+    }
+    ifelse(grid_levels == index_level, 1,
+      ifelse(grid_levels == sibling_level, -1, 0))
+  }
+
+  contrast_defs <- list(
+    DM_indeks_eksi_kardes = make_weights("DM_Hasta_Indeks", "DM_Hasta_Kardes"),
+    Kontrol_indeks_eksi_kardes = make_weights("Kontrol_Indeks", "Kontrol_Kardes")
+  )
+
+  con <- emmeans::contrast(emm, method = contrast_defs)
+  con_df <- as.data.frame(con)
+  ci <- as.data.frame(stats::confint(con))
+  p_col <- h1_first_existing_col(con_df, c("p.value", "p_value"))
+
+  data.frame(
+    outcome = outcome,
+    contrast = as.character(con_df$contrast),
+    estimate = con_df$estimate,
+    std_error = con_df$SE,
+    df = con_df$df,
+    statistic = con_df$t.ratio,
+    p_value = con_df[[p_col]],
+    ci_low = ci$lower.CL,
+    ci_high = ci$upper.CL,
+    adjust = "keşifsel_ham_BH_FDR_asagida",
+    stringsAsFactors = FALSE
+  )
+}
+
 h1_extract_r2 <- function(model) {
   if (!requireNamespace("performance", quietly = TRUE)) {
     return(c(r2_marginal = NA_real_, r2_conditional = NA_real_))
@@ -331,6 +417,7 @@ run_h1_frequentist <- function(df, outcomes = h1_outcome_spec()$outcome) {
   fixed <- list()
   anova <- list()
   pairs <- list()
+  within_group <- list()
   diagnostics <- list()
 
   for (outcome in outcomes) {
@@ -339,17 +426,28 @@ run_h1_frequentist <- function(df, outcomes = h1_outcome_spec()$outcome) {
     fixed[[outcome]] <- h1_fixed_effects_table(model, outcome, "primary_multilevel_ancova")
     anova[[outcome]] <- h1_anova_table(model, outcome, "primary_multilevel_ancova")
     pairs[[outcome]] <- h1_role_pairwise_table(model, outcome)
+    within_group[[outcome]] <- h1_within_group_role_contrast_table(model, outcome)
     diagnostics[[outcome]] <- h1_model_diagnostics(model, outcome, "primary_multilevel_ancova")
   }
 
   pairwise <- do.call(rbind, pairs)
   pairwise$p_fdr_across_h1 <- stats::p.adjust(pairwise$p_value, method = "BH")
 
+  within_group_contrast <- do.call(rbind, within_group)
+  within_group_contrast$p_fdr_within_family <- stats::p.adjust(
+    within_group_contrast$p_value, method = "BH"
+  )
+
+  group_main <- do.call(rbind, lapply(outcomes, function(o) h1_group_main_effect_table(models[[o]], o)))
+  group_main$p_fdr_across_h1_group <- stats::p.adjust(group_main$p_value, method = "BH")
+
   list(
     models = models,
     fixed_effects = do.call(rbind, fixed),
     anova = do.call(rbind, anova),
     role_pairwise = pairwise,
+    within_group_role_contrast = within_group_contrast,
+    group_main_effect = group_main,
     diagnostics = do.call(rbind, diagnostics)
   )
 }
@@ -564,8 +662,53 @@ summarize_h1_targets <- function(input_long, analysis_frame, frequentist, three_
     max_primary_icc = max(frequentist$diagnostics$icc, na.rm = TRUE),
     role_pairwise_tests = nrow(frequentist$role_pairwise),
     role_pairwise_fdr_lt_05 = sum(frequentist$role_pairwise$p_fdr_across_h1 < 0.05, na.rm = TRUE),
+    within_group_contrast_tests = nrow(frequentist$within_group_role_contrast),
+    within_group_contrast_fdr_lt_05 = sum(frequentist$within_group_role_contrast$p_fdr_within_family < 0.05, na.rm = TRUE),
     stringsAsFactors = FALSE
   )
+}
+
+# Denetim (thesis 12 / P0): Alım-yılı (dönem/merkez) duyarlılığını BİRİNCİL H1
+# estimandıyla — eşit-rol, kovaryat-ayarlı, çok-düzeyli grup ana etkisi — yeniden
+# tahmin eder. İndeks-çocuk ham iki-grup d duyarlılığından (R/62) farklı olarak,
+# bu fonksiyon aynı doğrulayıcı estimandı 2023 ortak-takvim alt örnekleminde
+# çalıştırıp dört alt ölçekte BH-FDR uygular; böylece "olumlu H1 bulguları 2023'te
+# sönümleniyor mu?" sorusu doğrudan birincil estimandla yanıtlanır.
+h1_recruitment_year <- function(df_family_ses, year_col = "anket_tarihi") {
+  if (!year_col %in% names(df_family_ses)) return(NULL)
+  yr <- suppressWarnings(as.integer(sub(".*((19|20)[0-9]{2}).*", "\\1",
+    as.character(df_family_ses[[year_col]]))))
+  data.frame(aile_no = df_family_ses$aile_no, anket_yil = yr, stringsAsFactors = FALSE)
+}
+
+run_h1_period_sensitivity <- function(df_long_scored, df_family_ses,
+                                      replication_year = 2023L,
+                                      outcomes = h1_outcome_spec()$outcome) {
+  frame <- h1_prepare_analysis_frame(df_long_scored, df_family_ses)
+  ymap <- h1_recruitment_year(df_family_ses)
+  if (is.null(ymap)) {
+    return(data.frame(outcome = outcomes, subsample_year = replication_year,
+      note = "anket_tarihi bulunamadi", stringsAsFactors = FALSE))
+  }
+  frame$anket_yil <- ymap$anket_yil[match(frame$aile_no, ymap$aile_no)]
+  sub <- frame[!is.na(frame$anket_yil) & frame$anket_yil == replication_year, , drop = FALSE]
+  role_n <- as.list(table(sub$role_f))
+  gv <- function(k) if (!is.null(role_n[[k]])) as.integer(role_n[[k]]) else 0L
+  rows <- lapply(outcomes, function(o) {
+    model <- tryCatch(h1_fit_lmer(sub, h1_primary_formula(o)), error = function(e) e)
+    if (inherits(model, "error")) {
+      return(data.frame(outcome = o, contrast = "DM_vs_Kontrol_rol_ortalamasi",
+        estimate = NA_real_, std_error = NA_real_, df = NA_real_, statistic = NA_real_,
+        p_value = NA_real_, ci_low = NA_real_, ci_high = NA_real_, stringsAsFactors = FALSE))
+    }
+    h1_group_main_effect_table(model, o)
+  })
+  out <- do.call(rbind, rows)
+  out$p_fdr_across_h1_group <- stats::p.adjust(out$p_value, method = "BH")
+  out$subsample_year <- replication_year
+  out$n_kontrol_indeks <- gv("Kontrol_Indeks")
+  out$n_dm_indeks <- gv("DM_Hasta_Indeks")
+  out
 }
 
 run_h1_child_perception_pipeline <- function(df_long_scored, df_family_ses, run_irt = TRUE) {
@@ -592,6 +735,9 @@ run_h1_child_perception_pipeline <- function(df_long_scored, df_family_ses, run_
     primary_fixed_effects = frequentist$fixed_effects,
     primary_anova = frequentist$anova,
     primary_role_pairwise = frequentist$role_pairwise,
+    primary_within_group_role_contrast = frequentist$within_group_role_contrast,
+    primary_group_main_effect = frequentist$group_main_effect,
+    primary_period2023_group_main_effect = run_h1_period_sensitivity(df_long_scored, df_family_ses, 2023L),
     primary_diagnostics = frequentist$diagnostics,
     three_way_tests = three_way$tests,
     three_way_emmeans_grid = three_way$emmeans_grid,

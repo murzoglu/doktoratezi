@@ -290,6 +290,10 @@ Bu kapsam, kardeşli tasarımın iki düzeyli yapısını korur: aile düzeyi ka
 
 Güvenilirlik bölümü iki tamamlayıcı soruya yanıt verir. Birincisi, alt ölçek puanlarının iç tutarlılığı kabul edilebilir düzeyde mi; ikincisi, madde yanıt dağılımları bu iç tutarlılığı destekleyecek kadar varyans içeriyor mu? Bu nedenle alpha ve omega katsayıları madde düzeyi taban etkisiyle birlikte yorumlanmıştır.
 
+::: {.callout-note appearance="simple"}
+Buradaki `omega_h` değerleri **alt ölçek düzeyinde** tek-faktörlü McDonald hiyerarşik omegasıdır (kaynak: `psychval_reliability.csv`, üretici `R/` psikometrik güvenilirlik hattı) ve alt ölçeklerin kendi iç tutarlılığını özetler. Bunlar, tezin §4.4.6 güvenirlik-genellemesi katmanında raporlanan **enstrüman düzeyi bifaktör (S-1)** hiyerarşik omegasından (EMBU-P ω_h=0,81; ECV=0,47; kaynak `phase2_omegah_metrics_summary.csv`, üretici `R/36`/`scripts/R/37`) farklı bir büyüklüktür; iki değer karıştırılmamalıdır.
+:::
+
 ```{=latex}
 \methodbox{İstatistik yöntem kutusu: alpha, omega ve taban etkisi}{Cronbach alpha maddelerin ortak varyansını klasik test kuramı içinde özetler; McDonald omega ise faktör yüklerine dayalı daha esnek bir iç tutarlılık ölçüsüdür. Alpha ve omega birlikte düşükse sorun yalnız alpha varsayımlarından değil, madde havuzunun zayıf ortak sinyal üretmesinden kaynaklanabilir. Taban etkisi, yanıtların en düşük kategoride yığılmasını gösterir; yüksek taban etkisi korelasyonları, grup farklarını ve CFA yüklerini aşağı çekebilir.}
 ```
@@ -338,7 +342,7 @@ ggplot(item_floor, aes(x = item_no, y = floor_pct, color = subscale)) +
   scale_x_continuous(breaks = seq(1, 29, by = 2)) +
   scale_y_continuous(labels = label_percent(scale = 1), limits = c(0, 100)) +
   scale_color_manual(values = c("Sıcaklık" = "#2f9c95", "Aşırı koruma" = "#d28b26", "Reddetme" = "#8b1e3f", "Karşılaştırma" = "#4059ad")) +
-  labs(x = "Madde numarası", y = "Taban etkisi", color = "Alt ölçek") +
+  labs(x = "Madde numarası", y = "Taban etkisi (%)", color = "Alt ölçek") +
   theme(legend.position = "bottom")
 ```
 
@@ -593,7 +597,7 @@ validity_plot <- validity |>
       grepl("EMBU-P", axis) ~ "EMBU-P",
       TRUE ~ "Diğer"
     ),
-    significant = p_value < .05
+    significant = p_adjusted < .05
   )
 
 ggplot(validity_plot, aes(x = spearman_rho, y = reorder(axis, spearman_rho), color = family, shape = significant)) +
@@ -601,12 +605,12 @@ ggplot(validity_plot, aes(x = spearman_rho, y = reorder(axis, spearman_rho), col
   geom_point(size = 2.1) +
   scale_x_continuous(limits = c(-.35, .35), labels = number_format(accuracy = .1)) +
   scale_color_manual(values = c("EMBU-P" = "#4059ad", "EMBU-C" = "#2f9c95", "Diğer" = "grey40")) +
-  scale_shape_manual(values = c(`TRUE` = 16, `FALSE` = 1), labels = c(`TRUE` = "p < .05", `FALSE` = "p >= .05")) +
+  scale_shape_manual(values = c(`TRUE` = 16, `FALSE` = 1), labels = c(`TRUE` = "FDR p < .05", `FALSE` = "FDR p >= .05")) +
   labs(x = "Spearman rho", y = NULL, color = NULL, shape = NULL) +
   theme(legend.position = "bottom")
 ```
 
-\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Noktaların sıfır çizgisinden uzaklığı ilişkinin büyüklüğünü, dolu noktalar p < .05 düzeyindeki sonuçları gösterir. Beklenen örüntü büyük ölçüde korunmaktadır: EMBU-P Karşılaştırma ve Reddetme Beck ile pozitif, Sıcaklık Beck ile negatif ilişkilidir; EMBU-C Karşılaştırma ise SRQ Çatışma ve Rekabet ile pozitif, SRQ Sıcaklık/Yakınlık ile negatif ilişki verir. Bu yönsel tutarlılık, özellikle EMBU-C Karşılaştırma boyutunun kardeş ilişkisi bağlamında nomolojik geçerlik sinyali taşıdığını gösterir.
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Noktaların sıfır çizgisinden uzaklığı ilişkinin büyüklüğünü, dolu noktalar çoklu karşılaştırma düzeltmesi (FDR) sonrası p < .05 düzeyindeki sonuçları gösterir. Beklenen örüntü büyük ölçüde korunmaktadır: EMBU-P Karşılaştırma ve Reddetme Beck ile pozitif, Sıcaklık Beck ile negatif ilişkilidir; EMBU-C Karşılaştırma ise SRQ Çatışma ve Rekabet ile pozitif, SRQ Sıcaklık/Yakınlık ile negatif ilişki verir. Bu yönsel tutarlılık, özellikle EMBU-C Karşılaştırma boyutunun kardeş ilişkisi bağlamında nomolojik geçerlik sinyali taşıdığını gösterir.
 
 ```{r}
 validity_show <- validity |>
@@ -618,7 +622,7 @@ validity_show <- validity |>
       TRUE ~ paste(x, y, sep = " x ")
     )
   ) |>
-  transmute(Karşılaştırma = short_text(Karşılaştırma, 42), n, rho = spearman_rho, p = p_value)
+  transmute(Karşılaştırma = short_text(Karşılaştırma, 42), n, rho = spearman_rho, p = p_value, `FDR p` = p_adjusted)
 tbl(validity_show, "Kriter ve eşzamanlı geçerlik korelasyonları", longtable = TRUE)
 ```
 

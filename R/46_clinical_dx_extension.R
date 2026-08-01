@@ -186,7 +186,12 @@ cdx_dca_threshold_heatmap_data <- function(prepared_data,
     FP <- sum(positive & obs == 0L)
     n <- length(obs)
     for (cr in cost_ratios) {
-      # NB = TP/n - (FP/n) * cr * (th/(1-th))
+      # Net fayda: NB = TP/n - (FP/n) * cr * (th/(1-th))
+      # cr = 1 -> Vickers-Elkin (2006) standart DCA tanimina birebir indirgenir
+      # (esik olasiligi th/(1-th) zaten yanlis-pozitif/yanlis-negatif zarar oranini
+      # kodlar). cr > 1 yalnizca yanlis-pozitif zararinin daha agir tartildigi
+      # kesifsel duyarlilik senaryosudur; standart DCA'nin yerine gecmez. Metinde
+      # raporlanan tum net fayda degerleri cr = 1 satirindan okunur (Denetim #4.21).
       nb <- (TP / n) - (FP / n) * cr * (th / (1 - th))
       rows[[length(rows) + 1L]] <- data.frame(
         threshold = th,

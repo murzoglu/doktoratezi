@@ -1,6 +1,6 @@
 # KISIM XVI–XVII — Risk Yönetimi ve Zaman Çizelgesi
 
-> SAP v3.0 §47–48. 15-risk matrisi (her riske yedek strateji) + 24-haftalık çalıştırma planı.
+> SAP v3.0 §47–48. 14-risk matrisi (her riske yedek strateji) + 24-haftalık çalıştırma planı.
 
 ## Risk Matrisi (KISIM XVI)
 
@@ -11,25 +11,24 @@
 | 3 | H3 EMBU-P Reddetme zayıf psikometri | **Yüksek** | Bilinen sorun | BSEM latent factor + multiverse + 3-strata sensitivity |
 | 4 | H4 SEM identification fail | Düşük | Latent factor sayısı azalt | Reddetme sum score yedek + path analysis fallback |
 | 5 | H5 RSA convergence fail | Orta | Polynomial regression yedek | Mutlak fark + Bland-Altman birincil; RSA exploratory |
-| 6 | HbA1c %32.5 mevcut → power yetersiz | **KESIN** | Klinik moderasyon zayıf | dm_yili (n=120 tam) birincil; HbA1c sensitive |
-| 7 | Niteliksel doygunluk yok (n=6) | Düşük | Görüşme sayısı artır | Protokol gereği esneklik var |
-| 8 | renv lock bozulur | Düşük | Reprodüksiyon kaybı | Docker container yedek + GitHub immutable history |
-| 9 | Antidepresan confounder ana etkiyi siler | **YÜKSEK** | H3 hipotezi başka yorumlanmalı | Multiple frame: "Hastalığın anne ruh sağlığına etkisi" |
-| 10 | ISEI tek kovaryat olarak yetersiz | Orta | SES ayrımı belirsiz | Latent SES + Hollingshead + sensitivity |
-| 11 | LPA convergence fail | Düşük | Tipoloji yapısı kayıp | k-means yedek + cluster validity |
-| 12 | Network EBIC-LASSO çıktı belirsiz | Orta | Ağ yorumu zayıf | Pearson partial correlation yedek + bootstrapped edges |
-| 13 | Karar ağacı overfit | Yüksek | Klinik öneri güvenilirsiz | Cross-validation + Random Forest comparison |
-| 14 | Bayesian Stan compile fail | Düşük | Bayesian hat çalışmaz | rstanarm fallback + manual Stan model |
-| 15 | papaja render fail (LaTeX errors) | Orta | Final rapor yok | apaquarto fallback + Word docx tek format |
+| 6 | Niteliksel doygunluk yok (n=6) | Düşük | Görüşme sayısı artır | Protokol gereği esneklik var |
+| 7 | renv lock bozulur | Düşük | Reprodüksiyon kaybı | Docker container yedek + GitHub immutable history |
+| 8 | Antidepresan confounder ana etkiyi siler | **YÜKSEK** | H3 hipotezi başka yorumlanmalı | Multiple frame: "Hastalığın anne ruh sağlığına etkisi" |
+| 9 | ISEI tek kovaryat olarak yetersiz | Orta | SES ayrımı belirsiz | Latent SES + Hollingshead + sensitivity |
+| 10 | LPA convergence fail | Düşük | Tipoloji yapısı kayıp | k-means yedek + cluster validity |
+| 11 | Network EBIC-LASSO çıktı belirsiz | Orta | Ağ yorumu zayıf | Pearson partial correlation yedek + bootstrapped edges |
+| 12 | Karar ağacı overfit | Yüksek | Klinik öneri güvenilirsiz | Cross-validation + Random Forest comparison |
+| 13 | Bayesian Stan compile fail | Düşük | Bayesian hat çalışmaz | rstanarm fallback + manual Stan model |
+| 14 | papaja render fail (LaTeX errors) | Orta | Final rapor yok | apaquarto fallback + Word docx tek format |
 
 ### Risk önceliklendirme (etki × olasılık)
 
 | Öncelik | Risk #'leri | İlk eylem |
 |---|---|---|
-| **Kritik** (yüksek×yüksek) | 3, 6, 9 | Multiverse, dm_yili, multi-frame interpretation |
-| **Yüksek** (orta×yüksek) | 1, 13 | Equivalence + RF comparison |
-| **Orta** | 5, 10, 12, 15 | Yedek strateji aktif |
-| **Düşük** | 2, 4, 7, 8, 11, 14 | İzle, gerekirse aktive |
+| **Kritik** (yüksek×yüksek) | 3, 8 | Multiverse, multi-frame interpretation |
+| **Yüksek** (orta×yüksek) | 1, 12 | Equivalence + RF comparison |
+| **Orta** | 5, 9, 11, 14 | Yedek strateji aktif |
+| **Düşük** | 2, 4, 6, 7, 10, 13 | İzle, gerekirse aktive |
 
 > **Genel kural:** Riskten önce her primary analizin yedek planı `_targets.R`'da `tar_target` olarak
 > hazır olmalı; analiz başarısız olursa doğrudan yedek hedef çalıştırılır.
@@ -53,7 +52,7 @@
 | 15 | Faz 22-23: LCA + Bifactor S-1 | Sensitivity tabloları | ⏳ Keşifsel |
 | 16 | Faz 24-26: Network analiz + NCT + Beck item-network | Tablo 12, Şekil 15-16 | ⏳ Keşifsel |
 | 17 | Faz 27-29: ROC + DCA + CART + RF + Calibration | Tablo 13, Şekil 17, 20 | ⏳ İleri faz |
-| 18 | Faz 30-32: Klinik alt-analizler (HbA1c + DM süresi spline + tanı yaşı) | Tablo 14-15 | ⏳ İleri faz / DM-only |
+| 18 | Faz 30-32: Klinik alt-analizler (DM süresi spline + tanı yaşı) | Tablo 14-15 | ⏳ İleri faz / DM-only |
 | 19 | Faz 33-36: Multiverse + TOST + Sensemakr + Negative control | Tablo 16, Şekil 18-19 | ⏳ Kısmen aktif |
 | 20-21 | Faz 37-39: Tüm Bayesian analizler (H1-H5) + WAIC/LOO | Tablo 17, Şekil 21-22 | ⏳ H1 aktif, gerisi gelecek |
 | 22 | Faz 40-41: Niteliksel tematik analiz + Joint display | Tablo 18 | ⏳ Keşifsel |

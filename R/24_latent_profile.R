@@ -410,6 +410,43 @@ run_flexmix_regression <- function(df_family_ses, k = 2L, seed = 20260428L) {
   )
 }
 
+# B1-quant denetimi: verilen profil sayisi icin sinif buyuklukleri (n/%),
+# atanan sinifin ortalama posterior olasiligi (atama kesinligi) ve siniflandirma
+# hatasini (1 - ortalama posterior) tidyLPA estimates nesnesinden turetir.
+# Amac: BIC-min (4) ile parsimoni-secilen (3) cozum arasindaki secim
+# belirsizligini nicel raporlamak (kaynak-tekilligi: model nesnesinden okunur).
+lpa_solution_diagnostics <- function(ep, n) {
+  model <- ep[[paste0("model_1_class_", n)]]
+  if (is.null(model)) return(NULL)
+  d <- tryCatch(tidyLPA::get_data(model), error = function(e) NULL)
+  if (is.null(d) || !"Class" %in% names(d)) return(NULL)
+  if ("classes_number" %in% names(d)) {
+    d <- d[d$classes_number == n, , drop = FALSE]
+  }
+  cprob_cols <- grep("^CPROB", names(d), value = TRUE)
+  row_max <- if (length(cprob_cols)) {
+    apply(d[, cprob_cols, drop = FALSE], 1, max)
+  } else rep(NA_real_, nrow(d))
+  counts <- table(factor(d$Class, levels = sort(unique(d$Class))))
+  total <- sum(counts)
+  rows <- lapply(names(counts), function(cid) {
+    idx <- d$Class == as.integer(cid)
+    data.frame(
+      n_profiles = n,
+      class_id = cid,
+      class_n = as.integer(counts[[cid]]),
+      class_pct = as.integer(counts[[cid]]) / total,
+      class_mean_posterior = mean(row_max[idx], na.rm = TRUE),
+      stringsAsFactors = FALSE
+    )
+  })
+  res <- do.call(rbind, rows)
+  res$min_class_n <- min(res$class_n)
+  res$overall_mean_posterior <- mean(row_max, na.rm = TRUE)
+  res$classification_error <- 1 - mean(row_max, na.rm = TRUE)
+  res
+}
+
 run_lpa <- function(df_family_ses, profile_range = 1:6,
                     seed = 20260428L) {
   if (!requireNamespace("tidyLPA", quietly = TRUE)) {
@@ -488,12 +525,24 @@ run_lpa <- function(df_family_ses, profile_range = 1:6,
     df_counts
   } else data.frame()
 
+  # B1-quant: parsimoni penceresindeki cozumler (BIC-min ve DBIC<=2 icindeki en
+  # yalin) icin sinif buyuklukleri + posterior atama kesinligi raporu.
+  bic_min_n <- fits_df$Classes[which.min(fits_df$BIC)]
+  parsim_ok <- fits_df$Classes[fits_df$BIC - min(fits_df$BIC, na.rm = TRUE) <= 2 + 1e-9]
+  sel_parsim_n <- min(parsim_ok, na.rm = TRUE)
+  report_ns <- sort(unique(c(sel_parsim_n, bic_min_n)))
+  profile_report <- do.call(rbind, lapply(report_ns, function(n) {
+    lpa_solution_diagnostics(ep, n)
+  }))
+  if (is.null(profile_report)) profile_report <- data.frame()
+
   list(
     status     = "ok",
     fit_table  = fits_df,
     best_n     = best_n,
     classes_table = classes_table,
     profile_means_table = profile_means,
+    profile_report_table = profile_report,
     group_distribution_table = group_distribution,
     estimates = ep
   )
@@ -597,6 +646,7 @@ run_latent_profile_pipeline <- function(df_family_ses, df_family_scored,
     lpa_fit_table            = if (!is.null(lpa_res$fit_table)) lpa_res$fit_table else data.frame(),
     lpa_classes_table        = if (!is.null(lpa_res$classes_table)) lpa_res$classes_table else data.frame(),
     lpa_profile_means_table  = if (!is.null(lpa_res$profile_means_table)) lpa_res$profile_means_table else data.frame(),
+    lpa_profile_report_table = if (!is.null(lpa_res$profile_report_table)) lpa_res$profile_report_table else data.frame(),
     lpa_group_distribution   = if (!is.null(lpa_res$group_distribution_table)) lpa_res$group_distribution_table else data.frame(),
     lpa_best_n               = if (!is.null(lpa_res$best_n)) lpa_res$best_n else NA_integer_,
     lca_indicator_audit_table = if (!is.null(lca_res$indicator_audit_table)) lca_res$indicator_audit_table else data.frame(),

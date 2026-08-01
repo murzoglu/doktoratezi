@@ -204,8 +204,7 @@ prepare_family <- function(df) {
       "kardes_yas",
       "katilimci_cocuk_sirasi",
       "kardes_sirasi",
-      "dm_yili",
-      "hba1c"
+      "dm_yili"
     ),
     "family analysis base"
   )
@@ -227,11 +226,6 @@ prepare_family <- function(df) {
     as.numeric(df$cocuk_yas) - as.numeric(df$dm_yili),
     NA_real_
   )
-
-  hba1c_target <- rep(NA_character_, nrow(df))
-  hba1c <- as.numeric(df$hba1c)
-  hba1c_target[!is.na(hba1c)] <- ifelse(hba1c[!is.na(hba1c)] <= 7.5, "Hedef_alti", "Hedef_ustu")
-  df$hba1c_target <- factor(hba1c_target, levels = c("Hedef_alti", "Hedef_ustu"))
   df
 }
 

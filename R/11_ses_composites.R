@@ -339,6 +339,17 @@ ses_cfa_fit_measures <- function(fit) {
     lavaan::fitMeasures(fit, measures),
     error = function(error) stats::setNames(rep(NA_real_, length(measures)), measures)
   )
+  values <- as.numeric(values)
+  names(values) <- measures
+  # Yon-mantigi/kaynak-tekilligi: lavaan bazi kestirimlerde standart ki-kare
+  # p-degerini NA dondurur; ki-kare ve sd mevcutken p hesaplanabilir oldugundan
+  # NA birakmak yerine ust-kuyruk ki-kare olasiligindan turetilir (chisq>=0, df>0).
+  if (is.na(values[["pvalue"]]) &&
+      is.finite(values[["chisq"]]) && is.finite(values[["df"]]) &&
+      values[["df"]] > 0 && values[["chisq"]] >= 0) {
+    values[["pvalue"]] <- stats::pchisq(values[["chisq"]], df = values[["df"]],
+                                        lower.tail = FALSE)
+  }
   data.frame(
     measure = names(values),
     value = as.numeric(values),

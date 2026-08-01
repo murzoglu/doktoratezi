@@ -284,7 +284,7 @@ ggplot(forest_data, aes(x = est, y = outcome,
 > "Toplam 241 ailede gözlemlenen analiz değişkenleri için eksiklik düzeyleri Tablo X'te
 > sunulmuştur. Anne öz-rapor değişkenlerinde eksiklik %1.2 ile %3.7 arasında (Beck
 > Depresyon: %2.5; EMBU-P alt ölçekleri ortalama %1.8) bulunmuş, klinik DM değişkenleri
-> tasarım kaynaklı yapısal eksiklik (kontrol grubunda HbA1c ve dm_yili %100) sergilemiştir.
+> tasarım kaynaklı yapısal eksiklik (kontrol grubunda dm_yili %100) sergilemiştir.
 > Little MCAR testi DM-spesifik değişkenler hariç tutulduğunda anlamlılık göstermemiş
 > (χ²(48) = 56.3, p = .195), MAR varsayımı altında çoklu atama uygulanması desteklenmiştir."
 

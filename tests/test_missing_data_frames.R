@@ -17,8 +17,7 @@ fixture <- data.frame(
   material_quintile = ordered(c(1, 2, 4, 1, 3, 5), levels = 1:5),
   ses_composite_eq = c(-0.9, -0.1, 0.5, -0.6, 0.2, 0.9),
   ses_latent = c(-0.8, -0.2, 0.6, -0.5, 0.1, 0.8),
-  hba1c = c(8.1, NA, 7.4, NA, NA, NA),
-  dm_yili = c(3, 4, 5, NA, NA, NA),
+  dm_yili = c(3, NA, 5, NA, NA, NA),
   embu_p_sicaklik_mean = c(3.0, 3.1, 3.2, 2.9, 3.0, 3.3),
   embu_p_reddetme_mean = c(1.2, 1.3, 1.1, 1.4, 1.2, 1.1),
   embu_c_idx_sicaklik_mean = c(3.2, 3.3, 3.0, 3.1, 3.2, 3.4),
@@ -31,23 +30,23 @@ fixture <- data.frame(
 results <- derive_missing_data_frames(fixture, run_mcar = FALSE)
 
 summary <- results$variable_summary
-hba1c_summary <- summary[summary$variable == "hba1c", , drop = FALSE]
-stopifnot(identical(hba1c_summary$structural_missing_n, 3L))
-stopifnot(identical(hba1c_summary$analytic_missing_n, 1L))
-stopifnot(isTRUE(all.equal(hba1c_summary$analytic_missing_pct, 100 / 3)))
+dm_yili_summary <- summary[summary$variable == "dm_yili", , drop = FALSE]
+stopifnot(identical(dm_yili_summary$structural_missing_n, 3L))
+stopifnot(identical(dm_yili_summary$analytic_missing_n, 1L))
+stopifnot(isTRUE(all.equal(dm_yili_summary$analytic_missing_pct, 100 / 3)))
 
-stopifnot(!"hba1c" %in% names(results$frames$mi_primary))
-stopifnot("hba1c" %in% names(results$frames$mi_clinical_sensitivity))
+stopifnot(!"dm_yili" %in% names(results$frames$mi_primary))
+stopifnot("dm_yili" %in% names(results$frames$mi_clinical_sensitivity))
 
 primary_spec <- results$mice_specs$primary
 clinical_spec <- results$mice_specs$clinical_sensitivity
 stopifnot(identical(unname(primary_spec$method["aile_no"]), ""))
 stopifnot(identical(unname(primary_spec$method["group"]), ""))
-stopifnot(identical(unname(clinical_spec$method["hba1c"]), "pmm"))
+stopifnot(identical(unname(clinical_spec$method["dm_yili"]), "pmm"))
 
 clinical_where <- clinical_spec$where
-stopifnot(identical(unname(clinical_where[1:3, "hba1c"]), c(FALSE, TRUE, FALSE)))
-stopifnot(identical(unname(clinical_where[4:6, "hba1c"]), c(FALSE, FALSE, FALSE)))
+stopifnot(identical(unname(clinical_where[1:3, "dm_yili"]), c(FALSE, TRUE, FALSE)))
+stopifnot(identical(unname(clinical_where[4:6, "dm_yili"]), c(FALSE, FALSE, FALSE)))
 
 manifest <- results$frame_manifest
 stopifnot(any(manifest$frame == "complete_case_primary"))
@@ -55,7 +54,7 @@ stopifnot(manifest$n_rows[manifest$frame == "complete_case_primary"] < nrow(fixt
 
 delta_grid <- results$nmar_delta_grid
 stopifnot(any(delta_grid$variable == "beck_total"))
-stopifnot(any(delta_grid$variable == "hba1c"))
+stopifnot(any(delta_grid$variable == "aile_isei08"))
 
 completed_long <- data.frame(
   .imp = c(1, 1, 1, 1, 1, 1),

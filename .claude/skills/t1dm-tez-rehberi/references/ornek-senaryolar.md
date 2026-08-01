@@ -144,7 +144,7 @@ proje sorgusu için **uçtan uca akış**'tır.
 3. **Kompozisyon:**
    - **Tablo:** `missing_variable_summary_table` → gtsummary olarak format.
    - **MCAR test sonucu:** `missing_mcar_test_table`'dan p-değeri.
-   - **Mekanizma kararı:** Yapısal eksiklik (HbA1c, dm_yili) — DM tasarımı kaynaklı,
+   - **Mekanizma kararı:** Yapısal eksiklik (`dm_yili`, `dm_tani_tarihi`) — DM tasarımı kaynaklı,
      imputasyona dahil değil.
    - **Strateji:** Üç çerçeve (FIML, MI m=50/maxit=30, NMAR delta).
    - **NMAR delta:** δ = -0.5, …, +0.5 SD shift sonuçları.
@@ -427,7 +427,7 @@ Aşağıdaki ifadeleri görürsen DUR ve düzelt:
 - "%50 madde varsa Beck toplamı..." → Beck için TÜM 21 madde tam olmalı (`psikometri-pipeline.md`)
 - "alpha .55 yeter..." → ω + CFA + invariance pipeline'ı bypass (`psikometri-pipeline.md`)
 - "antidepresanı kovaryat yap..." → AD post-treatment, kovaryat değil (`nedensellik-ve-ps.md`)
-- "HbA1c'yi tüm örnekleme imput..." → yapısal eksiklik ihlali (`eksik-veri-yonetimi.md`)
+- "DM-only klinik değişkeni tüm örnekleme imput..." → yapısal eksiklik ihlali (`eksik-veri-yonetimi.md`)
 - "modification indices ile fit'i şişir..." → teori gerektirir (`psikometri-pipeline.md`)
 - "p < .05 → büyük etki..." → effect size + GA + benchmark (`etki-buyuklugu-ve-guc.md`)
 - "ön-kayıtta vardı sayılır..." → `[KEŞİFSEL]` etiketi gerekli (`tedbir-ve-hatalar.md`)

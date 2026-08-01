@@ -1,11 +1,11 @@
 # T1DM Karma Tez Cross-Repo Status
 
 Generated: `2026-07-09`
-Qualitative repo: `/mnt/thunderbolt/workspaces/doktoratezi/niteliksel`
-Quantitative repo: `/mnt/thunderbolt/workspaces/doktoratezi`
+Qualitative repo: `/workspaces/T1DM-Tez/niteliksel`
+Quantitative repo: `/workspaces/T1DM-Tez`
 
 ## Thesis Writing System
-Root: `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim`
+Root: `/workspaces/T1DM-Tez/tez-yazim`
 Entrypoint: `tez-yazim/README.md`
 Official sources: `docs/tez-kilavuz/TEZ YAZIM KLAVUZU-2025.pdf`, `docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx`
 Format contract: `tez-yazim/00_kaynak-kurallari/format-kontrati.md`
@@ -47,8 +47,8 @@ Integration plan: `tez-yazim/01_mimari/iki-repo-entegrasyon-plani.md`
 | quantitative | yes | `data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock` | canonical analysis-base lock | existence/hash-contract check only; do not print data rows |
 
 ## Protected Boundaries
-- `/mnt/thunderbolt/workspaces/doktoratezi/niteliksel`: `01_raw_data/`, `02_processed/transcripts/`, `01_deidentified/`, `00_raw_locked/`, `.remember/`
-- `/mnt/thunderbolt/workspaces/doktoratezi`: `data/raw/`, `data/identified/`, `data/cleaned/`, `data/backup/`, `data/processed/*`, `outputs/*`, `_targets/`
+- `/workspaces/T1DM-Tez/niteliksel`: `01_raw_data/`, `02_processed/transcripts/`, `01_deidentified/`, `00_raw_locked/`, `.remember/`
+- `/workspaces/T1DM-Tez`: `data/raw/`, `data/identified/`, `data/cleaned/`, `data/backup/`, `data/processed/*`, `outputs/*`, `_targets/`
 
 ## Thesis Writing Lanes
 ### GİRİŞ ve AMAÇ + GENEL BİLGİLER
@@ -77,7 +77,7 @@ Quantitative sources: `tez-yazim/03_bolum-hazirlik/06_kaynaklar-ekler.md`, `refe
 External/tool gate: Anna's full-text ledger first; Zotero reference-library reconciliation second; dual AI-reliability final
 
 ## Routing Commands
-- `cd /mnt/thunderbolt/workspaces/doktoratezi && test -f tez-yazim/README.md`
+- `cd /workspaces/T1DM-Tez && test -f tez-yazim/README.md`
 - `./dmnitel ai-context`
 - `./dmnitel route-tool --query "<soru>"`
 - `./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md`
@@ -87,11 +87,11 @@ External/tool gate: Anna's full-text ledger first; Zotero reference-library reco
 - qualitative local toolkit: `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests`
 - qualitative AI reliability plugin: `PYTHONDONTWRITEBYTECODE=1 python3 plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py`
 - qualitative offline promptfoo gate: `npx promptfoo@latest eval -c reliability/evals/promptfooconfig.yaml`
-- quantitative AI reliability plugin: `PYTHONDONTWRITEBYTECODE=1 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py` (cwd `/mnt/thunderbolt/workspaces/doktoratezi`)
-- reference full-text ledger unresolved-state check: `rg -n 'full-text-pending|zotero-pending|reliability-pending|citation-without-full-text' tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md` (cwd `/mnt/thunderbolt/workspaces/doktoratezi`)
-- quantitative canonical lock: `Rscript tests/test_reproducibility_lock.R` (cwd `/mnt/thunderbolt/workspaces/doktoratezi`)
-- quantitative canonical loading: `Rscript tests/test_final_reference_loading.R` (cwd `/mnt/thunderbolt/workspaces/doktoratezi`)
-- quantitative data governance: `Rscript tests/test_data_governance.R` (cwd `/mnt/thunderbolt/workspaces/doktoratezi`)
+- quantitative AI reliability plugin: `PYTHONDONTWRITEBYTECODE=1 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py` (cwd `/workspaces/T1DM-Tez`)
+- reference full-text ledger unresolved-state check: `rg -n 'full-text-pending|zotero-pending|reliability-pending|citation-without-full-text' tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md` (cwd `/workspaces/T1DM-Tez`)
+- quantitative canonical lock: `Rscript tests/test_reproducibility_lock.R` (cwd `/workspaces/T1DM-Tez`)
+- quantitative canonical loading: `Rscript tests/test_final_reference_loading.R` (cwd `/workspaces/T1DM-Tez`)
+- quantitative data governance: `Rscript tests/test_data_governance.R` (cwd `/workspaces/T1DM-Tez`)
 
 ## Operating Rule
 Use this status as an orientation artifact only. It does not authorize raw-data reads,

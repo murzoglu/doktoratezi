@@ -1,0 +1,26 @@
+---
+title: "CSL smoke-test — Enstitü AMA-11"
+bibliography: test-refs.bib
+csl: ../marmara-ama11.csl
+lang: tr
+nocite: |
+  @fadini2022, @xie2019, @dilek2024, @nestler2018, @john2017
+---
+
+Metin-içi denemeler:
+- 4 yazar (parenthetical): [@fadini2022] → beklenen: (Fadini ve ark., 2022)
+- 4 yazar (narrative): @fadini2022 → beklenen: Fadini ve ark. (2022)
+- 2 yazar: [@john2017] → beklenen: (John ve Marquez, 2017)
+- çoklu: [@fadini2022; @xie2019] → beklenen: (Fadini ve ark., 2022; Xie ve ark., 2019)
+
+## Kaynaklar
+::: {#refs}
+:::
+
+<!-- BEKLENEN KAYNAKÇA (alfabetik; italik/kalın yok; standart doi):
+Dilek B, Songür K, Erdinç Gündüz N, Ellidokuz H, Başçı O, Gülbahar S ve ark. Lateral epikondilit tanılı hastalarda klinik ve ultrasonografik bulgular ile tedavi değişimi arasındaki ilişki: 6 aylık sonuçlar. DEU Tıp Derg. 2024;38(3):251-262.
+Fadini GP, Del Prato S, Avogaro A, Solini A. Challenges and opportunities in real-world evidence on the renal effects of sodium-glucose cotransporter-2 inhibitors. Diabetes Obes Metab. 2022;24(2):177-186. https://doi.org/10.1111/dom.14599
+John TA, Marquez BR. A two author test entry for the ve conjunction. J Test Ref. 2017;5(1):10-15. https://doi.org/10.1000/test.2017
+Nestler EJ, Hyman SE. Molecular mechanisms of antidepressant action. In: Brunton LL, Hilal-Dandan R, Knollmann BC, editors. Goodman & Gilman's Pharmacological Basis of Therapeutics. 13th ed. New York: McGraw-Hill; 2018. p. 257-276.
+Xie Y, Shi X, Sheng K, Han G, Li W, Zhao Q ve ark. PI3K/Akt signaling transduction pathway, erythropoiesis and glycolysis in hypoxia. Mol Med Rep. 2019;19(2):783-791. https://doi.org/10.3892/mmr.2018.9713
+-->

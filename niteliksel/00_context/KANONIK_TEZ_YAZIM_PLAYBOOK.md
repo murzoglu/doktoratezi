@@ -1,7 +1,7 @@
 # KANONİK TEZ YAZIM PLAYBOOK — T1DM Karma Doktora Tezi
 
 Sürüm: 1.2 · 2026-07-08 · Kapsam: T1DM karma doktora tezinin **tüm tez yazım,
-nitel kanıt, dış literatür/tam metin ve karma sentez oturumları**; iki repo
+nitel kanıt, dış literatür/tam metin ve karma sentez oturumları**; iki-kol
 (`T1DM Niteliksel` + `doktoratezi`), iki harness (Claude Code + Codex CLI),
 üç rehber (`niteliksel-arastirma-rehberi-t1dm`, `t1dm-tez-rehberi`, `evidentia`)
 ve `sci-audit@cureonics-marketplace` manüskript denetim katmanı.
@@ -37,7 +37,7 @@ tanımlamaz.
 
 ---
 
-## 1. Entegre Yapı — Katman Şeması (iki repo · iki harness · üç rehber)
+## 1. Entegre Yapı — Katman Şeması (iki-kol · iki harness · üç rehber)
 
 Her tez görevi aynı katman zincirinden geçer; üst katman alt katmanı yetkilendirir:
 
@@ -58,7 +58,7 @@ Kullanıcı görevi
 Tez/karma soru
  ├─ İç veri (RTA/codebook/COREQ/alıntı/triad)  → ./dmnitel + niteliksel-arastirma-rehberi-t1dm
  ├─ Dış literatür/tam metin/citation/KOL       → EVIDENTIA v1.7 / medical-research v8.5 + OA/legal-OA/Paper Search + Anna's + Zotero + ledger
- └─ Nicel/karma köprü (H1–H5, joint display, IRR)→ t1dm-tez-rehberi (paired doktoratezi)
+ └─ Nicel/karma köprü (H1–H5, joint display, IRR)→ t1dm-tez-rehberi (nicel kök)
 ```
 
 **Tek cümle kural:** *Kendi verimizden çıkan her şey `./dmnitel` + niteliksel
@@ -87,10 +87,10 @@ etiketlenir, örn.:
    TRACKER özeti otomatik gelir.
 2. Görevi §1'deki **üç koldan birine** yerleştir ve açıkça bildir.
 3. Yazım/format/bölüm işiyse ana operasyon merkezi
-   `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim`; önce `README.md`,
+   `/workspaces/T1DM-Tez/tez-yazim`; önce `README.md`,
    `06_kritik-kaynaklar/README.md` + `kritik-dosya-manifesti.tsv` ve resmi
    `docs/tez-kilavuz/`. Çakışmada resmi kılavuz üstündür.
-4. Karma tez / joint display / iki-repo sentezi → `/capraz-repo`
+4. Karma tez / joint display / iki-kol sentezi → `/capraz-repo`
    (`./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md`).
 5. Skill kapıları: nitel metodoloji → `niteliksel-arastirma-rehberi-t1dm`;
    nicel/karma → `t1dm-tez-rehberi`; dış literatür/tam metin → Evidentia (§8);
@@ -103,7 +103,7 @@ etiketlenir, örn.:
 
 ## 3. KVKK Veri Sınırı — İhlal Edilemez
 
-- Korumalı alanlar §1 tablosundaki iki repo yolu + `.remember/`.
+- Korumalı alanlar §1 tablosundaki iki-kol yolu + `.remember/`.
 - Bu alanlardan **satır düzeyi içerik, aile düzeyi hassas detay, ham alıntı,
   demografi satırı, onam/protokol kişisel içeriği** bağlama dökülmez, memory'ye
   yazılmaz, **hiçbir harici MCP/RAG/connector/Evidentia/Anna's'a gönderilmez**.
@@ -118,14 +118,14 @@ etiketlenir, örn.:
 
 ---
 
-## 4. Bölüm → Kaynak → Kapı Matrisi (iki-repo yazım modeli)
+## 4. Bölüm → Kaynak → Kapı Matrisi (iki-kol yazım modeli)
 
 | Tez bölümü | Nitel kaynak (`T1DM Niteliksel`) | Nicel kaynak (`doktoratezi`) | Zorunlu kapı |
 |---|---|---|---|
-| GİRİŞ ve AMAÇ / GENEL BİLGİLER | Kanonik nitel rapor (yalnız arka plan) | `tez-yazim/03_bolum-hazirlik/01…02*.md`, CSR, SAP | Referans kapısı (§9) + çift AI-reliability |
+| GİRİŞ ve AMAÇ / GENEL BİLGİLER | Kanonik nitel rapor (yalnız arka plan) | `tez-yazim/03_bolum-hazirlik/01…02*.md`, CSR, SAP | Referans kapısı (§9) + iki-kol AI-reliability |
 | GEREÇ ve YÖNTEM | COREQ, audit trail, positionality, LLM beyanı (`03_analysis/methodology/`) | `03_gerec-ve-yontem.md`, `_targets.R`, veri haritası | Resmi kılavuz + kanonik yöntem kanıtı + sci-audit Kapı 4/5 |
 | BULGULAR | Kanonik nitel sonuç raporu, 4 makro tema, quote integrity | `04_bulgular.md`, H1–H5 | Repo artefaktı + test kanıtı + sci-audit Kapı 4/5 |
-| TARTIŞMA ve SONUÇ | Negatif vaka, refleksivite, triadik yorum | `05_tartisma-ve-sonuc.md`, post-hoc sınırları | Kanıt ayrımı + çift AI-reliability + sci-audit Kapı 4/5 |
+| TARTIŞMA ve SONUÇ | Negatif vaka, refleksivite, triadik yorum | `05_tartisma-ve-sonuc.md`, post-hoc sınırları | Kanıt ayrımı + iki-kol AI-reliability + sci-audit Kapı 4/5 |
 | KAYNAKLAR / EKLER | COREQ, codebook, audit trail, LLM beyanı | `06_kaynaklar-ekler.md`, `references.bib` | Ledger + Zotero + format kontrol |
 
 **Kanıt ayrımı:** tez = **4 makro tema**, journal = **6 tema** — karıştırılmaz.
@@ -176,7 +176,7 @@ Her satır: connector → **rol** → **ne zaman açılır (tetikleyici)** →
 |---|---|---|---|
 | `./dmnitel ai-context` | Oturum açılışı; repo-özel tool-bridge özeti | `/tez-oturum` içinde otomatik | ✅ |
 | `./dmnitel route-tool --query` | Kol belirsizse **her işten önce** | `./dmnitel route-tool --query "<soru>"` | ✅ |
-| `./dmnitel cross-repo-status` | Karma/joint display/iki-repo sentezi öncesi | `--output 07_reports/cross_repo_thesis_bridge_status.md` | ✅ |
+| `./dmnitel cross-repo-status` | Karma/joint display/iki-kol sentezi öncesi | `--output 07_reports/cross_repo_thesis_bridge_status.md` | ✅ |
 | `./dmnitel lint-codebook` | Codebook CSV tutarlılığı | `./dmnitel lint-codebook 03_analysis/codebook/…csv` (kanonik `codebook_v2.md`) | ✅ |
 | `./dmnitel build-triadic-matrix` | Anne/T1DM çocuk/kardeş tema matrisi | `--coded-data … --output 04_triadic_matrices/…` | ✅ |
 | `./dmnitel check-quotes` | Anonim alıntı bütünlüğü (transcript **açmadan**) | `--source <deidentified> --quotes <csv>` | ✅ |
@@ -392,19 +392,19 @@ Her dış referans için `/referans-kapisi "<künye>"`. Sıra sabittir:
 bağlam → bibliyografik kimlik (DOI/PMID/PMCID/OpenAlex/YÖK)
        → tam metin kanıtı (§7: EPMC/OA → legal-OA → Paper Search → Anna's)
        → Zotero mutabakatı (item key + BibTeX key; ikisi farklıdır)
-       → claim/pasaj notu → ledger kaydı + çift AI-reliability
+       → claim/pasaj notu → ledger kaydı + iki-kol AI-reliability
 ```
 
 **Ledger:** `doktoratezi/tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md`.
 **Durum akışı:** `candidate → full-text-ok/full-text-exception → zotero-ok →
 reliability-ok → cite-ok`. Kapı kapanmadan referans metne girmez. Zotero'ya
 yazma/import **açık onay** ister. Bir kaynak birden çok bölümde kullanılacaksa
-ledger'daki **Bölüm sütunu genişletilir** ve kapanışta çift AI-reliability
+ledger'daki **Bölüm sütunu genişletilir** ve kapanışta iki-kol AI-reliability
 yeniden koşulur (yeni dış retrieval gerektirmez).
 
 ---
 
-## 10. Doğrulama Paketi + Çift AI-reliability
+## 10. Doğrulama Paketi + İki-kol AI-reliability
 
 Kapanışta `/nitel-dogrulama`:
 
@@ -419,7 +419,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py
 python3 -m py_compile .codex/hooks/*.py .claude/hooks/*.py
 # doktoratezi (referanslı bölüm kapanışında çift kural):
-cd /mnt/thunderbolt/workspaces/doktoratezi && \
+cd /workspaces/T1DM-Tez && \
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py
 # Quarto etkilendiyse:
 quarto check && quarto render thesis.qmd
@@ -492,7 +492,7 @@ zorlanır: `no` değilse `ValueError`). Kayıt
 | `doktoratezi/tez-yazim/04_kalite-kontrol/turkce-bilimsel-yazim-denetimi.md` | `sci-audit` axis G kanonik kullanım ve provider degrade kuralı |
 | `niteliksel-arastirma-rehberi-t1dm/references/13-mcp-ve-skill-baglantilari.md` | Nitel-arm MCP/Evidentia köprüsü |
 | `t1dm-tez-rehberi/references/literatur-kanit-evidentia.md` | Nicel/karma Evidentia köprüsü + D0–D6 |
-| `CONVENTIONS.md` (iki repo) | Hook'la enjekte edilen AI-reliability sözleşmeleri |
+| `CONVENTIONS.md` (iki-kol) | Hook'la enjekte edilen AI-reliability sözleşmeleri |
 
 **Bakım kuralları:**
 1. Politika/hook değişikliği **önce kaynak belgede** (talimatname → Codex ikizi →
@@ -521,6 +521,6 @@ zorlanır: `no` değilse `ValueError`). Kayıt
    kapanışı; erişilemezse `full-text-exception` = citation yok.
 4. **Kanıt türü etiketi (§4–§5):** GENEL BİLGİLER kavram açıklar; bulgu, etki
    büyüklüğü, nitel tema **vermez** (format-kontratı).
-5. **Kapanış (§10–§12):** çift AI-reliability + `quarto render`; harici MCP
+5. **Kapanış (§10–§12):** iki-kol AI-reliability + `quarto render`; harici MCP
    kullanıldıysa `/ai-kayit`.
 6. **Final (§11):** Kapı 0–5 sertifikasyonu + açık onay olmadan bölüm taslaktır.

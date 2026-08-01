@@ -270,13 +270,14 @@ m_short <- lm(embu_p_asiri_koruma_mean ~ group_f + scale(ses_latent),
                 data = df_short_dm)
 # Beklenen: küçük/anlamsız etki (yük henüz birikmemiş)
 
-# Falsification 2: HbA1c hedefte olan DM aileleri
-df_good_control <- df_family |>
-  filter((group_f == "DM" & hba1c <= 7.5) | group_f == "Kontrol")
+# Falsification 2: DM süresi >=5 yıl olan DM aileleri
+df_long_dm <- df_family |>
+  filter((group_f == "DM" & !is.na(dm_yili) & dm_yili >= 5) | group_f == "Kontrol")
 
-m_good <- lm(embu_p_asiri_koruma_mean ~ group_f + scale(ses_latent),
-              data = df_good_control)
-# Beklenen: zayıf etki (iyi kontrol → düşük yük)
+m_long <- lm(embu_p_asiri_koruma_mean ~ group_f + scale(ses_latent),
+              data = df_long_dm)
+# Senaryo etiketi: "DM süresi >=5 yıl"
+# Beklenen: süreye duyarlı ana yorum güçleniyorsa etki kısa-süre senaryosundan ayrışır
 ```
 
 ## Targets entegrasyonu
@@ -289,7 +290,7 @@ tar_target(sensemakr_main,          run_sensemakr_main(df_family_scored)),
 tar_target(evalue_main,             run_evalue_main()),
 tar_target(negative_control,        run_negative_control(df_family_scored)),
 tar_target(falsification_short_dm,  run_falsification_short(df_family_scored)),
-tar_target(falsification_good_hba1c,run_falsification_good_control(df_family_scored)),
+tar_target(falsification_long_dm,    run_falsification_long_dm(df_family_scored)),
 tar_target(robustness_table,        format_robustness_table(...), format = "file")
 ```
 

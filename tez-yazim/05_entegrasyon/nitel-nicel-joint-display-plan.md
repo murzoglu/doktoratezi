@@ -18,6 +18,11 @@ açıklayıcı genişleme alanlarını göstermek.
 
 ## Taslak Tablo Alanları
 
+> **Not:** Doldurulmuş kanonik joint-display ve meta-çıkarım artık
+> `tez-yazim/05_entegrasyon/karma-sentez-kanonik.md`'dedir (Task 4 çıktısı,
+> tek doğruluk kaynağı). Bu dosya **alan + ilişki türü sözlüğü** olarak kalır;
+> her hücreyi yazma görevi sentez belgesinde tamamlanmıştır.
+
 | Araştırma odağı | Nicel bulgu | Nitel tema/örüntü | İlişki türü | Karma yorum sınırı |
 |---|---|---|---|---|
 | H1 / çocuk algısı (EMBU-C) | Aggregate sonuç | Tema veya rol örüntüsü | Uyum / tamamlayıcılık / ayrışma / açıklayıcı genişleme | Nedensellik yok; yorum düzeyi. |
@@ -28,15 +33,17 @@ açıklayıcı genişleme alanlarını göstermek.
 
 ## Kullanılacak Güvenli Nitel Kaynaklar
 
-- `docs/niteliksel/qualitative_canonical_results_report.md`
-- Nitel repo: `03_analysis/codebook/codebook_v2.md`
-- Nitel repo: `03_analysis/methodology/coreq_32_completed.md`
-- Nitel repo: `03_analysis/methodology/audit_trail.md`
-- Nitel repo: `04_triadic_matrices/` türetilmiş matrisleri
+- `niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd` (**kanonik**)
+- Nitel kol: `03_analysis/codebook/codebook_v2.md`
+- Nitel kol: `03_analysis/methodology/coreq_32_completed.md`
+- Nitel kol: `03_analysis/methodology/audit_trail.md`
+- Nitel kol: `04_triadic_matrices/` türetilmiş matrisleri
 
 ## Kullanılacak Nicel Kaynaklar
 
-- `chapters/03_bulgular.qmd`
+- `docs/CLINICAL-STUDY-REPORT-FINAL.qmd` (**kanonik CSR — birincil nicel kaynak**)
+- `chapters/04_bulgular.qmd` (üretim: BULGULAR bölümü)
+- `chapters/05_tartisma_ve_sonuc.qmd` (üretim: TARTIŞMA bölümü)
 - `_targets.R`
 - `docs/analiz_planlari/03-sap-ana-plan.md`
 - `docs/analiz_planlari/04-sap-faz2-posthoc.md`

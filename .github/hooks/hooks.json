@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/.github/hooks/dispatch.py\" session_start.py sessionStart 30",
+            "timeout": 30,
+            "statusMessage": "Loading reliability conventions + talimatname"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/.github/hooks/dispatch.py\" user_prompt_submit.py userPromptSubmitted 15",
+            "timeout": 15,
+            "statusMessage": "Scanning prompt for secrets"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/.github/hooks/dispatch.py\" pre_tool_use_policy.py preToolUse 15",
+            "timeout": 15,
+            "statusMessage": "Checking command against data-governance deny-list"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/.github/hooks/dispatch.py\" post_tool_use_review.py postToolUse 15",
+            "timeout": 15,
+            "statusMessage": "Reviewing tool output"
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/.github/hooks/dispatch.py\" post_tool_use_review.py postToolUse 200",
+            "timeout": 200,
+            "statusMessage": "references.bib düzenlendiyse bib hijyen kapısı"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/bin/env python3 \"$CLAUDE_PROJECT_DIR/.github/hooks/dispatch.py\" stop_verify.py agentStop 120",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}

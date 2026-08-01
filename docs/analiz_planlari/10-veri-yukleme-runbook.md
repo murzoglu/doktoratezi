@@ -74,7 +74,6 @@ Bu dosyalar metadata düzeyindedir ve git dışıdır.
 - `same_sex`
 - `birth_order_diff`
 - `tani_yasi`
-- `hba1c_target`
 
 `prepare_long()` şu alanları ekler:
 

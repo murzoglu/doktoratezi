@@ -22,8 +22,6 @@ floor_irt_delta <- read_if_exists("outputs/tables/phase2_floor_irt_group_delta.c
 omegah_metrics <- read_if_exists("outputs/tables/phase2_omegah_metrics_summary.csv")
 h5ext_pooled <- read_if_exists("outputs/tables/phase2_h5ext_strategy_pooled.csv")
 ad_h5_strat <- read_if_exists("outputs/tables/phase2_ad_moderation_h5_stratified_correlations.csv")
-hba1c_bayes <- read_if_exists("outputs/tables/phase2_hba1c_bayesian_posterior.csv")
-hba1c_spline <- read_if_exists("outputs/tables/phase2_hba1c_spline.csv")
 imai_grid <- read_if_exists("outputs/tables/phase2_imai_sensitivity_grid.csv")
 imai_summary <- read_if_exists("outputs/tables/phase2_imai_summary.csv")
 dag_ci <- read_if_exists("outputs/tables/phase2_dag_ci_tests.csv")
@@ -48,8 +46,6 @@ result <- run_phase2_apa_outputs_pipeline(
   omegah_metrics_summary_table = omegah_metrics,
   h5ext_strategy_pooled_table = h5ext_pooled,
   ad_h5_stratified_table = ad_h5_strat,
-  hba1c_bayesian_posterior_table = hba1c_bayes,
-  hba1c_spline_table = hba1c_spline,
   imai_sensitivity_grid_table = imai_grid,
   imai_summary_table = imai_summary,
   dag_ci_tests_table = dag_ci,

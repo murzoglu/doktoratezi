@@ -16,14 +16,13 @@ phase2_thesis_chapter06_mapping <- function() {
       "6.3 Psikometrik Robustlestirme (KISIM XXI)",
       "6.4 Antidepresan ve Mental Saglik Yuku (KISIM XXII)",
       "6.5 H5 Diadik Tutarlilik Genisletmesi (KISIM XXIII)",
-      "6.6 Klinik Stratifikasyon (KISIM XXIV)",
-      "6.7 Nedensel Aracilik Sensitivitesi (KISIM XXV)",
-      "6.8 Distribusyonel Yaklasimlar (KISIM XXVI)",
-      "6.9 Multiverse Genisletme (KISIM XXVII)",
-      "6.10 Meta-Analitik Birlestirme (KISIM XXVIII)",
-      "6.11 Klinik Karar Modeli Ic-Validasyon (KISIM XXIX/84-85)",
-      "6.12 Mevcut Ornek Guc Karakterizasyonu (KISIM XXX/87-89)",
-      "6.13 Genel Sonuc ve Tezin Sinirliliklari (Faz II Lensi)"
+      "6.6 Nedensel Aracilik Sensitivitesi (KISIM XXV)",
+      "6.7 Distribusyonel Yaklasimlar (KISIM XXVI)",
+      "6.8 Multiverse Genisletme (KISIM XXVII)",
+      "6.9 Meta-Analitik Birlestirme (KISIM XXVIII)",
+      "6.10 Klinik Karar Modeli Ic-Validasyon (KISIM XXIX/84-85)",
+      "6.11 Mevcut Ornek Guc Karakterizasyonu (KISIM XXX/87-89)",
+      "6.12 Genel Sonuc ve Tezin Sinirliliklari (Faz II Lensi)"
     ),
     primary_audit_csv = c(
       "—",
@@ -31,7 +30,6 @@ phase2_thesis_chapter06_mapping <- function() {
       "phase2_floor_irt_*, phase2_omegah_*, phase2_esem_*",
       "phase2_ad_*",
       "phase2_h5ext_*",
-      "phase2_hba1c_*",
       "phase2_imai_*, phase2_dag_*",
       "phase2_dist_*",
       "phase2_multi_*",
@@ -48,7 +46,6 @@ phase2_thesis_chapter06_mapping <- function() {
       "phase2_f04_h5_strat.png (paylasilir)",
       "—",
       "—",
-      "—",
       "phase2_f05_h1_spec_curve.png",
       "phase2_f06_meta_forest.png",
       "—",
@@ -61,7 +58,6 @@ phase2_thesis_chapter06_mapping <- function() {
       "EMBU-C reddetme omega_h_s = .009 (alt skor savunulamaz); floor-aware d=0.37",
       "AD mediator NS; AD x grup H1 stabil; Beck x AD sicaklik sinirda uncoupling",
       "Sibling reddetme ICC=0 DM grubunda; H5 strat pooled DM=.179",
-      "HbA1c x sicaklik pd=.944 (Pinquart prior amplified, n=39)",
       "Imai-Keele rho_critical < 0.05 (very fragile); c' triangulation 3/3 anlamli",
       "Reddetme tau_0.75 = +.250; sigma posterior pd=.987; beta reg p<10^-6",
       "H1 multiverse %75 anlamli; SCA inferential perm p=.0002",
@@ -114,7 +110,15 @@ phase2_publication_plan <- function() {
   )
 }
 
-phase2_quarto_chapter_paragraph_seeds <- function() {
+phase2_quarto_chapter_paragraph_seeds <- function(bayes_h1_posterior_table = NULL) {
+  # H1 BF10 tek dogruluk kaynagi bayes_h1_posterior_table'dir; elle yazilmaz
+  # (denetim P0-1/kok-neden: s6_12'deki "BF₁₀=8.12" literali kanonik model
+  # ciktisi 10.55'ten kopmustu).
+  .bf_h1 <- tryCatch({
+    b <- bayes_h1_posterior_table
+    v <- as.numeric(b$bf10[grepl("reddetme", b$outcome)][1])
+    if (is.finite(v)) sub("\\.", ",", sprintf("%.2f", v)) else "NA"
+  }, error = function(e) "NA")
   list(
     s6_1 = "Faz II analizleri ana SAP'nin (KISIM I-XVIII) kapsami disinda kalan, calisma-sonu verilerinden tetiklenen 13 bilimsel boslugu kapatmak amaciyla yurutulmustur. Tum bulgular [KEŞİFSEL · POST-HOC] etiketi ile raporlanir; OSF Layer 3 amendment kapsaminda kayitlanmis ve replikasyon zorunlulugu ile birlikte konumlandirilmistir. Bu bolum, Faz II'nin 11 yeni R modulu ve 200+ targets ile uretilen 39 dogrulanmis post-hoc analizinin sentezini sunar.",
 
@@ -126,28 +130,26 @@ phase2_quarto_chapter_paragraph_seeds <- function() {
 
     s6_5 = "H5 diadik tutarlilik genisletmesinde MTMM CT-C(M-1) cocuk method varyansi %60.7 dogrulamis; Beck x grup moderation reddetme alt olceginde sinirda anlamli (β=+.122, %95 boot CI[-.004, +.249]); sibling-pair concordance ICC reddetme alt olceginde DM=0 (tam ortagonal) vs Kontrol=.322 (orta uyum) — McHale 2000 PDT (parental differential treatment) hipotezinin guclu ampirik karsiligi; H5 strateji-duzeyi metafor REML pooling DM = +.179 [+.097, +.260], heterogeneity tau=.073.",
 
-    s6_6 = "DM-only HbA1c klinik stratifikasyonunda (n=39) Bayesian joint model Pinquart 2018 + Anderson 2002 informative prior (Normal(0.16, 0.10)) altinda sicaklik (pd=.944) ve karsilastirma (pd=.946) outcome'larinda HbA1c ile pozitif yon — frequentist NS ama Bayesian probability of direction yuksek. Tani yasi cubic spline 4/4 outcome'da 'linear sufficient' (CSR §12.5.2 dogrulayici). ISPAD <%7 logistic n_events=8 yetersiz guc; OR yon karsilastirma=2.27 (anlamsiz ama ters yon dikkati).",
+    s6_6 = "Nedensel aracilik sensitivitesi modulu Imai-Keele-Tingley (2010) manuel rho_critical formulu ile uygulanmis; tum 4 outcome icin ρ_critical < 0.05 ('very_fragile_to_unmeasured_confounding') — sequential ignorability kirilganligi cok yuksek. c' direct effect triangulation 3 paralel mediation modelinde 3/3 reddetme ve 3/3 asiri koruma yolunun anlamli kalmasi (β = +.146-.198) H1 birincil bulgusunun mediation-bagimsiz dogrulayicisidir. PC algoritmasi yerine dagitty conditional independence implications ile manuel partial correlation testi: 12/12 test 'consistent' — DAG yapisi veri ile uyumlu. 3-level varyans modelinde sicaklik alt olceginde ICC_year=.154 (LRT p<.001); group_dm 2-level → 3-level gecisinde sicaklik yön degistirir (+.124 → -.078) — CSR §13.5 negctrl flag'inin yapisal yaniti.",
 
-    s6_7 = "Nedensel aracilik sensitivitesi modulu Imai-Keele-Tingley (2010) manuel rho_critical formulu ile uygulanmis; tum 4 outcome icin ρ_critical < 0.05 ('very_fragile_to_unmeasured_confounding') — sequential ignorability kirilganligi cok yuksek. c' direct effect triangulation 3 paralel mediation modelinde 3/3 reddetme ve 3/3 asiri koruma yolunun anlamli kalmasi (β = +.146-.198) H1 birincil bulgusunun mediation-bagimsiz dogrulayicisidir. PC algoritmasi yerine dagitty conditional independence implications ile manuel partial correlation testi: 12/12 test 'consistent' — DAG yapisi veri ile uyumlu. 3-level varyans modelinde sicaklik alt olceginde ICC_year=.154 (LRT p<.001); group_dm 2-level → 3-level gecisinde sicaklik yön degistirir (+.124 → -.078) — CSR §13.5 negctrl flag'inin yapisal yaniti.",
+    s6_7 = "Distribusyonel yaklasimlar kuyruk-bagimli heterojenite ortaya koymustur: quantile regression reddetme tau=0.75 β=+.250 (medyan etkinin 1.7 kati); sigma posterior 3/4 outcome icin sifirin ustunde (DM grubunda hem ortalama hem varyans yukari yonlu kayma); beta regression bounded outcome reddetme β=+0.462 (p<10^-6, log-odds olcekde manifest mean'in 3 kati).",
 
-    s6_8 = "Distribusyonel yaklasimlar kuyruk-bagimli heterojenite ortaya koymustur: quantile regression reddetme tau=0.75 β=+.250 (medyan etkinin 1.7 kati); sigma posterior 3/4 outcome icin sifirin ustunde (DM grubunda hem ortalama hem varyans yukari yonlu kayma); beta regression bounded outcome reddetme β=+0.462 (p<10^-6, log-odds olcekde manifest mean'in 3 kati).",
+    s6_8 = "H1 multiverse 120 spec random subset analizi: 120/120 ok, medyan β=+0.134, %75 spec'inde p<.05, %100'unde pozitif yön. SCA inferential test 5000 permutation altinda observed t=4.084, perm p=.0002 — H1 reddetme bulgusu spec curve toplu inferential test'inde null hipotezini reddediyor. CSR §13.6'da raporlanan H1 vs H3 multiverse paradoksunun yapisal cozumu: iki ayri veri seti (cocuk vs anne perspektifleri).",
 
-    s6_9 = "H1 multiverse 120 spec random subset analizi: 120/120 ok, medyan β=+0.134, %75 spec'inde p<.05, %100'unde pozitif yön. SCA inferential test 5000 permutation altinda observed t=4.084, perm p=.0002 — H1 reddetme bulgusu spec curve toplu inferential test'inde null hipotezini reddediyor. CSR §13.6'da raporlanan H1 vs H3 multiverse paradoksunun yapisal cozumu: iki ayri veri seti (cocuk vs anne perspektifleri).",
+    s6_9 = "Bayesian meta-analytic pooling 4 prior meta-analiz (Pinquart 2013, Pinquart 2018, Lovejoy 2000, Vermaes 2012) + bu calismanin 4 outcome estimate'i metafor REML fallback ile birlestirilmis: pooled = +0.139 [+0.049, +0.230], tau=0.106 — sıfırı net olarak disarda, bu calismanın bulgusu 8-study meta-pool merkezinde. Posterior predictive replication 4/4 outcome 'ppc_consistent'; empirical Bayes shrinkage 4/4 outcome 'expected_random_outlier_rate' — Bayesian validation katmanlari triangule.",
 
-    s6_10 = "Bayesian meta-analytic pooling 4 prior meta-analiz (Pinquart 2013, Pinquart 2018, Lovejoy 2000, Vermaes 2012) + bu calismanin 4 outcome estimate'i metafor REML fallback ile birlestirilmis: pooled = +0.139 [+0.049, +0.230], tau=0.106 — sıfırı net olarak disarda, bu calismanın bulgusu 8-study meta-pool merkezinde. Posterior predictive replication 4/4 outcome 'ppc_consistent'; empirical Bayes shrinkage 4/4 outcome 'expected_random_outlier_rate' — Bayesian validation katmanlari triangule.",
+    s6_10 = "Yuksek-risk anne sinıflandırma modeli (BDI≥17) extended logistic AUC=.703 (n=238) CSR §12.4 ile birebir tutarlı; standardized net benefit (Kerr 2016) threshold 0.05'te sNB=.86; DCA threshold-sensitivity 10×10 heatmap mevcut ornek uzerinde Vickers 2006 net-benefit egrisini sunmustur. Bu KISIM ic-validasyonlu raporlama hatti olarak tezde konumlandirilmistir.",
 
-    s6_11 = "Yuksek-risk anne sinıflandırma modeli (BDI≥17) extended logistic AUC=.703 (n=238) CSR §12.4 ile birebir tutarlı; standardized net benefit (Kerr 2016) threshold 0.05'te sNB=.86; DCA threshold-sensitivity 10×10 heatmap mevcut ornek uzerinde Vickers 2006 net-benefit egrisini sunmustur. Bu KISIM ic-validasyonlu raporlama hatti olarak tezde konumlandirilmistir.",
+    s6_11 = "Manuel Monte Carlo multilevel power simulasyonu (200 sim) d=0.20 ICC=0.20 altında n_aile=241 icin power=.535 — CSR'in mevcut H1 bulgusu güç-sınırı altında pozitif sinyal yakalayabilmistir. APIM sample size r=0.20'de n_dyad=165, Bayesian SSD ROPE=±0.10 SD altinda HDI=.20 hedefi icin n≥500 onerilir. Bu power karakterizasyonu mevcut ornekteki bulgularinin guvenirlik aralığını ortaya koyar; tum analizler n=241 kanonik bazda tamamlanmistir.",
 
-    s6_12 = "Manuel Monte Carlo multilevel power simulasyonu (200 sim) d=0.20 ICC=0.20 altında n_aile=241 icin power=.535 — CSR'in mevcut H1 bulgusu güç-sınırı altında pozitif sinyal yakalayabilmistir. APIM sample size r=0.20'de n_dyad=165, Bayesian SSD ROPE=±0.10 SD altinda HDI=.20 hedefi icin n≥500 onerilir. Bu power karakterizasyonu mevcut ornekteki bulgularinin guvenirlik aralığını ortaya koyar; tum analizler n=241 kanonik bazda tamamlanmistir.",
-
-    s6_13 = "Faz II'nin sentezi: H1 reddetme birincil bulgusu (CSR §11.1: β=0.16, BF₁₀=8.12) [KEŞİFSEL · POST-HOC] cercevede coklu-katmanli triangulation ile guclendirilmistir — Trifactor T-CFA latent yapisal dogrulama, floor-aware IRT 2.3× amplification, multiverse %75 spec anlamli, SCA inferential perm p=.0002, Bayesian meta-pool merkezde, c' direct triangulation 3/3 anlamli, PPC ppc_consistent, EB outlier expected. CSR'da raporlanan ana sonuclarin hicbiri DEGISMEZ; Faz II bulgulari mevcut Faz I kanonik baz uzerinde tamamlanmistir. Yeni veri toplama gerektiren ileri-faz analizler (longitudinal trajectory, dis-validasyon, cok-merkezli replikasyon) bu calismanin kapsami disinda birakilmistir; Faz II'den ureyen sibling PDT, AD-aracili pathway ve distribusyonel heterojenite gibi yeni hipotezler tartismada gelecek arastirma onerisi olarak sunulur."
+    s6_12 = paste0("Faz II'nin sentezi: H1 reddetme birincil bulgusu (CSR §11.1: β=0.16, BF₁₀=", .bf_h1, ") [KEŞİFSEL · POST-HOC] cercevede coklu-katmanli triangulation ile guclendirilmistir — Trifactor T-CFA latent yapisal dogrulama, floor-aware IRT 2.3× amplification, multiverse %75 spec anlamli, SCA inferential perm p=.0002, Bayesian meta-pool merkezde, c' direct triangulation 3/3 anlamli, PPC ppc_consistent, EB outlier expected. CSR'da raporlanan ana sonuclarin hicbiri DEGISMEZ; Faz II bulgulari mevcut Faz I kanonik baz uzerinde tamamlanmistir. Yeni veri toplama gerektiren ileri-faz analizler (longitudinal trajectory, dis-validasyon, cok-merkezli replikasyon) bu calismanin kapsami disinda birakilmistir; Faz II'den ureyen sibling PDT, AD-aracili pathway ve distribusyonel heterojenite gibi yeni hipotezler tartismada gelecek arastirma onerisi olarak sunulur.")
   )
 }
 
-run_phase2_thesis_mapping_pipeline <- function() {
+run_phase2_thesis_mapping_pipeline <- function(bayes_h1_posterior_table = NULL) {
   chapter_mapping <- phase2_thesis_chapter06_mapping()
   publication_plan <- phase2_publication_plan()
-  paragraph_seeds <- phase2_quarto_chapter_paragraph_seeds()
+  paragraph_seeds <- phase2_quarto_chapter_paragraph_seeds(bayes_h1_posterior_table)
 
   list(
     chapter_mapping = chapter_mapping,

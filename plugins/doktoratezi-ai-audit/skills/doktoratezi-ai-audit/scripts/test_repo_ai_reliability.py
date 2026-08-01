@@ -195,10 +195,10 @@ def test_pre_tool_use(repo: Path, hook_dir: Path, label: str) -> list[Result]:
     script = hook_dir / "pre_tool_use_policy.py"
     denied = [
         ("raw data display", "cat data/raw/Raw Data - Final.csv"),
-        ("processed data display", "head data/processed/FINAL_REFERENCE__analysis_base_family.csv"),
-        ("outputs search", "rg aile outputs/tables/table1.csv"),
-        ("targets display", "sed -n '1,3p' _targets/meta/meta"),
         ("raw data python read", "python3 -c \"open('data/raw/Raw Data - Final.csv').read()\""),
+        # Tier 3 (owner onaylı 2026-07-13): de-identified analiz yüzeyi okunabilir
+        # olsa da makineden DIŞARI taşınması (kopya/arşiv/encode) kapalıdır.
+        ("processed data exfiltration", "cp data/processed/FINAL_REFERENCE__analysis_base_family.csv /tmp/x.csv"),
         ("env display", "sed -n '1,5p' .env"),
         ("env copy", "cp .env /tmp/env-copy"),
         ("broad staging", "git add ."),
@@ -211,6 +211,11 @@ def test_pre_tool_use(repo: Path, hook_dir: Path, label: str) -> list[Result]:
         ("targeted staging", "git add .codex/hooks/pre_tool_use_policy.py"),
         ("redacted codex mcp roster", "python3 .codex/tools/codex_mcp_roster_redacted.py"),
         ("safe test runner", "Rscript tests/test_data_governance.R"),
+        # Tier 2 (owner onaylı 2026-07-13): de-identified analiz yüzeyi
+        # (data/processed + outputs + _targets) interpreter/display okumasına AÇIK.
+        ("processed data display", "head data/processed/FINAL_REFERENCE__analysis_base_family.csv"),
+        ("outputs search", "rg aile outputs/tables/table1.csv"),
+        ("targets display", "sed -n '1,3p' _targets/meta/meta"),
     ]
     results: list[Result] = []
     for case_name, command in denied:
@@ -222,11 +227,13 @@ def test_pre_tool_use(repo: Path, hook_dir: Path, label: str) -> list[Result]:
                 f"exit={proc.returncode} stdout={proc.stdout[:160]!r}",
             )
         )
+    # Event-shape ayrıştırma kapsamı korunur; komutlar PII-kaynak yollarına
+    # çevrildi (Tier 1) çünkü de-identified analiz yüzeyi artık DENY üretmez.
     alternate_event_shapes = [
         ("root command", {"command": "cat data/raw/Raw Data - Final.csv"}),
-        ("input command", {"input": {"command": "head data/processed/FINAL_REFERENCE__analysis_base_family.csv"}}),
-        ("params command", {"params": {"command": "rg aile outputs/tables/table1.csv"}}),
-        ("tool_input cmd", {"tool_input": {"cmd": "sed -n '1,3p' _targets/meta/meta"}}),
+        ("input command", {"input": {"command": "head data/identified/roster.csv"}}),
+        ("params command", {"params": {"command": "rg tckn data/cleaned/interim.csv"}}),
+        ("tool_input cmd", {"tool_input": {"cmd": "sed -n '1,3p' data/backup/snapshot.csv"}}),
         ("tool_input string", {"tool_input": "cat data/raw/Raw Data - Final.csv"}),
     ]
     for case_name, event in alternate_event_shapes:

@@ -16,6 +16,8 @@ getirildiği **tek kanonik yer**. Tek-otorite ilkesi geçerlidir (bkz.
 |---|---|---|
 | `nitel-nicel-joint-display-plan.md` | **Joint display** (kanonik): tablo alanları + ilişki türü sözlüğü (uyum / tamamlayıcılık / ayrışma / açıklayıcı genişleme) + güvenli nicel/nitel kaynak listesi. | Joint display **alanlarının** tek kaynağı. `01_mimari/iki-repo-entegrasyon-plani.md` ve `03_bolum-hazirlik/04_bulgular.md` + `05_tartisma-ve-sonuc.md` buraya işaret eder. |
 | `nitel-cikti-cercevesi.md` | **Nitel kol çıktı çerçevesi** (kanonik): RTA/COREQ/bilgi gücü, quote bütünlüğü, skill bağlayıcı ilkeleri, güvenli aktarım sözleşmesi, KVKK sınırı. | Nitel çıktının tek çerçevesi (`niteliksel-arastirma-rehberi-t1dm`). Joint display **alanını** plana devreder; kendi §0 otorite zinciri vardır. |
+| `karma-kanit-ledgeri.tsv` | **Kanıt-ledger** (kanonik): ankraj-provenanslı her nicel-nitel kanıt satırı; her satır `{#tema-N}` / H1–H5 çapası ve dosya referansıyla işaretlidir. | Drift-guard: `scripts/util/karma_ledger_check.py` (`PYTHONDONTWRITEBYTECODE=1 python3 scripts/util/karma_ledger_check.py`, exit 0/1/2). HARD=0 olmadan bölüm final sayılmaz (bkz. Kapı 5 playbook). |
+| `karma-sentez-kanonik.md` | **Kanonik karma sentez** (kanonik — tek doğruluk kaynağı): doldurulmuş joint-display + meta-çıkarım (Task 4 çıktısı). | BULGULAR joint-display / TARTIŞMA meta-çıkarım için birincil kaynak. `nitel-nicel-joint-display-plan.md` alan sözlüğüdür; doldurulmuş tablo bu dosyadadır. |
 
 ## Entegrasyon katmanı dışı bağlı omurga (devredilen otoriteler)
 
@@ -25,19 +27,30 @@ getirildiği **tek kanonik yer**. Tek-otorite ilkesi geçerlidir (bkz.
 | Nitel bulgu biçimi (tema/rol, anonim alıntı, kanıt ayrımı) | marmara §7 | 00 |
 | Karma yöntem derinliği (GRAMMS, MMAT, convergent parallel) | `t1dm-tez-rehberi/references/karma-yontem.md` | skill |
 | Nitel metodoloji (RTA 6 faz, bilgi gücü, IRR, jüri) | `niteliksel-arastirma-rehberi-t1dm` skill | skill |
-| Nitel iç veri denetimi (quote/codebook/COREQ/matris) | paired nitel repo `./dmnitel` komutları | repo |
+| Nitel iç veri denetimi (quote/codebook/COREQ/matris) | nitel kol (niteliksel/) `./dmnitel` komutları | repo |
 | Bulgular/Tartışma yürütme talimatnamesi | `03_bolum-hazirlik/04_bulgular.md`, `05_tartisma-ve-sonuc.md` | 03 |
 | Veri sınırı (KVKK — en yüksek hassasiyet) | `talimatname-claude-code.md` §2 + `nitel-cikti-cercevesi.md` §8 | 00/05 |
 
 ## Joint display üretim zinciri
 
 ```
+Kanonik girdiler
+  ├── nitel: niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd
+  └── nicel: docs/CLINICAL-STUDY-REPORT-FINAL.qmd
+
 05_entegrasyon/nitel-nicel-joint-display-plan.md   (alan + ilişki sözlüğü)
-        │  güvenli nitel kaynak: docs/niteliksel/qualitative_canonical_results_report.md (+ paired repo türevleri)
-        │  nicel kaynak: chapters/03_bulgular.qmd, _targets.R, SAP
+        │
         ▼
-BULGULAR (yorumsuz köprü)  →  TARTIŞMA (yorumlu karma bütünleştirme)
-   03_bolum-hazirlik/04_bulgular.md        03_bolum-hazirlik/05_tartisma-ve-sonuc.md
+05_entegrasyon/karma-kanit-ledgeri.tsv             (ankraj-provenanslı kanıt-ledger)
+        │  drift-guard: scripts/util/karma_ledger_check.py  [HARD=0 zorunlu]
+        │
+        ▼
+05_entegrasyon/karma-sentez-kanonik.md             (doldurulmuş joint-display + meta-çıkarım)
+        │
+        ▼
+BULGULAR (yorumsuz köprü)     →     TARTIŞMA (yorumlu karma bütünleştirme)
+  chapters/04_bulgular.qmd           chapters/05_tartisma_ve_sonuc.qmd
+  (brief: 03_bolum-hazirlik/04_bulgular.md)  (brief: 03_bolum-hazirlik/05_tartisma-ve-sonuc.md)
 ```
 
 ## Öncelik zinciri

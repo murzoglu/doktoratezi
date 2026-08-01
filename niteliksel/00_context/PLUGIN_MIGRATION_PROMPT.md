@@ -20,8 +20,8 @@ Hazırlanış: 2026-07-05. Kaynak envanteri bu tarihte doğrulandı:
 
 ```bash
 cd /path/to/marketplace-repo
-claude --add-dir "/mnt/thunderbolt/workspaces/T1DM Niteliksel" \
-       --add-dir "/mnt/thunderbolt/workspaces/doktoratezi"
+claude --add-dir "/workspaces/T1DM-Tez/niteliksel" \
+       --add-dir "/workspaces/T1DM-Tez"
 ```
 
 ## 2) Yapıştırılacak komut
@@ -31,8 +31,8 @@ Marketplace reposunda, LLM tarafından üretilmiş BİLİMSEL METİNLERİ hem AD
 DİLSEL olarak denetleyen genel amaçlı bir Claude Code plugin'i inşa et: "sci-audit".
 İki kaynak repodan kod port edilir ama TÜM domain bağlamından (T1DM, tez, KVKK
 dizin adları, dmnitel, doktoratezi'ye özgü yollar) tamamen arındırılır:
-  KAYNAK-1: /mnt/thunderbolt/workspaces/T1DM Niteliksel        (reliability çekirdeği)
-  KAYNAK-2: /mnt/thunderbolt/workspaces/doktoratezi            (Türkçe dil denetimi)
+  KAYNAK-1: /workspaces/T1DM-Tez/niteliksel        (reliability çekirdeği)
+  KAYNAK-2: /workspaces/T1DM-Tez            (Türkçe dil denetimi)
 ⚠️ Kaynaklardan yalnız kod/politika port edilir; katılımcı verisi/PII içeren hiçbir
 dizin (01_raw_data/, 02_processed/transcripts/, 01_deidentified/, .remember/,
 chapters/ içerikleri) okunmaz, örnek olarak dahi kopyalanmaz.

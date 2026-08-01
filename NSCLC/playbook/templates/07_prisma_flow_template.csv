@@ -1,0 +1,19 @@
+# PRISMA akış sayıları — ayırıcı ';'
+# Tümü tamsayı. scripts/prisma_flow_check.py aritmetiği doğrular:
+#   tekillestirme_oncesi_toplam = tanimlanan_kayit_veritabani + tanimlanan_kayit_diger_yontem
+#   taranan_kayit               = tekillestirme_oncesi_toplam - cikarilan_duplikat
+#   tam_metin_degerlendirilen   = taranan_kayit - dislanan_kayit_tab
+#   dahil_edilen_calisma        = tam_metin_degerlendirilen - dislanan_tam_metin
+#   dahil_edilen_rapor         >= dahil_edilen_calisma   (çalışma != rapor)
+# Aşağıdaki sayılar <PLACEHOLDER> örneğidir (aritmetik tutar); gerçek sayıyla DEĞİŞTİRİN.
+asama;sayi;not
+tanimlanan_kayit_veritabani;120;her db toplamı (search_log ile tutarlı)
+tanimlanan_kayit_diger_yontem;5;snowballing/gri literatür
+tekillestirme_oncesi_toplam;125;
+cikarilan_duplikat;25;
+taranan_kayit;100;tab sonrası
+dislanan_kayit_tab;70;
+tam_metin_degerlendirilen;30;
+dislanan_tam_metin;22;neden kodları ile 03_screening'de detay
+dahil_edilen_calisma;8;sentez birimi
+dahil_edilen_rapor;10;çalışma!=rapor (çoklu yayın)

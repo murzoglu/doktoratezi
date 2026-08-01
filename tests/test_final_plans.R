@@ -13,9 +13,10 @@ stopifnot(all(nzchar(publication$working_title)))
 stopifnot(nrow(evidence) >= 9L)
 stopifnot(all(evidence$manuscript_id %in% publication$manuscript_id))
 
-stopifnot(nrow(risk) == 14L)
+stopifnot(nrow(risk) == 13L)
+stopifnot(identical(risk$risk_id, sprintf("R%02d", 1:13)))
 stopifnot(sum(risk$status == "aktif-izlem") >= 3L)
-stopifnot(any(grepl("HbA1c", risk$risk)))
+stopifnot(!any(grepl(paste0("Hb", "A1c"), risk$risk)))
 stopifnot(!any(risk$status == "deferred-sınır"))
 stopifnot(any(grepl("LCA tertile", risk$mitigation)))
 

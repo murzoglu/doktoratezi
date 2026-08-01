@@ -1,22 +1,22 @@
 # Tez Yazım Operasyon Merkezi
 
 Bu klasör doktora tezinin yazım sürecinde resmi Marmara Üniversitesi tez kılavuzu,
-repo içi analiz kanıtları ve iki-repo karma yöntem entegrasyonunu tek hatta bağlayan
+repo içi analiz kanıtları ve iki-kol karma yöntem entegrasyonunu tek hatta bağlayan
 operasyon katmanıdır. `thesis.qmd` ve `chapters/` gerçek üretim dosyalarıdır; bu
 klasör karar, şablon, kontrol listesi ve yazım hazırlık alanıdır.
 
 ## Ana Çalışma Merkezi Kararı
 
 Bundan sonraki tez yazım süreci bu repo içinde yürütülür. Ana çalışma
-dizini `/mnt/thunderbolt/workspaces/doktoratezi`, ana operasyon alanı
+dizini `/workspaces/T1DM-Tez`, ana operasyon alanı
 `tez-yazim/`, üretim dosyaları ise `thesis.qmd` ve `chapters/*.qmd`
-dosyalarıdır. Nitel repo, kanonik nitel sonuç raporunun temsil etmediği
+dosyalarıdır. Nitel kol, kanonik nitel sonuç raporunun temsil etmediği
 veya ek denetim gerektiren yöntem, bulgular, joint display, tartışma ve
 ekler kesimlerinde koşullu kaynak/denetim katmanı olarak açılır.
 
-Kanonik nitel sonuç raporu bu tez yazım sürecinde nitel repoyu temsil eden
+Kanonik nitel sonuç raporu bu tez yazım sürecinde nitel kolu temsil eden
 varsayılan aktarım kaynağıdır. Ham transcript, demografi satırı veya geniş
-nitel repo yeniden taraması varsayılan iş akışı değildir.
+nitel kol yeniden taraması varsayılan iş akışı değildir.
 
 ## Resmi Kaynak Önceliği
 
@@ -45,7 +45,7 @@ onun kısa operasyonel özetidir. Dış literatür/citation Evidentia hattı:
 | Klasör | Amaç |
 |---|---|
 | `00_kaynak-kurallari/` | Resmi kılavuzdan çıkarılmış format, kaynakça ve şablon sözleşmesi. Tek-otorite haritası: `00_kaynak-kurallari/README.md`. |
-| `01_mimari/` | Yürütme planı, araç/yetkinlik mimarisi, dış-kanıt hattı ve iki-repo yazım modeli. Tek-otorite haritası: `01_mimari/README.md`. |
+| `01_mimari/` | Yürütme planı, araç/yetkinlik mimarisi, dış-kanıt hattı ve iki-kol yazım modeli. Tek-otorite haritası: `01_mimari/README.md`. |
 | `02_kanit-haritalari/` | Referans denetim ledger'ı ve bölüm bazlı iddia↔kaynak kanıt haritaları. Tek-otorite haritası: `02_kanit-haritalari/README.md`. |
 | `02_sablonlar/` | Bölüm, özet, tablo, şekil ve ön bölüm yazım şablonları (iskelet). Tek-otorite haritası: `02_sablonlar/README.md`. |
 | `03_bolum-hazirlik/` | Her resmi Marmara bölümü için bu teze özgü kapsamlı yürütme talimatnameleri. Tek-otorite haritası: `03_bolum-hazirlik/README.md`. |
@@ -67,11 +67,11 @@ onun kısa operasyonel özetidir. Dış literatür/citation Evidentia hattı:
 5. Metin üretmeden önce repo kanıtını dosya yolu ile eşleştir.
 6. Dış literatür gerekiyorsa Evidentia paketini birincil geniş kanıt motoru
    olarak kullan; PubMed/OpenAlex/Paper Search, OpenAthens publisher
-   full-text, Anna's fallback, Zotero ve çift AI-reliability kapılarını
+   full-text, Anna's fallback, Zotero ve iki-kol AI-reliability kapılarını
    sırayla kapat; ham veri gönderme.
 7. YÖK/ERIC, mevzuat, klinik terminoloji/regülasyon, render/browser/GitHub ve
    platform/design MCP'lerini yalnız görev sinyali varsa aç.
-8. Nitel repo yetkinliklerini yalnız nitel kolun tezde ilişkili kesimleri için
+8. Nitel kol yetkinliklerini yalnız nitel kolun tezde ilişkili kesimleri için
    kullan; kanonik nitel sonuç raporu varsayılan temsil kaynağıdır.
 9. Üretilen içeriği `chapters/` dosyalarına taşımadan önce
    `04_kalite-kontrol/` listeleriyle kontrol et.
@@ -120,7 +120,7 @@ tek kanonik otoritesi `01_mimari/yetkinlik-ve-arac-mimarisi.md`'dir.
 Bölüm finalizasyonu için ana kapı:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 test -f tez-yazim/04_kalite-kontrol/bolum-finalizasyon-sertifikasyon-playbook.md
 test -f tez-yazim/04_kalite-kontrol/bolum-finalizasyon-sertifikasi-sablonu.md
 ```
@@ -134,27 +134,27 @@ Dar tez-yazım/tool değişikliği için:
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests
 ```
 
-Nicel repo AI/tool değişikliği için:
+Nicel kök AI/tool değişikliği için:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py
 ```
 
 Referans içeren bölüm kapanışı için:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/T1DM\ Niteliksel
+cd /workspaces/T1DM-Tez/niteliksel
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py
 
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py
 ```
 
 Quarto çıktısı etkilenirse:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 quarto check
 quarto render thesis.qmd
 ```

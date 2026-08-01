@@ -1,6 +1,6 @@
 # Araç Ekosistem Haritası — T1DM Karma Tez Yazım Süreci
 
-Sürüm: 1.3 · 2026-07-08 · Kapsam: iki repo (`T1DM Niteliksel` + `doktoratezi`),
+Sürüm: 1.3 · 2026-07-08 · Kapsam: iki-kol (`T1DM Niteliksel` + `doktoratezi`),
 iki harness (Claude Code + Codex CLI). Operasyonel kurallar için:
 `00_context/TALIMATNAME_TEZ_YAZIM.md` (Claude) · `00_context/CODEX_PLAYBOOK.md` (Codex).
 
@@ -44,7 +44,7 @@ Kullanıcı görevi
 |---|---|---|
 | `./dmnitel ai-context` | Repo-özel güvenli tool-bridge özeti | Oturum ritüelinin 1. adımı (`/tez-oturum` içinde otomatik) |
 | `./dmnitel route-tool --query` | Yerel nitel / dış kanıt / nicel-karma rota kararı | Belirsiz her işte önce bu |
-| `./dmnitel cross-repo-status` | Karma tez iki-repo köprü raporu | Çıktı: `07_reports/cross_repo_thesis_bridge_status.md` |
+| `./dmnitel cross-repo-status` | Karma tez iki-kol köprü raporu | Çıktı: `07_reports/cross_repo_thesis_bridge_status.md` |
 | `./dmnitel lint-codebook` | Codebook CSV tutarlılığı | Kanonik: `codebook_v2.md`; v3.csv draft |
 | `./dmnitel build-triadic-matrix` | Anne/T1DM çocuk/kardeş tema matrisi | Çıktı: `04_triadic_matrices/` |
 | `./dmnitel check-quotes` | Anonim alıntı bütünlüğü | Transcript'i bağlama açmadan doğrular |
@@ -82,7 +82,7 @@ Kullanıcı görevi
 Niteliksel/karma soru
   ├─ İç veri (RTA/codebook/COREQ/alıntı/triad) → ./dmnitel + niteliksel-arastirma-rehberi-t1dm
   ├─ Dış literatür/tam metin/citation/KOL      → EVIDENTIA v1.7 / medical-research v8.5 + OA/legal-OA/Paper Search + Anna's + Zotero + ledger
-  └─ Nicel/karma köprü (H5, joint display, IRR)→ t1dm-tez-rehberi (paired doktoratezi)
+  └─ Nicel/karma köprü (H5, joint display, IRR)→ t1dm-tez-rehberi (nicel kök)
 ```
 
 | Kol | Birincil kapı | Skill köprü dosyası | KVKK sınırı |
@@ -207,7 +207,7 @@ AdisInsight-dışı finans/pazar araçları. Yalnız açık, tez-dışı istekle
 
 ## 7. Hook katmanı (deterministik kapılar)
 
-| Olay | Nitel repo | Nicel repo (doktoratezi) | İşlev |
+| Olay | Nitel kol | Nicel kök (doktoratezi) | İşlev |
 |---|---|---|---|
 | SessionStart | `.claude/hooks/session_start.py` ↔ `.codex/hooks/…` | aynı ikiz | `CONVENTIONS.md` + talimatname özetini enjekte eder |
 | UserPromptSubmit | ikiz | ikiz | Prompt'ta sır kalıbı → blok |
@@ -240,7 +240,7 @@ promptfoo offline gate 4/4 + 4/4 (`reliability/evals/`).
 
 1. Yeni MCP/plugin/skill eklenince bu harita + ilgili talimatname aynı commit'te güncellenir.
 2. Hook politikası değişince: iki harness ağacı (`.claude/hooks` ↔ `.codex/hooks`),
-   iki repo ve testler birlikte güncellenir; `/nitel-dogrulama` PASS şartı.
+   iki-kol ve testler birlikte güncellenir; `/nitel-dogrulama` PASS şartı.
 3. Bağlantı durumu değişkendir (🔶/🧩 etiketleri oturuma göre oynar); citation
    öncesi kapı hangi harness'ta kapandıysa ledger'a o yazılır.
 4. Bu harita envanterdir, yetki vermez: default-off bir aracın kullanımı için

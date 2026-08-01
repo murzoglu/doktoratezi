@@ -2,7 +2,7 @@
 
 **Ne zaman oku:** Eksik veri raporlanırken, mice/MI parametre seçimi, FIML lavaan kurulumu,
 naniar görselleştirmesi, NMAR delta-tipping point analizi, MAR/MCAR test kararı, yapısal
-eksiklik (HbA1c sadece DM'de) işlemi.
+eksiklik (DM süresi / tanı tarihi yalnız DM'de) işlemi.
 
 **Kaynaklar:** Enders (2022) *Applied Missing Data Analysis* (2nd ed.); van Buuren (2018)
 *Flexible Imputation of Missing Data* (2nd ed.); Rubin (1987) *Multiple Imputation for
@@ -18,7 +18,7 @@ Nonresponse in Surveys*; Little (1988) MCAR test; Carpenter & Kenward (2013) —
 |---------|--------|----------|
 | **Primary FIML** (`df_family_missing_fiml_primary`) | Full Information Maximum Likelihood (lavaan içinde `missing = "fiml"`) | H4 SEM modeli, multivariate normality varsayımı yumuşak |
 | **Primary MI** (`df_family_missing_mi_primary`) | mice (m = 50, maxit = 30) | H1, H2, H3 frequentist modeller; pooled estimates |
-| **DM Klinik Sensitivity MI** (`df_family_missing_mi_clinical_sensitivity`) | mice (HbA1c/dm_yili dahil) | DM grubunda hastalık ağırlığı moderasyonu |
+| **DM Klinik Sensitivity MI** (`df_family_missing_mi_clinical_sensitivity`) | mice (DM-only klinik değişkenler hariç tutularak) | DM grubunda hastalık süresi / tanı yaşı duyarlılığı |
 | **Complete Case** (`df_family_missing_complete_case_primary`) | Listwise | YALNIZCA bilgi kaybı görsel referansı; primer yorum DEĞİL |
 
 **Karar mantığı:** Birincil yorum FIML (SEM) veya MI (multilevel/regresyon) altında MAR
@@ -33,10 +33,10 @@ varsayımıyla; NMAR delta duyarlılığı ek kontrol.
 | **MCAR** (Missing Completely At Random) | Eksiklik gözlemlenen veya gözlenmeyen değerlerden bağımsız | Skala fotokopi hatası |
 | **MAR** (Missing At Random) | Eksiklik gözlenen değişkenlerle açıklanabilir | EMBU-C bazı maddelerde yaş kovaryatına bağlı atlama |
 | **MNAR** (Missing Not At Random) | Eksiklik gözlemlenmeyen değerlerle ilişkili | Beck'te ağır depresif anne anketi tamamlamamış olabilir |
-| **Structural Missing** | Tasarım gereği yok | Kontrol grubunda HbA1c, dm_yili |
+| **Structural Missing** | Tasarım gereği yok | Kontrol grubunda `dm_yili`, `dm_tani_tarihi` |
 
-**Yapısal eksiklik MI/FIML imputasyonunun KAPSAMI DIŞINDADIR.** Kontrol grubunda HbA1c'yi
-imputlama isteme — bu, hastalığı imput etmek demek olur.
+**Yapısal eksiklik MI/FIML imputasyonunun KAPSAMI DIŞINDADIR.** Kontrol grubunda `dm_yili`
+veya `dm_tani_tarihi` imputlama isteme — bu, hastalığı imput etmek demek olur.
 
 ---
 
@@ -109,7 +109,6 @@ method <- mice::make.method(df)
 method["beck_total"]      <- "pmm"        # Sürekli, yarı-sürekli (toplam)
 method["embu_p_sicaklik_mean"] <- "pmm"        # Standardize sürekli
 method["group_dm"]        <- ""           # Imputation YOK (zaten dolu)
-method["hba1c"]           <- ""           # Yapısal eksiklik (kontrolde missing tasarım)
 method["antidepressant"]  <- "logreg"     # Binary
 method["medication_class"]<- "polyreg"    # Multinomial
 method["birth_order"]     <- "polr"       # Ordinal
@@ -124,8 +123,6 @@ predictor_matrix <- mice::quickpred(df, mincor = 0.10, minpuc = 0.25)
 # Her değişken için en az r = .10 korelasyonlu olanlar predictor
 
 # Yapısal değişkenleri imputasyon zincirinden çıkar
-predictor_matrix["hba1c", ]   <- 0
-predictor_matrix[, "hba1c"]   <- 0
 predictor_matrix["dm_yili", ] <- 0
 predictor_matrix[, "dm_yili"] <- 0
 
@@ -243,18 +240,18 @@ ggplot(results, aes(delta, est)) +
 
 ## Yapısal Eksiklik (Bu Projeye Özel)
 
-### HbA1c, dm_yili (Sadece DM Grubunda Tanımlı)
+### `dm_yili` / `dm_tani_tarihi` (Sadece DM Grubunda Tanımlı)
 
 ```r
-# Yanlış: tüm hastaları tek model kovaryatı yap
-m_wrong <- lmer(outcome ~ group_dm * hba1c + (1 | aile_no_f), data = df_family_ses)
-# Hata: hba1c kontrolde NA → grup × hba1c interaction terimi NA
+# Yanlış: DM-only süre değişkenini tüm örneklemde grup etkileşimi gibi kullan
+m_wrong <- lmer(outcome ~ group_dm * dm_yili + (1 | aile_no_f), data = df_family_ses)
+# Hata: dm_yili kontrolde tasarım gereği yok → etkileşim terimi anlamlı tanımlanmaz
 
-# Doğru: DM-only stratum sensitivity
+# Doğru: DM-only stratum duyarlılığı
 df_dm_only <- df_family_ses |> filter(group_dm == 1)
-m_dm <- lm(outcome ~ hba1c + dm_yili + ses_latent_z + age_gap_z, data = df_dm_only)
+m_dm <- lm(outcome ~ dm_yili + tani_yasi + ses_latent_z + age_gap_z, data = df_dm_only)
 
-# Tüm örneklem analizinde HbA1c HARİÇ
+# Tüm örneklem analizinde DM-only kovaryatlar HARİÇ
 m_total <- lmer(outcome ~ group_dm + ses_latent_z + age_gap_z + (1 | aile_no_f),
                  data = df_family_ses)
 ```
@@ -264,8 +261,9 @@ m_total <- lmer(outcome ~ group_dm + ses_latent_z + age_gap_z + (1 | aile_no_f),
 
 ### Klinik Sensitivity MI
 
-`df_family_missing_mi_clinical_sensitivity` çerçevesi DM-only altkümede HbA1c eksikliğini
-imput eder; sonuçlar primer yorumun bir uzantısı olarak raporlanır.
+`df_family_missing_mi_clinical_sensitivity` çerçevesi hâlâ klinik duyarlılık için üretilir;
+ancak DM-only klinik süre/tanı değişkenleri kontrol grubuna imput edilmez ve primer yorumun
+yerine geçmez.
 
 ---
 
@@ -323,7 +321,7 @@ miss_case_summary(df_family_ses)
 > imputation) prosedürüyle yürütülmüştür (van Buuren, 2018). Birincil çerçevede sürekli
 > değişkenler için predictive mean matching (PMM), kategorik değişkenler için logistic ve
 > polytomous regression yöntemleri kullanılmıştır (`R/12_missing_data_frames.R`). DM-spesifik
-> klinik değişkenler (HbA1c, dm_yili) tasarım kaynaklı yapısal eksiklik olduğundan
+> klinik değişkenler (`dm_yili`, `dm_tani_tarihi`) tasarım kaynaklı yapısal eksiklik olduğundan
 > imputasyon zincirine dahil edilmemiş, yalnız DM altkümesinde duyarlılık analizi
 > çerçevesinde kullanılmıştır. MAR varsayımı altında pooled (Rubin kuralları) tahminler
 > raporlanmış, NMAR'a duyarlılık delta-tipping point grid (δ = −0.5, …, +0.5 SD) ile
@@ -336,7 +334,7 @@ miss_case_summary(df_family_ses)
 1. **Listwise deletion ile devam etme** — bu projenin protokolünde zayıflık olarak
    raporlanmış sayılır.
 2. **`m = 5` ile yetinmek** — Graham 2007 sonrası modası geçmiş. m ≥ 40.
-3. **HbA1c'yi tüm örnekleme imput** — yapısal eksikliği bilinçli imput etmek bilim ihlali.
+3. **DM-only klinik değişkenleri tüm örnekleme imput** — yapısal eksikliği bilinçli imput etmek bilim ihlali.
 4. **MCAR testi yok diye atlamak** — naniar::mcar_test bir satır.
 5. **Convergence diagnostiklerini ihmal** — trace plot her zaman incele.
 6. **Pooled estimates yerine ortalama estimate'ı raporlamak** — Rubin kuralları SE doğru

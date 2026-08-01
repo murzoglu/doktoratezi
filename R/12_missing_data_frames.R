@@ -7,7 +7,7 @@ missing_required_columns <- function() {
 }
 
 missing_dm_only_columns <- function() {
-  c("hba1c", "dm_yili", "dm_tani_tarihi")
+  c("dm_yili", "dm_tani_tarihi")
 }
 
 missing_primary_core_columns <- function() {
@@ -43,7 +43,7 @@ missing_score_columns <- function(df) {
 }
 
 missing_clinical_sensitivity_columns <- function(df) {
-  intersect(c("hba1c", "dm_yili"), names(df))
+  intersect(c("dm_yili"), names(df))
 }
 
 missing_require_columns <- function(df, columns, context) {
@@ -656,7 +656,7 @@ derive_missing_data_frames <- function(df_family_ses, high_missing_threshold = 0
     )
   }
 
-  nmar_variables <- intersect(c("beck_total", "aile_isei08", "hba1c"), clinical_columns)
+  nmar_variables <- intersect(c("beck_total", "aile_isei08"), clinical_columns)
   list(
     frames = frames,
     mice_specs = mice_specs,

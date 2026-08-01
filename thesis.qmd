@@ -1,31 +1,53 @@
 ---
-title: "Tip 1 Diyabet Tanılı Çocuklar, Sağlıklı Kardeşleri ve Annelerinde Ebeveynlik Tutumu Algısı"
+title: "Diyabetik Çocuklar, Sağlıklı Kardeşleri ve Annelerinin Ebeveynlik Tutumlarına Yönelik Algılarının ve Kardeşler Arası İlişkilerin Sağlıklı Kontrol Grubu ile Karşılaştırılarak İncelenmesi"
 author: "Özlem Murzoğlu Kurt"
 ---
 
-<!-- ÖN BÖLÜMLER (Marmara sırası §5): Tez Onayı → Beyan → Teşekkür → İçindekiler(oto) → Kısaltmalar → Şekiller(oto) → Tablolar(oto) → Özet → Summary -->
+<!-- DIŞ KAPAK + İÇ KAPAK (Marmara §2.1; resmi şablon kapak sayfası).
+     Varsayılan Quarto başlık bloğu iki kolda da bastırılır: PDF'te
+     `\renewcommand{\maketitle}{}` (_quarto.yml include-in-header), DOCX'te
+     post-render Title/Author paragrafı silme (docx_marmara_dizin_basliklari.py). -->
+
+{{< include chapters/00_kapak.qmd >}}
+
+<!-- ÖN BÖLÜMLER (Marmara sırası §5): Tez Onayı → Beyan → Teşekkür → İçindekiler → Kısaltmalar → Şekiller → Tablolar → Özet → Summary.
+     İçindekiler 00a sonunda, Şekiller/Tablolar dizinleri 00b sonunda üretilir (PDF: ham LaTeX; DOCX: post-render taşıma). -->
 
 {{< include chapters/00a_on_bolumler.qmd >}}
 
+{{< pagebreak >}}
+
 {{< include chapters/00b_kisaltmalar.qmd >}}
+
+{{< pagebreak >}}
 
 {{< include chapters/00c_ozet_summary.qmd >}}
 
-<!-- GÖVDE BÖLÜMLERİ -->
+<!-- GÖVDE BÖLÜMLERİ (Marmara §5: her ana bölüm yeni sayfada başlar) -->
 
 {{< include chapters/01_giris_ve_amac.qmd >}}
 
+{{< pagebreak >}}
+
 {{< include chapters/02_genel_bilgiler.qmd >}}
+
+{{< pagebreak >}}
 
 {{< include chapters/03_gerec_ve_yontem.qmd >}}
 
+{{< pagebreak >}}
+
 {{< include chapters/04_bulgular.qmd >}}
+
+{{< pagebreak >}}
 
 {{< include chapters/05_tartisma_ve_sonuc.qmd >}}
 
+{{< pagebreak >}}
+
 <!-- ARKA BÖLÜMLER (Marmara sırası): Kaynaklar → Özgeçmiş → Bilimsel Faaliyetler → Ekler -->
 
-# KAYNAKLAR {.unnumbered}
+# KAYNAKLAR
 
 ::: {#refs}
 :::

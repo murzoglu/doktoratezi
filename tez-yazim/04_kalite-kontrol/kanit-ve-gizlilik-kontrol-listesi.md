@@ -6,7 +6,10 @@
 > `02_kanit-haritalari/referans-denetim-ledgeri.md`; korumalı yol listesi →
 > `06_kritik-kaynaklar/kritik-dosya-manifesti.tsv`. Master süreç:
 > `bolum-finalizasyon-sertifikasyon-playbook.md` Kapı 0–2. Klasör haritası:
-> `04_kalite-kontrol/README.md`.
+> `04_kalite-kontrol/README.md`. Otomatik denetim: bu listenin
+> makine-doğrulanabilir maddeleri `tez-kontrol-checklisti.md` (K0-* / K1-*)
+> altında `scripts/util/tez_checklist_verify.py --section K0` (ve `--section K1`)
+> ile koşulur.
 
 ## Kanıt
 

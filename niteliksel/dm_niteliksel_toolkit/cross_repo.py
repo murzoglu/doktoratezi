@@ -10,7 +10,7 @@ from .anonymization import assert_not_protected_write
 
 
 QUAL_REPO = Path(__file__).resolve().parents[1]
-QUANT_REPO = Path("/mnt/thunderbolt/workspaces/doktoratezi")
+QUANT_REPO = Path("/workspaces/T1DM-Tez")
 THESIS_WRITING_ROOT = QUANT_REPO / "tez-yazim"
 
 
@@ -270,7 +270,7 @@ def build_cross_repo_status(output_format: str = "markdown") -> str:
         "thesis_lanes": THESIS_LANES,
         "validation_commands": VALIDATION_COMMANDS,
         "routing_commands": [
-            "cd /mnt/thunderbolt/workspaces/doktoratezi && test -f tez-yazim/README.md",
+            "cd /workspaces/T1DM-Tez && test -f tez-yazim/README.md",
             "./dmnitel ai-context",
             './dmnitel route-tool --query "<soru>"',
             "./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md",

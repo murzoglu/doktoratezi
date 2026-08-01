@@ -23,7 +23,7 @@ STAT_LINE_RE = re.compile(
     r"\bbeta\b|β|std[_ -]?β|std[_ -]?beta|\bb\s*=|\bd\s*=|\br\s*=|"
     r"χ|chi|cram|v\s*=|η|eta|r²|r2|Δr²|aic|bic|bf|pd\s*=|"
     r"\bn\s*=|\bn≈|\bn\s*≥|\bn\s*<=|\bn\s*<|\bn\s*>|"
-    r"hba1c|fisher|welch|holm|fdr|tost|ess|se\s*=|"
+    r"fisher|welch|holm|fdr|tost|ess|se\s*=|"
     r"alpha|cronbach|κ|kappa|lr\s*χ|lrt)"
 )
 
@@ -204,6 +204,30 @@ def read_csv_entries(csv_paths: list[Path], root: Path) -> list[CsvEntry]:
     return entries
 
 
+def read_lock_constants(root: Path) -> list[CsvEntry]:
+    """Kanonik analiz baz kilidinden tasarım sabitlerini (family_rows,
+    long_rows, *_columns) izlenebilir kaynak olarak oku.
+
+    Bu sabitler (ör. n=241 aile, n=482 çocuk-satırı) hesaplanmış çıktı değil,
+    tasarım girdisidir; hiçbir outputs/tables hücresine düşmezler. Kilit dosyası
+    tek kanonik doğruluk kaynağı olduğundan, düzyazıda geçen bu sabitlerin
+    'kaynaksız yüksek-risk' olarak işaretlenmesini önlemek için burada
+    kaydedilirler."""
+    lock = root / "data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock"
+    if not lock.exists():
+        return []
+    rel = lock.relative_to(root).as_posix()
+    entries: list[CsvEntry] = []
+    key_re = re.compile(r"(?P<key>[A-Za-z_]+)\s*=\s*(?P<val>\d+)")
+    for line in lock.read_text(encoding="utf-8", errors="ignore").splitlines():
+        for m in key_re.finditer(line):
+            val = parse_float(m.group("val"))
+            if val is None or not math.isfinite(val):
+                continue
+            entries.append(CsvEntry(value=val, source=rel, column=m.group("key")))
+    return entries
+
+
 def build_sorted_index(entries: list[CsvEntry]) -> tuple[list[float], list[CsvEntry]]:
     sorted_entries = sorted(entries, key=lambda item: item.value)
     return [item.value for item in sorted_entries], sorted_entries
@@ -239,8 +263,18 @@ def iter_visible_csr_lines(csr_path: Path) -> list[tuple[int, str]]:
     visible: list[tuple[int, str]] = []
     in_comment = False
     in_reference_block = False
+    in_code_fence = False
     for lineno, line in enumerate(csr_path.read_text(encoding="utf-8").splitlines(), start=1):
         stripped = line.strip()
+        # Fenced kod bloğu (```{r}, ```python, ```) sınırı: içerideki sayılar
+        # analiz iddiası değil kod-literalidir (ör. figür koordinatı, inline
+        # tribble verisi). Kaynaksız-sayı izlemesi düzyazı iddialarını hedefler;
+        # kod-literalleri high-risk saymamak için bu bloklar atlanır.
+        if stripped.startswith("```"):
+            in_code_fence = not in_code_fence
+            continue
+        if in_code_fence:
+            continue
         if stripped.startswith("# 21."):
             in_reference_block = True
         elif stripped.startswith("# 22."):
@@ -260,6 +294,115 @@ def iter_visible_csr_lines(csr_path: Path) -> list[tuple[int, str]]:
     return visible
 
 
+_CITATION_RE = re.compile(
+    r"\([A-ZÇĞİÖŞÜ][\wçğıöşü]+(?:\s+ve\s+diğerleri)?[^)]*,\s*\d{4}\)"
+    r"|\b[A-ZÇĞİÖŞÜ][\wçğıöşü]+\s+ve\s+diğerleri(?:’n[ie])?\s*\(\d{4}\)",
+    re.IGNORECASE,
+)
+_THRESHOLD_RE = re.compile(r"eşi[kğ]|threshold|kesme\s*değer|cut[- ]?off", re.IGNORECASE)
+
+# Atıf tanıma (paragraf ölçeğinde): hem pandoc köşeli/bare `@key` hem de yazar-tarih
+# düzyazısı. `is_cited_threshold_constant`'ın satır-içi `_CITATION_RE`'sinden farkı,
+# sarılı (hard-wrapped) paragraflarda atıfın komşu fiziksel satıra düşebilmesidir.
+_PARA_CITATION_RE = re.compile(
+    r"@[\w:.\-]+"
+    r"|\([A-ZÇĞİÖŞÜ][\wçğıöşü]+(?:\s+ve\s+diğerleri)?[^)]*,\s*\d{4}\)"
+    r"|\b[A-ZÇĞİÖŞÜ][\wçğıöşü]+\s+ve\s+(?:arkadaşlar|diğerleri)",
+    re.IGNORECASE,
+)
+# Cümlede bir DIŞ çalışma betimleyicisi (örneklem/kohort/meta-analiz vb.).
+_EXTERNAL_STUDY_RE = re.compile(
+    r"(?i)çalışma|araştırma|meta-?analiz|örneklem|katılımc|arkadaşlar|diğerleri|"
+    r"kohort|derleme|öğrenci|hastayla|hasta-eş|çiftinde|çifti|kardeşiyle|aileyi|"
+    r"ailesiyle|yürüt|kapsayan|karşılaştıran|bildirmiş|göstermiş|raporlamış|"
+    r"ortaya koymuş|tekrarlanmış|geliştiril|evlat edinil"
+)
+# Sayının HEMEN yanında bir 'kendi sonucumuz' işaretçisi varsa dış-literatür sayma.
+_OWN_RESULT_RE = re.compile(
+    r"(?i)çalışmamız|bulgumuz|bulgular[ıi]m[ıi]z|örneklemimiz|analizimiz|"
+    r"modelimiz|tezimiz|verimiz|bulduğumuz|gösterdiğimiz"
+)
+_SENTENCE_SPLIT_RE = re.compile(r"(?<=[.;:])\s+(?=[A-ZÇĞİÖŞÜ0-9@])")
+
+
+def build_paragraph_map(path: Path) -> dict[int, str]:
+    """Satır numarasını, onu içeren boş-satır-ayraçlı paragrafın tam metnine eşle.
+
+    Kod çitleri (```...```) atlanır; içlerindeki sayılar analiz iddiası değildir.
+    Sarılı paragraflarda atıf komşu fiziksel satıra düşebildiğinden, dış-literatür
+    ayrımı satır değil paragraf ölçeğinde yapılır.
+    """
+    line_para: dict[int, str] = {}
+    cur: list[str] = []
+    cur_lines: list[int] = []
+    in_fence = False
+
+    def flush() -> None:
+        if not cur:
+            return
+        text = " ".join(cur)
+        for ln in cur_lines:
+            line_para[ln] = text
+
+    for lineno, raw in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+        stripped = raw.strip()
+        if stripped.startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence:
+            continue
+        if not stripped:
+            flush()
+            cur.clear()
+            cur_lines.clear()
+            continue
+        cur.append(stripped)
+        cur_lines.append(lineno)
+    flush()
+    return line_para
+
+
+def is_cited_external_literature(num: "ClaimNumber", paragraph: str) -> bool:
+    """Sayı, atıflı bir dış-çalışma yeniden-ifadesi mi (kendi çıktımız değil)?
+
+    ch04→ch05/CSR yeniden-ifade sürüklenmesini bir kapıya bağlarken yanlış-pozitifi
+    önler: Tartışma paragrafları kendi bulgularımızı literatürle iç içe anlatır ve
+    literatür sayıları (Pinquart g, PedsQL 75,1 vb.) hiçbir outputs/tables hücresine
+    düşmez. Ölçüt üçlüdür: (1) paragrafta atıf var, (2) sayının cümlesinde bir dış-
+    çalışma betimleyicisi var, (3) sayının HEMEN yanında (±70 karakter) 'kendi
+    sonucumuz' işaretçisi YOK. Üçü birden sağlanırsa dış-literatür sayılır; kendi
+    sonucumuzun sürüklenmesi (atıfsız ya da 'çalışmamız/bulgumuz' yakınında) etkilenmez.
+    """
+    if not paragraph or not _PARA_CITATION_RE.search(paragraph):
+        return False
+    tok = num.token
+    sentence = paragraph
+    for cand in _SENTENCE_SPLIT_RE.split(paragraph):
+        if tok in cand:
+            sentence = cand
+            break
+    pos = sentence.find(tok)
+    window = sentence[max(0, pos - 70): pos + len(tok) + 70] if pos >= 0 else sentence
+    if _OWN_RESULT_RE.search(window):
+        return False
+    return bool(_EXTERNAL_STUDY_RE.search(sentence))
+
+
+def is_cited_threshold_constant(num: "ClaimNumber", line: str) -> bool:
+    """Atıfla desteklenen metodolojik eşik sabiti mi?
+
+    Örn. 'yaygın 1,05 eşiğinin altında (Vehtari ve diğerleri, 2021)': bu bir
+    çalışma çıktısı değil, literatürden alınmış yakınsama/karar eşiğidir; hiçbir
+    outputs/tables hücresine düşmez. Satırda hem bir eşik anahtarı hem de bir
+    atıf varsa ve token eşik kelimesine yakınsa yüksek-risk sayılmaz."""
+    if not (_THRESHOLD_RE.search(line) and _CITATION_RE.search(line)):
+        return False
+    # token, 'eşik' kelimesinin yakınında mı? (aynı satırda, ≤ 25 karakter)
+    tok = re.escape(num.token)
+    return bool(re.search(tok + r"[^0-9]{0,25}eşi[kğ]", line, re.I)
+                or re.search(r"eşi[kğ][^0-9]{0,25}" + tok, line, re.I))
+
+
 def claim_scope(line: str) -> str:
     keys = []
     for label, regex in [
@@ -268,7 +411,6 @@ def claim_scope(line: str) -> str:
         ("effect", r"(?i)\bor\b|β|beta|\bb\s*=|\bd\s*=|\br\s*=|smd|icc|η|r²|Δr²|κ"),
         ("sample", r"(?i)\bn\s*=|\bn≈|\bn\s*[<>≥≤]|gözlem|aile|satır"),
         ("model", r"(?i)aic|bic|bf|pd|ess|lr\s*χ|χ²|fisher|welch"),
-        ("hba1c", r"(?i)hba1c"),
     ]:
         if re.search(regex, line):
             keys.append(label)
@@ -299,7 +441,9 @@ def main() -> int:
         if not path.name.startswith("csr_numeric_trace_")
     ]
     entries = read_csv_entries(csv_paths, root)
+    entries.extend(read_lock_constants(root))
     values, sorted_entries = build_sorted_index(entries)
+    paragraph_map = build_paragraph_map(csr_path)
 
     claim_rows: list[dict[str, object]] = []
     number_rows: list[dict[str, object]] = []
@@ -312,12 +456,26 @@ def main() -> int:
             continue
         matched = 0
         high_risk_unmatched = 0
+        paragraph = paragraph_map.get(lineno, line)
         for num in auditable:
             matches = find_matches(num, values, sorted_entries)
+            cited_threshold = False
+            cited_literature = False
             if matches:
                 matched += 1
             else:
-                if re.search(r"(?i)(p|or|β|beta|ga|ci|icc|smd|hba1c|χ|η|r²|bf|pd|ess)", line):
+                cited_threshold = is_cited_threshold_constant(num, line)
+                cited_literature = is_cited_external_literature(num, paragraph)
+                if cited_threshold:
+                    # atıflı metodolojik eşik: çalışma çıktısı değil, izlenmiş sayılır
+                    matched += 1
+                elif cited_literature:
+                    # atıflı dış-literatür yeniden-ifadesi: kendi çıktımız değil,
+                    # outputs/tables'a düşmez; yüksek-risk sürüklenme sayılmaz.
+                    matched += 1
+                elif re.search(
+                    r"(?i)(p|or|β|beta|ga|ci|icc|smd|χ|η|r²|bf|pd|ess)", line
+                ):
                     high_risk_unmatched += 1
             number_rows.append(
                 {
@@ -326,7 +484,12 @@ def main() -> int:
                     "token": num.token,
                     "value": f"{num.value:.15g}",
                     "is_percent": num.is_percent,
-                    "match_status": "matched" if matches else "unmatched",
+                    "match_status": (
+                        "matched" if matches
+                        else "cited_threshold" if cited_threshold
+                        else "cited_literature" if cited_literature
+                        else "unmatched"
+                    ),
                     "match_count_capped": len(matches),
                     "matched_sources": "; ".join(f"{m.source}::{m.column}" for m in matches),
                     "claim_excerpt": line[:700],

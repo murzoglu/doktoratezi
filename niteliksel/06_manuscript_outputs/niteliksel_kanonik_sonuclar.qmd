@@ -1,0 +1,872 @@
+---
+title: "T1DM Niteliksel Kol — Kanonik Bilimsel Sonuç Belgesi"
+subtitle: "Tip 1 Diyabet & Ebeveynlik Tutumu doktora tezinin niteliksel kolu: nihai analiz ve sonuçlar"
+author: "Niteliksel araştırma kolu (OM birinci araştırmacı · BA critical friend)"
+date: "2026-07-11"
+lang: tr
+bibliography: ../../references/references.bib
+csl: ../../references/marmara-ama11.csl
+toc: true
+toc-depth: 3
+number-sections: true
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto
+format:
+  html:
+    theme: cosmo
+    embed-resources: true
+  pdf:
+    documentclass: scrreprt
+    papersize: a4
+    geometry: margin=2.5cm
+---
+
+::: {.callout-note appearance="simple"}
+**Belge statüsü.** Bu Quarto belgesi niteliksel kolun **tek kanonik bilimsel sonuç kaynağıdır**.
+Bunun `niteliksel/archive/2026-07-29_pre_new_canon/qualitative_canonical_results_report.md`
+altındaki arşiv kopyası yalnızca tarihsel başvurudur; ikinci bir içerik otoritesi değildir. Kanonik sayılar, tema mimarisi,
+bulgular, metodoloji, güvenilirlik/değerlendirme ve raporlama kesitleri bu dosyada yönetilir.
+:::
+
+::: {.callout-important appearance="simple"}
+**KVKK (Kişisel Verilerin Korunması Kanunu) / veri sınırı.** Bu belge ham görüşme dökümlerini, doğrudan alıntı metinlerini,
+kimlikleyici bilgileri veya aile-düzeyinde geri-tanımlanabilir ayrıntıları **içermez**. Alıntı
+kanıtı yalnız `quote_id` ile gösterilmiştir. Tez metnine konacak doğrudan alıntılar, temizlenmiş
+tez metninden `quote_id` eşlemesiyle bire bir alınır, yeniden yazılmaz. AI destekli çıktılar yalnız yardımcı ön-denetim/tutarlılık kontrolüdür; kodlama,
+tema geliştirme ve yorumlama kararları araştırmacı sorumluluğundadır.
+:::
+
+# Yönetici Özeti {#sec-ozet}
+
+Bu niteliksel çalışma, Tip 1 Diyabet Mellitus (T1DM) tanısı alan çocuklar, sağlıklı kardeşleri ve
+anneleriyle yürütülen bireysel yarı yapılandırılmış görüşmelere dayalı **triadik aile
+çalışması**dır. Bulgular, T1DM'nin aile içinde tek ve homojen bir deneyim olarak yaşanmadığını
+göstermektedir. Aynı tanı, anne için tıbbi bakım, risk yönetimi, suçluluk ve sürekli tetikte olma
+sorumluluğuna; T1DM tanılı çocuk için bedensel rutinler, sosyal görünürlük, normalleşme ve özerklik
+müzakeresine; sağlıklı kardeş için görünmeyen kısıtlanma, erken sorumluluk, adalet gerilimi ve
+sessiz feragat deneyimine dönüşmektedir.
+
+Çalışmanın ana bilimsel sonucu şudur: T1DM, aile içi rolleri ve gündelik yaşamı yalnız hasta çocuk
+etrafında değil, tüm aile üyelerinin bakım, kontrol, adalet ve görünürlük pozisyonlarını yeniden
+kurarak şekillendirmektedir. Anne, hasta çocuk ve sağlıklı kardeş aynı aile olayını farklı risk,
+görev ve hakkaniyet çerçeveleriyle anlamlandırmaktadır. Bu nedenle niteliksel sonuçlar, nicel tez
+bulgularını "doğrulamak" için değil, anne–çocuk–kardeş algı ayrışmalarını ve ölçeklerin
+yakalayamayabileceği deneyim katmanlarını bağlamsallaştırmak için kullanılmalıdır.
+
+Kanonik bulgu yapısı dört tez makro temasından oluşur:
+
+1. Sağlıklı kardeşin görünmeyen yükü.
+2. Annenin tıbbi bakıcı rolüne kayması.
+3. T1DM tanılı çocuğun içeriden hastalık deneyimi.
+4. Aynı evde üç farklı deneyim olarak triadik karşılaştırma.
+
+Bu dört tema, journal yayını için geliştirilmiş altı konu-temalı yapı ile aynı codebook (kod kitabı)
+tabanına dayanır. Tez ve journal tema yapıları birbirinin alternatifi değil, aynı verinin iki
+farklı bilimsel raporlama kesitidir.
+
+# Kanonik Kapsam ve Veri Durumu {#sec-kapsam}
+
+## Çalışma Kimliği
+
+| Bileşen | Kanonik durum |
+|---|---|
+| Çalışma türü | Niteliksel triadik aile çalışması |
+| Klinik bağlam | T1DM tanılı çocuk, anne ve sağlıklı kardeş aile deneyimi |
+| Tasarım | Niteliksel tanımlayıcı yaklaşım + fenomenolojik duyarlılık + multi-informant family design |
+| Analiz yaklaşımı | Braun ve Clarke çizgisinde refleksif tematik analiz [@braunClarke2006thematic; @braunClarke2019reflexive] |
+| Raporlama standardı | COREQ (Consolidated Criteria for Reporting Qualitative Research) 32 madde uyumlu [@tong2007coreq]; SRQR (Standards for Reporting Qualitative Research) [@obrien2014srqr] ve JARS-Qual (Journal Article Reporting Standards for Qualitative Research) [@levitt2018jarsQual] ek denetim |
+| Analiz birimi | Aile triadı ve rol temelli anlatı |
+| Görüşme tipi | Bireysel yarı yapılandırılmış görüşme |
+| Görüşme rolleri | Anne, T1DM tanılı çocuk, sağlıklı kardeş |
+| Veri toplama bağlamı | Klinik birim içinde mahremiyeti sağlanmış görüşme ortamı |
+| Veri yönetimi | KVKK uyumlu yerel ve anonimleştirilmiş çalışma hattı |
+
+## Kanonik Sayılar
+
+| Bileşen | Sayı |
+|---|---:|
+| Aile triadı | 7 |
+| Toplam katılımcı | 21 |
+| Anne | 7 |
+| T1DM tanılı çocuk | 7 |
+| Sağlıklı kardeş | 7 |
+| Aile kodları | 011, 014, 019, 020, 026, 201, 202 |
+| Tez makro teması | 4 |
+| Journal teması | 6 |
+| Codebook kodu | 23 |
+| Seçilmiş illüstratif alıntı (quote ID) havuzu | 116 |
+| Araştırmacı-denetimli kodlanmış segment | 116 |
+| Triadik matris satırı (aile × tema × alt-tema) | 57 |
+| COREQ maddesi | 32 |
+| COREQ tam karşılanan | 30 |
+| COREQ kısmi | 2 |
+| COREQ eksik | 0 |
+
+## Rol ve Aile Dağılımı
+
+Seçilmiş quote ID havuzu, nihai kodlama yoğunluğunu değil, tez yazımında kullanılacak kanıt
+havuzunun kapsamını gösterir.
+
+| Rol | Seçilmiş quote sayısı |
+|---|---:|
+| Anne | 55 |
+| T1DM tanılı çocuk | 36 |
+| Sağlıklı kardeş | 25 |
+
+| Aile | Seçilmiş quote sayısı |
+|---|---:|
+| 011 | 24 |
+| 014 | 18 |
+| 019 | 15 |
+| 020 | 14 |
+| 026 | 23 |
+| 201 | 8 |
+| 202 | 14 |
+
+| Tez makro teması | Quote sayısı | Rol dağılımı |
+|---|---:|---|
+| Tema 1 | 3 | sağlıklı kardeş: 3 |
+| Tema 2 | 40 | anne: 40 |
+| Tema 3 | 21 | T1DM tanılı çocuk: 21 |
+| Tema 4 | 52 | anne: 15; T1DM tanılı çocuk: 15; sağlıklı kardeş: 22 |
+
+Bu dağılım, Tema 1–3'ün bilinçli olarak perspektif-organize olduğunu, Tema 4'ün ise triadik çapraz
+okuma için kullanıldığını gösterir. Tema 1–3'te tek rol baskınlığı metodolojik kusur değil, tez
+mimarisinin sonucudur.
+
+# Metodoloji {#sec-metodoloji}
+
+## Araştırma Tasarımı ve Epistemolojik Konum
+
+Çalışma, aynı aile bağlamında üç bilgi verici pozisyonunu ayrı ayrı görünür kılan **multi-informant
+family design** üzerine kuruludur. Çoklu bilgi verici yaklaşımının geçerliliği ve bilgi vericiler
+arası tutarsızlıkların ölçüm hatası değil bağlama özgü anlamlı bilgi olduğu ilgili literatürde
+gösterilmiştir [@deLosReyes2015]. Her aile, anne, T1DM tanılı çocuk ve sağlıklı kardeşten oluşan
+bir bilgi üçlüsü olarak ele alınmıştır. Görüşmeler birlikte değil, ayrı ayrı bireysel görüşme
+biçiminde yapılmıştır. Ayrı bireysel görüşme tercihi, aile içi güç asimetrisi, uyum baskısı ve
+çocuk/kardeş sesinin gölgelenmesi riskini azaltmak için metodolojik olarak uygundur; birlikte ve ayrı
+görüşme biçimlerinin yöntem otantikliği açısından farklı sonuçlar doğurabildiği bilinmektedir
+[@taylorDeVocht2011separate].
+
+::: {.callout-note}
+**Bilgi kutusu — Triadik multi-informant tasarım ve neden *ayrı* bireysel görüşme?**
+
+**Multi-informant (çoklu bilgi verici) tasarım**, aynı aile olayını farklı konumlardan gören bilgi
+vericileri birlikte inceler; bilgi vericiler arası tutarsızlık ölçüm hatası değil, bağlama özgü
+anlamlı bilgidir [@deLosReyes2015]. Bu çalışmada üçlü (triad) = **anne + T1DM tanılı çocuk + sağlıklı
+kardeş**. Görüşmeler birlikte (conjoint) değil **ayrı ayrı bireysel** yapılmıştır: ayrı görüşme, aile
+içi güç asimetrisini ve uyum baskısını azaltarak çocuğun/kardeşin sesinin gölgelenmesini önler;
+birlikte ve ayrı görüşme biçimleri yöntem otantikliği açısından farklı veri üretir
+[@taylorDeVocht2011separate].
+:::
+
+Analiz, Braun ve Clarke'ın **refleksif tematik analiz (RTA)** yaklaşımıyla yürütülmüştür
+[@braunClarke2006thematic; @braunClarke2019reflexive]. RTA'nın epistemolojik konumu üç sonucu
+zorunlu kılar: (i) tema, veride keşfedilmeyi bekleyen sabit bir nesne değil, araştırmacı ile veri
+arasında geliştirilen **merkezi düzenleyici kavramdır**; (ii) araştırmacı anlam üretiminde aktif
+faildir, dolayısıyla refleksivite bir tehdit değil, analitik kaynaktır; (iii) örneklem yeterliliği
+sayısal doygunlukla değil **bilgi gücüyle** gerekçelenir [@malterud2016informationPower]. Bu
+gerekçelerle, kodlama-güvenirlik (coding reliability) yaklaşımına ait iki-kodlayıcı uzlaşım/kappa
+prosedürü bu çalışmada **amaçlanmamıştır** (bkz. @sec-raporlama).
+
+Tasarımın bilimsel gerekçesi:
+
+- T1DM yalnız hasta çocuğun biyomedikal durumu değildir; aile rutinlerini, ebeveynlik pratiğini,
+  kardeş ilişkilerini ve risk yönetimini etkileyen aile-düzeyi bir deneyimdir; kronik hastalığa aile
+  yanıtını durumun tanımı, yönetim davranışları ve algılanan sonuçlar ekseninde çözümleyen Aile
+  Yönetim Tarzı Çerçevesi (FMSF) bu aile-düzeyi bakışın kuramsal dayanağıdır [@knafl2003fmsf].
+- Anne, hasta çocuk ve sağlıklı kardeş aynı olayın farklı tanıklarıdır; bu fark tek bir "doğru"
+  anlatıya indirgenmemelidir.
+- Triadik analiz, yalnız uyumlu anlatıları değil rol-temelli ayrışmaları, sessizleşen yükleri ve
+  aile içi kör alanları görünür kılar.
+- Ayrı bireysel görüşme, her rolün kendi deneyim dilini korumayı amaçlar.
+
+## Altı-Faz RTA Protokolü
+
+::: {.callout-note}
+**Bilgi kutusu — Refleksif tematik analiz (RTA) nedir?**
+
+Refleksif tematik analiz, Braun ve Clarke'ın geliştirdiği, nitel veride anlam örüntülerini **tema**
+olarak kavramsallaştıran yorumlayıcı (Big-Q) bir yaklaşımdır
+[@braunClarke2006thematic; @braunClarke2019reflexive]. Üç ayırt edici ilkesi vardır:
+
+- **Tema = merkezi düzenleyici kavram.** Tema, veride "keşfedilmeyi bekleyen" hazır bir nesne
+  değil; araştırmacının veriyle etkileşiminde *geliştirdiği* bir anlam örüntüsüdür.
+- **Refleksivite bir kaynaktır, tehdit değil.** Araştırmacının öznelliği elenmesi gereken bir
+  yanlılık değil, analizin derinliğini besleyen analitik bir araçtır.
+- **Altı faz özyinelemelidir, doğrusal değil.** Fazlar arasında ileri-geri hareket edilir; aşağıdaki
+  tablo her fazın bu koldaki somut uygulamasını verir.
+:::
+
+| Faz | İş | Bu koldaki uygulama |
+|---|---|---|
+| 1. Aşinalık | Tam, tekrarlı okuma + refleksif not | Anonimleştirilmiş çalışma metni + paralinguistik saha notu birlikte okundu |
+| 2. Kodlama | Veriye yakın açık kodlar | 116 araştırmacı-denetimli kodlanmış segment |
+| 3. Tema oluşturma | Kodların kavramsal kümelenmesi | 23 kod → 5 kategori → 6 journal / 4 tez teması |
+| 4. Gözden geçirme | Temaları veriye/birbirine karşı test | Aile-içi + aileler-arası okuma ile tutarlılık sınandı |
+| 5. Tanımlama + isimlendirme | Her temaya kavramsal kimlik | Tema 1–4 makro kimlikleri |
+| 6. Yazım | Analitik anlatı + `quote_id` ankraj | @sec-bulgular ve bu belge |
+
+## Örnekleme ve Bilgi Gücü
+
+Örneklem, sayısal doygunluk eşiği yerine **bilgi gücü** çerçevesiyle gerekçelenmiştir; bu tercih
+RTA epistemolojisiyle uyumludur [@malterud2016informationPower; @braunClarke2019reflexive].
+
+::: {.callout-note}
+**Bilgi kutusu — "Bilgi gücü" (information power) neden doygunluğun yerini alır?**
+
+Malterud ve arkadaşlarının önerdiği **bilgi gücü**, bir nitel örneklemin yeterliliğini sayısal bir
+eşikle değil, verinin araştırma sorusuna yanıt üretme *kapasitesiyle* değerlendirir
+[@malterud2016informationPower]. Örneklem ne kadar çok bilgi gücü taşırsa gereken katılımcı sayısı o
+kadar azalır. Beş boyut birlikte tartılır: (1) çalışmanın **amaç darlığı**, (2) örneklem
+**özgüllüğü**, (3) yerleşik **kuram** kullanımı, (4) **diyalog kalitesi**, (5) **analiz stratejisi**.
+Bu çalışma dört boyutta yüksek, birinde orta-yüksek profil gösterdiğinden yedi aile triadı bilgi
+açısından yeterli kabul edilmiştir. "Doygunluk" dili bilinçli olarak kullanılmamıştır: refleksif
+TA'nın yorumsal duruşunda tema *üretilir*, tüketilene dek *keşfedilmez* [@braunClarke2019saturate].
+:::
+
+| Bilgi gücü boyutu | Bu çalışmadaki durum | Değerlendirme |
+|---|---|---|
+| Amaç darlığı | T1DM ailelerinde anne–hasta–kardeş deneyimine odak; genel kronik hastalık değil | Yüksek |
+| Örneklem özgüllüğü | Tüm ailelerde T1DM'li çocuk + sağlıklı kardeş; tek klinik amaçlı örneklem | Yüksek |
+| Kuramsal çerçeve | Multi-informant family design [@deLosReyes2015] + pediatrik kronik hastalık aile yükü [@knafl2003fmsf] | Orta-yüksek |
+| Görüşme kalitesi | Klinik deneyimli araştırmacı, mahrem ortam, bireysel görüşme, paralinguistik not | Yüksek |
+| Analiz stratejisi | Aile-içi triadik + aileler-arası tema karşılaştırması | Orta-yüksek |
+
+**Sonuç:** Yedi aile triadı ve 21 bireysel görüşme, dar amaç, özgül örneklem ve triadik analiz
+stratejisi nedeniyle bilgi açısından yoğun bir veri seti olarak değerlendirilmiştir. Bu ifade
+istatistiksel genelleme iddiası taşımaz. "Doygunluğa ulaşıldı" dili **bu çalışmada** tercih
+edilmemiştir; çünkü refleksif TA'nın yorumsal (Big-Q) epistemolojisinde tema araştırmacı ile veri
+arasında üretilir, "tüketilene kadar keşfedilecek" sabit bir nesne değildir
+[@braunClarke2019reflexive]. Braun ve Clarke, doygunluk kavramının refleksif TA için epistemolojik
+olarak tutarsız olduğunu ayrıca doğrudan tartışır [@braunClarke2019saturate]. Doygunluğun tematik
+analiz iş akışı içinde operasyonelleştirilebileceğini savunan bir karşı-literatür bulunduğu kabul
+edilir [@saunders2018saturation]; bu tezde bilgi gücü tercihi, doygunluğun "yanlış" olduğu iddiasıyla
+değil, **refleksif TA ile paradigma tutarlılığı** gerekçesiyle yapılmıştır.
+
+## Veri Toplama
+
+| Özellik | Kanonik raporlama |
+|---|---|
+| Görüşme formu | Anne, T1DM'li çocuk, sağlıklı kardeş için yarı yapılandırılmış rehber |
+| Görüşme sıklığı | Her katılımcı ile tek görüşme |
+| Tekrarlı görüşme | Planlanmamış |
+| Görüşme süresi | Bireysel ~20–40 dakika; aile toplamı ~60–90 dakika |
+| Ortam | Çocuk endokrinoloji birimine ait sessiz ve mahrem görüşme odası |
+| Görüşmede bulunanlar | Katılımcı, OM ve BA; başka aile üyesi/personel yok |
+| Kayıt | Ses kaydı + eşzamanlı saha/paralinguistik not |
+| Transkript iadesi | Formal iade yok; görüşme-içi özetleme ile katılımcı doğrulaması |
+
+Ayrı bir formal pilot görüşme yürütülmemiştir; yarı-yapılandırılmış rehber alanyazın ve klinik
+deneyimle geliştirilip saha sürecinde iyileştirilmiştir (COREQ Madde 16; bkz. @sec-raporlama).
+
+## Araştırmacı Rolleri ve Refleksivite
+
+OM birinci araştırmacı ve temel kodlayıcıdır. BA görüşme sırasında non-participant observer olarak
+paralinguistik not tutmuş, analizde **critical friend** rolü üstlenmiştir. RTA epistemolojisi
+gereği inter-coder agreement ya da kappa hesabı amaçlanmamıştır; BA'nın rolü kodları "doğrulamak"
+değil, alternatif okuma ve refleksif sorgulama sağlamaktır [@braunClarke2019reflexive].
+
+| Refleksif risk | Yönetim stratejisi |
+|---|---|
+| Hekim kimliğinin güç asimetrisi | Klinik tedavi ilişkisi olmaması, rol açıklaması, önlüksüz görüşme, mahrem ortam |
+| Klinik aşırı-yorum | Katılımcı diline yakın kodlama, reflexive memo, critical friend tartışması |
+| Empatik aşırı-ağırlıklandırma | Paralinguistik notların açık kullanımı, alternatif okuma |
+| Disiplin-içi ortak kör nokta | BA critical friend, klinik-dışı okuma denemeleri |
+| Gözlemci varlığının etkisi | BA rolünün görüşme öncesi açıklanması, arka planda kalma |
+
+## Analiz Yaklaşımı ve Araç Sınırı
+
+Kodlama ve tema geliştirme manuel araştırmacı yorumu temelindedir. Yerel toolkit (`dmnitel`)
+tarafından üretilen CSV ve raporlar **nihai analiz üretmez**; yalnız denetim, düzenleme ve
+tutarlılık kontrolü sağlar. Analiz zinciri: (1) görüşmelerin dökülmesi ve anonimleştirilmiş çalışma
+metnine dönüştürülmesi; (2) veriye yakın açık kodlar; (3) 5 kategori ve 23 kodluk codebook düzeni;
+(4) journal 6-tema ve tez 4-makro tema yapılarının aynı codebook tabanına bağlanması; (5) aile-içi
+triadik matrislerle anne–hasta çocuk–sağlıklı kardeş anlatılarının karşılaştırılması; (6)
+aileler-arası karşılaştırma; (7) critical friend tartışmaları + audit trail; (8) quote integrity ve
+negatif vaka analizi ile kalite kontrol.
+
+# Etik, KVKK ve Veri Güvenliği {#sec-etik}
+
+Çalışma özel nitelikli **sağlık + çocuk** verisi içerdiğinden yüksek gizlilik düzeyiyle
+yürütülmüştür. Ham ses kayıtları, anonimleştirilmemiş transkriptler, demografik formlar, onam
+belgeleri, pseudonym haritaları ve aile-düzeyinde geri-tanımlanabilir satırlar rapora, OSF'ye veya
+büyük dil modeli (LLM) sistemlerine aktarılmaz.
+
+| Alan | İlke |
+|---|---|
+| Ham veri | Yerel, şifreli, erişimi sınırlı saklanır |
+| Anonimleştirme | İsim, adres, doğum tarihi ve doğrudan tanımlayıcılar kaldırılır/maskelenir |
+| Pseudonym haritası | Ayrı şifreli dosyada; tez sonrası belirlenen sürede silinir |
+| Yayın alıntıları | Rol etiketi + aile kodu ile, k-anonymity gözetilerek |
+| Coğrafi/demografik bilgi | Bantlama + toplulaştırma ile raporlanır |
+| Çocuk assent | Ebeveyn onamı + gelişim düzeyine uygun çocuk assent; katılımın geri çekilebilirliği |
+| OSF | Ham veri yüklenmez; codebook, metodoloji ve anonim raporlama materyali paylaşılabilir |
+| LLM kullanımı | Yazım/denetim desteği; ham veya kimliklenebilir veri gönderimi yok |
+
+**AI/LLM kullanım beyanı.** LLM kodlama, tema geliştirme veya nihai yorumlama yapmamıştır; yazım
+düzenleme, metin organizasyonu, raporlama uyumu ve ön-denetim desteği için kullanılmıştır. Ham
+transcript, saha notu, demografik form, pseudonym haritası ve tanımlayıcı bilgi LLM'e gönderilmez.
+LLM çıktıları OM tarafından gözden geçirilmeden akademik metne aktarılmaz (bkz. @sec-yonetisim).
+
+# Codebook ve Analitik Kavram Haritası {#sec-codebook}
+
+Codebook 23 koddan oluşur. Bu kodların 18'i seçilmiş illüstratif alıntı havuzunda ankrajlıdır; kalan
+beş kod bu havuzda temsil edilmez: `TANI_BILGI_ARAYISI`, `GECE_TAKIP`, `YARAR_BULMA_OLGUNLASMA`,
+`SAGLIK_EKIBI_DESTEGI`, `MANEVI_BASA_CIKMA`. Bu beş kod codebook'un kavramsal yapısında yer alır;
+illüstratif havuz tüm kodları tüketmeyi değil, dört makro temanın anlatısını desteklemeyi amaçlayan
+purposive bir seçkidir (bkz. @sec-sinirliliklar).
+
+## Kod Kategorileri
+
+| Kategori | Kodlar |
+|---|---|
+| Tanı ve ilk dönem deneyimi | `TANI_SOK_KORKU`, `TANI_HASTANE_SURECI`, `TANI_BILGI_ARAYISI` |
+| Günlük yönetim yükü ve rutinlerin yeniden örgütlenmesi | `RUTIN_TAKIP`, `BESLENME_KONTROL`, `GECE_TAKIP`, `OKUL_SOSYAL_UYUM`, `TEKNOLOJI_DESTEGI` |
+| Duygusal deneyim ve anlamlandırma | `KAYGI_KIRILGANLIK`, `SUCLULUK`, `OFKE_ADALETSIZLIK`, `KABULLENME_NORMALLESME`, `YARAR_BULMA_OLGUNLASMA` |
+| Aile ilişkileri ve rollerin dönüşümü | `ANNE_HIPERVIJILANS`, `COCUK_OZERKLIK_OZBAKIM`, `KARDES_GORUNMEZ_YUK`, `KARDES_ILISKISI`, `AILE_ICI_ADALET`, `ILETISIM_CATISMA` |
+| Başa çıkma kaynakları ve destek sistemleri | `AILE_DESTEGI`, `SAGLIK_EKIBI_DESTEGI`, `AKRAN_CEVRE_DESTEGI`, `MANEVI_BASA_CIKMA` |
+
+## Kod Yoğunluğu (denetim sayısı)
+
+Aşağıdaki sayılar nihai tematik önem sıralaması **değildir**; temizlenmiş tez metninden çıkarılan
+seçilmiş quote ID havuzunun denetim sayılarıdır. Niteliksel önem, yalnız frekansla değil temanın
+araştırma sorusundaki merkezi düzenleyici işleviyle değerlendirilir.
+
+| Kod | Ön-kodlu segment | Kod | Ön-kodlu segment |
+|---|---:|---|---:|
+| `KARDES_GORUNMEZ_YUK` | 21 | `AILE_DESTEGI` | 5 |
+| `RUTIN_TAKIP` | 16 | `KABULLENME_NORMALLESME` | 5 |
+| `KAYGI_KIRILGANLIK` | 11 | `AILE_ICI_ADALET` | 4 |
+| `OFKE_ADALETSIZLIK` | 11 | `SUCLULUK` | 3 |
+| `TANI_SOK_KORKU` | 10 | `ILETISIM_CATISMA` | 2 |
+| `KARDES_ILISKISI` | 8 | `TEKNOLOJI_DESTEGI` | 2 |
+| `COCUK_OZERKLIK_OZBAKIM` | 7 | `OKUL_SOSYAL_UYUM` | 1 |
+| `BESLENME_KONTROL` | 7 | `AKRAN_CEVRE_DESTEGI` | 1 |
+| | | `TANI_HASTANE_SURECI` | 1 |
+| | | `ANNE_HIPERVIJILANS` | 1 |
+
+# Tema Mimarisi {#sec-tema-mimarisi}
+
+## Tez İçin 4 Makro Tema
+
+| Tema | Analitik odak | Alt yapı | Tez işlevi |
+|---|---|---|---|
+| Tema 1. Gölgede Kalan Çocuklar: Paylaşılan Kısıtlılık ve Görünmez Yük | Sağlıklı kardeş deneyimi | Gönüllü mahrumiyet; erken olgunlaşma/nöbetçi kardeş; adalet ve baskı boyutları | Kardeş yükünü ve görünmeyen bakım etkisini açar |
+| Tema 2. Annelikte Eksen Kayması: Sağlıklı Çocuk Annesinden Tıbbi Bakıcıya | Anne deneyimi | Suçluluk; tıbbi bakıcı rolü; kaybetme korkusu; özerklik çatışması; eş rolünün silikleşmesi; adalet ikilemi | Anne öz-raporu ve bakım yükünü bağlamsallaştırır |
+| Tema 3. Hastalığın İçinden: T1DM Tanılı Çocuğun Yaşam Deneyimi | Hasta çocuk deneyimi | Normalleşme; tedavi yükü; damgalanma; korunma-kontrol ve kardeşlik | Çocuk algısı ve özerklik gerilimini açıklar |
+| Tema 4. Aynı Ev, Üç Farklı Deneyim | Triadik çapraz okuma | Diyabetik düzen; tetikte olma; ilgi/adalet/kontrol; küçük bakıcılar ve hasta otoritesi | Karma tezin ana nitel köprü temasını kurar |
+
+## Journal İçin 6 Konu Teması
+
+| Journal teması | Tezdeki ana karşılık |
+|---|---|
+| J1. Beslenme ve gündelik yaşamın yeniden örgütlenmesi | Tema 1, Tema 2, Tema 3 ve Tema 4.1 |
+| J2. Duygulanım ve kaygı iklimi | Tema 2.1–2.3 ve Tema 4.2 |
+| J3. Algılanan adalet, ilgi asimetrisi ve kardeşlik dinamikleri | Tema 1.3, Tema 2.6 ve Tema 4.3 |
+| J4. Sosyal çevre, görünürlük ve mahremiyet | Tema 3.3, Tema 2.5 ve Tema 4 |
+| J5. Destek ekosistemi ve yapısal belirleyiciler | Tema 2, Tema 3 ve Tartışma |
+| J6. Kontrol-özerklik müzakeresi | Tema 2.4, Tema 3.4 ve Tema 4.4 |
+
+## Odak Aile Matrisi
+
+| Aile | Birincil odak olduğu journal alt-temalar | Toplam |
+|---|---|---:|
+| 011 | J1.2, J2.2, J3.3, J5.1, J6.4 | 5 |
+| 014 | J2.1, J3.1, J6.1 | 3 |
+| 019 | J1.1, J2.4, J4.1 | 3 |
+| 020 | J2.3, J4.2, J6.2 | 3 |
+| 026 | J3.4, J4.4, J5.3 | 3 |
+| 201 | J5.2 | 1 |
+| 202 | J1.3, J3.2, J4.3, J5.4, J6.3 | 5 |
+
+Aile 201'in düşük odak temsili, veri zenginliği ve aktarılabilirlik tartışmasında açıkça ele
+alınmalıdır. Bu durum çalışmayı geçersiz kılmaz; bilgi gücünün aileler arasında eşit dağılmadığını
+gösterir.
+
+# Kanonik Bilimsel Bulgular {#sec-bulgular}
+
+## Tema 1 — Sağlıklı Kardeşin Görünmeyen Yükü {#tema-1}
+
+**Ana sonuç.** Sağlıklı kardeş, T1DM tanısının doğrudan biyomedikal öznesi olmasa da aile
+rutinlerindeki değişimi ve ebeveyn ilgisinin yeniden dağılımını kendi gündelik yaşamında
+taşımaktadır. Kardeşin deneyimi genellikle açık bir "şikayet" biçiminden çok, gönüllü vazgeçme,
+kendini geri çekme, bakım sorumluluğunu normalleştirme ve adalet gerilimini örtük taşıma şeklinde
+görünür.
+
+| Alt tema | Bilimsel netice | Tezdeki işlev |
+|---|---|---|
+| Gönüllü mahrumiyet ve vekaleten üzüntü | Kardeş, diyabetli kardeşin kısıtlarını aile düzeninin ortak kuralı gibi yaşayabilir; dayanışma ile kendi isteğini erteleme sınırında durur | Kardeş yükünü çatışma değil, sessiz uyum ve feragat olarak göstermeye yarar |
+| Erken olgunlaşma ve nöbetçi kardeş rolü | Erken sorumluluk/izleme/hatırlatma; görünür kılınmadığında "görünmeyen bakım emeği"ne dönüşür | H2 kardeş ilişkisi bulgularında görünmeyen rol yükü |
+| İlgi asimetrisi ve ikinci planda kalma | Kabul, adalet duygusunun zedelenmesini ortadan kaldırmaz | Anne niyeti ile kardeş deneyimi farkı |
+| Önleyici sağlık baskısı ve bedensel özerklik | Kardeş de yiyecek/oyun/etkinlik açısından diyabetli kardeşin düzenine uyarlanabilir | T1DM'nin hasta olmayan çocuğun beden/rutinine etkisi |
+| Sosyal kıyaslanma ve kimlik yorgunluğu | Sürekli hasta kardeş üzerinden konumlanma ikincil kimlik deneyimi yaratabilir | Kardeşin görünürlüğü |
+| Hastalığın güç aracı olarak kullanımı | Hastalık kardeşler arası güç/pazarlık ilişkisini etkileyebilir | Kardeşlik dinamiklerinin dengeli okuması |
+
+**Bilimsel yorum.** Tema 1'in en önemli katkısı, sağlıklı kardeşin "etkilenmeyen aile üyesi" olarak
+ele alınamayacağını göstermesidir. Nicel kardeş ilişkisi ölçümleri grup düzeyinde güçlü fark
+göstermese bile, nitel bulgular kardeş yükünün ilişki kalitesi toplam puanından çok bağlamsal
+durumlara, bakım rutinlerine, ebeveyn dikkatine ve adalet algısına gömülü olabileceğini düşündürür.
+
+Bu okuma dış literatürle güçlü biçimde örtüşür. Kronik hastalıklı çocukların kardeşlerinde 51 çalışma
+ve 103 etki büyüklüğünü birleştiren meta-analiz, kardeş uyumunda küçük ama olumsuz bir etki saptamış;
+kritik olarak ebeveyn raporlarının çocukların öz-bildirimlerinden daha olumsuz olduğunu (bilgi verici
+tutarsızlığının erken bir işareti) ve gündelik tedavi rejimi gerektiren hastalıkların — T1DM tipik bir
+örnektir — en olumsuz etkiyle ilişkilendiğini bildirmiştir [@sharpe2002siblings]. T1DM'ye özgü güncel
+bir çalışma bu örüntüyü doğrudan somutlaştırır: 100 kardeş ve 100 ebeveynden oluşan bir örneklemde kardeşlerin
+%38'i glisemik kontrol düzeyi, daha yüksek ebeveynlik stresi ve daha kötü aile işlevselliğiyle ilişkili anlamlı
+duygusal-davranışsal sorunlar bildirmiş; kardeş uyumu aile-bağıntılı bulunmuş ve uyumsal başa çıkma bir
+tampon işlevi görmüştür [@elhabashy2023siblings].
+
+Kardeş yükünün toplam puandan çok adalet algısına gömülü olduğu yorumumuz, algılanan ebeveyn-ilgisi
+asimetrisini doğrudan inceleyen çalışmalarla desteklenir: kardeşler, ebeveynlerinin kendilerine hasta
+kardeşlerinden daha az sevgi gösterdiğini algıladıklarında daha düşük psikososyal ve fiziksel işlevsellik
+bildirmiştir [@kelada2022siblings]. Daha eski kesitsel bir çalışma, T1DM'li çocuğun kardeşlerinin
+yarıdan fazlasının (%55) insülin ve diyet yönetimine yakından katıldığını, üçte birinin (%33) kendisini
+ailede en çok suçlanacak üye olarak gördüğünü ve her iki durumun da düşük benlik saygısıyla ilişkili
+olduğunu göstermiştir; tasarımın kesitsel niteliği nedeniyle nedensel bir yön kurulamaz
+[@adams1991siblings]. Ebeveyn perspektifli bir çalışmada aileler, kardeşlerin diyabet iş yükünü
+paylaştığını, hastalığın kardeşlerde duygusal bir bedel oluşturduğunu ve diyabeti kardeşin ihtiyaçlarının
+önüne koymaktan suçluluk duyduklarını dile getirmiş [@cao2021family]; 23 nitel çalışmayı sentezleyen
+güncel bir derleme ise sağlıklı kardeşlerin tanı sonrası psikolojik distres riski altında olduğunu ve
+"çok erken büyümek" gibi temaların öne çıktığını ortaya koymuştur [@tan2024siblingreview]. Bu kaynaklar
+deneyimi "parentifikasyon" veya "algılanan adaletsizlik" terimleriyle adlandırmaz; bulgularımızdaki erken
+sorumluluk, nöbetçi kardeş rolü ve sessiz feragat örüntüsünün bu kavramlarla okunması araştırmacının
+yorumsal katkısıdır.
+
+*Öne çıkan kodlar:* `KARDES_GORUNMEZ_YUK`, `OFKE_ADALETSIZLIK`, `KARDES_ILISKISI`, `AILE_ICI_ADALET`,
+`BESLENME_KONTROL`. *Quote ID ankrajları:* `019_healthy_sibling_q001`, `026_healthy_sibling_q001`,
+`026_healthy_sibling_q002`.
+
+## Tema 2 — Annenin Tıbbi Bakıcı Rolüne Kayması {#tema-2}
+
+**Ana sonuç.** Tanı sonrası annelik, duygusal bakım veren ebeveynlikten sürekli ölçüm, izlem, risk
+önleme, karar verme ve aile düzenini yeniden kurma sorumluluğu taşıyan **tıbbi bakım
+koordinatörlüğüne** kaymaktadır. Anne anlatılarında suçluluk, kaybetme korkusu, tetikte olma,
+ergenlikte kontrol-özerklik çatışması ve sağlıklı kardeşe adil davranma ikilemi birlikte görünür.
+
+| Alt tema | Bilimsel netice | Tezdeki işlev |
+|---|---|---|
+| Tanı sonrası suçluluk döngüsü ve sarsılan annelik kimliği | Suçluluk yalnız geçmişe değil gelecekteki bakım sorumluluğuna da bağlanır | H3 anne öz-rapor ve H4 depresyon bağlantısı |
+| Sürekli nöbet hali ve tıbbi bakıcıya evrilen annelik | Sıradan ebeveynlikten ayrışan izleme/planlama/risk önleme rolü | Bakım yükünün görünmeyen bilişsel/duygusal boyutu |
+| Kaybetme korkusu ve en kötü senaryolar | Hipoglisemi/gece riski/belirsizlik gelecek hayalini kırılganlaştırır | Kaygı ikliminin aileye yayılımı |
+| Ergenlikle kesişen yönetim ve otonomi çatışması | Bağımsızlaşma isteği güvenlik-kontrol gerilimini artırır | H1/H5 anne-çocuk algı ayrışması zemini |
+| Mahremiyetin geri çekilişi ve eş rolünün silikleşmesi | Bakım yükü evlilik/partnerlik alanını daraltabilir | Aile sistemindeki rol kayması |
+| Sağlıklı kardeşle ilişkide adalet ikilemi | Hasta çocuğu önceleme, adil davranma çabasını etik-duygusal ikileme çevirir | Tema 1 ve Tema 4 köprüsü |
+
+**Bilimsel yorum.** Tema 2, anne öz-raporlarının neden her zaman dramatik grup farkı
+göstermeyebileceğine dair nitel bağlam sağlar. Anne, tıbbi bakıcı rolünü içselleştirip normal
+ebeveynlik görevi gibi sunabilir; ölçeklerde görülen sınırlı fark yükün yokluğu değil, bakımın
+normalleştirilmiş ve ahlaki sorumluluk olarak içselleştirilmiş biçimidir.
+
+Bu yorum, T1DM anne bakım yükü yazınıyla yakından örtüşür. On sekiz nitel çalışmayı sentezleyen bir
+kapsam derlemesi, bakım yükünün cinsiyetlenmiş olduğunu; gece glukoz izleme sorumluluğunu ağırlıkla
+annelerin üstlendiğini, babalardan daha fazla uyku yoksunluğu bildirdiğini ve kadınların istihdamlarını
+kısıtlama veya değiştirme zorunluluğunu daha sık dile getirdiğini göstermiştir [@azimi2024caregiver].
+Güncel bir nitel çalışma bu yükün fenomenolojisini derinleştirir: kan şekerini sürekli izleme ve
+kesintisiz tetikte olma zorunluluğu ebeveynin kişisel ve mesleki yaşamını bozmakta, yıllar içinde
+tükenme, uykusuzluk ve bilişsel güçlük üreterek bakımı süreğen bir işe dönüştürmektedir (ana tema:
+"kendini düğüm düğüm bağlama") [@carlsund2025stress]. Bir başka nitel çalışma, karmaşık ve titiz
+gündelik tıbbi bakımın aile dengesini bozduğunu doğrudan temalaştırır [@haghighiMoghadam2022mothers]; bir
+diğeri ise bakım yükünün artan yalnızlık hissiyle birlikte gittiğini bildirir [@kobos2023loneliness].
+
+Annenin öz-raporda her zaman belirmeyen suçluluk ve tetikte olma katmanı da yazında izlenebilir:
+hipoglisemi korkusu ebeveynlerde yaygındır ve özellikle annelerde belirgindir [@barnard2010fear];
+tanı sürecini "gecikmiş" bir yol olarak deneyimleyen, belirtileri başka durumlara bağlayıp geç
+başvuran ebeveynler çözülmemiş suçluluk ve kendini suçlama duyguları taşır [@rankin2014pathways].
+Bu son çalışma tanı-öncesi süreçle sınırlıdır; suçluluğun tanı sonrası tıbbi tetikte olma davranışına
+dönüşmesi, bulgularımızın önerdiği ancak bu kaynağın doğrudan sınamadığı yorumsal bir köprüdür.
+
+*Öne çıkan kodlar:* `TANI_SOK_KORKU`, `SUCLULUK`, `RUTIN_TAKIP`, `KAYGI_KIRILGANLIK`,
+`ANNE_HIPERVIJILANS`, `COCUK_OZERKLIK_OZBAKIM`, `AILE_DESTEGI`, `ILETISIM_CATISMA`. *Quote ID
+ankrajları:* `014_mother_q001`, `014_mother_q002`, `019_mother_q001`, `020_mother_q001`,
+`026_mother_q001`.
+
+## Tema 3 — T1DM Tanılı Çocuğun İçeriden Deneyimi {#tema-3}
+
+**Ana sonuç.** T1DM tanılı çocuklar hastalığı hem gündelik yaşamın olağan parçası haline getirmeye
+çalışmakta hem de tedavi yükü, bedensel müdahale, sosyal görünürlük, damgalanma ve aile içi kontrol
+üzerinden somut bir sınır olarak deneyimlemektedir. Normalleşme dili yükün yokluğu anlamına gelmez;
+çoğu zaman yükü sürdürülebilir kılma stratejisidir. Kronik hastalıkta normalleştirme, aile yönetim
+tarzı yazınında tanımlanmış bir yönetim/başa çıkma süreci olarak kavramsallaştırılır ve yükün
+yokluğuyla eşitlenmemelidir [@robinson1993normalization; @deatrick1999normalization; @knafl2003fmsf];
+bu çalışmada kavram, aile-düzeyi kökeninden çocuğun bireysel deneyimine taşınırken bu düzey farkı
+gözetilmiştir.
+
+| Alt tema | Bilimsel netice | Tezdeki işlev |
+|---|---|---|
+| Normalleştirme ve avantaja çevirme | Olağanlaştırma bazen güçlü başa çıkma, bazen performatif normallik | Çocuk anlatısındaki direnç-uyum birlikteliği |
+| Somut kısıtlılıklar ve tedavi yükü | Ölçüm/enjeksiyon/beslenme/planlama gündelik beden pratiği | Biyomedikal yönetimin somut yükü |
+| Utanç, farklılık ve sosyal damgalanma | Okul/akran çevresinde görünürlük ve farklılık hissi | Sosyal uyum ve kimlik boyutu |
+| Korunma, kontrol ve kardeşlik | Artan ilgi hem güven hem kontrol; özel muamele ve adalet gerilimi | H5 algı tutarlılığı ve Tema 4 triadik gerilimi |
+
+**Bilimsel yorum.** Tema 3, çocuğun hasta kimliği ile gündelik çocuk/ergen kimliği arasında sürekli
+müzakere yaptığını gösterir. "Normal" söylemi hastalığın etkisizliği değil; bağımsızlık, akranlara
+benzeme ve aile kontrolünü yönetme stratejisi olarak okunmalıdır.
+
+Bu okuma, T1DM'li çocuk ve ergenlerin yaşanmış deneyimine odaklanan nitel çalışmalarla desteklenir.
+Gömülü kuram temelli bir çalışma, ergenin hastalık deneyimini benliğin diyabet kimliğiyle "sürgün
+edilmesinden" (self-banished) hastalığın benlikle uzlaştırılmasına uzanan "yeniden kendim olmak"
+sürecinde çerçeveler; bu süreçte çocuk pasif bir hasta değil, hastalığın anlamını sosyal etkileşim
+içinde yeniden kuran bir faildir [@kim2022illness]. Kenya'da yürütülen bir çalışma "normale ulaşma
+çabası" (striving for normality) temasında bu müzakerenin gündelik biçimlerini belgeler: kimi çocuk
+sınıfta rahatça enjeksiyon yapabilirken, kimi glukometresinin görünür olmasının yol açacağı zarardan
+çekinerek hastalığını sır olarak taşır; aynı çalışma insülini kendi başına yönetme becerisinin gurur
+ve olgunlaşma kaynağı olduğunu, ancak bu özerklik kazanımının "acınma" isteğinden kaçınma ve tedaviyi
+diskret yürütme arzusuyla eşzamanlı işlediğini göstermiştir [@palmer2022kenya].
+
+Normalleştirme çabasının arkasındaki damgalanma katmanı da nitel olarak somutlaşır. Adölesanlarda
+stigma yalnız açık alay değildir; sempati ve "ilgi" kılığına bürünen örtük önyargı biçiminde de işler
+ve çocuk hastalığın nedeni (yanlış yaşam tarzı) olarak suçlanabilir — bu, ifşadan kaçınmanın içsel
+mantığını aydınlatır [@kim2022illness]. Düşük-kaynaklı bir bağlamda stigmanın önemli kaynaklarından
+biri T1DM'nin bulaşıcı sanılması yanılgısıdır; akran stigması aidiyet duygusunu aşındırırken,
+diyabetli aile üyelerinin ve akran/destek gruplarının görünürlüğü kabullenme ve bağımsızlığı
+beslemektedir [@uganda2022lived]. Genç erişkinlerde — çocuk örnekleminden farklı bir gelişimsel evre —
+yürütülen bir nitel derleme, aynı gizleme/ifşa ikileminin süreğenliğini ve sosyal ortamlarda insülin
+dozunun bilinçli olarak atlanmasına dek varabildiğini bildirir; bu bulgu, çocukluk döneminde gözlenen
+görünürlük kaygısının ileri evrelerdeki olası uzantısına ilişkin bir bağlam sunar
+[@emergingadults2024lifestyle].
+
+*Öne çıkan kodlar:* `KABULLENME_NORMALLESME`, `RUTIN_TAKIP`, `BESLENME_KONTROL`, `OKUL_SOSYAL_UYUM`,
+`AKRAN_CEVRE_DESTEGI`, `COCUK_OZERKLIK_OZBAKIM`, `KARDES_ILISKISI`. *Quote ID ankrajları:*
+`026_t1dm_child_q001`, `026_t1dm_child_q002`, `202_t1dm_child_q001`, `202_t1dm_child_q002`,
+`201_t1dm_child_q001`.
+
+## Tema 4 — Aynı Evde Üç Farklı Deneyim {#tema-4}
+
+**Ana sonuç.** Triadik okuma, T1DM'nin ailede tek bir ortak anlatı üretmediğini; aynı olayın anne,
+hasta çocuk ve sağlıklı kardeş tarafından farklı sorumluluk, risk ve adalet çerçeveleriyle
+anlamlandırıldığını gösterir. Anne düzen/güvenlik dilini; hasta çocuk beden/özerklik/sosyal
+görünürlük dilini; sağlıklı kardeş kısıtlanma/gözetmenlik/adalet dilini öne çıkarır.
+
+| Alt tema | Bilimsel netice | Tezdeki işlev |
+|---|---|---|
+| Diyabetik düzenin gündelik hayatı yeniden kurması | Yiyecek/zaman/planlama/ortak etkinlik düzeni değişir | T1DM'nin aile-düzeyi yaşam organizasyonu |
+| "Bir şey olacak" korkusu ve sürekli tetikte olma | Risk beklentisi rollere göre farklı yoğunluk/biçim | Kaygının rol-temelli dağılımı |
+| İlgi, adalet ve kontrol gerilimi | Anne için koruma; kardeş için görülmeme; çocuk için kontrol | H5 diadik tutarlılık için nitel köprü |
+| Küçük bakıcılar ve hasta otoritesi | Kardeş görünmeyen yardımcı aktöre; hasta çocuk hastalık statüsüyle farklı konuma | Kardeşlik dinamiklerinin çok yönlü okuması |
+
+**Bilimsel yorum.** Tema 4, karma tezin niteliksel omurgasıdır. Nicel H5 diadik tutarlılık bulguları
+sınırlı anne-çocuk örtüşmesi gösterdiğinde, bu tema aynı bulguyu daha derin düzeyde açıklar:
+tutarsızlık yalnız ölçüm hatası değil, aile içindeki rollerin aynı olayı farklı ahlaki ve duygusal
+görevlerle taşıması olabilir.
+
+Bu okuma, çok-bilgiverici (multi-informant) değerlendirme yazınının merkezî bulgusuyla doğrudan
+örtüşür. Farklı türden bilgi vericiler arası çapraz-uyum kuralsal olarak düşük-orta düzeydedir: klasik
+meta-analizde benzer bilgi vericiler arası ortalama korelasyon r=.60 iken, farklı rol taşıyan vericiler
+arası r=.28'e düşer — bu örüntü bir ölçüm kusuru değil, davranışın duruma-özgü (situational
+specificity) tezahürünün beklenen yapısal sonucudur [@achenbach1987crossinformant]. Güncel kuramsal
+çerçeve bu konumu ilerletir: bilgi verici farklılıkları sistematik hataya indirgenemez, alan-ilişkili
+bilgi taşır ve klinik sonuçları (tedavi yoğunluğu, uzunlamasına risk) öngörebilir; Operations Triad
+Modeli uyumsuzluğu "ıraksayan işlemler" (diverging operations) olarak konumlandırır
+[@delosReyes2022discrepancies; @delosReyes2013strategic]. Bu ilkenin anne-çocuk-kardeş triadına
+uygulanması — kardeş, bu kaynakların örneklemlerinde bir bilgi verici olarak yer almasa da — tezin
+kendi kuramsal çıkarımıdır.
+
+Uyumsuzluğun "aile içi rollerin farklı görevlerle taşınması" biçimindeki aile-sistemleri okumamız
+ampirik dayanak da bulur. Pediatrik astımda 279 çocuk-ebeveyn diyadında uyum zayıf-orta düzeyde (sınıf-içi korelasyon katsayısı, ICC
+0.32-0.47), çapraz-uyumsuzluk oranları ise %52.7-68.8 arasındadır; kritik olarak farklılığın hem
+büyüklüğü hem yönü sosyodemografik/klinik değişkenlerden çok aile ilişki kalitesi ve bakım yüküyle
+açıklanmıştır [@silva2015disagreement]. T1DM bağlamında hem ebeveyn hem çocuktaki psikolojik distres,
+diyabete-özgü aile çatışmasının artışıyla yakından ilişkilidir [@williams2009conflict]. Anne afektinin
+bu farklılığı biçimlendiren rolü, tezin maternal Beck depresyon değişkeni açısından özellikle
+anlamlıdır: 73 anne-çocuk diyadında maternal endişe ve depresyon, annenin çocuk anksiyetesini daha
+düşük raporlamasını ve çapraz-uyumsuzluğun artmasını öngörmüştür [@affrunti2015maternal]. Son iki
+çalışma diyadik tasarımlıdır (kardeşi içermez); triadik genelleme yorumsal bir uzantıdır.
+
+*Öne çıkan kodlar:* `RUTIN_TAKIP`, `KAYGI_KIRILGANLIK`, `OFKE_ADALETSIZLIK`, `KARDES_GORUNMEZ_YUK`,
+`KARDES_ILISKISI`, `AILE_ICI_ADALET`, `COCUK_OZERKLIK_OZBAKIM`.
+
+| Rol | Quote ID |
+|---|---|
+| Anne | `011_mother_q006`, `020_mother_q009`, `026_mother_q008`, `026_mother_q009`, `011_mother_q007` |
+| T1DM tanılı çocuk | `011_t1dm_child_q004`, `020_t1dm_child_q001`, `020_t1dm_child_q002`, `026_t1dm_child_q008`, `014_t1dm_child_q002` |
+| Sağlıklı kardeş | `011_healthy_sibling_q001`, `020_healthy_sibling_q001`, `019_healthy_sibling_q002`, `019_healthy_sibling_q003`, `201_healthy_sibling_q001` |
+
+# Çapraz Bilimsel Neticeler {#sec-capraz}
+
+1. **T1DM aile-düzeyi bir düzenleme rejimi üretir.** Yemek, zaman, uyku, okul, etkinlik, sosyal
+   görünürlük ve ebeveyn ilgisi yeniden düzenlenir; bu roller arası asimetri yaratır.
+2. **Anne bakımı klinik ve ahlaki sorumluluk olarak içselleştirir.** "İyi anne" ölçütü ölçüm, izlem,
+   kriz önleme ve adil davranma kapasitesiyle iç içe geçer.
+3. **Sağlıklı kardeş yükü çoğu zaman sessizdir.** Geri çekilme/uyum/erteleme görünür uyum gibi
+   okunabilir; görünmeyen yük taşıyabilir.
+4. **T1DM tanılı çocuk normalleşme ve farklılık arasında müzakere eder.** İkilik aynı anlatıda
+   bulunabilir.
+5. **Koruma, kontrol ve adalet aynı davranışta birleşebilir.** İyi niyet deneyimsel sonuçla her
+   zaman örtüşmez.
+6. **Triadik farklılık bilimsel sonuçtur, hata değildir.** Amaç anlatıları tek mutabakata
+   indirgemek değil, farklı öznellikleri birlikte okuyabilmektir.
+
+Bu çapraz neticeler aile-düzeyi bir kuramsal çerçeveye oturur. Knafl-Deatrick Aile Yönetim Tarzı
+Çerçevesi (FMSF), kronik hastalıklı çocuğa aile yanıtını durumun tanımı, yönetim davranışları ve
+algılanan sonuçlar bileşenlerine ayırır [@knafl2003fmsf; @knafl2012continued]; 575 ebeveyn ve 414
+aileyi kapsayan bir çalışmada bu çerçeveden türeyen dört yönetim deseni, aile-odaklı desenlerin daha
+iyi aile ve çocuk işlevselliğiyle ilişkili olduğunu, tek ebeveynli ve düşük gelirli ailelerin ise
+durum-odaklı (daha zorlu) desenlerde anlamlı olarak fazla temsil edildiğini göstermiştir
+[@knafl2013patterns]. Ebeveyn tutumu ile çocuğun klinik çıktısı arasındaki bağın bir örneği olarak,
+251 ergen-ebeveyn diyadında çocuğun anksiyete/depresyon belirtileri ile glisemik kontrol arasındaki
+ilişki tümüyle ebeveyn anksiyetesi üzerinden aracılanmıştır [@silina2023mediating]; bu kesitsel bulgu
+nedensel bir mekanizma iddiası değil, tetikte olma ikliminin aileye ve çocuğa yayılımına ilişkin
+yorumsal bir zemindir.
+
+# Negatif Vaka ve Sınırlayıcı Örüntüler {#sec-negatif}
+
+Karşıt ve sınırlayıcı okumalar, dört makro temanın yorumuna gömülüdür (ör. Tema 3'te normalleşmenin
+yük yokluğu anlamına gelmemesi; Tema 1'de hastalığın kardeşler arası güç aracı olarak kullanımı).
+Tema 4 için ayrıca sistematik bir negatif-vaka taraması yürütülmüş; anlatılardaki karşıtlık ve
+sınırlayıcı okuma alanları belirlenmiştir.
+
+::: {.callout-note}
+**Bilgi kutusu — Negatif vaka analizi nedir?**
+
+**Negatif vaka analizi**, ana temaya uymayan, onu sınırlayan veya çelişen anlatıların bilinçli olarak
+aranıp raporlanmasıdır. Amaç, örüntüyü "bozan" veriyi gizlemek yerine analize dahil ederek yorumun
+sağlamlığını (credibility) sınamaktır; her makro temada en az bir "farklı tezahür/sınırlayıcı örnek"
+paragrafı COREQ Madde 31'i güçlendirir [@tong2007coreq]. Aşağıdaki tablo bu koldaki karşıtlık ve
+sınırlayıcı okuma alanlarını gösterir.
+:::
+
+| Alan | Bulgusal anlam |
+|---|---|
+| Tema 4 içinde karşıtlık işaretleri | Tek yönlü tema anlatısı yerine koşullu/sınırlı/çelişkili anlatılar bulunabilir |
+| "Normal" söylemi | Yük yokluğu olarak değil; normalleştirme/dayanıklılık/performatif uyum olarak okunur |
+| Aile 201 rol temsili | Bazı rol alanları sınırlı; düşük odak temsili aktarılabilirlik tartışmasında raporlanır |
+
+Her makro temanın yorumu en az bir "farklı tezahür/sınırlayıcı örnek" içerir; her tema için ayrı
+sistematik bir negatif-vaka alt-bölümü bu raporun kapsam sınırıdır (COREQ Madde 31; bkz.
+@sec-sinirliliklar).
+
+# Karma Tez Entegrasyonu {#sec-karma}
+
+> **Kanonik karma sentez pointer:** Doldurulmuş joint-display ve meta-çıkarımın tek doğruluk kaynağı `tez-yazim/05_entegrasyon/karma-sentez-kanonik.md`'dir; buradaki tablo yalnız nitel-kol bakışını sunar.
+
+Nitel bulgular nicel bulguların doğrulama aracı değildir; karma tezde üç işlev görür: (i) ölçek
+sonuçlarını deneyimsel bağlamla açıklamak; (ii) nicel fark yokluğu/zayıf etki durumlarında
+görünmeyen süreçleri tartışmaya açmak; (iii) anne–hasta çocuk–kardeş algı ayrışmasının neden
+bilimsel olarak anlamlı olduğunu göstermek. Yaklaşım, eşzamanlı/convergent paralel karma yöntem
+tasarımının entegrasyon disiplinini izler [@creswellPlanoClark2018]; entegrasyon, joint display ve
+convergence teknikleriyle yürütülür [@guetterman2015jointDisplay; @fetters2013integration] (nicel kol
+köprüsü: `t1dm-tez-rehberi/references/karma-yontem.md`).
+
+| Nicel hat (CSR kanonik karar) | Nitel katkı | Karma kullanım dili |
+|---|---|---|
+| H1 Çocuk algısı — **doğrulanan pozitif**: DM çocukları EMBU-C reddetme alt ölçeğinde daha yüksek (β ≈ 0,16 SD, BF₁₀ = 8,12); alım-dönemi karışmasına karşı temkinli | Tema 3: hastalığı hem normalleştirme hem yük olarak taşıma | Nitel bulgu farkı *doğrulamaz*; reddetme algısının çocuk tarafından nasıl çerçevelendiğini verir (açıklayıcı genişleme) |
+| H2 Kardeş ilişkisi — **belirsiz / kanıt yetersizliği**: dört SRQ alt ölçeğinde \|d\| < 0,20, FDR p > 0,35 (*aktif eşdeğerlik kanıtı değil*) | Tema 1 ve 4: yük genel puandan çok bakım rutini ve adalet algısına gömülü | Grup farkı yokluğu kardeşin etkilenmediğini göstermez; nitel bulgu sessiz/bağlamsal yük biçimlerini açıklar |
+| H3 Anne öz-rapor — **üç-katmanlı negatif kanıt**: kanıt yetersizliği + TOST eşdeğerlik + Bayesçi (BF₁₀ = 0,17–0,25 H₀ lehine) | Tema 2: tıbbi bakım rolünün normal ebeveynlik gibi içselleştirilmesi | Ölçek eşdeğerliği psikolojik yük yokluğunu kanıtlamaz; içselleştirme öz-raporu daraltabilir |
+| H4 Beck → EMBU-P (SEM) — **kısmen doğrulandı**: sıcaklık/reddetme/karşılaştırma yolları anlamlı, aşırı koruma yolu değil | Tema 2: suçluluk/tetikte olma/kaybetme korkusu ruhsal yükle ilişkili | Kesitsel SEM; nedensel yol değil, uyum ve klinik yorum alanı |
+| H5 Diadik tutarlılık — **üçgenleme şartı karşılanmadı**: manifest ICC dört alt ölçekte Kontrol > DM; latent DM > Kontrol yalnız reddetmede/tek-strateji | Tema 4: aynı olayın farklı anlamlarla taşınması | Algı ayrışması ölçüm hatası değil, rol-temelli deneyim farkı |
+
+Kısaltmalar: EMBU-C / EMBU-P = algılanan ebeveynlik ölçeği çocuk / ebeveyn formu; SRQ = Kardeş
+İlişkileri Anketi (KİA); BF₁₀ = Bayes faktörü; SD = standart sapma; TOST = iki tek-yönlü eşdeğerlik
+testi; FDR = yanlış keşif oranı; ICC = sınıf-içi korelasyon katsayısı. **Nicel kararların kanonik kaynağı**
+`docs/CLINICAL-STUDY-REPORT-FINAL` §2.3 yönetici özetidir; doldurulmuş joint-display ve çapraz-kol
+meta-çıkarımların tek doğruluk kaynağı `tez-yazim/05_entegrasyon/karma-sentez-kanonik.md`'dir.
+
+**Tartışma köprü cümleleri.** H2'de dört SRQ alt ölçeğinde grup farkı için kanıt yetersizdir (aktif
+eşdeğerlik kanıtı değil); nitel bulgular kardeş yükünün gündelik bakım rutinlerine, ilgi dağılımına
+ve adalet algısına gömülü yaşanabileceğini gösterir; H3'te üç-katmanlı negatif kanıt (Bayesçi + TOST
+eşdeğerlik dahil) anneliğin tıbbi bakıcı rolüne kaymasının öz-raporda doğrudan belirmeyebileceğini
+açar; H5 Tema 4 ile birlikte yorumlandığında aynı aile olayının farklı görev/risk/adalet
+çerçeveleriyle anlamlandırıldığını gösterir. Nitel bulgular nedensel açıklama değil, deneyimsel bağlam ve
+yorumlayıcı zemin olarak kullanılmalıdır. Aile yönetim tarzının nicel ölçüm karşılığı Aile Yönetim
+Ölçütü (FaMM) ile sağlanabilir [@knafl2011famm]; çocukların yönetimi "ben/onlar/biz" ifadeleriyle
+anlattığı ve ebeveyn izlemini kimi zaman güvensizlik olarak okuyabildiği gösterilmiştir
+[@beacham2019children] — bu da H5 kontrol-özerklik ekseninin nitel-nicel yakınsaması için bir
+köprü sağlar.
+
+**Ortak analiz için hazırlık.** İki kol eşzamanlı **paralel** karma yöntem tasarımıyla yürütülür ve
+*aynı bireyleri örneklememiştir* (nitel: 7 aile / 21 görüşme; nicel: 241 aile / 482 katılımcı). Bu
+asimetri üç hazırlık ilkesini zorunlu kılar: (i) **entegrasyon yorum düzeyindedir, istatistiksel
+düzeyde değil** — nitel bulgu nicel istatistiği doğrulamaz, bağlamsal anlamını derinleştirir;
+bu nedenle "birbirini doğrular" yerine "tamamlar / açıklayıcı bağlam sağlar" retoriği kullanılır
+[@fetters2013integration]. (ii) **Aktarılabilirlik analitik genellemeyle kurulur**, istatistiksel
+genellemeyle değil; 7 ailelik nitel bağlamın 241 ailelik örnekleme taşınması analitik çıkarım
+yoludur. (iii) Her H-hattının nicel ankrajı (`#h1-karar … #h5-karar`) ile nitel tema ankrajı
+(`#tema-1 … #tema-4`) `tez-yazim/05_entegrasyon/karma-kanit-ledgeri.tsv` üzerinden eşlenir; doldurulmuş
+joint-display ve dört çapraz-kol meta-çıkarım `karma-sentez-kanonik.md`'de tutulur. Bu paralel-örneklem
+sınırı Sınırlılıklar (bkz. @sec-sinirliliklar) ve karma-özel sınırlılık kesitinde şeffaf raporlanır.
+
+# COREQ, Trustworthiness ve Değerlendirme {#sec-raporlama}
+
+## COREQ Durumu
+
+::: {.callout-note}
+**Bilgi kutusu — COREQ nedir ve "0 eksik" neyi ifade eder?**
+
+COREQ, nitel görüşme/odak grup çalışmalarının **raporlanmasını** standartlaştıran 32 maddelik bir
+kontrol listesidir; üç alanı kapsar: araştırma ekibi ve refleksivite, çalışma tasarımı, analiz ve
+bulgular [@tong2007coreq]. COREQ bir **raporlama** ölçütüdür, bir *yöntem zorunluluğu* değil: bir
+madde, ilgili uygulamanın yapılıp yapılmadığının **şeffaf biçimde raporlanmasıyla** karşılanır. Bu
+nedenle transkript iadesi (Madde 22) ve resmî katılımcı doğrulaması (Madde 27) bu çalışmada
+*uygulanmamış* olsa da, uygulanmama kararı ve yerine konan görüşme-içi özetleme gerekçesiyle açıkça
+raporlandığından COREQ mantığında "karşılanmış" sayılır. Yani "0 eksik", tüm uygulamaların
+*yapıldığı* değil, tüm maddelerin *şeffaf raporlandığı* anlamına gelir.
+:::
+
+| Domain | Tam | Kısmi | Eksik | Toplam |
+|---|---:|---:|---:|---:|
+| Araştırma ekibi ve refleksivite | 7 | 0 | 0 | 7 |
+| Çalışma tasarımı | 14 | 1 | 0 | 15 |
+| Analiz ve bulgular | 9 | 1 | 0 | 10 |
+| **Toplam** | **30** | **2** | **0** | **32** |
+
+Kısmi maddeler: **Madde 16** (ayrı formal pilot görüşme yürütülmemiştir; rehber alanyazın ve klinik
+deneyimle geliştirilip sahada iyileştirilmiştir, şeffaf raporlanmıştır) ve **Madde 31** (karşıt/
+sınırlayıcı okumalar tema yorumlarına gömülüdür; her tema için ayrı sistematik alt-bölüm kapsam
+sınırıdır) [@tong2007coreq]. Raporlama ayrıca SRQR
+[@obrien2014srqr] ve JARS-Qual [@levitt2018jarsQual] ölçütleriyle çapraz denetlenir. Transkript
+iadesi (Madde 22) ve resmî katılımcı doğrulaması (member checking / respondent validation; Madde 27) [@birt2016member], yukarıdaki bilgi kutusunda açıklandığı
+üzere uygulanmayıp gerekçesiyle raporlandıkları için "karşılanmış" sayılmıştır; bu maddelerin
+uygulama sınırı Sınırlılıklar bölümünde ayrıca ele alınmıştır (bkz. @sec-sinirliliklar). Kaynak
+metodoloji dosyası (`coreq_32_completed.md`) madde-madde tablosu ve domain özeti bu tabloyla **tek
+dildedir**: 30 tam / 2 kısmi / 0 eksik, kısmiler yalnız Madde 16 (pilot) ve Madde 31 (negatif vaka).
+
+## Trustworthiness (Lincoln-Guba) ve Değerlendirme Ölçütleri
+
+Niteliksel kalite, pozitivist iç/dış geçerlik yerine Lincoln-Guba **trustworthiness** paradigmasıyla
+kurulur [@lincolnGuba1985]; kalite değerlendirmesi Tracy'nin "big-tent" ölçütleriyle desteklenir
+[@tracy2010qualityCriteria].
+
+::: {.callout-note}
+**Bilgi kutusu — Trustworthiness: nitel araştırmada "geçerlik"in karşılığı**
+
+Lincoln ve Guba, pozitivist iç/dış geçerlik yerine nitel araştırmaya özgü dört **güvenilirlik
+(trustworthiness)** ölçütü önerir [@lincolnGuba1985]:
+
+- **Credibility (inandırıcılık)** ↔ iç geçerlik: bulgular veriyi sadık biçimde temsil ediyor mu?
+- **Transferability (aktarılabilirlik)** ↔ dış geçerlik: bulgular hangi bağlamlara taşınabilir?
+- **Dependability (tutarlılık)** ↔ güvenirlik: süreç izlenebilir ve tutarlı mı?
+- **Confirmability (doğrulanabilirlik)** ↔ nesnellik: bulgular araştırmacı önyargısından çok veriden
+  mi doğuyor?
+
+Aşağıdaki tablo her ölçütün bu çalışmadaki operasyonel dayanağını verir.
+:::
+
+| Ölçüt | Bu çalışmadaki dayanak |
+|---|---|
+| Credibility | Triadik çoklu bilgi verici yapı, `quote_id` ankrajlı yoğun kanıt, görüşme-içi özetleme, critical friend tartışmaları |
+| Dependability | Audit trail, kanonik codebook (codebook_v3), metodolojik karar kayıtları |
+| Confirmability | Reflexive memo, positionality (OM/BA), quote integrity raporu, AI-use ledger |
+| Transferability | Bilgi gücü gerekçesi, bağlamın yoğun betimlemesi (thick description [@ponterotto2006thick]), sınırlılıkların (ve Aile 201) açık raporlanması |
+
+::: {.callout-note}
+**Bilgi kutusu — RTA'da neden ikinci-kodlayıcı uzlaşımı (κ / α) hesaplanmaz?**
+
+Kodlama-güvenirliği (coding reliability) yaklaşımları, iki kodlayıcının aynı kodu üretmesini bir
+nesnellik kanıtı sayar ve Cohen's κ / Krippendorff α / Gwet AC1 gibi uzlaşım katsayıları hesaplar.
+Refleksif TA'nın epistemolojisinde ise kodlama **yorumsal bir kaynaktır**: amaç kodlayıcıların
+örtüşmesi değil, veriye derinlemesine nüfuz etmektir. Bu nedenle uzlaşım katsayısı hesaplamak
+paradigmatik olarak *uygun değildir*; güvenilirlik bunun yerine **critical friend** tartışmaları,
+refleksivite ve audit trail ile kurulur [@braunClarke2019reflexive].
+:::
+
+**Inter-coder reliability neden yok.** RTA epistemolojisinde kodlama yorumsal bir kaynaktır; iki
+kodlayıcının aynı kodu üretmesi amaç değildir. Bu nedenle Cohen's κ / Krippendorff α / Gwet AC1
+**hesaplanmamıştır** [@braunClarke2019reflexive]; güvenilirlik critical friend, refleksivite ve audit
+trail üzerinden kurulur. (Nicel skill'in karma-yöntem dosyasındaki coding-reliability/AC1 önerisi bu
+kanonik RTA kola uygulanmaz.)
+
+## Alıntı Bütünlüğü
+
+Bu belge doğrudan alıntı metni taşımadığı için alıntı kanıtı yalnız `quote_id` düzeyindedir. Mevcut
+`quotes_used.csv` ID-only yapıdadır; `dmnitel check-quotes` aracının beklediği `quote_text_used`
+alanı bulunmadığından, doğrudan alıntı metni bütünlüğü bu dosya üzerinden kapanmış kabul edilmez.
+Final tez veya makale metnine verbatim alıntı eklendiğinde, her alıntı temizlenmiş tez metniyle bire
+bir yeniden denetlenmelidir. Alıntının katılımcının kendi sözlerine sadakati ile anonimleştirme
+beklentisi, niteliksel raporlama yazınında yerleşik bir ölçüttür
+[@corden2006quotations; @levitt2018jarsQual; @tong2007coreq]. İzin verilen müdahaleler:
+kimlik maskeleme (`[isim]`, `[okul adı]`, `[şehir]`), kısaltma (`[...]`), köşeli parantezde sınırlı
+bağlam ve okunabilirlik için asgari düzenleme (dolgu sözcük/tekrar ayıklama). Yasak: **anlamı
+değiştiren** akademikleştirme/yeniden yazma, özet metni alıntı gibi sunma, alıntıdan tema üretimini
+kesin hüküm gibi sunma.
+
+# Sınırlılıklar {#sec-sinirliliklar}
+
+1. Örneklem tek merkezli ve küçük bir triadik örneklemdir; RTA + bilgi gücü açısından kabul edilebilir
+   olsa da istatistiksel genelleme sağlamaz.
+2. Aileler arası veri zenginliği eşit değildir; Aile 201 düşük odak temsilindedir.
+3. Formal post-hoc member checking yapılmamış; görüşme-içi özetleme + katılımcı onayı kullanılmıştır.
+4. Ayrı bir formal pilot görüşme yürütülmemiştir; rehber alanyazın ve klinik deneyimle geliştirilip
+   sahada iyileştirilmiştir (COREQ Madde 16).
+5. Babalar/diğer bakım verenler triadın içinde değildir; aile sistemi anne–hasta–kardeş ekseninden
+   okunmuştur.
+6. BA'nın gözlemci olarak odada bulunması katılımcı anlatısını şekillendirmiş olabilir.
+7. OM ve BA'nın klinik disiplin ortaklığı bazı klinik-dışı yapısal okumaları sınırlamış olabilir.
+8. Codebook'un beş kavramsal kodu seçilmiş illüstratif alıntı havuzunda temsil edilmez; illüstratif
+   havuz tüketici değil, purposive bir seçkidir.
+9. Kodlama araştırmacı-yorumlu ve özyinelidir; RTA epistemolojisi gereği pozitivist anlamda kilitli
+   bir kod kümesi olarak sunulmaz.
+10. Sistematik negatif-vaka taraması Tema 4 için yürütülmüştür; karşıt okumalar diğer temaların
+    yorumuna gömülüdür, ancak her tema için ayrı sistematik alt-bölüm bu raporun kapsamı dışındadır
+    (COREQ Madde 31).
+
+# AI-Reliability ve Yönetişim Katmanı {#sec-yonetisim}
+
+Niteliksel kol, üretilen çıktının güvenilirliğini artırmak ve denetlenebilir kılmak için çok katmanlı bir AI-reliability
+yönetişimi taşır. Bu katman bilimsel bulgu üretmez; **bulgu ve metnin bütünlüğünü denetler**.
+
+- **Yerel toolkit (`dmnitel`):** codebook lint, triadik matris, COREQ audit, quote integrity, negatif
+  vaka bulucu, AI-use ledger — harici API'siz, ham veri connector'a gitmez.
+- **Reliability hattı:** claim-grounding orkestrasyonu, Lynx halüsinasyon eval, RAGAS faithfulness,
+  semantic entropy tutarlılık sinyali; promptfoo eval + red-team.
+- **Yönetişim:** NIST–ISO/IEC 42001 eşlemesi; `t1dm-qual-ai-audit` referanslı-bölüm denetim kapısı.
+- **AI-use ledger:** her LLM/MCP kullanımı tarih, model, amaç, veri türü, ham-veri/kimlikleyici
+  bayrağı ve araştırmacı kararı ile kaydedilir.
+- **Manüskript denetimi:** bu belge kapanışta `sci-audit` yedi ekseninden (A referans, B claim
+  grounding, C istatistik, D halüsinasyon, **E COREQ/JARS-Qual**, F AI-şeffaflık, G Türkçe imla) ve
+  bağımsız Galileo three-tier (GPT-5.4 ikinci görüş) pass'inden geçirilir.
+
+# Kaynak Dosya Haritası {#sec-kaynak-harita}
+
+| Kaynak | İşlev |
+|---|---|
+| `03_analysis/codebook/codebook_v3.md` | 24 kod × 8 triadik eksen × 4 makro tema (kanonik) |
+| `03_analysis/codebook/codebook_v3.csv` | Kanonik codebook_v3'ün denetlenebilir CSV temsili |
+| `06_manuscript_outputs/quotes_used.csv` | `quote_id` kayıt dosyası; doğrudan alıntı metni içermez (kanıt `quote_id` düzeyinde ankrajlanır) |
+| `03_analysis/methodology/A1_information_power.md` | Bilgi gücü / doygunluk reframe dayanağı |
+| `03_analysis/methodology/A9_triadic_methodology_literature.md` | Triadik/multi-informant atıf dayanağı |
+| `03_analysis/methodology/coreq_32_completed.md` | COREQ 32 madde durumu |
+| `03_analysis/methodology/audit_trail.md` | Metodolojik karar günlüğü |
+| `03_analysis/methodology/positionality_OM.md`, `positionality_BA.md` | Refleksivite beyanları |
+| `03_analysis/methodology/llm_use_statement.md` | AI/LLM kullanım beyanı |
+| `03_analysis/reflexive/journal_excerpts.md` | Refleksif günlük |
+| `07_reports/quote_integrity_report.md` | Alıntı bütünlüğü denetim kaydı |
+| `07_reports/negative_case_report_tema_4_triadic.md` | Tema 4 sistematik negatif vaka analizi |
+| `archive/2026-07-29_pre_new_canon/qualitative_canonical_results_report.md` | Arşivlenmiş tarihsel mekanik kopya; kanonik otorite değildir |
+
+# Kalite Güvencesi ve Provenans {#sec-dogrulama}
+
+Bu belgenin kalite güvencesi ve kanıt temeli şu katmanlara dayanır:
+
+- **Kanıt temeli.** Alıntı kanıtı `quote_id` düzeyinde ankrajlanır; verbatim alıntılar tez/makale
+  metnine temizlenmiş kaynak metinden `quote_id` eşlemesiyle bire bir alınır (KVKK + alıntı bütünlüğü
+  ölçütü). Aile, katılımcı, tema, kod ve COREQ sayıları kanonik codebook ve methodology kaynaklarıyla
+  tutarlıdır (`codebook_v3.md`, `coreq_32_completed.md`, `A1_information_power.md`).
+- **Referans tek-kaynağı.** Tüm `[@key]` atıfları tek `references/references.bib` (Zotero koleksiyonu
+  **9ZFDHMZA "T1DM Thesis"** ile mutabık) üzerinden çözülür; bib hijyeni `scripts/util/bib_hygiene.py
+  all` ile HARD=0 doğrulanır.
+- **Dış-kanıt.** Metodoloji atıfları evidentia bağlı connector'larıyla (OpenAlex + PubMed/EPMC)
+  çözülüp doğrulanmıştır; bulunamayan kaynak `gap` olarak işlenir, uydurma atıf üretilmez.
+- **Metin denetimi.** Belge, `sci-audit` yedi ekseni (A referans, B claim grounding, C istatistik,
+  D halüsinasyon, E COREQ/JARS-Qual, F AI-şeffaflık, G Türkçe imla) ve bağımsız Galileo three-tier
+  judge denetiminden geçirilir.
+
+# Nihai Bilimsel Kullanım Cümlesi {#sec-nihai}
+
+Bu niteliksel kol, T1DM'nin aile içinde yalnız hastalık yönetimi değil; rol, adalet, bakım emeği,
+görünürlük ve özerklik düzenini yeniden kuran bir aile deneyimi olduğunu göstermektedir. Anne, hasta
+çocuk ve sağlıklı kardeş aynı klinik durumu farklı biçimlerde taşımakta; bu farklılıklar özellikle
+kardeşin görünmeyen yükü, annenin tıbbi bakıcı rolüne kayması, çocuğun normalleşme–farklılık
+müzakeresi ve triadik adalet/kontrol gerilimleri üzerinden görünür olmaktadır. Karma tezde bu
+sonuçlar, nicel bulguları ikame eden veya doğrulayan kanıtlar olarak değil; aile içi algı
+farklılıklarını ve ölçekte görünmeyebilecek deneyim süreçlerini açıklayan niteliksel bağlam olarak
+kullanılmalıdır.
+
+# Kaynakça {.unnumbered}
+
+::: {#refs}
+:::

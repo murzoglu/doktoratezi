@@ -1,5 +1,5 @@
 ---
-description: Karma tez / joint display öncesi iki-repo köprü durumunu üretir ve yorumlar
+description: Karma tez / joint display öncesi iki-kol köprü durumunu üretir ve yorumlar
 allowed-tools: Bash(./dmnitel *), Read
 ---
 
@@ -15,5 +15,5 @@ allowed-tools: Bash(./dmnitel *), Read
    bulgunun nedensel kanıtı olarak sunulmaz; joint display katmanı iki kolu yan yana
    getirir ve kanıt türlerini açıkça ayırır.
 3. Tez bölümü yazımına geçilecekse ana merkezin
-   `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim` olduğunu ve oradaki bölüm
+   `/workspaces/T1DM-Tez/tez-yazim` olduğunu ve oradaki bölüm
    briefinin (`03_bolum-hazirlik/`) açılması gerektiğini belirt.

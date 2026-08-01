@@ -46,7 +46,7 @@ project:
 book:
   title: "Tip 1 Diyabetli Çocuklar, Sağlıklı Kardeşleri ve Annelerinde Ebeveynlik
           Tutumu, Beck Depresyonu ve Kardeş İlişkilerinin İncelenmesi"
-  author: "Mahir Kurt"
+  author: "Özlem Murzoğlu Kurt"
   date: today
   language: tr
   chapters:

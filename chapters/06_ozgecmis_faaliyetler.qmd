@@ -1,46 +1,111 @@
 <!--
-ÖZGEÇMİŞ (Marmara §3.8): tek sayfa, şablon formatında; kişisel bilgiler öğrenci tarafından tamamlanır.
-BİLİMSEL FAALİYETLER (Marmara §3.9): kayıt tarihinden itibaren proje/toplantı/patent/makale;
-kaynak yazım formatında. Mezuniyet koşulu yayınların tam metinleri teze eklenmez, ayrı portfolyo
-olarak enstitüye teslim edilir. {…} alanları öğrenci tarafından doldurulur.
+ÖZGEÇMİŞ (Marmara §3.8): tek sayfa, resmi şablon (TEZ ŞABLONLARI-2026-2RV.docx §9)
+alan/tablo yapısında. BİLİMSEL FAALİYETLER (Marmara §3.9 / şablon §10): kayıt tarihinden
+itibaren proje/toplantı/patent/makale; kaynak yazım formatında. Mezuniyet koşulu yayınların
+tam metinleri teze eklenmez, ayrı portfolyo olarak enstitüye teslim edilir.
+Sınav puanı kaynağı: ÖSYM 2023/2 ALES sonuç belgesi (sınav 20.08.2023) ve 2017-YDS
+Sonbahar sonuç belgesi (sınav 17.09.2017, İngilizce). Belgelerdeki T.C. kimlik numarası
+KVKK gereği teze aktarılmaz.
 -->
 
-# ÖZGEÇMİŞ {.unnumbered}
+# ÖZGEÇMİŞ
 
-**Ad Soyad:** Özlem Murzoğlu Kurt
+```{=latex}
+\begingroup\singlespacing
+\setlength{\parskip}{2pt}
+\renewcommand{\arraystretch}{0.95}
+\setlength{\aboverulesep}{0pt}\setlength{\belowrulesep}{0pt}
+\setlength{\defaultaddspace}{2pt}
+\setlength{\LTpre}{4pt}\setlength{\LTpost}{2pt}
+```
 
-**Unvan:** Uzman Doktor (Çocuk Sağlığı ve Hastalıkları)
+|            |                       |              |                   |
+|:-----------|:----------------------|:-------------|:------------------|
+| **Adı** | Özlem | **Soyadı** | Murzoğlu Kurt |
+| **Doğum Yeri** | Rize | **Doğum Tarihi** | 21.12.1982 |
+| **Uyruğu** | T.C. | **Tel** | 0535 988 15 20 |
+| **E-mail** | ozlem.murzoglu@gmail.com | | |
 
-**Doğum Yeri ve Tarihi:** {Doğum yeri}, {gg.aa.yyyy}
+**Eğitim Düzeyi**
 
-**Öğrenim Durumu:**
+|                |  Mezun Olduğu Kurumun Adı                  | Mezuniyet Yılı |
+|:---------------|:-------------------------------------------|:---------------|
+| Doktora | Marmara Üniv. Sağlık Bilimleri Enstitüsü, Sosyal Pediatri Programı | Devam ediyor (2019 –) |
+| Tıpta Uzmanlık | Marmara Üniv. Tıp Fakültesi, Çocuk Sağlığı ve Hastalıkları | 2017 |
+| Lisans | İstanbul Üniv., Çocuk Gelişimi | 2023 |
+| Lisans (Tıp) | İstanbul Üniv. İstanbul Tıp Fakültesi, Tıp Doktorluğu | 2007 |
 
-| Derece | Alan / Program | Kurum | Yıl |
-|---|---|---|---|
-| Doktora | Sosyal Pediatri | Marmara Üniv. Sağlık Bilimleri Enstitüsü | {devam ediyor} |
-| Tıpta Uzmanlık | Çocuk Sağlığı ve Hastalıkları | {Kurum} | {Yıl} |
-| Lisans (Tıp) | Tıp | {Üniversite} | {Yıl} |
+**İş Deneyimi**
 
-**Yabancı Dil:** {İngilizce vb.}
+|   | Görevi                  | Kurum                              | Süre (Yıl – Yıl) |
+|:--|:------------------------|:-----------------------------------|:-----------------|
+| 1 | Kurucu ve Sorumlu Hekim | Bağımsız Pediatri Muayenehanesi, Ataşehir/İstanbul | 2022 – hâlen |
+| 2 | Uzman Hekim, Çocuk Acil Birim Sorumlusu | Marmara Üniv. Pendik Eğitim ve Araştırma Hastanesi, İstanbul | 2017 – 2022 |
+| 3 | Uzman Hekim (Devlet Hizmet Yükümlülüğü) | Iğdır Tuzluca Devlet Hastanesi, Iğdır | 2017 – 2017 |
 
-**Çalıştığı Kurum(lar):** {Kurum, görev, yıl}
+**Yabancı Dil Bilgisi**
 
-**İletişim:** {Kurumsal e-posta}
+| Yabancı Dil | Okuduğunu Anlama\* | Konuşma\* | Yazma\* |
+|:-----------------------------|:--------------------------|:----------------------|:----------------------|
+| İngilizce | Çok iyi | Çok iyi | Çok iyi |
+
+**Yabancı Dil Sınav Notu**
+
+| YDS | ÜDS | IELTS | TOEFL IBT | TOEFL PBT | TOEFL CBT | FCE | CAE | CPE |
+|:--------|:--------|:--------|:--------|:--------|:--------|:--------|:--------|:--------|
+| 68,75 | — | — | — | — | — | — | — | — |
+
+**Akademik/Lisansüstü Giriş Sınav Performansı**
+
+|                                    | Sayısal              | Eşit Ağırlık         | Sözel                |
+|:-----------------------------------|:---------------------|:---------------------|:---------------------|
+| ALES Puanı | 77,07364 | 78,74596 | 79,31171 |
+| (Diğer) Puanı | — | — | — |
+
+**Program/Yazılım Bilgisi**
+
+| Program/Yazılım | Kullanma Becerisi\* |
+|:--------------------------------------------|:---------------------------------|
+| Microsoft 365 | İyi |
+| Google Workspace | İyi |
+| Visual Studio | İyi |
+| Claude Code | İyi |
+| R | İyi |
+
+\* Çok iyi, iyi, orta, zayıf olarak değerlendiriniz.
+
+```{=latex}
+\endgroup
+```
 
 {{< pagebreak >}}
 
-# BİLİMSEL FAALİYETLER {.unnumbered}
+# BİLİMSEL FAALİYETLER
 
-Aşağıda, tez konusuyla ilişkili ve doktora kayıt tarihinden itibaren gerçekleştirilen bilimsel faaliyetler kaynak yazım biçiminde listelenmiştir. Kesinleşen künyeler (dergi, cilt, sayı, sayfa, doi; kongre adı, yer, tarih) yayımlanma/sunum aşamasında tamamlanır.
+Aşağıda, tez konusuyla ilişkili ve doktora kayıt tarihinden itibaren gerçekleştirilen bilimsel faaliyetler kaynak yazım biçiminde listelenmiştir. Mezuniyet koşulunu sağlayan yayın ve sunumların tam metinleri teze eklenmemiş, ayrı portfolyo dosyası olarak Enstitüye teslim edilmiştir.
 
 ## Makaleler {.unnumbered}
 
-1. {Yazar(lar). Makale başlığı. Dergi Adı. Yıl;Cilt(Sayı):Sayfa aralığı. doi} — *tez birincil (nicel) makalesi (hazırlanıyor).*
-2. {Yazar(lar). Makale başlığı. Dergi Adı. Yıl;Cilt(Sayı):Sayfa aralığı. doi} — *tez nitel kol makalesi (hazırlanıyor).*
+1. İpar N, Alper EN, Aydın NE, Aktaş Ö, Murzoğlu Kurt Ö, Baygül A. From attachment to well-being: An examination of father-infant attachment, parental mental health, and relationship satisfaction. Gulhane Medical Journal. 2025;67(2):77–84.
+2. Şenkal E, Kurt ÖM, Yalçın SS, Koller D, Boran P. Seeing the pandemic through children's eyes: Exploring Turkish children's views on COVID-19 pandemic by focus-group discussions. Child: Care, Health and Development. 2023;49(5):816–824.
+
+## Kitap Bölümü {.unnumbered}
+
+1. Murzoğlu Kurt Ö, Boran P. Peripartum ruh sağlığı ve anne sütü \[Kitap bölümü\]. In: Karabeyir N, ed. Her Hekimin Anne Sütü ve Emzirme Konusunda Bilmesi Gerekenler. 1. baskı. Türkiye Klinikleri; 2021. p. 133–139.
 
 ## Bildiriler {.unnumbered}
 
-1. {Yazar(lar). Bildiri başlığı. Kongre/Sempozyum Adı; Tarih; Yer.}
+1. Murzoğlu Kurt Ö, Aygün B, Yorgancı B, Ergenekon P, Gökdemir Y, Erdem-Eralp E, Karadağ B, Boran P. Vaccination coverage in cystic fibrosis patients: a tertiary cystic fibrosis center experience. 2. Uluslararası Avrasya Sosyal Pediatri Kongresi & 6. Ulusal Sosyal Pediatri Kongresi; 26–29 Kasım 2020; Sosyal Pediatri Derneği, çevrim içi (sanal kongre).
+
+## Sertifikalar ve Mesleki Eğitimler {.unnumbered}
+
+- Triple P (Olumlu Ebeveynlik Programı) — Düzey 2, 4, Grup ve Ergen Grup, University of Queensland (2022–2023)
+- Bayley III Gelişimsel Değerlendirme, Developmental Child Neurology Association (2021)
+- Denver II Gelişimsel Tarama, Kim Psikoloji (2022)
+- SOS Approach to Feeding (Hibrit + İleri Düzey), SOS Approach to Feeding (2025)
+- Etkileşim Temelli Erken Çocukluk Müdahalesi (ETÇEP), Pilumunus Danışmanlık (2022)
+- İleri Emzirme Danışmanlığı, İstanbul Üniv. Çocuk Sağlığı Enstitüsü (2021)
+- Gelişimin İzlenmesi ve Desteklenmesi Rehberi (GİDR), Ankara Üniv. Tıp Fakültesi (2018)
 
 ## Projeler {.unnumbered}
 

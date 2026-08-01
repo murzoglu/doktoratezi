@@ -1,6 +1,6 @@
 ---
 title: "T1DM-EBEVEYN Çalışması — Demografik ve Tıbbi Bilgiler Bütünleşik Raporu"
-subtitle: "Marmara Üniversitesi SBE Sosyal Pediatri Doktora Tezi · KISIM II-III + KISIM X özet"
+subtitle: "Marmara Üniversitesi SBE Sosyal Pediatri Doktora Tezi · KISIM II-III özet"
 author:
   - name: "Uzm. Dr. Özlem Murzoğlu Kurt"
     affiliation: "Marmara Üniversitesi SBE Sosyal Pediatri"
@@ -46,11 +46,24 @@ suppressPackageStartupMessages({
   library(stringr)
 })
 
-# Repo root'una göre _targets store'unu çöz
-project_root <- normalizePath("../..", winslash = "/", mustWork = TRUE)
+# _targets store'unu coz. _quarto.yml `execute-dir: project` oldugundan chunk'lar
+# proje kokunden calisir; ancak SVG export gibi baglamlar farkli calisma dizini
+# kullanabilir. _targets/ dizinini yukari dogru arayarak saglam kok bulunur.
+find_project_root <- function(start = getwd()) {
+  d <- normalizePath(start, winslash = "/", mustWork = FALSE)
+  for (i in seq_len(6L)) {
+    if (dir.exists(file.path(d, "_targets")) &&
+        file.exists(file.path(d, "_targets.R"))) return(d)
+    parent <- dirname(d)
+    if (identical(parent, d)) break
+    d <- parent
+  }
+  # Geri donus: cwd proje koku varsayimi
+  normalizePath(start, winslash = "/", mustWork = FALSE)
+}
+project_root <- find_project_root()
 targets_store <- file.path(project_root, "_targets")
 Sys.setenv(TAR_CONFIG = file.path(project_root, "_targets.yaml"))
-tar_config_set(store = targets_store)
 
 tar_load(c(
   df_family_ses, df_long_scored,
@@ -63,7 +76,7 @@ tar_load(c(
   missing_variable_summary_table, missing_group_summary_table,
   missing_pattern_summary_table,
   causal_dag_covariate_strategy_table
-))
+), store = targets_store)
 
 # Karşılaştırma için DM/Kontrol grup düzeyleri sabitle
 df_family_ses <- df_family_ses |>
@@ -140,8 +153,7 @@ Bu rapor, **241 aile × 2 katılımcı = 482 satır** kanonik analiz tabanı üz
 çalışmanın **demografik ve tıbbi bilgiler katmanını** raporlar. Veri kilidi
 `FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock` (2026-04-26) altında SHA-256
 hash kontrolü ile yüklenir; ham veri commit edilmez. Rapor SAP v3.0 KISIM II
-(veri katmanı), KISIM III (tanımlayıcı + denge) ve KISIM X (DM klinik
-alt-analizler) çıktılarını birleştirir.
+(veri katmanı) ve KISIM III (tanımlayıcı + denge) çıktılarını birleştirir.
 :::
 
 # Yönetici Özeti
@@ -158,12 +170,7 @@ DAG temelli birincil ayarlama seti ve propensity-temelli stabilize IPTW
 ağırlıklamasıyla kontrol edilmiştir; ham SMD maksimumu **0.220 → 0.004** düzeyine
 düşmüştür.
 
-DM grubunda **HbA1c** verisi `r sum(!is.na(df_family_ses$hba1c))` aile
-(`r round(100 * sum(!is.na(df_family_ses$hba1c)) / n_dm, 1)`%) için mevcuttur;
-medyan = 9.0 (IQR 7.3-9.6), yani örneklemin büyük kısmı ISPAD 2022 hedef
-eşiği olan 7.0%'in üzerindedir. **Tanı yaşı** medyanı 7.8 yıl, **DM süresi**
-medyanı 3.9 yıldır. Bu profil, çoğunlukla okul çağında tanı almış ve orta-uzun
-süreli kronik bakım deneyimi olan ailelerin örneklenmiştir.
+DM grubunda **tanı yaşı** medyanı 7.8 yıl, **DM süresi** medyanı 3.9 yıldır. Bu profil, çoğunlukla okul çağında tanı almış ve orta-uzun süreli kronik bakım deneyimi olan ailelerin örneklendiğini gösterir.
 
 \newpage
 
@@ -453,17 +460,16 @@ ggplot(egitim_df, aes(x = factor(edu), y = prop, fill = group_f)) +
 
 \newpage
 
-# 4. DM Klinik Profili (DM-only Alt-Analizler — n = `r n_dm`)
+# 4. DM Klinik Zamanlama Profili (n = `r n_dm`)
 
-## 4.1 DM Klinik Veri Tamamlanma Profili
+## 4.1 DM Klinik Zamanlama Veri Tamamlanma Profili
 
 ```{r dm-eksik, fig.cap="Şekil 4.1. DM grubu klinik gösterge veri tamamlanma oranları.", fig.height=4}
 dm_only <- df_family_ses |> dplyr::filter(group_f == "DM")
 
 dm_completion <- data.frame(
-  variable = c("HbA1c", "DM süresi", "Tanı yaşı", "Anne Beck", "SES latent"),
+  variable = c("DM süresi", "Tanı yaşı", "Anne Beck", "SES latent"),
   n_observed = c(
-    sum(!is.na(dm_only$hba1c)),
     sum(!is.na(dm_only$dm_yili)),
     sum(!is.na(dm_only$tani_yasi)),
     sum(!is.na(dm_only$beck_total)),
@@ -485,75 +491,17 @@ ggplot(dm_completion, aes(x = pct_observed, y = variable)) +
   scale_x_continuous(limits = c(0, 115),
                       breaks = c(0, 25, 50, 75, 100), labels = paste0(c(0, 25, 50, 75, 100), "%")) +
   labs(x = "Tamamlanma oranı", y = NULL,
-       title = "DM grubu (n = 120) klinik gösterge tamamlanma oranı",
-       subtitle = "HbA1c sınırlı (n=39, %32.5) — kural #19 imputation yapılmaz") +
+       title = "DM grubu (n = 120) klinik zamanlama tamamlanma oranı",
+       subtitle = "Tanı yaşı ve DM süresi yalnız DM bağlamında yorumlanır") +
   theme_thesis() +
   theme(panel.grid.major.y = element_blank())
 ```
 
-::: {.callout-important title="HbA1c Veri Sınırlılığı"}
-HbA1c yalnızca **`r sum(!is.na(dm_only$hba1c))`/`r n_dm` (%32.5)** DM ailede
-mevcuttur. Klinik biyobelirteçler imputasyona tabi tutulmaz (proje davranış
-kuralı #19). Bu nedenle KISIM X HbA1c × ebeveynlik etkileşim analizi
-**keşifsel** etiketle yürütülmüş ve güç sınırlamasıyla yorumlanmıştır.
-:::
 
-## 4.2 HbA1c Dağılımı
 
-```{r hba1c, fig.cap="Şekil 4.2. DM grubu HbA1c dağılımı (n=39); ISPAD 2022 hedef eşikleri.", fig.height=4}
-ispad_thresholds <- data.frame(
-  esik = c(7, 7.5, 9),
-  etiket = c("ISPAD hedef\n(<7%)", "Hedef üstü\n(7-7.5%)", "Yüksek risk\n(>9%)")
-)
+## 4.2 DM Süresi ve Tanı Yaşı
 
-ggplot(dm_only |> dplyr::filter(!is.na(hba1c)),
-        aes(x = hba1c)) +
-  geom_histogram(binwidth = 0.5, fill = "#d62728", color = "white",
-                  linewidth = 0.3, alpha = 0.85) +
-  geom_vline(xintercept = c(7, 7.5, 9), linetype = "dashed",
-              color = "grey20") +
-  annotate("text", x = c(6.5, 7.25, 9.6), y = 8, vjust = -0.5,
-            hjust = 0.5,
-            label = c("ISPAD\nhedef", "Hedef\nüstü", "Yüksek\nrisk"),
-            size = 3, color = "grey20") +
-  labs(x = "HbA1c (%)", y = "Aile sayısı",
-       title = "DM grubu HbA1c dağılımı",
-       subtitle = sprintf("n = %d, medyan = %.1f%%, IQR [%.1f, %.1f]",
-                          sum(!is.na(dm_only$hba1c)),
-                          median(dm_only$hba1c, na.rm = TRUE),
-                          quantile(dm_only$hba1c, 0.25, na.rm = TRUE),
-                          quantile(dm_only$hba1c, 0.75, na.rm = TRUE))) +
-  theme_thesis()
-```
-
-```{r hba1c-target, fig.cap="Şekil 4.3. HbA1c hedef bölgesi içindeki ailelerin oranı.", fig.height=3.5}
-hba1c_obs <- dm_only |> dplyr::filter(!is.na(hba1c))
-hba1c_obs$kategori <- cut(hba1c_obs$hba1c,
-                           breaks = c(-Inf, 7, 9, Inf),
-                           labels = c("Hedefte (<7%)",
-                                      "Hedef üstü (7-9%)",
-                                      "Yüksek risk (>9%)"))
-hba1c_cat_df <- hba1c_obs |>
-  dplyr::count(kategori) |>
-  dplyr::mutate(prop = n / sum(n))
-
-ggplot(hba1c_cat_df, aes(x = kategori, y = n, fill = kategori)) +
-  geom_col(width = 0.55) +
-  geom_text(aes(label = sprintf("n = %d (%%%.1f)", n, 100 * prop)),
-            vjust = -0.4, fontface = "bold", size = 4) +
-  scale_fill_manual(values = c("Hedefte (<7%)" = "#43a047",
-                                 "Hedef üstü (7-9%)" = "#fb8c00",
-                                 "Yüksek risk (>9%)" = "#e53935")) +
-  ylim(0, max(hba1c_cat_df$n) * 1.2) +
-  labs(x = NULL, y = "Aile sayısı",
-       title = "HbA1c kategorik dağılımı (DM, n = 39)") +
-  theme_thesis() +
-  theme(legend.position = "none")
-```
-
-## 4.3 DM Süresi ve Tanı Yaşı
-
-```{r dm-suresi, fig.cap="Şekil 4.4. DM süresi ve tanı yaşı dağılımları (n = 120)."}
+```{r dm-suresi, fig.cap="Şekil 4.2. DM süresi ve tanı yaşı dağılımları (n = 120)."}
 p_dur <- ggplot(dm_only |> dplyr::filter(!is.na(dm_yili)),
                  aes(x = dm_yili)) +
   geom_histogram(binwidth = 1, fill = "#d62728", color = "white",
@@ -587,7 +535,7 @@ p_tani <- ggplot(dm_only |> dplyr::filter(!is.na(tani_yasi)),
 p_dur / p_tani
 ```
 
-```{r tani-strata, fig.cap="Şekil 4.5. Tanı yaşı 3-strata dağılımı.", fig.height=3.5}
+```{r tani-strata, fig.cap="Şekil 4.3. Tanı yaşı 3-strata dağılımı.", fig.height=3.5}
 strata_df <- dm_only |>
   dplyr::filter(!is.na(tani_yasi)) |>
   dplyr::mutate(
@@ -823,7 +771,7 @@ ggplot(miss_df, aes(x = missing_pct, y = variable, fill = color_class)) +
                       breaks = c(0, 25, 50, 75, 100)) +
   labs(x = "Eksik oran", y = NULL,
        title = "Aile-düzeyi değişkenlerde eksik veri",
-       subtitle = "HbA1c yapısal eksiklik (DM-only); diğerleri rastgele veya MAR") +
+       subtitle = "DM-spesifik zamanlama değişkenleri yalnız DM bağlamında değerlendirilir; diğerleri rastgele veya MAR") +
   theme_thesis() +
   theme(legend.position = "right", legend.title = element_blank())
 ```
@@ -855,15 +803,8 @@ missing_group_summary_table |>
   tab_options(table.width = pct(95))
 ```
 
-::: {.callout-note title="Yapısal Eksiklik (Kural #19)"}
-**HbA1c** ve **dm_yili** kontrol grubunda **tasarım kaynaklı yapısal eksikliktir**;
-imputasyona alınmaz. DM grubunda **HbA1c** %32.5 tamamlanma oranı ile sınırlı
-ve klinik biyobelirteç tahmini doğru olmayacağından **DM-only sensitivity**
-analizi olarak yürütülmüştür.
-
-Diğer aile-düzeyi sosyodemografik eksiklikler MAR varsayımı altında MI (m=50,
-maxit=30) ve FIML çerçevelerinde işlenir; NMAR delta-adjustment grid sensitivity
-hattında raporlanır (KISIM II/8).
+::: {.callout-note title="Eksik Veri Yönetimi"}
+Aile-düzeyi sosyodemografik eksiklikler MAR varsayımı altında MI (m=50, maxit=30) ve FIML çerçevelerinde işlenir; NMAR delta-adjustment grid sensitivity hattında raporlanır (KISIM II/8). DM-spesifik zamanlama değişkenleri grup karşılaştırmalı imputasyon kapsamında değildir.
 :::
 
 \newpage
@@ -877,8 +818,7 @@ sonuc <- tibble::tibble(
     "Yaş ve cinsiyet",
     "Anne ruh sağlığı",
     "SES",
-    "DM klinik profili",
-    "DM süresi ve tanı yaşı",
+    "DM klinik zamanlama",
     "Kovaryat dengesi (IPTW)",
     "Eksik veri"
   ),
@@ -887,18 +827,16 @@ sonuc <- tibble::tibble(
     "Anne yaşı SMD = 0.21 (dengesiz); çocuk yaşı ve cinsiyet dengeli",
     "Anne antidepresan SMD = 0.53 (ciddi dengesiz); DM grubu Kontrol'den 3.2× yüksek",
     "Eğitim ve mesleki indeks ham SMD ≈ 0.23-0.32; latent SES kompozit dengeli (SMD = 0.03)",
-    "HbA1c medyan 9.0% (ISPAD hedefin üzerinde); n_observed = 39 (%32.5)",
     "Medyan süre 3.9 yıl; tanı yaşı medyanı 7.8 yıl (okul çağı baskın)",
     "Maksimum |SMD| 0.220 (ham) → 0.004 (IPTW)",
-    "HbA1c yapısal; aile-düzeyi sosyodemografi MAR; MI m=50 + FIML + NMAR delta"
+    "Aile-düzeyi sosyodemografi MAR; MI m=50 + FIML + NMAR delta"
   ),
   implikasyon = c(
     "Aileler arası bağımsızlık geçerli; aile içi multilevel model zorunlu",
     "Anne yaş kovaryat olarak DAG-justified ayarlama setinde",
     "H3 anne öz-rapor analizinde stratifiye sensitivity zorunlu (KISIM V/14.2)",
     "Latent SES birincil kovaryat; Hollingshead alternatif sensitivity",
-    "KISIM X HbA1c × parenting analizi keşifsel (kural #19); imputation yok",
-    "DM süresi spline cubic vs lineer LRT: linear sufficient",
+    "DM süresi ve tanı yaşı yalnız bağlamsal zamanlama değişkeni olarak yorumlanır",
     "Doubly-robust ANCOVA + IPTW H3 birincil hattında raporlanır",
     "Üç katmanlı çerçeve (FIML/MI/Sensitivity) tüm primer modeller için"
   )

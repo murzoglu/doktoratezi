@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 TABLE_DIR = ROOT / "outputs" / "tables"
 OUT_DIR = ROOT / "outputs" / "carbon"
-SKILL_DIR = Path("/home/mahirkurt/.codex/skills/carbon-html-report")
+SKILL_DIR = Path.home() / ".codex" / "skills" / "carbon-html-report"
 PAGED_JS = SKILL_DIR / "assets" / "paged.polyfill.js"
 
 

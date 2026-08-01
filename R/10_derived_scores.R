@@ -182,6 +182,10 @@ derive_beck_scores <- function(df, item_prefix = "beck", score_prefix = "beck") 
     right = TRUE
   )
 
+  # Klinik kesme: BDI toplam >= 17 = klinik duzey (orta ve uzeri siddet).
+  # Kaynak: Hisli (1989) Turkce BDI gecerlik-guvenirlik calismasi; >= 17 esigi
+  # Turkiye orneklemlerinde yerlesik klinik-duzey kesme noktasidir. Severity
+  # kesimleriyle tutarlidir (Orta = 17-29 alt siniri).
   clinical <- rep(NA_character_, length(total))
   clinical[!is.na(total)] <- ifelse(total[!is.na(total)] >= 17, "Klinik_duzey", "Klinik_alti")
   out[[paste0(score_prefix, "_clinical")]] <- factor(

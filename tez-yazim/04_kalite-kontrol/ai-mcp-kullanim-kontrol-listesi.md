@@ -6,7 +6,9 @@
 > `00_kaynak-kurallari/talimatname-claude-code.md`; AI-reliability katman sınırı
 > (sci-audit A–G ↔ repo ai-audit KVKK) →
 > `bolum-finalizasyon-sertifikasyon-playbook.md`. Klasör haritası:
-> `04_kalite-kontrol/README.md`.
+> `04_kalite-kontrol/README.md`. Otomatik denetim: bu listenin
+> makine-doğrulanabilir maddeleri `tez-kontrol-checklisti.md` (K5-*) altında
+> `scripts/util/tez_checklist_verify.py --section K5` ile koşulur.
 
 - [ ] Önce local repo kaynakları okundu.
 - [ ] Tez formatı için `docs/tez-kilavuz` ve `tez-yazim/` kaynakları kullanıldı.
@@ -20,3 +22,19 @@
 - [ ] Üretilen metin resmi kılavuz + repo kanıtı çifte kontrolünden geçti.
 - [ ] Bölüm finalize edilmeden önce sertifikasyon playbook'u çalıştırıldı.
 - [ ] Sertifika `certified-final` değilse bölüm final olarak etiketlenmedi.
+
+## Copilot oturumu ek kontrolleri
+
+Copilot (VS Code) oturumunda keşif yolları farklıdır; yalnız bu oturumlarda:
+
+- [ ] MCP paritesi doğrulandı: `.mcp.json` (Copilot CLI) ile `.vscode/mcp.json`
+      (VS Code Chat paneli) aynı sunucu kümesini içeriyor. Copilot CLI
+      `.vscode/mcp.json`'u **okumaz**; yeni sunucu ikisine birden eklenir.
+- [ ] Slash komut paritesi doğrulandı: `.claude/commands/` ↔ `.github/prompts/`
+      birebir (9/9). Claude tarafında komut değişti ise Copilot ikizi de güncellendi.
+- [ ] Zorlama katmanı yüklendi: `.github/hooks/hooks.json` depoda mevcut ve
+      `.claude/settings.json` ile aynı beş olayı taşıyor (kurulum gerekmez;
+      dosya değiştiyse yeni oturum gerekir).
+- [ ] Skill kaydı güncel: `.claude/skills/` altında yeni/değişmiş skill varsa
+      `/skills reload` çalıştırıldı ve `/skills` listesinde göründüğü doğrulandı
+      (`description` ~1024 karakteri aşan skill sessizce yüklenmez).

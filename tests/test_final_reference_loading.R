@@ -63,16 +63,14 @@ family_fixture <- data.frame(
   kardes_yas = c(8, 15),
   katilimci_cocuk_sirasi = c(1, 2),
   kardes_sirasi = c(2, 1),
-  dm_yili = c(NA_real_, 4),
-  hba1c = c(NA_real_, 7.2)
+  dm_yili = c(NA_real_, 4)
 )
 prepared_family <- prepare_family(family_fixture)
-stopifnot(all(c("aile_no_f", "group_f", "age_gap", "same_sex", "tani_yasi", "hba1c_target") %in% names(prepared_family)))
+stopifnot(all(c("aile_no_f", "group_f", "age_gap", "same_sex", "tani_yasi") %in% names(prepared_family)))
 stopifnot(identical(as.character(prepared_family$group_f), c("Kontrol", "DM")))
 stopifnot(identical(prepared_family$age_gap, c(2, 2)))
 stopifnot(is.na(prepared_family$tani_yasi[1]))
 stopifnot(identical(unname(prepared_family$tani_yasi[2]), 9))
-stopifnot(identical(as.character(prepared_family$hba1c_target[2]), "Hedef_alti"))
 
 long_fixture <- data.frame(
   aile_no = c(1, 1, 2),

@@ -29,7 +29,7 @@ from typing import Any
 API_BASE = os.environ.get("ZOTERO_API_BASE", "https://api.zotero.org")
 DEFAULT_ENV_PATHS = (
     ".env",
-    "/mnt/thunderbolt/workspaces/doktoratezi/.env",
+    "/workspaces/T1DM-Tez/.env",
 )
 DEFAULT_BIB_PATH = "references/references.bib"
 API_PAGE_LIMIT = 100

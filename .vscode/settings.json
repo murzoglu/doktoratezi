@@ -22,5 +22,14 @@
     "renv",
     "targets"
   ],
-  "ltex.language": "tr-TR"
+  "ltex.language": "tr-TR",
+  "chat.promptFiles": true,
+  "chat.mcp.discovery.enabled": {
+    "claude-desktop": true,
+    "windsurf": true,
+    "cursor-global": true,
+    "cursor-workspace": true
+  },
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "chat.mcp.access": "all"
 }

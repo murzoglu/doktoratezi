@@ -1,11 +1,11 @@
-# İki Repo Entegrasyon Planı
+# İki-Kol Entegrasyon Planı
 
-Bu plan `/mnt/thunderbolt/workspaces/doktoratezi` nicel repo ile
-`/mnt/thunderbolt/workspaces/T1DM Niteliksel` nitel repoyu tek tez yazım
+Bu plan `/workspaces/T1DM-Tez` nicel kök ile
+`/workspaces/T1DM-Tez/niteliksel` nitel kolu tek tez yazım
 sürecinde birleştirir.
 
-> **Otorite zinciri:** Bu dosya **iki-repo entegrasyon modelinin tek kanonik
-> yeri**dir (resmi bölüm ↔ nicel/nitel kaynak eşlemesi, repo-düzeyi gizlilik
+> **Otorite zinciri:** Bu dosya **iki-kol entegrasyon modelinin (nicel kök ↔
+> nitel kol) tek kanonik yeri**dir (resmi bölüm ↔ nicel/nitel kaynak eşlemesi, repo-düzeyi gizlilik
 > sınırı). Devredilen otoriteler: joint display alan tanımları →
 > `05_entegrasyon/nitel-nicel-joint-display-plan.md`; nitel kol çıktı çerçevesi →
 > `05_entegrasyon/nitel-cikti-cercevesi.md`; biçim/süreç →
@@ -16,8 +16,8 @@ sürecinde birleştirir.
 
 | Kaynak | Rol |
 |---|---|
-| `docs/niteliksel/qualitative_canonical_results_report.md` | Nicel repodaki güvenli nitel entegrasyon raporu. |
-| `T1DM Niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` | Nitel repodaki kanonik upstream yazım raporu. |
+| `niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd` | Tek kanonik nitel sonuç raporu. |
+| `niteliksel/qualitative_canonical_results_report.md` | Kanonik QMD'nin mekanik Markdown kopyası. |
 | `T1DM Niteliksel/00_context/CODEX_PLAYBOOK.md` | Cross-repo tool ve gizlilik playbook'u. |
 | `T1DM Niteliksel/07_reports/cross_repo_thesis_bridge_status.md` | Güncel cross-repo status raporu. |
 | `docs/analiz_planlari/` | Nicel SAP, Faz II/post-hoc ve raporlama standartları. |
@@ -40,7 +40,7 @@ Joint display **alan tanımları ve ilişki türü sözlüğü** tek kanonik yer
 `05_entegrasyon/nitel-nicel-joint-display-plan.md` (nitel çıktı çerçevesi:
 `05_entegrasyon/nitel-cikti-cercevesi.md`). Burada tekrarlanmaz.
 
-İki-repo sınırı açısından bağlayıcı kural: her joint display satırı nicel
+İki-kol sınırı açısından bağlayıcı kural: her joint display satırı nicel
 bulgu ile nitel tema/örüntüyü **ayrı kanıt türü** olarak taşır; ilişki yalnız
 uyum / tamamlayıcılık / ayrışma / açıklayıcı genişleme etiketiyle adlandırılır;
 nitel tema nicel mekanizma, nicel estimate nitel doğrulama gibi yazılmaz; aile

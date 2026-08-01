@@ -21,7 +21,7 @@
 #       Aile toplam yuk kovaryat duyarliligi.
 #
 # Holm KISIM icindedir (bolumler arasi birlestirme yok).
-# Skill Kurali: imputation yok (HbA1c/klinik); korelasyonel dil; satir-duzeyi
+# Skill Kurali: imputation yok (klinik); korelasyonel dil; satir-duzeyi
 # veri dokulmez; her surekli degisken ortalama + medyan; alt-grup n acik.
 # Veri: df_family_ses (anne EMBU-P + Beck + hastalik + antidepresan + SES),
 #       df_long_scored (cocuk EMBU-C, Indeks + Kardes).

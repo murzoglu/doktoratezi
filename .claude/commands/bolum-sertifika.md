@@ -18,7 +18,25 @@ Zorunlu playbook: `tez-yazim/04_kalite-kontrol/bolum-finalizasyon-sertifikasyon-
    (başlık düzeni, ondalık virgül, tablo/şekil, AMA-11 kaynakça, edilgen dil).
 5. **Kapı 4 — Türkçe imla/akış**: imla, terim tutarlılığı, paragraf akışı.
 6. **Kapı 5 — AI-reliability/render**: `/tez-dogrulama` PASS + `quarto render`
-   exit 0 + nitel repoda `t1dm-qual-ai-audit` (referanslı bölümde çift kapı).
+   exit 0 + nitel kolda `t1dm-qual-ai-audit` (referanslı bölümde çift kapı).
+
+**Semantik/judge katmanı (Şerit B — HARD değil, SOFT/advisory; embedding CANLI):**
+Kapı 2'de `python3 scripts/util/thesis_semantic.py bib-dup`; Kapı 3'te `galileo_overclaim_judge` /
+`galileo_harking_judge` (Tartışma/prior) + `galileo_convergence_judge` (karma joint-display) +
+`python3 scripts/util/karma_ledger_check.py --semantic`; Kapı 4'te `python3 scripts/util/thesis_semantic.py
+redundancy` + `galileo_coherence` / `galileo_coherence_judge`.
+
+**Galileo assembly ZORUNLU (2026-07-22 — opt-in DEĞİL):** Bir içerik bölümü `certified-final`
+olmadan önce Kapı 3/4 galileo dörtlüsü (`convergence` / `harking` / `overclaim` /
+`coherence_judge`) o bölüm için (ve varsa her joint-display satırı için) çalıştırılmalıdır.
+Tam-tez taraması: `python3 scripts/eval/run_full_thesis_judge.py --out
+outputs/reports/galileo_full_thesis_judge.json` (checklist `K5-GAL-01` bu artefaktın tazeliğini
+advisory raporlar). **Karar kuralı:** eşik-üstü bir galileo SOFT-block bulgusu, Gap Register'a
+**yazılı gerekçe** (neden kabul edildiği / nasıl giderildiği) düşülmeden `certified-final`
+YAZILAMAZ (gerekçesiz SOFT-block = en fazla `provisional-pass`). Gateway erişilemezse bu bir
+SKIP'tir (uydurma yok) ve sertifikada açıkça not edilir. **HARD asla judge'dan gelmez** —
+HARD yalnız sci-audit + hook + bib `--strict` + `tez_checklist_verify` deterministik-eşik.
+Detay: `.claude/skills/t1dm-tez-rehberi/references/manuskript-denetimi-sciaudit.md` §galileo.
 
 Karar kuralı:
 - Tüm kapılar PASS **ve kullanıcı açık onay verdiyse** →

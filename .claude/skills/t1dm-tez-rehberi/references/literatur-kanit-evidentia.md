@@ -97,9 +97,9 @@ kaskad derinleştirme**dir. Yalnız açıkça mekanik işler (tek DOI doğrulama
 |-------|------|--------------|-------|
 | **D0 Preflight + kapsam ayrıştırma** | Roster, auth, PICO/PECO, ölçüm, yöntem, coğrafya, OSF/HARKing | `evidentia-skills:start`, `medical-research` Adım 0, `.claude/evidentia.local.md` repo-router | coverage_set, preflight durumu, aktif/koşullu connector kararı |
 | **D1 Bibliyografik geniş tarama** | Konunun yayın evrenini yakala | PubMed/EPMC, Paper Search, PsyArXiv/OSF, OpenAlex, Semantic Scholar, YÖK Tez; ERIC yalnız eğitim/okul/gelişim sinyalinde; ClinicalTrials/bioRxiv-medRxiv yalnız müdahale/preprint/protokol sinyalinde | `evidence_corpus`, aday kaynak havuzu, dedupe ID'ler |
-| **D2 Semantik genişletme + KB booster** | Terim, citation graph, KB ve benzer çalışma boşluklarını kapat | OpenAlex concepts/citations, S2 graph, MeSH, evidentia-kb `kb_search`, anamnesis gerekirse | ek kaynaklar, semantic_expansion_steps |
+| **D2 Semantik genişletme + KB booster** | Terim, citation graph, KB ve benzer çalışma boşluklarını kapat | OpenAlex concepts/citations, S2 graph, MeSH, evidentia-kb `kb_search`, anamnesis gerekirse, **`minerva_literature_search` (Minerva hibrit, bağlıysa — §1.2)** | ek kaynaklar, semantic_expansion_steps |
 | **D3 Eleme, rerank, AFF/TR matriksi** | En güçlü, ilgili ve transfer edilebilir kaynakları seç | çalışma tipi, örneklem, ölçüm, yaş, T1DM uyumu, TR bağlamı, EPMC AFF country loop | kanıt matrisi, dışlanan önemli adaylar |
-| **D4 Tam-metin + RAG/GraphRAG** | Abstract'ın vermediği ayrıntıyı al | EPMC/PMC → copyright gate → pubmed-epmc legal OA → Paper Search → `annas-reader` → anamnesis ingest/hybrid_query | `evidence_index`, sayısal endpoint, tablo/lokatör |
+| **D4 Tam-metin + RAG/GraphRAG** | Abstract'ın vermediği ayrıntıyı al | EPMC/PMC → copyright gate → pubmed-epmc legal OA → openathens → **Minerva (`minerva_literature_fulltext_by_doi` / `minerva_rominedb_*`, bağlıysa — §1.2; annas ÖNCESİ)** → Paper Search → `annas-reader` → anamnesis ingest/hybrid_query | `evidence_index`, sayısal endpoint, tablo/lokatör |
 | **D5 Çapraz-doğrulama + Extended Tier-K** | Çelişki, terminoloji, kodlama ve transfer riskini çöz | Varsayılan: akademik kaynaklarla claim-level XVAL. Koşullu: med-terminologies, nih-clinicaltables, nlm-rxnorm, iuphar-gtopdb, openfda/ICD-11, PopHIVE US-only yalnız açık kodlama/ilaç/ABD sürveyans sinyalinde | claim-level confidence, terminology_map, conflict log |
 | **D6 Temiz-kopya + tez entegrasyonu** | Kanıtı tez artefaktına çevir | APA 7, `references.bib`, ilgili `.qmd`/reference, OPS/VIZ/sidecar disiplini | yazılabilir paragraf, BibTeX, gap/sapma kaydı |
 
@@ -140,7 +140,7 @@ yükseltme kararı `evidence_packet.depth_decision` içinde gerekçelenir.
 Codex'te tool adı kullanırken discovery sonrası doğrulanmış **tam-nitelikli `server:tool` adını**
 not et; bilinmeyen tool adını tahmin etme.
 
-### 0.5 Tam-Metin / OpenAthens + `annas-reader` Kullanım Kapısı
+### 0.5 Tam-Metin / OpenAthens + Minerva + `annas-reader` Kullanım Kapısı
 
 Tam metin **doğruluk ve ayrıntı artırma katmanıdır**. Şu koşullardan biri varsa D4'e erken geç:
 - Abstract/künye sayısal endpoint'i vermiyor: etki büyüklüğü, GA, alt-grup, ölçek güvenirliği,
@@ -154,21 +154,26 @@ Kademeli sıra:
 1. PubMed/EPMC/OpenAlex/Paper Search ile metadata ve DOI/PMID/PMCID kimliğini doğrula.
 2. Önce OpenAthens / Cumhurbaşkanlığı Millet Kütüphanesi kurumsal yayıncı erişimini dene. Resmi
    yayıncı HTML veya PDF tam metni görünürse bu rota `full-text-ok` için birincil kanıttır.
-3. OpenAthens başarısızsa `annas-reader` yalnız **analiz amaçlı, hedefli çıkarım** için kullanılır;
-   tam metin kopyalanmaz, uzun alıntı yapılmaz.
-4. Anna başarısızsa PubMed Central, Europe PMC, OpenAlex/Unpaywall OA, yayıncı OA sayfası, kurumsal
+3. OpenAthens başarısızsa **Minerva (Roche korpus, DOI ile `minerva_literature_fulltext_by_doi`
+   / `minerva_rominedb_get_article`; annas ÖNCESİ lisanslı bant — §1.2)** denenir; getirilen tam
+   metin anamnesis'e ingest edilir, teze verbatim kopyalanmaz (KVKK: yalnız DOI/başlık gider).
+4. Minerva da vermezse `annas-reader` yalnız **analiz amaçlı, hedefli çıkarım** için kullanılır
+   (son çare); tam metin kopyalanmaz, uzun alıntı yapılmaz.
+5. Anna başarısızsa PubMed Central, Europe PMC, OpenAlex/Unpaywall OA, yayıncı OA sayfası, kurumsal
    repository, author accepted manuscript, ResearchGate/yazar talebi veya kütüphane kaynak sağlama
    rotaları denenir.
-5. Tam metinden yalnız hedefli alanları çıkar: örneklem, yaş aralığı, ölçüm aracı, çalışma tasarımı,
+6. Tam metinden yalnız hedefli alanları çıkar: örneklem, yaş aralığı, ölçüm aracı, çalışma tasarımı,
    etki büyüklüğü/GA, alt-grup, faktör/güvenirlik, sınırlılıklar, tablo/ek lokatörü.
-6. Zotero kapanışı: tam metin görüldükten sonra item key, URL/file attachment, provenance note,
+7. Zotero kapanışı: tam metin görüldükten sonra item key, URL/file attachment, provenance note,
    BibTeX key ve `referans-denetim-ledgeri.md` aynı kayıtla mutabıklaştırılır.
-7. Çıkış formatı: kaynak ID, full-text route, Zotero item/attachment key, bölüm/sayfa/tablo ipucu,
+8. Çıkış formatı: kaynak ID, full-text route, Zotero item/attachment key, bölüm/sayfa/tablo ipucu,
    çıkarılan sayı/ifade, tezde kullanılacağı claim, kısa yorum, telif/gap notu.
 
 Yasaklar: `.env`/credential yazdırmak, tam metni bağlama dökmek, PDF'i memory'ye aktarmak, uzun
 verbatim pasaj üretmek, erişilemeyen tam metinden sayı uydurmak. Yayıncı HTML snapshot dosyası
 Zotero'da attachment olabilir; bu dosya yayıncı PDF'i gibi etiketlenmez.
+
+**Araç notu:** Zotero kapanışı öncesinde çevrimdışı bib-hijyen denetimi: `python3 scripts/util/bib_hygiene.py all`; sohbet-içi Zotero için `zotero-refs` MCP (`scripts/mcp/zotero_refs_bridge.py`, 9ZFDHMZA scope-lock).
 
 ### 0.6 İki-Aşamalı Üretim ve Doğrulama
 
@@ -203,7 +208,7 @@ genişletmez.
 | Türkiye katmanı | Varsayılan: YÖK Tez + EPMC `AFF:"Turkey"` + OpenAlex kurum/ülke filtreleri. Koşullu: YÖK Akademik KOL için; TİTCK/Mevzuat yalnız erişim/ruhsat/SUT sorusunda | TR tez boşluğu, Türk örneklem; KOL ve mevzuat yalnız açık ihtiyaçta |
 | Epidemiyoloji | Varsayılan: PubMed/EPMC/OpenAlex/otoriter yayınlar. Koşullu: ICD-11 için openfda; PopHIVE yalnız ABD | T1DM arka planı; PopHIVE ABD dışına genellenmez |
 | Extended Tier-K | Varsayılan kapalı. Koşullu: med-terminologies, NIH Clinical Tables, NLM RxNorm, IUPHAR yalnız kod/terim/ilaç/mekanizma sinyalinde | Kod/terim normalizasyonu ve ilaç-mekanizma çapraz doğrulaması gerektiğinde |
-| Tam metin | OpenAthens/Millet Kütüphanesi kurumsal yayıncı erişimi, `annas-reader`, EPMC/PMC, pubmed-epmc legal OA, Paper Search/repository ve Zotero attachment | Etki büyüklüğü, GA, ölçek/faktör/güvenirlik, alt-grup ve yöntem ayrıntısı |
+| Tam metin | OpenAthens/Millet Kütüphanesi kurumsal yayıncı erişimi, **Minerva (Roche korpus, annas öncesi — §1.2)**, `annas-reader`, EPMC/PMC, pubmed-epmc legal OA, Paper Search/repository ve Zotero attachment | Etki büyüklüğü, GA, ölçek/faktör/güvenirlik, alt-grup ve yöntem ayrıntısı |
 | RAG/GraphRAG | anamnesis `corpus_stats` → ingest → multi-query `hybrid_query`/`semantic_search` | Tam metinleri ve büyük çıktıları ham dökmeden derin semantik değerlendirme |
 | KOL haritası | Varsayılan: OpenAlex → Semantic Scholar → EPMC. Koşullu: YÖK Akademik | Jüri/hakem/ortak yazar ve literatür otoritesi |
 | Sidecar/temiz-kopya | `evidence_packet`, `evidence_corpus`, `evidence_index`, `sources_summary`, OPS/VIZ ayrımı | Tez paragrafı + izlenebilir denetim izi |
@@ -246,6 +251,20 @@ anamnesis kullanımı:
 3. Gerekirse LLM-in-the-loop ilişki çıkarımıyla `upsert_triples`, sonra `graph_neighbors`/`subgraph`.
 4. Bayat/test belge varsa `forget_document(doc_id)` ile temizle; boş üstüne yazma.
 
+**Operasyonel runner'lar (stdlib-only, Streamable-HTTP MCP istemcisi):**
+
+| Script | Rol | Kullanım |
+|---|---|---|
+| `scripts/mcp/anamnesis_client.py` | 8 anamnesis aracı için oturum-yönetimli istemci sınıfı (`AnamnesisClient`) | Diğer runner'lar tarafından `import` edilir |
+| `scripts/mcp/anamnesis_ingest.py` | Ledger → EPMC/Minerva/ledger içerik → `ingest_document` + kavram grafiği (`upsert_triples`) | `--dry-run` plan, düz çağrı canlı besleme (cite-ok korpus) |
+| `scripts/mcp/graphrag_query.py` | Birleşik bağlam paketi: `hybrid_query` + `graph_neighbors` + **Galileo füzyon yeniden-sıralama** | `python3 scripts/mcp/graphrag_query.py "<TR sorgu>" --queries "<EN alt-sorgu>" --k 6` |
+
+**Galileo embedding'in rolü (TAMAMLAYICI, enjekte-değil):** anamnesis retrieval'ı
+worker-içi bge-m3'tür; Galileo gemini-embedding **bu hatta enjekte edilmez**. Yalnız
+(1) post-retrieval füzyon yeniden-sıralama, (2) iki-yönlü uyuşmazlık bayrağı
+("olası-gürültü" / "gömülü-ilgili") için bağımsız ikinci-görüş sağlar
+(`graphrag_query.py`).
+
 ### 0.9 Minimum Profesyonel Kanıt Zekası Kapıları
 
 Bir cevap "derin tıbbi profesyonel düzey" sayılmadan önce şu kapılardan geçer:
@@ -282,6 +301,131 @@ açıktır. **Türkçe psikoloji/gelişim alanyazını + YÖK tezleri** ağırl�
 `academic-archival-distiller` daha isabetli (evidentia'nın medikal ağırlığı yerine). Codex'te alt-ajan
 yoksa aynı işi `yoktez-mcp` doğrudan akışıyla yap.
 
+### 1.1 Claude Code plugin — GERÇEK komut adları ve connector envanteri (canlı doğrulandı 2026-07)
+
+Bu repo Claude Code + `evidentia@cureonics-marketplace` plugin'i ile çalışır. Bu kurulumda
+komutlar **namespace'li**dir; yukarıdaki kısayolları (`/evidentia`, `/evidentia-synthesize` …)
+şu gerçek adlarla çağır:
+
+| Kısayol (eski) | Gerçek komut (Claude Code) | Faz karşılığı |
+|----------------|----------------------------|----------------|
+| `/evidentia` | `/evidentia:evidentia` | Uçtan uca PRISMA P0→P7 |
+| `/evidentia-synthesize` | `/evidentia:evidentia-synthesize` | Graph-RAG derin sentez (P4+P6) |
+| `/evidentia-fulltext` | `/evidentia:evidentia-fulltext` | Copyright-kapılı tam-metin |
+| `/evidentia-kol` | `/evidentia:evidentia-kol` | KOL/hakem haritası |
+| — | `/evidentia:evidentia-protocol` | **PRISMA protokol + arama stratejisi (P0–P1)** |
+| — | `/evidentia:evidentia-appraise` | **Yanlılık riski + GRADE (P5–P6): RoB2/ROBINS-I/QUADAS-2/NOS/PROBAST** |
+| — | `/evidentia:evidentia-connectors` | **Connector preflight + roster tazeleme + canlı G-PROBE** |
+| `medical-research` skill | `/evidentia:medical-research` | Flagship P0–P7 |
+| `evidentia start` | `/evidentia:start` | Süit oryantasyonu / connector kontrolü |
+| `evidence-synthesizer` alt-ajan | `evidentia:evidence-synthesizer` | Ağır fan-out izolasyon |
+
+**Ciddi derleme için eksiksiz sıra:** `/evidentia:evidentia-connectors` (preflight) →
+`/evidentia:evidentia-protocol` (PICO + arama) → `/evidentia:evidentia` veya
+`/evidentia:medical-research` (getirim→tarama→çıkarım) → `/evidentia:evidentia-fulltext`
+(kritik endpoint) → `/evidentia:evidentia-synthesize` (graph-RAG sentez) →
+`/evidentia:evidentia-appraise` (RoB + GRADE). Odaklı tek-benchmark için doğrudan
+`/evidentia:evidentia` yeterli.
+
+**Bu kurulumda BAĞLI connector'lar:** `pubmed-epmc`, `openalex`, `semantic-scholar`,
+`anamnesis`, `evidentia-kb`, `annas-reader`, `openathens`, `yok-akademik` (KOL), ve koşullu
+medikal/terminoloji/epidemiyoloji katmanı (`med-terminologies`, `nih-clinicaltables`,
+`nlm-rxnorm`, `iuphar-gtopdb`, `openfda`, `drugddx`, `ema`, `globocan`, `who-gho`, `pophive`,
+`mevzuat-bilgisi`, `titck-cache`).
+
+**Bu kurulumda BULUNMAYAN** (dürüst kapsam — uydurma yapma): `paper-search`, `psyarxiv-osf`,
+`yoktez-mcp` (YÖK Tez arama), `eric-mcp`, `clinical-trials`, `bioRxiv/medRxiv`,
+`academic-archival-distiller` alt-ajanı. Bu araçlara atıf yapan adımlar mevcut connector'larla
+(OpenAlex/EPMC `AFF:"Turkey"`, Semantic Scholar) karşılanır; karşılanamıyorsa `gap_log`'a
+"connector yok" yazılır. Repo-router dosyası **`.claude/evidentia.local.md` bu repoda VARDIR**
+ve tek doğruluk kaynağıdır (şema: `known_connected` durum listesi — `default_active_mcp_servers`
+değil); bağlı çekirdek o dosyanın `known_connected` alanıdır: yukarıdaki liste **+
+`minerva-evidence`** (§1.2). Varsayılan çalışma modu **narratif derin-lit**; koşullu katmanlar
+yalnız açık sinyalde açılır (KAPSAM KAPISI §2).
+
+### 1.2 Minerva Genişletme Katmanı — proje-kapsamlı `minerva-evidence` (Roche-iç)
+
+Evidentia'nın **§1.5 Genişletme / §1.6 self-host Tier-O** doktrinine uygun, **operatör-eklentili**
+bir connector. Evidentia plugin'i **düzenlenmez**; kaynak, proje-kök `.mcp.json`'daki
+**bağımlılıksız stdio köprü** `scripts/mcp/minerva_evidence_bridge.py` ile Evidentia'nın **YANINA**
+bağlanır (kimlik `${GRAVITEE_VECTORSTORE_*}` / `${GRAVITEE_ROMINEDB_*}` env'den okunur — değer
+commit edilmez; köprü + `.mcp.json` `.gitignore`'da, iç Roche altyapısı). İlk oturumda Claude Code
+"yeni proje MCP sunucusu" onayı ister. Kaynak: vektörize edilmiş dev bilimsel-makale korpusu
+(literatür vectorstore) + tam-metin makale DB (RoMine).
+
+| Araç | Rol | Kaskad |
+|---|---|---|
+| `minerva_literature_search` | dev makale korpusunda semantik/hibrit (vektör+BM25, HyDE) arama; meta+snippet | **D2** yüksek-recall keşif |
+| `minerva_literature_fulltext_by_doi` | DOI ile tam metin → anamnesis'e ingest | **D4** tam-metin |
+| `minerva_literature_stats` | korpus boyutu | D0 sanity |
+| `minerva_rominedb_fulltext_search` | tam-metin anahtar-kelime araması | **D2/D4** |
+| `minerva_rominedb_get_article` | doi/title/dois ile makale | **D4** |
+| `minerva_rominedb_stats` | doküman sayısı | D0 |
+
+**Kaskad yerleşimi:** D2'de `minerva_literature_search` (hibrit) yüksek-recall rung; D4'te
+`minerva_literature_fulltext_by_doi` + `minerva_rominedb_*` **`annas-reader`'dan ÖNCE**
+(kurumsal/lisanslı bant), getirilen tam metin **`anamnesis`.ingest_document → hybrid_query** ile
+derin senteze verilir (retrieve-don't-dump; chunk-düzeyi alıntı, verbatim toplu kopyalama yok).
+
+**⚠️ ZORUNLU — Minerva Türkçe-sorgu mod kuralı:** Sorgu **Türkçe** ise
+`minerva_literature_search` çağrısında **`mode:semantic` zorunludur**; `hybrid` (varsayılan)
+KULLANILMAZ. Gerekçe: hibrit hattın BM25 bileşeni Türkçe sözcükleri İngilizce token'larla
+karıştırır (kanonik hata: TR "anne"=ebeveyn ↔ EN özel-ad "Anne"; "yas"/"yaş", "kan"/"can"
+benzer tuzaklar). Türkçe kavram araması saf yoğun-vektör (`semantic`) ile yapılır; İngilizce
+sorguda `hybrid` serbesttir. Türkçe kaynak gerektiğinde **önce sorguyu İngilizce'ye çevirip
+`hybrid`**, ardından TR terimle **`semantic`** ikinci tarama önerilir (recall birleşimi).
+Pratik kural: *TR sorgu → `mode:semantic`; EN sorgu → `mode:hybrid` (veya HyDE).*
+
+**KVKK/gizlilik guard'ı:** Bu gateway'lere **YALNIZ literatür arama terimleri** gider —
+katılımcı/ham tez verisi, aile-düzeyi demografik, transkript veya kimlikleyici **asla**
+gönderilmez (§0.1/§5 ile aynı hat). vectorstore `rdr` iç-doküman koleksiyonu + `/research`
+AI-yanıt endpoint'i **kapsam dışıdır** (gizlilik + no-fabrication). `GRAVITEE_AZURE_OPENAI_GATEWAY`
+ise **yalnız RAG-embedding** için kullanılır (Galileo denetim katmanı, `scripts/eval/galileo_bridge.py`
+— manuskript/literatür metninin mekanik vektörü, Azure OpenAI `text-embedding-3-large`; fabrication
+değil); AI-yanıt/`/research` amaçlı kullanımı yine kapsam dışıdır. rominedb bir "Test API"dir (şema
+değişebilir). Bağlı değilse akış mevcut Evidentia connector'larına degrade eder — **asla kapı değildir**.
+
+---
+
+## Narratif Derin-Lit Modu (tez; SR değil)
+
+> Bu repoda literatür işinin **varsayılan** modu. `/evidentia` PRISMA hattı
+> yalnız kullanıcı açıkça "sistematik/kapsam derleme" derse çalışır.
+
+**Kaskad alt-kümesi:** D0 → D1 → D2 → **D3\*** → D4 → D5 → D6. **D3\* (kısmi
+KALIR):** relevance rerank + AFF/TR transferability seçimi/curation — derin-lit
+sentezi için değerlidir, çalışır. **ATLA:** yalnız D3'ün SR title/abstract
+**tarama-kapısı** (dahil/hariç eleme) + PRISMA akış-diyagramı + RoB2/ROBINS-I/
+QUADAS-2 + GRADE/SoF. (Bunlar SR modunda kalır; narratif modda çalışmaz.)
+
+**Çıktı sözleşmesi (Marmara):** Türkçe edilgen 3. tekil; metin-içi yazar-yıl
+`[@key]` (2 yazar "ve"; 3+ "ilk-yazar ve ark."; çoklu `;`); ondalık virgül +
+baştan sıfır (`p` 3 basamak: `p=0,038`/`p<0,001`; ortalama/yüzde 1, test/oran 2 basamak); kaynakça biçimini CSL (`references/marmara-ama11.csl`) render
+eder — **format-agnostik BibTeX + `[@key]`** üret, elle biçimli kaynakça
+string üretme.
+
+**Bölüm hedefleme:**
+- *Giriş ve Amaç:* literatür **özet**, alt başlık yok; boşluk + önem + amaç.
+- *Genel Bilgiler:* genelden özele, güncel literatür özeti, **yorum/sonuç
+  çıkarımından kaçın**; 7 alt-başlık H1–H5'e eşlenir.
+- *Tartışma ve Sonuç:* **karşılaştır-literatürle** — benzer/farklı yön +
+  muhtemel neden; hipotez destek beyanı; bulgu/istatistik **tekrarı yok**;
+  Giriş/Genel Bilgiler tekrarı yok; sonda Sonuç + öneriler. Karma-yöntem
+  etiketi (uyum/tamamlayıcılık/ayrışma/genişleme); nitel tema ≠ etki büyüklüğü.
+
+**Sentez motoru:** `/evidentia:evidentia-synthesize` + `evidence-synthesizer`
+alt-ajanı (ağır fan-out) + anamnesis GraphRAG. Minerva `minerva_literature_search`
+(D2) + `minerva_*_fulltext`/`get_article` (D4, annas ÖNCESİ).
+
+**Bağlayıcı gate'ler:** UYDURMA REFERANS YASAĞI; PRIOR/HARKing tuzağı (veri
+sonrası literatür yalnız Tartışma yorumu veya `[KEŞİFSEL]`); **KVKK — yalnız
+literatür terimi**; tez kaynak olamaz (§4.2); web ≤%5 yalnız .gov/.int/.eu.
+
+**Referans Bütünlük Şiarı (RBŞ — konstitüsyonel; `tez-yazim/00_kaynak-kurallari/talimatname-claude-code.md` §4.1):** Bir referanstan zenginleştirme/analiz yaparken makalenin **bir parçasını değil tamamını geniş bağlamda semantik kavra**, bu bağlamı **rafine ederek** revize et; **hem kaynağın hem tez metninin somut bilimsel iddialarını çarpıtma** (cherry-pick / düzleştirme / abartma yok; kaynak kendi kapsam+koşuluyla aktarılır).
+
+**Giriş noktası:** `/tez-literatur <bölüm> <konu>` (bölüm ∈ giris|genel-bilgiler|
+tartisma) veya doğrudan t1dm-tez-rehberi Faz 1.5.
+
 ---
 
 ## 2. KAPSAM KAPISI (ZORUNLU) — T1DM Psikososyal Coverage Gate
@@ -296,8 +440,8 @@ katman açıldığında maksimum derinlik korunur.
 ### Varsayılan yüksek öncelikli katmanlar
 - **Akademik çekirdek:** PubMed/EuropePMC, Paper Search, **PsyArXiv/OSF** (psikoloji preprint +
   preregistration), **YÖK Tez / yoktez-mcp** (TR tezler), **OpenAlex**, **Semantic Scholar**.
-- **Tam-metin kademesi:** EPMC PMC → copyright → `annas-reader` → RAG/GraphRAG (sayısal benchmark
-  ve yöntem ayrıntısı çıkarımı).
+- **Tam-metin kademesi:** EPMC PMC → copyright → OpenAthens → **Minerva (annas öncesi)** →
+  `annas-reader` → RAG/GraphRAG (sayısal benchmark ve yöntem ayrıntısı çıkarımı).
 - **RAG/semantik çekirdek:** `anamnesis` + `evidentia-kb` ile çok-sorgulu semantik hakemlik.
 - **Türkiye akademik katmanı:** YÖK Tez, EPMC `AFF:"Turkey"`, OpenAlex kurum/ülke filtreleri.
 - **KOL haritası çekirdeği:** OpenAlex → Semantic Scholar → EPMC; YÖK Akademik yalnız TR
@@ -317,8 +461,8 @@ katman açıldığında maksimum derinlik korunur.
   ATC/RxNorm, ICD/SNOMED/LOINC/MeSH veya mekanizma sorusu varsa.
 - **Onko/Heme/İmmün/Nöro/Nadir hastalık eksenleri:** yalnız gerçek çapraz-endikasyon veya yöntemsel
   benchmark sinyali varsa.
-- **Pediatrik diyabet klinik bağlamı (ISPAD HbA1c eşikleri):** KISIM X DM alt-analizi ve klinik
-  yorum gerektiğinde; bkz. [`dm-klinik-altanalizler.md`](dm-klinik-altanalizler.md).
+- **Pediatrik diyabet psikososyal bağlamı:** KISIM X DM süresi ve tanı yaşı alt-analizlerinin
+  gelişimsel yorumu gerektiğinde; bkz. [`dm-klinik-altanalizler.md`](dm-klinik-altanalizler.md).
 
 **Pratik uygulama:** evidentia'ya soru verirken konuyu **psikososyal çerçevele**
 ("type 1 diabetes parenting overprotection child adjustment", "EMBU short form factor structure
@@ -327,30 +471,29 @@ yalnız soru gerçekten gerektiriyorsa kullanılır; gereksiz fan-out router aş
 tetiklenip erişilemeyen katman `gap_log` içinde gerekçelendirilir.
 
 > **Repo proje-ayarı (`.claude/evidentia.local.md`):** Tez deposu kökünde bu dosya evidentia'nın
-> Adım 0.1'inde okunur. Tez için aktif frontmatter — T1DM ana gate'i, D0-D6 kaskadını ve
-> connector pasifleştirme/aktivasyon router'ını sabitler:
+> Adım 0.1'inde okunur ve **bu kurulumun tek doğruluk kaynağıdır**. Aşağıdaki frontmatter dosyanın
+> gerçek içeriğidir; `known_connected` bu Claude Code kurulumunda bağlı connector'ları listeler
+> (Codex hesabındaki `default_active_mcp_servers` şeması DEĞİL — §1.1). `paper-search`,
+> `psyarxiv-osf`, `yoktez-mcp` bu kurulumda **bulunmaz**, listeye yazılmaz:
 > ```yaml
 > ---
 > enabled: true
-> evidence_mode: maximum_depth_uncapped
-> default_cascade: D0-D6
-> auto_ingest_rag: true
-> fulltext_tier: copyright_gated
-> completeness_gate: standard
-> default_active_mcp_servers:
->   - evidentia-skills
+> known_connected:
 >   - pubmed-epmc
->   - paper-search
 >   - openalex
 >   - semantic-scholar
->   - psyarxiv-osf
->   - yoktez-mcp
 >   - anamnesis
 >   - evidentia-kb
 >   - annas-reader
+>   - openathens
+>   - yok-akademik
+>   - minerva-evidence
+> fulltext_tier: copyright_gated
+> completeness_gate: standard
+> auto_ingest_rag: true
 > ---
-> # Not: Psikososyal tez — koşullu connector'lar activation_terms olmadan çağrılmaz;
-> # açık sinyalde tam derinlikte açılır ve connectors_used/gap_log içinde iz bırakır.
+> # Not: Varsayılan mod narratif derin-lit; koşullu connector'lar activation_terms olmadan
+> # çağrılmaz, açık sinyalde tam derinlikte açılır ve connectors_used/gap_log içinde iz bırakır.
 > ```
 
 ---
@@ -445,7 +588,7 @@ candidate_sources:
     reason_for_inclusion: ""
 fulltext_extracts:
   - source_id: ""
-    access_route: "pmc|legal_oa|annas-reader|unavailable"
+    access_route: "pmc|legal_oa|openathens|minerva|annas-reader|unavailable"
     locator: "page/section/table"
     extracted_fact: ""
 findings: []

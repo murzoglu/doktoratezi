@@ -1,10 +1,5 @@
-<svg data-carbon-style="IBM Carbon Design System v11" data-carbon-charts-source="carbon-design-system/carbon-charts packages/core/scss" data-font="IBM Plex Sans" data-chart-palette="@carbon/charts white 14" data-figma-technical-diagram-library="RtZDc7pMQt8HcgYTiitspr" data-technical-diagram-role="Large node + Connector + Legend" xmlns="http://www.w3.org/2000/svg" width="1320" height="700" viewBox="0 0 1320 700" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="730" viewBox="0 0 1320 730" role="img" aria-labelledby="title desc">
 <defs>
-<style type="text/css"><![CDATA[
-.carbon-note{font-family:'IBM Plex Sans', sans-serif;}
-.tdl-node,.tdl-connector,.tdl-label-pill,.tdl-flow-number{vector-effect:non-scaling-stroke;}
-.tdl-connector{fill:none;}
-]]></style>
 <marker id="tdl-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse">
 <path d="M 0 0 L 12 6 L 0 12 z" fill="#8d8d8d"/>
 </marker>
@@ -15,71 +10,77 @@
 <path d="M 0 0 L 12 6 L 0 12 z" fill="#da1e28"/>
 </marker>
 </defs>
-<title id="title">Causal DAG: total-effect ayarlama stratejisi</title>
-<desc id="desc">SES, kardeş yaş farkı ve aile büyüklüğü baseline/design karıştırıcıları olarak sabitlenmiştir</desc>
+<title id="title">Nedensel DAG: ayarlama stratejisi ve arka-kapı yolları</title>
+<desc id="desc">Karıştırıcılar hem T1DM'ye hem de çıktılara (çocuk algısı, kardeş ilişkisi) bağlanır; merkez/dönem ve grup üyeliği birlikte seçilim düğümüne (S) ok gönderir</desc>
 <rect width="100%" height="100%" fill="#ffffff"/>
-<text x="32.0" y="40.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="32.0" y="40.0">Causal DAG: total-effect ayarlama stratejisi</tspan></text>
-<text x="32.0" y="72.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="32.0" y="72.0">SES, kardeş yaş farkı ve aile büyüklüğü baseline/design karıştırıcıları olarak sabitlenmiştir</tspan></text>
-<rect x="44" y="128" width="300" height="366" rx="4" fill="#ffffff" stroke="#c6c6c6" stroke-width="1"/>
-<text x="64.0" y="158.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="64.0" y="148.6">Baseline/design</tspan><tspan x="64.0" y="167.4">ayarlama seti</tspan></text>
-<rect class="tdl-node" x="80.0" y="196.0" width="228.0" height="56.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
-<rect x="80.0" y="196.0" width="6.0" height="56.0" rx="3" fill="#0f62fe"/>
-<text x="197.0" y="225.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="197.0" y="225.0">SES</tspan></text>
-<rect class="tdl-node" x="80.0" y="282.0" width="228.0" height="56.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
-<rect x="80.0" y="282.0" width="6.0" height="56.0" rx="3" fill="#0f62fe"/>
-<text x="197.0" y="311.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="197.0" y="311.0">Kardeş yaş farkı</tspan></text>
-<rect class="tdl-node" x="80.0" y="368.0" width="228.0" height="56.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
-<rect x="80.0" y="368.0" width="6.0" height="56.0" rx="3" fill="#0f62fe"/>
-<text x="197.0" y="397.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="197.0" y="397.0">Aile büyüklüğü</tspan></text>
-<rect class="tdl-node" x="80.0" y="510.0" width="228.0" height="56.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
-<rect x="80.0" y="510.0" width="6.0" height="56.0" rx="3" fill="#8d8d8d"/>
-<text x="197.0" y="539.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="197.0" y="539.0">Genetik yatkınlık</tspan></text>
-<rect class="tdl-node" x="430.0" y="300.0" width="230.0" height="72.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
-<rect x="430.0" y="300.0" width="6.0" height="72.0" rx="3" fill="#0f62fe"/>
-<text x="548.0" y="337.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="548.0" y="337.0">T1DM durumu</tspan></text>
-<rect class="tdl-node" x="720.0" y="180.0" width="245.0" height="64.0" rx="3" fill="#fcf4d6" stroke="#8d8d8d" stroke-width="1"/>
-<rect x="720.0" y="180.0" width="6.0" height="64.0" rx="3" fill="#f1c21b"/>
-<text x="845.5" y="213.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="845.5" y="213.0">Anne antidepresan</tspan></text>
-<rect class="tdl-node" x="720.0" y="300.0" width="245.0" height="64.0" rx="3" fill="#d9fbfb" stroke="#8d8d8d" stroke-width="1"/>
-<rect x="720.0" y="300.0" width="6.0" height="64.0" rx="3" fill="#009d9a"/>
-<text x="845.5" y="333.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="845.5" y="333.0">Beck depresyon</tspan></text>
-<rect class="tdl-node" x="720.0" y="420.0" width="245.0" height="64.0" rx="3" fill="#d9fbfb" stroke="#8d8d8d" stroke-width="1"/>
-<rect x="720.0" y="420.0" width="6.0" height="64.0" rx="3" fill="#009d9a"/>
-<text x="845.5" y="453.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="845.5" y="453.0">Ebeveynlik tutumu</tspan></text>
-<rect class="tdl-node" x="1040.0" y="258.0" width="230.0" height="64.0" rx="3" fill="#fff1f1" stroke="#8d8d8d" stroke-width="1"/>
-<rect x="1040.0" y="258.0" width="6.0" height="64.0" rx="3" fill="#fa4d56"/>
-<text x="1158.0" y="291.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1158.0" y="291.0">Çocuk algısı</tspan></text>
-<rect class="tdl-node" x="1040.0" y="400.0" width="230.0" height="64.0" rx="3" fill="#e8daff" stroke="#8d8d8d" stroke-width="1"/>
-<rect x="1040.0" y="400.0" width="6.0" height="64.0" rx="3" fill="#6929c4"/>
-<text x="1158.0" y="433.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1158.0" y="433.0">Kardeş ilişkisi</tspan></text>
-<path class="tdl-connector" d="M 308 224 C 365 224 365 336 430 336" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/>
-<path class="tdl-connector" d="M 308 310 C 365 310 365 336 430 336" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/>
-<path class="tdl-connector" d="M 308 396 C 365 396 365 336 430 336" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="0.82" stroke-linecap="round" stroke-linejoin="round"/>
-<path class="tdl-connector" d="M 308 538 C 365 538 365 336 430 336" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.75" stroke-linecap="round" stroke-linejoin="round"/>
-<line class="tdl-connector" x1="660.0" y1="336.0" x2="720.0" y2="212.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00"/>
-<line class="tdl-connector" x1="660.0" y1="336.0" x2="720.0" y2="332.0" fill="none" stroke="#8d8d8d" stroke-width="1.50" marker-end="url(#tdl-arrow)" opacity="1.00"/>
-<line class="tdl-connector" x1="660.0" y1="336.0" x2="720.0" y2="452.0" fill="none" stroke="#8d8d8d" stroke-width="1.50" marker-end="url(#tdl-arrow)" opacity="1.00"/>
-<line class="tdl-connector" x1="965.0" y1="212.0" x2="1040.0" y2="290.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.80"/>
-<line class="tdl-connector" x1="965.0" y1="212.0" x2="720.0" y2="332.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00"/>
-<line class="tdl-connector" x1="965.0" y1="212.0" x2="720.0" y2="452.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00"/>
-<line class="tdl-connector" x1="965.0" y1="332.0" x2="1040.0" y2="290.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.80"/>
-<line class="tdl-connector" x1="965.0" y1="332.0" x2="720.0" y2="452.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00"/>
-<line class="tdl-connector" x1="965.0" y1="452.0" x2="1040.0" y2="290.0" fill="none" stroke="#8d8d8d" stroke-width="1.50" marker-end="url(#tdl-arrow)" opacity="1.00"/>
-<line class="tdl-connector" x1="1270.0" y1="290.0" x2="1270.0" y2="432.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.80"/>
-<line class="tdl-connector" x1="660.0" y1="336.0" x2="1040.0" y2="290.0" fill="none" stroke="#0f62fe" stroke-width="2.00" marker-end="url(#tdl-arrow-blue)" opacity="1.00"/>
-<line class="tdl-connector" x1="660.0" y1="336.0" x2="1040.0" y2="432.0" fill="none" stroke="#0f62fe" stroke-width="2.00" marker-end="url(#tdl-arrow-blue)" opacity="1.00"/>
-<rect class="tdl-label-pill" x="454.0" y="121.0" width="112.0" height="30.0" rx="2" fill="#edf5ff" stroke="#0f62fe" stroke-width="1"/>
-<text x="510.0" y="137.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#002d9c" text-anchor="middle" ><tspan x="510.0" y="137.0">exposure</tspan></text>
-<rect class="tdl-label-pill" x="745.0" y="533.0" width="190.0" height="30.0" rx="2" fill="#ffffff" stroke="#8d8d8d" stroke-width="1"/>
-<text x="840.0" y="549.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#525252" text-anchor="middle" ><tspan x="840.0" y="549.0">mediator / sensitivity</tspan></text>
-<rect class="tdl-label-pill" x="1070.0" y="533.0" width="170.0" height="30.0" rx="2" fill="#ffffff" stroke="#8d8d8d" stroke-width="1"/>
-<text x="1155.0" y="549.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#525252" text-anchor="middle" ><tspan x="1155.0" y="549.0">downstream outcome</tspan></text>
-<text x="56.0" y="626.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="56.0" y="626.0">Kenar kodu</tspan></text>
-<line class="tdl-connector" x1="164.0" y1="622.0" x2="230.0" y2="622.0" fill="none" stroke="#0f62fe" stroke-width="2.00" marker-end="url(#tdl-arrow-blue)" opacity="1.00"/>
-<text x="242.0" y="627.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="242.0" y="627.0">total-effect ana yol</tspan></text>
-<line class="tdl-connector" x1="408.0" y1="622.0" x2="474.0" y2="622.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00"/>
-<text x="486.0" y="627.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="486.0" y="627.0">model yolu</tspan></text>
-<line class="tdl-connector" x1="610.0" y1="622.0" x2="676.0" y2="622.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="1.00"/>
-<text x="688.0" y="627.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="688.0" y="627.0">arka plan / sensitivite</tspan></text>
-<text x="32.0" y="670.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#6f6f6f" text-anchor="start" ><tspan x="32.0" y="670.0">Not. Beck ve antidepresan kullanımı total-effect modellerinde ana ayarlama setine alınmaz; sensitivite katmanında izlenir.</tspan></text>
+<text x="32.0" y="40.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="24" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="32.0" y="40.0">Nedensel DAG: ayarlama stratejisi ve arka-kapı yolları</tspan></text>
+<text x="32.0" y="72.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="32.0" y="72.0">Karıştırıcılar hem T1DM'ye hem de çıktılara (çocuk algısı, kardeş ilişkisi) bağlanır; merkez/dönem ve grup üyeliği birlikte seçilim düğümüne (S) ok gönderir</tspan></text>
+<rect class="tdl-node" x="70.0" y="104.0" width="200.0" height="52.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="70.0" y="104.0" width="6.0" height="52.0" rx="3" fill="#8d8d8d"/>
+<text x="173.0" y="131.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="173.0" y="122.2">Genetik yatkınlık</tspan><tspan x="173.0" y="139.8">(gözlenmemiş)</tspan></text>
+<rect class="tdl-node" x="330.0" y="104.0" width="190.0" height="52.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="330.0" y="104.0" width="6.0" height="52.0" rx="3" fill="#0f62fe"/>
+<text x="428.0" y="131.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="428.0" y="131.0">SES</tspan></text>
+<rect class="tdl-node" x="560.0" y="104.0" width="190.0" height="52.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="560.0" y="104.0" width="6.0" height="52.0" rx="3" fill="#0f62fe"/>
+<text x="658.0" y="131.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="658.0" y="131.0">Kardeş yaş farkı</tspan></text>
+<rect class="tdl-node" x="790.0" y="104.0" width="190.0" height="52.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="790.0" y="104.0" width="6.0" height="52.0" rx="3" fill="#0f62fe"/>
+<text x="888.0" y="131.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="888.0" y="131.0">Aile büyüklüğü</tspan></text>
+<rect class="tdl-node" x="1030.0" y="104.0" width="210.0" height="52.0" rx="3" fill="#f4f4f4" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="1030.0" y="104.0" width="6.0" height="52.0" rx="3" fill="#8d8d8d"/>
+<text x="1138.0" y="131.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="1138.0" y="122.9">Merkez / dönem</tspan><tspan x="1138.0" y="139.1">→ seçilim (S)</tspan></text>
+<rect class="tdl-node" x="120.0" y="360.0" width="210.0" height="68.0" rx="3" fill="#edf5ff" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="120.0" y="360.0" width="6.0" height="68.0" rx="3" fill="#0f62fe"/>
+<text x="228.0" y="395.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="17" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="228.0" y="395.0">T1DM durumu</tspan></text>
+<rect class="tdl-node" x="470.0" y="250.0" width="220.0" height="56.0" rx="3" fill="#fcf4d6" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="470.0" y="250.0" width="6.0" height="56.0" rx="3" fill="#f1c21b"/>
+<text x="583.0" y="279.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="583.0" y="279.0">Anne antidepresan</tspan></text>
+<rect class="tdl-node" x="470.0" y="360.0" width="220.0" height="56.0" rx="3" fill="#d9fbfb" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="470.0" y="360.0" width="6.0" height="56.0" rx="3" fill="#009d9a"/>
+<text x="583.0" y="389.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="583.0" y="389.0">Beck depresyon</tspan></text>
+<rect class="tdl-node" x="470.0" y="470.0" width="220.0" height="56.0" rx="3" fill="#d9fbfb" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="470.0" y="470.0" width="6.0" height="56.0" rx="3" fill="#009d9a"/>
+<text x="583.0" y="499.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="583.0" y="499.0">Ebeveynlik tutumu</tspan></text>
+<rect class="tdl-node" x="830.0" y="360.0" width="210.0" height="64.0" rx="3" fill="#fff1f1" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="830.0" y="360.0" width="6.0" height="64.0" rx="3" fill="#fa4d56"/>
+<text x="938.0" y="393.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="938.0" y="393.0">Çocuk algısı</tspan></text>
+<rect class="tdl-node" x="830.0" y="480.0" width="210.0" height="64.0" rx="3" fill="#e8daff" stroke="#8d8d8d" stroke-width="1"/>
+<rect x="830.0" y="480.0" width="6.0" height="64.0" rx="3" fill="#6929c4"/>
+<text x="938.0" y="513.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="15" font-weight="600" fill="#161616" text-anchor="middle" ><tspan x="938.0" y="513.0">Kardeş ilişkisi</tspan></text>
+<path class="tdl-connector" d="M 420 156 C 360 240 280 300 234 360" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="0.85" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 650 156 C 520 250 300 300 248 360" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="0.85" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 880 156 C 640 260 320 310 262 360" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="0.85" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 170 156 C 170 260 200 315 220 360" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 1130 156 C 700 250 350 320 272 360" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.70" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 430 156 C 600 250 850 290 920 360" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.70" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 660 156 C 770 250 900 300 935 360" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.70" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 890 156 C 940 250 952 305 948 360" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.70" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 668 156 C 1210 210 1170 460 1045 505" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.65" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 1135 156 C 1160 260 1010 305 962 360" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="0.70" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 330 384 C 410 384 420 282 470 280" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 330 394 C 410 394 430 388 470 388" fill="none" stroke="#8d8d8d" stroke-width="1.50" marker-end="url(#tdl-arrow)" opacity="1.00" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 330 404 C 410 404 420 498 470 498" fill="none" stroke="#8d8d8d" stroke-width="1.50" marker-end="url(#tdl-arrow)" opacity="1.00" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 690 285 C 740 320 740 352 690 380" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 690 292 C 782 360 782 430 690 492" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 690 398 C 740 430 740 462 690 494" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 690 384 C 750 386 785 392 830 392" fill="none" stroke="#8d8d8d" stroke-width="1.50" marker-end="url(#tdl-arrow)" opacity="1.00" stroke-linecap="round" stroke-linejoin="round"/>
+<path class="tdl-connector" d="M 690 496 C 760 496 792 410 830 404" fill="none" stroke="#8d8d8d" stroke-width="1.50" marker-end="url(#tdl-arrow)" opacity="1.00" stroke-linecap="round" stroke-linejoin="round"/>
+<line class="tdl-connector" x1="935.0" y1="424.0" x2="935.0" y2="480.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00"/>
+<path class="tdl-connector" d="M 330 416 C 560 640 720 590 850 420" fill="none" stroke="#0f62fe" stroke-width="2.00" marker-end="url(#tdl-arrow-blue)" opacity="1.00" stroke-linecap="round" stroke-linejoin="round"/>
+<rect class="tdl-label-pill" x="169.0" y="437.0" width="112.0" height="30.0" rx="2" fill="#edf5ff" stroke="#0f62fe" stroke-width="1"/>
+<text x="225.0" y="453.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#002d9c" text-anchor="middle" ><tspan x="225.0" y="453.0">maruziyet</tspan></text>
+<rect class="tdl-label-pill" x="505.0" y="541.0" width="150.0" height="30.0" rx="2" fill="#ffffff" stroke="#8d8d8d" stroke-width="1"/>
+<text x="580.0" y="557.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#525252" text-anchor="middle" ><tspan x="580.0" y="557.0">aracı / duyarlılık</tspan></text>
+<rect class="tdl-label-pill" x="870.0" y="559.0" width="130.0" height="30.0" rx="2" fill="#ffffff" stroke="#8d8d8d" stroke-width="1"/>
+<text x="935.0" y="575.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="14" font-weight="600" fill="#525252" text-anchor="middle" ><tspan x="935.0" y="575.0">çıktı katmanı</tspan></text>
+<text x="56.0" y="660.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="600" fill="#161616" text-anchor="start" ><tspan x="56.0" y="660.0">Kenar kodu</tspan></text>
+<line class="tdl-connector" x1="164.0" y1="656.0" x2="230.0" y2="656.0" fill="none" stroke="#0f62fe" stroke-width="2.00" marker-end="url(#tdl-arrow-blue)" opacity="1.00"/>
+<text x="242.0" y="661.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="242.0" y="661.0">hedef maruziyet–sonuç yolu</tspan></text>
+<line class="tdl-connector" x1="408.0" y1="656.0" x2="474.0" y2="656.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" marker-end="url(#tdl-arrow)" opacity="1.00"/>
+<text x="486.0" y="661.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="486.0" y="661.0">model / karıştırıcı yolu</tspan></text>
+<line class="tdl-connector" x1="720.0" y1="656.0" x2="786.0" y2="656.0" fill="none" stroke="#8d8d8d" stroke-width="1.25" stroke-dasharray="2 4" marker-end="url(#tdl-arrow)" opacity="1.00"/>
+<text x="798.0" y="661.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#525252" text-anchor="start" ><tspan x="798.0" y="661.0">arka-kapı / gözlenmemiş yol</tspan></text>
+<text x="56.0" y="690.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#6f6f6f" text-anchor="start" ><tspan x="56.0" y="690.0">Kesikli = seçilim yapısı: merkez/dönem ve grup üyeliği birlikte analitik örnekleme dâhil olmayı (S) belirler; S üzerinde koşullanma T1DM'nin toplam nedensel etkisini tanımlanamaz kılar. Grup, merkez/dönemi oluşturmaz.</tspan></text>
+<text x="32.0" y="700.0" font-family="IBM Plex Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#6f6f6f" text-anchor="start" ><tspan x="32.0" y="700.0">Not. Merkez/dönem ve grup üyeliği birlikte analitik örnekleme dâhil olmayı (S) belirler; grup üyeliği merkez ya da dönemi nedensel olarak oluşturmaz. S üzerinde koşullanma T1DM'nin hedef maruziyet–sonuç ilişkisini (toplam etki) tanımlanamaz kılar. Beck ve antidepresan ana ayarlama setinde değil, duyarlılık katmanında izlenir.</tspan></text>
 </svg>

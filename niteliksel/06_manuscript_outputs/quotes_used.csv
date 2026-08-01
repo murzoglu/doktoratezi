@@ -1,0 +1,115 @@
+quote_id,aile_no,rol,tema,triadik_eksen,kaynak_dosya
+011_healthy_sibling_q001,011,healthy_sibling,Tema 4,,negative_case_report_tema_4_triadic.md;niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+011_mother_q006,011,mother,Tema 4,,niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+011_mother_q007,011,mother,Tema 4,,negative_case_report_tema_4_triadic.md;niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+011_mother_q008,011,mother,atanmamış,,negative_case_report_tema_4_triadic.md
+011_mother_q011,011,mother,atanmamış,,negative_case_report_tema_4_triadic.md
+011_t1dm_child_q003,011,t1dm_child,atanmamış,,codebook_v3.csv
+011_t1dm_child_q004,011,t1dm_child,Tema 4,,niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+011_t1dm_child_q007,011,t1dm_child,atanmamış,,negative_case_report_tema_4_triadic.md
+014_healthy_sibling_q001,014,healthy_sibling,atanmamış,,negative_case_report_tema_4_triadic.md
+014_healthy_sibling_q004,014,healthy_sibling,atanmamış,,codebook_v3.csv;negative_case_report_tema_4_triadic.md
+014_mother_q001,014,mother,Tema 2,,codebook_v3.csv;niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+014_mother_q002,014,mother,Tema 2,,niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+014_mother_q004,014,mother,atanmamış,,codebook_v3.csv
+014_mother_q006,014,mother,atanmamış,,codebook_v3.csv
+014_mother_q007,014,mother,atanmamış,,negative_case_report_tema_4_triadic.md
+014_mother_q008,014,mother,atanmamış,,negative_case_report_tema_4_triadic.md
+014_t1dm_child_q002,014,t1dm_child,Tema 4,,negative_case_report_tema_4_triadic.md;niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+014_t1dm_child_q005,014,t1dm_child,atanmamış,,negative_case_report_tema_4_triadic.md
+019_healthy_sibling_q001,019,healthy_sibling,Tema 1,,codebook_v3.csv;niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+019_healthy_sibling_q002,019,healthy_sibling,Tema 4,,niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+019_healthy_sibling_q003,019,healthy_sibling,Tema 4,,negative_case_report_tema_4_triadic.md;niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+019_healthy_sibling_q004,019,healthy_sibling,atanmamış,,negative_case_report_tema_4_triadic.md
+019_healthy_sibling_q005,019,healthy_sibling,atanmamış,,negative_case_report_tema_4_triadic.md
+019_mother_q001,019,mother,Tema 2,,codebook_v3.csv;niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+019_mother_q006,019,mother,atanmamış,,codebook_v3.csv
+019_mother_q007,019,mother,atanmamış,,codebook_v3.csv
+020_healthy_sibling_q001,020,healthy_sibling,Tema 4,,niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+020_mother_q001,020,mother,Tema 2,,codebook_v3.csv;niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+020_mother_q002,020,mother,atanmamış,,codebook_v3.csv
+020_mother_q008,020,mother,atanmamış,,codebook_v3.csv
+020_mother_q009,020,mother,Tema 4,,niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+020_t1dm_child_q001,020,t1dm_child,Tema 4,,niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+020_t1dm_child_q002,020,t1dm_child,Tema 4,,niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+020_t1dm_child_q003,020,t1dm_child,atanmamış,,negative_case_report_tema_4_triadic.md
+026_healthy_sibling_q001,026,healthy_sibling,Tema 1,,niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+026_healthy_sibling_q002,026,healthy_sibling,Tema 1,,codebook_v3.csv;niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+026_healthy_sibling_q004,026,healthy_sibling,atanmamış,,negative_case_report_tema_4_triadic.md
+026_mother_q001,026,mother,Tema 2,,niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+026_mother_q006,026,mother,atanmamış,,codebook_v3.csv
+026_mother_q008,026,mother,Tema 4,,niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+026_mother_q009,026,mother,Tema 4,,niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+026_mother_q010,026,mother,atanmamış,,negative_case_report_tema_4_triadic.md
+026_t1dm_child_q001,026,t1dm_child,Tema 3,gunluk_sosyal,chapters/04_bulgular.qmd
+026_t1dm_child_q002,026,t1dm_child,Tema 3,ihtiyaclar,chapters/04_bulgular.qmd
+026_t1dm_child_q005,026,t1dm_child,atanmamış,,codebook_v3.csv
+026_t1dm_child_q008,026,t1dm_child,Tema 4,,negative_case_report_tema_4_triadic.md;niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+026_t1dm_child_q009,026,t1dm_child,atanmamış,,negative_case_report_tema_4_triadic.md
+201_healthy_sibling_q001,201,healthy_sibling,Tema 4,,niteliksel_kanonik_sonuclar.qmd;qualitative_canonical_results_report.md
+201_t1dm_child_q001,201,t1dm_child,Tema 3,hastalik_algisi,chapters/04_bulgular.qmd
+201_t1dm_child_q003,201,t1dm_child,Tema 3,gunluk_sosyal,chapters/04_bulgular.qmd
+202_mother_q004,202,mother,atanmamış,,negative_case_report_tema_4_triadic.md
+202_t1dm_child_q001,202,t1dm_child,Tema 3,hastalik_algisi,chapters/04_bulgular.qmd
+202_t1dm_child_q002,202,t1dm_child,Tema 3,ergenlik,chapters/04_bulgular.qmd
+202_t1dm_child_q004,202,t1dm_child,atanmamış,,codebook_v3.csv
+011_healthy_sibling_q002,011,healthy_sibling,Tema 1,kisit,chapters/04_bulgular.qmd
+019_healthy_sibling_q006,019,healthy_sibling,Tema 1,kisit,chapters/04_bulgular.qmd
+202_healthy_sibling_q001,202,healthy_sibling,Tema 1,kisit,chapters/04_bulgular.qmd
+019_mother_q008,019,mother,Tema 1,kardes_yasantisi,chapters/04_bulgular.qmd
+019_t1dm_child_q001,019,t1dm_child,Tema 1,annelik_donusum,chapters/04_bulgular.qmd
+011_healthy_sibling_q003,011,healthy_sibling,Tema 1,kardes_yasantisi,chapters/04_bulgular.qmd
+019_healthy_sibling_q007,019,healthy_sibling,Tema 1,kardes_yasantisi,chapters/04_bulgular.qmd
+026_healthy_sibling_q005,026,healthy_sibling,Tema 1,kisit,chapters/04_bulgular.qmd
+026_mother_q011,026,mother,Tema 1,kardes_yasantisi,chapters/04_bulgular.qmd
+011_t1dm_child_q008,011,t1dm_child,Tema 1,kardes_yasantisi,chapters/04_bulgular.qmd
+014_healthy_sibling_q005,014,healthy_sibling,Tema 1,annelik_donusum,chapters/04_bulgular.qmd
+019_healthy_sibling_q008,019,healthy_sibling,Tema 1,annelik_donusum,chapters/04_bulgular.qmd
+202_healthy_sibling_q002,202,healthy_sibling,Tema 1,kardes_yasantisi,chapters/04_bulgular.qmd
+014_healthy_sibling_q006,014,healthy_sibling,Tema 1,kardes_yasantisi,chapters/04_bulgular.qmd
+014_mother_q009,014,mother,Tema 1,kardes_yasantisi,chapters/04_bulgular.qmd
+014_t1dm_child_q006,014,t1dm_child,Tema 1,annelik_donusum,chapters/04_bulgular.qmd
+026_healthy_sibling_q006,026,healthy_sibling,Tema 1,kardes_yasantisi,chapters/04_bulgular.qmd
+202_healthy_sibling_q003,202,healthy_sibling,Tema 1,hastalik_algisi,chapters/04_bulgular.qmd
+014_mother_q010,014,mother,Tema 2,hastalik_algisi,chapters/04_bulgular.qmd
+014_mother_q011,014,mother,Tema 2,annelik_donusum,chapters/04_bulgular.qmd
+014_mother_q012,014,mother,Tema 2,gunluk_sosyal,chapters/04_bulgular.qmd
+014_mother_q013,014,mother,Tema 2,kaybetme_korkusu,chapters/04_bulgular.qmd
+014_mother_q014,014,mother,Tema 2,ergenlik,chapters/04_bulgular.qmd
+014_mother_q015,014,mother,Tema 2,hastalik_algisi,chapters/04_bulgular.qmd
+026_mother_q012,026,mother,Tema 2,hastalik_algisi,chapters/04_bulgular.qmd
+026_mother_q013,026,mother,Tema 2,gunluk_sosyal,chapters/04_bulgular.qmd
+026_mother_q014,026,mother,Tema 2,kaybetme_korkusu,chapters/04_bulgular.qmd
+011_mother_q012,011,mother,Tema 2,hastalik_algisi,chapters/04_bulgular.qmd
+011_mother_q013,011,mother,Tema 2,ergenlik,chapters/04_bulgular.qmd
+019_mother_q009,019,mother,Tema 2,gunluk_sosyal,chapters/04_bulgular.qmd
+019_mother_q010,019,mother,Tema 2,kaybetme_korkusu,chapters/04_bulgular.qmd
+201_mother_q001,201,mother,Tema 2,ergenlik,chapters/04_bulgular.qmd
+019_t1dm_child_q002,019,t1dm_child,Tema 2,ergenlik,chapters/04_bulgular.qmd
+019_t1dm_child_q003,019,t1dm_child,Tema 2,annelik_donusum,chapters/04_bulgular.qmd
+014_t1dm_child_q007,014,t1dm_child,Tema 2,hastalik_algisi,chapters/04_bulgular.qmd
+014_healthy_sibling_q007,014,healthy_sibling,Tema 2,annelik_donusum,chapters/04_bulgular.qmd
+014_healthy_sibling_q008,014,healthy_sibling,Tema 2,kaybetme_korkusu,chapters/04_bulgular.qmd
+026_t1dm_child_q010,026,t1dm_child,Tema 2,hastalik_algisi,chapters/04_bulgular.qmd
+026_healthy_sibling_q007,026,healthy_sibling,Tema 2,kaybetme_korkusu,chapters/04_bulgular.qmd
+020_t1dm_child_q004,020,t1dm_child,Tema 3,hastalik_algisi,chapters/04_bulgular.qmd
+011_t1dm_child_q009,011,t1dm_child,Tema 3,hastalik_algisi,chapters/04_bulgular.qmd
+014_t1dm_child_q008,014,t1dm_child,Tema 3,gunluk_sosyal,chapters/04_bulgular.qmd
+011_t1dm_child_q010,011,t1dm_child,Tema 3,kisit,chapters/04_bulgular.qmd
+019_t1dm_child_q004,019,t1dm_child,Tema 3,kisit,chapters/04_bulgular.qmd
+020_t1dm_child_q005,020,t1dm_child,Tema 3,kisit,chapters/04_bulgular.qmd
+011_t1dm_child_q011,011,t1dm_child,Tema 3,gunluk_sosyal,chapters/04_bulgular.qmd
+020_t1dm_child_q006,020,t1dm_child,Tema 3,gunluk_sosyal,chapters/04_bulgular.qmd
+019_t1dm_child_q005,019,t1dm_child,Tema 3,gunluk_sosyal,chapters/04_bulgular.qmd
+014_t1dm_child_q009,014,t1dm_child,Tema 3,annelik_donusum,chapters/04_bulgular.qmd
+011_t1dm_child_q012,011,t1dm_child,Tema 3,annelik_donusum,chapters/04_bulgular.qmd
+202_t1dm_child_q005,202,t1dm_child,Tema 3,annelik_donusum,chapters/04_bulgular.qmd
+011_t1dm_child_q013,011,t1dm_child,Tema 3,kardes_yasantisi,chapters/04_bulgular.qmd
+011_mother_q014,011,mother,Tema 4,kaybetme_korkusu,chapters/04_bulgular.qmd
+011_mother_q015,011,mother,Tema 4,kardes_yasantisi,chapters/04_bulgular.qmd
+011_mother_q016,011,mother,Tema 4,ihtiyaclar,chapters/04_bulgular.qmd
+011_healthy_sibling_q004,011,healthy_sibling,Tema 4,kaybetme_korkusu,chapters/04_bulgular.qmd
+011_healthy_sibling_q005,011,healthy_sibling,Tema 4,kardes_yasantisi,chapters/04_bulgular.qmd
+014_mother_q016,014,mother,Tema 4,kardes_yasantisi,chapters/04_bulgular.qmd
+026_mother_q015,026,mother,Tema 4,kardes_yasantisi,chapters/04_bulgular.qmd
+026_healthy_sibling_q008,026,healthy_sibling,Tema 4,kardes_yasantisi,chapters/04_bulgular.qmd

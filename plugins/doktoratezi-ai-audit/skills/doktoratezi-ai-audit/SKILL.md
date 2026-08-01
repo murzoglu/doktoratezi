@@ -1,6 +1,6 @@
 ---
 name: doktoratezi-ai-audit
-description: Repo-aware AI reliability audit workflow for the /mnt/thunderbolt/workspaces/doktoratezi Quarto/R/targets thesis repository. Use when Codex needs to install, review, tune, or run the ai-audit.zip reliability scaffold; audit LLM-generated claims, citations, hooks, promptfoo evals, or raw-data boundaries; or add source-grounding and verification gates for this T1DM thesis repo.
+description: Repo-aware AI reliability audit workflow for the /workspaces/T1DM-Tez Quarto/R/targets thesis repository. Use when Codex needs to install, review, tune, or run the ai-audit.zip reliability scaffold; audit LLM-generated claims, citations, hooks, promptfoo evals, or raw-data boundaries; or add source-grounding and verification gates for this T1DM thesis repo.
 ---
 
 # Doktoratezi AI Audit
@@ -56,7 +56,7 @@ python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/install
 Run only the commands relevant to the touched surface:
 
 ```bash
-python3 /home/mahirkurt/.codex/skills/.system/skill-creator/scripts/quick_validate.py plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit
+python3 ~/.codex/skills/.system/skill-creator/scripts/quick_validate.py plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit
 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/install_repo_ai_reliability.py
 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/install_repo_ai_reliability.py --check
 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py

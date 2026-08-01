@@ -12,12 +12,21 @@ if (!file.exists(file.path(repo_root, "_targets.R"))) {
 }
 setwd(repo_root)
 
+# apa_plot_missing_pattern gibi figur yardimcilarina eris (missing_pattern
+# hedefi olmadigindan cizim satir-ici kurulur).
+source(file.path(repo_root, "R", "28_apa_figures.R"))
+
 out_dir <- file.path(repo_root, "docs", "assets", "figures", "carbon")
 primary_dir <- file.path(out_dir, "primary")
 psychometric_dir <- file.path(out_dir, "psychometric")
 demographic_dir <- file.path(out_dir, "demographic")
 audit_dir <- file.path(out_dir, "audits")
-tmp_dir <- file.path(repo_root, "tmp", "carbon-svg-render")
+# Quarto render icin gecici dizin proje agaci DISINDA olmalidir: repo kokunde
+# _quarto.yml bulundugundan, proje-ici bir gecici .qmd "proje uyesi" sayilir ve
+# tek-belge `--output-dir` bayragi "can only be used when rendering projects"
+# hatasiyla reddedilir. Sistem tempdir'i proje disinda oldugundan bu kisitlamayi
+# asar; belge ici veri yollari zaten repo_root'a mutlak replacement ile sabitlenir.
+tmp_dir <- file.path(tempdir(), "carbon-svg-render")
 dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(primary_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(psychometric_dir, recursive = TRUE, showWarnings = FALSE)
@@ -32,13 +41,31 @@ prepare_ibm_plex <- function() {
   dir.create(cache_dir, recursive = TRUE, showWarnings = FALSE)
 
   local_ttf_dir <- file.path(repo_root, "resources", "fonts", "IBMPlexSans")
+  # Sistem geneli IBM Plex Sans kurulumu (or. apt fonts-ibm-plex) da kabul edilir;
+  # boylece font eksikliginde SVG/PNG cikti system-sans'e dusup metin tasmasi
+  # yaratmaz.
+  system_ttf_dirs <- c(
+    "/usr/share/fonts/truetype/ibm-plex",
+    "/usr/share/fonts/opentype/ibm-plex"
+  )
   woff_dirs <- c(
-    file.path(repo_root, "node_modules", "@ibm", "plex-sans", "fonts", "complete", "woff"),
-    "/mnt/thunderbolt/workspaces/Carbonac/frontend/node_modules/@ibm/plex-sans/fonts/complete/woff"
+    file.path(repo_root, "node_modules", "@ibm", "plex-sans", "fonts", "complete", "woff")
   )
 
   if (dir.exists(local_ttf_dir)) {
     file.copy(list.files(local_ttf_dir, pattern = "\\.(ttf|otf)$", full.names = TRUE), font_dir, overwrite = TRUE)
+  }
+  if (!length(list.files(font_dir, pattern = "\\.(ttf|otf)$"))) {
+    sys_dir <- system_ttf_dirs[dir.exists(system_ttf_dirs)][1]
+    if (!is.na(sys_dir)) {
+      wanted <- c(
+        "IBMPlexSans-Regular", "IBMPlexSans-SemiBold", "IBMPlexSans-Bold",
+        "IBMPlexSans-Light", "IBMPlexSans-Medium", "IBMPlexSans-Text",
+        "IBMPlexSans-Italic"
+      )
+      pat <- paste0("^(", paste(wanted, collapse = "|"), ")\\.(ttf|otf)$")
+      file.copy(list.files(sys_dir, pattern = pat, full.names = TRUE), font_dir, overwrite = TRUE)
+    }
   }
 
   needed <- c("Regular", "SemiBold", "Bold", "Light", "Medium", "Italic")
@@ -445,11 +472,11 @@ technical_diagram_fill <- function(fill) {
 write_strobe_flow_svg <- function(plot, path) {
   nodes <- plot$layers[[2]]$data
   nodes$label <- c(
-    "Kanonik veri kilidi\nLOCKED_CANONICAL_ANALYSIS_BASE",
+    "Kanonik veri kilidi\n(kilitli kanonik analiz tabanı)",
     "Analitik aile tabanı\n241 aile · 482 çocuk satırı",
     "DM indeks aile\nn = 120",
     "Kontrol indeks aile\nn = 121",
-    "DM klinik alt-analiz\nHbA1c gözlenen n = 39"
+    "DM klinik alt-analiz\nDM süresi gözlenen n = 120"
   )[match(nodes$id, c("lock", "family", "group_dm", "group_control", "clinical"))]
   pos <- data.frame(
     id = c("lock", "family", "group_dm", "group_control", "clinical"),
@@ -461,7 +488,11 @@ write_strobe_flow_svg <- function(plot, path) {
     stringsAsFactors = FALSE
   )
   nodes <- merge(nodes, pos, by = "id", sort = FALSE)
-  node_map <- setNames(split(nodes, nodes$id), nodes$id)
+  # split() zaten listeyi id'ye gore adlandirir; setNames(..., nodes$id) ile
+  # yeniden adlandirmak alfabetik split sirasi ile orijinal satir sirasini
+  # cakistirip eslemeyi karistiriyordu ( or. center("group_dm") group_control
+  # konumunu donduruyordu). Split'in kendi (dogru) adlandirmasi korunur.
+  node_map <- split(nodes, nodes$id)
   center <- function(id) {
     z <- node_map[[id]]
     c(x = z$px + z$w / 2, y = z$py + z$h / 2)
@@ -471,7 +502,6 @@ write_strobe_flow_svg <- function(plot, path) {
     svg_connector(center("family")["x"], 368, center("group_dm")["x"], 468),
     svg_connector(center("family")["x"], 368, center("group_control")["x"], 468),
     svg_connector(center("group_dm")["x"], 542, center("clinical")["x"], 618),
-    svg_connector(center("group_control")["x"], 542, center("clinical")["x"], 618),
     vapply(seq_len(nrow(nodes)), function(i) {
       z <- nodes[i, ]
       svg_node(z$px, z$py, z$w, z$h, z$label, fill = technical_diagram_fill(z$fill), bar = z$bar, label_size = 17)
@@ -492,51 +522,81 @@ write_strobe_flow_svg <- function(plot, path) {
 }
 
 write_causal_dag_svg <- function(plot, path) {
+  # Denetim P0-3: Figur R/14 analitik DAG'i (causal_dag_nodes/edges) ile hizali
+  # olmalidir. Iki yapisal gereksinim: (1) Merkez/takvim donemi VE grup uyeligi,
+  # birlikte, seciilim dugumu S'ye ok gonderir (analiz S=1'e kosulludur); grup
+  # merkez/donemi nedensel olarak OLUSTURMAZ. S uzerinde kosullanma T1DM'nin
+  # toplam etkisini tanimlanamaz kilar. (2) Karistiricilar yalniz maruziyete (T1DM) degil
+  # cikti dugumlerine de (arka-kapi) baglanir: SES->Cocuk algisi, Aile buyuklugu->
+  # Cocuk algisi, Kardes yas farki->Cocuk algisi ve ->Kardes iliskisi.
+  gray <- "#8d8d8d"
   body <- c(
-    '<rect x="44" y="128" width="300" height="366" rx="4" fill="#ffffff" stroke="#c6c6c6" stroke-width="1"/>',
-    svg_text(64, 158, "Baseline/design\nayarlama seti", size = 15, weight = 600, fill = "#161616"),
-    svg_node(80, 196, 228, 56, "SES", fill = "#edf5ff", bar = "#0f62fe", label_size = 15),
-    svg_node(80, 282, 228, 56, "Kardeş yaş farkı", fill = "#edf5ff", bar = "#0f62fe", label_size = 15),
-    svg_node(80, 368, 228, 56, "Aile büyüklüğü", fill = "#edf5ff", bar = "#0f62fe", label_size = 15),
-    svg_node(80, 510, 228, 56, "Genetik yatkınlık", fill = "#f4f4f4", bar = "#8d8d8d", label_size = 15),
-    svg_node(430, 300, 230, 72, "T1DM durumu", fill = "#edf5ff", bar = "#0f62fe", label_size = 17),
-    svg_node(720, 180, 245, 64, "Anne antidepresan", fill = "#fcf4d6", bar = "#f1c21b", label_size = 15),
-    svg_node(720, 300, 245, 64, "Beck depresyon", fill = "#d9fbfb", bar = "#009d9a", label_size = 15),
-    svg_node(720, 420, 245, 64, "Ebeveynlik tutumu", fill = "#d9fbfb", bar = "#009d9a", label_size = 15),
-    svg_node(1040, 258, 230, 64, "Çocuk algısı", fill = "#fff1f1", bar = "#fa4d56", label_size = 15),
-    svg_node(1040, 400, 230, 64, "Kardeş ilişkisi", fill = "#e8daff", bar = "#6929c4", label_size = 15),
-    svg_path_connector("M 308 224 C 365 224 365 336 430 336", stroke = "#8d8d8d", width = 1.25, opacity = 0.82),
-    svg_path_connector("M 308 310 C 365 310 365 336 430 336", stroke = "#8d8d8d", width = 1.25, opacity = 0.82),
-    svg_path_connector("M 308 396 C 365 396 365 336 430 336", stroke = "#8d8d8d", width = 1.25, opacity = 0.82),
-    svg_path_connector("M 308 538 C 365 538 365 336 430 336", stroke = "#8d8d8d", width = 1.25, dashed = TRUE, opacity = 0.75),
-    svg_connector(660, 336, 720, 212, stroke = "#8d8d8d", width = 1.25),
-    svg_connector(660, 336, 720, 332, stroke = "#8d8d8d", width = 1.5),
-    svg_connector(660, 336, 720, 452, stroke = "#8d8d8d", width = 1.5),
-    svg_connector(965, 212, 1040, 290, stroke = "#8d8d8d", width = 1.25, dashed = TRUE, opacity = 0.8),
-    svg_connector(965, 212, 720, 332, stroke = "#8d8d8d", width = 1.25),
-    svg_connector(965, 212, 720, 452, stroke = "#8d8d8d", width = 1.25),
-    svg_connector(965, 332, 1040, 290, stroke = "#8d8d8d", width = 1.25, dashed = TRUE, opacity = 0.8),
-    svg_connector(965, 332, 720, 452, stroke = "#8d8d8d", width = 1.25),
-    svg_connector(965, 452, 1040, 290, stroke = "#8d8d8d", width = 1.5),
-    svg_connector(1270, 290, 1270, 432, stroke = "#8d8d8d", width = 1.25, dashed = TRUE, opacity = 0.8),
-    svg_connector(660, 336, 1040, 290, stroke = "#0f62fe", width = 2),
-    svg_connector(660, 336, 1040, 432, stroke = "#0f62fe", width = 2),
-    svg_label_pill(510, 136, "exposure", fill = "#edf5ff", stroke = "#0f62fe", text_fill = "#002d9c", width = 112),
-    svg_label_pill(840, 548, "mediator / sensitivity", fill = "#ffffff", stroke = "#8d8d8d", text_fill = "#525252", width = 190),
-    svg_label_pill(1155, 548, "downstream outcome", fill = "#ffffff", stroke = "#8d8d8d", text_fill = "#525252", width = 170),
-    svg_text(56, 626, "Kenar kodu", size = 13, weight = 600, fill = "#161616"),
-    svg_connector(164, 622, 230, 622, arrow = TRUE, stroke = "#0f62fe", width = 2),
-    svg_text(242, 627, "total-effect ana yol", size = 12, fill = "#525252"),
-    svg_connector(408, 622, 474, 622, arrow = TRUE, stroke = "#8d8d8d", width = 1.25),
-    svg_text(486, 627, "model yolu", size = 12, fill = "#525252"),
-    svg_connector(610, 622, 676, 622, arrow = TRUE, stroke = "#8d8d8d", width = 1.25, dashed = TRUE),
-    svg_text(688, 627, "arka plan / sensitivite", size = 12, fill = "#525252")
+    # --- Ust bant: karistirici ve gozlenmemis ortak-neden dugumleri -----------
+    svg_node(70, 104, 200, 52, "Genetik yatkınlık", sublabel = "(gözlenmemiş)",
+      fill = "#f4f4f4", bar = gray, label_size = 14),
+    svg_node(330, 104, 190, 52, "SES", fill = "#edf5ff", bar = "#0f62fe", label_size = 15),
+    svg_node(560, 104, 190, 52, "Kardeş yaş farkı", fill = "#edf5ff", bar = "#0f62fe", label_size = 14),
+    svg_node(790, 104, 190, 52, "Aile büyüklüğü", fill = "#edf5ff", bar = "#0f62fe", label_size = 14),
+    svg_node(1030, 104, 210, 52, "Merkez / dönem", sublabel = "→ seçilim (S)",
+      fill = "#f4f4f4", bar = gray, label_size = 13),
+    # --- Ana nedensel zincir: maruziyet -> aracilar -> cikti -----------------
+    svg_node(120, 360, 210, 68, "T1DM durumu", fill = "#edf5ff", bar = "#0f62fe", label_size = 17),
+    svg_node(470, 250, 220, 56, "Anne antidepresan", fill = "#fcf4d6", bar = "#f1c21b", label_size = 14),
+    svg_node(470, 360, 220, 56, "Beck depresyon", fill = "#d9fbfb", bar = "#009d9a", label_size = 14),
+    svg_node(470, 470, 220, 56, "Ebeveynlik tutumu", fill = "#d9fbfb", bar = "#009d9a", label_size = 14),
+    svg_node(830, 360, 210, 64, "Çocuk algısı", fill = "#fff1f1", bar = "#fa4d56", label_size = 15),
+    svg_node(830, 480, 210, 64, "Kardeş ilişkisi", fill = "#e8daff", bar = "#6929c4", label_size = 15),
+    # --- Karistirici -> maruziyet (T1DM ust kenari), duz gri ------------------
+    svg_path_connector("M 420 156 C 360 240 280 300 234 360", stroke = gray, width = 1.25, opacity = 0.85),
+    svg_path_connector("M 650 156 C 520 250 300 300 248 360", stroke = gray, width = 1.25, opacity = 0.85),
+    svg_path_connector("M 880 156 C 640 260 320 310 262 360", stroke = gray, width = 1.25, opacity = 0.85),
+    # --- Gozlenmemis ortak-neden -> maruziyet, kesikli ------------------------
+    svg_path_connector("M 170 156 C 170 260 200 315 220 360", stroke = gray, width = 1.25, dashed = TRUE, opacity = 0.75),
+    svg_path_connector("M 1130 156 C 700 250 350 320 272 360", stroke = gray, width = 1.25, dashed = TRUE, opacity = 0.7),
+    # --- Karistirici -> cikti (ARKA-KAPI), kesikli: kritik eklenen kenarlar ---
+    svg_path_connector("M 430 156 C 600 250 850 290 920 360", stroke = gray, width = 1.25, dashed = TRUE, opacity = 0.7),
+    svg_path_connector("M 660 156 C 770 250 900 300 935 360", stroke = gray, width = 1.25, dashed = TRUE, opacity = 0.7),
+    svg_path_connector("M 890 156 C 940 250 952 305 948 360", stroke = gray, width = 1.25, dashed = TRUE, opacity = 0.7),
+    # Kardes yas farki -> Kardes iliskisi (arka-kapi, sag kavis)
+    svg_path_connector("M 668 156 C 1210 210 1170 460 1045 505", stroke = gray, width = 1.25, dashed = TRUE, opacity = 0.65),
+    # --- Gozlenmemis merkez/donem -> Cocuk algisi, kesikli --------------------
+    svg_path_connector("M 1135 156 C 1160 260 1010 305 962 360", stroke = gray, width = 1.25, dashed = TRUE, opacity = 0.7),
+    # --- Maruziyet -> aracilar, duz gri --------------------------------------
+    svg_path_connector("M 330 384 C 410 384 420 282 470 280", stroke = gray, width = 1.25),
+    svg_path_connector("M 330 394 C 410 394 430 388 470 388", stroke = gray, width = 1.5),
+    svg_path_connector("M 330 404 C 410 404 420 498 470 498", stroke = gray, width = 1.5),
+    # --- Aracilar arasi yollar ------------------------------------------------
+    svg_path_connector("M 690 285 C 740 320 740 352 690 380", stroke = gray, width = 1.25),
+    svg_path_connector("M 690 292 C 782 360 782 430 690 492", stroke = gray, width = 1.25),
+    svg_path_connector("M 690 398 C 740 430 740 462 690 494", stroke = gray, width = 1.25),
+    # --- Araci -> cikti -------------------------------------------------------
+    svg_path_connector("M 690 384 C 750 386 785 392 830 392", stroke = gray, width = 1.5),
+    svg_path_connector("M 690 496 C 760 496 792 410 830 404", stroke = gray, width = 1.5),
+    # --- Cikti -> alt-cikti (Cocuk algisi -> Kardes iliskisi) -----------------
+    svg_connector(935, 424, 935, 480, stroke = gray, width = 1.25),
+    # --- Total-effect ana yol (T1DM -> Cocuk algisi), mavi kalin --------------
+    svg_path_connector("M 330 416 C 560 640 720 590 850 420", stroke = "#0f62fe", width = 2),
+    # --- Rol etiket pill'leri -------------------------------------------------
+    svg_label_pill(225, 452, "maruziyet", fill = "#edf5ff", stroke = "#0f62fe", text_fill = "#002d9c", width = 112),
+    svg_label_pill(580, 556, "aracı / duyarlılık", fill = "#ffffff", stroke = gray, text_fill = "#525252", width = 150),
+    svg_label_pill(935, 574, "çıktı katmanı", fill = "#ffffff", stroke = gray, text_fill = "#525252", width = 130),
+    # --- Kenar kodu lejantı ---------------------------------------------------
+    svg_text(56, 660, "Kenar kodu", size = 13, weight = 600, fill = "#161616"),
+    svg_connector(164, 656, 230, 656, arrow = TRUE, stroke = "#0f62fe", width = 2),
+    svg_text(242, 661, "hedef maruziyet–sonuç yolu", size = 12, fill = "#525252"),
+    svg_connector(408, 656, 474, 656, arrow = TRUE, stroke = gray, width = 1.25),
+    svg_text(486, 661, "model / karıştırıcı yolu", size = 12, fill = "#525252"),
+    svg_connector(720, 656, 786, 656, arrow = TRUE, stroke = gray, width = 1.25, dashed = TRUE),
+    svg_text(798, 661, "arka-kapı / gözlenmemiş yol", size = 12, fill = "#525252"),
+    svg_text(56, 690,
+      "Kesikli = seçilim yapısı: merkez/dönem ve grup üyeliği birlikte analitik örnekleme dâhil olmayı (S) belirler; S üzerinde koşullanma T1DM'nin toplam nedensel etkisini tanımlanamaz kılar. Grup, merkez/dönemi oluşturmaz.",
+      size = 12, fill = "#6f6f6f")
   )
   write_svg_document(
-    path, 1320, 700,
-    "Causal DAG: total-effect ayarlama stratejisi",
-    "SES, kardeş yaş farkı ve aile büyüklüğü baseline/design karıştırıcıları olarak sabitlenmiştir",
-    "Not. Beck ve antidepresan kullanımı total-effect modellerinde ana ayarlama setine alınmaz; sensitivite katmanında izlenir.",
+    path, 1320, 730,
+    "Nedensel DAG: ayarlama stratejisi ve arka-kapı yolları",
+    "Karıştırıcılar hem T1DM'ye hem de çıktılara (çocuk algısı, kardeş ilişkisi) bağlanır; merkez/dönem ve grup üyeliği birlikte seçilim düğümüne (S) ok gönderir",
+    "Not. Merkez/dönem ve grup üyeliği birlikte analitik örnekleme dâhil olmayı (S) belirler; grup üyeliği merkez ya da dönemi nedensel olarak oluşturmaz. S üzerinde koşullanma T1DM'nin hedef maruziyet–sonuç ilişkisini (toplam etki) tanımlanamaz kılar. Beck ve antidepresan ana ayarlama setinde değil, duyarlılık katmanında izlenir.",
     paste(body, collapse = "\n")
   )
 }
@@ -820,7 +880,7 @@ main_figures$title <- c(
   "Analitik örneklem akış diyagramı",
   "Causal DAG ve ayarlama stratejisi",
   "SMD love plot",
-  "Propensity score overlap",
+  "Eğilim skoru örtüşmesi",
   "SES korelasyon matrisi",
   "Primary FIML/MI eksiklik haritası",
   "H1 çocuk algısı forest plot",
@@ -829,11 +889,11 @@ main_figures$title <- c(
   "H3 antidepresan katmanlı forest plot",
   "H4 latent SEM yol diyagramı",
   "H5 Bland-Altman tutarlılık haritası",
-  "H5 response surface analysis",
-  "Mediation yol ve indirect etki özeti",
+  "H5 yanıt yüzeyi analizi (RSA)",
+  "Aracılık yol ve dolaylı etki özeti",
   "LPA model seçim tanıları",
-  "EBIC-LASSO Gaussian Graphical Model",
-  "Network Comparison Test özeti",
+  "EBIC-LASSO Gauss grafik modeli",
+  "Ağ Karşılaştırma Testi (NCT) özeti",
   "Klinik risk modeli ROC eğrisi",
   "Klinik karar eğrisi analizi",
   "Klinik risk kalibrasyon grafiği",
@@ -866,8 +926,7 @@ for (i in seq_len(nrow(main_figures))) {
       stop("naniar package is required for missing_pattern_primary export", call. = FALSE)
     }
     missing_results <- targets::tar_read_raw("missing_results")
-    plot <- naniar::vis_miss(missing_results$frames$fiml_primary) +
-      ggplot2::labs(title = "Primary FIML/MI frame missingness")
+    plot <- apa_plot_missing_pattern(missing_results$frames$fiml_primary)
   }
   has_technical_diagram_role <- !is.na(row$technical_diagram_role)
   if (has_technical_diagram_role) {
@@ -887,6 +946,19 @@ render_quarto_svg <- function(source_qmd, tmp_name, replacements, output_subdir)
     joined <- gsub(replacement$pattern, replacement$replacement, joined, perl = TRUE)
   }
   writeLines(joined, qmd_tmp, useBytes = TRUE)
+  # tmp_dir proje agaci disinda (sistem tempdir) oldugundan, kaynak belgenin
+  # yanindaki yerel varliklari ( or. styles.css) tmp kopyanin yanina getir;
+  # aksi halde YAML'deki `css: styles.css` gibi goreli basvurular cozulmez.
+  src_dir <- dirname(normalizePath(source_qmd, mustWork = TRUE))
+  local_assets <- list.files(
+    src_dir, pattern = "\\.(css|scss|bib|csl|ya?ml)$",
+    full.names = TRUE, ignore.case = TRUE
+  )
+  # _quarto.yml proje dosyasini kopyalama; tmp'i istemeden proje yapar.
+  local_assets <- local_assets[basename(local_assets) != "_quarto.yml"]
+  if (length(local_assets)) {
+    file.copy(local_assets, tmp_dir, overwrite = TRUE)
+  }
   render_dir <- file.path(tmp_dir, output_subdir)
   dir.create(render_dir, recursive = TRUE, showWarnings = FALSE)
   status <- system2("quarto", c("render", qmd_tmp, "--to", "html", "--output-dir", render_dir), stdout = TRUE, stderr = TRUE)
@@ -904,8 +976,14 @@ demo_render <- render_quarto_svg(
     list(pattern = 'dev: "png"', replacement = 'dev: "svg"'),
     list(pattern = "embed-resources: true", replacement = "embed-resources: false"),
     list(pattern = 'theme_minimal\\(base_size = base_size\\)', replacement = 'theme_minimal(base_size = base_size, base_family = "IBM Plex Sans")'),
+    # project_root tanimini (find_project_root() cagrisi veya duz normalizePath
+    # olabilir) repo_root'a mutlak olarak sabitle. Belge proje agaci disindaki
+    # tempdir'den render edildiginden goreli/yukari-arama cozumu _targets store'u
+    # bulamaz; bu tek-satir yakalama tanimin nasil yazildigindan bagimsizdir.
+    # (?m)^ ile SATIR-BASINA demirli: aksi halde "find_project_root <- function"
+    # icindeki "project_root <-" alt-dizesi de yakalanip fonksiyon tanimi bozulur.
     list(
-      pattern = 'project_root <- normalizePath\\("\\.\\./\\.\\.", winslash = "/", mustWork = TRUE\\)',
+      pattern = '(?m)^project_root <- [^\\n]+',
       replacement = sprintf('project_root <- normalizePath("%s", winslash = "/", mustWork = TRUE)', repo_root)
     )
   ),
@@ -918,8 +996,15 @@ psych_render <- render_quarto_svg(
   list(
     list(pattern = 'dev = "ragg_png"', replacement = 'dev = "svg"'),
     list(pattern = 'theme_minimal\\(base_family = "Fraunces 9pt", base_size = 10\\)', replacement = 'theme_minimal(base_family = "IBM Plex Sans", base_size = 10)'),
+    # Once cok-satirli base_dir/project_root kesif blogunu tek mutlak atamaya
+    # indir (varsa), ardindan kalan herhangi bir project_root tanimini repo_root'a
+    # sabitle. Ikinci kural, belgenin kok-kesif kodu ileride degisse de saglamdir.
     list(
       pattern = 'base_dir <- if \\(!is\\.null\\(input_path\\)\\) dirname\\(normalizePath\\(input_path\\)\\) else getwd\\(\\)\\nproject_root <- normalizePath\\(file\\.path\\(base_dir, "\\.\\.", "\\.\\."\\), mustWork = FALSE\\)\\nif \\(!file\\.exists\\(file\\.path\\(project_root, "outputs", "tables", "psychval_summary_metrics\\.csv"\\)\\)\\) \\{\\n  project_root <- normalizePath\\(getwd\\(\\), mustWork = FALSE\\)\\n\\}',
+      replacement = sprintf('project_root <- normalizePath("%s", mustWork = TRUE)', repo_root)
+    ),
+    list(
+      pattern = '(?m)^project_root <- [^\\n]+',
       replacement = sprintf('project_root <- normalizePath("%s", mustWork = TRUE)', repo_root)
     )
   ),
@@ -987,7 +1072,7 @@ psych_rows <- data.frame(
 demo_ids <- c(
   "grup-dagilim", "cocuk-yas-dagilim", "cinsiyet-grup", "same-sex", "aile-buyuklugu",
   "anne-yas", "beck-grup", "beck-severity", "antidep", "ses-density", "egitim",
-  "dm-eksik", "hba1c", "hba1c-target", "dm-suresi", "tani-strata", "smd-love",
+  "dm-eksik", "dm-suresi", "tani-strata", "smd-love",
   "ps-density", "iptw-balance", "eksik-degisken"
 )
 
@@ -1000,8 +1085,8 @@ demo_rows <- data.frame(
   related_analysis = c(
     "Örneklem grup dağılımı", "Çocuk yaşı ve kardeş yaş farkı", "Cinsiyet oranları", "Kardeş cinsiyet kompozisyonu",
     "Aile büyüklüğü", "Anne yaşı", "Beck toplam puanı", "Beck şiddet kategorisi", "Antidepresan kullanımı",
-    "Latent SES dağılımı", "Anne/eş eğitim düzeyi", "DM klinik gösterge tamamlanması", "HbA1c dağılımı",
-    "HbA1c hedef kategorileri", "DM süresi ve tanı yaşı", "Tanı yaşı üç strata", "Ham kovaryat dengesi",
+    "Latent SES dağılımı", "Anne/eş eğitim düzeyi", "DM klinik gösterge tamamlanması",
+    "DM süresi ve tanı yaşı", "Tanı yaşı üç strata", "Ham kovaryat dengesi",
     "Logit propensity yoğunluğu", "IPTW dengeleme etkisi", "Aile düzeyi eksik veri"
   ),
   title = c(
@@ -1017,8 +1102,6 @@ demo_rows <- data.frame(
     "Latent SES kompozit grup bazında",
     "Anne ve eş eğitim seviyesi",
     "DM grubu klinik gösterge tamamlanma oranı",
-    "DM grubu HbA1c dağılımı",
-    "HbA1c kategorik dağılımı",
     "DM süresi ve tanı yaşı dağılımları",
     "DM tanı yaşı üç strata",
     "Kovaryat dengesi ham gözlem",
@@ -1351,3 +1434,40 @@ if (nrow(failures)) {
 }
 
 cat(sprintf("Carbon SVG export complete: %d SVG files -> %s\n", nrow(manifest_public), relative_path(out_dir)))
+
+# --- DOCX uyumluluk katmani: gomulu raster iceren SVG'lere PNG ikizi uret ---
+# Word'un SVG->EMF donusumu, SVG icine base64 gomulu <image> raster katmanini
+# siyah blok olarak render eder. Bu nedenle heatmap/yuzey/kontur gibi raster
+# katmani tasiyan figurler icin yuksek-DPI PNG ikizi uretilir; bolum belgeleri
+# bu figurlerde .png referansi kullanir (saf-vektor SVG'ler .svg kalir).
+export_png_twins_for_raster_svgs <- function(root_dir) {
+  svg_files <- list.files(root_dir, pattern = "\\.svg$", full.names = TRUE, recursive = TRUE)
+  converter <- Sys.which("rsvg-convert")
+  if (!nzchar(converter)) {
+    warning("rsvg-convert bulunamadi; raster-SVG'ler icin PNG ikizi uretilemedi", call. = FALSE)
+    return(invisible(character(0)))
+  }
+  produced <- character(0)
+  for (svg in svg_files) {
+    head_txt <- paste(readLines(svg, warn = FALSE, n = 4000L), collapse = "\n")
+    if (grepl("<image", head_txt, fixed = TRUE)) {
+      png_out <- sub("\\.svg$", ".png", svg)
+      status <- system2(converter, c("-z", "3", shQuote(svg), "-o", shQuote(png_out)))
+      if (identical(status, 0L)) {
+        produced <- c(produced, png_out)
+      } else {
+        warning(sprintf("PNG ikizi uretilemedi: %s", svg), call. = FALSE)
+      }
+    }
+  }
+  invisible(produced)
+}
+
+png_twins <- export_png_twins_for_raster_svgs(out_dir)
+if (length(png_twins)) {
+  cat(sprintf(
+    "DOCX uyumlulugu: %d raster-SVG icin PNG ikizi uretildi (%s)\n",
+    length(png_twins),
+    paste(basename(png_twins), collapse = ", ")
+  ))
+}

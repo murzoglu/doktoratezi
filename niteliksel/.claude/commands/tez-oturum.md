@@ -25,7 +25,7 @@ bu oturumda bağlayıcıdır. Sırasıyla:
    `medical-research` v8.5 native-first hattı, no-web-tier, Anna's/full-text kapısı)
    veya **nicel/karma** (paired `doktoratezi` + `t1dm-tez-rehberi`).
 2. Tez yazımı/format/bölüm işiyse ana operasyon merkezinin
-   `/mnt/thunderbolt/workspaces/doktoratezi/tez-yazim` olduğunu doğrula; oradaki
+   `/workspaces/T1DM-Tez/tez-yazim` olduğunu doğrula; oradaki
    `README.md` + `06_kritik-kaynaklar/README.md` + resmi `docs/tez-kilavuz` üst kuraldır.
 3. Ham veri sınırını hatırla: `01_raw_data/`, `02_processed/transcripts/`,
    `01_deidentified/`, `00_raw_locked/` açılmaz; alıntı işi `./dmnitel check-quotes` ile yapılır.
@@ -37,4 +37,4 @@ bu oturumda bağlayıcıdır. Sırasıyla:
    doktoratezi `tez-yazim` kurallarıyla kullan: Kapı 4
    `/sci-audit:check-turkish`, Kapı 5 `/sci-audit:audit` + `/sci-audit:audit-report`.
    KVKK/ham veri/quote-parity invaryantları sci-audit'e devredilmez; `dmnitel`
-   ve iki repo ai-audit plugin'inde kalır.
+   ve iki-kol ai-audit plugin'inde kalır.

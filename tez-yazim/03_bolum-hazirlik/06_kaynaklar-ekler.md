@@ -71,8 +71,8 @@ Olası ekler (bu tez için):
 | Etik kurul onayı | Tarih/sayı GEREÇ ve YÖNTEM ile bire bir tutarlı belge. | `06_kritik-kaynaklar` etik kaynağı; imzalı metin PII taşımaz. |
 | Veri toplama araçları | EMBU-P/C, Beck, KİA/SRQ, demografik-tıbbi form. | Ölçek telif sınırı; kullanım izni. |
 | Ek tablo/şekiller | Metne sığmayan aggregate tablolar. | `outputs/tables`; satır verisi yok. |
-| COREQ / SRQR / JARS-Qual özetleri | Nitel raporlama uyum tabloları. | Nitel repo türetilmiş çıktı. |
-| LLM kullanım beyanı | AI/LLM kullanımının şeffaf beyanı (sci-audit axis F ile uyumlu). | `03_analysis/methodology/llm_use_statement` (nitel repo türevleri). |
+| COREQ / SRQR / JARS-Qual özetleri | Nitel raporlama uyum tabloları. | Nitel kol türetilmiş çıktı. |
+| LLM kullanım beyanı | AI/LLM kullanımının şeffaf beyanı (sci-audit axis F ile uyumlu). | `03_analysis/methodology/llm_use_statement` (nitel kol türevleri). |
 | Codebook / audit trail özeti | De-identified kod-tema haritası, karar izi. | Ham veri yok. |
 | Bilimsel faaliyet portfolyo yönlendirmesi | Teze eklenmeyen belgelerin nereye teslim edildiği notu. | — |
 

@@ -74,10 +74,8 @@ Faz II SAP'sının tek bir analizi bile **doğrulayıcı (confirmatory) kanıt**
 - 64. H5 Strateji-Düzeyi Bayesian Pooling
 
 **KISIM XXIV — KLİNİK STRATİFİKASYON GENİŞLETMESİ**
-- 65. HbA1c × Parenting Joint Model (Bayesian)
 - 66. Tanı Yaşı Spline × Parenting (DM-Only)
 - 67. Glycemic-Parenting Latent Trajectory Sketch (Pilot)
-- 68. ISPAD Eşiği (HbA1c < 7.0%) İkili Sonuç Ek-Analiz
 
 **KISIM XXV — NEDENSEL ARACILIK SENSİTİVİTESİ**
 - 69. Imai-Keele-Tingley Causal Mediation (sensitivity ρ)
@@ -150,10 +148,7 @@ Faz II SAP'sının tek bir analizi bile **doğrulayıcı (confirmatory) kanıt**
 | F2-14 | XXIII/62 | Beck × Grup moderasyon (diadik) | `done` | `R/39_h5_extensions.R` | `outputs/tables/phase2_h5ext_beck_moderation_coefficients.csv`, `phase2_h5ext_beck_moderation_bootstrap_ci.csv` |
 | F2-15 | XXIII/63 | Sibling-pair concordance ICC | `done` | `R/39_h5_extensions.R` | `outputs/tables/phase2_h5ext_sibling_icc.csv` |
 | F2-16 | XXIII/64 | H5 Bayesian strateji pooling | `done` | `R/39_h5_extensions.R` | `outputs/tables/phase2_h5ext_strategy_pooled.csv`, `docs/assets/figures/carbon/phase2/phase2_f04_h5_strat.svg` |
-| F2-17 | XXIV/65 | HbA1c × parenting Bayesian joint | `done` | `R/40_hba1c_joint.R` | `outputs/tables/phase2_hba1c_bayesian_posterior.csv`, `phase2_hba1c_target_summary.csv` |
-| F2-18 | XXIV/66 | Tanı yaşı × parenting spline | `done` | `R/40_hba1c_joint.R`, `R/48_phase2_apa_outputs.R` | `docs/assets/figures/carbon/phase2/phase2_f08_dx_age_spline.svg` |
 | ~~F2-19~~ | ~~XXIV/67~~ | ~~Glycemic trajectory pilot~~ | **`removed`** | — | **Yeni veri gerektirdiği için Faz II'den çıkarıldı** |
-| F2-20 | XXIV/68 | ISPAD < 7.0% ikili sonuç | `done` | `R/40_hba1c_joint.R` | `outputs/tables/phase2_hba1c_ispad_logistic.csv` |
 | F2-21 | XXV/69 | Imai-Keele causal mediation sens | `done` | `R/41_causal_mediation.R`, `R/48_phase2_apa_outputs.R` | `docs/assets/figures/carbon/phase2/phase2_f09_imai_sensitivity.svg` |
 | F2-22 | XXV/70 | PC algorithm + FCI DAG validation | `done` | `R/42_dag_pc_fci.R`, `R/48_phase2_apa_outputs.R` | `docs/assets/figures/carbon/phase2/phase2_f10_dag_validation.svg` |
 | F2-23 | XXV/71 | c' direct effect triangülasyon | `done` | `R/41_causal_mediation.R` | `outputs/tables/phase2_cprime_triangulation.csv` |
@@ -260,7 +255,6 @@ Faz II yeni `R/` modülleri:
 | `R/37_esem_embu.R` | ESEM cross-loading | `phase2_esem_*` |
 | `R/38_antidepressant_pathway.R` | AD mediator + moderator | `phase2_ad_*` |
 | `R/39_h5_extensions.R` | MTMM, sibling concordance, Bayesian pooling | `phase2_h5_ext_*` |
-| `R/40_hba1c_joint.R` | DM-only joint glycemic-parenting | `phase2_hba1c_*` |
 | `R/41_causal_mediation.R` | Imai-Keele sensitivity, c' triangulation | `phase2_imai_*` |
 | `R/42_dag_pc_fci.R` | PC algorithm + 3-level negctrl | `phase2_dag_*` |
 | `R/43_distributional.R` | Quantile, distributional, beta regression | `phase2_dist_*` |
@@ -845,43 +839,6 @@ Pooled posterior `Intercept`'i 5 stratejinin **uzlaşma tahmini** olur; `sd` (be
 
 # KISIM XXIV — KLİNİK STRATİFİKASYON GENİŞLETMESİ
 
-## 65. HbA1c × Parenting Joint Model (Bayesian)
-
-### 65.1 Boşluk
-
-CSR §12.5.1: HbA1c × ebeveynlik p > .40 ve R² < 0.25; **n = 39 yetersiz güç** sınırlamasıyla raporlandı. Bayesian framework altında **bilgi verici prior** (Anderson 2002, Hilliard 2013) kullanılarak güç-arttırılmış tahmin denenebilir.
-
-### 65.2 Yöntem
-
-DM-only altgrubu (n = 39 HbA1c-mevcut) için brms ile bilgi-verici prior:
-
-```r
-# Anderson 2002: parenting conflict ↔ HbA1c r ≈ 0.18
-# Pinquart 2018: parenting stress ↔ glycemic control r ≈ 0.15
-# Pooled informative prior: β ~ Normal(0.16, 0.10)
-
-fit_hba1c_joint <- brms::brm(
-  hba1c_pct_z ~ embu_p_red_z + embu_p_ak_z + dm_yili_z + tani_yasi_z + cocuk_yas_z,
-  data = df_family_dm_only,
-  prior = c(prior(normal(0.16, 0.10), class = "b", coef = "embu_p_red_z"),
-            prior(normal(0.16, 0.10), class = "b", coef = "embu_p_ak_z"),
-            prior(normal(0, 1), class = "b")),
-  family = gaussian(),
-  chains = 4, iter = 8000
-)
-```
-
-ROPE = ±0.10 SD; Pinquart-uyumlu posterior medyan beklentisi β ≈ 0.10–0.20.
-
-### 65.3 Çıktı
-
-- `outputs/models/phase2_hba1c_parenting_joint.rds`
-- `outputs/tables/phase2_hba1c_posterior.csv`
-- "Posterior medyan β = 0.18 [%89 HDI: 0.05, 0.30] gözlenirse, frequentist NS sonucun **prior-bilgi yoluyla amplified** edildiği bir yorum mümkün; ancak posterior'un büyük kısmı prior-driven olabilir → **prior sensitivity check** zorunlu (β ~ Normal(0, 0.10) ile karşılaştırma)."
-
-### 65.4 Risk
-
-- HbA1c %32.5 tamamlanma → MNAR-yapısal; **imputasyon yapılmaz** (Davranış Kuralı 19). Yalnızca complete-case DM-altgrupta çalışılır; **n_hba1c = 39** açıkça raporlanır.
 
 ## 66. Tanı Yaşı Spline × Parenting
 
@@ -906,24 +863,6 @@ LRT vs lineer model; visualization ggeffects ile.
 ## 67. ~~Glycemic-Parenting Latent Trajectory~~ (Çıkarıldı)
 
 **Statü:** `removed` — Yeni longitudinal veri toplama gerektirdiği için Faz II kapsamından çıkarılmıştır.
-
-## 68. ISPAD Eşiği (HbA1c < 7.0%) İkili Sonuç Ek-Analiz
-
-### 68.1 Yöntem
-
-ISPAD 2024 hedefi `hba1c_under_7 = ifelse(hba1c < 7.0, 1, 0)` ikili sonuç. DM-only logistic:
-
-```r
-fit_ispad <- glm(hba1c_under_7 ~ embu_p_red_z + embu_p_ak_z + dm_yili_z + ses_latent_z,
-                 data = df_family_dm_only, family = binomial)
-```
-
-**Hassasiyet:** n = 39'da ISPAD < 7.0% oranı %15-20 → kategorik analiz **çok düşük güçtedir**; sadece tanımsal odds ratio raporlanır.
-
-### 68.2 Çıktı
-
-- `outputs/tables/phase2_ispad_logistic.csv`
-- "OR = 0.65 [%95 GA 0.32, 1.32] gözlenirse, yüksek anne reddetme algısı altındaki DM çocuklarında ISPAD hedefini tutturma olasılığı **noktalı olarak 1/3 azalmış** ama CI kesin olmadığı için yorum 'hipotez-üretici' kalır."
 
 ---
 
@@ -1419,7 +1358,6 @@ Joint display tablosu:
 | F2-T06 | AD × group moderation (H1/H4/H5) | KISIM XXII/59 |
 | F2-T07 | MTMM trait/method varyans payları | KISIM XXIII/61 |
 | F2-T08 | Sibling-pair concordance ICC | KISIM XXIII/63 |
-| F2-T09 | HbA1c × parenting Bayesian posterior | KISIM XXIV/65 |
 | F2-T10 | Imai-Keele ρ_critical sensitivity | KISIM XXV/69 |
 | F2-T11 | H1 multiverse 240-spec özeti | KISIM XXVII/76 |
 | F2-T12 | Bayesian meta-analytic pooling | KISIM XXVIII/80 |
@@ -1435,7 +1373,6 @@ Joint display tablosu:
 | F2-F05 | F2-28/F2-31 / XXVII/76-79 | H1 specification curve | `docs/assets/figures/carbon/phase2/phase2_f05_h1_spec_curve.svg` |
 | F2-F06 | F2-32 / XXVIII/80 | Bayesian/meta-analytic forest | `docs/assets/figures/carbon/phase2/phase2_f06_meta_forest.svg` |
 | F2-F07 | F2-05 / XX/53 | Cross-informant GGM network edge map | `docs/assets/figures/carbon/phase2/phase2_f07_xinfo_network.svg` |
-| F2-F08 | F2-18 / XXIV/66 | DM tanı yaşı spline karar paneli | `docs/assets/figures/carbon/phase2/phase2_f08_dx_age_spline.svg` |
 | F2-F09 | F2-21 / XXV/69 | Imai-Keele sensitivity curve | `docs/assets/figures/carbon/phase2/phase2_f09_imai_sensitivity.svg` |
 | F2-F10 | F2-22/F2-24 / XXV/70-72 | DAG implied CI + üç düzeyli doğrulama paneli | `docs/assets/figures/carbon/phase2/phase2_f10_dag_validation.svg` |
 | F2-F11 | F2-33 / XXVIII/81 | Posterior predictive replication | `docs/assets/figures/carbon/phase2/phase2_f11_ppc_replication.svg` |
@@ -1510,7 +1447,6 @@ CSR §18'deki 3-makale planına ek olarak:
 | 3 | Sprint A3 | R/35, R/36, R/37 (Psikometri) | Tobit IRT + ω_h + ESEM çıktıları |
 | 4 | Sprint A4 | R/38 (Antidepresan) | AD mediator + moderator çıktıları |
 | 5 | Sprint B1 | R/39 (H5 ext) | MTMM + sibling concordance + Bayesian pooling |
-| 6 | Sprint B2 | R/40 (HbA1c joint) | Bayesian DM-only çıktıları |
 | 7 | Sprint B3 | R/41, R/42 (Causal mediation + DAG) | Imai-Keele + PC algorithm çıktıları |
 | 8 | Sprint B4 | R/43 (Distributional) | Quantile + distributional + beta regression |
 | 9 | Sprint C1 | R/44 (Multiverse extension) | H1 240-spec + H4 SEM multiverse + BMA + SCA inferential |

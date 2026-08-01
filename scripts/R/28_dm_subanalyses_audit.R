@@ -24,15 +24,12 @@ write_csv <- function(df, name) {
 
 cat("\n=== KISIM X DM Alt-Analizler Audit ===\n")
 write_csv(results$n_summary_table,         "dm_n_summary")
-write_csv(results$hba1c_interaction_table, "dm_hba1c_interaction")
 write_csv(results$spline_duration_table,   "dm_duration_spline")
 write_csv(results$strata_descriptive_table,"dm_strata_descriptive")
 write_csv(results$strata_tests_table,      "dm_strata_tests")
 
 cat("\n=== DM-only n özeti ===\n")
 print(results$n_summary_table)
-cat("\n=== HbA1c × parenting (n_hba1c=39 keşifsel) ===\n")
-print(results$hba1c_interaction_table[, c("outcome", "n", "estimate", "p_value", "r_squared")])
 cat("\n=== DM süresi spline (linear vs cubic) ===\n")
 print(results$spline_duration_table[, c("outcome", "n", "linear_r2", "spline_r2", "lrt_p", "interpretation")])
 cat("\n=== Tanı yaşı strata testleri ===\n")

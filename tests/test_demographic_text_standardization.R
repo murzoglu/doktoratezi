@@ -129,18 +129,6 @@ if (file.exists(family_path) && file.exists(long_path)) {
       final_family$es_emekli[final_family$aile_no == 1015],
       1
     ))
-    stopifnot("hba1c" %in% names(final_family))
-    stopifnot("hba1c" %in% names(final_long))
-    stopifnot(sum(!is.na(final_family$hba1c)) == 39)
-    stopifnot(sum(!is.na(final_long$hba1c)) == 39)
-    stopifnot(sum(final_family$role != "DM_Hasta_Indeks" &
-                    !is.na(final_family$hba1c)) == 0)
-    stopifnot(sum(final_long$role != "DM_Hasta_Indeks" &
-                    !is.na(final_long$hba1c)) == 0)
-    stopifnot(all(
-      final_family$hba1c[!is.na(final_family$hba1c)] >= 4.5 &
-        final_family$hba1c[!is.na(final_family$hba1c)] <= 18
-    ))
   }
 }
 

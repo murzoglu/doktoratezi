@@ -6,12 +6,12 @@
 > may be used with one fresh subagent per package, followed by main-agent review.
 > Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Resmi Marmara tez kılavuzu, nicel `doktoratezi` repo kanıtları ve
-nitel `T1DM Niteliksel` repo çıktılarıyla uyumlu, kaynak izlenebilir, gizlilik
+**Goal:** Resmi Marmara tez kılavuzu, nicel kök kanıtları ve
+nitel kol (niteliksel/) çıktılarıyla uyumlu, kaynak izlenebilir, gizlilik
 sınırı korunmuş ve Quarto ile üretilebilir bir karma doktora tezi yazım süreci
 kurmak.
 
-**Architecture:** Yazım süreci L0 resmi kılavuz, L1 nicel repo, L2 nitel repo,
+**Architecture:** Yazım süreci L0 resmi kılavuz, L1 nicel kök, L2 nitel kol,
 L3 dış kanıt ve L4 teknik doğrulama katmanlarına ayrılır. Her bölüm önce
 `tez-yazim/03_bolum-hazirlik/` içinde planlanır, sonra ilgili `chapters/*.qmd`
 dosyasına kontrollü aktarılır. Her aktarım repo kanıt haritası, kaynakça
@@ -21,22 +21,22 @@ sertifikasıyla kapatılır.
 **Tech Stack:** Quarto, R, `targets`, `renv`, `dmnitel`, Anamnesis/context
 management gate, Evidentia MCP çekirdeği, PubMed/OpenAlex/Paper Search,
 OpenAthens kurumsal yayıncı erişimi, Anna's Library full-text fallback,
-Zotero Web API bridge, bölüm finalizasyon sertifikasyon playbook'u, iki repo
+Zotero Web API bridge, bölüm finalizasyon sertifikasyon playbook'u, iki-kol
 AI-reliability kontrolü, promptfoo, Marmara resmi tez kılavuzu ve şablonları.
 
 ---
 
 ## 0A. Ana Çalışma Merkezi Kararı
 
-1. Tez yazım süreci bundan sonra `/mnt/thunderbolt/workspaces/doktoratezi`
+1. Tez yazım süreci bundan sonra `/workspaces/T1DM-Tez`
    reposunda yürütülür.
 2. Ana operasyon alanı `tez-yazim/`; gerçek üretim hedefleri `thesis.qmd`
    ve `chapters/*.qmd` dosyalarıdır.
-3. Nitel repo yetkinlikleri yalnız nitel kolun ilgili tez kesimleri
+3. Nitel kol yetkinlikleri yalnız nitel kolun ilgili tez kesimleri
    yazılırken açılır: yöntem, bulgular, joint display, tartışma, ekler,
    COREQ/audit trail, anonim alıntı bütünlüğü ve nitel AI-reliability.
 4. Doktoratezi içine transfer edilmiş kanonik nitel sonuç raporu, nitel
-   repoyu temsil eden varsayılan kaynak katmanıdır.
+   kolu temsil eden varsayılan kaynak katmanıdır.
 5. Dış literatürde Evidentia paketi en geniş kapsamlı ana kanıt motorudur;
    OpenAthens full-text, Anna's fallback, PubMed/OpenAlex/Paper Search, Zotero
    ve referans ledger kapıları bu hattı tamamlar.
@@ -61,7 +61,7 @@ AI-reliability kontrolü, promptfoo, Marmara resmi tez kılavuzu ve şablonları
    doğrulanmamış ve Zotero/BibTeX kaydı mutabıklaştırılmamış kaynak tez
    metnine citation olarak girmez.
 6. Referans içeren her bölüm değişikliği iki AI-reliability kapısından geçer:
-   nitel repo `t1dm-qual-ai-audit` ve nicel repo `doktoratezi-ai-audit`.
+   nitel kol `t1dm-qual-ai-audit` ve nicel kök `doktoratezi-ai-audit`.
 7. Bağlam yönetimi için `dmnitel ai-context`, Anamnesis ve bellek/Qdrant
    araçları yalnız anonim/türetilmiş proje bağlamında kullanılır; bağlam
    çıktısı ham veri yerine karar ve kanıt düzeyinde tutulur.
@@ -122,9 +122,9 @@ AI-reliability kontrolü, promptfoo, Marmara resmi tez kılavuzu ve şablonları
 | `docs/analiz_planlari/04-sap-faz2-posthoc.md` | Faz II/post-hoc sınırları. |
 | `docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md` | Veri ve değişken sözleşmesi. |
 | `data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock` | Varlık/hash kontratı; satır içeriği yazıya taşınmaz. |
-| `docs/niteliksel/qualitative_canonical_results_report.md` | Nicel repodaki güvenli nitel entegrasyon raporu. |
+| `niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd` | Tek kanonik nitel sonuç raporu. |
+| `niteliksel/qualitative_canonical_results_report.md` | Kanonik QMD'nin mekanik Markdown kopyası. |
 | `T1DM Niteliksel/07_reports/cross_repo_thesis_bridge_status.md` | Cross-repo güncel kaynak haritası. |
-| `T1DM Niteliksel/07_reports/ai_reliability_qualitative_canonical_results_report.md` | Nitel rapor güvenilirlik ve açık nokta kanıtı. |
 | `tez-yazim/00_kaynak-kurallari/tam-metin-erisim-kaskadi.md` | OpenAthens -> Anna -> PMC/OA/repository -> Zotero tam metin erişim kapısı. |
 | `tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md` | Her citation için DOI/PMID, OpenAthens/Anna/full-text, Zotero ve iki AI-reliability durumu. |
 
@@ -134,6 +134,7 @@ AI-reliability kontrolü, promptfoo, Marmara resmi tez kılavuzu ve şablonları
 > referans kapısı bu bölümde artık **tam metniyle tekrarlanmaz**; kanonik
 > otoritelerine işaret edilir (duplikasyon önleme — `01_mimari/README.md`).
 > Kanonik kaynaklar:
+>
 > - **Oturum ritüeli** → `00_kaynak-kurallari/talimatname-claude-code.md` §1 (`/tez-oturum`).
 > - **Araç/MCP/skill/plugin matrisi** → `01_mimari/yetkinlik-ve-arac-mimarisi.md`.
 > - **Dış literatür kaskadı** → `01_mimari/evidentia-entegrasyon-cercevesi.md`.
@@ -151,7 +152,7 @@ onu çalıştırır. Bu planın yürütmesi için asgari preflight:
 - [ ] **Step 1: Resmi kaynak + operasyon dosyalarının varlığı**
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 test -f tez-yazim/README.md
 test -f tez-yazim/06_kritik-kaynaklar/kritik-dosya-manifesti.tsv
 test -f docs/tez-kilavuz/'TEZ YAZIM KLAVUZU-2025.pdf'
@@ -163,7 +164,7 @@ Expected: Komut sessiz exit 0 verir.
 - [ ] **Step 2: Cross-repo kaynak haritası + araç rotası + bağlam** (karma/nitel kesim)
 
 ```bash
-cd /mnt/thunderbolt/workspaces/T1DM\ Niteliksel
+cd /workspaces/T1DM-Tez/niteliksel
 ./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md
 ./dmnitel route-tool --query "Bu oturumda yazılacak bölüm için araç seçimi"
 ./dmnitel ai-context
@@ -177,7 +178,7 @@ bölüm notuna işlenir.
 - [ ] **Step 3: Harici kaynak kullanılacaksa AI use log** (talimatname §6 kapanış koşulu)
 
 ```bash
-cd /mnt/thunderbolt/workspaces/T1DM\ Niteliksel
+cd /workspaces/T1DM-Tez/niteliksel
 ./dmnitel log-ai-use \
   --tool "Anamnesis/Evidentia/OpenAthens/Anna's Library/Zotero/Codex" \
   --model "tool-specific" \
@@ -202,7 +203,7 @@ Tool Gate" + "Kullanılacak Yetkinlikler"). Burada tekrarlanmaz. Bu planda en
 | Dış literatür (Evidentia + PubMed/OpenAlex/Paper Search) | `evidentia-entegrasyon-cercevesi.md` §1–3 |
 | Tam metin (OpenAthens → Anna's → PMC/OA → Zotero) | `00_kaynak-kurallari/tam-metin-erisim-kaskadi.md` |
 | Kaynakça (Zotero item key ≠ BibTeX key) | `yetkinlik-ve-arac-mimarisi.md` + `02_kanit-haritalari/referans-denetim-ledgeri.md` |
-| Çift AI-reliability + sci-audit (imla/adli) | `talimatname-claude-code.md` §6 |
+| iki-kol AI-reliability + sci-audit (imla/adli) | `talimatname-claude-code.md` §6 |
 | YÖK/ERIC · mevzuat · klinik terminoloji · teknik teslim | `yetkinlik-ve-arac-mimarisi.md` (koşullu kapılar) |
 
 ### 2.3 Zorunlu referans kapısı → tek otorite
@@ -214,7 +215,7 @@ Referans kapısının **sırası** `talimatname-claude-code.md` §4'tedir
 tekrarlanmaz. Özet sıra:
 
 bağlam → bibliyografik kimlik (DOI/PMID/PMCID/OpenAlex/YÖK) → tam metin →
-Zotero mutabakatı (item key ≠ BibTeX key) → claim/pasaj notu → ledger + çift
+Zotero mutabakatı (item key ≠ BibTeX key) → claim/pasaj notu → ledger + iki-kol
 AI-reliability. Kapı kapanmadan referans `chapters/*.qmd` veya
 `references/references.bib`'e girmez.
 
@@ -223,6 +224,7 @@ AI-reliability. Kapı kapanmadan referans `chapters/*.qmd` veya
 **Amaç:** Mevcut Quarto bölüm yapısını Marmara resmi bölüm sırası ile hizalamak.
 
 **Files:**
+
 - Read: `docs/tez-kilavuz/TEZ YAZIM KLAVUZU-2025.pdf`
 - Read: `docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx`
 - Read: `thesis.qmd`
@@ -273,7 +275,7 @@ moved to EKLER, depending on supervisor preference.
 Run:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 quarto check
 ```
 
@@ -284,6 +286,7 @@ Expected: Quarto installation check passes.
 **Amaç:** Her bölümde kullanılacak iddia-kaynak eşleşmesini kurmak.
 
 **Files:**
+
 - Create later: `tez-yazim/02_kanit-haritalari/giris-ve-amac-kanit-haritasi.md`
 - Create later: `tez-yazim/02_kanit-haritalari/genel-bilgiler-kanit-haritasi.md`
 - Create later: `tez-yazim/02_kanit-haritalari/gerec-ve-yontem-kanit-haritasi.md`
@@ -294,12 +297,12 @@ Expected: Quarto installation check passes.
 - Read: `docs/CLINICAL-STUDY-REPORT-FINAL.md`
 - Read: `docs/analiz_planlari/03-sap-ana-plan.md`
 - Read: `docs/analiz_planlari/04-sap-faz2-posthoc.md`
-- Read: `docs/niteliksel/qualitative_canonical_results_report.md`
+- Read: `niteliksel/qualitative_canonical_results_report.md`
 
 - [ ] **Step 1: Kanıt haritası klasörünü oluştur**
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 mkdir -p tez-yazim/02_kanit-haritalari
 ```
 
@@ -310,7 +313,7 @@ mkdir -p tez-yazim/02_kanit-haritalari
 |---|---|---|---|---|
 | T1DM aile sistemini etkileyen kronik durumdur. | dış literatür + CSR | dış kanıt + repo bağlamı | GİRİŞ ve AMAÇ | Evidentia + OpenAthens/Anna full-text + Zotero + iki AI-reliability |
 | Kanonik veri 241 aile x 2 katılımcı yapısındadır. | docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md + lock | repo kanıtı | GEREÇ ve YÖNTEM | R data governance tests |
-| Nitel kol dört makro tema sunar. | docs/niteliksel/qualitative_canonical_results_report.md | türetilmiş nitel kanıt | BULGULAR | nitel + nicel AI-reliability |
+| Nitel kol dört makro tema sunar. | niteliksel/qualitative_canonical_results_report.md | türetilmiş nitel kanıt | BULGULAR | nitel + nicel AI-reliability |
 ```
 
 - [ ] **Step 3: Dış literatür arama sorularını bölüm bazında ayır**
@@ -348,7 +351,7 @@ Expected: Her citation adayında tam metin durumu `cite-ok` veya açık
 Run after verified sources are selected:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 python3 scripts/util/zotero_env_bridge.py status --json
 python3 scripts/util/zotero_env_bridge.py export-bibtex --out references/references.bib
 ```
@@ -360,10 +363,10 @@ approval.
 - [ ] **Step 6: Referans ledger'ını iki AI-reliability kapısıyla kapat**
 
 ```bash
-cd /mnt/thunderbolt/workspaces/T1DM\ Niteliksel
+cd /workspaces/T1DM-Tez/niteliksel
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py
 
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py
 ```
 
@@ -376,10 +379,11 @@ Expected: Nitel ve nicel AI-reliability kontrolleri geçer; ledger'da
 hattını ve nitel triadik kolun katkısını tek resmi bölümde kurmak.
 
 **Files:**
+
 - Read: `tez-yazim/03_bolum-hazirlik/01_giris-ve-amac.md`
 - Read: `docs/CLINICAL-STUDY-REPORT-FINAL.md`
 - Read: `docs/analiz_planlari/03-sap-ana-plan.md`
-- Read: `docs/niteliksel/qualitative_canonical_results_report.md`
+- Read: `niteliksel/qualitative_canonical_results_report.md`
 - Modify later: `chapters/01_giris.qmd`
 - Create later: `tez-yazim/02_kanit-haritalari/giris-ve-amac-kanit-haritasi.md`
 
@@ -388,7 +392,7 @@ hattını ve nitel triadik kolun katkısını tek resmi bölümde kurmak.
 Check:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 sed -n '1,160p' chapters/01_giris.qmd
 ```
 
@@ -446,6 +450,7 @@ Tüm dış iddialar kaynaklı mı?
 kılavuz dilinde sunmak.
 
 **Files:**
+
 - Read: `tez-yazim/03_bolum-hazirlik/02_genel-bilgiler.md`
 - Create later: `tez-yazim/02_kanit-haritalari/genel-bilgiler-kanit-haritasi.md`
 - Modify later: new or existing Quarto section decision depends on Faz 0
@@ -476,7 +481,7 @@ Halka C: Nitel/karma yöntem, triadik aile ve multi-informant kaynakları
 Run route:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/T1DM\ Niteliksel
+cd /workspaces/T1DM-Tez/niteliksel
 ./dmnitel route-tool --query "Genel bilgiler T1DM aile sistemi kardeş ilişkisi literatür taraması"
 ```
 
@@ -500,12 +505,13 @@ yapan kavramsal zemin kurulur; yorum TARTIŞMA ve SONUÇ bölümüne bırakılı
 biçimde yazmak.
 
 **Files:**
+
 - Read: `tez-yazim/03_bolum-hazirlik/03_gerec-ve-yontem.md`
 - Read: `_targets.R`
 - Read: `docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md`
 - Read: `docs/analiz_planlari/03-sap-ana-plan.md`
 - Read: `docs/analiz_planlari/04-sap-faz2-posthoc.md`
-- Read: `docs/niteliksel/qualitative_canonical_results_report.md`
+- Read: `niteliksel/qualitative_canonical_results_report.md`
 - Modify later: `chapters/02_yontem.qmd`
 
 - [ ] **Step 1: Nicel yöntem bloklarını ayır**
@@ -549,7 +555,7 @@ sunulur. Nitel kol nicel sonucu doğrulayan veya nedensel mekanizma kanıtı
 - [ ] **Step 4: Veri governance testlerini çalıştır**
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 Rscript tests/test_reproducibility_lock.R
 Rscript tests/test_final_reference_loading.R
 Rscript tests/test_data_governance.R
@@ -562,7 +568,7 @@ Expected: Sessiz exit 0.
 When methods draft exists:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/T1DM\ Niteliksel
+cd /workspaces/T1DM-Tez/niteliksel
 ./dmnitel audit-coreq --methods <methods-draft.md> --results <results-draft.md>
 ```
 
@@ -574,9 +580,10 @@ Expected: COREQ item evidence status; partial/missing items explicitly handled.
 ve gizlilik sınırıyla sunmak.
 
 **Files:**
+
 - Read: `tez-yazim/03_bolum-hazirlik/04_bulgular.md`
 - Read: `chapters/03_bulgular.qmd`
-- Read: `docs/niteliksel/qualitative_canonical_results_report.md`
+- Read: `niteliksel/qualitative_canonical_results_report.md`
 - Modify later: `chapters/03_bulgular.qmd`
 - Modify later: `tez-yazim/05_entegrasyon/nitel-nicel-joint-display-plan.md`
 
@@ -609,7 +616,7 @@ Create later:
 Before adding any quote text:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/T1DM\ Niteliksel
+cd /workspaces/T1DM-Tez/niteliksel
 ./dmnitel check-quotes \
   --source 02_processed/cleaned_text/thesis_qualitative_cleaned_current.md \
   --quotes 06_manuscript_outputs/quotes_used.csv \
@@ -635,12 +642,14 @@ karıştırmadan karma yorum zemini oluşturmak.
 
 > **Otorite:** Joint display alan tanımları, ilişki türü sözlüğü ve gizlilik
 > kuralı tek kanonik yerdedir: `05_entegrasyon/nitel-nicel-joint-display-plan.md`
-> + `05_entegrasyon/nitel-cikti-cercevesi.md`. Aşağıdaki adımlar bu planın
+>
+> - `05_entegrasyon/nitel-cikti-cercevesi.md`. Aşağıdaki adımlar bu planın
 > yürütmesi içindir; alan tanımı çakışırsa 05 otoritesi esastır.
 
 **Files:**
+
 - Modify later: `tez-yazim/05_entegrasyon/nitel-nicel-joint-display-plan.md`
-- Read: `docs/niteliksel/qualitative_canonical_results_report.md`
+- Read: `niteliksel/qualitative_canonical_results_report.md`
 - Read: `chapters/03_bulgular.qmd`
 - Modify later: `chapters/03_bulgular.qmd`
 - Modify later: `chapters/04_tartisma.qmd`
@@ -680,6 +689,7 @@ Post-hoc bulgu birincil hipotez gibi etiketlenmedi.
 ve önerileri resmi `TARTIŞMA ve SONUÇ` bölüm mantığında yazmak.
 
 **Files:**
+
 - Read: `tez-yazim/03_bolum-hazirlik/05_tartisma-ve-sonuc.md`
 - Read: `chapters/04_tartisma.qmd`
 - Read: `chapters/05_sonuc.qmd`
@@ -728,6 +738,7 @@ gerektiren öneri olarak etiketlenir.
 Özet ve İngilizce Summary hazırlamak.
 
 **Files:**
+
 - Read: `tez-yazim/02_sablonlar/ozet-summary-sablonu.md`
 - Create or modify later: official front matter source decision
 - Possible modify later: `thesis.qmd` or separate front matter qmd files
@@ -768,6 +779,7 @@ Anahtar sözcük sayısı en fazla beş.
 bilimsel faaliyetler paketini hazırlamak.
 
 **Files:**
+
 - Read: `tez-yazim/03_bolum-hazirlik/06_kaynaklar-ekler.md`
 - Read: `tez-yazim/02_sablonlar/on-bolumler-sablonu.md`
 - Read: `references/references.bib`
@@ -790,7 +802,7 @@ Before export, every cited item must have DOI/PMID/ID, full-text evidence,
 claim/passage note and status in `referans-denetim-ledgeri.md`.
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 python3 scripts/util/zotero_env_bridge.py status --json
 python3 scripts/util/zotero_env_bridge.py export-bibtex --out references/references.bib
 ```
@@ -828,6 +840,7 @@ Tablo listesinde yalnız numara, başlık, sayfa no.
 resmi formatla uyumlu olduğunu doğrulamak.
 
 **Files:**
+
 - Read/modify as needed: `thesis.qmd`
 - Read/modify as needed: `chapters/*.qmd`
 - Read: `tez-yazim/04_kalite-kontrol/*.md`
@@ -836,7 +849,7 @@ resmi formatla uyumlu olduğunu doğrulamak.
 - [ ] **Step 1: Hafif teknik kontroller**
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 quarto check
 Rscript -e 'renv::status()'
 ```
@@ -846,7 +859,7 @@ Expected: Quarto check passes; renv has no issues.
 - [ ] **Step 2: Veri-governance kontrolleri**
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 Rscript tests/test_reproducibility_lock.R
 Rscript tests/test_final_reference_loading.R
 Rscript tests/test_data_governance.R
@@ -857,7 +870,7 @@ Expected: Sessiz exit 0.
 - [ ] **Step 3: Referans tam metin ve Zotero kapanış kapısı**
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 test -f tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md
 rg -n 'full-text-pending|zotero-pending|reliability-pending|citation-without-full-text' tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md
 python3 scripts/util/zotero_env_bridge.py status --json
@@ -870,12 +883,12 @@ not exist; Zotero status is OK and BibTeX export succeeds.
 - [ ] **Step 4: AI/policy regression**
 
 ```bash
-cd /mnt/thunderbolt/workspaces/T1DM\ Niteliksel
+cd /workspaces/T1DM-Tez/niteliksel
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py
 npx promptfoo@latest eval -c reliability/evals/promptfooconfig.yaml
 
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py
 npx promptfoo@latest eval -c reliability/evals/promptfooconfig.yaml
 ```
@@ -888,7 +901,7 @@ promptfoo nitel/nicel 4/4 passes.
 Run only after chapter structure is stable:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 quarto render thesis.qmd
 ```
 
@@ -921,7 +934,7 @@ Required headings:
 Her ana bölüm için sertifikasyon playbook'u ayrı raporla çalıştırılır:
 
 ```bash
-cd /mnt/thunderbolt/workspaces/doktoratezi
+cd /workspaces/T1DM-Tez
 test -f tez-yazim/04_kalite-kontrol/bolum-finalizasyon-sertifikasyon-playbook.md
 test -f tez-yazim/04_kalite-kontrol/bolum-finalizasyon-sertifikasi-sablonu.md
 mkdir -p tez-yazim/04_kalite-kontrol/sertifikalar
@@ -975,7 +988,7 @@ adım, bu talimatnameleri uygulayarak `chapters/*.qmd` üretimini yapmaktır.
 
 ## 16. Self-Review
 
-- Spec coverage: Resmi kılavuz, iki-repo entegrasyon, araç mimarisi, bölüm
+- Spec coverage: Resmi kılavuz, iki-kol entegrasyon, araç mimarisi, bölüm
   sırası, kanıt haritası, Anamnesis/context yönetimi, OpenAthens/Anna
   full-text, literatür, Zotero, bölüm sertifikasyonu, R/Quarto, çift
   AI-reliability ve final render gereksinimleri bu plana bağlandı.
@@ -983,5 +996,5 @@ adım, bu talimatnameleri uygulayarak `chapters/*.qmd` üretimini yapmaktır.
   bırakılmadı. Araştırmacı/danışman kararı gerektiren noktalar açık karar
   adımı olarak yazıldı.
 - Type/command consistency: Komutlar mevcut repo köklerine göre yazıldı;
-  `dmnitel` komutları nitel repo kökünde, R/Quarto komutları nicel repo
+  `dmnitel` komutları nitel kol kökünde (niteliksel/), R/Quarto komutları repo
   kökünde çalışacak biçimde ayrıldı.

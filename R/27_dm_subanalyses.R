@@ -1,10 +1,8 @@
 # KISIM X — DM-only Klinik Alt-Analizler
-# 30. HbA1c × ebeveynlik etkileşimi
 # 31. DM süresi spline modeli
 # 32. Tanı yaşı stratifikasyonu (3 strata)
 #
-# DM-only frame (n_dm=120, n_hba1c=39 keşifsel).
-# Kural #19: HbA1c için imputation YAPILMAZ; eksiklik açıkça raporlanır.
+# DM-only frame (n_dm=120); keşifsel katman.
 
 dm_prepare_frame <- function(df_family_ses) {
   df <- df_family_ses[df_family_ses$group_f == "DM", , drop = FALSE]
@@ -22,43 +20,15 @@ dm_prepare_frame <- function(df_family_ses) {
 
 dm_n_summary <- function(df) {
   data.frame(
-    metric = c("n_dm_total", "n_with_hba1c", "n_with_dm_yili", "n_with_tani_yasi",
-               "median_dm_yili", "median_hba1c", "median_tani_yasi"),
+    metric = c("n_dm_total", "n_with_dm_yili", "n_with_tani_yasi",
+               "median_dm_yili", "median_tani_yasi"),
     value  = c(
       nrow(df),
-      sum(!is.na(df$hba1c)),
       sum(!is.na(df$dm_yili)),
       sum(!is.na(df$tani_yasi)),
       stats::median(df$dm_yili, na.rm = TRUE),
-      stats::median(df$hba1c, na.rm = TRUE),
       stats::median(df$tani_yasi, na.rm = TRUE)
     ),
-    stringsAsFactors = FALSE
-  )
-}
-
-# === 30. HbA1c × parenting interaction =================================
-
-dm_hba1c_interaction <- function(df, outcome_col = "embu_p_asiri_koruma_mean") {
-  sub_df <- df[!is.na(df$hba1c) & !is.na(df[[outcome_col]]), , drop = FALSE]
-  if (nrow(sub_df) < 20L) {
-    return(data.frame(outcome = outcome_col, status = "insufficient_n",
-                      n = nrow(sub_df), stringsAsFactors = FALSE))
-  }
-  formula_main <- stats::as.formula(sprintf("%s ~ hba1c + anne_yas_z + ses_latent_z + cocuk_yas_z", outcome_col))
-  fit_main <- stats::lm(formula_main, data = sub_df)
-  cs <- summary(fit_main)$coefficients
-  hba1c_idx <- grep("hba1c", rownames(cs))[1]
-  data.frame(
-    outcome = outcome_col,
-    status  = "ok",
-    n       = nrow(sub_df),
-    median_hba1c = stats::median(sub_df$hba1c),
-    estimate = cs[hba1c_idx, 1],
-    se       = cs[hba1c_idx, 2],
-    t_value  = cs[hba1c_idx, 3],
-    p_value  = cs[hba1c_idx, 4],
-    r_squared = summary(fit_main)$r.squared,
     stringsAsFactors = FALSE
   )
 }
@@ -152,13 +122,11 @@ run_dm_subanalyses_pipeline <- function(df_family_ses) {
   outcomes <- c("embu_p_sicaklik_mean", "embu_p_asiri_koruma_mean",
                 "embu_p_reddetme_mean", "embu_p_karsilastirma_mean",
                 "beck_total")
-  hba1c_table <- do.call(rbind, lapply(outcomes, function(o) dm_hba1c_interaction(prepared, o)))
   spline_table <- do.call(rbind, lapply(outcomes, function(o) dm_duration_spline(prepared, o)))
   strata_descriptive <- do.call(rbind, lapply(outcomes, function(o) dm_strata_analysis(prepared, o)))
   strata_tests <- do.call(rbind, lapply(outcomes, function(o) dm_strata_test(prepared, o)))
   list(
     n_summary_table        = n_summary,
-    hba1c_interaction_table = hba1c_table,
     spline_duration_table   = spline_table,
     strata_descriptive_table = strata_descriptive,
     strata_tests_table      = strata_tests

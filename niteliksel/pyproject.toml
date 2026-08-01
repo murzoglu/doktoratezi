@@ -12,3 +12,6 @@ dependencies = []
 
 [project.scripts]
 dmnitel = "dm_niteliksel_toolkit.cli:main"
+
+[tool.setuptools]
+packages = ["dm_niteliksel_toolkit"]

@@ -1,22 +1,9 @@
 # EK İSTATİSTİK PLANI — FAZ IV (ARTIK DEĞİŞKEN YÜZEYLERİ · POST-HOC)
 
 **Sürüm:** v0.4 (**YÜRÜTÜLDÜ / EXECUTED** — 2026-07-08; tüm KISIM'lar R/56-R/62 modülleriyle koşuldu, 49 `phase4_*.csv` üretildi, CSR-FINAL §16.8-16.15'e temiz-nihai biçimde entegre edildi) · **Tarih:** 2026-07-08
-**v0.2 → v0.3 farkı:** Bağımsız ampirik veri-provenans probu (ham 482×158 + kanonik final) dört
-bulgu üretti ve **hepsi kanonik CSV üzerinde birebir doğrulandı**: (1) **HbA1c MNAR seçilim** —
-DM'de HbA1c varlığı AD kullanımıyla güçlü ilişkili (Fisher OR=4,56 [1,84–11,70], p=0,000466;
-tam n=39/%32,5) → HbA1c bir *seçilmiş alt-örneklem*; (2) **anket yılı × grup ağır kollinearite**
-(2023: DM108/K40, 2024: DM6/K36, 2025: DM6/K45; logistic p≈1,3e-12) → batch/temporal confound;
-(3) **AD ↔ düşük güncel Beck** (9,56 vs 14,71; Welch p=0,000128) → AD tedavi/temas göstergesi,
-şiddet değil (→ §130 **düzeltildi**); (4) **5 DM ailede dm_yili>çocuk yaşı + 1 negatif kardeş
-tanı-yaşı** → mantık maskesi zorunlu. Sonuç: iki **yeni geçerlik-denetimi** eklendi (**KISIM XLIX**,
-§134–135); §130 tedavi×şiddet 2×2'ye düzeltildi; §101/§122 rafine edildi. Bunlar **kullanılmayan
-değişken değil, mevcut/planlı analizlerin geçerlik tehdidi** — CSR-düzeyi etkileri §1.8'de.
-**Durum (v0.4):** ✅ **YÜRÜTÜLDÜ.** Fizibilite denetimi (§1.5) koşuldu (§1.5.2-SONUÇ), Evidentia
-native-first tam-metin doğrulaması (EK) tamamlandı (6 çapa DOI/PMID-teyitli, `references.bib`'e
-işlendi), tüm KISIM'lar R/56-R/62 saf-fonksiyon modülleriyle koşuldu (`scripts/R/57_phase4_audit.R`;
-7 `phase4_*` targets hedefi, modül+regresyon testleri PASS,
-49 `outputs/tables/phase4_*.csv` üretildi. Sonuçlar CSR-FINAL §16.8-16.15 (+§17.7/§18.1/§18.4/§12.5)
-metnine temiz-nihai (aşamasız) biçimde entegre edildi. Sapma tablosu #4 (OSF Layer 5). Kanonik kilit
+**v0.2 → v0.3 farkı:** Bağımsız ampirik veri-provenans probu (ham 482×158 + kanonik final) artık tez kapsamında kalan geçerlik bulgularıyla sınırlı tutulur: (1) **anket yılı × grup ağır kollinearite**
+(2023: DM108/K40, 2024: DM6/K36, 2025: DM6/K45; logistic p≈1,3e-12) → batch/temporal confound; (2) **AD ↔ düşük güncel Beck** (9,56 vs 14,71; Welch p=0,000128) → AD tedavi/temas göstergesi,
+şiddet değil (→ §130 **düzeltildi**); (3) **5 DM ailede dm_yili>çocuk yaşı + 1 negatif kardeş tanı-yaşı** → mantık maskesi zorunlu. Sonuç: alım-yılı/batch geçerlik denetimi korunur. Kanonik kilit
 rev 2 DEĞİŞMEDİ; YENİ VERİ toplanmadı.
 **v0.1 → v0.2 farkı:** İkinci-görüş post-hoc aday listesi (2026-07-08) kod-footprint'iyle
 mutabık kılındı (§1.7). Çoğu madde **Faz III'te zaten kapsanmış** olarak işaretlendi (tekrar
@@ -49,7 +36,7 @@ yüzeylerini ele alır.
 
 - **Faz III'ün tekrarı değildir.** Faz III'ün kapadığı yüzeyler (materyal facet, EGP/ISEI/SIOPS
   yarışı, eğitim homogamisi, anne istihdamı, FSM, doğum sırası, `same_sex`/`age_gap`, anne-vs-baba
-  kayırma §98, HbA1c ortak modeli, tanı yaşı DM alt-analizi) **yeniden açılmaz.**
+  kayırma ve tanı-yaşı DM alt-analizi) **yeniden açılmaz.**
 - **H1–H4'ü yeniden açmaz.** Confirmatory estimand, outcome ve model aileleri sabittir.
 - **Yeni ölçek/ölçüm/veri eklemez.** Yalnız `FINAL_REFERENCE__*` içinde hâlihazırda kayıtlı
   veya ondan aritmetik olarak türetilebilir alanları modeller.
@@ -81,8 +68,7 @@ Kaynak: değişken envanteri (family 288 / long 203 kolon) × analiz kod footpri
 | `nurturance_by_sib` vs `nurturance_of_sib`; `dominance_by/of`; `admiration_by/of` | üst-boyut `status`/`warmth` **ortalıyor** (R/10 `srq_higher_order_map`) | ✗ | **Bakım/güç yönü (§116)** — kronik-hastalık diadının çekirdeği |
 | `katilimci_cocuk_cinsiyet` / `cinsiyet_f` | kovaryat (R/16, R/52, mediation, multiverse) | kovaryat | **Cinsiyet-odaklı diferansiyel ebeveynlik moderasyonu (§119)** |
 | `anne_yas` | 27 dosyada **yalnız `_z` kovaryat** | kovaryat | **Anne-yaşı substantif gradyanı (§120)** |
-| `tani_yas` (tanı yaşı) | R/27, R/40, R/55 (DM alt-analiz) | §111 **eskiz** | **Gelişim-penceresi × ebeveynlik/kardeş (§121)** — eskizden çıkarımsala |
-| `hba1c` (SES/komorbidite yordayıcısı olarak) | kovaryat (R/40:129, R/27:48) | ortak model | **Metabolik kontrolün sosyodemografik gradyanı (§122)** — odak estimand |
+| `tani_yas` (tanı yaşı) | R/27, R/55 (DM alt-analiz) | §111 **eskiz** | **Gelişim-penceresi × ebeveynlik/kardeş (§121)** — eskizden çıkarımsala |
 | `anne_hastalik_*` 12/14 + `es_hastalik_*` 14/14 sistem-özgü | **0 dosya** (yalnız `otoimmun`/`endokrin`/`kategori_sayisi` R/53) | kısmi | **14-kategori betimsel prevalans paneli (§123)** |
 | `kronik_hastalik_durumu` / `esiniz_kronik_hastalik_durumu` (ikili öz-bildirim) | PS kovaryatı / standardizasyon (R/04,05,15) | ✗ | **Öz-bildirim ↔ kodlanmış komorbidite uyumu (§124)** — veri-geçerlik |
 | Ebeveyn yaş farkı (`anne_dogum_tarihi` − `es_dogum_tarihi`) | **türetilmemiş** | ✗ | **Assortatif yaş-farkı kovaryatı/moderatörü (§125)** |
@@ -117,14 +103,12 @@ vardı), **YENİ v0.2** (mutabakattan sonra eklendi).
 | Anne komorbidite var/yok → BDI/EMBU (ikili) | **ZATEN FAZ III** | §104 (ikili komorbidite). Betimsel 14-panel = **Faz IV §123**. |
 | Kardeş yaş farkı / same_sex / doğum sırası / çocuk sayısı → SRQ/EMBU-C | **ZATEN FAZ III** | §108–109 + §1.6-E. İşaretli yön = **Faz IV §118**. |
 | DM tanı yaşı / süre / **tanı-anında kardeş yaşı** → SRQ/EMBU-C | **FAZ IV v0.1** | §121. `kardes_tani_ani_yas` R/55'te betimsel türetilmiş (§111) → çıkarımsala taşınır. |
-| HbA1c × EMBU/BDI/SRQ | **FAZ IV v0.1 (genişletildi)** | §122 — SES-gradyanına **ölçek-skoru korelatları** eklendi. |
 | Yönlü/granüler SRQ faset (nurturance/dominance yönü) | **FAZ IV v0.1** | §116–117. |
 | Çocuk cinsiyeti odaklı ebeveynlik; anne-yaşı gradyanı | **FAZ IV v0.1** | §119–120. |
 | Öz-bildirim ↔ kodlanmış komorbidite uyumu | **FAZ IV v0.1** | §124. |
 | Ebeveyn yaş farkı | **FAZ IV v0.1** | §125. |
 
 **"Kaçınılması gerekenler" tam mutabakat:** İkinci-görüşün uyarıları (otoimmün n=1, mental n=2 →
-AD×BDI; tek-ebeveyn n≈3 kovaryat değil; HbA1c n≈39 yalnız betimsel; meslek-DRM anne-vs-baba
 kurulamaz) bu planın §1.5/§0 fizibilite disipliniyle **birebir örtüşür** — bağımsız doğrulama.
 
 ---
@@ -140,7 +124,6 @@ kurulamaz) bu planın §1.5/§0 fizibilite disipliniyle **birebir örtüşür** 
 `anne_hastalik_mental` =1 yalnız **2 aile**; `anne_hastalik_kategori_sayisi` 0:**177**/1:53/2:8
 (maks 2, %73 sıfır); `calisma_durumu` çalışıyor **152**/hayır **89**; `es_calisma_durumu`
 çalışıyor **227**/emekli **4**; doğum sırası ve `cocuk_sayisi` iyi varyanslı. CSR §12.5.1:
-**HbA1c tam-veri n≈39** (yetersiz güç uyarısı) → §122 fiilen **betimsel/düşük-güçlü**.
 
 ### 1.5.2 Çalıştırma öncesi çıkarılacak YENİ agregat sorgular (henüz yok)
 Aşağıdakiler bu plan onaylanınca kanonik CSV üzerinde **salt-okunur agregat** olarak
@@ -178,7 +161,6 @@ Yukarıdaki 8 ön-koşul sorgusu düzeltilmiş veri üzerinde koşuldu (`faz4_fe
 | 7 §130 AD×BDI≥17 | AD−/<17=134, **AD−/≥17=59** (tedavisiz distres, güçlü), AD+/<17=39, **AD+/≥17=6 (küçük)** | ✅ küçük hücre birleştir (AD marks tedavi teyidi: tedavili annede BDI≥17 nadir) |
 | 8 §133 LCA sınıf | **2 sınıf: 152 (%64, adaptif) / 86 (%36, riskli)**; ikisi de >%10 | ✅ dışsal doğrulama fizibl |
 
-**Sonuç:** Planın çoğu maddesi **çıkarımsal-yeşil**; yalnız §122/§123 betimsel, §124 kodlama-sadakati olarak yeniden çerçevelendi. §116 (bayrak) beklenenden güçlü (α .58–.86). §121 düzeltmeden fayda gördü (n=115→120, 3 temiz bant). §134-135 zaten koşuldu (HbA1c MNAR OR=4,56; yıl×grup p≈1e-12).
 
 ### 1.5.3 Beklenen yeniden-sınıflandırmalar (ön-görü)
 | § | Ön-görülen Tier | Gerekçe |
@@ -188,7 +170,6 @@ Yukarıdaki 8 ön-koşul sorgusu düzeltilmiş veri üzerinde koşuldu (`faz4_fe
 | §119 cinsiyet moderasyonu | **B** | dengeli beklenir; grup×cinsiyet×ölçek hücre denetimi |
 | §120 anne-yaşı gradyanı | **B** | sürekli, iyi varyans; non-lineer spline |
 | §121 onset penceresi | **C (DM-only)** | bant hücreleri küçük; geniş CI |
-| §122 HbA1c gradyanı | **C/D — betimsel** | tam-veri n≈39 → düşük güç, betimsel |
 | §123 komorbidite paneli | **D — betimsel** | çoğu kategori seyrek; yalnız prevalans |
 | §124 kodlama-sadakati | **veri-audit** | κ=1,00 (kodlanmış öz-bildirimden türetilmiş) → çıkarımsal değil, kodlama-tutarlılık teyidi |
 | §125 yaş farkı | **B — kovaryat** | türetilebilir; moderatör zayıf beklenir |
@@ -211,9 +192,8 @@ Yukarıdaki 8 ön-koşul sorgusu düzeltilmiş veri üzerinde koşuldu (`faz4_fe
 - 119. Çocuk cinsiyeti odaklı diferansiyel ebeveynlik (cinsiyet × grup × EMBU-P/EMBU-C)
 - 120. Anne yaşı substantif gradyanı (yaş → aşırı koruma/sıcaklık, non-lineer)
 
-**KISIM XLIV — KLİNİK ZAMANLAMA VE METABOLİK BAĞLAM (DM-only, kısıtlı)**
+**KISIM XLIV — KLİNİK ZAMANLAMA BAĞLAMI (DM-only, kısıtlı)**
 - 121. Tanı gelişim-penceresi × ebeveynlik/kardeş (erken/orta/geç onset)
-- 122. Metabolik kontrolün sosyodemografik gradyanı (HbA1c ← SES/komorbidite/aile yapısı) — betimsel
 
 **KISIM XLV — AİLE SAĞLIK PROFİLİ VE VERİ-GEÇERLİK**
 - 123. 14-kategori komorbidite betimsel prevalans paneli (anne + eş × grup)
@@ -228,8 +208,7 @@ Yukarıdaki 8 ön-koşul sorgusu düzeltilmiş veri üzerinde koşuldu (`faz4_fe
 - 132. Informant discrepancy (EMBU-P−EMBU-C) → SRQ çatışma/rekabet/sıcaklık
 - 133. Latent Beck-sınıfı dışsal doğrulaması → EMBU-C discrepancy / SRQ / AD yükü
 
-**KISIM XLIX — SEÇİLİM VE BATCH GEÇERLİK DENETİMLERİ** *(v0.3 eklentisi — CSR-etkili, yürütme önceliği #1)*
-- 134. HbA1c erişilebilirlik/eksiklik seçilim denetimi (MNAR; availability ~ AD/Beck/SES)
+**KISIM XLIX — BATCH GEÇERLİK DENETİMİ** *(v0.3 eklentisi — CSR-etkili, yürütme önceliği #1)*
 - 135. Alım-yılı / batch duyarlılığı (yıl×grup kollinearite; 2023-only + yıl-tabakalı)
 
 **KISIM XLVII — DİSİPLİN, R MODÜLLERİ, RAPORLAMA**
@@ -311,7 +290,7 @@ sıcaklık/reddetme paralel. Simpson denetimi (grup×yaş-bandı).
 
 ---
 
-# KISIM XLIV — KLİNİK ZAMANLAMA VE METABOLİK BAĞLAM (DM-only)
+# KISIM XLIV — KLİNİK ZAMANLAMA BAĞLAMI (DM-only)
 
 ## 121. Tanı gelişim-penceresi × ebeveynlik/kardeş
 
@@ -328,18 +307,6 @@ maskesiyle** tutulur (çıkarımsal banda sokulmaz); kardeş-maruziyeti yorumund
 **Estimand:** tanı yaşının aile adaptasyonuyla ilişkisinin desen kestirimi.
 **Tier:** C. **Çapa:** Northam onset-yaşı; Jaser/Whittemore psikososyal derleme. *(EK: doğrulama bekliyor.)*
 
-## 122. Metabolik kontrolün sosyodemografik gradyanı — betimsel
-
-**Boşluk:** HbA1c modellerde SES *kovaryatı*; "kimde kontrol daha kötü" (SES/komorbidite/aile
-yapısı → HbA1c) *odak* estimand olarak sunulmadı.
-**Yöntem:** İki yön birlikte: (i) **sosyodemografik korelatlar** `hba1c ~ ses_latent_z +
-anne_hastalik_kategori_sayisi_ikili + tek_ebeveyn`; (ii) **ölçek-skoru korelatları** (ikinci-görüş
-eklentisi) `hba1c` ↔ EMBU-C aşırı koruma / EMBU-P / BDI / SRQ çatışma betimsel korelasyon matrisi
-(metabolik kontrol ile aile psikososyal ölçümlerini bağlar). DM-only.
-⚠️ **CSR §12.5.1: tam-veri n≈39** → düşük güç; **betimsel korelasyon + geniş CI**, çıkarımsal
-iddia yok, imputasyon yok; eksik-veri (structural + item) açıkça raporlanır.
-**Estimand:** glisemik kontrolün sosyodemografik **ve psikososyal-ölçek** korelatlarının betimsel haritası.
-**Tier:** C/D — betimsel. **Çapa:** Gallegos-Macias 2003 / Hilliard SES-glisemik gradyan. *(EK: doğrulama bekliyor.)*
 
 ---
 
@@ -410,20 +377,17 @@ Her modül: `stopifnot()` testi (`tests/`), seed=20260708, `outputs/tables/phase
 `_targets.R`'de `phase4_*_results` hedefi (`format="file"` kanonik CSV dokunulmaz).
 
 ## 128. Öncelik kademeleri & fizibilite-güç dürüstlük
-Yürütme sırası (değer×fizibilite, v0.3): **§134 → §135 → §130 → §131 → §132 → §116 → §119 →
-§133 → §124 → §117 → §120 → §125 → §118 → §121 → §122 → §123**. **Geçerlik-denetimleri
-(§134–135) HER ŞEYDEN ÖNCE** — çünkü HbA1c-seçilim ve yıl-confound, bağımlı analizlerin (§122,
-CSR §12.5) yorumunu koşullar. Maternal-MH → çocuk düzlemi (§130–132) en yüksek klinik değer;
-§122/§123 betimsel; §121 DM-only düşük güç — hepsi açık güç-uyarısıyla.
+Yürütme sırası (değer×fizibilite, v0.3): **§135 → §130 → §131 → §132 → §116 → §119 →
+§133 → §124 → §117 → §120 → §125 → §118 → §121 → §123**. **Batch geçerlik denetimi**
+CSR yorumunu koşullar. Maternal-MH → çocuk düzlemi (§130–132) en yüksek klinik değer;
+§123 betimsel; §121 DM-only düşük güç — hepsi açık güç-uyarısıyla.
 
 ## 129. Tedbir-ve-hatalar aktif denetim (Faz IV'e özel)
-- [ ] Ortalama **ve** medyan (sürekli: yaş farkı, onset, HbA1c).
 - [ ] Yön skorları (§116) işaret konvansiyonu açık yazıldı mı (of − by)?
 - [ ] Çoklu karşılaştırma: §117 (14 non-partiality faset) FDR; §119 etkileşim ön-belirtilmiş.
 - [ ] Simpson: §120 grup×yaş-bandı; §119 grup×cinsiyet.
-- [ ] Korelasyon dili — nedensel dile kaymadı (§122 "gradyan/ilişkili", "neden" değil).
+- [ ] Korelasyon dili — nedensel dile kaymadı ("ilişkili", "neden" değil).
 - [ ] Faset güvenilirliği: ω<.50 → betimsel indirim (§116–117).
-- [ ] Structural missing (§122 HbA1c, §125 es_sag=0) açık NA, listwise değil.
 - [ ] HARKing: hiçbir bulgu H1–H4 prior'ını güçlendirmiyor; tümü `[KEŞİFSEL·POST-HOC]`.
 - [ ] AD strata dili: `anne_antidepresan` **kovaryat değil, stratum/moderatör** olarak yorumlanır (§130).
 - [ ] BDI eşiği: `beck_clinical≥17` dikotomizasyonu bilgi kaybı → sürekli `beck_total` duyarlılığı da raporlanır (§130).
@@ -509,33 +473,12 @@ düşük entropy'de basit modal atama duyarlılıkla.
 
 ---
 
-# KISIM XLIX — SEÇİLİM VE BATCH GEÇERLİK DENETİMLERİ *(v0.3 eklentisi — CSR-etkili)*
+# KISIM XLIX — BATCH GEÇERLİK DENETİMİ *(v0.3 eklentisi — CSR-etkili)*
 
-> **Statü ayrımı:** §134–135 diğer Faz IV maddelerinden farklıdır — bunlar **yeni bir ilişki
-> keşfetmez, mevcut/planlı analizlerin geçerliğini denetler.** İkisi de kanonik CSV'de birebir
-> doğrulanmış (v0.3 başlık) somut tehditlere yanıttır ve **CSR-düzeyinde de sonuç doğurur**
-> (§1.8). Bu nedenle yürütme önceliği #1.
+> **Statü ayrımı:** §135 diğer Faz IV maddelerinden farklıdır — yeni bir ilişki keşfetmez,
+> mevcut/planlı analizlerin batch geçerliğini denetler. Kanonik CSV'de birebir doğrulanmış
+> somut tehdide yanıttır ve **CSR-düzeyinde de sonuç doğurur** (§1.8). Bu nedenle yürütme önceliği #1.
 
-## 134. HbA1c erişilebilirlik/eksiklik seçilim denetimi (MNAR)
-
-**Tehdit (doğrulı):** DM'de HbA1c yalnız **39/120 (%32,5)** ailede var ve varlığı `anne_antidepresan`
-ile güçlü ilişkili: **Fisher OR=4,56 [1,84–11,70], p=0,000466** (AD var %57,1 vs AD yok %22,4
-tamamlanma). HbA1c ham dosyada yok — sonradan klinik-kayıt entegrasyonuyla eklendi → varlık
-klinik-izlem/temas göstergesi. Bu, HbA1c'nin "düşük n" değil **seçilmiş (MNAR) alt-örneklem**
-olduğunu gösterir.
-**Yöntem:** `hba1c_available ~ anne_antidepresan + beck_total + ses_latent_z + dm_yili_z +
-cocuk_yas_z` (DM-only lojistik) — hangi değişkenler *ölçülme olasılığını* öngörüyor?
-Seçilim yüzeyi tablolanır; HbA1c'li vs HbA1c'siz DM alt-örneklemleri Tablo-1 tarzı karşılaştırılır.
-**Sonuç kuralı:** **Hiçbir HbA1c × ebeveynlik bulgusu (§122, CSR §12.5) bu seçilim yüzeyi
-raporlanmadan yorumlanamaz.** Ağır seçilim → HbA1c analizleri betimsel/uyarılı kalır.
-**⚠️ IPW/Heckman yalnız fizibilite-duyarlılığı (düzeltme DEĞİL):** Amaç seçilimi *göstermektir*,
-telafi etmek değil. n=39 nedeniyle IPW **çalıştırılırsa** rapor zorunlu olarak şunları içerir:
-**etkin örneklem boyutu (ESS)**, **maksimum ağırlık**, **ağırlık-budama (truncation) eşiği ve
-budanan gözlem sayısı**. Bunlar olmadan IPW "düzeltme yapıldı" izlenimi verir; bu yanıltıcıdır —
-n=39'da IPW gürültüyü büyütür. Heckman selection-model yalnız dağılımsal-varsayım duyarlılığı olarak,
-exclusion-restriction açıkça tartışılarak sunulur.
-**Estimand:** HbA1c ölçüm-varlığının seçilim mekanizması (MNAR karakterizasyonu) — *tanımlayıcı*.
-**Tier:** A — geçerlik/seçilim denetimi. **Çapa:** Little-Rubin (MNAR); Heckman seçilim. *(EK.)*
 
 ## 135. Alım-yılı / batch duyarlılığı
 
@@ -556,12 +499,11 @@ literatür çapası gerekmez).
 
 ## 1.8. CSR-DÜZEYİ ETKİLER *(v0.3 — plan dışı, karar bekliyor)*
 
-§134–135 ve §130-düzeltmesi yalnız Faz IV keşfini değil, **mevcut CSR metnini** de etkiler.
+§135 ve §130-düzeltmesi yalnız Faz IV keşfini değil, **mevcut CSR metnini** de etkiler.
 Aşağıdakiler **öneri**dir; kanonik CSR'a dokunmadan önce onay bekler:
 
 | Bulgu | CSR etkisi (önerilen) | Konum |
 |---|---|---|
-| HbA1c MNAR seçilim (OR 4,56) | §12.5.1'e seçilim-uyarısı; §18.4 eksik-veri sınırlılığına MNAR notu | CSR §12.5, §18.4 |
 | Yıl × grup kollinearite (p≈1e-12) | §18.1 tasarım sınırlılığına **alım-dönemi confound** maddesi; 2023-only duyarlılık | CSR §18.1 |
 | AD = tedavi/temas (şiddet değil) | §15.5 antidepresan yorumunun "güncel şiddet" değil "tedavi/temas" olarak rafine edilmesi | CSR §15.5 |
 | 5+1 dm_yili mantık ihlali | §110/§12.5 dışlama notunun teyidi (zaten n=115); veri-entegrasyon audit satırı | CSR §12.5, audit trail |
@@ -589,7 +531,6 @@ daraltılır (DRM keşifsel-ikincil kalır).
 | §119 | Lytton & Romney 1991 (ebeveyn cinsiyet-sosyalizasyonu meta); Endendijk 2016 | cinsiyet-diferansiyel ebeveynlik |
 | §120 | Camberis 2016; Barnes (maternal yaş × duyarlılık) | anne-yaşı gradyanı |
 | §121 | Northam (onset-yaşı); Jaser / Whittemore 2012 (T1DM psikososyal derleme) | tanı-penceresi |
-| §122 | Gallegos-Macias 2003; Hilliard (SES-glisemik gradyan) | metabolik-SES |
 | §124 | — (κ=1,00: kodlanmış matris öz-bildirimden türetilmiş → bağımsız kayıt yok; Kriegsman KALDIRILDI) | kodlama-sadakati (çapa gerekmez) |
 | §130, §131 | Goodman & Gotlib 1999 (maternal depresyon → çocuk); Van Gampelaere 2020 (Faz III doğrulı) | maternal-MH → çocuk |
 | §131 | De Los Reyes 2015 (Operations Triad; distres → informant discrepancy) | discrepancy mekanizması |

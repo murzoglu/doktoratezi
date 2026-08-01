@@ -66,7 +66,7 @@ türü** olarak sunar ve joint display'e köprü hazırlar.
 - Triadik yorumda üç konum ayrı kanıt; "aynı olayın üç konumdan görünümü".
 - Nitel tema **nicel etki büyüklüğü/nedensel mekanizma gibi sunulmaz**; sıklık
   sayımı temanın kanıtı değildir (information power mantığı).
-- Anonim alıntı bütünlüğü `./dmnitel check-quotes` ile denetlenir (nitel repoda);
+- Anonim alıntı bütünlüğü `./dmnitel check-quotes` ile denetlenir (nitel kolda);
   ham transcript açılmaz.
 
 ## 6. Joint display köprüsü (Faz 6 hazırlığı)
@@ -80,9 +80,9 @@ görünür kılınır.
 
 ## 7. Nitel bulgular için güvenli kaynak
 
-`docs/niteliksel/qualitative_canonical_results_report.md` nicel repoya taşınmış
+`niteliksel/qualitative_canonical_results_report.md` nicel köke taşınmış
 **güvenli, de-identified** entegrasyon kaynağıdır; nitel kolu temsil eden
-varsayılan aktarımdır. Ham transcript veya nitel repo geniş taraması **default
+varsayılan aktarımdır. Ham transcript veya nitel kol geniş taraması **default
 değildir**; gerekirse yalnız tema/kod/COREQ/audit-trail düzeyi.
 
 ## 8. Anti-pattern'ler (bu bölümde yapma)
@@ -101,7 +101,7 @@ değildir**; gerekirse yalnız tema/kod/COREQ/audit-trail düzeyi.
 | Tanımlayıcı/psikometri | `outputs/tables`, CSR | Aggregate; yorum yok. |
 | H1–H5 sonuç | `outputs/models`, `outputs/tables`, SAP | Nokta+GA+etki; yorum yok. |
 | Faz II/post-hoc | `docs/analiz_planlari/04-sap-faz2-posthoc.md` | `[KEŞİFSEL]` etiketli. |
-| Nitel tema/triad | `docs/niteliksel/qualitative_canonical_results_report.md` | De-identified; anonim quote. |
+| Nitel tema/triad | `niteliksel/qualitative_canonical_results_report.md` | De-identified; anonim quote. |
 | Joint display | `05_entegrasyon/nitel-nicel-joint-display-plan.md` | Kanıt türü etiketli. |
 
 ## 10. Kapanış kapıları

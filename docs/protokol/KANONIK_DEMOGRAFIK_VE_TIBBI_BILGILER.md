@@ -3,7 +3,7 @@
 Güncelleme tarihi: 26.04.2026  
 Final veri dosyaları: `data/processed/FINAL_REFERENCE__analysis_base_long.csv`, `data/processed/FINAL_REFERENCE__analysis_base_family.csv`
 
-Bu belge DM ve kontrol grubu demografik-tıbbi bilgi formlarından gelen final veri alanlarını tanımlar. Final CSV'lerde demografik ve tıbbi bilgiler kimlik, rol, tarih, çocuk, anne/aile, eş, sosyoekonomik, tıbbi kategori, DM tanı ve HbA1c alanları olarak saklanır.
+Bu belge DM ve kontrol grubu demografik-tıbbi bilgi formlarından gelen final veri alanlarını tanımlar. Final CSV'lerde demografik ve tıbbi bilgiler kimlik, rol, tarih, çocuk, anne/aile, eş, sosyoekonomik, tıbbi kategori ve DM tanı alanları olarak saklanır.
 
 ## 1. Form Kapsamı
 
@@ -117,23 +117,8 @@ Emekli eş/baba için metodolojik final karar: emeklilik güncel aktif meslek ol
 | `anne_antidepresan` | Anne antidepresan kullanıyor mu | `0 = Hayır`, `1 = Evet` |
 | `dm_tani_tarihi` | DM tanı tarihi | Yalnız DM indeks satırında dolu |
 | `dm_yili` | DM süresi | Yalnız DM indeks satırında dolu |
-| `hba1c` | Klinik HbA1c değeri (%) | Ondalık sayı; yalnız `DM_Hasta_Indeks` satırında dolu olabilir; klinik plauzibilite aralığı `4.5 – 18.0`%; eksikse `NA` |
+| `hba1c` | CSV'de mevcut ancak tez kapsamı dışı | CSV'de mevcut ancak tez kapsamı dışı — hiçbir analizde kullanılmaz (2026 kararı) |
 
-`hba1c` alanı, T1DM tanılı çocuğun final analiz veri setinde saklanan son ölçülmüş klinik HbA1c yüzdesidir. Glisemik kontrolün ebeveynlik tutumu ile ilişkisinde birincil klinik kovaryat olarak kullanılır. Final veride 120 `DM_Hasta_Indeks` satırının 39'unda HbA1c değeri vardır; 81 DM indeks satırında eksiktir. HbA1c eşleştirmesi hasta/aile kimliği üzerinden kesinleştirilmiştir; HbA1c dışındaki ara eşleştirme alanları final veri standardına dahil değildir. `DM_Hasta_Indeks` dışındaki tüm satırlarda `hba1c` yapısal `NA`'dır.
-
-Final HbA1c kalite özeti:
-
-| Ölçüt | Değer |
-|---|---:|
-| DM indeks satırı | 120 |
-| HbA1c dolu | 39 |
-| HbA1c eksik | 81 |
-| DM indeks dışı dolu HbA1c | 0 |
-| Minimum | 5.8 |
-| Medyan | 9.0 |
-| Ortalama | 8.97 |
-| Maksimum | 15.1 |
-| Plauzibilite aralığı dışı (`<4.5` veya `>18.0`) | 0 |
 
 Kronik hastalık alanları final veride standart ikili kodlama ile tutulur: `0` yokluğu, `1` varlığı gösterir. Hastalık/engel açıklama metinleri final CSV'de tutulmaz; aşağıdaki standardize ICD-10 ana kategori dummy alanlarına dönüştürülür.
 
@@ -158,14 +143,15 @@ Anne için `anne_`, eş/baba için `es_` prefixi kullanılır:
 | `*_hastalik_kategori_sayisi` | Dummy kategorilerinin toplamı; hastalık yükü özeti |
 | `*_hastalik_kodlama_durumu` | `no_condition`, `missing_text`, `final_rule`, `final_flag_corrected`, `final_other` |
 
+
 ## 8. Yapısal Kurallar
 
 - Long dosyada aile düzeyi alanlar aynı `aile_no` içindeki index ve kardeş satırlarında aynı olmalıdır.
 - Long dosyada `kardes_dogum_tarihi` ve `kardes_cinsiyet`, aynı ailedeki karşı çocuk satırının doğum tarihi ve cinsiyetinden türetilir.
 - Family dosyada aile düzeyi alanlar index satırından temsil edilir.
 - Family dosyada kardeşe özgü alanlar `kardes_*` prefixiyle tutulur.
-- `dm_tani_tarihi`, `dm_yili` ve `hba1c` yalnız DM indeks çocuk için doludur.
-- Kontrol ailelerinde, DM kardeş satırlarında ve kontrol kardeş satırlarında `dm_tani_tarihi`, `dm_yili` ve `hba1c` yapısal `NA`dır.
+- `dm_tani_tarihi` ve `dm_yili` yalnız DM indeks çocuk için doludur.
+- Kontrol ailelerinde, DM kardeş satırlarında ve kontrol kardeş satırlarında `dm_tani_tarihi` ve `dm_yili` yapısal `NA`dır.
 - Boş hücre `NA` anlamına gelir; final CSV'lerde literal `#N/A` veya `?` saklanmaz.
 - Final CSV'lerde eski serbest metin alanları (`calistigi_is`, `es_calistigi_is`, `hastalik_engel`, `es_hastalik_engel`) bulunmaz.
 
@@ -174,5 +160,4 @@ Anne için `anne_`, eş/baba için `es_` prefixi kullanılır:
 - Tarih alanları parse edilebilir `gg.aa.yyyy` formatında olmalıdır.
 - `cocuk_yas`, `anne_yas`, `kardes_yas` ve `dm_yili` tarih alanlarıyla uyumlu olmalıdır.
 - Cinsiyet, medeni durum, eğitim, çalışma, ev, araba, kronik hastalık ve antidepresan alanları bu belgede tanımlanan kod aralıkları dışında değer alamaz.
-- `hba1c` ondalık sayı formatındadır; klinik plauzibilite aralığı `4.5 – 18.0`%; bu aralık dışı değerler veri kalitesi izlemesinde işaretlenir.
 - Eski serbest metin alanları final CSV'lerde bulunmaz. Meslek ve hastalık alanları bu belgede tanımlanan nihai standardize kolonlarla temsil edilir; raw serbest metin yalnız arşiv/audit kaynaklarında izlenir.

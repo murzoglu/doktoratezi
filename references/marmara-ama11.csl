@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl/1.0" version="1.0.2" class="in-text" default-locale="tr">
+  <info>
+    <title>Marmara Enstitü AMA-11 (yazar-yıl)</title>
+    <id>https://marmara.edu.tr/styles/marmara-ama11</id>
+    <updated>2026-07-11T00:00:00+00:00</updated>
+    <summary>Marmara Üniversitesi Sağlık Bilimleri Enstitüsü uyarlanmış AMA (11. baskı) yazar-yıl varyantı. Küresel "ve ark." et-al terimi, standart https://doi.org/ DOI biçimi, İngilizce yapısal terimler (In:/editors/ed./p.).</summary>
+  </info>
+  <!-- Küresel terim geçersiz kılma: xml:lang yok => tüm yereller icin gecerli -->
+  <locale>
+    <terms>
+      <term name="et-al">ve ark.</term>
+      <term name="et-al" form="short">ve ark.</term>
+      <term name="and">ve</term>
+      <term name="in">In</term>
+      <term name="editor">
+        <single>editor</single>
+        <multiple>editors</multiple>
+      </term>
+      <term name="edition" form="short">ed.</term>
+      <term name="page" form="short">p.</term>
+    </terms>
+    <!-- Ingilizce sirasal ekler: default-locale tr olsa da "13th ed." icin -->
+    <terms>
+      <term name="ordinal-00">th</term>
+      <term name="ordinal-01" match="last-digit">st</term>
+      <term name="ordinal-02" match="last-digit">nd</term>
+      <term name="ordinal-03" match="last-digit">rd</term>
+      <term name="ordinal-11" match="whole-number">th</term>
+      <term name="ordinal-12" match="whole-number">th</term>
+      <term name="ordinal-13" match="whole-number">th</term>
+    </terms>
+  </locale>
+
+  <!-- Kaynakcadaki yazar: soyad + bitisik bas harfler (nokta yok), tumu virgulle -->
+  <macro name="author">
+    <names variable="author">
+      <name initialize-with="" name-as-sort-order="all" sort-separator=" " delimiter=", " delimiter-precedes-last="never" delimiter-precedes-et-al="never" et-al-min="7" et-al-use-first="6"/>
+      <et-al term="et-al"/>
+      <substitute>
+        <names variable="editor"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <!-- Metin-ici kisa yazar: yalniz soyad, "ve"/"ve ark." -->
+  <macro name="author-short">
+    <names variable="author">
+      <name form="short" and="text" delimiter=", " delimiter-precedes-last="never" et-al-min="3" et-al-use-first="1"/>
+      <et-al term="et-al"/>
+      <substitute>
+        <names variable="editor"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="issued-year">
+    <group>
+      <date variable="issued">
+        <date-part name="year"/>
+      </date>
+      <text variable="year-suffix"/>
+    </group>
+  </macro>
+
+  <macro name="container">
+    <text variable="container-title" form="short"/>
+  </macro>
+
+  <macro name="access-doi">
+    <text variable="DOI" prefix="https://doi.org/"/>
+  </macro>
+
+  <!-- Kitap bolumu editorleri: yazar biciminde + "editors" etiketi -->
+  <macro name="chapter-editors">
+    <names variable="editor">
+      <name initialize-with="" name-as-sort-order="all" sort-separator=" " delimiter=", " delimiter-precedes-last="never"/>
+      <label form="long" prefix=", "/>
+    </names>
+  </macro>
+
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true">
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group delimiter=", ">
+        <text macro="author-short"/>
+        <text macro="issued-year"/>
+      </group>
+    </layout>
+  </citation>
+
+  <bibliography et-al-min="7" et-al-use-first="6" hanging-indent="true" entry-spacing="0" line-spacing="1">
+    <sort>
+      <key macro="author"/>
+      <key variable="issued"/>
+    </sort>
+    <layout>
+      <choose>
+        <!-- Kitap bolumu -->
+        <if type="chapter paper-conference" match="any">
+          <group delimiter=" ">
+            <text macro="author" suffix="."/>
+            <text variable="title" suffix="."/>
+            <text term="in" text-case="capitalize-first" suffix=":"/>
+            <text macro="chapter-editors" suffix="."/>
+            <text variable="container-title" suffix="."/>
+            <group suffix=".">
+              <number variable="edition" form="ordinal"/>
+              <text term="edition" form="short" prefix=" "/>
+            </group>
+            <group suffix=".">
+              <text variable="publisher-place"/>
+              <text variable="publisher" prefix=": "/>
+              <text macro="issued-year" prefix="; "/>
+            </group>
+            <group prefix="" suffix="." delimiter=" ">
+              <text term="page" form="short"/>
+              <text variable="page"/>
+            </group>
+          </group>
+        </if>
+        <!-- Makale (varsayilan) -->
+        <else>
+          <group delimiter=" ">
+            <text macro="author" suffix="."/>
+            <text variable="title" suffix="."/>
+            <text macro="container" suffix="."/>
+            <group suffix=".">
+              <text macro="issued-year"/>
+              <text variable="volume" prefix=";"/>
+              <text variable="issue" prefix="(" suffix=")"/>
+              <text variable="page" prefix=":"/>
+            </group>
+            <text macro="access-doi"/>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>

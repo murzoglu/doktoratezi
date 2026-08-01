@@ -1,0 +1,958 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  turkish,
+  12pt,
+  a4paper,
+]{report}
+\usepackage{xcolor}
+\usepackage[top=2cm,bottom=2cm,left=2.5cm,right=2.5cm,top=18mm,bottom=18mm,left=17mm,right=17mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+  \setmainfont[]{Fraunces 9pt}
+  \setsansfont[]{Fraunces 9pt}
+  \setmonofont[]{DejaVu Sans Mono}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off]{babel}
+\else
+\usepackage[bidi=default,shorthands=off]{babel}
+\fi
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Fraunces 9pt}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+% --- Marmara §1.2: 1,5 satir araligi + paragraf 6 nk + girinti yok ---
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 1pt}
+% --- §1.2: iki yana yasli, satir sonunda kelime bolme yok ---
+\usepackage[none]{hyphenat}
+\sloppy
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+% --- Turkce heceleme/karakter (polyglossia XeLaTeX icin) ---
+\usepackage{polyglossia}
+\setmainlanguage{turkish}
+% --- §5 dizin basligi ezimi include-before-body'de yapilir; Quarto
+% kendi \AtBeginDocument ezimini enjekte ettiginden (ve o bizimkinden
+% sonra calistigindan) yeniden-adlandirma \listoffigures'tan hemen
+% once, govde basinda uygulanir (bkz. include-before-body). ---
+% --- §1.9: sayfa numarasi alt-orta ---
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[C]{\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+}
+% --- §1.3: bolum basligi bold 14 pt, alt basliklar bold 12 pt ---
+\usepackage{titlesec}
+\titleformat{\chapter}{\normalfont\fontsize{14}{17}\bfseries}{\thechapter.}{1em}{}
+\titleformat{\section}{\normalfont\fontsize{12}{15}\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\fontsize{12}{15}\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\fontsize{12}{15}\bfseries}{\thesubsubsection}{1em}{}
+% bolum basligi sayfanin tepesinden baslasin (buyuk ust bosluk olmasin)
+\titlespacing*{\chapter}{0pt}{0pt}{1\baselineskip}
+% --- §1.9: kapak/onay/icindekiler/dizin sayfalari numarasiz baslar;
+% Kisaltmalar'dan itibaren Romen, Ozet'ten itibaren Arap rakami
+% (gecisler chapters/00b ve 00c icindeki ham LaTeX bloklariyla). ---
+\pagenumbering{gobble}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{xcolor}
+\captionsetup{font=small,labelfont=normalfont}
+\definecolor{ReportBlue}{HTML}{4059AD}
+\definecolor{ReportTeal}{HTML}{2F9C95}
+\definecolor{ReportWine}{HTML}{8B1E3F}
+\definecolor{ReportBoxBg}{HTML}{F7FAF9}
+\setkomafont{title}{\normalfont\LARGE}
+\setkomafont{subtitle}{\normalfont\large}
+\setkomafont{author}{\normalfont\normalsize}
+\setkomafont{date}{\normalfont\normalsize}
+\setkomafont{disposition}{\normalfont}
+\setkomafont{section}{\normalfont\large}
+\setkomafont{subsection}{\normalfont\normalsize}
+\setkomafont{sectionentry}{\normalfont}
+\setlength{\emergencystretch}{4em}
+\setlength{\parskip}{0.48\baselineskip}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.14}
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\raggedbottom
+\makeatletter
+\newcommand{\Needspace}[1]{%
+  \par\begingroup\dimen@=#1\relax
+  \vskip\z@ plus\dimen@
+  \penalty -100\vskip\z@ plus-\dimen@
+  \vskip\dimen@\penalty 9999\vskip-\dimen@
+  \vskip\z@skip\endgroup}
+\makeatother
+\newcommand{\methodbox}[2]{%
+  \par\smallskip\noindent
+  \begingroup
+  \setlength{\fboxsep}{7pt}%
+  \fcolorbox{ReportTeal}{ReportBoxBg}{%
+  \begin{minipage}{0.94\linewidth}
+  \textcolor{ReportTeal}{#1}\par\smallskip\small #2
+  \end{minipage}}%
+  \endgroup\par\smallskip
+}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{İçindekiler}
+\else
+  \newcommand\contentsname{İçindekiler}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Şekil Listesi}
+\else
+  \newcommand\listfigurename{Şekil Listesi}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Tablo Listesi}
+\else
+  \newcommand\listtablename{Tablo Listesi}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Şekil}
+\else
+  \newcommand\figurename{Şekil}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tablo}
+\else
+  \newcommand\tablename{Tablo}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listeleme}
+\newcommand*\listoflistings{\listof{codelisting}{İlan Listesi}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Psikometrik Validasyon Bütünleşik Raporu},
+  pdfauthor={Özlem Murzoğlu Kurt},
+  pdflang={tr},
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Psikometrik Validasyon Bütünleşik Raporu}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{EMBU-P / EMBU-C, Beck Depresyon Envanteri ve KIA/SRQ
+sonuçları}
+\author{Özlem Murzoğlu Kurt}
+\date{19 Temmuz 2026}
+\begin{document}
+\maketitle
+
+% §5: Quarto'nun Turkce LOF/LOT ad ezimi \AtBeginDocument ile bizim
+% header ezimimizi geciyor; govde basinda (tum \AtBeginDocument
+% hook'lari calistiktan SONRA) yeniden adlandirarak sabitliyoruz.
+\renewcommand{\listfigurename}{ŞEKİLLER DİZİNİ}
+\renewcommand{\listtablename}{TABLOLAR DİZİNİ}
+
+\renewcommand*\contentsname{İÇİNDEKİLER}
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\listoffigures
+\listoftables
+
+\chapter{Yönetici Özeti}\label{yuxf6netici-uxf6zeti}
+
+Bu rapor, kilitli final referans veri üzerinde üretilen psikometrik
+validasyon sonuçlarını tek PDF yüzeyinde birleştirir. Analiz tabanı 241
+aile ve 482 çocuk satırıdır; ham veri veya kimliklenebilir alan
+kullanılmamıştır.
+
+Raporun amacı tek bir ``geçti/kaldı'' kararı üretmek değil, EMBU-P ve
+EMBU-C formlarının bu örneklemde hangi kanıt türlerinde güçlü, hangi
+kanıt türlerinde kırılgan davrandığını açık biçimde göstermektir. Bu
+nedenle sonuçlar güvenilirlik, madde dağılımı, faktör yapısı, ölçüm
+değişmezliği, aile içi bağımlılık, nomolojik ağ ve duyarlılık analizleri
+olarak ayrı ayrı sunulmuş, son bölümde ise raporlama kararı birlikte
+tartılmıştır.
+
+\Needspace{7\baselineskip}
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+
+\noindent\textcolor{ReportTeal}{Ana sonuçların kısa yorumu}
+
+\par\smallskip
+
+\begin{tabular}{ll}
+\toprule
+Alan & Bulgu\\
+\midrule
+EMBU-P Reddetme güvenilirliği & alpha = 0.450\\
+EMBU-C Reddetme güvenilirliği & alpha = 0.717\\
+İndeks-kardeş Reddetme uyumu & ICC(2,1) = 0.158\\
+BSEM full model PPP & BSEM çıktısı yok\\
+Cluster duyarlılık CFA & CFI = 0.826, RMSEA = 0.058, SRMR = 0.072\\
+\addlinespace
+Yaş/cinsiyet binary MI & Binary MI raporlanabilir\\
+\bottomrule
+\end{tabular}
+\endgroup
+
+Ana bulgu örüntüsü nettir: EMBU-C, özellikle Reddetme ve Karşılaştırma
+eksenlerinde daha kullanılabilir psikometrik sinyal verirken EMBU-P
+Reddetme alt ölçeği düşük iç tutarlılık ve yoğun taban etkisi nedeniyle
+metodolojik ekte sınırlılık olarak ele alınmalıdır. BSEM duyarlılığı,
+klasik toplam puan sonuçlarını tamamlayan latent değişken kontrolü
+olarak sunulmuştur.
+
+\Needspace{10\baselineskip}
+
+\chapter{Veri Kilidi ve Kapsam}\label{veri-kilidi-ve-kapsam}
+
+Kanonik veri kilidi, bu rapordaki sayısal sonuçların hangi analiz
+tabanından üretildiğini doğrular. \texttt{family\ CSV} aile düzeyindeki
+tekil satırları, \texttt{long\ CSV} ise indeks çocuk ve kardeş
+satırlarını taşır. SHA-256 uyumunun \texttt{TRUE} olması, sonuçların
+kilitli final referans dosyalarına bağlı kaldığını gösterir.
+
+\methodbox{İstatistik yöntem kutusu: analiz birimi ve veri kilidi}{Bu rapordaki temel analiz birimi soruya göre değişir. Aile düzeyi sonuçlarda 241 ailelik family tabanı, çocuk ve kardeş algılarını içeren psikometrik sonuçlarda 482 satırlık long taban kullanılır. Kardeş satırları aynı aileden geldiği için bağımsızlık varsayımı sınırlıdır; bu nedenle aile içi ICC, indeks-kardeş konkordansı ve cluster duyarlılık analizleri ayrıca raporlanır. SHA-256 kilidi, sonuçların aynı final referans veri üzerinden hesaplandığını gösteren teknik doğrulamadır.}
+
+\Needspace{7\baselineskip}
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+
+\noindent\textcolor{ReportTeal}{Kanonik veri kilidi doğrulaması}
+
+\par\smallskip
+
+\begin{tabular}{lrrl}
+\toprule
+Dosya & Satır & Kolon & SHA-256 uyumu\\
+\midrule
+family CSV & 241 & 288 & TRUE\\
+long CSV & 482 & 203 & TRUE\\
+\bottomrule
+\end{tabular}
+\endgroup
+
+Bu kapsam, kardeşli tasarımın iki düzeyli yapısını korur: aile düzeyi
+karşılaştırmalar \texttt{family\ CSV} üzerinden, çocuk/kardeş düzeyi
+psikometrik ve konkordans bulguları \texttt{long\ CSV} üzerinden
+okunmalıdır. Bu ayrım özellikle EMBU-C, SRQ/KIA ve aile içi ICC
+yorumlarında bağımsız gözlem varsayımını gereksiz yere güçlendirmemek
+için önemlidir.
+
+\Needspace{14\baselineskip}
+
+\chapter{Güvenilirlik ve Madde
+Davranışı}\label{guxfcvenilirlik-ve-madde-davranux131ux15fux131}
+
+Güvenilirlik bölümü iki tamamlayıcı soruya yanıt verir. Birincisi, alt
+ölçek puanlarının iç tutarlılığı kabul edilebilir düzeyde mi; ikincisi,
+madde yanıt dağılımları bu iç tutarlılığı destekleyecek kadar varyans
+içeriyor mu? Bu nedenle alpha ve omega katsayıları madde düzeyi taban
+etkisiyle birlikte yorumlanmıştır.
+
+\methodbox{İstatistik yöntem kutusu: alpha, omega ve taban etkisi}{Cronbach alpha maddelerin ortak varyansını klasik test kuramı içinde özetler; McDonald omega ise faktör yüklerine dayalı daha esnek bir iç tutarlılık ölçüsüdür. Alpha ve omega birlikte düşükse sorun yalnız alpha varsayımlarından değil, madde havuzunun zayıf ortak sinyal üretmesinden kaynaklanabilir. Taban etkisi, yanıtların en düşük kategoride yığılmasını gösterir; yüksek taban etkisi korelasyonları, grup farklarını ve CFA yüklerini aşağı çekebilir.}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{22-psikometrik-validasyon-butunlesik-rapor_files/figure-pdf/fig-reliability-1.png}
+
+}
+
+\caption{\label{fig-reliability}Cronbach alpha ve McDonald omega toplam
+değerleri}
+
+\end{figure}%
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Kesikli çizgi
+\texttt{.70} eşiğini gösterir; bu çizginin üstü tek başına ``geçerli
+ölçek'' anlamına gelmez, ancak iç tutarlılık için pratik bir uyarı
+düzeyi sağlar. EMBU-C Reddetme için alpha 0.717 ve omega 0.747 iken
+EMBU-P Reddetme için alpha 0.450 ve omega 0.476 düzeyindedir. Bu
+ayrışma, reddedici ebeveynlik içeriğinin çocuk bildiriminde daha tutarlı
+yakalandığını, anne öz-bildiriminde ise aynı madde havuzunun daha zayıf
+sinyal ürettiğini düşündürür.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{22-psikometrik-validasyon-butunlesik-rapor_files/figure-pdf/fig-floor-1.png}
+
+}
+
+\caption{\label{fig-floor}EMBU-P ve EMBU-C madde düzeyi taban etkisi}
+
+\end{figure}%
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Taban etkisi, bir
+maddenin en düşük yanıtta yığılma oranını gösterir; yüksek taban etkisi
+özellikle olumsuz ebeveynlik maddelerinde varyansı daraltır ve
+korelasyon, CFA yükü ve grup farkı tahminlerini zayıflatabilir.
+Grafikteki yüzde 60 ve yüzde 80 referans çizgileri madde havuzunun hangi
+bölgelerinde yanıtların sıkıştığını görünür kılar. Toplam 13 madde-form
+noktası yüzde 80 veya üzerinde taban etkisi göstermektedir; bu nedenle
+Reddetme sonuçları yalnız toplam puan düzeyinde değil, madde dağılımı
+düzeyinde de temkinli okunmalıdır.
+
+\Needspace{7\baselineskip}
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+
+\noindent\textcolor{ReportTeal}{Ana güvenilirlik katsayıları}
+
+\par\smallskip
+
+\begin{tabular}{llrrr}
+\toprule
+Form & Alt ölçek & alpha & omega & omega\_h\\
+\midrule
+EMBU-P & Sıcaklık & 0.669 & 0.687 & 0.690\\
+EMBU-P & Aşırı koruma & 0.746 & 0.751 & 0.750\\
+EMBU-P & Reddetme & 0.450 & 0.476 & 0.456\\
+EMBU-P & Karşılaştırma & 0.660 & 0.724 & 0.724\\
+EMBU-C & Sıcaklık & 0.805 & 0.812 & 0.812\\
+\addlinespace
+EMBU-C & Aşırı koruma & 0.622 & 0.638 & 0.637\\
+EMBU-C & Reddetme & 0.717 & 0.747 & 0.742\\
+EMBU-C & Karşılaştırma & 0.792 & 0.799 & 0.799\\
+\bottomrule
+\end{tabular}
+\endgroup
+
+Tablo, grafik özetini sayısal olarak tamamlar. Omega değerleri alpha ile
+aynı yönlü olduğu için düşük Reddetme bulgusunu yalnız alpha
+varsayımlarına bağlamak doğru değildir; sorun daha temel olarak madde
+havuzunun bu örneklemde ürettiği varyans ve faktör homojenliğiyle
+ilişkilidir.
+
+\Needspace{14\baselineskip}
+
+\chapter{Faktör Yapısı ve Model
+Uyumu}\label{faktuxf6r-yapux131sux131-ve-model-uyumu}
+
+Faktör yapısı bölümünde tek faktör, dört faktör ve bifaktör çözümler
+karşılaştırılmıştır. Dört faktör çözümü teorik alt ölçek yapısını temsil
+eder; bifaktör çözüm genel ebeveynlik tonu ile alt boyutların aynı anda
+taşınıp taşınamadığını sınar. EMBU-C için ayrıca aile kümelenmesine
+duyarlı sürekli-MLR CFA duyarlılığı rapora eklenmiştir.
+
+\methodbox{İstatistik yöntem kutusu: CFA ve uyum indeksleri}{Doğrulayıcı faktör analizi, maddelerin kuramsal alt ölçeklere ne ölçüde uyduğunu sınar. CFI gözlenen modelin bağımsız modele göre göreli uyumunu, RMSEA yaklaşık model hatasını, SRMR ise standartlaştırılmış artıkların büyüklüğünü özetler. Bu raporda CFI için daha yüksek, RMSEA ve SRMR için daha düşük değerler olumlu kabul edilir; eşikler kesin karar çizgisi değil, model uyumunu yorumlamak için pratik referanslardır. Cluster duyarlılık CFA, kardeşlerin aynı aile içinde kümelenmesini dikkate alan ek bir sağlamlık kontrolüdür.}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{22-psikometrik-validasyon-butunlesik-rapor_files/figure-pdf/fig-cfa-1.png}
+
+}
+
+\caption{\label{fig-cfa}Klasik CFA ve cluster duyarlılığı için temel
+uyum göstergeleri}
+
+\end{figure}%
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} CFI için daha yüksek
+değerler, RMSEA ve SRMR için daha düşük değerler daha iyi uyumu
+gösterir; dikey kesikli çizgiler pratik yorum eşiklerini işaretler. Tek
+faktör çözümlerinin düşük CFI değerleri ölçeğin tek boyutlu okunmasını
+desteklemez. Dört faktör çözümü EMBU-P ve EMBU-C için daha anlamlıdır,
+ancak EMBU-P'de SRMR'nin yüksek kalması ve EMBU-C'de CFI'nin sınırda
+seyretmesi sonuçların ``tam doğrulanmış model'' yerine ``kullanılabilir
+ama sınırlı faktör kanıtı'' olarak raporlanmasını gerektirir.
+
+\Needspace{7\baselineskip}
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+
+\noindent\textcolor{ReportTeal}{CFA model karşılaştırmaları}
+
+\par\smallskip
+
+\begin{tabular}{llrrr}
+\toprule
+Form & Model & CFI & RMSEA & SRMR\\
+\midrule
+EMBU-P & Tek faktör & 0.480 & 0.083 & 0.174\\
+EMBU-P & Dört faktör & 0.877 & 0.040 & 0.132\\
+EMBU-P & Bifaktör & 0.834 & 0.049 & 0.128\\
+EMBU-C & Tek faktör & 0.480 & 0.121 & 0.146\\
+EMBU-C & Dört faktör & 0.840 & 0.068 & 0.096\\
+\addlinespace
+EMBU-C & Bifaktör & 0.832 & 0.072 & 0.091\\
+\bottomrule
+\end{tabular}
+\endgroup
+
+\Needspace{7\baselineskip}
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+
+\noindent\textcolor{ReportTeal}{Aile-kümelenmesi için sürekli-MLR duyarlılık CFA}
+
+\par\smallskip
+
+\begin{tabular}{lrrrrrl}
+\toprule
+Yöntem & n gözlem & n aile & CFI & RMSEA & SRMR & Yakınsadı\\
+\midrule
+continuous\_MLR\_cluster\_robust & 474 & 241 & 0.826 & 0.058 & 0.072 & TRUE\\
+\bottomrule
+\end{tabular}
+\endgroup
+
+Cluster duyarlılık sonucu, aile içi bağımlılığın tamamen görmezden
+gelinmediğini gösteren tamamlayıcı bir kontroldür. Bu model klasik
+ordinal CFA'nın yerini almaktan çok, kardeşli tasarımda model uyumunun
+aile kümelenmesine ne kadar duyarlı olduğunu göstermek için eklenmiştir.
+
+\Needspace{14\baselineskip}
+
+\chapter{Ölçüm
+Değişmezliği}\label{uxf6luxe7uxfcm-deux11fiux15fmezliux11fi}
+
+Ölçüm değişmezliği analizleri, aynı madde setinin gruplar arasında
+benzer ölçüm anlamı taşıyıp taşımadığını sınar. Bu raporda configural,
+metric ve scalar düzeyler birlikte izlenmiştir; scalar düzey özellikle
+grup ortalaması karşılaştırmalarının daha savunulabilir olmasını sağlar.
+Yaş ve cinsiyet analizlerinde özgün dört kategorili yanıt yapısının
+seyrek hücre ürettiği durumlar ayrıca denetlenmiştir.
+
+\methodbox{İstatistik yöntem kutusu: ölçüm değişmezliği}{Configural düzey aynı faktör yapısının gruplarda kurulabildiğini, metric düzey madde yüklerinin benzerliğini, scalar düzey ise eşik veya intercept benzerliğini sınar. Scalar düzey sağlanmadan grup ortalamalarını doğrudan karşılaştırmak daha zayıf bir kanıta dayanır. Bu raporda scalar CFI ve Delta CFI birlikte izlenmiştir. Kategori seyrekliği olduğunda model tahmini teknik olarak bozulabileceği için yaş ve cinsiyet duyarlılıklarında 1 ve 1'den büyük yanıtları ayıran binary kodlama ayrıca denenmiştir.}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{22-psikometrik-validasyon-butunlesik-rapor_files/figure-pdf/fig-invariance-1.png}
+
+}
+
+\caption{\label{fig-invariance}Ölçüm değişmezliği duyarlılıklarında
+scalar CFI}
+
+\end{figure}%
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Scalar CFI
+değerleri, grup karşılaştırmalarında madde eşiklerinin ne kadar
+istikrarlı kaldığını özetler. DM-Kontrol ve aile rolü eksenindeki EMBU-C
+modelleri raporlanabilir bir çizgi verirken, yaş ve cinsiyet için özgün
+dört kategorili yanıt yapısı bazı maddelerde boş hücre ürettiği için
+doğrudan kullanılamaz. Binary 1/\textgreater1 daraltması bu seyrekliği
+azaltır; bu nedenle yaş/cinsiyet duyarlılıkları birincil sonuç değil,
+metodolojik destek analizi olarak ele alınmalıdır.
+
+\Needspace{7\baselineskip}
+\begingroup
+\small
+\setlength{\tabcolsep}{3pt}
+
+\noindent\textcolor{ReportTeal}{Yaş/cinsiyet MI için kategori seyrekliği denetimi}
+
+\par\smallskip
+
+\begin{tabular}{lllrrr}
+\toprule
+Grup & Set & Şema & Boş madde & Boş hücre & Min hücre\\
+\midrule
+age\_cat & 29 madde binary & 1/>1 & 0 & 0 & 2\\
+age\_cat & 29 madde 4 kategori & 4 kat. & 4 & 6 & 0\\
+sex\_group & 29 madde binary & 1/>1 & 0 & 0 & 5\\
+sex\_group & 29 madde 4 kategori & 4 kat. & 1 & 1 & 0\\
+\bottomrule
+\end{tabular}
+\endgroup
+
+\Needspace{7\baselineskip}
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+
+\noindent\textcolor{ReportTeal}{Başarılı ölçüm değişmezliği modelleri}
+
+\par\smallskip
+
+\begin{longtable*}{llllrrrr}
+\toprule
+Form & Grup & Set & Düzey & CFI & RMSEA & SRMR & Delta CFI\\
+\midrule
+EMBU-P q12siz & group & Reddetme binary & configural & 0.808 & 0.062 & 0.176 & NA\\
+EMBU-P q12siz & group & Reddetme binary & metric & 0.813 & 0.055 & 0.179 & 0.005\\
+EMBU-P q12siz & group & Reddetme binary & scalar & 0.813 & 0.055 & 0.179 & 0.000\\
+EMBU-C & group & 29 madde & configural & 0.913 & 0.071 & 0.117 & NA\\
+EMBU-C & group & 29 madde & metric & 0.907 & 0.072 & 0.123 & -0.006\\
+\addlinespace
+EMBU-C & group & 29 madde & scalar & 0.906 & 0.071 & 0.118 & 0.000\\
+EMBU-C & family\_role & 29 madde & configural & 0.853 & 0.066 & 0.108 & NA\\
+EMBU-C & family\_role & 29 madde & metric & 0.859 & 0.063 & 0.111 & 0.006\\
+EMBU-C & family\_role & 29 madde & scalar & 0.855 & 0.063 & 0.109 & -0.004\\
+EMBU-C bin. & age\_cat & 29 madde binary & configural & 0.908 & 0.037 & 0.168 & NA\\
+\addlinespace
+EMBU-C bin. & age\_cat & 29 madde binary & metric & 0.906 & 0.036 & 0.175 & -0.003\\
+EMBU-C bin. & age\_cat & 29 madde binary & scalar & 0.906 & 0.036 & 0.175 & 0.000\\
+EMBU-C bin. & sex\_group & 29 madde binary & configural & 0.880 & 0.039 & 0.156 & NA\\
+EMBU-C bin. & sex\_group & 29 madde binary & metric & 0.886 & 0.038 & 0.160 & 0.006\\
+EMBU-C bin. & sex\_group & 29 madde binary & scalar & 0.886 & 0.038 & 0.160 & 0.000\\
+\bottomrule
+\end{longtable*}
+\endgroup
+
+\Needspace{7\baselineskip}
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+
+\noindent\textcolor{ReportTeal}{Tahmin edilemeyen ölçüm değişmezliği modelleri}
+
+\par\smallskip
+
+\begin{tabular}{llll}
+\toprule
+Form & Grup & Set & Hata\\
+\midrule
+EMBU-P & group & 29 madde & lavaan->lav\_samplestats\_step1(): some categories of variab...\\
+EMBU-P q12siz & group & q12siz 28 & lavaan->lav\_samplestats\_step1(): some categories of variab...\\
+EMBU-C & age\_cat & 29 madde & lavaan->lav\_samplestats\_step1(): some categories of variab...\\
+EMBU-C & sex\_group & 29 madde & lavaan->lav\_samplestats\_step1(): some categories of variab...\\
+\bottomrule
+\end{tabular}
+\endgroup
+
+Başarısız modellerin çoğu teorik uyumsuzluktan çok kategori seyrekliği
+ve bazı yanıt düzeylerinin küçük alt gruplarda hiç gözlenmemesiyle
+ilişkilidir. Bu nedenle raporda ``ölçüm değişmezliği yok'' gibi genel
+bir yargı yerine, hangi grup ve hangi madde kodlamasında tahminin mümkün
+olduğu açıkça ayrıştırılmalıdır.
+
+\Needspace{14\baselineskip}
+
+\chapter{Aile İçi Yapı ve Kardeş
+Konkordansı}\label{aile-iuxe7i-yapux131-ve-kardeux15f-konkordansux131}
+
+Kardeşli tasarım, her çocuk satırını bağımsız kabul etmeyi uygun kılmaz.
+Bu bölüm aile içi benzerliğin ve indeks-kardeş anlaşmasının alt
+ölçeklere göre ne kadar değiştiğini gösterir. ICC değerleri yüksek bir
+mutlak seviye beklemekten çok, hangi alt ölçeklerin aile içinde daha
+ortak algılandığını görmek için kullanılmıştır.
+
+\methodbox{İstatistik yöntem kutusu: ICC ve LoA}{Intraclass correlation coefficient, aynı aile içindeki ya da indeks-kardeş çiftindeki puanların ne kadar benzer olduğunu özetler. ICC(2,1), tek ölçüm düzeyinde mutlak anlaşmaya odaklanan iki yönlü rastgele etkiler yaklaşımıdır. Bland-Altman limits of agreement ise kardeşler arasındaki farkların pratik aralığını verir; ortalama fark küçük olsa bile LoA genişse bireysel ailelerde belirgin ayrışma olabilir.}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{22-psikometrik-validasyon-butunlesik-rapor_files/figure-pdf/fig-icc-1.png}
+
+}
+
+\caption{\label{fig-icc}EMBU-C aile içi ICC ve indeks-kardeş anlaşması}
+
+\end{figure}%
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Sıcaklık en yüksek,
+Reddetme ise en düşük indeks-kardeş anlaşması veren alt ölçek olarak
+görünmektedir. Reddetme için ICC(2,1) 0.158 düzeyindedir; bu düşük
+değer, aynı ailedeki iki çocuğun reddedilme algısının tam olarak
+örtüşmediğini ve parental differential treatment yorumuna alan açtığını
+gösterir. Bu bulgu, EMBU-C'nin yalnız bireysel algıyı değil, aile içi
+farklılaşmayı da taşıyabildiğini destekler.
+
+\Needspace{7\baselineskip}
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+
+\noindent\textcolor{ReportTeal}{İndeks-kardeş konkordansı}
+
+\par\smallskip
+
+\begin{tabular}{lrrrrr}
+\toprule
+Alt ölçek & n çift & ICC(2,1) & Ortalama fark & LoA alt & LoA üst\\
+\midrule
+Sıcaklık & 241 & 0.297 & -0.018 & -1.334 & 1.299\\
+Aşırı koruma & 241 & 0.205 & 0.095 & -1.393 & 1.583\\
+Reddetme & 241 & 0.158 & 0.000 & -1.020 & 1.019\\
+Karşılaştırma & 241 & 0.202 & 0.014 & -1.688 & 1.716\\
+\bottomrule
+\end{tabular}
+\endgroup
+
+LoA aralıklarının genişliği, kardeşler arasındaki farkların bazı
+ailelerde klinik olarak anlamlı olabilecek ölçüde açılabildiğini
+gösterir. Bu yüzden indeks-kardeş karşılaştırmaları yalnız ortalama fark
+üzerinden değil, anlaşma ve dağılım genişliği üzerinden de
+raporlanmalıdır.
+
+\Needspace{14\baselineskip}
+
+\chapter{Nomolojik Ağ: Beck ve
+SRQ/KIA}\label{nomolojik-aux11f-beck-ve-srqkia}
+
+Nomolojik ağ bölümü, EMBU alt ölçeklerinin beklenen dış ölçütlerle aynı
+yönde ilişki verip vermediğini sınar. Beck Depresyon toplamı anne
+bildirimiyle, SRQ/KIA alt boyutları ise kardeş ilişkisi alanıyla
+bağlanmıştır. Bu bölümde p-değerleri yalnız işaretleyici olarak
+kullanılmış, yorumun ana ekseni etki yönü ve büyüklüğü olmuştur.
+
+\methodbox{İstatistik yöntem kutusu: Spearman korelasyonu ve nomolojik ağ}{Spearman rho, değişkenler arasındaki monoton ilişkiyi sıra bilgisi üzerinden ölçer ve Likert temelli ya da çarpık dağılımlı puanlarda Pearson korelasyonuna göre daha dayanıklı bir özet sağlar. Nomolojik ağ yaklaşımında amaç yalnız p-değeri üretmek değildir; kuramsal olarak ilişkili olması beklenen alanların beklenen yönde ve makul büyüklükte ilişki verip vermediği değerlendirilir.}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{22-psikometrik-validasyon-butunlesik-rapor_files/figure-pdf/fig-validity-1.png}
+
+}
+
+\caption{\label{fig-validity}Beklenen yönlü geçerlik korelasyonları}
+
+\end{figure}%
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Noktaların sıfır
+çizgisinden uzaklığı ilişkinin büyüklüğünü, dolu noktalar p \textless{}
+.05 düzeyindeki sonuçları gösterir. Beklenen örüntü büyük ölçüde
+korunmaktadır: EMBU-P Karşılaştırma ve Reddetme Beck ile pozitif,
+Sıcaklık Beck ile negatif ilişkilidir; EMBU-C Karşılaştırma ise SRQ
+Çatışma ve Rekabet ile pozitif, SRQ Sıcaklık/Yakınlık ile negatif ilişki
+verir. Bu yönsel tutarlılık, özellikle EMBU-C Karşılaştırma boyutunun
+kardeş ilişkisi bağlamında nomolojik geçerlik sinyali taşıdığını
+gösterir.
+
+\Needspace{7\baselineskip}
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+
+\noindent\textcolor{ReportTeal}{Kriter ve eşzamanlı geçerlik korelasyonları}
+
+\par\smallskip
+
+\begin{longtable*}{lrrr}
+\toprule
+Karşılaştırma & n & rho & p\\
+\midrule
+EMBU-P Sıcaklık x Beck & 238 & -0.217 & 0.001\\
+EMBU-P Aşırı koruma x Beck & 238 & 0.060 & 0.359\\
+EMBU-P Reddetme x Beck & 238 & 0.171 & 0.008\\
+EMBU-P Karşılaştırma x Beck & 238 & 0.261 & 0.000\\
+EMBU-P Karşılaştırma x SRQ toplam & 241 & 0.036 & 0.576\\
+\addlinespace
+EMBU-P Karşılaştırma x SRQ Sıcaklık/Yakınl... & 241 & -0.012 & 0.847\\
+EMBU-P Karşılaştırma x SRQ Statü/Güç & 241 & 0.083 & 0.198\\
+EMBU-P Karşılaştırma x SRQ Çatışma & 241 & -0.026 & 0.690\\
+EMBU-P Karşılaştırma x SRQ Rekabet & 241 & 0.042 & 0.516\\
+EMBU-C Karşılaştırma x SRQ toplam & 482 & 0.003 & 0.949\\
+\addlinespace
+EMBU-C Karşılaştırma x SRQ Sıcaklık/Yakınl... & 482 & -0.159 & 0.000\\
+EMBU-C Karşılaştırma x SRQ Statü/Güç & 482 & 0.031 & 0.496\\
+EMBU-C Karşılaştırma x SRQ Çatışma & 482 & 0.303 & 0.000\\
+EMBU-C Karşılaştırma x SRQ Rekabet & 482 & 0.143 & 0.002\\
+\bottomrule
+\end{longtable*}
+\endgroup
+
+Korelasyon büyüklükleri çoğunlukla küçük-orta aralıktadır; bu
+psikososyal ölçeklerde beklenen bir durumdur ve tek başına zayıflık
+olarak yorumlanmamalıdır. Daha önemli olan, teorik olarak beklenen
+işaretlerin korunması ve aynı örüntünün anne depresyonu ile kardeş
+ilişkisi alanlarında ayrışabilir biçimde görünmesidir.
+
+\Needspace{14\baselineskip}
+
+\chapter{Reddetme Multiverse, TOST ve BSEM
+Duyarlılığı}\label{reddetme-multiverse-tost-ve-bsem-duyarlux131lux131ux11fux131}
+
+Bu bölüm, EMBU-P Reddetme bulgusunun tek bir skor kodlamasına bağlı olup
+olmadığını sınar. Multiverse analizinde madde sayısı, kategori daraltma,
+düşük corrected item-total correlation çıkarımı ve BSEM latent faktör
+tahmini aynı eksende karşılaştırılmıştır. TOST eşdeğerlik analizi ise
+DM-Kontrol farkının pratik olarak ihmal edilebilir aralıkta kabul edilip
+edilemeyeceğini test eder.
+
+\methodbox{İstatistik yöntem kutusu: multiverse, TOST ve BSEM}{Multiverse analiz, aynı araştırma sorusunu makul alternatif skor kodlamalarıyla tekrar ederek sonucun analitik kararlara bağımlılığını gösterir. TOST eşdeğerlik testi, anlamlı fark bulunmamasından farklıdır; önceden belirlenen pratik eşdeğerlik bandı içinde kalındığını ayrıca sınar. Bayesian SEM ise küçük çapraz yükler ya da artık korelasyonlar için zayıf önsel bilgi kullanarak klasik CFA'nın katı sıfır kısıtlarını yumuşatır; bu raporda BSEM duyarlılığı latent değişken temelli tamamlayıcı kanıt olarak değerlendirilmiştir.}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{22-psikometrik-validasyon-butunlesik-rapor_files/figure-pdf/fig-multiverse-1.png}
+
+}
+
+\caption{\label{fig-multiverse}EMBU-P Reddetme DM-Kontrol farkı için
+multiverse eğrisi}
+
+\end{figure}%
+
+\noindent\textcolor{ReportTeal}{Grafik okuma notu.} Tüm stratejilerde
+DM-Kontrol tahmini negatif yöndedir, ancak güven aralıkları sıfırı
+kesmektedir. Bu, EMBU-P Reddetme için tutarlı ve güçlü bir grup farkı
+kanıtı olmadığını gösterir. BSEM latent faktör tahmininin de aynı genel
+bölgede kalması, sonucun yalnız klasik toplam puan kodlamasına bağlı
+olmadığını düşündürür.
+
+\Needspace{7\baselineskip}
+\begingroup
+\small
+\setlength{\tabcolsep}{4pt}
+
+\noindent\textcolor{ReportTeal}{Reddetme multiverse sonuçları}
+
+\par\smallskip
+
+\begin{tabular}{lrrrrr}
+\toprule
+Strateji & n & DM-Kontrol & SE & p & Cohen d\\
+\midrule
+8 madde/4 kat. & 241 & -0.040 & 0.036 & 0.273 & -0.142\\
+8 madde/3 kat. & 241 & -0.020 & 0.021 & 0.349 & -0.121\\
+Düşük CITC çıkar. & 241 & -0.066 & 0.055 & 0.233 & -0.154\\
+BSEM latent & NA & NA & NA & NA & NA\\
+\bottomrule
+\end{tabular}
+\endgroup
+
+\Needspace{7\baselineskip}
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+
+\noindent\textcolor{ReportTeal}{TOST eşdeğerlik duyarlılığı}
+
+\par\smallskip
+
+\begin{tabular}{llrlrrl}
+\toprule
+Strateji & n DM/K & g & 90\% CI & p alt & p üst & Eşd\\
+\midrule
+8 madde/4 kat. & 120/121 & -0.141 & {}[-0.352, 0.070] & 0.110 & 0.000 & Hayır\\
+8 madde/3 kat. & 120/121 & -0.120 & {}[-0.332, 0.091] & 0.083 & 0.001 & Hayır\\
+Düşük CITC çıkar. & 120/121 & -0.154 & {}[-0.365, 0.058] & 0.129 & 0.000 & Hayır\\
+\bottomrule
+\end{tabular}
+\endgroup
+
+TOST sonuçlarında eşdeğerlik kararı \texttt{Hayır} kalmaktadır; yani
+grup farkı anlamlı bulunmamakla birlikte, bu farkın önceden tanımlanan
+pratik eşdeğerlik bandı içinde kaldığı da güçlü biçimde
+gösterilememiştir. Bu ayrım önemlidir: ``anlamlı fark yok'' sonucu,
+otomatik olarak ``gruplar eşdeğer'' sonucuna çevrilmemelidir.
+
+Yakınsama özeti, BSEM tahminlerinin teknik olarak kullanılabilir
+olduğunu gösterir: Rhat değerleri 1'e çok yakındır ve etkili örneklem
+büyüklükleri raporlanabilir düzeydedir. Bununla birlikte posterior
+predictive p-value değerlerinin sınırda kalması, BSEM'in EMBU-P Reddetme
+sorununu tamamen çözmediğini gösterir.
+
+\Needspace{12\baselineskip}
+
+\chapter{Yorum ve Raporlama Kararı}\label{yorum-ve-raporlama-kararux131}
+
+Bu psikometrik validasyon, EMBU-P ve EMBU-C formlarının aynı kavramsal
+alanı eşit güçte taşımadığını göstermektedir. En güçlü ve tutarlı kanıt,
+çocuk bildirimi üzerinden elde edilen EMBU-C sonuçlarında
+toplanmaktadır: Reddetme ve Karşılaştırma alt ölçekleri kabul edilebilir
+iç tutarlılık üretmekte, madde dağılımları anne formuna göre daha
+kullanılabilir varyans sunmakta, nomolojik ağ bulguları beklenen yönde
+seyretmekte ve kardeşli tasarım içinde aile içi farklılaşmayı
+yakalayabilmektedir. Bu nedenle ana analiz metninde EMBU-C, ebeveynlik
+algısı ve kardeşler arası farklılaşma için birincil psikometrik kaynak
+olarak konumlandırılmalıdır.
+
+EMBU-P için daha sınırlı ve seçici bir raporlama dili gereklidir.
+Özellikle Reddetme alt ölçeği, düşük alpha/omega değerleri, yoğun taban
+etkisi, CFA/MI kırılganlığı ve multiverse/BSEM duyarlılıklarında zayıf
+grup farkı sinyali nedeniyle bu örneklemde güçlü bir yapı geçerliği
+kanıtı üretmemektedir. Bu bulgu ``anne formu geçersizdir'' ya da
+``reddetme kavramı yoktur'' şeklinde yorumlanmamalıdır. Daha doğru
+ifade, anne öz-bildiriminde reddedici ebeveynlik maddelerinin bu
+örneklemde düşük varyans ürettiği ve mevcut madde havuzunun Reddetme
+boyutunu ayırt etmekte sınırlı kaldığıdır. EMBU-P'nin Sıcaklık, Aşırı
+Koruma ve Karşılaştırma alt ölçekleri betimleyici ve tamamlayıcı
+analizlerde kullanılabilir; ancak Reddetme alt ölçeği ana hipotez
+taşıyıcısı yapılmamalıdır.
+
+Grup karşılaştırmaları açısından sonuçlar iki ayrı ilkeyle
+raporlanmalıdır. Birincisi, anlamlı fark bulunmaması grupların eşdeğer
+olduğu anlamına gelmez; TOST sonuçları EMBU-P Reddetme için pratik
+eşdeğerliği güçlü biçimde göstermemektedir. İkincisi, ölçüm değişmezliği
+kanıtı olmayan ya da kategori seyrekliği nedeniyle tahmin edilemeyen
+modellerde grup ortalaması yorumları sınırlı tutulmalıdır. Bu nedenle
+DM-Kontrol karşılaştırmalarında, ölçüm değişmezliği desteklenen EMBU-C
+sonuçları daha güvenli raporlama zemini sağlar; yaş ve cinsiyet
+duyarlılıkları ise binary kategori daraltmasıyla destekleyici analiz
+olarak sunulmalıdır.
+
+Kardeşli tasarımın en önemli katkısı, aile içindeki çocukların
+ebeveynlik algılarının tamamen örtüşmediğini göstermesidir. Düşük-orta
+indeks-kardeş ICC değerleri, özellikle Reddetme ve Karşılaştırma
+alanlarında parental differential treatment çerçevesiyle uyumludur. Bu
+sonuç, aileyi tek bir homojen çevre olarak ele alan yorumların yetersiz
+kalabileceğini, çocuk düzeyi algının ayrı bir psikolojik bilgi
+taşıdığını düşündürür. Bu nedenle tez ve makale yazımında aile içi
+kümelenme, konkordans ve kardeş farkı analizleri yalnız teknik düzeltme
+olarak değil, çalışmanın kuramsal katkısının parçası olarak ele
+alınmalıdır.
+
+Metodolojik ekin ana mesajı, anne bildirimi ve çocuk bildirimi
+arasındaki psikometrik performans farkı olmalıdır. Ek bölümde EMBU-P
+Reddetme alt ölçeğinin sınırlılıkları açıkça belgelenmeli; taban etkisi,
+düşük iç tutarlılık, model uyumu ve duyarlılık analizleri birlikte
+sunulmalıdır. Psikometrik adaptasyon makalesinin pozitif katkısı ise
+EMBU-C'nin Türkçe örneklemde kardeşli ve dyadic tasarımlarda
+kullanılabilirliğini göstermesidir. Sonuç cümlesi şu eksende
+kurulabilir: EMBU-C, bu örneklemde ebeveynlik algısı ve kardeşler arası
+farklılaşmayı değerlendirmek için daha güçlü ve yorumlanabilir bir
+araçtır; EMBU-P ise özellikle Reddetme boyutunda temkinli, sınırlılık
+odaklı ve destekleyici düzeyde raporlanmalıdır.
+
+
+
+
+\end{document}

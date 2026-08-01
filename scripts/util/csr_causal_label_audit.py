@@ -142,9 +142,20 @@ def iter_visible_lines(csr_path: Path) -> list[CsrLine]:
     current_heading = ""
     exploratory_section_labels: dict[str, bool] = {}
     in_comment = False
+    in_code_fence = False
 
     for line_no, raw_line in enumerate(csr_path.read_text(encoding="utf-8").splitlines(), start=1):
         line = raw_line.rstrip("\n")
+        # Fenced kod bloğu (```{r}, ```python, ```) sınırı: içerideki metin
+        # analiz düzyazısı değil kod-literalidir (ör. ggplot etiketi
+        # label = "Net fayda", "Herkesi tedavi et"). Nedensel/aksiyon dil
+        # taraması düzyazı iddialarını hedefler; kod-literallerini yanlış
+        # pozitif saymamak için bu bloklar atlanır (numeric tracer ile tutarlı).
+        if line.strip().startswith("```"):
+            in_code_fence = not in_code_fence
+            continue
+        if in_code_fence:
+            continue
         if in_comment:
             if HTML_COMMENT_END_RE.search(line):
                 in_comment = False

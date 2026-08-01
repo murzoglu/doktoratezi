@@ -2,7 +2,7 @@
 
 > SAP v3.0 §40–41. Reflexive Thematic Analysis (Braun & Clarke 2022) + Joint Display +
 > Convergence Analysis (Creswell & Plano Clark 2018). **[KEŞİFSEL]** statüsünde — niteliksel
-> görüşme verisi (~6 transkript) tezde *triangulation* katmanı.
+> görüşme verisi tezde *triangulation* katmanı.
 
 ## Niye Karma Yöntem?
 
@@ -227,3 +227,57 @@ tar_target(joint_display_table,     build_joint_display(quant_h1, quant_h2, them
 - Joint display tablosunun papaja entegrasyonu → [`diseminasyon-ve-yayin.md`](diseminasyon-ve-yayin.md)
 - Niteliksel + LPA tipoloji eşleştirmesi → [`latent-degisken-yontemleri.md`](latent-degisken-yontemleri.md)
 - Kaynaklar: Creswell & Plano Clark (2018); Braun & Clarke (2022); Gwet (2014); Wisdom & Creswell (2013)
+
+## Kanonik girdi + hazırlık katmanı
+
+> Bu bölüm, iki-kol karma sentez hazırlık katmanının (Task 2–5) ürettiği kanonik
+> altyapıyı belgelemektedir. BULGULAR veya TARTIŞMA bölümünde karma yöntem
+> içeriği yazılmadan önce aşağıdaki akış izlenmelidir.
+
+### Kanonik girdi dosyaları
+
+| Dosya | Rol |
+|---|---|
+| `niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd` | Nitel kolun kanonik bilimsel sonuç belgesi; joint display için güvenli nitel kaynak. |
+| `docs/CLINICAL-STUDY-REPORT-FINAL.qmd` | Nicel kolun kanonik klinik çalışma raporu (CSR); joint display için birincil nicel kaynak. |
+
+### Karma entegrasyon altyapısı
+
+| Dosya | Amaç |
+|---|---|
+| `tez-yazim/05_entegrasyon/karma-kanit-ledgeri.tsv` | Ankraj-provenanslı kanıt-ledger: her nicel-nitel kanıt satırı `{#tema-N}` / H1–H5 çapasıyla işaretli. |
+| `tez-yazim/05_entegrasyon/karma-sentez-kanonik.md` | **Doldurulmuş joint-display + meta-çıkarım — tek doğruluk kaynağı.** BULGULAR ve TARTIŞMA bölümleri için birincil referans. |
+| `scripts/util/karma_ledger_check.py` | Drift-guard: ledger ile kanonik girdiler arasındaki sapmaları denetler (HARD / SOFT / INFO seviyeleri). |
+
+### Kullanım kuralları
+
+1. **BULGULAR** bölümünde joint-display yazılmadan önce `karma-sentez-kanonik.md` okunur;
+   tablo hücreleri buradan alınır — ayrı kaynaklardan derlenmez.
+2. **TARTIŞMA** bölümünde meta-çıkarım yazılmadan önce `karma-sentez-kanonik.md`'nin
+   meta-çıkarım kesiti okunur; `nitel-nicel-joint-display-plan.md` yalnız alan/ilişki
+   sözlüğü işlevi görür, doldurulmuş tablo değildir.
+3. **Drift-guard zorunluluğu:** Her iki bölümün sertifikasyonundan önce checker çalıştırılır:
+
+   ```bash
+   PYTHONDONTWRITEBYTECODE=1 python3 scripts/util/karma_ledger_check.py
+   ```
+
+   **HARD=0 (severity ≠ 1 bulunan satır yok) olmadan bölüm taslak final sayılmaz.**
+   SOFT bulguları (severity=2) sertifika raporunda gerekçelendirilir.
+4. Kanonik girdi dosyaları değişirse ledger güncellenir ve checker yeniden geçirilir
+   (tek-otorite ilkesi; duplikasyon önleme).
+
+### Bölüm-akış özeti
+
+```
+niteliksel_kanonik_sonuclar.qmd  +  CLINICAL-STUDY-REPORT-FINAL.qmd
+        │
+        ▼
+karma-kanit-ledgeri.tsv  →  karma_ledger_check.py  [HARD=0]
+        │
+        ▼
+karma-sentez-kanonik.md  (doldurulmuş joint-display + meta-çıkarım)
+        │
+        ├── chapters/04_bulgular.qmd   (yorumsuz joint-display köprüsü)
+        └── chapters/05_tartisma_ve_sonuc.qmd  (yorumlu meta-çıkarım)
+```

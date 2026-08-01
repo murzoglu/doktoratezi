@@ -28,7 +28,6 @@
 ## Değişmez Güvenlik Sınırları
 
 - `.env`, credential JSON, ham veri, kimlikleyici, `data/raw/`, `data/cleaned/`, `data/identified/`, `data/backup/`, satır-düzeyi `data/processed/*.csv`, `_targets/` cache ve tam CSV dump rapora taşınmaz.
-- HbA1c veya başka klinik plausibility bulgularında yalnız değişken adı, eşik, satır indeksi, severity ve karar yazılır; ham satır içeriği kopyalanmaz.
 - `critical` bulgu varken rapor sonucu "geçti" olarak yazılmaz.
 - `review` bulguları rapor bitmeden `kabul edildi`, `düzeltilecek` veya `opsiyonel skip` kararlarından biriyle sınıflandırılır.
 - Kanonik CSV doğrudan elle değiştirilmez; düzeltme gerekiyorsa kaynak veri karar zinciri ve lock dosyası üzerinden yapılır.
@@ -312,7 +311,6 @@ Allowed `decision` değerleri: `pass`, `critical`, `review/optional_skip`, `revi
 - Run: `scripts/R/38_esem_embu_audit.R`
 - Run: `scripts/R/39_antidepressant_pathway_audit.R`
 - Run: `scripts/R/40_h5_extensions_audit.R`
-- Run: `scripts/R/41_hba1c_joint_audit.R`
 - Run: `scripts/R/42_causal_mediation_audit.R`
 - Run: `scripts/R/43_dag_pc_fci_audit.R`
 - Run: `scripts/R/44_distributional_audit.R`
@@ -445,7 +443,6 @@ Karar kuralları:
 
 | Finding tipi | Karar kuralı |
 |---|---|
-| `hba1c_plausibility_range` | Kaynak veri ve klinik eşiğe göre `kabul edildi` veya `düzeltilecek`; ham değer rapora yazılmaz. |
 | `csv_readable` / boş CSV | İlgili runner `status` veya `skip_reason` ile opsiyonel olduğunu gösteriyorsa `opsiyonel skip`, aksi halde `düzeltilecek`. |
 | `tool_registry` optional unavailable | Plan için zorunlu değilse `kabul edildi`; derin genişleme için gerekiyorsa `düzeltilecek`. |
 | Raporlama mismatch | CSR/tez metni düzeltilene kadar `düzeltilecek`. |
@@ -485,7 +482,6 @@ Expected: exit 0 ve aggregate reporting/mapping tabloları üretilir.
 
 - [ ] **Step 2: CSR sayısal iddialarını audit summary ile karşılaştır**
 
-CSR içinde `p`, `q`, `CI`, `ICC`, `SMD`, `OR`, `beta`, `estimate`, `HbA1c`, `FDR` içeren cümleleri kaynak CSV dosyasıyla eşleştir. Eşleşmeyen veya yuvarlama farkı audit toleransını aşan iddiaları `review/reporting` olarak kaydet.
 
 - [ ] **Step 3: Tez bölüm referanslarını mapping tablolarıyla karşılaştır**
 

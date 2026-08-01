@@ -73,8 +73,58 @@ run_ggm_lasso <- function(df, variables, gamma = 0.5, group_label = "all") {
   )
 }
 
+# Ag kararliligi (bootnet case-dropping CS-katsayisi). Havuzlanmis 9-degiskenli
+# GGM uzerinde strength/expected-influence merkeziyetinin orneklem-alt-kumesine
+# ne kadar dayanikli oldugunu nicelendirir. CS(cor=0.7) >= 0.25 minimum,
+# >= 0.50 tercih edilen esiktir (Epskamp, Borsboom & Fried, 2018).
+run_network_stability <- function(df, variables, n_boots = 1000L,
+                                   gamma = 0.5, seed = 20260428L) {
+  if (!requireNamespace("bootnet", quietly = TRUE)) {
+    return(list(status = "bootnet_unavailable"))
+  }
+  sub <- df[, variables, drop = FALSE]
+  sub <- sub[stats::complete.cases(sub), , drop = FALSE]
+  if (nrow(sub) < 20L) {
+    return(list(status = "insufficient_n", n = nrow(sub)))
+  }
+  set.seed(seed)
+  net <- tryCatch(
+    suppressMessages(suppressWarnings(bootnet::estimateNetwork(
+      sub, default = "EBICglasso", corMethod = "spearman",
+      tuning = gamma))),
+    error = function(e) e
+  )
+  if (inherits(net, "error")) {
+    return(list(status = paste0("error_estimate:", conditionMessage(net))))
+  }
+  boot_case <- tryCatch(
+    suppressMessages(suppressWarnings(bootnet::bootnet(
+      net, nBoots = n_boots, type = "case",
+      statistics = c("strength", "expectedInfluence"),
+      verbose = FALSE))),
+    error = function(e) e
+  )
+  if (inherits(boot_case, "error")) {
+    return(list(status = paste0("error_boot:", conditionMessage(boot_case))))
+  }
+  cs <- tryCatch(
+    bootnet::corStability(boot_case, cor = 0.7, verbose = FALSE),
+    error = function(e) NULL
+  )
+  if (is.null(cs)) {
+    return(list(status = "error_cs"))
+  }
+  list(
+    status = "ok",
+    n = nrow(sub),
+    n_boots = n_boots,
+    cs_strength = unname(cs[["strength"]]),
+    cs_expected_influence = unname(cs[["expectedInfluence"]])
+  )
+}
+
 run_nct <- function(df, variables, group_col = "group_f",
-                     n_perm = 500L, seed = 20260428L) {
+                     n_perm = 1000L, seed = 20260428L) {
   if (!requireNamespace("NetworkComparisonTest", quietly = TRUE)) {
     return(list(status = "NCT_unavailable"))
   }
@@ -154,7 +204,8 @@ run_network_pipeline <- function(df_family_ses, df_family_scored, seed = 2026042
   ggm_all <- run_ggm_lasso(prepared, available, group_label = "all")
   ggm_dm  <- run_ggm_lasso(prepared[prepared$group_f == "DM", , drop = FALSE], available, group_label = "DM")
   ggm_ko  <- run_ggm_lasso(prepared[prepared$group_f == "Kontrol", , drop = FALSE], available, group_label = "Kontrol")
-  nct     <- run_nct(prepared, available, n_perm = 200L, seed = seed)
+  nct     <- run_nct(prepared, available, n_perm = 1000L, seed = seed)
+  stability <- run_network_stability(prepared, available, n_boots = 1000L, seed = seed)
   beck_net <- run_beck_symptom_network(df_family_scored, group_label = "all")
 
   edges <- do.call(rbind, list(
@@ -168,12 +219,14 @@ run_network_pipeline <- function(df_family_ses, df_family_scored, seed = 2026042
     if (!is.null(ggm_ko$centrality_table)) ggm_ko$centrality_table else data.frame()
   ))
   status_table <- data.frame(
-    component = c("ggm_all", "ggm_dm", "ggm_ko", "nct", "beck_symptom"),
-    status    = c(ggm_all$status, ggm_dm$status, ggm_ko$status, nct$status, beck_net$status),
+    component = c("ggm_all", "ggm_dm", "ggm_ko", "nct", "stability", "beck_symptom"),
+    status    = c(ggm_all$status, ggm_dm$status, ggm_ko$status, nct$status,
+                  stability$status, beck_net$status),
     n         = c(if (!is.null(ggm_all$n)) ggm_all$n else NA_integer_,
                   if (!is.null(ggm_dm$n)) ggm_dm$n else NA_integer_,
                   if (!is.null(ggm_ko$n)) ggm_ko$n else NA_integer_,
                   if (!is.null(nct$n_dm)) nct$n_dm + nct$n_ko else NA_integer_,
+                  if (!is.null(stability$n)) stability$n else NA_integer_,
                   if (!is.null(beck_net$n)) beck_net$n else NA_integer_),
     stringsAsFactors = FALSE
   )
@@ -188,11 +241,21 @@ run_network_pipeline <- function(df_family_ses, df_family_scored, seed = 2026042
       stringsAsFactors = FALSE
     )
   } else data.frame()
+  stability_table <- if (identical(stability$status, "ok")) {
+    data.frame(
+      n = stability$n,
+      n_boots = stability$n_boots,
+      cs_strength = stability$cs_strength,
+      cs_expected_influence = stability$cs_expected_influence,
+      stringsAsFactors = FALSE
+    )
+  } else data.frame()
   list(
     status_table     = status_table,
     edges_table      = edges,
     centrality_table = centrality,
     nct_table        = nct_table,
+    stability_table  = stability_table,
     beck_centrality_table = if (!is.null(beck_net$centrality_table)) beck_net$centrality_table else data.frame()
   )
 }

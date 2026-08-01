@@ -23,6 +23,9 @@ from _common import read_event  # noqa: E402
 
 NUMERIC_CLAIM = re.compile(r"\b\d+(?:[.,]\d+)?\s?%|\b\d{4}\b|\$\s?\d|\b\d+(?:[.,]\d+)?\s?(mg|ml|kg|mmol|patients|hastada|aile|cocuk|çocuk|katilimci|katılımcı|satir|satır|sutun|sütun)\b", re.IGNORECASE)
 SOURCE_MARKER = re.compile(r"https?://|doi\.org|arxiv|\bPMID\b|\[\d+\]|\(20\d\d\)", re.IGNORECASE)
+# §1.4 Marmara ondalık virgül: nokta-ondalık p değeri (p=0.NNN) turn-end blocker
+# (Claude ikizi .claude/hooks/stop_verify.py ile parite).
+PVALUE_DOT = re.compile(r"\bp\s*[=<>]\s*0\.\d", re.IGNORECASE)
 
 
 def main() -> None:
@@ -34,6 +37,18 @@ def main() -> None:
         sys.exit(0)
 
     msg = event.get("last_assistant_message") or ""
+
+    if PVALUE_DOT.search(msg):
+        m = PVALUE_DOT.search(msg)
+        sys.stdout.write(json.dumps({
+            "decision": "block",
+            "reason": (
+                "§1.4 kapisi: nokta-ondalik p degeri (\"%s...\") — Marmara "
+                "ondalik virgul kurali geregi p=0,NNN yazin (nokta degil virgul)."
+                % msg[m.start():m.start() + 12]
+            ),
+        }))
+        sys.exit(0)
 
     # Fast, local grounding check.
     sentences = re.split(r"(?<=[.!?])\s+", msg)
