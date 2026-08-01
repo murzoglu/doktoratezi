@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CSR parça-bazlı uçtan-uca denetim orkestratörü (spec.md Build fazı).
+"""CSR parça-bazlı uçtan-uca denetim orkestratörü.
 
 docs/CLINICAL-STUDY-REPORT-FINAL.qmd'yi 8 mantıksal bloğa ayırır ve her bloğa
 beş denetim katmanını (claim_certification · GraphRAG · Minerva · sci-audit
@@ -47,7 +47,7 @@ SCIAUDIT = (
 )
 PROTO = "2025-06-18"
 
-# 8 mantıksal blok → ham bölüm numaraları (spec.md tablosu).
+# 8 mantıksal blok → ham bölüm numaraları (tasarım spesifikasyonu tablosu).
 # literatür = GraphRAG uygulanır; diğerlerinde "uygulanamaz/boş".
 BLOCKS = [
     {"nn": "01", "slug": "on-madde-sinopsis", "name": "Ön-madde ve Sinopsis",

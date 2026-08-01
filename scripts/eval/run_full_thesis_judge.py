@@ -9,11 +9,12 @@ KVKK: gateway'e YALNIZ manuskript metni gönderilir; ham veri/transkript/kimlikl
 Çıktı: JSON (stdout) — konsolide rapora beslenir.
 """
 import json, os, re, sys, time
+from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 import galileo_bridge as g
 
-REPO = os.environ.get("CLAUDE_PROJECT_DIR", "/workspaces/T1DM-Tez")
+REPO = os.environ.get("CLAUDE_PROJECT_DIR") or str(Path(__file__).resolve().parents[2])
 CH = os.path.join(REPO, "chapters")
 
 # İçerik bölümleri (ön/arka madde judge kapsamı dışı: kısaltma listesi, özgeçmiş, ekler

@@ -3,24 +3,24 @@
 Repo profile: `t1dm_qualitative_thesis`
 Local gate: `dmnitel + niteliksel-arastirma-rehberi-t1dm`
 Codex playbook: `00_context/CODEX_PLAYBOOK.md`
-Nicel kök: `/workspaces/T1DM-Tez`
-Thesis writing root: `/workspaces/T1DM-Tez/tez-yazim`
+Nicel kök: repository root
+Thesis writing root: `tez-yazim/`
 
 ## Official Thesis Sources
-- `/workspaces/T1DM-Tez/docs/tez-kilavuz/TEZ YAZIM KLAVUZU-2025.pdf`
-- `/workspaces/T1DM-Tez/docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx`
+- `docs/tez-kilavuz/TEZ YAZIM KLAVUZU-2025.pdf`
+- `docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx`
 
 ## Thesis Writing Entrypoints
-- `/workspaces/T1DM-Tez/tez-yazim/README.md`
-- `/workspaces/T1DM-Tez/tez-yazim/06_kritik-kaynaklar/README.md`
-- `/workspaces/T1DM-Tez/tez-yazim/06_kritik-kaynaklar/kritik-dosya-manifesti.tsv`
-- `/workspaces/T1DM-Tez/tez-yazim/00_kaynak-kurallari/format-kontrati.md`
-- `/workspaces/T1DM-Tez/tez-yazim/01_mimari/yetkinlik-ve-arac-mimarisi.md`
+- `tez-yazim/README.md`
+- `tez-yazim/06_kritik-kaynaklar/README.md`
+- `tez-yazim/06_kritik-kaynaklar/kritik-dosya-manifesti.tsv`
+- `tez-yazim/00_kaynak-kurallari/format-kontrati.md`
+- `tez-yazim/01_mimari/yetkinlik-ve-arac-mimarisi.md`
 
 ## Operational Order
 - Once 00_context/CODEX_PLAYBOOK.md dosyasini ana Codex playbook olarak kullan.
-- Tez yazim/format islerinde ana calisma merkezini /workspaces/T1DM-Tez/tez-yazim olarak kabul et ve resmi docs/tez-kilavuz kaynaklarini ust kural yap.
-- Her tez yazim oturumunda klinik/nitel rapor, protokol, ham/kilitli veri ve olcek-form secimini once /workspaces/T1DM-Tez/tez-yazim/06_kritik-kaynaklar/README.md ve manifest TSV ile yap.
+- Tez yazim/format islerinde ana calisma merkezini `tez-yazim/` olarak kabul et ve resmi `docs/tez-kilavuz/` kaynaklarini ust kural yap.
+- Her tez yazim oturumunda klinik/nitel rapor, protokol, ham/kilitli veri ve olcek-form secimini once `tez-yazim/06_kritik-kaynaklar/README.md` ve manifest TSV ile yap.
 - Once ./dmnitel route-tool ile sorunun yerel nitel, dis-kanit veya nicel-pipeline oldugunu ayir.
 - Nitel kol yetkinliklerini yalniz tezde nitel kolun ilgili kesimleri yazilirken veya kanonik nitel sonuc raporu denetlenirken ac.
 - Her tez yazim oturumunda ./dmnitel ai-context ve Anamnesis/context gate ile anonim/turetilmis baglami sabitle.
@@ -95,7 +95,7 @@ Thesis writing root: `/workspaces/T1DM-Tez/tez-yazim`
 - `python3 ~/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py fulltext <attachment-key> --out <fulltext.txt>`
 
 ## Safe Repo Evidence
-- `03_analysis/codebook/codebook_v2.md`
+- `03_analysis/codebook/codebook_v3.md`
 - `03_analysis/methodology/coreq_32_completed.md`
 - `03_analysis/methodology/audit_trail.md`
 - `03_analysis/methodology/llm_use_statement.md`

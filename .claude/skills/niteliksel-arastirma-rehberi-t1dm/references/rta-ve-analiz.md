@@ -2,7 +2,7 @@
 
 > **Amaç:** Niteliksel kolun sonuçlarının analizi ve yorumlanmasında otör-yetkinlik. Braun &
 > Clarke refleksif tematik analiz (RTA) epistemolojisi, altı-faz protokolü, triadik okuma ve
-> yorumlama disiplini. Kaynak zemin: bu kolun kanonik raporu (§3.5 analiz zinciri) + `codebook_v2.md`.
+> yorumlama disiplini. Kaynak zemin: bu kolun kanonik raporu (§3.5 analiz zinciri) + `codebook_v3.md`.
 
 ## 0. RTA'nın Epistemolojik Konumu (bağlayıcı)
 
@@ -24,7 +24,7 @@ arasında geliştirilen **merkezi düzenleyici kavramdır**. Bu, üç sonucu zor
 |---|---|---|---|
 | **1. Aşinalık** | Transkriptlerin tam, tekrarlı okuması + refleksif not | Anonimleştirilmiş çalışma metni + paralinguistik saha notları birlikte okunur | Analitik/refleksif notlar |
 | **2. Kodlama** | Veriye yakın, madde madde anlam birimleri | 116 araştırmacı-denetimli ön-kodlu segment; veri diline yakın açık kodlar | Kod hattı |
-| **3. Tema oluşturma** | Kodların kavramsal kümelere dönüşmesi | 23 kod → 5 kategori → 6 journal / 4 tez teması | İlk tema haritası |
+| **3. Tema oluşturma** | Kodların kavramsal kümelere dönüşmesi | Kanonik codebook → güncel analitik mimari | İlk tema haritası |
 | **4. Gözden geçirme** | Temaları veriye ve birbirine karşı test | Aile-içi + aileler-arası okuma ile temaların tutarlılığı sınanır | Düzeltilmiş harita |
 | **5. Tanımlama + isimlendirme** | Her temaya kavramsal kimlik | Tema 1-4 makro kimlikleri (örn. "Gölgede kalan çocuklar") | Final tema şeması |
 | **6. Yazım** | Analitik anlatı + `quote_id` ankraj | Kanonik rapor §7; `.qmd` bulgular | Bulgular metni |
@@ -34,14 +34,13 @@ analitik iddia**dır. Tek koddan tema üretme; tek temayı tek koda indirgeme.
 
 ## 2. Kod → Kategori → Tema Mimarisi (kanonik)
 
-5 kategori (`codebook_v2.md`): (1) Tanı ve ilk dönem, (2) Günlük yönetim yükü/rutin, (3) Duygusal
-deneyim/anlamlandırma, (4) Aile ilişkileri/rol dönüşümü, (5) Başa çıkma/destek.
+Güncel kod-tema eşlemesi `codebook_v3.md`'den okunur; önceki sürümün kategori sayıları ve
+adları kanonik mimari yerine kullanılmaz.
 
 **İki raporlama kesiti, tek codebook tabanı:**
 - **Tez = 4 makro tema** (perspektif-organize: kardeş / anne / hasta çocuk / triadik).
-- **Journal = 6 konu teması** (J1-J6).
-- Aynı verinin iki bilimsel kesiti; **alternatif değil**. `codebook_v2.md §5` Rosetta tablosu
-  ikisini eşler. Metinde hangi kesitin kullanıldığı açıkça belirtilir.
+- Kesitler arasındaki güncel eşleme `codebook_v3.md` ve kanonik QMD'den doğrulanır.
+- Metinde hangi kesitin kullanıldığı açıkça belirtilir.
 
 ## 3. Triadik / Aileler-Arası Okuma
 

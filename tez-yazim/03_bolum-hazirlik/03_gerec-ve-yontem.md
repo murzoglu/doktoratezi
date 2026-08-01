@@ -129,7 +129,7 @@ skill referansları esastır (bu talimatname yöntem *seçimini* tekrar tanımla
 | Değişken sözleşmesi | `docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md` | Tanım; ham değer yok. |
 | Ölçekler | `docs/protokol/KANONIK_*` | Ne ölçtüğü; madde dökümü yok. |
 | Pipeline/tekrarlanabilirlik | `_targets.R`, `R/01_io.R`, `tests/` | Altyapı; çıktı değeri yok. |
-| Nitel yöntem | `niteliksel/qualitative_canonical_results_report.md` + nitel kol methodology pack | De-identified; ham veri yok. |
+| Nitel yöntem | `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` + nitel kol methodology pack | De-identified; ham veri yok. |
 | Kritik kaynak/etik | `06_kritik-kaynaklar/kritik-dosya-manifesti.tsv` | Erişim/doğrulama kuralına uygun seçim. |
 
 ## 10. Kapanış kapıları

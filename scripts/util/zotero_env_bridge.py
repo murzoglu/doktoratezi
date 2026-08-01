@@ -27,9 +27,10 @@ from typing import Any
 
 
 API_BASE = os.environ.get("ZOTERO_API_BASE", "https://api.zotero.org")
+ARM_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_ENV_PATHS = (
     ".env",
-    "/workspaces/T1DM-Tez/.env",
+    str(ARM_ROOT / ".env"),
 )
 DEFAULT_BIB_PATH = "references/references.bib"
 API_PAGE_LIMIT = 100

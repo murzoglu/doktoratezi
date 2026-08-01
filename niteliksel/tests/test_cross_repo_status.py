@@ -7,6 +7,7 @@ from dm_niteliksel_toolkit.tool_bridge import route_query
 
 
 QUAL_ROOT = Path(__file__).resolve().parents[1]
+QUANT_ROOT = QUAL_ROOT.parent
 
 
 class CrossRepoStatusTests(unittest.TestCase):
@@ -14,7 +15,7 @@ class CrossRepoStatusTests(unittest.TestCase):
         payload = json.loads(build_cross_repo_status("json"))
 
         self.assertEqual(payload["qualitative_repo"], str(QUAL_ROOT))
-        self.assertEqual(payload["quantitative_repo"], "/workspaces/T1DM-Tez")
+        self.assertEqual(payload["quantitative_repo"], str(QUANT_ROOT))
         paths = {item["path"] for item in payload["required_files"]}
         self.assertIn("00_context/CODEX_PLAYBOOK.md", paths)
         self.assertIn("tez-yazim/README.md", paths)
@@ -40,7 +41,7 @@ class CrossRepoStatusTests(unittest.TestCase):
         route = route_query("H5 joint display için iki repo karma tez yazım planı")
 
         self.assertTrue(any("cross-repo-status" in command for command in route.dmnitel_commands))
-        self.assertEqual(route.paired_repo, "/workspaces/T1DM-Tez")
+        self.assertEqual(route.paired_repo, str(QUANT_ROOT))
 
 
 if __name__ == "__main__":

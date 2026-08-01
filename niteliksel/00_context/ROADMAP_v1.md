@@ -4,6 +4,8 @@
 **Skill:** `niteliksel-arastirma-rehberi-t1dm` (Faz 0-3 karar akışı uygulandı)
 **Kapsam:** Mevcut çalışmaların envanteri + sıradaki 4 faz (Kalite Pekiştirme → Bölüm Yazımı → Format → Yayım & Savunma)
 
+> **Tarihsel belge notu (2026-08-01):** Bu yol haritasındaki v1/v2 codebook kayıtları `99_archive/2026-07-29_pre_new_canon/` altında korunur. Güncel kanon `03_analysis/codebook/codebook_v3.md`'dir.
+
 ---
 
 ## A. Mevcut Durum Envanteri
@@ -98,7 +100,7 @@
 | A.3 | Positionality statement (TR + EN) | `03_analysis/methodology/positionality_OM.md`, `_BA.md` | `assets/positionality-tr.md` |
 | A.4 | Refleksif günlük örnekleri (n=3-5 örnek girdi) | `03_analysis/reflexive/journal_excerpts.md` (anonim) | `assets/refleksif-gunluk-sablonu-tr.md` |
 | A.5 | Audit trail tablosu (codebook tarihi, kararlar, OM-BA tartışmaları) | `03_analysis/methodology/audit_trail.md` | `assets/audit-trail-log-tr.md` |
-| A.6 | Codebook v2 (kategori birleştirme + tema-kod haritası) | `03_analysis/codebook/codebook_v2.md` | `04-rta-6-faz-derinlemesine.md` |
+| A.6 | Codebook v2 (kategori birleştirme + tema-kod haritası) | `99_archive/2026-07-29_pre_new_canon/codebook_v2.md` | `04-rta-6-faz-derinlemesine.md` |
 | A.7 | KVKK Veri Yönetim Planı | `01_raw_data/ethics_protocol/kvkk_data_management_plan.md` | `09-etik-kvkk-refleksivite.md` |
 | A.8 | LLM kullanım beyanı (kullanıldıysa) | `03_analysis/methodology/llm_use_statement.md` | `assets/llm-kullanim-beyani-tr.md` + `06-llm-destekli-kodlama.md` |
 | A.9 | Triadic methodology literatür ekleme | YÖNTEM'e Vaughn, Marshall, Pyett atıfları | `12-t1dm-tezi-spesifik-uyarlamalar.md` |

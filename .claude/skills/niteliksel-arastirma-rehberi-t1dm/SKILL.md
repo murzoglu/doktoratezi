@@ -29,9 +29,10 @@ convergence analizi) o skill'de kalır. **İkisini karıştırma.**
 
 ## Kanonik Kaynak Önceliği (Override)
 
-> **Kanon güncellemesi (2026-07-29, Task 1.4):** `new/` verbatim veritabanı v2.0
-> kanonik raporu + codebook_v2.md'yi geçersiz kılar. Eski dosyalar
-> `niteliksel/archive/2026-07-29_pre_new_canon/` altında korunmaktadır (silinmedi).
+> **Kanon güncellemesi (2026-08-01):** Güncel sonuç kaynağı
+> `niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd`; güncel codebook
+> `niteliksel/03_analysis/codebook/codebook_v3.md`'dir. v2.0 codebook `niteliksel/99_archive/2026-07-29_pre_new_canon/`
+> altında korunur; eski sonuç raporu yalnızca Git geçmişindedir.
 > Fark detayı: `niteliksel/03_analysis/reconciliation_v2_to_v3.md`.
 
 Niteliksel kolun kanonik gerçeği şu sırayla bağlayıcıdır:
@@ -46,8 +47,8 @@ Niteliksel kolun kanonik gerçeği şu sırayla bağlayıcıdır:
 5. `niteliksel/CLAUDE.md` + repo kökü `tez-yazim/README.md` / `docs/tez-kilavuz/` (format).
 
 Arşiv (yalnız tarihsel başvuru, kanonik değil):
-- `niteliksel/archive/2026-07-29_pre_new_canon/qualitative_canonical_results_report.md` (v2.0)
-- `niteliksel/archive/2026-07-29_pre_new_canon/codebook_v2.md` (v2.0, 23 kod)
+- v2.0 sonuç raporu: Git geçmişi
+- `niteliksel/99_archive/2026-07-29_pre_new_canon/codebook_v2.md` (v2.0, 23 kod)
 
 Bu skill'in doktrini bu kanonik dosyalarla **çelişemez**; çelişki varsa kanonik dosya kazanır ve
 uzlaştırma açıkça raporlanır.

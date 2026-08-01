@@ -72,9 +72,11 @@ Araç ekosistem haritası: `00_context/TOOL_ECOSYSTEM_MAP.md`.
 
 ## Kanonik aktif dosyalar
 
-> ⚠️ **Kanon güncellemesi (2026-07-29, Task 1.4):** `new/` kanonu v2.0'ı geçersiz
-> kılar. Eski `qualitative_canonical_results_report.md` ve `codebook_v2.md` dosyaları
-> `archive/2026-07-29_pre_new_canon/` altına taşınmıştır (silinmemiş, git geçmişi korunuyor).
+> ⚠️ **Kanon güncellemesi (2026-08-01):** Aktif nitel sonuç kaynağı
+> `06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd`, tez aktarım Markdown'ı
+> ise aynı dizindeki `qualitative_canonical_results_for_doktoratezi.md` dosyasıdır.
+> Aktif codebook v3.0'dır; v1/v2 sürümleri
+> `99_archive/2026-07-29_pre_new_canon/` altında yalnız tarihsel başvuru içindir.
 > Fark özeti: `03_analysis/reconciliation_v2_to_v3.md`.
 
 - Temizlenmiş nitel tez metni:
@@ -83,12 +85,12 @@ Araç ekosistem haritası: `00_context/TOOL_ECOSYSTEM_MAP.md`.
 - **Kanonik codebook (v3.0): `03_analysis/codebook/codebook_v3.md`**
   (24 kod × 8 triadik eksen × 4 makro tema; v2.0 → arşivde).
   Destekleyen: `03_analysis/codebook/theme_architecture_v3.md` (4 makro / 17 alt + 8-eksen Rosetta).
-- **Triadik ham veri:** `new/triadik_matris_extracted.csv`
-  (aile_no · rol · triadik_eksen · verbatim_tr; KVKK — repo dışına çıkmaz).
+- Korunan triadik kaynak materyal yalnız yetkili yerel çalışma yüzeyinde tutulur;
+  harici araca veya rapora aktarılmaz.
 - Methodology paketi: `03_analysis/methodology/` (COREQ, audit trail,
   positionality OM/BA, LLM beyanı, savunma argümanları — v2.0'dan korundu).
-- Arşiv: `archive/2026-07-29_pre_new_canon/` (qualitative_canonical_results_report.md +
-  codebook_v2.md — yalnız tarihsel başvuru).
+- Arşiv: `99_archive/2026-07-29_pre_new_canon/` (v1/v2 codebook'lar — yalnız
+  tarihsel başvuru).
 - Canlı durum: `00_context/TRACKER.md` · Yol haritası: `00_context/ROADMAP_v1.md`.
 
 ## Tema yapısı (karıştırma)
@@ -98,7 +100,7 @@ Araç ekosistem haritası: `00_context/TOOL_ECOSYSTEM_MAP.md`.
 ## İş akışı durumu
 - Faz A (Kalite Pekiştirme) ✅ tamam.
 - Bundan sonraki tez yazım sürecinin ana operasyon merkezi:
-  `/workspaces/T1DM-Tez/tez-yazim`.
+  `../tez-yazim/`.
 - Bu kol (niteliksel/) tez yazımında yalnız nitel kolun ilişkili kesimleri için açılır:
   RTA/COREQ, audit trail, triadik tema kanıtı, seçilmiş anonim alıntı denetimi
   ve kanonik nitel sonuç raporu kontrolü.

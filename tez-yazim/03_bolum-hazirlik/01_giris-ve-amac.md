@@ -43,7 +43,7 @@ dated Uygulama Notlarında (2026-07-02, 2026-07-05) belgelidir.
 ## Kaynak Kapıları
 
 - Repo içi: `docs/CLINICAL-STUDY-REPORT-FINAL.md`, `docs/analiz_planlari/`.
-- Nitel: `niteliksel/qualitative_canonical_results_report.md`.
+- Nitel: `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md`.
 - Bağlam: `./dmnitel ai-context` ve Anamnesis/context gate.
 - Dış literatür: Evidentia D0-D6 kaskadı.
 - Tam metin: önce OpenAthens/kurumsal yayıncı erişimi, başarısızsa Anna's

@@ -1,9 +1,0 @@
-# GRADE / Bulgu Özeti (SoF) — ayırıcı ';'
-# kesinlik_grade: yuksek | orta | dusuk | cok_dusuk
-# indirme sütunları: yok | ciddi(-1) | cok_ciddi(-2)
-# artirma_faktoru: yok | buyuk_etki | doz-yanit | karistirici-azaltir
-# havuzlanmis_etki: 06_synthesis/<konu>_meta.csv'den OKUNUR (kaynak-tekilliği; gömülü literal YASAK)
-# ci95 = ondalık virgül, 'alt-ust' (0,58-0,90); calisma_sayisi,katilimci_n = tamsayı
-# Aşağıdaki satır <PLACEHOLDER> örneğidir; gerçek profil ile DEĞİŞTİRİN.
-endpoint;calisma_sayisi;katilimci_n;calisma_tasarimi;rob_indirme;tutarsizlik_indirme;dolayliligindirme;kesinsizlik_indirme;yayin_yanliligi_indirme;artirma_faktoru;havuzlanmis_etki;ci95;kesinlik_grade;gerekce
-OS;<k>;<N>;RCT;yok;ciddi(-1);yok;yok;yok;yok;<HR meta.csv'den>;<alt-ust>;orta;<tutarsızlık nedeniyle -1>

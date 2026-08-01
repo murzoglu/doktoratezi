@@ -20,7 +20,7 @@
 | Yeni kod | — | `KARDES_KORUYUCU_ROLU` | +1 |
 | Kaldırılan kod | — | — | Yok |
 | Journal tema yapısı | 6 tema (konu-organize, manuscript v2 temeli) | v3 tema mimarisinde 6-tema yapısı henüz güncel değil; tez yapısı (4 makro) kanonik | v3 tez-odaklı |
-| Arşiv durumu | `niteliksel/archive/2026-07-29_pre_new_canon/` | — | Arşivde, silinmedi |
+| Arşiv durumu | `niteliksel/99_archive/2026-07-29_pre_new_canon/` | — | Arşivde, silinmedi |
 
 ---
 
@@ -130,8 +130,8 @@ Aşağıdaki kararlar v2.0'a ait olup `niteliksel/03_analysis/methodology/` alt�
 
 | Eski yol | Yeni durum |
 |---|---|
-| `niteliksel/qualitative_canonical_results_report.md` | `niteliksel/archive/2026-07-29_pre_new_canon/qualitative_canonical_results_report.md` |
-| `niteliksel/03_analysis/codebook/codebook_v2.md` | `niteliksel/archive/2026-07-29_pre_new_canon/codebook_v2.md` |
+| `niteliksel/qualitative_canonical_results_report.md` | Git geçmişindeki v2.0 öncülü; güncel Markdown kanonu `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` |
+| `niteliksel/03_analysis/codebook/codebook_v2.md` | `niteliksel/99_archive/2026-07-29_pre_new_canon/codebook_v2.md` |
 
 Eski yollara yapılan referanslar (`niteliksel/CLAUDE.md`, `SKILL.md`, `codebook_v2.md` doğrudan referanslar) bu görev kapsamında güncellendi.
 

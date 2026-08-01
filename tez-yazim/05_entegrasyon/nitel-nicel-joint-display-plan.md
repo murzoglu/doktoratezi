@@ -34,7 +34,7 @@ açıklayıcı genişleme alanlarını göstermek.
 ## Kullanılacak Güvenli Nitel Kaynaklar
 
 - `niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd` (**kanonik**)
-- Nitel kol: `03_analysis/codebook/codebook_v2.md`
+- Nitel kol: `03_analysis/codebook/codebook_v3.md`
 - Nitel kol: `03_analysis/methodology/coreq_32_completed.md`
 - Nitel kol: `03_analysis/methodology/audit_trail.md`
 - Nitel kol: `04_triadic_matrices/` türetilmiş matrisleri

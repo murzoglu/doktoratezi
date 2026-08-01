@@ -5,6 +5,8 @@
 **Skill:** `niteliksel-arastirma-rehberi-t1dm`
 
 > Bu belge **canlı tracker**. Her ilerleme/karar sonrası güncellenir; sürüm günü ile birlikte alttaki "Update Log" bölümüne kaydedilir.
+>
+> **2026-08-01 kanon notu:** Güncel codebook `03_analysis/codebook/codebook_v3.md`'dir. Aşağıdaki v1/v2 kayıtları tarihsel ilerleme izidir; ilgili dosyalar `99_archive/2026-07-29_pre_new_canon/` altında korunur.
 
 ---
 
@@ -46,7 +48,7 @@
 | A.3 | Positionality statement (TR + EN; OM + BA) | ✅ | — | `assets/positionality-tr.md` | **Tamamlandı:** [`positionality_OM.md`](../03_analysis/methodology/positionality_OM.md) + [`positionality_BA.md`](../03_analysis/methodology/positionality_BA.md) — TR+EN paralel, kişiselleştirme alanları `{KÖŞELİ AYRAÇ}` ile işaretli |
 | A.4 | Refleksif günlük örnekleri (n=3-5 anonim girdi) | ✅ | — | `assets/refleksif-gunluk-sablonu-tr.md` | **Tamamlandı:** [`journal_excerpts.md`](../03_analysis/reflexive/journal_excerpts.md) — şablon + 3 örnek girdi (post-interview / post-coding / critical-friend) + Durum Beyanı (formel günlük yok, mental+memo+ekip tartışması var; A.5 audit trail'a referans + sınırlılık raporlama önerisi) |
 | A.5 | Audit trail tablosu (codebook revizyon + OM-BA tartışma) | ✅ | A.6 | `assets/audit-trail-log-tr.md` | **Tamamlandı:** [`audit_trail.md`](../03_analysis/methodology/audit_trail.md) — 15 metodolojik karar (MK.01-15) + codebook v1→v2 sürüm geçmişi + 4 critical friend tartışma özeti (CF.01-04) + 10 açık konu (AÇ.01-10) + güncelleme protokolü |
-| A.6 | Codebook v2 + tema-kod-aile haritası (hibrit 6↔4 mapping) | ✅ | — | `04-rta-6-faz-derinlemesine.md` | **Tamamlandı:** [`codebook_v2.md`](../03_analysis/codebook/codebook_v2.md) — 23 kod × 6 journal tema × 4 thesis makro tema mapping + 22 alt-tema Rosetta + aile×tema odak matrisi + B.4 yazım yönergesi |
+| A.6 | Codebook v2 + tema-kod-aile haritası (hibrit 6↔4 mapping) | ✅ | — | `04-rta-6-faz-derinlemesine.md` | **Tamamlandı:** [`codebook_v2.md`](../99_archive/2026-07-29_pre_new_canon/codebook_v2.md) — 23 kod × 6 journal tema × 4 thesis makro tema mapping + 22 alt-tema Rosetta + aile×tema odak matrisi + B.4 yazım yönergesi |
 | A.7 | KVKK Veri Yönetim Planı | ✅ | — | `09-etik-kvkk-refleksivite.md` | **Tamamlandı:** [`kvkk_data_management_plan.md`](../01_raw_data/ethics_protocol/kvkk_data_management_plan.md) — özel nitelikli sağlık + çocuk verisi için 9 bölümlü DMP (yaşam döngüsü, anonimleştirme, k-anonymity, erişim kontrolü, breach response, çocuk için ek korumalar, onam uyumu, sürüm) |
 | A.8 | LLM kullanım beyanı (yazım için) | ✅ | — | `assets/llm-kullanim-beyani-tr.md` + `06-llm-destekli-kodlama.md` | **Tamamlandı:** [`llm_use_statement.md`](../03_analysis/methodology/llm_use_statement.md) — TR+EN açık beyan, kapsam (yazım yardımcısı, ham veri yok), KVKK uyum, halüsinasyon kontrol protokolü, OSF prompt log mimarisi, APA/COPE uyumluluk |
 | A.9 | Triadic methodology literatürü ekleme | ✅ | — | `12-t1dm-tezi-spesifik-uyarlamalar.md` | **Tamamlandı:** [`A9_triadic_methodology_literature.md`](../03_analysis/methodology/A9_triadic_methodology_literature.md) — 14 atıf (Eisikovits & Koren, Morgan, Taylor & de Vocht, Patton, Carter, Sullivan-Bolyai, Smaldone, Whittemore, Streisand, Loeb, Voltelen, Phelps & Mok, Braun & Clarke, Flick). Cleaned thesis text'te 2 paragraf güncellendi (Araştırma Tasarımı + Veri Analizi) |
@@ -98,7 +100,7 @@
 
 **Üretilen belgeler (10):**
 1. [`A1_information_power.md`](../03_analysis/methodology/A1_information_power.md) — Malterud bilgi gücü 5-boyut tablosu + reframe paragrafları
-2. [`codebook_v2.md`](../03_analysis/codebook/codebook_v2.md) — 23 kod × 6 journal × 4 thesis hibrit master
+2. [`codebook_v2.md`](../99_archive/2026-07-29_pre_new_canon/codebook_v2.md) — 23 kod × 6 journal × 4 thesis hibrit master
 3. [`positionality_OM.md`](../03_analysis/methodology/positionality_OM.md) — TR+EN
 4. [`positionality_BA.md`](../03_analysis/methodology/positionality_BA.md) — TR+EN
 5. [`journal_excerpts.md`](../03_analysis/reflexive/journal_excerpts.md) — şablon + 3 örnek + Durum Beyanı

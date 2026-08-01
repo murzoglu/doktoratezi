@@ -113,7 +113,7 @@ Tam metin sırası:
 Zotero kapanışı:
 
 ```bash
-cd /workspaces/T1DM-Tez
+cd `git rev-parse --show-toplevel`
 python3 scripts/util/zotero_env_bridge.py status --json
 python3 scripts/util/zotero_env_bridge.py import-doi <DOI> \
   --bibtex-key <citation_key> \
@@ -255,12 +255,12 @@ python3 scripts/util/bib_hygiene.py all
 /sci-audit:ai-log "<bolum> sertifikasyon sci-audit koşumu"
 
 # 2) Repo/veri invaryant denetimi (KVKK, ham veri, quote-parity — sci-audit DIŞI)
-cd /workspaces/T1DM-Tez/niteliksel
+cd `git rev-parse --show-toplevel`/niteliksel
 ./dmnitel ai-context
 ./dmnitel route-tool --query "<bolum> sertifikasyon kaynak ve araç kapıları"
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py
 
-cd /workspaces/T1DM-Tez
+cd `git rev-parse --show-toplevel`
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py
 python3 scripts/util/zotero_env_bridge.py status --json
 git diff --check -- chapters/<bolum>.qmd references/references.bib tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md

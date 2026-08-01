@@ -61,7 +61,7 @@ Rscript -e 'renv::restore()'
 - **PII koruması:** `ad.*soyad` regex'iyle eşleşen kolonlar Stage 1'de düşürülür. `data/raw/`, `data/cleaned/`, `data/identified/`, `data/backup/` `.gitignore`'da — **commit etmeyin**.
 - **Aile anahtarı:** `aile_no` × `cocuk_no` birincil anahtar. Aileler arası eşleştirme `R/04_embu_stage3_family.R` üzerinden.
 
-## Aktif analiz durumu (2026-07-20 itibarıyla)
+## Aktif analiz durumu (2026-08-01 itibarıyla)
 
 - **Kanonik analiz baz kilidi yürürlükte.** Final CSV üzerinde herhangi bir değişiklikten önce [`data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock`](data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock), kanonik P/C formları ve [`docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md`](docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md) okunmalıdır.
 - Kanonik form öncesi dokümantasyon aktif karar kaynağı değildir; yalnız karar geçmişi olarak arşivde tutulur.

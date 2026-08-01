@@ -5,10 +5,10 @@ bölüm, format, referans, render ve karma sentez oturumları**.
 
 Bu belge bir öneri değil, **zorunlu uyulması gereken talimatnamedir**.
 Nitel koldaki eş talimatname:
-`/workspaces/T1DM-Tez/niteliksel/00_context/TALIMATNAME_TEZ_YAZIM.md`.
+`niteliksel/00_context/TALIMATNAME_TEZ_YAZIM.md`.
 Codex tarafında aynı süreci `CONVENTIONS.md` + `.codex/hooks/` zorlar. Tez
 sürecinin araç envanteri:
-`/workspaces/T1DM-Tez/niteliksel/00_context/TOOL_ECOSYSTEM_MAP.md`.
+`niteliksel/00_context/TOOL_ECOSYSTEM_MAP.md`.
 
 ## 0. Bağlayıcılık ve zorlama katmanları
 
@@ -41,7 +41,7 @@ Politika değişikliği iki harness ağacına birlikte işlenir
 4. Üretim eşlemesi: yazım `thesis.qmd` + `chapters/0X_*.qmd`'de yapılır;
    `tez-yazim/` operasyon katmanıdır, tez metni oraya yazılmaz.
 5. Nitel kanıt gerekirse kanonik kaynak
-   `niteliksel/qualitative_canonical_results_report.md`; ham transcript ve
+   `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md`; ham transcript ve
    nitel kol geniş taraması default değildir. Nitel metodoloji sorusu →
    `niteliksel-arastirma-rehberi-t1dm` skill; nicel pipeline sorusu →
    `t1dm-tez-rehberi` skill (`.claude/skills/t1dm-tez-rehberi/`).

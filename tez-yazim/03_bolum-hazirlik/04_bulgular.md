@@ -80,7 +80,7 @@ görünür kılınır.
 
 ## 7. Nitel bulgular için güvenli kaynak
 
-`niteliksel/qualitative_canonical_results_report.md` nicel köke taşınmış
+`niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` nicel köke taşınmış
 **güvenli, de-identified** entegrasyon kaynağıdır; nitel kolu temsil eden
 varsayılan aktarımdır. Ham transcript veya nitel kol geniş taraması **default
 değildir**; gerekirse yalnız tema/kod/COREQ/audit-trail düzeyi.
@@ -101,7 +101,7 @@ değildir**; gerekirse yalnız tema/kod/COREQ/audit-trail düzeyi.
 | Tanımlayıcı/psikometri | `outputs/tables`, CSR | Aggregate; yorum yok. |
 | H1–H5 sonuç | `outputs/models`, `outputs/tables`, SAP | Nokta+GA+etki; yorum yok. |
 | Faz II/post-hoc | `docs/analiz_planlari/04-sap-faz2-posthoc.md` | `[KEŞİFSEL]` etiketli. |
-| Nitel tema/triad | `niteliksel/qualitative_canonical_results_report.md` | De-identified; anonim quote. |
+| Nitel tema/triad | `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` | De-identified; anonim quote. |
 | Joint display | `05_entegrasyon/nitel-nicel-joint-display-plan.md` | Kanıt türü etiketli. |
 
 ## 10. Kapanış kapıları

@@ -4,7 +4,7 @@ AI destekli çıktılar yalnızca yardımcı, ön-denetim veya tutarlılık kont
 
 ## Kapsam
 
-Bu rapor, `codebook_v2.md` içinde belirsiz olarak işaretlenen dört journal alt-tema odak ailesinin triadik matris DOCX başlıklarından doğrulanmasına yöneliktir. Katılımcı alıntıları bu rapora aktarılmamıştır.
+Bu rapor, tarihsel [`codebook_v2.md`](../99_archive/2026-07-29_pre_new_canon/codebook_v2.md) içinde belirsiz olarak işaretlenen dört journal alt-tema odak ailesinin triadik matris DOCX başlıklarından doğrulanmasına yöneliktir. Katılımcı alıntıları bu rapora aktarılmamıştır.
 
 ## Doğrulanan Odaklar
 

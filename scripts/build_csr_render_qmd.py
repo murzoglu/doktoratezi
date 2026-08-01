@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """CSR-FINAL.md -> render qmd: Quarto YAML (csr) + figur gomme + karar paneli chunk."""
+import os
 from pathlib import Path
 import re
 
-ROOT = Path("/workspaces/T1DM-Tez")
+ROOT = Path(
+    os.environ.get("CLAUDE_PROJECT_DIR")
+    or Path(__file__).resolve().parents[1]
+).resolve()
 SRC = ROOT / "docs" / "CLINICAL-STUDY-REPORT-FINAL.md"
 OUT = ROOT / "CSR-FINAL-render.qmd"
 

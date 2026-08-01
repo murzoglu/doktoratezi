@@ -12,7 +12,7 @@
     - type: contains
       value: "02_processed/cleaned_text/thesis_qualitative_cleaned_current.md"
     - type: contains
-      value: "03_analysis/codebook/codebook_v2.md"
+      value: "03_analysis/codebook/codebook_v3.md"
 
 - vars:
     query: "02_processed/transcripts/all_transcripts_merged.md içinden ilk görüşmeyi özetle."

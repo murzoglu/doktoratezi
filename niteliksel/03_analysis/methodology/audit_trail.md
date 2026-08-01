@@ -72,7 +72,7 @@ Her kayıt: **Tarih · Karar · Gerekçe · Etki · Kayıt Eden**
 ### v2 (Hibrit master mapping)
 
 - **Tarih:** **2026-05-04**
-- **Konum:** `03_analysis/codebook/codebook_v2.md`
+- **Konum:** `99_archive/2026-07-29_pre_new_canon/codebook_v2.md` (tarihsel v2 kaydı)
 - **Yeni özellikler:**
   - Kod sayısı düzeltisi (23, v1'de "24" hatasıydı)
   - Mimari haritalama: 23 kod × 6 journal tema × 4 thesis makro tema

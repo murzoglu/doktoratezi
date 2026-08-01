@@ -27,8 +27,8 @@ bombardımanı) arasında en gergin bölümdür. Kullanıcı onaylı Bulgular-ö
 R chunk kodu, tablo/şekil üretimi, tüm istatistik DEĞERLERİ (yalnız yeri değişebilir: nesir→tablo/dipnot),
 `[KEŞİFSEL]/[POST-HOC]` etiketleri, nedensellik-yok çekinceleri, ön-kayıt/triangülasyon ifadeleri.
 
-## Klinik-çerçeve kaynağı: DETAYLI-IZAHAT-BIRLESIK.md (2026-07-30, kullanıcı işareti)
-`DETAYLI-IZAHAT-BIRLESIK.md` (2842 satır) her tablo/şekli klinisyen diliyle açıklar; alt-başlıkları:
+## Klinik-çerçeve kaynağı: `raporlar/DETAYLI-IZAHAT-BIRLESIK.md` (2026-07-30, kullanıcı işareti)
+`raporlar/DETAYLI-IZAHAT-BIRLESIK.md` (2842 satır) her tablo/şekli klinisyen diliyle açıklar; alt-başlıkları:
 "### Bu tablo hangi soruna çözüm?" (klinik çerçeve/manşet), "### Tablo ne söylüyor? / İşe yaradı mı? —
 Kanıt + büyüklük okuryazarlığı", "### Bir cümleyle" (manşet-cümle). Tablo/şekil açıklamalarını (caption +
 tabloyu tanıtan nesir) ve **manşet (katman 1)** ile **kanıt-anahtarı (katman 2)** yazarken bu belge

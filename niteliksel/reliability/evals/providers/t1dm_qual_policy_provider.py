@@ -9,7 +9,7 @@ def _answer(query: str) -> str:
             "Canlı durum ve aktif yazım için önce 00_context/TRACKER.md, "
             "00_context/REPO_CONTEXT.md, "
             "02_processed/cleaned_text/thesis_qualitative_cleaned_current.md ve "
-            "03_analysis/codebook/codebook_v2.md okunmalıdır."
+            "03_analysis/codebook/codebook_v3.md okunmalıdır."
         )
     if "transcripts" in query or "ilk görüşme" in query or "ham transcript" in query:
         return (

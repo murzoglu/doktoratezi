@@ -10,8 +10,9 @@ penceresini dumper -> Opus 4.8 elle baglam yargisi verebilir.
 Cikti: JSON — her hedef icin {num: [pencere,...]}. KVKK: yalniz yayin metni.
 """
 import json, os, re, sys, time
+from pathlib import Path
 
-REPO = os.environ.get("CLAUDE_PROJECT_DIR", "/workspaces/T1DM-Tez")
+REPO = os.environ.get("CLAUDE_PROJECT_DIR") or str(Path(__file__).resolve().parents[2])
 sys.path.insert(0, os.path.join(REPO, "scripts", "mcp"))
 import fulltext_cascade as FC
 sys.path.insert(0, os.path.join(REPO, "scripts", "util"))

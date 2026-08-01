@@ -49,13 +49,13 @@ belgeleri + `t1dm-tez-rehberi/references/karma-yontem.md` ile yürür.
 ## 2. Teze giren güvenli nitel çıktılar
 
 Teze yalnız araştırmacı-onaylı **anonim/türetilmiş** çıktı girer. Kaynak
-haritası (nitel kol (niteliksel/): `/workspaces/T1DM-Tez/niteliksel`):
+haritası (nitel kol (niteliksel/): `niteliksel/`):
 
 | Çıktı | Kaynak | Tezde kullanım |
 |---|---|---|
 | Kanonik nitel sonuç raporu | `niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd` | Nitel kolun **tek kanonik temsil kaynağı** (Bulgular). |
-| Markdown kopya | `niteliksel/qualitative_canonical_results_report.md` | Kanonik QMD'nin mekanik Markdown kopyası; ayrı içerik otoritesi değildir. |
-| Codebook | Nitel kol `03_analysis/codebook/codebook_v2.md` (kanonik; v3.csv draft) | Tema/kod tanımı. |
+| Markdown kopya | `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` | Kanonik QMD'nin mekanik Markdown kopyası; ayrı içerik otoritesi değildir. |
+| Codebook | Nitel kol `03_analysis/codebook/codebook_v3.md` (kanonik) | Tema/kod tanımı. |
 | COREQ 32 madde | Nitel kol `03_analysis/methodology/coreq_32_completed.md` | Gereç ve Yöntem + Ekler. |
 | Audit trail | Nitel kol `03_analysis/methodology/audit_trail.md` | Yöntem güvenilirlik izi. |
 | Positionality (OM/BA) | Nitel kol `03_analysis/methodology/positionality_*.md` | Refleksivite / konum bildirimi. |

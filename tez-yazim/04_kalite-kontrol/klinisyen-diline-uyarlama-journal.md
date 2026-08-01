@@ -206,7 +206,7 @@ forward-ref / özet-summary yansıması).
 - H5: RSA yüzey formülü (Z=b0+…) ve a4=b3−b4+b5 → dipnota (register: formül→dipnot); cümleler bölündü; −13,96/−15,93/−7,07 + p'ler + çekince korundu.
 - H1: grup-içi rol kontrastı (keşifsel/post-hoc) 16-hücreli grid NESİRDEN ÇIKARILDI → @tbl-apa-h1-within-group'a devredildi (hibrit de-dup); headline (2 bold önerme + "tümü q>0,76" ×2 + tablo-işaret) + birincil headline (reddetme b=0,14 [0,07;0,22] q=0,001 BF₁₀=10,55 vb.) NESİRDE. De-dup kayıpsızlığı R/29_apa_tables.R:554 (t06d tanımı) + 4-mercekle doğrulandı.
 - 4-mercek: sadakat 5/5, eklenen 5/5, DOKUNULMAZ+de-dup 5/5, register 4/5→W4 dipnot yalnız-formüle indirildi. verify_authored_spans 5/5.
-- Sıradaki: keşifsel katmanlar (grid→tablo de-dup) + tablo/şekil açıklamaları (kaynak: DETAYLI-IZAHAT-BIRLESIK.md).
+- Sıradaki: keşifsel katmanlar (grid→tablo de-dup) + tablo/şekil açıklamaları (kaynak: `raporlar/DETAYLI-IZAHAT-BIRLESIK.md`).
 
 ### 2026-07-30 · ch04 keşifsel dalga-1 (UYGULANDI) — hibrit de-dup + formül→dipnot
 
@@ -261,7 +261,7 @@ forward-ref / özet-summary yansıması).
 
 - ch04 v3 iki-blok TAM: birincil H1–H5 (5+5) + keşifsel batch-1/2/3 (8 Klinik bulgu + 8 Kanıt) = 13 Klinik bulgu + 13 Kanıt. Nitel/joint-display/sentez kapsam-dışı (register-temiz).
 - KAPANIŞ kapıları PASS: K5-NUM-03 "yüksek-risk eşsiz=0" (v3 de-dup KAYIPSIZ — otomatik kanıt); K5-CAU-01, K3-NUM-01, K4-TRG-01, K4-TERM-01 PASS. Render (freeze temizli) BİTTİ: Output created, PDF 3,86MB 11:26, LaTeX hatası yok.
-- **YENİ GÖREV (kullanıcı):** ch04 tüm tablo(@tbl-*)+şekil(@fig-*) caption/betimlerini DETAYLI-IZAHAT-BIRLESIK.md'den yararlanıp sade+anlaşılır dille ZENGİNLEŞTİR. → skill: veri-gosterimi-zenginligi (onay-mandate + galileo SOFT-block). Kapsam: 26 tbl-cap + 27 fig. DETAYLI-IZAHAT'ta Tablo 4.1-4.20 + Şekil 4.1-4.18 açıklaması var (tam eşleşme).
+- **YENİ GÖREV (kullanıcı):** ch04 tüm tablo(@tbl-*)+şekil(@fig-*) caption/betimlerini `raporlar/DETAYLI-IZAHAT-BIRLESIK.md`'den yararlanıp sade+anlaşılır dille ZENGİNLEŞTİR. → skill: veri-gosterimi-zenginligi (onay-mandate + galileo SOFT-block). Kapsam: 26 tbl-cap + 27 fig. Bu raporda Tablo 4.1-4.20 + Şekil 4.1-4.18 açıklaması var (tam eşleşme).
 - Kural: caption YORUMSUZ (ne-çizildiği + birim/örneklem + okuma-anahtarı; sonuç/yön İDDİASI YOK); DETAYLI'dan yalnız bağlam/okuma-anahtarı, "Bir cümleyle"nin sonuç kısmı DIŞARIDA (kanıt-değeri DOKUNULMAZ).
 
 ### 2026-07-30 · ch04 kullanıcı-3-istek + caption zenginleştirme (TAMAM)

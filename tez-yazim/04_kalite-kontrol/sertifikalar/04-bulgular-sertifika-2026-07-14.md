@@ -154,7 +154,7 @@ mevcut. Yol-haritası dört kalemi de tamamlandı; açık teknik istisna kalmad�
 
 ## Ek Tur — Şekil/Tablo Crossref Standardizasyonu (2026-07-14, ikinci tur)
 
-**Kapsam:** `spec.md` R1–R2 gereksinimleri. Format kontratı §1.6 ihlalinin
+**Kapsam:** `docs/superpowers/specs/2026-08-01-tez-kontrol-checklisti-tasarimi.md` R1–R2 gereksinimleri. Format kontratı §1.6 ihlalinin
 (gövde metninde 0 şekil atıfı) giderilmesi ve tablo atıf stilinin manuel
 "Tablo N"den Quarto-native `@tbl-` crossref'e taşınması.
 

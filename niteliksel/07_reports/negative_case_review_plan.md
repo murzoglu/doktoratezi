@@ -4,7 +4,7 @@ AI destekli çıktılar yalnızca yardımcı, ön-denetim veya tutarlılık kont
 
 ## Durum
 
-`dmnitel find-negative-cases` komutunun doğrudan çalışması için gerekli yapılandırılmış `coded_segments.csv` dosyası depoda henüz doldurulmuş halde bulunamadı. Bu turda güvenli başlık şablonu `01_deidentified/coded_segments_template.csv` olarak eklendi. Mevcut durumda negatif/farklı vaka incelemesi, `codebook_v3.csv`, `codebook_v2.md`, temizlenmiş tez bulguları ve triadik matris DOCX dosyaları üzerinden araştırmacı denetimli olarak yürütülmelidir.
+`dmnitel find-negative-cases` komutunun doğrudan çalışması için gerekli yapılandırılmış `coded_segments.csv` dosyası depoda henüz doldurulmuş halde bulunamadı. Bu turda güvenli başlık şablonu `01_deidentified/coded_segments_template.csv` olarak eklendi. Mevcut durumda negatif/farklı vaka incelemesi, `codebook_v3.csv`, `codebook_v3.md`, temizlenmiş tez bulguları ve triadik matris DOCX dosyaları üzerinden araştırmacı denetimli olarak yürütülmelidir.
 
 Bu rapor nihai yorum üretmez; yalnızca Faz B bulgular yazımı sırasında kontrol edilecek gerilim alanlarını listeler.
 

@@ -8,7 +8,7 @@ klasör karar, şablon, kontrol listesi ve yazım hazırlık alanıdır.
 ## Ana Çalışma Merkezi Kararı
 
 Bundan sonraki tez yazım süreci bu repo içinde yürütülür. Ana çalışma
-dizini `/workspaces/T1DM-Tez`, ana operasyon alanı
+dizini `repo kökü`, ana operasyon alanı
 `tez-yazim/`, üretim dosyaları ise `thesis.qmd` ve `chapters/*.qmd`
 dosyalarıdır. Nitel kol, kanonik nitel sonuç raporunun temsil etmediği
 veya ek denetim gerektiren yöntem, bulgular, joint display, tartışma ve
@@ -120,7 +120,7 @@ tek kanonik otoritesi `01_mimari/yetkinlik-ve-arac-mimarisi.md`'dir.
 Bölüm finalizasyonu için ana kapı:
 
 ```bash
-cd /workspaces/T1DM-Tez
+cd `git rev-parse --show-toplevel`
 test -f tez-yazim/04_kalite-kontrol/bolum-finalizasyon-sertifikasyon-playbook.md
 test -f tez-yazim/04_kalite-kontrol/bolum-finalizasyon-sertifikasi-sablonu.md
 ```
@@ -137,24 +137,24 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests
 Nicel kök AI/tool değişikliği için:
 
 ```bash
-cd /workspaces/T1DM-Tez
+cd `git rev-parse --show-toplevel`
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py
 ```
 
 Referans içeren bölüm kapanışı için:
 
 ```bash
-cd /workspaces/T1DM-Tez/niteliksel
+cd `git rev-parse --show-toplevel`/niteliksel
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py
 
-cd /workspaces/T1DM-Tez
+cd `git rev-parse --show-toplevel`
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py
 ```
 
 Quarto çıktısı etkilenirse:
 
 ```bash
-cd /workspaces/T1DM-Tez
+cd `git rev-parse --show-toplevel`
 quarto check
 quarto render thesis.qmd
 ```

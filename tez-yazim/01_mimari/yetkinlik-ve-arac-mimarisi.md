@@ -20,7 +20,7 @@ merkezli yazım hattına bağlar.
 | --- | --- | --- |
 | L0 Resmi kılavuz | `docs/tez-kilavuz/` + kanonik özet `tez-yazim/00_kaynak-kurallari/marmara-tez-formati-talimatnamesi.md` | Format, bölüm sırası, kaynakça, özet, tablo/şekil, ön bölüm. Tüm yazımda zorunlu uyum. |
 | L1 Nicel kök | `_targets.R`, `R/`, `tests/`, `docs/protokol/`, `docs/analiz_planlari/`, `chapters/`, `tez-yazim/06_kritik-kaynaklar/` | Veri kontratı, H1-H5, EMBU/Beck/KİA, aggregate sonuçlar, kritik dosya manifesti. |
-| L2 Nitel kol | `/workspaces/T1DM-Tez/niteliksel` güvenli türetilmiş çıktıları | RTA, COREQ, audit trail, tema, triadik matris, seçilmiş anonim alıntı. |
+| L2 Nitel kol | `niteliksel/` güvenli türetilmiş çıktıları | RTA, COREQ, audit trail, tema, triadik matris, seçilmiş anonim alıntı. |
 | L3 Dış kanıt | Anamnesis/context, Evidentia/PubMed/OpenAlex/Paper Search, OpenAthens/kurumsal yayıncı erişimi, Minerva (Roche kurumsal korpus), Anna's Library, Zotero, YÖK/ERIC, mevzuat, klinik terminoloji/regülasyon ve teknik delivery MCP kapıları | Bağlam yönetimi, literatür, tam metin, kaynakça mutabakatı, akademik/kurumsal doğrulama, mevzuat ve render/teknik kontrol. |
 | L4 Teknik doğrulama | Unit test, iki-kol AI-reliability, promptfoo, Quarto | Tool/agent davranışı, referans güvenilirliği, format ve üretilebilirlik. |
 
@@ -100,7 +100,7 @@ Kanonik oturum ritüeli `00_kaynak-kurallari/talimatname-claude-code.md` §1'ded
 kontrolünü tanımlar. Tez yazımıyla ilgili her oturumda:
 
 ```bash
-cd /workspaces/T1DM-Tez
+cd `git rev-parse --show-toplevel`
 test -f tez-yazim/README.md
 test -f tez-yazim/06_kritik-kaynaklar/README.md
 test -f tez-yazim/06_kritik-kaynaklar/kritik-dosya-manifesti.tsv
@@ -111,7 +111,7 @@ test -f docs/tez-kilavuz/'TEZ ŞABLONLARI-2026-2RV.docx'
 Karma yazım veya nitel entegrasyon varsa:
 
 ```bash
-cd /workspaces/T1DM-Tez/niteliksel
+cd `git rev-parse --show-toplevel`/niteliksel
 ./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md
 ./dmnitel ai-context
 ```
@@ -119,7 +119,7 @@ cd /workspaces/T1DM-Tez/niteliksel
 Araç yüzeyi ve bağlam kapıları kontrolü:
 
 ```bash
-cd /workspaces/T1DM-Tez/niteliksel
+cd `git rev-parse --show-toplevel`/niteliksel
 python3 .codex/tools/codex_mcp_roster_redacted.py | rg '^(anamnesis|annas-reader|evidentia-kb|paper-search|pubmed-epmc|openalex|yoktez-mcp|yok-akademik|eric-mcp|mevzuat|mevzuat-bilgisi|openfda|med-terminologies|nlm-rxnorm|titck-cache|playwright|chrome-devtools|github)\b'
 ```
 
@@ -140,7 +140,7 @@ farklıdır. Oturum başında:
 | Zorlama | `.claude/settings.json` hooks + `permissions.deny` | `.github/hooks/hooks.json` (aynı beş hook, Claude sözdizimi) |
 
 ```bash
-cd /workspaces/T1DM-Tez
+cd `git rev-parse --show-toplevel`
 python3 -c "import json;a=json.load(open('.mcp.json'))['mcpServers'];b=json.load(open('.vscode/mcp.json'))['servers'];print('MCP paritesi:', 'TAM' if set(a)==set(b) else 'DRIFT ' + str(set(a)^set(b)))"
 diff <(ls .claude/commands | sed 's/\.md$//' | sort) <(ls .github/prompts | sed 's/\.prompt\.md$//' | sort) && echo "slash komut paritesi: TAM"
 python3 -c "import json;print('hook paritesi:', 'TAM' if set(json.load(open('.claude/settings.json'))['hooks'])==set(json.load(open('.github/hooks/hooks.json'))['hooks']) else 'DRIFT')"

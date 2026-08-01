@@ -1,9 +1,8 @@
 # T1DM Niteliksel
 
-> **Migrasyon notu (2026-07-09):** Bu nitel kol artık tek-repo çalışma modeli için
-> `/workspaces/T1DM-Tez/niteliksel` altında yönetilir.
-> Eski bağımsız kaynak repo korunmuştur; yeni işler için canonical konum bu
-> klasördür. `.git/` ve `.env*` dosyaları taşınmamıştır.
+> **Çalışma kökü:** Nitel kol tek-repo tez yapısında `niteliksel/` altında
+> yönetilir. Tarihsel taşıma kaydı `00_context/MIGRATION_TO_DOKTORATEZI_2026-07-09.md`
+> içinde korunur; güncel işlemler bu alt-ağaçtan yürütülür.
 
 ## DM Niteliksel Toolkit
 

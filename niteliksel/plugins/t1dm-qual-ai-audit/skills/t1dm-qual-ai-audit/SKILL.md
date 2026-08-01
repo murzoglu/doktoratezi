@@ -15,8 +15,8 @@ qualitative methodology judgement; it enforces source grounding, privacy boundar
 2. Preserve protected data boundaries: do not print or export raw interview DOCX, merged transcripts,
    demographic rows, consent/protocol personal content, `.remember/`, or family-level sensitive detail.
 3. For thesis writing, format, official section order, summary/ozet, table/figure, or references work,
-   use `/workspaces/T1DM-Tez/tez-yazim/README.md` and the official
-   `/workspaces/T1DM-Tez/docs/tez-kilavuz` sources as the top writing gate.
+   use `repo kökü/tez-yazim/README.md` and the official
+   `repo kökü/docs/tez-kilavuz` sources as the top writing gate.
 4. Establish the tool surface with `./dmnitel ai-context`; for ambiguous requests run
    `./dmnitel route-tool --query "<soru>"` before selecting MCPs.
 5. For local qualitative tooling, prefer `dm_niteliksel_toolkit` and `./dmnitel`; for tests use
@@ -31,7 +31,7 @@ qualitative methodology judgement; it enforces source grounding, privacy boundar
    from `.env` and must never print the key. Use the Desktop helper only for local full-text,
    attachment, or connector workflows. Require confirmation for Zotero writes/imports.
 9. For quantitative H1-H5/EMBU/Beck/KIA/R-pipeline questions, switch to the nicel kök
-   `/workspaces/T1DM-Tez`, `tez-yazim`, and `t1dm-tez-rehberi`.
+   `repo kökü`, `tez-yazim`, and `t1dm-tez-rehberi`.
 10. For MCP checks, use `python3 .codex/tools/codex_mcp_roster_redacted.py`; never raw
    `codex mcp list`.
 11. After external Evidentia/Codex/MCP/plugin use, record the operation with `./dmnitel log-ai-use`.

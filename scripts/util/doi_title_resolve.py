@@ -9,8 +9,9 @@ Cikti: JSON — {key, doi, bib_title, crossref_title, jaccard, flag}.
 KVKK: yalniz yayin metadata (baslik) sorgulanir.
 """
 import json, os, re, sys, time, urllib.request
+from pathlib import Path
 
-REPO = os.environ.get("CLAUDE_PROJECT_DIR", "/workspaces/T1DM-Tez")
+REPO = os.environ.get("CLAUDE_PROJECT_DIR") or str(Path(__file__).resolve().parents[2])
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0 Safari/537.36 (mailto:tez@local)")
 

@@ -5,17 +5,17 @@ These rules are loaded into Codex context by `.codex/hooks/session_start.py`.
 1. Use Turkish for thesis/repo explanations unless the user asks otherwise.
 2. Ground repo facts in `CLAUDE.md`, `00_context/TRACKER.md`, `00_context/REPO_CONTEXT.md`,
    `03_analysis/codebook/codebook_v3.md`, methodology files, or checked toolkit/tests.
-3. Use `/workspaces/T1DM-Tez/tez-yazim` as the primary thesis-writing
+3. Use `repo kökü/tez-yazim` as the primary thesis-writing
    workspace. Use this repo's `00_context/CODEX_PLAYBOOK.md` as the protective qualitative
    playbook only when qualitative-arm evidence, methodology, quote integrity, or AI-reliability
    checks are needed.
 4. For thesis writing, format, official section order, table/figure rules, summary/ozet, and
-   references, use `/workspaces/T1DM-Tez/tez-yazim/README.md` and the official
-   files under `/workspaces/T1DM-Tez/docs/tez-kilavuz` as the top writing source.
+   references, use `repo kökü/tez-yazim/README.md` and the official
+   files under `repo kökü/docs/tez-kilavuz` as the top writing source.
 5. Do not print, summarize broadly, or export row-level/participant-level content from
    `01_raw_data/`, `02_processed/transcripts/`, `.remember/`, `00_raw_locked/`, or `01_deidentified/`.
 6. Distinguish qualitative-arm facts from quantitative-arm facts. Quantitative pipeline claims belong
-   to `/workspaces/T1DM-Tez`; qualitative RTA/COREQ/codebook claims belong here.
+   to `repo kökü`; qualitative RTA/COREQ/codebook claims belong here.
 7. Tool orchestration is task-gated: official thesis writing now stays in `doktoratezi/tez-yazim`;
    qualitative methodology, quote integrity, and canonical qualitative evidence checks stay here only
    when a thesis section explicitly needs them. External
@@ -80,6 +80,6 @@ These rules are loaded into Codex context by `.codex/hooks/session_start.py`.
 20. Log external Evidentia/Codex/MCP/plugin use with `./dmnitel log-ai-use`; raw/identifiable flags must stay
     `no` because those data must not be sent.
 21. For toolkit code changes, prefer `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests`.
-22. The single thesis monorepo is `/workspaces/T1DM-Tez` (this qualitative arm lives in its `niteliksel/` subtree); cross-arm synthesis may
+22. The single thesis monorepo is `repo kökü` (this qualitative arm lives in its `niteliksel/` subtree); cross-arm synthesis may
     use the transferred canonical qualitative results report, de-identified themes, methodology,
     COREQ/audit trail outputs, and researcher-approved excerpts, never raw transcripts or demographic rows.

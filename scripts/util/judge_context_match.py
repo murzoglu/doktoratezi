@@ -8,8 +8,9 @@ skorlar sayilarin GERCEK gectigi baglama dayanir (tesadufi substring degil).
 Cikti: JSON — {key, score, mode, n_windows}.
 """
 import json, os, sys
+from pathlib import Path
 
-REPO = os.environ.get("CLAUDE_PROJECT_DIR", "/workspaces/T1DM-Tez")
+REPO = os.environ.get("CLAUDE_PROJECT_DIR") or str(Path(__file__).resolve().parents[2])
 sys.path.insert(0, os.path.join(REPO, "scripts", "eval"))
 import galileo_bridge as G
 

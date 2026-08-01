@@ -45,7 +45,7 @@ Kullanıcı görevi
 | `./dmnitel ai-context` | Repo-özel güvenli tool-bridge özeti | Oturum ritüelinin 1. adımı (`/tez-oturum` içinde otomatik) |
 | `./dmnitel route-tool --query` | Yerel nitel / dış kanıt / nicel-karma rota kararı | Belirsiz her işte önce bu |
 | `./dmnitel cross-repo-status` | Karma tez iki-kol köprü raporu | Çıktı: `07_reports/cross_repo_thesis_bridge_status.md` |
-| `./dmnitel lint-codebook` | Codebook CSV tutarlılığı | Kanonik: `codebook_v2.md`; v3.csv draft |
+| `./dmnitel lint-codebook` | Codebook CSV tutarlılığı | Kanonik: `codebook_v3.md` |
 | `./dmnitel build-triadic-matrix` | Anne/T1DM çocuk/kardeş tema matrisi | Çıktı: `04_triadic_matrices/` |
 | `./dmnitel check-quotes` | Anonim alıntı bütünlüğü | Transcript'i bağlama açmadan doğrular |
 | `./dmnitel audit-coreq` | COREQ 32 madde kanıt denetimi | Yöntem+bulgular metinleri üzerinde |

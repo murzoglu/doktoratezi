@@ -6,7 +6,7 @@ nitel kanıt, referans ve karma sentez oturumları** (Claude Code).
 Bu belge bir öneri değil, **zorunlu uyulması gereken talimatnamedir**. Codex
 ikizi `00_context/CODEX_PLAYBOOK.md`'dir; iki belge aynı süreci iki ayrı ajan
 harness'ında zorlar. Doktoratezi tarafındaki eş talimatname:
-`/workspaces/T1DM-Tez/tez-yazim/00_kaynak-kurallari/talimatname-claude-code.md`.
+`repo kökü/tez-yazim/00_kaynak-kurallari/talimatname-claude-code.md`.
 
 ## 0. Bağlayıcılık ve zorlama katmanları
 
@@ -37,7 +37,7 @@ ile korunur.
    - **Nicel/karma**: H1–H5, EMBU/Beck/KİA, joint display → paired
      `doktoratezi` + `t1dm-tez-rehberi` skill.
 3. Tez yazımı/format/bölüm sırası işiyse ana operasyon merkezi
-   `/workspaces/T1DM-Tez/tez-yazim`'dir; önce oradaki
+   `repo kökü/tez-yazim`'dir; önce oradaki
    `README.md`, `06_kritik-kaynaklar/README.md` + `kritik-dosya-manifesti.tsv`
    ve resmi `docs/tez-kilavuz/` kaynakları esas alınır. Çakışmada resmi kılavuz
    eski repo notlarını ezer.

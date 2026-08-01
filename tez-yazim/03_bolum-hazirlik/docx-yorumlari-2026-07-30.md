@@ -1,4 +1,6 @@
-# DOCX yorumları — «Tez - T1DM ve Ebeveynlikddd.docx» (2026-07-30)
+# DOCX yorumları — yorum turu 1 (2026-07-30)
+
+**Kaynak girdi:** [`ortak-yazar-girdileri/2026-07-30-tez-yorum-turu-1.docx`](ortak-yazar-girdileri/2026-07-30-tez-yorum-turu-1.docx)
 
 > **Ne bu?** Kullanıcının Word dosyasına eklediği **13 yorum (comment)**.
 > Hepsi metin değişikliği değil, **tanım/DİP NOT önerisidir**: yöntem terimlerinin
@@ -21,7 +23,7 @@
 >
 > ---
 >
-> **Ek kayıt (2026-07-30): «Tez - T1DM ve Ebeveynlikdddxxx.docx» turu.**
+> **Ek kayıt (2026-07-30): [yorum turu 2](ortak-yazar-girdileri/2026-07-30-tez-yorum-turu-2.docx).**
 > İkinci dosya 198 öğe içermektedir (140 ekleme, 26 silme, 32 yorum). Net semantik
 > etki 17 hunk'tır; 14'ü ch03 Gereç ve Yöntem'de, 3'ü ch04'te yalnızca
 > `![Launch Paperpal]` ikon artefaktıdır (metin değişikliği yok, yok sayılmıştır).

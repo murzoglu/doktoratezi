@@ -8,8 +8,9 @@ gereken iddialar kümesidir (iç istatistik çıktıları hariç: onlar CSR trac
 Çıktı: JSON — [{file, sentence, keys[], numbers[]}].
 """
 import json, os, re, sys
+from pathlib import Path
 
-REPO = os.environ.get("CLAUDE_PROJECT_DIR", "/workspaces/T1DM-Tez")
+REPO = os.environ.get("CLAUDE_PROJECT_DIR") or str(Path(__file__).resolve().parents[2])
 CH = os.path.join(REPO, "chapters")
 
 # Sadece dış-literatür iddialarının bulunduğu bölümler (bulgular = kendi verimiz).

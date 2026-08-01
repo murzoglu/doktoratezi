@@ -205,7 +205,7 @@ Türkiye tez literatüründe daha az görünür olabileceğine dair denetlenebil
 |---|---|---|
 | Çalışma tasarımı ve örneklem | `docs/protokol/KLINIK_CALISMA_PROTOKOLU.md`; `docs/CLINICAL-STUDY-REPORT-FINAL.md` | Yöntem gerekçesi için aggregate düzey; sonuç yorumu yok. |
 | Ölçekler | `docs/protokol/KANONIK_KISALTILMIS_EMBU_EBEVEYN.md`; `docs/protokol/KANONIK_KISALTILMIS_EMBU_COCUK.md`; `docs/protokol/KANONIK_BECK_DEPRESYON_ENVANTERI.md`; `docs/protokol/KANONIK_KARDES_ILISKILERI_ANKETI.md`; `dirik2015sEmbuTurkish`; `hisli1989bdiTurkishUniversity`; `akturk2005bdipcTurkish`; `furmanBuhrmester1985srq`; `apalaci1996yoktez`; `aktas2017kardesIliskileriOlcegi` | Kavram ve ölçüm alanı tanımı; alternatif araç aileleri; Türkiye validasyon/uyarlama katmanı. Tez örneklemindeki psikometrik sonuç tartışması yok. |
-| Nitel temsil | `niteliksel/qualitative_canonical_results_report.md` | Triadik aile tasarımını gerekçelendirmek için de-identified tema düzeyi; ham alıntı yok. |
+| Nitel temsil | `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` | Triadik aile tasarımını gerekçelendirmek için de-identified tema düzeyi; ham alıntı yok. |
 | Kritik kaynak manifesti | `tez-yazim/06_kritik-kaynaklar/kritik-dosya-manifesti.tsv` | Hangi repo artefaktının hangi bölümde kullanılacağını denetler. |
 | Referans ledgeri | `tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md` | DOI/PMID, full-text, Zotero key, claim ve reliability kapanışını izler. |
 
@@ -246,7 +246,7 @@ Türkiye tez literatüründe daha az görünür olabileceğine dair denetlenebil
 Yazım aşamasında önerilen dar doğrulama sırası:
 
 ```bash
-cd /workspaces/T1DM-Tez
+cd `git rev-parse --show-toplevel`
 python3 scripts/util/zotero_env_bridge.py status --json
 rg -n 'candidate|full-text-exception|zotero-ok|cite-ok' \
   tez-yazim/02_kanit-haritalari/referans-denetim-ledgeri.md
@@ -257,11 +257,11 @@ quarto render thesis.qmd
 Referanslı bölüm kapanışında iki-kol AI-reliability:
 
 ```bash
-cd /workspaces/T1DM-Tez/niteliksel
+cd `git rev-parse --show-toplevel`/niteliksel
 PYTHONDONTWRITEBYTECODE=1 python3 \
   plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py
 
-cd /workspaces/T1DM-Tez
+cd `git rev-parse --show-toplevel`
 PYTHONDONTWRITEBYTECODE=1 python3 \
   plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py
 ```

@@ -1,14 +1,14 @@
 # T1DM Karma Tez Codex Playbook
 
 > **Migrasyon notu (2026-07-09):** Bu playbook'un canonical kopyası artık
-> `/workspaces/T1DM-Tez/niteliksel` altındadır.
+> `niteliksel/` altındadır.
 > Nitel araçlar bu alt-ağaçtan (`cd niteliksel && ./dmnitel ...`)
-> çalıştırılır; üst tez yazım merkezi hâlâ `/workspaces/T1DM-Tez/tez-yazim`dir.
+> çalıştırılır; üst tez yazım merkezi hâlâ `repo kökü/tez-yazim`dir.
 
 Bu dosya bu workspace'teki nitel kol işlemleri için koruyucu operasyonel
 playbook'tur. Bundan sonraki tez yazım sürecinin ana çalışma dizini
-`/workspaces/T1DM-Tez`, ana operasyon merkezi ise
-`/workspaces/T1DM-Tez/tez-yazim` klasörüdür. Bu nitel kol,
+`repo kökü`, ana operasyon merkezi ise
+`repo kökü/tez-yazim` klasörüdür. Bu nitel kol,
 tezde yalnız nitel kolun ilişkili kesimleri yazılırken kaynak/denetim katmanı
 olarak açılır.
 
@@ -17,11 +17,11 @@ olarak açılır.
 Tez yazımı, format, bölüm sırası, özet/summary, tablo/şekil ve kaynakça işlerinde
 üst kaynak nicel kök içindeki yazım merkezidir:
 
-- `/workspaces/T1DM-Tez/tez-yazim/README.md`
-- `/workspaces/T1DM-Tez/tez-yazim/06_kritik-kaynaklar/README.md`
-- `/workspaces/T1DM-Tez/tez-yazim/00_kaynak-kurallari/format-kontrati.md`
-- `/workspaces/T1DM-Tez/docs/tez-kilavuz/TEZ YAZIM KLAVUZU-2025.pdf`
-- `/workspaces/T1DM-Tez/docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx`
+- `repo kökü/tez-yazim/README.md`
+- `repo kökü/tez-yazim/06_kritik-kaynaklar/README.md`
+- `repo kökü/tez-yazim/00_kaynak-kurallari/format-kontrati.md`
+- `repo kökü/docs/tez-kilavuz/TEZ YAZIM KLAVUZU-2025.pdf`
+- `repo kökü/docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx`
 
 Bu kaynaklar çakışırsa resmi `docs/tez-kilavuz` dosyaları format, başlık,
 ondalık virgül, kaynakça ve bölüm sırası kararlarında eski repo notlarının
@@ -97,7 +97,7 @@ ondalık virgül, kaynakça ve bölüm sırası kararlarında eski repo notları
 | Zotero Web API bridge | `references.bib`, citation key, search/export/cite | Status PASS, key redacted |
 | Zotero Desktop local API | Lokal full-text/attachment/connector | API kapalı; Zotero app açıkken kullanılabilir |
 | `06_tools/scripts/*.py` | DOCX/Markdown dönüştürme ve transcript kalite işleri | Varsayılan değil; `python-docx` ve yedek kontrolü gerekir |
-| `scripts/util/integrate_t1dm_qualitative_repo.py` | Nicel kökten nitel scaffold materyalizasyonu | Çalıştırma rutin değil; geniş overwrite/back-up yüzeyi var |
+| Tarihsel nitel migration işlemi | Git geçmişi | Rutin çalışma akışında kullanılmaz; yeniden çalıştırılmaz |
 | `plugins/eric-mcp-server` | Eğitim/okul/akademik uyum literatürü için ERIC MCP | Nicel kök plugin yüzeyi; koşullu |
 
 ## Skill ↔ Evidentia Entegrasyonu (üç kollu kanıt hattı)
@@ -211,7 +211,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests
 Nicel kök veri-yönetişimi kontrolü:
 
 ```bash
-cd /workspaces/T1DM-Tez
+cd `git rev-parse --show-toplevel`
 Rscript tests/test_reproducibility_lock.R
 Rscript tests/test_final_reference_loading.R
 Rscript tests/test_data_governance.R

@@ -83,7 +83,7 @@ yok; ondalık kesinlik gerçekçi; confirmatory ↔ `[KEŞİFSEL]` ayrımı koru
 |---|---|---|
 | Hipotez sonucu | CSR, `outputs/models`, SAP | Bulgu tekrarı değil, yorum. |
 | Literatür karşılaştırması | Evidentia hattı + ledger `cite-ok` | Tam metin + iki-kol AI-reliability kapalı. |
-| Nitel tema yorumu | `niteliksel/qualitative_canonical_results_report.md` | De-identified; negatif vaka dahil. |
+| Nitel tema yorumu | `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` | De-identified; negatif vaka dahil. |
 | Karma bütünleştirme | `05_entegrasyon/nitel-nicel-joint-display-plan.md` | Kanıt türü etiketli. |
 | Sınırlılık/tedbir | `t1dm-tez-rehberi` tedbir referansı | Nedensellik/genelleme sınırı. |
 

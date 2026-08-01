@@ -1,6 +1,8 @@
 # DOCX yorumları — araştırmacı notları (dipnot olarak uygulanmayanlar)
 
-> **Ne bu?** «Tez - T1DM ve Ebeveynlikddd.docx» ve «Tez - T1DM ve Ebeveynlikdddxxx.docx»
+> **Kaynak girdiler:** [yorum turu 1](ortak-yazar-girdileri/2026-07-30-tez-yorum-turu-1.docx) ve [yorum turu 2](ortak-yazar-girdileri/2026-07-30-tez-yorum-turu-2.docx).
+>
+> **Ne bu?** Bu iki dosyadaki
 > dosyalarındaki yorumlardan, açıkça `DİP NOT` işaretli **olmayanlar**. Bunlar teze
 > işlenmemiştir; araştırmacının kendi kullanımı için (jüri savunması hazırlığı, kavram
 > tazeleme, sözlü sunum notu) burada toplanmıştır.

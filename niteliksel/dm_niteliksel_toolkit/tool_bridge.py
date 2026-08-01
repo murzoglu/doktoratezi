@@ -9,7 +9,7 @@ from .common import normalize_key
 
 
 QUALITATIVE_REPO = str(Path(__file__).resolve().parents[1])
-PAIRED_QUANTITATIVE_REPO = "/workspaces/T1DM-Tez"
+PAIRED_QUANTITATIVE_REPO = str(Path(__file__).resolve().parents[2])
 CODEX_PLAYBOOK = "00_context/CODEX_PLAYBOOK.md"
 CROSS_REPO_STATUS_COMMAND = "./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md"
 THESIS_WRITING_ROOT = f"{PAIRED_QUANTITATIVE_REPO}/tez-yazim"
@@ -228,7 +228,7 @@ PROTECTED_INPUTS = [
 ]
 
 SAFE_REPO_EVIDENCE = [
-    "03_analysis/codebook/codebook_v2.md",
+    "03_analysis/codebook/codebook_v3.md",
     "03_analysis/methodology/coreq_32_completed.md",
     "03_analysis/methodology/audit_trail.md",
     "03_analysis/methodology/llm_use_statement.md",

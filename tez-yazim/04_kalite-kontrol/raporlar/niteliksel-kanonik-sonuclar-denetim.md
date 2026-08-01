@@ -29,8 +29,8 @@ sci-audit (HARD) → Galileo three-tier (SOFT/advisory) → KVKK invaryantı.
 **Override gerekçesi (belgelenmiş):** Judge, düşük groundedness/unsupported sonucunu **judge
 çağrısına kanıt-bağlamı sağlanmadığı** için üretmiştir (rationale: "KANIT sunulmadığından quote ID,
 H1-H5, COREQ 30/2/0/32 ... doğrulanamamaktadır"). Bu sayılar aslında belgenin **açıkça atıf yaptığı
-de-identified kanonik artefaktlara** dayanır: `qualitative_canonical_results_report.md`,
-`03_analysis/methodology/coreq_32_completed.md`, `03_analysis/codebook/codebook_v2.md` (belge
+de-identified kanonik artefaktlara** dayanır: `qualitative_canonical_results_for_doktoratezi.md`,
+`03_analysis/methodology/coreq_32_completed.md`, `03_analysis/codebook/codebook_v3.md` (belge
 callout'unda ve §Kaynak Dosya Haritası'nda listeli). Judge ayrıca `.qmd` **kaynağındaki** ham
 `[@key]`'i görmüştür; CSL bunları render'da author-yıl'a çevirir (üretilen HTML'de doğrulandı).
 KVKK gereği judge'a ham kanıt gönderilmemiştir (yalnız manüskript metni). Bu nedenle SOFT-block,
@@ -186,7 +186,7 @@ Read/Grep/Bash ile yapıldı; hiçbir connector/MCP/web/memory çağrılmadı, v
 ne bağlama döküldü ne dışa gönderildi. Reconciliation izole bir alt-ajanda koştu; ana bağlama yalnız
 verdict matrisi döndü.
 
-**Yer-doğrusu:** `qualitative_canonical_results_report.md` (birincil kanonik kaynak), `codebook_v2.md`,
+**Yer-doğrusu:** `qualitative_canonical_results_for_doktoratezi.md` (birincil kanonik kaynak), `codebook_v2.md`,
 `coreq_32_completed.md`, `A1_information_power.md`, `codebook_v3.csv` (taslak).
 
 **Sonuç — sayısal halüsinasyon YOK.** 11 iddia kümesi → **9 MATCH · 1 MISMATCH · 1 UNVERIFIED**:
@@ -214,7 +214,7 @@ Bu, quote_id iddialarını satır-düzeyinde doğrulanamaz kılıyordu.
 - KVKK callout (satır 40): ölü `quotes_used.csv` ID-kaynağı atfı kaldırıldı → "temizlenmiş tez
   metninden `quote_id` eşlemesi" + havuzun henüz üretilmediği notu.
 - Kaynak Dosya Haritası (satır 604): `quotes_used.csv` satırı "**henüz depoda üretilmedi**; güncel
-  kaynak `qualitative_canonical_results_report.md` + taslak `codebook_v3.csv`" olarak işaretlendi.
+  kaynak `qualitative_canonical_results_for_doktoratezi.md` + taslak `codebook_v3.csv`" olarak işaretlendi.
 - @sec-dogrulama: iki yeni madde — (i) iç-tutarlılık reconciliation özeti (0 sayısal halüsinasyon;
   4 toplam = 116; COREQ 30/2/0/32); (ii) **quote-havuzu provenans sınırlılığı** açıkça beyan edildi
   (116/116/57 + 28 ankraj id kanonik MD'ye izlenebilir, satır-düzeyi CSV'ye henüz değil).

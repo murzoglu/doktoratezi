@@ -1,9 +1,8 @@
 # AGENTS.md - T1DM Niteliksel Ajan Rehberi
 
-> **Migrasyon notu (2026-07-09):** Bu dosyanın canonical kopyası artık
-> `/workspaces/T1DM-Tez/niteliksel` altındadır.
-> Eski `/workspaces/T1DM-Tez/niteliksel` repo yolu tarihsel kaynak
-> olarak korunur; yeni nitel işlemler bu alt-ağaçtan yürütülmelidir.
+> **Çalışma kökü:** Bu dosya tek-repo tez yapısındaki `niteliksel/`
+> alt-ağacının güncel rehberidir. Tarihsel taşıma kaydı
+> `00_context/MIGRATION_TO_DOKTORATEZI_2026-07-09.md` içinde korunur.
 
 Bu depo Tip 1 Diyabet karma doktora projesinin niteliksel koludur. Yazılım uygulaması değil;
 anne, T1DM'li çocuk ve sağlıklı kardeş triadlarına ait nitel araştırma korpusu, analiz belgeleri,
@@ -15,13 +14,13 @@ tez/makale taslakları ve yerel belge-denetim araçlarından oluşur.
    `00_context/CODEX_PLAYBOOK.md` oku; Codex işlemlerinde playbook'u ana operasyonel kaynak kabul et.
 2. Niteliksel işlerde ana gate `niteliksel-arastirma-rehberi-t1dm` mantığıdır: RTA, COREQ/SRQR,
    JARS-Qual, KVKK, refleksivite, audit trail ve triadik anne-cocuk-kardes yorum çerçevesi.
-3. Tez yazımı, format, bölüm sırası, özet/summary, tablo/şekil veya kaynakça işi varsa nicel kök
-   `/workspaces/T1DM-Tez/tez-yazim` giriş noktasını ve
-   `/workspaces/T1DM-Tez/docs/tez-kilavuz` resmi kaynaklarını üst kural kabul et.
+3. Tez yazımı, format, bölüm sırası, özet/summary, tablo/şekil veya kaynakça işi varsa
+   `../tez-yazim/` giriş noktasını ve `../docs/tez-kilavuz/` resmi kaynaklarını
+   üst kural kabul et.
    Bundan böyle tez yazımının ana operasyon merkezi nicel köktür; bu
    kol (niteliksel/) yalnız nitel kolun ilişkili tez kesimleri için kaynak/denetim katmanı olarak açılır.
 4. Nicel R pipeline, H1-H5, EMBU/Beck/KIA analizleri veya karma tez joint display gerekiyorsa
-   nicel kök `/workspaces/T1DM-Tez`, `tez-yazim` ve `t1dm-tez-rehberi` ile koordine et.
+   üst repo kökü, `tez-yazim/` ve `t1dm-tez-rehberi` ile koordine et.
 5. Dış literatür, citation audit, tam metin, YÖK tez, OSF/PsyArXiv veya KOL gereksiniminde
    Evidentia v1.7.0 `medical-research` v8.5.0 native-first hattını kullan; web/OSINT
    fallback yoktur, yapısal kaynakta bulunamayan veri gap olarak yazılır. Anna's
@@ -66,7 +65,7 @@ tez/makale taslakları ve yerel belge-denetim araçlarından oluşur.
 ## Araç Yüzeyi
 
 - Yerel toolkit: `dm_niteliksel_toolkit` ve `./dmnitel`.
-- Tez yazım merkezi: `/workspaces/T1DM-Tez/tez-yazim/README.md`.
+- Tez yazım merkezi: `../tez-yazim/README.md`.
 - Nitel kol rolü: kanonik nitel sonuç raporunun, RTA/COREQ/audit trail
   kanıtlarının ve anonim alıntı kontrollerinin gerektiği bölümlerde koşullu
   destek; genel tez yazım operasyonu bu kolda (niteliksel/) sürdürülmez.

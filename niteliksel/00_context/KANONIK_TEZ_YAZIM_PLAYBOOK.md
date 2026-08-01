@@ -87,7 +87,7 @@ etiketlenir, örn.:
    TRACKER özeti otomatik gelir.
 2. Görevi §1'deki **üç koldan birine** yerleştir ve açıkça bildir.
 3. Yazım/format/bölüm işiyse ana operasyon merkezi
-   `/workspaces/T1DM-Tez/tez-yazim`; önce `README.md`,
+   `repo kökü/tez-yazim`; önce `README.md`,
    `06_kritik-kaynaklar/README.md` + `kritik-dosya-manifesti.tsv` ve resmi
    `docs/tez-kilavuz/`. Çakışmada resmi kılavuz üstündür.
 4. Karma tez / joint display / iki-kol sentezi → `/capraz-repo`
@@ -177,7 +177,7 @@ Her satır: connector → **rol** → **ne zaman açılır (tetikleyici)** →
 | `./dmnitel ai-context` | Oturum açılışı; repo-özel tool-bridge özeti | `/tez-oturum` içinde otomatik | ✅ |
 | `./dmnitel route-tool --query` | Kol belirsizse **her işten önce** | `./dmnitel route-tool --query "<soru>"` | ✅ |
 | `./dmnitel cross-repo-status` | Karma/joint display/iki-kol sentezi öncesi | `--output 07_reports/cross_repo_thesis_bridge_status.md` | ✅ |
-| `./dmnitel lint-codebook` | Codebook CSV tutarlılığı | `./dmnitel lint-codebook 03_analysis/codebook/…csv` (kanonik `codebook_v2.md`) | ✅ |
+| `./dmnitel lint-codebook` | Codebook CSV tutarlılığı | `./dmnitel lint-codebook 03_analysis/codebook/…csv` (kanonik `codebook_v3.md`) | ✅ |
 | `./dmnitel build-triadic-matrix` | Anne/T1DM çocuk/kardeş tema matrisi | `--coded-data … --output 04_triadic_matrices/…` | ✅ |
 | `./dmnitel check-quotes` | Anonim alıntı bütünlüğü (transcript **açmadan**) | `--source <deidentified> --quotes <csv>` | ✅ |
 | `./dmnitel audit-coreq` | COREQ 32 madde metin-içi kanıt | `--methods … --results …` | ✅ |
@@ -419,7 +419,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/t1dm-qual-ai-audit/skills/t1dm-qual-ai-audit/scripts/test_repo_ai_reliability.py
 python3 -m py_compile .codex/hooks/*.py .claude/hooks/*.py
 # doktoratezi (referanslı bölüm kapanışında çift kural):
-cd /workspaces/T1DM-Tez && \
+cd `git rev-parse --show-toplevel` && \
 PYTHONDONTWRITEBYTECODE=1 python3 plugins/doktoratezi-ai-audit/skills/doktoratezi-ai-audit/scripts/test_repo_ai_reliability.py
 # Quarto etkilendiyse:
 quarto check && quarto render thesis.qmd

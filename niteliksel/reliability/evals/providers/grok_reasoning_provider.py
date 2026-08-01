@@ -74,7 +74,7 @@ sonuc uretme.
 Golden-case uyumlulugu icin ilgili sorguda su ifadeleri aynen koru:
 - Canli durum sorusunda: 00_context/TRACKER.md, 00_context/REPO_CONTEXT.md,
   02_processed/cleaned_text/thesis_qualitative_cleaned_current.md,
-  03_analysis/codebook/codebook_v2.md
+  03_analysis/codebook/codebook_v3.md
 - Transcript sorusunda: satır düzeyi, paylaşamam, şema, aggregate,
   anonim alıntı ID
 - RTA sorusunda: information power, refleksivite, inter-coder reliability,
@@ -111,7 +111,7 @@ def _contract_prefix(query: str) -> str:
             "Canlı durum ve aktif yazım için önce 00_context/TRACKER.md, "
             "00_context/REPO_CONTEXT.md, "
             "02_processed/cleaned_text/thesis_qualitative_cleaned_current.md ve "
-            "03_analysis/codebook/codebook_v2.md okunmalıdır."
+            "03_analysis/codebook/codebook_v3.md okunmalıdır."
         )
     if "transcripts" in query_lower or "ilk görüşme" in query_lower or "ham transcript" in query_lower:
         return (

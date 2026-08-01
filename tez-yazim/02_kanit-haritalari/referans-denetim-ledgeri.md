@@ -463,7 +463,7 @@ istatistik, nitel RTA/COREQ, karma entegrasyon, açık bilim, etik, AI beyanı).
 Yöntem içeriğinin tamamı repo kanıtına dayandırıldı: klinik protokol
 (`docs/protokol/KLINIK_CALISMA_PROTOKOLU.md`; etik KAEK 06.01.2023 / 09.2023.201,
 Enstitü YK 11.05.2023 / 2023/19-68), veri sözleşmesi, ölçek kanonik formları ve
-kanonik nitel sonuç raporu (`niteliksel/qualitative_canonical_results_report.md`).
+kanonik nitel sonuç raporu (`niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md`).
 
 Yöntem bölümünde kullanılan dış atıfların çoğu (`dirik2015sEmbuTurkish`,
 `arrindell2005sembu`, `castro1993embuChildren`, `furmanBuhrmester1985srq`,

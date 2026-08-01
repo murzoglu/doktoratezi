@@ -9,8 +9,9 @@ normalize). Bulunamayan sayılar için Galileo claim_source_match semantik skoru
 KVKK: yalnız yayınlanmış literatür metni gateway'e gider.
 """
 import json, os, re, subprocess, sys, time
+from pathlib import Path
 
-REPO = os.environ.get("CLAUDE_PROJECT_DIR", "/workspaces/T1DM-Tez")
+REPO = os.environ.get("CLAUDE_PROJECT_DIR") or str(Path(__file__).resolve().parents[2])
 sys.path.insert(0, os.path.join(REPO, "scripts", "eval"))
 try:
     import galileo_bridge as G

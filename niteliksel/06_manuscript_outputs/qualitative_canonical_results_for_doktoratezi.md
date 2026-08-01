@@ -6,7 +6,9 @@
 **Tarih:** 2026-06-30
 **Kanonik kaynak:** `/mnt/thunderbolt/workspaces/doktoratezi/niteliksel`
 **Tarihsel kaynak:** `/mnt/thunderbolt/workspaces/T1DM Niteliksel`
-**Hedef entegrasyon kopyası:** `/mnt/thunderbolt/workspaces/doktoratezi/niteliksel/qualitative_canonical_results_report.md`
+**Kanonik kaynak:** [`niteliksel_kanonik_sonuclar.qmd`](niteliksel_kanonik_sonuclar.qmd)
+
+**Belge statüsü:** Bu dosya kanonik QMD'nin mekanik Markdown kopyasıdır; ayrı bir içerik otoritesi değildir.
 **Hedef tez bölümleri:** `chapters/03_gerec_ve_yontem.qmd`, `chapters/04_bulgular.qmd`, `chapters/05_tartisma_ve_sonuc.qmd`, ekler ve raporlama standartları tabloları.
 
 AI destekli çıktılar yalnızca yardımcı, ön-denetim veya tutarlılık kontrolü olarak değerlendirilir. Kodlama, tema geliştirme ve yorumlama kararları araştırmacı sorumluluğundadır.
@@ -597,7 +599,7 @@ Yasak müdahaleler:
 | Kaynak | İşlev |
 |---|---|
 | `02_processed/cleaned_text/thesis_qualitative_cleaned_current.md` | Temizlenmiş nitel tez metni ve 4 makro tema kaynağı |
-| `03_analysis/codebook/codebook_v2.md` | 6 journal tema ve 4 tez tema mapping kaynağı |
+| `03_analysis/codebook/codebook_v3.md` | 6 journal tema ve 4 tez tema mapping kaynağı |
 | `03_analysis/codebook/codebook_v3.csv` | Denetlenebilir codebook CSV taslağı |
 | `06_manuscript_outputs/quotes_used.csv` | Seçilmiş anonim alıntı quote ID kaydı |
 | `01_deidentified/coded_segments.csv` | Araştırmacı-denetimli ön-kodlama girdisi |

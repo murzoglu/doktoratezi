@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import shlex
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
@@ -10,7 +11,7 @@ from .anonymization import assert_not_protected_write
 
 
 QUAL_REPO = Path(__file__).resolve().parents[1]
-QUANT_REPO = Path("/workspaces/T1DM-Tez")
+QUANT_REPO = QUAL_REPO.parent
 THESIS_WRITING_ROOT = QUANT_REPO / "tez-yazim"
 
 
@@ -43,7 +44,7 @@ QUAL_REQUIRED_FILES = [
     RequiredFile("qualitative", "00_context/TRACKER.md", "live phase state and completed qualitative work"),
     RequiredFile("qualitative", "00_context/REPO_CONTEXT.md", "qualitative repo architecture and canonical files"),
     RequiredFile("qualitative", "00_context/CODEX_PLAYBOOK.md", "primary Codex operating playbook"),
-    RequiredFile("qualitative", "03_analysis/codebook/codebook_v2.md", "current code/theme mapping"),
+    RequiredFile("qualitative", "03_analysis/codebook/codebook_v3.md", "current code/theme mapping"),
     RequiredFile("qualitative", "03_analysis/methodology/coreq_32_completed.md", "COREQ evidence pack"),
     RequiredFile("qualitative", "03_analysis/methodology/audit_trail.md", "methodological decisions and audit trail"),
     RequiredFile("qualitative", "03_analysis/methodology/llm_use_statement.md", "LLM use statement"),
@@ -136,7 +137,7 @@ THESIS_LANES = [
         "qualitative_sources": [
             "03_analysis/methodology/A9_triadic_methodology_literature.md",
             "03_analysis/methodology/A1_information_power.md",
-            "03_analysis/codebook/codebook_v2.md",
+            "03_analysis/codebook/codebook_v3.md",
         ],
         "quantitative_sources": [
             "tez-yazim/03_bolum-hazirlik/01_giris-ve-amac.md",
@@ -165,7 +166,7 @@ THESIS_LANES = [
     {
         "chapter": "BULGULAR",
         "qualitative_sources": [
-            "03_analysis/codebook/codebook_v2.md",
+            "03_analysis/codebook/codebook_v3.md",
             "04_triadic_matrices/triadic_matrix_from_cleaned_thesis.csv",
             "07_reports/quote_integrity_report.md",
         ],
@@ -270,7 +271,7 @@ def build_cross_repo_status(output_format: str = "markdown") -> str:
         "thesis_lanes": THESIS_LANES,
         "validation_commands": VALIDATION_COMMANDS,
         "routing_commands": [
-            "cd /workspaces/T1DM-Tez && test -f tez-yazim/README.md",
+            f"cd {shlex.quote(str(QUANT_REPO))} && test -f tez-yazim/README.md",
             "./dmnitel ai-context",
             './dmnitel route-tool --query "<soru>"',
             "./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md",

@@ -15,7 +15,8 @@ hangi dosyaların türetilmiş/yerel artefakt olduğunu sabitler.
 | Analiz planı | `docs/analiz_planlari/03-sap-ana-plan.md`, `docs/analiz_planlari/04-sap-faz2-posthoc.md`, `docs/analiz_planlari/05-osf-layer3-faz2-amendment.md` |
 | Final CSR | `docs/CLINICAL-STUDY-REPORT-FINAL.md` |
 | Nitel sonuç raporu | `niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd` |
-| Nitel sonuç raporu Markdown kopyası | `niteliksel/qualitative_canonical_results_report.md` |
+| Nitel sonuç raporu Markdown aktarımı | `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` |
+| Nitel codebook | `niteliksel/03_analysis/codebook/codebook_v3.md` |
 | Ham klinik veri sınırı | `data/raw/Raw Data - Final.csv` yalnız korumalı reprodüksiyon kaynağıdır; yazımda satır düzeyi kullanılmaz. |
 | Pipeline | `_targets.R`, `R/`, `scripts/R/`, `tests/` |
 | İstatistik audit | `R/50_statistical_audit.R`, `scripts/R/51_statistical_audit.R`, `tests/test_statistical_audit.R` |

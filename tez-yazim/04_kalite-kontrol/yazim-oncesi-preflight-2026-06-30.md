@@ -26,7 +26,7 @@ saptanmadı. Final metin üretiminde resmi kaynak sırası korunmalıdır:
 | Route kararı | PASS | `./dmnitel route-tool --query "Marmara tez yazım formatı, joint display ve kaynakça kontrolü"` Marmara official thesis guide + Zotero gate seçti. |
 | AI context | PASS | `./dmnitel ai-context --output 07_reports/t1dm_ai_tool_bridge.md` yeniden üretildi. |
 | Cross-repo status | PASS | `./dmnitel cross-repo-status --output 07_reports/cross_repo_thesis_bridge_status.md` yeniden üretildi. |
-| Nitel entegrasyon kopyası | PASS | Nitel upstream rapor ile `niteliksel/qualitative_canonical_results_report.md` bire bir aynı. |
+| Nitel entegrasyon kopyası | PASS | Nitel upstream rapor ile `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` bire bir aynı. |
 
 ## Araç Yüzeyi
 

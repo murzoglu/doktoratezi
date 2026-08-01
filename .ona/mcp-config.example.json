@@ -5,9 +5,9 @@
       "name": "galileo-audit",
       "command": "python3",
       "args": ["scripts/eval/galileo_bridge.py"],
-      "workingDir": "/workspaces/T1DM-Tez",
+      "workingDir": "${workspaceFolder}",
       "env": {
-        "CLAUDE_PROJECT_DIR": "/workspaces/T1DM-Tez",
+        "CLAUDE_PROJECT_DIR": "${workspaceFolder}",
         "GALILEO_GATEWAY": "${exec:printenv GALILEO_GATEWAY}",
         "GALILEO_API_KEY": "${exec:printenv GALILEO_API_KEY}",
         "GALILEO_JUDGE_API_KEY": "${exec:printenv GALILEO_JUDGE_API_KEY}",

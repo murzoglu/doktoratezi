@@ -10,11 +10,11 @@ Durum: `certified-final`
 | Dosya | `chapters/07_ekler.qmd` |
 | Sertifika tarihi | 2026-07-14 |
 | Strictness | `certification` |
-| Uygulama onayı | Kullanıcı (repo sahibi) açık direktifi: `spec.md` eksikliklerini sırayla gider |
+| Uygulama onayı | Kullanıcı (repo sahibi) açık direktifi: `docs/superpowers/specs/2026-08-01-tez-kontrol-checklisti-tasarimi.md` eksikliklerini sırayla gider |
 
 ## Kapsam (bu tur)
 
-`spec.md` R5 gereksinimi. İki `[YER TUTUCU]` işaretinin (Ek 2 etik kurul onayı,
+`docs/superpowers/specs/2026-08-01-tez-kontrol-checklisti-tasarimi.md` R5 gereksinimi. İki `[YER TUTUCU]` işaretinin (Ek 2 etik kurul onayı,
 Ek 3 ölçek izinleri/formları) belirsiz biçimden açıklayıcı, standart
 "taranmış belge eklenecek" işaretine çevrilmesi. İçerik yazımı gerektirmeyen
 fiziksel belge yerleri; yalnız işaretlemenin netliği hedeflendi.

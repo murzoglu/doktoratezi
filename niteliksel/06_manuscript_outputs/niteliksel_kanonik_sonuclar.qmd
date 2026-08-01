@@ -26,8 +26,8 @@ format:
 
 ::: {.callout-note appearance="simple"}
 **Belge statüsü.** Bu Quarto belgesi niteliksel kolun **tek kanonik bilimsel sonuç kaynağıdır**.
-Bunun `niteliksel/archive/2026-07-29_pre_new_canon/qualitative_canonical_results_report.md`
-altındaki arşiv kopyası yalnızca tarihsel başvurudur; ikinci bir içerik otoritesi değildir. Kanonik sayılar, tema mimarisi,
+`qualitative_canonical_results_for_doktoratezi.md` bu belgenin mekanik Markdown kopyasıdır;
+v2.0 öncülü yalnızca Git geçmişinde tarihsel başvuru olarak korunur. Kanonik sayılar, tema mimarisi,
 bulgular, metodoloji, güvenilirlik/değerlendirme ve raporlama kesitleri bu dosyada yönetilir.
 :::
 
@@ -836,7 +836,7 @@ yönetişimi taşır. Bu katman bilimsel bulgu üretmez; **bulgu ve metnin büt�
 | `03_analysis/reflexive/journal_excerpts.md` | Refleksif günlük |
 | `07_reports/quote_integrity_report.md` | Alıntı bütünlüğü denetim kaydı |
 | `07_reports/negative_case_report_tema_4_triadic.md` | Tema 4 sistematik negatif vaka analizi |
-| `archive/2026-07-29_pre_new_canon/qualitative_canonical_results_report.md` | Arşivlenmiş tarihsel mekanik kopya; kanonik otorite değildir |
+| `qualitative_canonical_results_for_doktoratezi.md` | Bu QMD'nin mekanik Markdown kopyası; ayrı içerik otoritesi değildir |
 
 # Kalite Güvencesi ve Provenans {#sec-dogrulama}
 

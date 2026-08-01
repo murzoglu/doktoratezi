@@ -83,6 +83,14 @@ data/*.csv
 # Project archives — historical decisions, pre-canonical artifacts
 archive/
 
+# Non-identifiable historical qualitative codebooks remain versioned.
+!niteliksel/99_archive/
+niteliksel/99_archive/*
+!niteliksel/99_archive/2026-07-29_pre_new_canon/
+niteliksel/99_archive/2026-07-29_pre_new_canon/*
+!niteliksel/99_archive/2026-07-29_pre_new_canon/codebook_draft_v1.md
+!niteliksel/99_archive/2026-07-29_pre_new_canon/codebook_v2.md
+
 # Reference books (copyright-protected; do not commit)
 docs/books/
 
@@ -133,6 +141,10 @@ lerna-debug.log*
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+# ERIC Worker build contract (dependency resolution and TypeScript config)
+!plugins/eric-mcp-server/package.json
+!plugins/eric-mcp-server/package-lock.json
+!plugins/eric-mcp-server/tsconfig.json
 
 # Frontend Build
 frontend/dist/

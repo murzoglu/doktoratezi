@@ -10,11 +10,11 @@ Durum: `certified-final`
 | Dosya | `chapters/06_ozgecmis_faaliyetler.qmd` |
 | Sertifika tarihi | 2026-07-14 |
 | Strictness | `certification` |
-| Uygulama onayı | Kullanıcı (repo sahibi) açık direktifi: `spec.md` eksikliklerini sırayla gider |
+| Uygulama onayı | Kullanıcı (repo sahibi) açık direktifi: `docs/superpowers/specs/2026-08-01-tez-kontrol-checklisti-tasarimi.md` eksikliklerini sırayla gider |
 
 ## Kapsam (bu tur)
 
-`spec.md` R4 gereksinimi. Özgeçmiş ve bilimsel faaliyet alanlarının kullanıcı
+`docs/superpowers/specs/2026-08-01-tez-kontrol-checklisti-tasarimi.md` R4 gereksinimi. Özgeçmiş ve bilimsel faaliyet alanlarının kullanıcı
 tarafından sağlanan resmi özgeçmiş (CV) belgesindeki doğrulanabilir verilerle
 doldurulması. CV'de bulunmayan kişisel alanlar (doğum yeri/tarihi) Marmara §3.8
 biçiminde işaretli yer tutucu olarak korundu — sahte veri eklenmedi.

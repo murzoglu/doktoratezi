@@ -127,7 +127,8 @@ teknikler (Bayesçi katman, invariance, her H5 stratejisi) **kompakt** mini-blok
 
 1. **Pilot:** §11 bu şablonla tam işlenir (in-place edit `docs/CLINICAL-STUDY-REPORT-FINAL.qmd`).
 2. Kullanıcıya gösterilir; format/ton/derinlik onayı alınır.
-3. **Yayılım:** kalan 22 bölüme blok-blok uygulanır. Bloklar `spec.md` (kök)
+3. **Yayılım:** kalan 22 bölüme blok-blok uygulanır. Bloklar
+   `docs/superpowers/specs/2026-08-01-tez-kontrol-checklisti-tasarimi.md`
    8-mantıksal-blok haritasıyla hizalıdır; her blok bağımsız işlenebildiğinden
    workflow fan-out uygundur (onay sonrası ayrı kararla).
 

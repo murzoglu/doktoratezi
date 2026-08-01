@@ -1,7 +1,7 @@
 # İki-Kol Entegrasyon Planı
 
-Bu plan `/workspaces/T1DM-Tez` nicel kök ile
-`/workspaces/T1DM-Tez/niteliksel` nitel kolu tek tez yazım
+Bu plan `repo kökü` nicel kök ile
+`niteliksel/` nitel kolu tek tez yazım
 sürecinde birleştirir.
 
 > **Otorite zinciri:** Bu dosya **iki-kol entegrasyon modelinin (nicel kök ↔
@@ -17,7 +17,7 @@ sürecinde birleştirir.
 | Kaynak | Rol |
 |---|---|
 | `niteliksel/06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd` | Tek kanonik nitel sonuç raporu. |
-| `niteliksel/qualitative_canonical_results_report.md` | Kanonik QMD'nin mekanik Markdown kopyası. |
+| `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md` | Kanonik QMD'nin mekanik Markdown kopyası. |
 | `T1DM Niteliksel/00_context/CODEX_PLAYBOOK.md` | Cross-repo tool ve gizlilik playbook'u. |
 | `T1DM Niteliksel/07_reports/cross_repo_thesis_bridge_status.md` | Güncel cross-repo status raporu. |
 | `docs/analiz_planlari/` | Nicel SAP, Faz II/post-hoc ve raporlama standartları. |

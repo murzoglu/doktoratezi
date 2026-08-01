@@ -2,7 +2,7 @@
 
 **Tarih:** 2026-06-30
 **Denetlenen kaynak:** `06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md`
-**Doktoratezi entegrasyon kopyası:** `/mnt/thunderbolt/workspaces/doktoratezi/niteliksel/qualitative_canonical_results_report.md`
+**Doktoratezi entegrasyon kopyası:** `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md`
 
 AI destekli çıktılar yalnızca yardımcı, ön-denetim veya tutarlılık kontrolü olarak değerlendirilir. Kodlama, tema geliştirme ve yorumlama kararları araştırmacı sorumluluğundadır.
 
@@ -43,7 +43,7 @@ Rapor içindeki sayısal iddialar aşağıdaki kaynaklarla karşılaştırıldı
 | 57 triadik matris satırı | `04_triadic_matrices/triadic_matrix_from_cleaned_thesis.csv` | Uyumlu |
 | 23 kod | `03_analysis/codebook/codebook_v3.csv` | Uyumlu |
 | 4 tez makro teması | `01_deidentified/coded_segments.csv` | Uyumlu |
-| 6 journal tema yapısı | `03_analysis/codebook/codebook_v2.md` | Uyumlu |
+| 6 journal tema yapısı | `03_analysis/codebook/codebook_v3.md` | Uyumlu |
 | COREQ 32 madde | `03_analysis/methodology/coreq_32_completed.md` | Uyumlu |
 | COREQ 30 complete, 2 partial, 0 missing | `03_analysis/methodology/coreq_32_completed.md` | Uyumlu |
 

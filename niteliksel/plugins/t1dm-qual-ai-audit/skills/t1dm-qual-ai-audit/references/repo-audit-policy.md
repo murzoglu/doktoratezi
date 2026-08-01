@@ -17,10 +17,10 @@ This policy adapts the AI reliability scaffold to the T1DM qualitative thesis re
 - Project rules: `CLAUDE.md`, `AGENTS.md`
 - Live process: `00_context/TRACKER.md`, `00_context/ROADMAP_v1.md`
 - Codex operations: `00_context/CODEX_PLAYBOOK.md`
-- Cross-repo thesis writing source: `/workspaces/T1DM-Tez/tez-yazim/README.md`
-- Official thesis guide/templates: `/workspaces/T1DM-Tez/docs/tez-kilavuz/`
+- Cross-repo thesis writing source: `repo kökü/tez-yazim/README.md`
+- Official thesis guide/templates: `repo kökü/docs/tez-kilavuz/`
 - Architecture: `00_context/REPO_CONTEXT.md`
-- Current analysis: `03_analysis/codebook/codebook_v2.md`, `03_analysis/methodology/*`, `03_analysis/reflexive/*`
+- Current analysis: `03_analysis/codebook/codebook_v3.md`, `03_analysis/methodology/*`, `03_analysis/reflexive/*`
 - Active thesis writing source: `02_processed/cleaned_text/thesis_qualitative_cleaned_current.md`
 - Toolkit and tests: `dm_niteliksel_toolkit/`, `tests/`, `./dmnitel`
 

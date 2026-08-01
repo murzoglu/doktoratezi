@@ -1,6 +1,6 @@
 ---
 name: doktoratezi-ai-audit
-description: Repo-aware AI reliability audit workflow for the /workspaces/T1DM-Tez Quarto/R/targets thesis repository. Use when Codex needs to install, review, tune, or run the ai-audit.zip reliability scaffold; audit LLM-generated claims, citations, hooks, promptfoo evals, or raw-data boundaries; or add source-grounding and verification gates for this T1DM thesis repo.
+description: Repo-aware AI reliability audit workflow for this Quarto/R/targets thesis repository. Use when Codex needs to install, review, tune, or run the ai-audit.zip reliability scaffold; audit LLM-generated claims, citations, hooks, promptfoo evals, or raw-data boundaries; or add source-grounding and verification gates for this T1DM thesis repo.
 ---
 
 # Doktoratezi AI Audit
