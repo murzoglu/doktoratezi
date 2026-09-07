@@ -90,12 +90,27 @@ def _parse_sse(body: str) -> dict:
 class AnamnesisClient:
     """anamnesis Streamable-HTTP MCP oturumu."""
 
-    def __init__(self, api_key: str | None = None, retries: int = 3):
+    #: Bu deponun anamnesis çalışma seti. Tezin referans korpusu KALICIDIR, bu yüzden `lib`
+    #: (scratch `run`/`sess` bir oturum boyu yaşar ve gecelik reaper'a gider).
+    DEFAULT_COLLECTION = "doktoratezi:lib:t1dm"
+
+    def __init__(
+        self, api_key: str | None = None, retries: int = 3, collection: str | None = None
+    ):
         self.api_key = api_key or os.environ.get("ANAMNESIS_MCP_API_KEY", "")
         if not self.api_key:
             raise AnamnesisError(
                 "ANAMNESIS_MCP_API_KEY yok — load_dotenv() çağrıldı mı?"
             )
+        # KİRACILIK: anamnesis her aracı `{plugin}:{run|sess|lib}:{id}` biçiminde bir koleksiyona
+        # bağlar. Bu istemci hiç koleksiyon göndermiyordu; sonuçları:
+        #   - ingest paylaşılan `_legacy` kovasına düşüyordu (kapsamsız her aramaya açık), ve
+        #   - hybrid_query / graph_neighbors / subgraph ZATEN kırıktı — sunucu onlarda
+        #     koleksiyonu v1.2.0'dan beri zorunlu tutuyor (CollectionRequiredError).
+        # Sunucu 2026-09-07'de STRICT_COLLECTION ile kapsamsız yazmayı da hata yapıyor.
+        self.collection = collection or os.environ.get(
+            "ANAMNESIS_COLLECTION", self.DEFAULT_COLLECTION
+        )
         self.retries = retries
         self.session_id: str | None = None
         self._rpc_id = 0
@@ -197,8 +212,12 @@ class AnamnesisClient:
         return result
 
     # -- yüksek seviye araç sarmalayıcıları -----------------------------------
-    def corpus_stats(self) -> dict:
-        return self.call("corpus_stats", {})
+    def corpus_stats(self, scoped: bool = True) -> dict:
+        """scoped=True bu çalışma setini sayar; False küresel gözlemdir (çalışma seti DEĞİL)."""
+        return self.call("corpus_stats", {"collection": self.collection} if scoped else {})
+
+    def list_docs(self) -> dict:
+        return self.call("list_docs", {"collection": self.collection})
 
     def ingest_document(
         self,
@@ -208,7 +227,7 @@ class AnamnesisClient:
         source: str = "",
         metadata: dict | None = None,
     ) -> dict:
-        args: dict = {"text": text, "doc_id": doc_id}
+        args: dict = {"text": text, "doc_id": doc_id, "collection": self.collection}
         if title:
             args["title"] = title
         if source:
@@ -220,7 +239,7 @@ class AnamnesisClient:
     def hybrid_query(
         self, query: str, queries: list[str] | None = None, k: int = 6
     ) -> dict:
-        args: dict = {"query": query, "k": k}
+        args: dict = {"query": query, "k": k, "collection": self.collection}
         if queries:
             args["queries"] = queries
         return self.call("hybrid_query", args)
@@ -228,22 +247,30 @@ class AnamnesisClient:
     def semantic_search(
         self, query: str, queries: list[str] | None = None, k: int = 6
     ) -> dict:
-        args: dict = {"query": query, "k": k}
+        args: dict = {"query": query, "k": k, "collection": self.collection}
         if queries:
             args["queries"] = queries
         return self.call("semantic_search", args)
 
     def upsert_triples(self, triples: list[dict]) -> dict:
-        return self.call("upsert_triples", {"triples": triples})
+        return self.call(
+            "upsert_triples", {"triples": triples, "collection": self.collection}
+        )
 
     def graph_neighbors(self, entity: str, hops: int = 1) -> dict:
-        return self.call("graph_neighbors", {"entity": entity, "hops": hops})
+        return self.call(
+            "graph_neighbors",
+            {"entity": entity, "hops": hops, "collection": self.collection},
+        )
 
     def subgraph(self, entities: list[str]) -> dict:
-        return self.call("subgraph", {"entities": entities})
+        return self.call("subgraph", {"entities": entities, "collection": self.collection})
 
     def forget_document(self, doc_id: str) -> dict:
-        return self.call("forget_document", {"doc_id": doc_id})
+        # collection sahiplik kontrolüdür: başka kiracının belgesi reddedilir.
+        return self.call(
+            "forget_document", {"doc_id": doc_id, "collection": self.collection}
+        )
 
 
 if __name__ == "__main__":
