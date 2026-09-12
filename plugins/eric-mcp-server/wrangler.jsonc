@@ -15,6 +15,9 @@
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["EricMCP"] }],
   "observability": { "enabled": true },
   "vars": {
-    "ERIC_CONTACT_EMAIL": ""
+    "ERIC_CONTACT_EMAIL": "",
+    // Comma-separated CORS/redirect_uri allowlist override — empty falls back
+    // to the fleet-default allowlist baked into src/cors.ts.
+    "OAUTH_ALLOWED_REDIRECT_ORIGINS": ""
   }
 }

@@ -5,6 +5,8 @@ export interface Env {
   OAUTH_KV: KVNamespace;
   OAUTH_PROVIDER: OAuthHelpers;
   ERIC_CONTACT_EMAIL?: string;
+  /** Comma-separated CORS/redirect_uri allowlist override — see src/cors.ts. */
+  OAUTH_ALLOWED_REDIRECT_ORIGINS?: string;
 }
 
 export interface EricApiResponse {

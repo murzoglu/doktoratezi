@@ -5,7 +5,7 @@ import type { Env } from "./types";
 export function createEricMcpServer(env: Env): McpServer {
   const server = new McpServer({
     name: "eric-mcp-server",
-    version: "1.0.0"
+    version: "1.1.0"
   });
 
   registerEricTools(server, env);
