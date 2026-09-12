@@ -3,16 +3,34 @@
   "main": "src/index.ts",
   "compatibility_date": "2025-06-01",
   "compatibility_flags": ["nodejs_compat"],
-  "durable_objects": {
-    "bindings": [{ "name": "MCP_OBJECT", "class_name": "EricMCP" }]
-  },
   "kv_namespaces": [
     {
       "binding": "OAUTH_KV",
       "id": "dcda31edaa9f4ee08c52791a8032a256"
     }
   ],
-  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["EricMCP"] }],
+  // ER-5 (2026-09-12): migrations are a cumulative log, never edited in
+  // place. v1 created the now-removed EricMCP Durable Object class; v2
+  // formally deletes it (required — removing the binding/class alone,
+  // without this entry, breaks the next deploy).
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["EricMCP"] },
+    { "tag": "v2", "deleted_classes": ["EricMCP"] }
+  ],
+  // ER-8: Workers platform rate-limiting binding (simple limiter), consulted
+  // in src/index.ts before the /mcp route is allowed through. 60 req/min/IP
+  // matches the brief's Cloudflare WAF figure; implemented as a binding
+  // instead because eric-mcp.cureonics.workers.dev is not in a customer zone
+  // (zone-level http_ratelimit rules don't apply to *.workers.dev). The
+  // namespace_id is an operator-chosen identifier (not a dashboard-created
+  // resource) per https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/.
+  "ratelimits": [
+    {
+      "name": "MCP_RATE_LIMITER",
+      "namespace_id": "1001",
+      "simple": { "limit": 60, "period": 60 }
+    }
+  ],
   "observability": { "enabled": true },
   "vars": {
     "ERIC_CONTACT_EMAIL": "",

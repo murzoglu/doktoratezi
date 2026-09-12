@@ -1,9 +1,6 @@
 import OAuthProvider from "@cloudflare/workers-oauth-provider";
-import { McpAgent } from "agents/mcp";
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { createEricMcpServer } from "./server";
-import { registerEricTools } from "./tools";
 import type { Env } from "./types";
 import {
   applyCorsAndResourceMetadata,
@@ -12,24 +9,52 @@ import {
   resolveOrigin
 } from "./cors";
 
-// Out of scope for this hardening pass (ER-1/ER-2/ER-4 router/CORS/PRM fix
-// only): this Durable Object class, its MCP_OBJECT binding, and the v1 SQLite
-// migration in wrangler.jsonc are dead (never routed — /mcp is served
-// statelessly below) but are left exactly as they were.
-export class EricMCP extends McpAgent<Env> {
-  server = new McpServer({
-    name: "eric-mcp-server",
-    version: "1.0.0"
-  });
+// ER-5 (2026-09-12 hardening pass): the `EricMCP extends McpAgent<Env>`
+// Durable Object class that used to live here, its `MCP_OBJECT` binding, and
+// the `agents`/`McpAgent` import were dead weight — nothing ever routed to
+// it, the live path is the stateless `WebStandardStreamableHTTPServerTransport`
+// below. Removed along with the `MCP_OBJECT` binding in wrangler.jsonc (which
+// now carries a `deleted_classes: ["EricMCP"]` migration entry) and the
+// `agents` dependency in package.json.
 
-  async init(): Promise<void> {
-    registerEricTools(this.server, this.env);
+/**
+ * ER-8/decision 1: eric-mcp.cureonics.workers.dev is not in a customer zone,
+ * so the fleet's usual Cloudflare WAF http_ratelimit rule (the brief's
+ * "dashboard: /mcp 60 istek/dk/IP") cannot target it — zone-level rate-limit
+ * rules only apply inside a zone. The Workers platform rate-limiting binding
+ * (`MCP_RATE_LIMITER` in wrangler.jsonc, a `simple` limiter: 60 req/60s) is
+ * the equivalent mechanism for a bare *.workers.dev Worker. Keyed on the
+ * Cloudflare-verified client IP (CF-Connecting-IP; unlike X-Forwarded-For
+ * this is Cloudflare's own edge-set header, not client-settable). Degrades
+ * open (never 5xx/lock out real traffic) if the binding is absent (e.g. a
+ * future env that doesn't declare it) or the limiter RPC itself errors.
+ */
+async function checkRateLimit(request: Request, env: Env): Promise<boolean> {
+  if (!env.MCP_RATE_LIMITER) return true;
+  const key = request.headers.get("CF-Connecting-IP") ?? "unknown";
+  try {
+    const { success } = await env.MCP_RATE_LIMITER.limit({ key });
+    return success;
+  } catch {
+    return true;
   }
+}
+
+function rateLimitedResponse(): Response {
+  return Response.json(
+    { error: "rate_limited", error_description: "Too many requests; retry shortly (limit: 60/min/IP)." },
+    { status: 429, headers: { "Retry-After": "60" } }
+  );
 }
 
 const statelessMcpHandler = {
   async fetch(request: Request, env: unknown): Promise<Response> {
-    const server = createEricMcpServer(env as Env);
+    const typedEnv = env as Env;
+    if (!(await checkRateLimit(request, typedEnv))) {
+      return rateLimitedResponse();
+    }
+
+    const server = createEricMcpServer(typedEnv);
     const transport = new WebStandardStreamableHTTPServerTransport({
       sessionIdGenerator: undefined,
       enableJsonResponse: true

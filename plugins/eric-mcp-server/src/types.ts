@@ -1,13 +1,17 @@
 import type { OAuthHelpers } from "@cloudflare/workers-oauth-provider";
 
 export interface Env {
-  MCP_OBJECT: DurableObjectNamespace;
   OAUTH_KV: KVNamespace;
   OAUTH_PROVIDER: OAuthHelpers;
   ERIC_CONTACT_EMAIL?: string;
   /** Comma-separated CORS/redirect_uri allowlist extension (unioned with the
    *  built-in defaults, never replaces them) — see src/cors.ts. */
   OAUTH_ALLOWED_REDIRECT_ORIGINS?: string;
+  /** Workers platform rate-limiting binding (ER-8/decision 1), gating /mcp at
+   *  60 req/min/IP. Optional so code that builds an Env without it (tests,
+   *  a future local-dev profile) degrades open rather than throwing — see
+   *  checkRateLimit in src/index.ts. */
+  MCP_RATE_LIMITER?: RateLimit;
 }
 
 export interface EricApiResponse {
