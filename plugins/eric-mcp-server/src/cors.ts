@@ -6,8 +6,12 @@
  *
  * Convention ported from the Cureonics Worker fleet's `OAUTH_ALLOWED_REDIRECT_ORIGINS`
  * pattern (see e.g. `mcp-servers/pexels-mcp/src/auth.ts` in the sibling CureoHub
- * repo): an exact-origin allowlist, overridable via a comma-separated env var,
- * plus a loopback-any-port carve-out for native MCP clients. VS Code registers
+ * repo): an exact-origin allowlist, extendable via a comma-separated env var
+ * (the env value is UNIONED with the built-in defaults, never replaces them —
+ * see the `ottoman-archives` pitfall in CureoHub's CLAUDE.md, where a
+ * code-default-replacing env var silently narrowed an allowlist whenever an
+ * operator didn't re-type the full list), plus a loopback-any-port carve-out
+ * for native MCP clients. VS Code registers
  * redirect port 33418 but falls back to a random free port when that one is
  * taken (microsoft/vscode#278512, closed as not planned) — an exact-origin
  * allowlist cannot cover that, so loopback redirects are accepted on any port
@@ -38,12 +42,17 @@ export const DEFAULT_ALLOWED_ORIGINS: readonly string[] = [
   "https://vscode.flexdev.roche.com"
 ];
 
+/**
+ * Always unions the configured extras with the built-in defaults — never
+ * replaces them. An operator setting OAUTH_ALLOWED_REDIRECT_ORIGINS to one
+ * extra origin must not silently drop the other defaults.
+ */
 function configuredAllowlist(env: CorsEnv): Set<string> {
   const configured = (env.OAUTH_ALLOWED_REDIRECT_ORIGINS ?? "")
     .split(",")
     .map((entry) => entry.trim())
     .filter((entry) => entry.length > 0);
-  return new Set(configured.length > 0 ? configured : DEFAULT_ALLOWED_ORIGINS);
+  return new Set([...DEFAULT_ALLOWED_ORIGINS, ...configured]);
 }
 
 function isLoopbackHostname(hostname: string): boolean {
@@ -81,6 +90,24 @@ export function isRedirectUriAllowed(redirectUri: string, env: CorsEnv): boolean
 }
 
 /**
+ * Extracts a trustworthy scheme from an X-Forwarded-Proto value, or null if
+ * the header is absent or doesn't reduce to exactly "http"/"https". Two
+ * things matter here: (1) the header is client-settable and must never flow
+ * verbatim into an output (it ends up in the PRM document and in a quoted
+ * WWW-Authenticate parameter) — only the two literal tokens are accepted,
+ * anything else (e.g. an injection attempt) is rejected outright; (2)
+ * X-Forwarded-* is an append-on-the-right chain, so the LEFTMOST entry is the
+ * original client's own unverified claim and the RIGHTMOST is the nearest
+ * (most trustworthy) hop — this reads the last one, not the first.
+ */
+function sanitizeForwardedProto(value: string | null): "http" | "https" | null {
+  if (!value) return null;
+  const parts = value.split(",").map((part) => part.trim().toLowerCase());
+  const nearest = parts[parts.length - 1];
+  return nearest === "http" || nearest === "https" ? nearest : null;
+}
+
+/**
  * This worker's own origin as seen by the client, honouring X-Forwarded-Proto
  * (set by a proxy/tunnel in front of the Worker) over the request URL's own
  * scheme. Used to build the RFC 9728 resource_metadata URL without ever
@@ -88,9 +115,20 @@ export function isRedirectUriAllowed(redirectUri: string, env: CorsEnv): boolean
  */
 export function resolveOrigin(request: Request): string {
   const url = new URL(request.url);
-  const forwardedProto = request.headers.get("X-Forwarded-Proto");
-  const protocol = forwardedProto?.split(",")[0]?.trim() || url.protocol.replace(":", "");
+  const protocol = sanitizeForwardedProto(request.headers.get("X-Forwarded-Proto")) ?? url.protocol.replace(":", "");
   return `${protocol}://${url.host}`;
+}
+
+/**
+ * Defence in depth for the `resource_metadata` quoted-string parameter: even
+ * if a future change to resolveOrigin (or its inputs) ever produced something
+ * unexpected, a `"`, a `,`, or a control character can never reach the
+ * WWW-Authenticate header value through this check. A value that fails it is
+ * dropped by the caller rather than patched/escaped — an honestly-absent
+ * discovery pointer beats a subtly-wrong one.
+ */
+function isSafeForQuotedString(value: string): boolean {
+  return !/["\\,\x00-\x1f\x7f]/.test(value);
 }
 
 const PREFLIGHT_ALLOW_METHODS = "GET, POST, OPTIONS";
@@ -165,7 +203,9 @@ export function applyCorsAndResourceMetadata(response: Response, request: Reques
     const existing = headers.get("WWW-Authenticate");
     if (existing && !existing.includes("resource_metadata=")) {
       const prmUrl = `${resolveOrigin(request)}/.well-known/oauth-protected-resource`;
-      headers.set("WWW-Authenticate", `${existing}, resource_metadata="${prmUrl}"`);
+      if (isSafeForQuotedString(prmUrl)) {
+        headers.set("WWW-Authenticate", `${existing}, resource_metadata="${prmUrl}"`);
+      }
     }
   }
 

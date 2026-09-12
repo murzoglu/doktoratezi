@@ -94,6 +94,20 @@ async function handleAuthorize(request: Request, env: Env): Promise<Response> {
     );
   }
 
+  // OAuth 2.1 / RFC 9700: "plain" PKCE lets a token-endpoint observer recover
+  // the code_verifier for free, and the AS metadata this server advertises
+  // (see restrictAdvertisedPkceMethods below) now promises S256 only. The
+  // underlying library's parseAuthRequest defaults code_challenge_method to
+  // "plain" whenever the param is simply omitted, which would otherwise let a
+  // client silently downgrade itself — reject that here rather than only
+  // advertising the stronger method.
+  if (oauthRequest.codeChallengeMethod !== "S256") {
+    return Response.json(
+      { error: "invalid_request", error_description: "code_challenge_method must be S256" },
+      { status: 400 }
+    );
+  }
+
   const grantedScope = oauthRequest.scope.length > 0 ? oauthRequest.scope : ["eric.read"];
   const { redirectTo } = await env.OAUTH_PROVIDER.completeAuthorization({
     request: oauthRequest,
@@ -161,9 +175,9 @@ const oauthProvider = new OAuthProvider({
 /**
  * The library's own AS-metadata response hardcodes
  * code_challenge_methods_supported to ["plain", "S256"]; this narrows what is
- * ADVERTISED to ["S256"] only, per the brief. It does not change what the
- * library accepts at the token endpoint — enforcing S256-only PKCE end to end
- * is a separate, not-yet-scoped hardening step (out of scope here).
+ * ADVERTISED to ["S256"] only, per the brief — and handleAuthorize above now
+ * actually enforces S256-only at the one place a challenge method is chosen,
+ * so the advertisement matches what is accepted end to end.
  */
 async function restrictAdvertisedPkceMethods(response: Response): Promise<Response> {
   if (response.status !== 200) return response;

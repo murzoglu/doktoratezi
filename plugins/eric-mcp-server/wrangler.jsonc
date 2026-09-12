@@ -16,8 +16,9 @@
   "observability": { "enabled": true },
   "vars": {
     "ERIC_CONTACT_EMAIL": "",
-    // Comma-separated CORS/redirect_uri allowlist override — empty falls back
-    // to the fleet-default allowlist baked into src/cors.ts.
+    // Comma-separated CORS/redirect_uri allowlist EXTENSION — always unioned
+    // with the fleet-default allowlist baked into src/cors.ts (never
+    // replaces it); empty means just the defaults.
     "OAUTH_ALLOWED_REDIRECT_ORIGINS": ""
   }
 }
