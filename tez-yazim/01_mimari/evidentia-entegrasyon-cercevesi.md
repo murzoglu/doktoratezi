@@ -41,7 +41,7 @@ Her literatür-kokulu soruda önce ayrım yapılır:
   - Giriş / Tartışma literatürü,
   - benchmark doğrulama (Pinquart vb. etki büyüklüğü referansları),
   - Bayesian confirmatory prior'ın **literatür temeli** (yalnız ön-kayıt anında;
-    Bölüm 6),
+    `chapters/03_gerec_ve_yontem.qmd`),
   - psikometrik karşılaştırma (tarihsel α/ω, faktör yapısı),
   - T1DM epidemiyoloji (insidans/prevalans arka plan),
   - `references.bib` doğrulama / citation audit,

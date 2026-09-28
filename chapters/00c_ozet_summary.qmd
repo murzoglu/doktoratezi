@@ -17,13 +17,33 @@ güncellenir; her değer 04_bulgular.qmd artefaktlarıyla birebir eşleşir.
 ```
 
 ```{=latex}
-% Kunye tablosu icin yerel bosluk daraltmasi (§3.2 tek sayfa kurali):
-% longtable on/arka boslugu sifirlanir ve tablo tek satir arali yazilir
-% (§1.2 "tanimlanmis bazi ogelerinde istisnalar"; ana metin 1,5 aralikta kalir).
-% \begingroup ... \endgroup ile sinirli, tezin diger tablolarini etkilemez.
-\begingroup\setlength{\LTpre}{0pt}\setlength{\LTpost}{0pt}\singlespacing
-\vspace{-1.5\baselineskip}
+% Marmara §3.2'deki tek-sayfa siniri icin, yalniz Ozet/Summary govdesinde
+% 12 punto korunarak satir/paragraf araligi yerel olarak sıkılaştırılır.
+\begingroup\setstretch{1.10}\setlength{\parskip}{3pt}
 ```
+
+::: {.content-visible when-format="pdf"}
+
+```{=latex}
+% Enstitü teslim örneği: künye çizgisiz ve "etiket : değer" düzeninde akar.
+\begingroup
+\singlespacing
+\setlength{\tabcolsep}{0pt}
+\renewcommand{\arraystretch}{1.05}
+\vspace{-0.5\baselineskip}
+\begin{tabularx}{\linewidth}{@{}p{3cm}@{\hspace{0.10cm}:\hspace{0.25cm}}X@{}}
+Tezin Başlığı & Diyabetik Çocuklar, Sağlıklı Kardeşleri ve Annelerinin Ebeveynlik Tutumlarına Yönelik Algılarının ve Kardeşler Arası İlişkilerin Sağlıklı Kontrol Grubu ile Karşılaştırılarak İncelenmesi \\[2pt]
+Öğrenci & Özlem MURZOĞLU KURT \\[2pt]
+Danışman & Prof. Dr. Eren ÖZEK \\[2pt]
+Program & Sosyal Pediatri Doktora Programı \\
+\end{tabularx}
+\endgroup
+\vspace{-0.25\baselineskip}
+```
+
+:::
+
+::: {.content-visible unless-format="pdf"}
 
   ------------------ - --------------------------------------------------------------------------------------------
   **Tezin Başlığı**  : Diyabetik Çocuklar, Sağlıklı Kardeşleri ve Annelerinin Ebeveynlik Tutumlarına Yönelik
@@ -37,33 +57,53 @@ güncellenir; her değer 04_bulgular.qmd artefaktlarıyla birebir eşleşir.
   **Program**        : Sosyal Pediatri Doktora Programı
   ------------------ - --------------------------------------------------------------------------------------------
 
+:::
+
+**Amaç:** Bu araştırmada, Tip 1 diyabet (T1DM) tanılı çocuğu olan ailelerde çocukların ve kardeşlerin algıladığı ebeveynlik tutumları, annelerin kendi ebeveynlik davranışlarına ilişkin değerlendirmeleri, anne depresif belirtileri ve kardeş ilişkileri sağlıklı kontrol aileleriyle karşılaştırılmıştır. Ayrıca aynı ailede anne, çocuk ve kardeş deneyimlerinin hangi yönlerden örtüştüğü veya ayrıştığı incelenmiştir.
+
+**Gereç ve Yöntem:** Karşılaştırmalı kesitsel karma yöntem araştırmasına 120 T1DM ve 121 kontrol ailesinden 482 çocuk ile anneleri katılmıştır. Ebeveynlik tutumları, kardeş ilişkileri ve anne depresif belirtileri geçerli ve güvenilir ölçeklerle değerlendirilmiştir. Aynı aileden gelen yanıtların birbirinden bağımsız olmadığı analizlerde dikkate alınmıştır. Nicel bulguları ailelerin gündelik deneyimleriyle birlikte yorumlayabilmek için yedi T1DM ailesinden anne, T1DM tanılı çocuk ve sağlıklı kardeşle ayrı ayrı toplam 21 görüşme yapılmıştır.
+
+**Bulgular:** Örneklemde T1DM ailelerindeki çocuklar, annelerini kontrol ailelerindeki çocuklara göre daha reddedici ve aşırı koruyucu algılamıştır (puan farkları sırasıyla 0,14 ve 0,19; q = 0,001 ve q = 0,003). Algılanan sıcaklık da T1DM grubunda bir miktar daha yüksek bulunurken (q = 0,029), karşılaştırma tutumundaki farklılık desteklenmemiştir (q = 0,069). Kardeşler arasındaki yakınlık, güç, çatışma ve rekabet bakımından gruplar arasında belirgin bir farklılık gösterilememiştir (tümü q ≥ 0,589). Annelerin bildirdikleri sıcaklık, aşırı koruma, reddetme ve karşılaştırma tutumları da gruplara göre farklılaşmamıştır (tümü q ≥ 0,512). Anne depresif belirtileri arttıkça annelerin bildirdiği sıcaklık azalmış, reddetme ve çocukları karşılaştırma eğilimleri artmıştır (tümü q < 0,001). Anne ile çocuğun ebeveynlik tutumlarına ilişkin değerlendirmeleri her iki grupta da düşük düzeyde uyuşmuştur (uyum katsayıları kontrol grubunda 0,03–0,20, T1DM grubunda −0,01–0,08). Niteliksel kısımda; sağlıklı kardeşlerin gönüllü mahrumiyet, ikinci planda kalma ve yaşının ötesinden sorumluluk yaşayabildiğini; anneliğin sürekli tetikte olunan tıbbi bakım verici rolüne kayabildiğini; T1DM'li çocukların ise tedavinin bedensel yükünün yanında özerklik, kontrol ve sosyal görünürlük gerilimleri yaşayabildiğini ortaya koymuştur.
+
+**Sonuç:** T1DM'nin aile üzerindeki etkisi, bütün aile üyelerinde aynı yönde ortaya çıkan basit bir bozulma değildir. Aynı ebeveynlik davranışı anne, T1DM'li çocuk ve sağlıklı kardeş tarafından farklı biçimlerde deneyimlenebilmektedir. Klinik değerlendirmelerde yalnızca anne bildirimine dayanılmamalı; T1DM'li çocukların ve sağlıklı kardeşlerin deneyimleri doğrudan sorulmalı, annelerin psikolojik gereksinimleri de düzenli olarak değerlendirilmelidir.
+
+**Anahtar Sözcükler:** Tip 1 diyabet, ebeveynlik tutumu, kardeş ilişkileri, anne depresif belirtileri, karma yöntem
+
 ```{=latex}
 \endgroup
-\vspace{-0.5\baselineskip}
 ```
-
-**Amaç:** Tip 1 diyabet (T1DM) tanılı çocuğu olan aileler ile sağlıklı kontrollerde ebeveynlik tutumu, anne depresif belirtileri ve kardeş ilişkileri; anne, çocuk ve kardeş bakış açıları aynı ailede birlikte incelenmiştir.
-
-**Gereç ve Yöntem:** Aile-kümeli olgu–kontrol kesitsel tasarım nitel bir bileşenle birleştirilmiş; grup dengesi birebir eşleştirme yerine eğilim skorlarıyla sağlanmıştır. Örneklem 241 aile (482 çocuk gözlemi) ve yedi aile triadıdır (21 görüşme). Ebeveynlik tutumu, kardeş ilişkisi ve anne depresif belirtileri sırasıyla Kısaltılmış Ebeveyn Tutumları Ölçeği (çocuk ve ebeveyn formu), Kardeş İlişkileri Anketi ve Beck Depresyon Envanteri ile ölçülmüş; ebeveyn formu ve Karşılaştırma alt ölçeği psikometrik olarak sınanmıştır. Nicel veriler çok düzeyli model, ordinal yapısal eşitlik modeli ve diadik tutarlılık çözümlemeleriyle, nitel veriler refleksif tematik analizle incelenmiştir.
-
-**Bulgular:** Çocuk bildiriminde, ön-kayıtlı test ailesinde (dört EMBU-C alt ölçeği, BH-FDR) T1DM ailelerinin çocukları kontrollere göre reddetme (q = 0,001; BF₁₀ = 10,55) ve aşırı koruma (q = 0,003; BF₁₀ = 6,93) algısını daha yüksek bildirmiştir; en güçlü sinyal reddetmedir (ham karşılaştırma, Hedges g ≈ 0,38). Sıcaklıktaki marjinal fark (q = 0,029) Bayesçi hatta H0 lehine kalmış (BF₁₀ = 0,29); karşılaştırmada ve anne öz-bildiriminde fark bulunmamıştır. Sınırlı uyumlu ordinal yapısal eşitlik modelinde anne depresif belirtileri ile ebeveynlik tutumu arasında dört yolun üçünde model-koşullu ilişki gözlenmiştir. Anne–çocuk diadik tutarlılığı düşük kalmış, kardeş ilişkilerinde grup farkı kanıtı yetersiz bulunmuştur. Merkez, tanı grubu ve dönem kısmen örtüşmüş; ortak takvimin en geniş olduğu 2023 alt örnekleminde reddetme farkı yaklaşık sıfıra, aşırı koruma anlamsızlığa gerilemiştir. Nitel bulgular dört makro tema vermiştir: sağlıklı kardeşin görünmeyen yükü, annenin tıbbi bakıcı rolüne kayması, çocuğun hastalığı içeriden deneyimi ve aynı evde üç farklı deneyim.
-
-**Sonuç:** Algı örüntüleri aile rolüne ve bilgi vericiye göre farklılaşmış; ancak çocuk-bildirimli grup farkları (başta reddetme) dönem ve merkez örtüşmesinden bağımsız T1DM etkisi olarak gösterilememiştir. Anne ve çocuk bildirimleri farklı ve olası biçimde tamamlayıcı olduğundan, çocuk algısı ve diadik tutarlılık klinik değerlendirmeye katkı sağlayabilir.
-
-**Anahtar Sözcükler:** Tip 1 diyabet, ebeveynlik tutumu, kardeş ilişkileri, maternal depresyon, karma yöntem
 
 {{< pagebreak >}}
 
 # SUMMARY
 
 ```{=latex}
-% Kunye tablosu icin yerel bosluk daraltmasi (§3.2 tek sayfa kurali):
-% longtable on/arka boslugu sifirlanir ve tablo tek satir arali yazilir
-% (§1.2 "tanimlanmis bazi ogelerinde istisnalar"; ana metin 1,5 aralikta kalir).
-% \begingroup ... \endgroup ile sinirli, tezin diger tablolarini etkilemez.
-\begingroup\setlength{\LTpre}{0pt}\setlength{\LTpost}{0pt}\singlespacing
-\vspace{-1.5\baselineskip}
+% Tam metni tek sayfada tutmak icin 12 punto, yerel 1,10 satir araligi.
+\begingroup\setstretch{1.10}
 ```
+
+::: {.content-visible when-format="pdf"}
+
+```{=latex}
+% Enstitü teslim örneği: künye çizgisiz ve "label : value" düzeninde akar.
+\begingroup
+\singlespacing
+\setlength{\tabcolsep}{0pt}
+\renewcommand{\arraystretch}{1.05}
+\vspace{-0.5\baselineskip}
+\begin{tabularx}{\linewidth}{@{}p{3cm}@{\hspace{0.10cm}:\hspace{0.25cm}}X@{}}
+Title of Thesis & Comparative Investigation of the Perceptions of Parenting Attitudes and Sibling Relationships of Diabetic Children, Their Healthy Siblings and Their Mothers with a Healthy Control Group \\[2pt]
+Student & Özlem MURZOĞLU KURT \\[2pt]
+Supervisor & Prof. Eren ÖZEK \\[2pt]
+Program & Social Pediatrics PhD Program \\
+\end{tabularx}
+\endgroup
+\vspace{-0.25\baselineskip}
+```
+
+:::
+
+::: {.content-visible unless-format="pdf"}
 
   --------------------- - -----------------------------------------------------------------------------------------------------
   **Title of Thesis**   : Comparative Investigation of the Perceptions of Parenting Attitudes and Sibling Relationships of
@@ -76,17 +116,18 @@ güncellenir; her değer 04_bulgular.qmd artefaktlarıyla birebir eşleşir.
   **Program**           : Social Pediatrics PhD Program
   --------------------- - -----------------------------------------------------------------------------------------------------
 
+:::
+
+**Objective:** This study compared child- and mother-reported parenting, maternal depressive symptoms, and sibling relationships between families of children with type 1 diabetes mellitus (T1DM) and healthy controls. Concordance among mother, child, and sibling perspectives within families was also examined.
+
+**Materials and Methods:** The comparative cross-sectional mixed-methods study included mothers and 482 children from 120 T1DM and 121 control families. Validated measures assessed parenting, sibling relationships, and maternal depressive symptoms; analyses accounted for within-family dependence. Separate interviews were conducted with mothers, children with T1DM, and healthy siblings from seven T1DM families (21 interviews).
+
+**Results:** Children in T1DM families perceived their mothers as more rejecting and overprotective than did children in control families (score differences 0.14 and 0.19, respectively; q = 0.001 and q = 0.003). Perceived warmth was also slightly higher in the T1DM group (q = 0.029), whereas the difference in comparative parenting was not supported (q = 0.069). No clear between-group differences could be demonstrated in sibling closeness, power, conflict, or rivalry (all q ≥ 0.589). Mothers' reports of warmth, overprotection, rejection, and comparative parenting also did not differ between groups (all q ≥ 0.512). As maternal depressive symptoms increased, mother-reported warmth decreased, while rejection and the tendency to compare their children increased (all q < 0.001). Agreement between mothers' and children's assessments of parenting was low in both groups (agreement coefficients 0.03–0.20 in the control group and −0.01–0.08 in the T1DM group). The qualitative component showed that healthy siblings could experience voluntary self-denial, being relegated to the background, and responsibilities beyond their age; that motherhood could shift toward a medical caregiving role characterized by constant vigilance; and that children with T1DM could experience tensions involving autonomy, control, and social visibility in addition to the bodily burden of treatment.
+
+**Conclusion:** The impact of T1DM on the family is not a simple deterioration that emerges in the same direction for all family members. The same parenting behavior may be experienced differently by the mother, the child with T1DM, and the healthy sibling. Clinical assessments should not rely solely on maternal reports; the experiences of children with T1DM and healthy siblings should be elicited directly, and mothers' psychological needs should also be assessed regularly.
+
+**Keywords:** Type 1 diabetes, parenting attitudes, sibling relationships, maternal depressive symptoms, mixed methods
+
 ```{=latex}
 \endgroup
-\vspace{-0.5\baselineskip}
 ```
-
-**Objective:** Parenting attitudes, maternal depressive symptoms and sibling relationships were examined in families of children with type 1 diabetes mellitus (T1DM) and healthy controls, evaluating mother, child and sibling perspectives in the same family.
-
-**Material and Method:** A family-clustered case–control cross-sectional design was combined with a qualitative component; group balance used propensity scores, not pairwise matching. The sample was 241 families (482 child observations) and seven family triads (21 interviews). Parenting attitudes, sibling relationships and maternal depressive symptoms were assessed with the Short-EMBU (child and parent forms), the Sibling Relationship Questionnaire and the Beck Depression Inventory, respectively; the parent form and Comparison subscale were examined psychometrically. Quantitative data were analysed with multilevel models, ordinal structural equation modelling and dyadic concordance; qualitative data with reflexive thematic analysis.
-
-**Results:** By child report, in the preregistered test family (four EMBU-C subscales, BH-FDR), children from T1DM families reported higher rejection (q = 0.001; BF₁₀ = 10.55) and overprotection (q = 0.003; BF₁₀ = 6.93) than controls; rejection was strongest (unadjusted Hedges g ≈ 0.38). The marginal warmth difference (q = 0.029) favoured H0 on the Bayesian line (BF₁₀ = 0.29); comparison and mother self-report showed no difference. In a limited-fit ordinal structural equation model, maternal depressive symptoms were associated model-conditionally with parenting attitudes on three of four paths. Mother–child dyadic concordance was low, and evidence for group differences in sibling relationships was insufficient. Centre, diagnostic group and period were partially confounded; in the 2023 subsample with the broadest common calendar, rejection attenuated to near zero and overprotection to non-significance. Qualitative findings yielded four macro-themes: the healthy sibling's invisible burden, the mother's shift to a medical-caregiver role, the child's experience of illness from within, and three different experiences in one home.
-
-**Conclusion:** Perception patterns differed by family role and informant, but child-reported differences (chiefly rejection) could not be shown to be T1DM-specific independent of period and centre overlap. Because mother and child reports were non-equivalent and potentially complementary, child perception and dyadic concordance may aid clinical assessment.
-
-**Keywords:** Type 1 diabetes, parenting attitudes, sibling relationships, maternal depression, mixed methods

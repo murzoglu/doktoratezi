@@ -29,6 +29,8 @@ author: "Özlem Murzoğlu Kurt"
 
 {{< pagebreak >}}
 
+<!-- Bölüm include grafiği, tam-tez render'ında kaynak bölümlerle birlikte değerlendirilir (rev. 2). -->
+
 {{< include chapters/02_genel_bilgiler.qmd >}}
 
 {{< pagebreak >}}

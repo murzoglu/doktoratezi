@@ -36,6 +36,10 @@ SUPERSCRIPT = str.maketrans("⁰¹²³⁴⁵⁶⁷⁸⁹⁻−", "0123456789--")
 ID_COL_RE = re.compile(r"(?i)(^|_)(id|aile_no|cocuk_no|çocuk_no|sira|sıra|row|index)(_|$)|kimlik|tc")
 DATE_OR_SECTION_RE = re.compile(r"(?i)(doi|pmid|isbn|§|tablo|şekil|figure|chapter|bölüm)")
 MODEL_FIT_CONTEXT_RE = re.compile(r"(?i)\b(aic|bic|caic|sabic|icl|loglik)\b")
+AUDIT_ARTIFACT_RE = re.compile(
+    r"(?i)(?:^|/)(?:csr|ch\d+)_numeric_trace_(?:claims|numbers)\.csv$"
+    r"|(?:^|/)statistical_audit_(?:findings|summary|tool_registry)\.csv$"
+)
 
 
 @dataclass(frozen=True)
@@ -202,6 +206,11 @@ def read_csv_entries(csv_paths: list[Path], root: Path) -> list[CsvEntry]:
                         if value is not None and math.isfinite(value):
                             entries.append(CsvEntry(value=value, source=rel, column=field))
     return entries
+
+
+def is_audit_artifact(path: Path, root: Path) -> bool:
+    """Exclude audit-derived CSVs so claims cannot validate themselves."""
+    return bool(AUDIT_ARTIFACT_RE.search(path.relative_to(root).as_posix()))
 
 
 def read_lock_constants(root: Path) -> list[CsvEntry]:
@@ -438,7 +447,7 @@ def main() -> int:
     csr_path = root / args.csr
     csv_paths = [
         path for path in sorted((root / args.tables).glob("*.csv"))
-        if not path.name.startswith("csr_numeric_trace_")
+        if not is_audit_artifact(path, root)
     ]
     entries = read_csv_entries(csv_paths, root)
     entries.extend(read_lock_constants(root))
@@ -554,9 +563,9 @@ def main() -> int:
 
     top_untraced = [row for row in claim_rows if row["status"] != "traced_all"][:25]
     report_lines = [
-        "# CSR Numeric Trace Audit",
+        "# Manuscript Numeric Trace Audit",
         "",
-        "Scope: visible lines in `docs/CLINICAL-STUDY-REPORT-FINAL.md` containing statistical markers were checked against generated `outputs/tables/*.csv` values.",
+        f"Scope: visible lines in `{args.csr}` containing statistical markers were checked against generated `{args.tables}/*.csv` values.",
         "Privacy: no row-level values, identifiers, or raw data are reported; matches are file/column level only.",
         "",
         "## Summary",

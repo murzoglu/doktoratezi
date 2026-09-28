@@ -622,26 +622,33 @@ def upload_file_attachment(ctx: ZoteroContext, parent_key: str, file_path: Path,
 
     children = get_children(ctx, parent_key)
     existing = child_exists(children, item_type="attachment", title=title, filename=filename)
+    existing_key = None
+    existing_md5 = None
     if existing:
-        return str(existing.get("key") or (existing.get("data") or {}).get("key"))
+        existing_key = str(existing.get("key") or (existing.get("data") or {}).get("key"))
+        existing_md5 = str((existing.get("data") or {}).get("md5") or "") or None
 
-    response = post_json(
-        ctx,
-        f"{library_path(ctx)}/items",
-        [
-            {
-                "itemType": "attachment",
-                "parentItem": parent_key,
-                "linkMode": "imported_file",
-                "title": title,
-                "filename": filename,
-                "contentType": content_type,
-                "md5": md5,
-                "mtime": mtime,
-            }
-        ],
-    )
-    attachment_key = created_key(response)
+    if existing_key:
+        attachment_key = existing_key
+    else:
+        # md5/mtime öğe oluştururken YAZILMAZ: Zotero bunu "dosya var" sanıp
+        # sonraki POST /file isteğini 412 ile yutar ve binary hiç yüklenmez.
+        response = post_json(
+            ctx,
+            f"{library_path(ctx)}/items",
+            [
+                {
+                    "itemType": "attachment",
+                    "parentItem": parent_key,
+                    "linkMode": "imported_file",
+                    "title": title,
+                    "filename": filename,
+                    "contentType": content_type,
+                }
+            ],
+        )
+        attachment_key = created_key(response)
+
     upload_params = urllib.parse.urlencode(
         {
             "md5": md5,
@@ -650,18 +657,35 @@ def upload_file_attachment(ctx: ZoteroContext, parent_key: str, file_path: Path,
             "mtime": mtime,
         }
     ).encode("utf-8")
-    upload_init, _headers, _text = request(
-        ctx,
-        f"{library_path(ctx)}/items/{urllib.parse.quote(attachment_key)}/file",
-        method="POST",
-        body=upload_params,
-        headers={
-            "Content-Type": "application/x-www-form-urlencoded",
-            "If-None-Match": "*",
-        },
-        allow_statuses={412},
-        timeout=60.0,
-    )
+    precondition_headers: list[dict[str, str]] = []
+    if existing_md5:
+        precondition_headers.append({"If-Match": existing_md5})
+    precondition_headers.append({"If-None-Match": "*"})
+
+    upload_init: Any = None
+    used_precondition: dict[str, str] | None = None
+    for extra in precondition_headers:
+        used_precondition = extra
+        upload_init, _headers, _text = request(
+            ctx,
+            f"{library_path(ctx)}/items/{urllib.parse.quote(attachment_key)}/file",
+            method="POST",
+            body=upload_params,
+            headers={
+                "Content-Type": "application/x-www-form-urlencoded",
+                **extra,
+            },
+            allow_statuses={412, 413},
+            timeout=60.0,
+        )
+        if isinstance(upload_init, str) and ("too large" in upload_init.lower() or "quota" in upload_init.lower()):
+            raise SystemExit(f"Zotero storage quota exceeded: {upload_init[:200]}")
+        if isinstance(upload_init, dict) and (
+            upload_init.get("url") or upload_init.get("exists") or upload_init.get("uploadKey")
+        ):
+            break
+        if isinstance(upload_init, str) and "file exists" in upload_init.lower() and extra.get("If-Match"):
+            continue
     if isinstance(upload_init, str) and "file exists" in upload_init.lower():
         return attachment_key
     if not isinstance(upload_init, dict):
@@ -693,7 +717,7 @@ def upload_file_attachment(ctx: ZoteroContext, parent_key: str, file_path: Path,
         body=register_params,
         headers={
             "Content-Type": "application/x-www-form-urlencoded",
-            "If-None-Match": "*",
+            **(used_precondition or {"If-None-Match": "*"}),
         },
         allow_statuses={412},
         timeout=60.0,

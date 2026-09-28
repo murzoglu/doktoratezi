@@ -45,6 +45,9 @@ bağımlılık ve çalışma kökü üst repodan yönetilir; tarihsel taşıma a
 6. Çalışma durumu:
    `00_context/TRACKER.md`; yol haritası:
    `00_context/ROADMAP_v1.md`.
+7. Public v3 bütünlük sözleşmesi:
+   `03_analysis/public_canonical_manifest.json`; doğrulayıcı:
+   `scripts/util/verify_public_canonical_bundle.py`.
 
 V1/v2 codebook'lar `99_archive/2026-07-29_pre_new_canon/` altında tarihsel
 başvuru içindir; aktif analiz veya tez aktarımında kullanılmaz.
@@ -54,6 +57,7 @@ başvuru içindir; aktif analiz veya tez aktarımında kullanılmaz.
 ```bash
 cd "$(git rev-parse --show-toplevel)/niteliksel"
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/util/verify_public_canonical_bundle.py
 ./dmnitel ai-context
 ./dmnitel route-tool --query "<soru>"
 ```
@@ -61,6 +65,14 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests
 `pyproject.toml`, `dmnitel` yerel komutunun paket manifestidir. AI-reliability
 bağımlılıkları `reliability/requirements.txt` içinde pinlenir; root R ortamı
 `renv.lock` ile yönetilir.
+
+## Public Klon Doğrulama Sınırı
+
+Public klon, manifestte listelenen commitli v3 artefaktlarının SHA-256
+bütünlüğünü doğrular. Korumalı nitel girdiler Git dışında kaldığından, kaynak
+girdiden yeniden türetme yalnız yetkili maintainer denetiminde yapılabilir.
+Bu nedenle public doğrulamadaki `PASS`, yayımlanmış kanonik artefaktın
+bütünlüğünü gösterir; ham kaynaktan analitik yeniden üretimi iddia etmez.
 
 ## Tarihsel Kayıt Politikası
 

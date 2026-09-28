@@ -43,6 +43,8 @@ pip-selfcheck.json
 # Credentials - VERY IMPORTANT!
 dr-murzoglu-doktora.json
 *.json
+# Public qualitative v3 integrity contract; contains only artifact hashes.
+!niteliksel/03_analysis/public_canonical_manifest.json
 !.vscode/extensions.json
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -245,17 +247,31 @@ niteliksel/**/*_identified.csv
 # Birleşik ham transkript çıktıları (verbatim + konuşmacı etiketi) — 06_tools scriptleri üretir
 niteliksel/**/tum_dokumler*.md
 
-# Zotero MCP köprüsü (iç altyapı; anahtar .env'den; commit edilmez)
+# Korumalı nitel v3 kaynak ve satır-düzeyi türevleri yalnız yerel kalır.
+# Bu kurallar, `.git/info/exclude` makine ayarından bağımsız, sürümlü sınırdır.
+niteliksel/00_raw_locked/
+niteliksel/01_raw_data/
+niteliksel/01_deidentified/
+niteliksel/02_processed/
+niteliksel/03_analysis/spreadsheets/
+niteliksel/03_analysis/thematic_memos/
+niteliksel/03_analysis/triadic_matrices/
+niteliksel/04_triadic_matrices/
+niteliksel/00_context/file_manifest_*.tsv
+niteliksel/00_context/reorg_move_log.tsv
+
+# Zotero MCP köprüsü (iç altyapı; secret Doppler runtime ortamından,
+# `.env` migration/fallback'inden gelir; commit edilmez)
 scripts/mcp/zotero_refs_bridge.py
 
 # ── Minerva (Roche-iç) kanıt köprüsü — iç altyapı, sürüm kontrolüne GİRMEZ ──
 # Evidentia'nın yanına bağlanan gravitee vectorstore + rominedb köprüsü yereldir:
-# fonksiyonel kurulum makineye özeldir (kimlik .env/live-env'den), iç Roche
+# fonksiyonel kurulum makineye özeldir (kimlik Doppler/live-env'den), iç Roche
 # gateway host/entegrasyon detayları commit/yayın ağacına dökülmez. Özel repoda
 # istenirse `git add -f` ile eklenebilir. Kayıt: docs/.../*minerva* (yerel).
 .mcp.json
 .vscode/mcp.json
-# Ona-yerel MCP config (galileo-audit koprusu; kimlik .env'den enjekte edilir).
+# Ona-yerel MCP config (galileo-audit koprusu; kimlik Doppler'dan enjekte edilir).
 # `.mcp.json` ile ayni rejim: fonksiyonel config yerel/ignore; sirsiz sablon
 # (.ona/mcp-config.example.json) surum kontrolune izinlidir (asagidaki `!` istisnasi).
 .ona/mcp-config.json
@@ -302,3 +318,11 @@ IMG-*.png
 # docs/assets/ekler/ altinda MASKELENMIS olarak versiyonlanir; kaynaklar
 # yerelde kalir ve scripts/util/ekler_pdf_to_png.py ile yeniden uretilir.
 docs/ekler/
+
+# Render önbellekleri ve geçici derleme çıktıları (2026-09-28)
+thesis_cache/
+.playwright-mcp/
+intihal_raporu_files/
+intihal_raporu.tex
+# Tam tez PDF'leri public repoya konmaz
+output/pdf/*.pdf

@@ -278,7 +278,7 @@ github.com/ozlemmurzoglu/t1dm-ebeveyn-analysis
 - [ ] CITATION.cff güncel (DOI/ORCID)
 - [ ] Renv.lock commit'lendi (reprodüksiyon için)
 - [ ] Thesis bölüm eşlemesi 18 alt-bölüm tam mapping
-- [ ] 3-makale planı tezde Bölüm 6 olarak listelendi
+- [ ] 3-makale planı tezdeki keşifsel analiz haritasıyla eşleştirildi
 - [ ] Otomatik APA paragraflar elden Türkçeye uyarlandı
 
 ## Çapraz referanslar

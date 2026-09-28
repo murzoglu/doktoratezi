@@ -19,6 +19,13 @@ gelir; bu dosyanın sonunda üretilir (§1.9 Romen numaralandırma zinciri süre
 % Baslik SONRASINA konur; boylece \chapter*'in \clearpage'i onceki (Tesekkur)
 % sayfasini numarasiz gonderir, roman sifirlamasi bu sayfaya (Kisaltmalar=i) uygulanir.
 \pagenumbering{roman}
+% Enstitü teslim düzeltmesi: kısaltma tablosunda yatay ayraç çizgileri görünmez.
+\begingroup
+\setlength{\heavyrulewidth}{0pt}
+\setlength{\lightrulewidth}{0pt}
+\setlength{\cmidrulewidth}{0pt}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
 ```
 
   ---------- - ----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -258,6 +265,10 @@ gelir; bu dosyanın sonunda üretilir (§1.9 Romen numaralandırma zinciri süre
   ---------- - ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 ```{=latex}
+\endgroup
+```
+
+```{=latex}
 % Marmara §5 sirasi (6. ve 7. madde): SEKILLER ve TABLOLAR dizinleri
 % Kisaltmalar'dan SONRA, Ozet'ten ONCE gelir. _quarto.yml PDF hattinda
 % `lof: false` / `lot: false`; dizinler burada uretilir ve §1.9 uyarinca
@@ -266,9 +277,9 @@ gelir; bu dosyanın sonunda üretilir (§1.9 Romen numaralandırma zinciri süre
 % icindir; \clearpage'den SONRA cagrilir ki kaydedilen sayfa numarasi
 % dizinin ilk sayfasi olsun.
 \clearpage
-\addcontentsline{toc}{chapter}{ŞEKİLLER DİZİNİ}
-\listoffigures
+\addcontentsline{toc}{chapter}{ŞEKİLLER}
+\MarmaraListOfFigures
 \clearpage
-\addcontentsline{toc}{chapter}{TABLOLAR DİZİNİ}
-\listoftables
+\addcontentsline{toc}{chapter}{TABLOLAR}
+\MarmaraListOfTables
 ```

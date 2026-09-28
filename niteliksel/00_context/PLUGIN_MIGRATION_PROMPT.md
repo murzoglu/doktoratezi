@@ -1,5 +1,10 @@
 # sci-audit Plugin Migrasyon Komutu
 
+> **Tarihsel kayıt — aktif migration talimatı değildir.** Bu belge, 2026-07-05
+> tarihli sci-audit marketplace tasarımını korur. Güncel nitel operasyon için
+> `00_context/REPO_CONTEXT.md`, `CLAUDE.md` ve repo kökü `tez-yazim/` kuralları
+> bağlayıcıdır.
+
 AI-reliability sistemini (KAYNAK-1: bu repo) ve Türkçe bilimsel yazım denetimini
 (KAYNAK-2: doktoratezi `tr_sciaudit.py`) genel amaçlı, claude.ai web-uyumlu bir
 Claude Code marketplace plugin'ine dönüştüren komut. Marketplace reposundaki
@@ -20,8 +25,9 @@ Hazırlanış: 2026-07-05. Kaynak envanteri bu tarihte doğrulandı:
 
 ```bash
 cd /path/to/marketplace-repo
-claude --add-dir "/workspaces/T1DM-Tez/niteliksel" \
-       --add-dir "/workspaces/T1DM-Tez"
+DOKTORATEZI_ROOT=/path/to/doktoratezi
+claude --add-dir "$DOKTORATEZI_ROOT/niteliksel" \
+       --add-dir "$DOKTORATEZI_ROOT"
 ```
 
 ## 2) Yapıştırılacak komut
@@ -31,8 +37,8 @@ Marketplace reposunda, LLM tarafından üretilmiş BİLİMSEL METİNLERİ hem AD
 DİLSEL olarak denetleyen genel amaçlı bir Claude Code plugin'i inşa et: "sci-audit".
 İki kaynak repodan kod port edilir ama TÜM domain bağlamından (T1DM, tez, KVKK
 dizin adları, dmnitel, doktoratezi'ye özgü yollar) tamamen arındırılır:
-  KAYNAK-1: /workspaces/T1DM-Tez/niteliksel        (reliability çekirdeği)
-  KAYNAK-2: /workspaces/T1DM-Tez            (Türkçe dil denetimi)
+  KAYNAK-1: <doktoratezi-root>/niteliksel    (reliability çekirdeği)
+  KAYNAK-2: <doktoratezi-root>               (Türkçe dil denetimi)
 ⚠️ Kaynaklardan yalnız kod/politika port edilir; katılımcı verisi/PII içeren hiçbir
 dizin (01_raw_data/, 02_processed/transcripts/, 01_deidentified/, .remember/,
 chapters/ içerikleri) okunmaz, örnek olarak dahi kopyalanmaz.

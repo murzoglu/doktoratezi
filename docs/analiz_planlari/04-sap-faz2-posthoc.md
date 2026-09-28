@@ -172,7 +172,7 @@ Faz II SAP'sının tek bir analizi bile **doğrulayıcı (confirmatory) kanıt**
 | F2-41 | XXX/89 | Bayesian sample size determ. | `done` | `R/47_power_replication.R` | `outputs/tables/phase2_power_bayesian_ssd.csv` |
 | ~~F2-42~~ | ~~XXX/90~~ | ~~Çok-merkezli replikasyon plan~~ | **`removed`** | — | **Yeni veri toplama gerektirdiği için çıkarıldı** |
 | F2-43 | XXXII/93 | Faz II APA tablo + şekil paketi | `done` | `R/48_phase2_apa_outputs.R` | `outputs/tables/phase2_apa_summary_table.csv`; generated `outputs/figures/phase2_f01`-`phase2_f12`; tracked `docs/assets/figures/carbon/phase2/phase2_f01`-`phase2_f12` |
-| F2-44 | XXXII/94 | Tez ek-bölüm eşlemesi | `done` | `R/49_phase2_thesis_mapping.R` | `outputs/tables/phase2_thesis_chapter06_mapping.csv`; `chapters/06_post_hoc_genisleme.qmd` |
+| F2-44 | XXXII/94 | Tez bulgular bölümü eşlemesi | `done` | `R/49_phase2_thesis_mapping.R` | `outputs/tables/phase2_thesis_results_mapping.csv`; `chapters/04_bulgular.qmd` |
 | F2-45 | XXXII/95 | Makale 4-6 plan | `done` | `R/49_phase2_thesis_mapping.R` | `outputs/tables/phase2_thesis_publication_plan.csv` |
 
 **Tracker temizlik notu (2026-05-02):** `done` satırları yerel `phase2_*` CSV/figür çıktıları, `scripts/R/49_phase2_apa_outputs_audit.R`, `scripts/R/50_phase2_thesis_mapping_audit.R` ve `tests/test_phase2_thesis_mapping.R` ile doğrulanan tamamlanmış süreçleri gösterir. `prepared`, dış OSF platform GUID'i yerel belgelerde henüz bulunmadığı için analitik tamamlanmadan ayrı tutulur; `removed`, yeni veri gerektirdiği için Faz II kapsamından çıkarılan hedefleri gösterir.
@@ -198,7 +198,7 @@ Aşağıdaki satır `02-sapma-tablosu.md` dosyasına eklenir:
 ### 47.3 Raporlama Disiplini
 
 - **Her Faz II tablosu/şekli başlığında "[KEŞİFSEL · POST-HOC]" prefiksi zorunludur.**
-- Tezde Faz II bulguları **ayrı bir bölüm** (Bölüm 6: Post-Hoc Genişleme) altında raporlanır; Bölüm 5 (CSR'a paralel ana sonuçlar) ile **karıştırılmaz**.
+- Tezde Faz II bulguları `chapters/04_bulgular.qmd` içindeki **[KEŞİFSEL] genişletilmiş analiz katmanında** raporlanır; birincil H1-H5 sonuçlarıyla **karıştırılmaz**.
 - "Doğruladı / desteklendi" ifadeleri kullanılmaz; bunun yerine "tutarlı yön gösterdi", "hipotez-üretici işaret üretti", "post-hoc keşifsel olarak gözlendi" tercih edilir.
 
 > **Davranış Kuralı 6 hatırlatması:** "Bu sonuç keşifsel olarak çıktı, ön-kayıtta vardı" denmez. Sapma `[KEŞİFSEL]` etiketiyle açıkça belirtilir.
@@ -263,7 +263,7 @@ Faz II yeni `R/` modülleri:
 | `R/46_clinical_dx_extension.R` | sNB, DCA heatmap, recalibration | `phase2_clinical_*` |
 | `R/47_power_replication.R` | simr, APIM SS, BSSD | `phase2_power_*` |
 | `R/48_phase2_apa_outputs.R` | APA tablo + şekil paketi | `phase2_apa_*` |
-| `R/49_phase2_thesis_mapping.R` | Tez Bölüm 6 eşleme | `phase2_thesis_*` |
+| `R/49_phase2_thesis_mapping.R` | Tez bulgular bölümü eşlemesi | `phase2_thesis_*` |
 
 **Kural:** Tüm yeni modüller `R/01_io.R::validate_and_load()` üzerinden veri çeker; **kanonik kilit dosyası DEĞİŞMEZ**. Yeni türetilmiş skorlar `R/10_derived_scores.R` üzerinden değil, modül-başına `phase2_derive_*` fonksiyonları altında üretilir ve `outputs/processed/phase2_*.rds` altında saklanır.
 
@@ -1338,7 +1338,7 @@ Joint display tablosu:
 ### 92.2 Çıktı
 
 - `outputs/tables/phase2_convergence_joint_display.csv`
-- Tezde Bölüm 6.X olarak karma-yöntem benzeri yorum bölümü.
+- Tezde `chapters/04_bulgular.qmd` içindeki keşifsel katmanda karma-yöntem köprüsü.
 
 ---
 
@@ -1380,29 +1380,31 @@ Joint display tablosu:
 
 Carbon/Figma revizyonu, gerçekleşen 12 figür paketi ve tüm `phase2_*.csv` tablo ailelerinin plan-gerçekleşen haritası için bkz. `docs/analiz_planlari/40-faz2-carbon-sekil-tablo-haritasi.md`.
 
-## 94. Tez Ek-Bölüm Eşlemesi
+## 94. Tez Bulgular Bölümü Eşlemesi
 
-Faz II bulguları tezde **Bölüm 6: Post-Hoc Genişleme** altında raporlanır:
+Faz II bulguları `chapters/04_bulgular.qmd` içindeki
+`#sec-kesifsel-genisletme` altında raporlanır:
 
 ```
-chapters/06_post_hoc_genisleme.qmd
-├─ 6.1  Faz II'nin Epistemik Statüsü ve Sapma Disiplini
-├─ 6.2  Multi-İnformant Yapısal Genişletme (KISIM XX)
-├─ 6.3  Psikometrik Robustleştirme (KISIM XXI)
-├─ 6.4  Antidepresan ve Mental Sağlık Yükü (KISIM XXII)
-├─ 6.5  H5 Diadik Tutarlılık Genişletmesi (KISIM XXIII)
-├─ 6.6  Klinik Stratifikasyon (KISIM XXIV)
-├─ 6.7  Nedensel Aracılık Sensitivitesi (KISIM XXV)
-├─ 6.8  Distribüsyonel Yaklaşımlar (KISIM XXVI)
-├─ 6.9  Multiverse Genişletme (KISIM XXVII)
-├─ 6.10 Meta-Analitik Birleştirme (KISIM XXVIII)
-├─ 6.11 Klinik Karar Modeli Dış Validasyon Hazırlığı (KISIM XXIX)
-├─ 6.12 Power ve Replikasyon Planlaması (KISIM XXX)
-├─ 6.13 Convergence Joint Display (KISIM XXXI)
-└─ 6.14 Genel Sonuç ve Tezin Sınırlılıkları (Faz II Lensi)
+chapters/04_bulgular.qmd#sec-kesifsel-genisletme
+├─ Faz II'nin Epistemik Statüsü ve Sapma Disiplini
+├─ Multi-İnformant Yapısal Genişletme (KISIM XX)
+├─ Psikometrik Robustleştirme (KISIM XXI)
+├─ Antidepresan ve Mental Sağlık Yükü (KISIM XXII)
+├─ H5 Diadik Tutarlılık Genişletmesi (KISIM XXIII)
+├─ Klinik Stratifikasyon (KISIM XXIV)
+├─ Nedensel Aracılık Sensitivitesi (KISIM XXV)
+├─ Distribüsyonel Yaklaşımlar (KISIM XXVI)
+├─ Multiverse Genişletme (KISIM XXVII)
+├─ Meta-Analitik Birleştirme (KISIM XXVIII)
+├─ Klinik Karar Modeli İç-Validasyon (KISIM XXIX)
+├─ Mevcut Örnek Güç Karakterizasyonu (KISIM XXX)
+├─ Convergence Joint Display (KISIM XXXI)
+└─ Faz II sentezi; tartışma ve sonuç bölümüne yönlendirme
 ```
 
-`thesis.qmd` ana dosyası bu yeni `chapters/06_post_hoc_genisleme.qmd` dosyasını include edecek şekilde güncellenir; YAML `lang: tr` ve `freeze: auto` korunur.
+`thesis.qmd`, `chapters/04_bulgular.qmd` dosyasını mevcut include zincirinde
+zaten yükler; YAML `lang: tr` ve `freeze: auto` korunur.
 
 ## 95. Faz II 3-Makale Yayın Planı (Makale 4-6)
 
@@ -1431,7 +1433,7 @@ CSR §18'deki 3-makale planına ek olarak:
 | F2-R09 | renv lock yeni paket çakışmaları | Orta | Düşük | Docker imajı yeniden build; pin minimum sürümler |
 | F2-R10 | DAG PC algorithm ordinal değişkenlerle uyumsuz | Orta | Orta | polychoric correlation matrix + manuel adjacency check |
 | F2-R11 | Imai-Keele computation BCa CI 5000 sim için yavaş | Düşük | Düşük | nsim 1000'e düşür, CI genişler kabul |
-| F2-R12 | Faz II tablo+şekil 20+ artefakt sayfa kaymasına yol açar | Orta | Düşük | Tezde Bölüm 6 ek (Ek F) olarak konumlandırılabilir |
+| F2-R12 | Faz II tablo+şekil 20+ artefakt sayfa kaymasına yol açar | Orta | Düşük | Bulgular bölümünde kısa özet verilip ayrıntı Ek F'e yönlendirilebilir |
 | F2-R13 | Beck cognitive vs somatic 2-faktör ayrımı yetersiz invarianse | Düşük | Orta | Single-factor + sensitivite raporu yedek |
 | F2-R14 | Quantile regression bootstrap CI değişken | Orta | Düşük | R = 5000 → R = 10000 yükseltme |
 | F2-R15 | LMS (Klein-Moosbrugger) Mplus dependency | Yüksek | Orta | mplusAutomation kurulu değilse `nlsem` veya brms latent interaction fallback |
@@ -1452,7 +1454,7 @@ CSR §18'deki 3-makale planına ek olarak:
 | 9 | Sprint C1 | R/44 (Multiverse extension) | H1 240-spec + H4 SEM multiverse + BMA + SCA inferential |
 | 10 | Sprint C2 | R/45 (Bayesian meta) | Meta-pooling + PPC replication + EB shrinkage |
 | 11 | Sprint C3 | R/46, R/47 (Clinical + Power) | sNB + DCA heatmap + simr + APIM SS |
-| 12 | Sprint D | R/48, R/49 (APA + thesis mapping) | 12 tablo + 12 figür + Bölüm 6 entegrasyonu |
+| 12 | Sprint D | R/48, R/49 (APA + thesis mapping) | 12 tablo + 12 figür + bulgular bölümü entegrasyonu |
 
 **Sprint review:** Her hafta sonu `tar_make()` + `tar_audit_*` PASS + git commit. Hafta 6 sonrası ara CSR-V3 sürüm taslağı; Hafta 12 sonrası **Faz II Final Audit Raporu** (`docs/raporlar/PHASE2-AUDIT-REPORT.md`).
 
@@ -1468,7 +1470,7 @@ CSR §18'deki 3-makale planına ek olarak:
 - (a) `_targets.R` içinde target deklare edildi (`format = "file"` audit CSV)
 - (b) Test dosyası (`tests/test_<modül>.R`) PASS
 - (c) Audit script çıktısı CSV smoke-test geçti
-- (d) Tezdeki Bölüm 6 alt-bölümünde paragraf taslağı yazıldı
+- (d) `chapters/04_bulgular.qmd` içindeki keşifsel katmanda paragraf taslağı yazıldı
 - (e) APA tabloları `outputs/tables/` altında yeniden üretilebilir; yayınlanabilir Carbon SVG kopyaları `docs/assets/figures/carbon/phase2/` altında tracked
 
 ---
@@ -1609,7 +1611,7 @@ Her Faz II analizi başlatılmadan önce `references/tedbir-ve-hatalar.md` 7-ted
 
 ---
 
-**Tek cümlelik özet:** Bu Faz II SAP, T1DM-EBEVEYN çalışmasının çalışma-sonu verileri ışığında 13 boşluk maddesini 17 yeni R/ modülü, 45 post-hoc analiz hedefi ve 12 haftalık sprint planıyla disiplinli, ön-kayıt-sapmasıyla şeffaf, multilevel + Bayesian + sensitivity üçlü-katmanıyla replikasyon-hazır bir hipotez-üretici hat olarak yapılandırır; her bulgu **[KEŞİFSEL · POST-HOC]** etiketi altında raporlanır ve tezde **Bölüm 6: Post-Hoc Genişleme** olarak konumlandırılır.
+**Tek cümlelik özet:** Bu Faz II SAP, T1DM-EBEVEYN çalışmasının çalışma-sonu verileri ışığında 13 boşluk maddesini 17 yeni R/ modülü, 45 post-hoc analiz hedefi ve 12 haftalık sprint planıyla disiplinli, ön-kayıt-sapmasıyla şeffaf, multilevel + Bayesian + sensitivity üçlü-katmanıyla replikasyon-hazır bir hipotez-üretici hat olarak yapılandırır; her bulgu **[KEŞİFSEL · POST-HOC]** etiketi altında `chapters/04_bulgular.qmd` içindeki keşifsel katmanda raporlanır.
 
 **Versiyon:** Faz II SAP v1.0 — 2026-05-01
 **Son Doğrulama Kontrol Listesi:**

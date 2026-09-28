@@ -135,7 +135,8 @@ Araç ekosistem haritası: `00_context/TOOL_ECOSYSTEM_MAP.md`.
 - Eski scriptler: `06_tools/scripts/*.py` (docx→markdown, transcript standardizasyon).
 - ⚠️ `python-docx` kurulu **değil** — DOCX scriptlerinden önce `pip install python-docx`.
 - ⚠️ Birkaç eski script hedef Markdown'ı **üzerine yazar** — çalıştırmadan önce yedek
-  al / `00_context/file_manifest_after_reorg.tsv` kontrol et.
+  al; korumalı kaynak bütünlüğü yalnız yerel `01_raw_data/audit_manifests/` altında
+  doğrulanır. Versioned kapsam özeti için `00_context/PROTECTED_SOURCE_INVENTORY.md` kullan.
 - `06_tools/legacy_windows/` — Windows-path scriptleri; yeniden kullanımdan önce
   parametrele.
 

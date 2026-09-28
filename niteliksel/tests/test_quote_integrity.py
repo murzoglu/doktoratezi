@@ -58,7 +58,7 @@ class QuoteIntegrityTests(unittest.TestCase):
     def _source(self, tmpdir):
         source = Path(tmpdir) / "transcripts"
         source.mkdir()
-        (source / "family_011_mother.md").write_text(
+        (source / "family_test_mother.md").write_text(
             "Evde herkes saatlere göre hareket ediyor. Sonra okul hazırlığı başlıyor.",
             encoding="utf-8",
         )
@@ -102,7 +102,7 @@ class QuoteIntegrityTests(unittest.TestCase):
                     "rol": "mother",
                     "tema": "Tema 4",
                     "triadik_eksen": "A1",
-                    "kaynak_dosya": "family_011_mother.md",
+                    "kaynak_dosya": "family_test_mother.md",
                 })
 
             issues = check_quotes(source, quotes)

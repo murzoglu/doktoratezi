@@ -66,7 +66,7 @@ Aşağıdaki tablo, çalışma-sonu CSR'larında belgelenen ve Faz II'yi tetikle
 - **KISIM XXIX** — Klinik karar modeli iç-validasyon genişletmesi (2 analiz: sNB, DCA threshold heatmap)
 - **KISIM XXX** — Mevcut örnek güç karakterizasyonu (3 analiz: simr/MC power, APIM SS, Bayesian SSD)
 - **KISIM XXXI** — Karma yöntem (koşullu; kantitatif convergence joint display)
-- **KISIM XXXII** — Çıktı entegrasyonu (12 yeni APA tablo + 8 figür + tez Bölüm 6 + Makale 4-6)
+- **KISIM XXXII** — Çıktı entegrasyonu (12 yeni APA tablo + 8 figür + tez bulgular bölümü + Makale 4-6)
 - **KISIM XXXIII–XXXV** — Risk matrisi, 12 hafta sprint plan, uygulama tracker'ı
 
 Tüm 45 hedef için R/32 ila R/49 modülleri (`docs/analiz_planlari/04-sap-faz2-posthoc.md` Tablo F2-01..F2-45) tanımlıdır; her biri için test, audit script ve `_targets.R` entegrasyonu planlanmıştır.
@@ -96,7 +96,7 @@ Faz II'den çıkacak hiçbir bulgu, **bağımsız bir Türk kohortunda dış-val
 Faz II bulguları aşağıdaki disiplin altında raporlanır:
 
 1. **Etiketleme:** Her tablo, şekil ve paragraf başlığı `[KEŞİFSEL · POST-HOC]` prefiksini taşır.
-2. **Konumlandırma:** Tezde **Bölüm 6: Post-Hoc Genişleme** altında raporlanır; Bölüm 5 (CSR'a paralel ana sonuçlar) ile karıştırılmaz.
+2. **Konumlandırma:** `chapters/04_bulgular.qmd` içindeki **[KEŞİFSEL] genişletilmiş analiz katmanında** raporlanır; birincil H1-H5 sonuçlarıyla karıştırılmaz.
 3. **Dil:** "Doğruladı / desteklendi" ifadeleri kullanılmaz; bunun yerine "tutarlı yön gösterdi", "hipotez-üretici işaret üretti", "post-hoc keşifsel olarak gözlendi" tercih edilir.
 4. **Sapma çapraz-referansı:** Her Faz II bulgu raporu altında `02-sapma-tablosu.md` satır #1'e açıkça atıfta bulunulur.
 5. **OSF GUID atfı:** Layer 3 GUID submit edildiğinde tüm Faz II raporlama belgelerine yansır.

@@ -1,5 +1,5 @@
 <!--
-DIŞ KAPAK ve İÇ KAPAK — Marmara Tez Yazım Kılavuzu 2025 §2.1 ve resmi şablon
+KAPAK — Marmara Tez Yazım Kılavuzu 2025 §2.1 ve resmi şablon
 docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx (kapak sayfası) esas alınmıştır.
 
 §2.1 kuralları:
@@ -9,8 +9,7 @@ docs/tez-kilavuz/TEZ ŞABLONLARI-2026-2RV.docx (kapak sayfası) esas alınmışt
     soyadı, program adı, varsa ikinci danışman, şehir ve yıl.
   - Tez başlığı kalın 14 punto ve en çok 20 kelime; diğer tüm yazılar 12 punto.
   - Bütün yazılar büyük harf.
-  - "İç kapak sayfası içerik ve düzen olarak tamamen dış kapağın aynısı
-    olmalıdır" → aynı içerik iki kez üretilir.
+  - Enstitü teslim düzeltmesi gereği ikinci/iç kapak üretilmez.
 
 Bu tezde ikinci danışman bulunmadığından şablonun "İKİNCİ DANIŞMAN" bloğu
 yer almaz (§2.1 "varsa").
@@ -63,7 +62,7 @@ Varsayılan Quarto başlık bloğu iki kolda da bastırılır (_quarto.yml PDF
     \vspace{6mm}
     TÜRKİYE CUMHURİYETİ\par
     MARMARA ÜNİVERSİTESİ\par
-    \textbf{SAĞLIK BİLİMLERİ ENSTİTÜSÜ}\par
+    SAĞLIK BİLİMLERİ ENSTİTÜSÜ\par
     \vspace{29mm}
     {\fontsize{14}{18}\selectfont\bfseries
      % Sablon 2 satirlik basliga gore hizalidir; bu baslik 5 satirdir.
@@ -83,18 +82,17 @@ Varsayılan Quarto başlık bloğu iki kolda da bastırılır (_quarto.yml PDF
     \vspace{25mm}
     DANIŞMAN\par
     PROF. DR. EREN ÖZEK\par
+    ÇOCUK SAĞLIĞI VE HASTALIKLARI ANA BİLİM DALI/\\
     SOSYAL PEDİATRİ DOKTORA PROGRAMI\par
     % Sablonda danisman blogu ile sehir/yil arasinda 4 + (ikinci danisman
     % 2 satir) + 7 = 13 satirlik bosluk vardir; ikinci danisman yoksa
     % sehir/yil satirinin yeri degismez (§2.1 "varsa ikinci danisman").
-    \vspace{64mm}
+    \vspace{59mm}
     İSTANBUL – 2026\par
     \vfill
   \end{center}
   \clearpage}
 % Dis kapak
-\marmarakapaksayfasi
-% Ic kapak (§2.1: dis kapagin tamamen aynisi)
 \marmarakapaksayfasi
 ```
 
@@ -109,7 +107,7 @@ TÜRKİYE CUMHURİYETİ
 
 MARMARA ÜNİVERSİTESİ
 
-**SAĞLIK BİLİMLERİ ENSTİTÜSÜ**
+SAĞLIK BİLİMLERİ ENSTİTÜSÜ
 :::
 
 ```{=openxml}
@@ -147,65 +145,7 @@ DANIŞMAN
 
 PROF. DR. EREN ÖZEK
 
-SOSYAL PEDİATRİ DOKTORA PROGRAMI
-:::
-
-```{=openxml}
-<w:p/><w:p/><w:p/><w:p/><w:p/><w:p/><w:p/><w:p/>
-```
-
-::: {custom-style="Kapak Orta"}
-İSTANBUL – 2026
-:::
-
-{{< pagebreak >}}
-
-::: {custom-style="Kapak Orta"}
-![](docs/assets/logo/marmara-universitesi-logo.png){width=2cm height=2cm}
-
-TÜRKİYE CUMHURİYETİ
-
-MARMARA ÜNİVERSİTESİ
-
-**SAĞLIK BİLİMLERİ ENSTİTÜSÜ**
-:::
-
-```{=openxml}
-<w:p/><w:p/><w:p/>
-```
-
-::: {custom-style="Kapak Baslik"}
-DİYABETİK ÇOCUKLAR, SAĞLIKLI KARDEŞLERİ VE
-
-ANNELERİNİN EBEVEYNLİK TUTUMLARINA YÖNELİK
-
-ALGILARININ VE KARDEŞLER ARASI İLİŞKİLERİN
-
-SAĞLIKLI KONTROL GRUBU İLE KARŞILAŞTIRILARAK
-
-İNCELENMESİ
-:::
-
-```{=openxml}
-<w:p/><w:p/><w:p/><w:p/><w:p/><w:p/>
-```
-
-::: {custom-style="Kapak Orta"}
-ÖZLEM MURZOĞLU KURT
-
-DOKTORA TEZİ
-:::
-
-```{=openxml}
-<w:p/><w:p/><w:p/><w:p/><w:p/><w:p/>
-```
-
-::: {custom-style="Kapak Orta"}
-DANIŞMAN
-
-PROF. DR. EREN ÖZEK
-
-SOSYAL PEDİATRİ DOKTORA PROGRAMI
+ÇOCUK SAĞLIĞI VE HASTALIKLARI ANA BİLİM DALI/ SOSYAL PEDİATRİ DOKTORA PROGRAMI
 :::
 
 ```{=openxml}

@@ -2,7 +2,7 @@
 
 **Tarih:** 2026-07-29
 **Görev:** Task 1.4 — Faz 1 kanon (yeniden-inşa SDD)
-**Karar:** Kullanıcı kararı = `new/` v2.0 kanonu geçersiz kılar (new supersedes v2.0)
+**Karar:** Kullanıcı kararı = v3 korumalı kaynak paketi v2.0 kanonunu geçersiz kılar.
 **Statü:** Yürürlükte
 
 ---
@@ -13,7 +13,7 @@
 |---|---|---|---|
 | Kanonik belge | `qualitative_canonical_results_report.md` | `theme_architecture_v3.md` + `codebook_v3.md` | Tek MD → iki ayrı belge |
 | Codebook | `codebook_v2.md` (23 kod) | `codebook_v3.md` (24 kod) | +1 yeni kod |
-| Veri referans biçimi | `quote_id` yalnız (verbatim yok) | `new/triadik_matris_extracted.csv` verbatim + `{aile}_{rol}_q_{eksen}` ID | Verbatim eklendi |
+| Veri referans biçimi | `quote_id` yalnız (verbatim yok) | Korumalı triadik kanıt girdisi + `{aile}_{rol}_q_{eksen}` ID | Verbatim eklendi |
 | Analitik yapı | 4 makro × 17 alt (tez) / 6 konu tema (journal) | 4 makro × 17 alt + **8-eksen Rosetta** | Eksen katmanı eklendi |
 | Eksen yapısı | Yok (örtük) | 8 triadik eksen: `hastalik_algisi` · `kisit` · `gunluk_sosyal` · `ergenlik` · `kaybetme_korkusu` · `kardes_yasantisi` · `annelik_donusum` · `ihtiyaclar` | Yeni katman |
 | Yazım hatası | `AILE_ICI_ADELET` (notlanmış, henüz düzeltilmemiş) | `AILE_ICI_ADALET` | Düzeltildi |
@@ -83,7 +83,8 @@ v2.0 kanonik raporu KVKK gereği yalnız `quote_id` (ör. `020_mother_q001`) ref
 
 ### v3.0: verbatim + yapılandırılmış eksen kolonu
 
-`new/triadik_matris_extracted.csv` şu kolonları taşır: `aile_no`, `rol`, `triadik_eksen`, `verbatim_tr`. Bu yapı:
+Korumalı triadik kanıt girdisi şu kolonları taşır: `aile_no`, `rol`,
+`triadik_eksen`, `verbatim_tr`. Bu yapı:
 
 - Her satır bir birim (katılımcı × eksen gözlemi)
 - `quote_id` biçimi: `{aile_no}_{rol}_q_{eksen}` (ör. `019_mother_q_gunluk_sosyal`)
@@ -94,15 +95,15 @@ v2.0 kanonik raporu KVKK gereği yalnız `quote_id` (ör. `020_mother_q001`) ref
 
 ---
 
-## 5. "new supersedes" Gerekçesi
+## 5. v3'ün v2.0'ı Geçersiz Kılma Gerekçesi
 
 Kullanıcı kararı (2026-07-29 Task 1.4 brief) olarak:
 
-> "Kullanıcı kararı = 'new/ v2.0 kanonu geçersiz kılar.'"
+> "Kullanıcı kararı = 'v3, v2.0 kanonunu geçersiz kılar.'"
 
 Teknik gerekçe:
 
-1. **Verbatim varlığı:** `new/triadik_matris_extracted.csv` gerçek görüşme gözlemlerini eksen-yapılandırmalı olarak içermektedir; v2.0'ın yalnızca quote_id içeren statik raporundan analitik olarak daha zengindir.
+1. **Verbatim varlığı:** Korumalı triadik kanıt girdisi gerçek görüşme gözlemlerini eksen-yapılandırmalı olarak içermektedir; v2.0'ın yalnızca quote_id içeren statik raporundan analitik olarak daha zengindir.
 2. **Eksen tutarlılığı:** 8-eksen Rosetta, kodlar ile tema alt-bölümleri arasında doğrudan navigasyon sağlar; v2.0'da bu bağlantı örtüktü.
 3. **Kod tamamlanması:** KARDES_KORUYUCU_ROLU v2.0'da vaat edilen ama hayata geçirilmemiş bir koddu; v3.0 bunu tamamladı.
 4. **Yazım bütünlüğü:** AILE_ICI_ADALET düzeltmesi v3.0'da hayata geçirildi.

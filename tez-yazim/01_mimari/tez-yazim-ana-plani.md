@@ -104,13 +104,14 @@ AI-reliability kontrolü, promptfoo, Marmara resmi tez kılavuzu ve şablonları
 
 | Dosya | Resmi hedef bölüm | Planlanan işlem |
 |---|---|---|
-| `thesis.qmd` | Kök Quarto belge | Resmi bölüm sırası ile include sırası arasındaki farklar için ayrı karar verilecek. |
-| `chapters/01_giris.qmd` | `GİRİŞ ve AMAÇ` | Başlık, amaç ve literatür boşluğu resmi kılavuza göre yeniden yapılandırılacak. |
-| `chapters/02_yontem.qmd` | `GEREÇ ve YÖNTEM` | Nicel/nitel/karma yöntem alt yapısı resmi bölüm diline göre düzenlenecek. |
-| `chapters/03_bulgular.qmd` | `BULGULAR` | Yorumsuz bulgu sunumu, nitel bulgular ve joint display ayrımı netleştirilecek. |
-| `chapters/04_tartisma.qmd` | `TARTIŞMA ve SONUÇ` | Tartışma ve sonuç resmi şablon mantığına göre birleştirme/ayırma kararı verilecek. |
-| `chapters/05_sonuc.qmd` | `TARTIŞMA ve SONUÇ` veya sonuç alt bloku | Resmi kılavuz `TARTIŞMA ve SONUÇ` tek bölümünü istediği için yerleşim kararı verilecek. |
-| `chapters/06_post_hoc_genisleme.qmd` | Ek / keşifsel ek / tartışma alt katkısı | Resmi ana bölüm sırası içinde ayrı ana bölüm kalıp kalmayacağı kararlaştırılacak. |
+| `thesis.qmd` | Kök Quarto belge | Güncel include sırasının resmi bölüm sırasıyla uyumu korunur. |
+| `chapters/01_giris_ve_amac.qmd` | `GİRİŞ ve AMAÇ` | Başlık, amaç ve literatür boşluğu resmi kılavuza göre sürdürülür. |
+| `chapters/02_genel_bilgiler.qmd` | `GENEL BİLGİLER` | Klinik ve kuramsal arka planı taşır. |
+| `chapters/03_gerec_ve_yontem.qmd` | `GEREÇ ve YÖNTEM` | Nicel/nitel/karma yöntem alt yapısını taşır. |
+| `chapters/04_bulgular.qmd` | `BULGULAR` | Birincil, keşifsel/Faz II, nitel ve joint display bulgularını taşır. |
+| `chapters/05_tartisma_ve_sonuc.qmd` | `TARTIŞMA ve SONUÇ` | Tartışma, sınırlılıklar ve sonuçları tek resmi bölümde birleştirir. |
+| `chapters/06_ozgecmis_faaliyetler.qmd` | `ÖZGEÇMİŞ ve BİLİMSEL FAALİYETLER` | Arka bölüm sırasını taşır. |
+| `chapters/07_ekler.qmd` | `EKLER` | Ek kanıt ve şablonları taşır. |
 
 ### 1.3 Kanıt Dosyaları
 
@@ -230,11 +231,10 @@ AI-reliability. Kapı kapanmadan referans `chapters/*.qmd` veya
 - Read: `thesis.qmd`
 - Read: `chapters/*.qmd`
 - Modify later: `thesis.qmd`
-- Modify later: `chapters/01_giris.qmd`
-- Modify later: `chapters/02_yontem.qmd`
-- Modify later: `chapters/04_tartisma.qmd`
-- Modify later: `chapters/05_sonuc.qmd`
-- Modify later: `chapters/06_post_hoc_genisleme.qmd`
+- Modify later: `chapters/01_giris_ve_amac.qmd`
+- Modify later: `chapters/03_gerec_ve_yontem.qmd`
+- Modify later: `chapters/04_bulgular.qmd`
+- Modify later: `chapters/05_tartisma_ve_sonuc.qmd`
 
 - [ ] **Step 1: Resmi bölüm sırası kararını yaz**
 
@@ -248,15 +248,14 @@ BİLİMSEL FAALİYETLER, EKLER.
 
 - [ ] **Step 2: Mevcut Quarto uyumsuzluklarını işaretle**
 
-Record these current mismatches before editing:
+Record the current canonical layout before editing:
 
 ```text
-chapters/01_giris.qmd: "# Giriş" -> official target "GİRİŞ ve AMAÇ".
-chapters/02_yontem.qmd: "# Yöntem" -> official target "GEREÇ ve YÖNTEM".
-chapters/04_tartisma.qmd + chapters/05_sonuc.qmd: official guide expects
-"TARTIŞMA ve SONUÇ"; split/merge decision needed.
-chapters/06_post_hoc_genisleme.qmd: official main-section list does not include
-separate post-hoc chapter; appendix or labeled sub-section decision needed.
+chapters/01_giris_ve_amac.qmd: GİRİŞ ve AMAÇ.
+chapters/02_genel_bilgiler.qmd: GENEL BİLGİLER.
+chapters/03_gerec_ve_yontem.qmd: GEREÇ ve YÖNTEM.
+chapters/04_bulgular.qmd: BULGULAR; Faz II/post-hoc bulguları burada [KEŞİFSEL] etiketle yer alır.
+chapters/05_tartisma_ve_sonuc.qmd: TARTIŞMA ve SONUÇ.
 ```
 
 - [ ] **Step 3: Bölüm yerleşim kararını kullanıcı onayına sun**
@@ -384,7 +383,7 @@ hattını ve nitel triadik kolun katkısını tek resmi bölümde kurmak.
 - Read: `docs/CLINICAL-STUDY-REPORT-FINAL.md`
 - Read: `docs/analiz_planlari/03-sap-ana-plan.md`
 - Read: `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md`
-- Modify later: `chapters/01_giris.qmd`
+- Modify later: `chapters/01_giris_ve_amac.qmd`
 - Create later: `tez-yazim/02_kanit-haritalari/giris-ve-amac-kanit-haritasi.md`
 
 - [ ] **Step 1: Mevcut metni resmi başlık hedefiyle karşılaştır**
@@ -393,7 +392,7 @@ Check:
 
 ```bash
 cd `git rev-parse --show-toplevel`
-sed -n '1,160p' chapters/01_giris.qmd
+sed -n '1,160p' chapters/01_giris_ve_amac.qmd
 ```
 
 Expected: Current heading and structure visible; official target is
@@ -512,7 +511,7 @@ biçimde yazmak.
 - Read: `docs/analiz_planlari/03-sap-ana-plan.md`
 - Read: `docs/analiz_planlari/04-sap-faz2-posthoc.md`
 - Read: `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md`
-- Modify later: `chapters/02_yontem.qmd`
+- Modify later: `chapters/03_gerec_ve_yontem.qmd`
 
 - [ ] **Step 1: Nicel yöntem bloklarını ayır**
 
@@ -582,9 +581,9 @@ ve gizlilik sınırıyla sunmak.
 **Files:**
 
 - Read: `tez-yazim/03_bolum-hazirlik/04_bulgular.md`
-- Read: `chapters/03_bulgular.qmd`
+- Read: `chapters/04_bulgular.qmd`
 - Read: `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md`
-- Modify later: `chapters/03_bulgular.qmd`
+- Modify later: `chapters/04_bulgular.qmd`
 - Modify later: `tez-yazim/05_entegrasyon/nitel-nicel-joint-display-plan.md`
 
 - [ ] **Step 1: Bulgular sırasını sabitle**
@@ -650,9 +649,9 @@ karıştırmadan karma yorum zemini oluşturmak.
 
 - Modify later: `tez-yazim/05_entegrasyon/nitel-nicel-joint-display-plan.md`
 - Read: `niteliksel/06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md`
-- Read: `chapters/03_bulgular.qmd`
-- Modify later: `chapters/03_bulgular.qmd`
-- Modify later: `chapters/04_tartisma.qmd`
+- Read: `chapters/04_bulgular.qmd`
+- Modify later: `chapters/04_bulgular.qmd`
+- Modify later: `chapters/05_tartisma_ve_sonuc.qmd`
 
 - [ ] **Step 1: Joint display alanlarını sabitle**
 
@@ -691,10 +690,8 @@ ve önerileri resmi `TARTIŞMA ve SONUÇ` bölüm mantığında yazmak.
 **Files:**
 
 - Read: `tez-yazim/03_bolum-hazirlik/05_tartisma-ve-sonuc.md`
-- Read: `chapters/04_tartisma.qmd`
-- Read: `chapters/05_sonuc.qmd`
-- Modify later: `chapters/04_tartisma.qmd`
-- Modify later: `chapters/05_sonuc.qmd` or merge/include decision from Faz 0
+- Read: `chapters/05_tartisma_ve_sonuc.qmd`
+- Modify later: `chapters/05_tartisma_ve_sonuc.qmd`
 
 - [ ] **Step 1: Tartışma omurgasını sabitle**
 
@@ -973,7 +970,7 @@ adım, bu talimatnameleri uygulayarak `chapters/*.qmd` üretimini yapmaktır.
 `GİRİŞ ve AMAÇ` yürütme talimatnamesi `03_bolum-hazirlik/01_giris-ve-amac.md`
 şu kararları kapsar:
 
-1. `chapters/01_giris.qmd` başlığının resmi `GİRİŞ ve AMAÇ` hedefine nasıl
+1. `chapters/01_giris_ve_amac.qmd` başlığının resmi `GİRİŞ ve AMAÇ` hedefine nasıl
    dönüştürüleceği.
 2. Literatür boşluğu için Evidentia sorgu seti.
 3. OpenAthens-first tam metin kaskadı, Anna fallback, Zotero ve referans

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "canonical_version": "v3",
+  "verification_scope": "public artifact integrity",
+  "source_rederivation": "not_available_in_public_clone",
+  "artifacts": [
+    {
+      "path": "03_analysis/codebook/codebook_v3.csv",
+      "sha256": "a85b2ebe349dd6c99df1e4adc1c622565112898c24c72b6af86802f2b7ba50ae"
+    },
+    {
+      "path": "03_analysis/codebook/codebook_v3.md",
+      "sha256": "0cb318d1c8f3fad0da453f2568ffa8f7f04d85a1a27dc17517a5de76913f03a5"
+    },
+    {
+      "path": "03_analysis/codebook/theme_architecture_v3.md",
+      "sha256": "67dff2a7ea4fe88ba755de849cdd8289350f1be24b90a8fa2e4d12705b940d6d"
+    },
+    {
+      "path": "03_analysis/methodology/coreq_32_completed.md",
+      "sha256": "af9b096ce8eb0102faefd9e27ff4f8996116582eec91661ade71c0199ad573a6"
+    },
+    {
+      "path": "03_analysis/reconciliation_v2_to_v3.md",
+      "sha256": "a4e2adfc4948879f262063e8c24848cf6c9501c6470f829937db4a1585ac1278"
+    },
+    {
+      "path": "06_manuscript_outputs/niteliksel_kanonik_sonuclar.qmd",
+      "sha256": "de19fda5d68c7b013a96ed4bed75431457b90417bff547d1f5fb3a605087240b"
+    },
+    {
+      "path": "06_manuscript_outputs/qualitative_canonical_results_for_doktoratezi.md",
+      "sha256": "7d6750481bf48861a4bcd6f73805625e3fc647c7e453ab34741d5ec070336303"
+    }
+  ]
+}

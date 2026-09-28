@@ -8,8 +8,9 @@ araç setine enjekte edilmediğinde (`.mcp.json` Claude Code formatındadır) bu
 sarmalayıcı, `exec` üzerinden aynı JSON-RPC tools/call sözleşmesini konuşur.
 
 Yaptığı iş:
-  1. `.env`'i yükler (os.environ'da olmayan anahtarlar için; interaktif-olmayan
-     çağrılarda .bashrc auto-load devreye girmez), değer ASLA yazdırılmaz.
+  1. Süreç ortamındaki anahtarları korur (Doppler birincil kaynak); yalnız
+     os.environ'da olmayan anahtarlar için `.env` fallback'ini yükler.
+     Değer ASLA yazdırılmaz.
   2. Hedef köprüye `initialize` → `tools/call` gönderir (stdio, satır-JSON-RPC).
   3. Aracın sonucunu döndürür: content[].text varsa onu, yoksa ham result JSON.
 
@@ -52,7 +53,7 @@ BRIDGES = {
 
 
 def _load_dotenv() -> None:
-    """os.environ'da anahtar yoksa .env'i yükle (değer basılmaz)."""
+    """Süreç ortamını koruyarak eksik anahtarları .env'den fallback olarak yükle."""
     envf = ROOT / ".env"
     if not envf.exists():
         return

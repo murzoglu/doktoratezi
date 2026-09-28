@@ -67,67 +67,70 @@ apa_require_plot_packages <- function() {
   invisible(TRUE)
 }
 
-apa_h1_forest_data <- function(h1_primary_fixed_effects_table) {
-  terms <- c("role_fKontrol_Kardes", "role_fDM_Hasta_Indeks", "role_fDM_Hasta_Kardes")
-  rows <- h1_primary_fixed_effects_table[
-    h1_primary_fixed_effects_table$term %in% terms,
+apa_h1_forest_data <- function(h1_primary_period2023_group_main_effect_table) {
+  required <- c("outcome", "contrast", "estimate", "ci_low", "ci_high", "subsample_year")
+  missing <- setdiff(required, names(h1_primary_period2023_group_main_effect_table))
+  if (length(missing)) {
+    stop(sprintf("H1 2023 group-effect table is missing: %s", paste(missing, collapse = ", ")), call. = FALSE)
+  }
+  outcomes <- c(
+    "embu_c_sicaklik_mean",
+    "embu_c_asiri_koruma_mean",
+    "embu_c_reddetme_mean",
+    "embu_c_karsilastirma_mean"
+  )
+  rows <- h1_primary_period2023_group_main_effect_table[
+    h1_primary_period2023_group_main_effect_table$contrast == "DM_vs_Kontrol_rol_ortalamasi" &
+      h1_primary_period2023_group_main_effect_table$subsample_year == 2023L,
     ,
     drop = FALSE
   ]
-  if (nrow(rows) == 0L) {
-    stop("H1 fixed-effects table does not contain role_f terms", call. = FALSE)
+  if (nrow(rows) != length(outcomes) || !setequal(rows$outcome, outcomes)) {
+    stop("H1 forest requires one 2023 DM-vs-Control group effect for each EMBU-C outcome", call. = FALSE)
   }
   labels <- apa_subscale_labels()
   rows$outcome_label <- labels[rows$outcome]
   rows$outcome_label[is.na(rows$outcome_label)] <- rows$outcome[is.na(rows$outcome_label)]
-  rows$contrast_label <- c(
-    role_fKontrol_Kardes = "Kontrol kardeş",
-    role_fDM_Hasta_Indeks = "DM indeks",
-    role_fDM_Hasta_Kardes = "DM kardeş"
-  )[rows$term]
   rows$outcome_label <- factor(
     rows$outcome_label,
     levels = rev(c("EMBU-C Sıcaklık", "EMBU-C Aşırı koruma", "EMBU-C Reddetme", "EMBU-C Karşılaştırma"))
   )
-  rows$contrast_label <- factor(
-    rows$contrast_label,
-    levels = c("Kontrol kardeş", "DM indeks", "DM kardeş")
-  )
   rows
 }
 
-apa_plot_h1_forest <- function(h1_primary_fixed_effects_table) {
+apa_plot_h1_forest <- function(h1_primary_period2023_group_main_effect_table) {
   apa_require_plot_packages()
-  forest <- apa_h1_forest_data(h1_primary_fixed_effects_table)
+  forest <- apa_h1_forest_data(h1_primary_period2023_group_main_effect_table)
   ggplot2::ggplot(
     forest,
     ggplot2::aes(
       x = estimate,
       y = outcome_label,
       xmin = ci_low,
-      xmax = ci_high,
-      color = contrast_label
+      xmax = ci_high
     )
   ) +
     ggplot2::geom_vline(xintercept = 0, linetype = "dashed", color = "grey45", linewidth = 0.4) +
     ggplot2::geom_errorbar(
-      ggplot2::aes(xmin = ci_low, xmax = ci_high),
-      position = ggplot2::position_dodge(width = 0.55),
-      width = 0.18,
+      color = "#525252",
+      width = 0.14,
       orientation = "y",
       linewidth = 0.55
     ) +
-    ggplot2::geom_point(position = ggplot2::position_dodge(width = 0.55), size = 2.2) +
-    ggplot2::scale_color_manual(
-      values = c("Kontrol kardeş" = "#6f6f6f", "DM indeks" = "#0f62fe", "DM kardeş" = "#007d79"),
-      name = "Referans: Kontrol indeks"
+    ggplot2::geom_point(color = "#0f62fe", size = 2.4) +
+    ggplot2::scale_x_continuous(
+      labels = function(x) chartr(".", ",", formatC(x, format = "f", digits = 2))
     ) +
     ggplot2::labs(
-      title = "H1 çocuk algısı: multilevel ANCOVA rol/grup katsayıları",
-      subtitle = "Nokta tahmini ve %95 GA; aile için random intercept modeli",
-      x = "Katsayı (ölçek puanı farkı)",
+      title = "H1 çocuk algısı: 2023 birincil grup etkisi",
+      subtitle = "Eşit rol ağırlıklı DM − Kontrol farkı ve %95 GA; aile için rastgele kesişimli model",
+      x = "Ayarlanmış fark (DM − Kontrol; ölçek puanı)",
       y = NULL,
-      caption = "Not. Referans kategori Kontrol indeks çocuktur. Pozitif değer daha yüksek EMBU-C puanını gösterir."
+      caption = paste(
+        "Not. İndeks çocuk ve kardeş rolleri eşit ağırlıklandırılmıştır.",
+        "Pozitif değer DM grubunda daha yüksek EMBU-C puanını gösterir.",
+        sep = "\n"
+      )
     ) +
     apa_plot_theme()
 }

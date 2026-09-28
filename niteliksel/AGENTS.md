@@ -54,11 +54,14 @@ tez/makale taslakları ve yerel belge-denetim araçlarından oluşur.
 
 ## Gizlilik ve Veri Sınırı
 
-- `01_raw_data/`, `02_processed/transcripts/`, `.remember/` ve aile/rol düzeyinde hassas içerik
-  özel nitelikli sağlık + çocuk verisidir.
+- `00_raw_locked/`, `01_raw_data/` (özellikle `v3_incoming/`), `01_deidentified/`,
+  `02_processed/`, yerel triadik-matris alanları ve `.remember/` aile/rol düzeyinde
+  hassas içerik taşıyabilir; bunlar özel nitelikli sağlık + çocuk verisi sınırındadır.
 - Ham görüşme, birleşik transcript, demografi satırı, onam/protokol kişisel içeriği ve aile düzeyi
   hassas ayrıntı memory'ye veya harici MCP/RAG'e aktarılmaz.
 - Raporlama yalnız anonim aile/rol kodu ve araştırmacı tarafından seçilmiş, temizlenmiş alıntı ile yapılır.
+- Korumalı kaynak envanteri, taşıma günlüğü ve bütünlük manifesti Git-dışı yerel alanda tutulur;
+  versioned ağaç yalnız redakte edilmiş kapsam bilgisini içerir.
 - `02_processed/cleaned_text/thesis_qualitative_cleaned_current.md` aktif yazım kaynağıdır; uzun
   ham alıntı dökme, sadece hedefli bölüm düzenleme yap.
 
@@ -79,6 +82,8 @@ tez/makale taslakları ve yerel belge-denetim araçlarından oluşur.
   terminoloji/regülasyon, render/browser/GitHub ve platform/design.
 - Zotero Web API durum kontrolü: `python3 scripts/util/zotero_env_bridge.py status --json`.
 - Zotero Desktop local API durum kontrolü: `python3 ~/.codex/plugins/cache/openai-curated-remote/zotero/0.1.2/skills/zotero/scripts/zotero.py status --json`.
+- V3 korumalı intake: `python3 scripts/util/ingest_v3_protected_intake.py --source <dosya>`;
+  komut içerik çözümlemez, yalnız izin-kısıtlı local kopya ve bütünlük manifesti üretir.
 - Ham `codex mcp list` kullanma; stdio argümanlarında token yazdırabilir.
 - Harici Evidentia/Anna's/Anamnesis/Zotero/Codex/MCP kullanımı sonrası
   `./dmnitel log-ai-use ... --external-api-used yes`

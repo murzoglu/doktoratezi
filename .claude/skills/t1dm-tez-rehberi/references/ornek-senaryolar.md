@@ -175,7 +175,7 @@ proje sorgusu için **uçtan uca akış**'tır.
 4. **SMD eşiği:** Bu projede **0.10**. SMD > 0.10 olan kovaryatlar PS modeline dahil edilir
    (zaten DAG-temelli adjustment set'te var).
 
-5. **Tez yerine yerleştirme:** `chapters/03_bulgular.qmd` ilk Tablo olarak.
+5. **Tez yerine yerleştirme:** `chapters/04_bulgular.qmd` ilk Tablo olarak.
 
 ---
 
@@ -227,7 +227,7 @@ proje sorgusu için **uçtan uca akış**'tır.
 
 3. **Raporlama:** `references/raporlama-sablonlari.md` §15 (Sensemakr Robustness Value).
 
-4. **Tartışmaya entegrasyon:** `chapters/04_tartisma.qmd` §Sınırlamalar.
+4. **Tartışmaya entegrasyon:** `chapters/05_tartisma_ve_sonuc.qmd` §Sınırlamalar.
 
 ---
 
@@ -452,7 +452,7 @@ Rscript -e 'targets::tar_make(h2_apim_fixed_effects_table)'
 Rscript -e 'targets::tar_make(starts_with("h"))'
 
 # Tezi sadece bir bölüm render et
-quarto render chapters/03_bulgular.qmd
+quarto render chapters/04_bulgular.qmd
 
 # Audit zinciri (sırayla)
 Rscript scripts/R/07_verify_reproducibility.R

@@ -34,9 +34,9 @@ Taşınmayan öğeler:
 Hedef alt-ağaçtaki `.gitignore`, hassas nitel araştırma alanlarını commit dışı
 tutar:
 
-- `01_raw_data/interviews_docx/`
-- `01_raw_data/demographics/`
-- `02_processed/transcripts/`
+- Korumalı ham kaynak hiyerarşisi
+- Korumalı demografik ve görüşme materyalleri
+- Korumalı işlenmiş transcript hiyerarşisi
 - `.remember/`
 
 Bu klasörler yerel dosya olarak mevcuttur; ham katılımcı metni, demografi satırı

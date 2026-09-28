@@ -1,10 +1,11 @@
 source("R/49_phase2_thesis_mapping.R")
 
 # 1) Chapter mapping
-chap <- phase2_thesis_chapter06_mapping()
+chap <- phase2_thesis_results_mapping()
 stopifnot(nrow(chap) == 12L)
 stopifnot(all(c("chapter_section", "primary_audit_csv", "primary_figure",
   "headline_finding") %in% names(chap)))
+stopifnot(all(grepl("^(Bulgular|Tartisma ve Sonuc) /", chap$chapter_section)))
 
 # 2) Publication plan
 pubs <- phase2_publication_plan()
@@ -25,5 +26,6 @@ stopifnot(grepl("KESIFSEL", result$target_summary$kanit_kategorisi, fixed = TRUE
 stopifnot(!is.null(result$chapter_mapping))
 stopifnot(!is.null(result$publication_plan))
 stopifnot(!is.null(result$paragraph_seeds_summary))
+stopifnot(identical(result$target_summary$quarto_chapter, "chapters/04_bulgular.qmd"))
 
 cat("PASS: tests/test_phase2_thesis_mapping.R\n")

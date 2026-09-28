@@ -1,2 +1,15 @@
 .env
 .env.*
+
+# Korumalı nitel araştırma girdileri ve satır-düzeyi türevleri yereldir.
+00_raw_locked/
+01_raw_data/
+01_deidentified/
+02_processed/
+03_analysis/spreadsheets/
+03_analysis/thematic_memos/
+03_analysis/triadic_matrices/
+04_triadic_matrices/
+new/
+00_context/file_manifest_*.tsv
+00_context/reorg_move_log.tsv

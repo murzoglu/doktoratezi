@@ -1030,7 +1030,7 @@ Doğrulayıcı duyarlılık üçlüsü (çoklu evren analizi + eşdeğerlik test
 
 | Hipotez | Birincil bulgu | Etki büyüklüğü | Bayesçi destek | Karar |
 |---|---|---|---|---|
-| **H1** Çocuk algısı | DM çocukları reddetme alt ölçeğinde Kontrol'den anlamlı düzeyde yüksek puan vermiştir (β = 0,16 SD, %95 GA [0,05, 0,26], pd = 0,999) | Küçük-tutarlı | BF₁₀ = 10,55 (güçlü H1 lehine) | **Doğrulanan birincil olumlu bulgu — alım-dönemi temkinli** (2023-only alt-örneklemde reddetme farkı d = 0,38 → ≈ 0; grup ile anket yılı kolineari, bkz. §18 Alım-dönemi karışması) |
+| **H1** Çocuk algısı | DM çocukları reddetme alt ölçeğinde Kontrol'den anlamlı düzeyde yüksek puan vermiştir (β = 0,16 SD, %95 GA [0,06, 0,26], pd = 0,999) | Küçük-tutarlı | BF₁₀ = 9,13 (orta düzey H1 lehine) | **Doğrulanan birincil olumlu bulgu — alım-dönemi temkinli** (2023-only alt-örneklemde reddetme farkı d = 0,38 → ≈ 0; grup ile anket yılı kolineari, bkz. §18 Alım-dönemi karışması) |
 | **H2** Kardeş ilişkisi | Dört SRQ alt ölçeğinin tamamında DM × Kontrol farkı kanıtı yetersiz; FDR-düzeltilmiş p > 0,35 | \|d\| < 0,20 | – (eşdeğerlik testi bu ailede yapılmadı) | **Belirsiz** (kanıt yetersizliği; aktif eşdeğerlik kanıtı değil) |
 | **H3** Anne öz-bildirimi | Dört EMBU-P alt ölçeğinde DM × Kontrol farkı için kanıt yetersiz; FDR-düzeltilmiş p > 0,50 | \|d\| < 0,17 | BF₁₀ = 0,17–0,23 (orta düzey H0 lehine); ROPE içi pay reddetmede %93 | **Üç-katmanlı negatif kanıt** (kanıt + eşdeğerlik + Bayesçi) |
 | **H4** Beck → EMBU-P (yapısal model) | Üç yapısal yol anlamlı (sıcaklık β = −0,28, reddetme β = 0,33, karşılaştırma β = 0,28; tümü FDR p < 0,001); aşırı koruma yolu anlamlı değil (β = 0,08, FDR p = 0,22) | Orta-büyük (anlamlı yollar) | brms ön-kurulum denetimi tamam; çoklu-grup ölçüm değişmezliği yapılandırmasal (configural) ve metrik (yük) düzeyde sağlandı | **Kısmen doğrulandı** (üç boyutta; aşırı korumada doğrulanmadı) |
@@ -1048,8 +1048,20 @@ Doğrulayıcı çekirdeğin yanı sıra, çalışma verisinden doğan psikometri
 
 pal <- phase2_carbon_palette()
 
-# Aggregate verdict rows (H1..H5). Effect/BF literals copied verbatim from
-# apa_t22_result_synthesis.csv (Ana_bulgu) and apa_t21_bayesian_global.csv (BF10, Ortalama, CrI95).
+# Aggregate verdict rows (H1..H5). H1 effect/BF values are read from the
+# generated posterior aggregate; the remaining rows are qualitative verdicts.
+h1_bayes <- utils::read.csv(
+  file.path("..", "outputs", "tables", "bayes_h1_posterior.csv"),
+  stringsAsFactors = FALSE
+)
+h1_reddetme <- h1_bayes[h1_bayes$outcome == "embu_c_reddetme_mean", , drop = FALSE]
+stopifnot(nrow(h1_reddetme) == 1L)
+h1_class_tr <- switch(
+  h1_reddetme$bf_class,
+  "Moderate H1" = "Orta H1",
+  h1_reddetme$bf_class
+)
+
 base_df <- tibble::tribble(
   ~y, ~hyp, ~verdikt,       ~etki_txt,             ~karar,
   5,  "H1", "Doğrulandı",   "EMBU-C Reddetme",     "Doğrulandı",
@@ -1061,7 +1073,7 @@ base_df <- tibble::tribble(
 
 # Etki alt-satırı: nokta tahmini olan hipotezlerde sprintf ile GA'lı beta; diğerlerinde nitel sınır.
 base_df$etki_sub <- c(
-  sprintf("β = %.2f [%.2f, %.2f]",  0.158,  0.054, 0.259),  # H1 EMBU-C Reddetme (t21)
+  sprintf("β = %.2f [%.2f, %.2f]", h1_reddetme$estimate, h1_reddetme$ci_lo, h1_reddetme$ci_hi),
   "kanıt yetersiz",                                              # H2 (t22)
   sprintf("β = %.2f [%.2f, %.2f]", -0.047, -0.122, 0.026),  # H3 EMBU-P Reddetme (t21)
   "latent yol; assosiyatif",                                     # H4 (t22)
@@ -1070,7 +1082,7 @@ base_df$etki_sub <- c(
 
 # Bayes sütunu: BF10 yalnız t21'de mevcut olan H1/H3 için; diğerlerinde agregat yok -> "—".
 base_df$bayes_lbl <- c(
-  paste0(sprintf("BF₁₀ = %.2f", 10.55), "\n(Güçlü H1)"),        # H1 (t21)
+  paste0(sprintf("BF₁₀ = %.2f", h1_reddetme$bf10), "\n(", h1_class_tr, ")"),
   "—",
   paste0(sprintf("BF₁₀ = %.2f–%.2f", 0.17, 0.23), "\n(Orta H0)"),  # H3 aralığı (t22 KISIM XII)
   "—",
@@ -2463,9 +2475,9 @@ Bu bölüm, çalışmanın beş birincil sorusunu klinisyen için tek bir pratik
 
 Dört EMBU-C alt ölçeği için aile düzeyi rastgele kesişim içeren çok-düzeyli kovaryans analizi (n = 482 çocuk) tahmin edilmiştir. Sabit etkiler arasında dört düzeyli rol değişkeni, çocuk yaşı, çocuk cinsiyeti, latent SES, kardeş yaş farkı ve aile çocuk sayısı yer almıştır.
 
-**EMBU-C Reddetme:** DM çocukları (DM-İndeks ve DM-Kardeş birlikte), Kontrol referans grubuna kıyasla **β = 0,16 SD** (%95 GA: 0,05; 0,26) düzeyinde daha yüksek reddetme algısı bildirmiştir. Bayesçi yaklaşımda posterior medyan β = 0,16 SD (%95 güvenilir aralık [0,05; 0,26]) ve yön olasılığı pd = 0,999 değeriyle DM lehine etki güçlü biçimde desteklenmektedir. FDR-düzeltilmiş p < 0,01.
+**EMBU-C Reddetme ve Aşırı Koruma:** DM çocukları (DM-İndeks ve DM-Kardeş birlikte), Kontrol referans grubuna kıyasla daha yüksek reddetme ve aşırı koruma algısı bildirmiştir. Bayesçi paralel hatta posterior medyanlar sırasıyla β = 0,16 SD (%95 güvenilir aralık [0,06; 0,26]; BF₁₀ = 9,13) ve β = 0,21 SD ([0,06; 0,36]; BF₁₀ = 5,42) olup her iki sonuç H1 lehine orta düzeyde kanıt vermektedir. Frekansçı hatta da bu iki sonuç BH-FDR sonrası korunmuştur (reddetme q = 0,001; aşırı koruma q = 0,003).
 
-**EMBU-C Sıcaklık, Aşırı Koruma, Karşılaştırma:** Üç alt ölçekte DM × Kontrol farkı için kanıt yetersiz (FDR-düzeltilmiş p > 0,15). Sıcaklık alt ölçeği için Bayesçi posterior medyan β = 0,09 (%95 GA [−0,05; 0,23]) düzeyinde olup güvenilir aralık sıfırı içermekte ve BF₁₀ = 0,29 ile "moderate H0" lehine kanıt sergilemektedir.
+**EMBU-C Sıcaklık ve Karşılaştırma:** Sıcaklık için marjinal frekansçı fark Bayesçi hatta H0 lehine zayıflamıştır (posterior medyan β = 0,09; %95 güvenilir aralık [−0,06; 0,23]; BF₁₀ = 0,29). Karşılaştırma için posterior medyan β = 0,14 ([−0,03; 0,30]) ve BF₁₀ = 0,61 olup fark-yokluğu yönündeki kanıt anekdot düzeyindedir.
 
 **EMBU-C aile-içi rol kontrastı (keşifsel/post-hoc):** Kontrol kolu dışlanarak yalnız aynı ailenin iki çocuğu doğrudan karşılaştırıldığında, **DM aileleri içinde indeks çocuk ile sağlıklı kardeş arasında hiçbir EMBU-C boyutunda fark için kanıt yoktur**: reddetme b = 0,020 (%95 GA [−0,075; 0,114]), aşırı koruma b = 0,095 ([−0,042; 0,232]), sıcaklık b = −0,067 ([−0,189; 0,055]) ve karşılaştırma b = −0,001 ([−0,158; 0,156]); tümü BH-FDR düzeltmeli q > 0,76. Simetrik olarak **kontrol aileleri içinde de** indeks-kardeş farkı hiçbir boyutta anlamlı değildir (reddetme b = −0,004; aşırı koruma b = 0,074; sıcaklık b = 0,017; karşılaştırma b = 0,038; tümü q > 0,76). Bu örüntü, tam örneklemde doğrulanan reddetme ve aşırı koruma grup farklarının **aile/grup düzeyinde** yerleştiğini, aile-içi rol ekseninde (hasta çocuk vs. sağlıklı kardeş) ise ayrışmadığını gösterir: tanı, ailenin iki çocuğunun anne algısını benzer yönde kaydırmakta, hastalığı taşıyan çocuğu kardeşinden ayırmamaktadır. Bu okuma, reddetme boyutundaki yaklaşık 0,14 düzeyindeki aile-içi sınıf-içi korelasyonla da tutarlıdır. Keşifsel katman olduğundan bu kontrastlar doğrulayıcı q iddiası taşımaz.
 
@@ -2473,10 +2485,12 @@ Dört EMBU-C alt ölçeği için aile düzeyi rastgele kesişim içeren çok-dü
 
 | EMBU-C alt ölçek | Posterior medyan β | %95 güvenilir aralık | BF₁₀ | Yorum |
 |---|---|---|---|---|
-| **Reddetme** | 0,16 | [0,05; 0,26] | **10,55** | Güçlü H1 lehine kanıt |
-| Sıcaklık | 0,09 | [−0,05; 0,22] | 0,29 | Orta düzey H0 lehine kanıt |
+| **Reddetme** | 0,16 | [0,06; 0,26] | **9,13** | Orta düzey H1 lehine kanıt |
+| Aşırı koruma | 0,21 | [0,06; 0,36] | 5,42 | Orta düzey H1 lehine kanıt |
+| Sıcaklık | 0,09 | [−0,06; 0,23] | 0,29 | Orta düzey H0 lehine kanıt |
+| Karşılaştırma | 0,14 | [−0,03; 0,30] | 0,61 | Anekdot düzeyinde H0 lehine kanıt |
 
-*H1 Bayesçi paralel hat yalnızca iki EMBU-C alt ölçeği (reddetme, sıcaklık) için kestirilmiştir (bkz. Bölüm 14.1); aşırı koruma ve karşılaştırma alt ölçekleri için Bayesçi model yalnız ön-kayıt ön-kurulum (preflight) düzeyinde planlanmış olup posterior örneklemesi yapılmamıştır.*
+*H1 Bayesçi paralel hat dört EMBU-C alt ölçeğinin tümü için kestirilmiştir; reddetme ve aşırı koruma H1 lehine orta düzeyde, sıcaklık ve karşılaştırma ise H0 lehine kanıt vermektedir.*
 
 MCMC yakınsama tanılarında H1 model setinde R̂ ≤ 1,003 ve divergent transition = 0 sağlanmış; LOO Pareto-k tanısında birkaç gözlem birimi 0,7 eşiğini aştığından bu birimler model-karşılaştırma tahmininde temkinle okunmuştur.
 
@@ -2490,7 +2504,7 @@ EMBU-C reddetme alt ölçeği için Samejima graded response modeli ile latent �
 
 ### 11.1.5 H1 Karar Kutusu {#h1-karar}
 
-H1 reddetme alt ölçeğinde kanıt zinciri dört düzeyde aynı yöne işaret etmektedir: klasik test FDR-düzeltilmiş olarak anlamlıdır (p < 0,01), Bayes faktörü güçlü H1 desteği verir (BF₁₀ = 10,55), madde-yanıt teorisiyle yeniden tahmin edilen latent fark korunur (β = 0,14 SD) ve aile-içi sınıf-içi korelasyon (yaklaşık 0,14) çok-düzeyli modelleme kararını destekler. Bu bütünlük, **DM çocuklarının kontrol çocuklarına kıyasla reddetme algısını küçük ama tutarlı biçimde daha yüksek bildirdiği** sonucunu desteklemektedir. Etki büyüklüğü, @funderOzer2019effectSize ile @schafer2019meaningfulness küçük etkilerin bağlama bağlı ve birikimli anlam taşıyabileceğini vurgulayan psikoloji çerçevesi içinde okunmalıdır; bu büyüklük klinik olarak büyük bir etki anlamına gelmez. β = 0,16 SD'lik farkın mertebesi, @pinquart2013 kronik hastalık ailelerinde ebeveyn–çocuk ilişkisi için özet düzeyde bildirdiği g = −0,16 değeriyle örtüşmektedir. Bu bulguda kuramsal olarak kritik olan nokta, sinyalin annenin davranış öz-bildiriminde değil çocuğun algı düzleminde belirmesidir. Bu düzlem-özgüllüğü, bilgi-veren uyuşmazlığını ölçüm hatası değil geçerli bir perspektif bilgisi olarak konumlandıran çerçeveyle tutarlıdır [@deLosReyesKazdin2005]; kesitsel tasarım nedeniyle yorum nedensel değil betimseldir.
+H1 reddetme alt ölçeğinde kanıt zinciri dört düzeyde aynı yöne işaret etmektedir: klasik test FDR-düzeltilmiş olarak anlamlıdır (p < 0,01), Bayes faktörü H1 lehine orta düzeyde kanıt verir (BF₁₀ = 9,13), madde-yanıt teorisiyle yeniden tahmin edilen latent fark korunur (β = 0,14 SD) ve aile-içi sınıf-içi korelasyon (yaklaşık 0,14) çok-düzeyli modelleme kararını destekler. Bu bütünlük, **DM çocuklarının kontrol çocuklarına kıyasla reddetme algısını küçük ama tutarlı biçimde daha yüksek bildirdiği** sonucunu desteklemektedir. Etki büyüklüğü, @funderOzer2019effectSize ile @schafer2019meaningfulness küçük etkilerin bağlama bağlı ve birikimli anlam taşıyabileceğini vurgulayan psikoloji çerçevesi içinde okunmalıdır; bu büyüklük klinik olarak büyük bir etki anlamına gelmez. β = 0,16 SD'lik farkın mertebesi, @pinquart2013 kronik hastalık ailelerinde ebeveyn–çocuk ilişkisi için özet düzeyde bildirdiği g = −0,16 değeriyle örtüşmektedir. Bu bulguda kuramsal olarak kritik olan nokta, sinyalin annenin davranış öz-bildiriminde değil çocuğun algı düzleminde belirmesidir. Bu düzlem-özgüllüğü, bilgi-veren uyuşmazlığını ölçüm hatası değil geçerli bir perspektif bilgisi olarak konumlandıran çerçeveyle tutarlıdır [@deLosReyesKazdin2005]; kesitsel tasarım nedeniyle yorum nedensel değil betimseldir.
 
 Bu doğrulayıcı okumayı, keşifsel/post-hoc bir grup-içi rol kontrastı bir adım daha netleştirir: fark aile-içi rol ekseninde (T1DM'li indeks çocuk vs. sağlıklı kardeş) belirmez; her iki grupta da aile içindeki iki çocuk birbirinden ayrışmaz. Dolayısıyla reddetme sinyali hastalığı taşıyan çocuğa özgü değil, tanının ailenin iki çocuğunun algısını benzer yönde kaydırdığı grup/informant düzeyinde bir örüntüdür.
 
@@ -2826,7 +2840,7 @@ Dolayısıyla yön düzeyinde "DM > Kontrol" en fazla **tek stratejide** (Strate
 
 ### 11.5.8 H5 Karar Kutusu {#h5-karar}
 
-H5 bulgusu, beş paralel stratejinin gerçek model çıktıları birlikte değerlendirildiğinde, **"güçlü bulgu" da "metodolojik üçgenlemeyle zayıf-orta yön kanıtı" da değil; ön-kayıtlı üçgenleme şartı karşılanmayan, tek-strateji/tek-alt-ölçek bir sinyal** olarak konumlandırılmaktadır. Baskın ve çok-alt-ölçekli manifest kanıt (Strateji 1, ICC) DM grubunda anne ↔ indeks çocuk algı uyumunun dört boyutun tamamında Kontrol'den **daha düşük** olduğunu göstermektedir. Yalnızca tek alt ölçekte (reddetme) ve zayıf model uyumu altında elde edilen latent DM > Kontrol asimetrisi (Strateji 4), "en az üç strateji" eşiğini karşılamadığından **sağlam bir bulgu olarak ilan edilmemektedir**. Manifest düzeydeki düşük anne ↔ çocuk uyumu, H1 reddetme bulgusu (DM çocukların daha yüksek reddetme algısı raporlaması; BF₁₀ = 10,55) ile birlikte okunduğunda, T1DM ailelerinde anne öz-bildirimi ile çocuk algısı arasında bir kopukluğa **işaret edebilir**. Böyle bir bilgi verici ayrışması, çoklu-informant literatüründe kural dışı değil beklenen bir örüntüdür: @deLosReyes2015, ebeveyn ile çocuk bildirimleri arasındaki uyumun tipik olarak düşük-orta düzeyde kaldığını ve bu ayrışmanın ölçüm hatasından çok, her bilgi vericinin farklı bağlam ve bakış açısını yansıtan **anlamlı bir sinyal** olarak yorumlanması gerektiğini vurgular (Operations Triad modeli). Dolayısıyla düşük anne–çocuk uyumu, tek bir "doğru" bildirime indirgenemeyen, aile içi algı çeşitliliğinin bir göstergesi olarak okunmalıdır. Bununla birlikte mevcut yorum keşifsel düzeyde tutulmakta ve replikasyon gerektirmektedir.
+H5 bulgusu, beş paralel stratejinin gerçek model çıktıları birlikte değerlendirildiğinde, **"güçlü bulgu" da "metodolojik üçgenlemeyle zayıf-orta yön kanıtı" da değil; ön-kayıtlı üçgenleme şartı karşılanmayan, tek-strateji/tek-alt-ölçek bir sinyal** olarak konumlandırılmaktadır. Baskın ve çok-alt-ölçekli manifest kanıt (Strateji 1, ICC) DM grubunda anne ↔ indeks çocuk algı uyumunun dört boyutun tamamında Kontrol'den **daha düşük** olduğunu göstermektedir. Yalnızca tek alt ölçekte (reddetme) ve zayıf model uyumu altında elde edilen latent DM > Kontrol asimetrisi (Strateji 4), "en az üç strateji" eşiğini karşılamadığından **sağlam bir bulgu olarak ilan edilmemektedir**. Manifest düzeydeki düşük anne ↔ çocuk uyumu, H1 reddetme bulgusu (DM çocukların daha yüksek reddetme algısı raporlaması; BF₁₀ = 9,13) ile birlikte okunduğunda, T1DM ailelerinde anne öz-bildirimi ile çocuk algısı arasında bir kopukluğa **işaret edebilir**. Böyle bir bilgi verici ayrışması, çoklu-informant literatüründe kural dışı değil beklenen bir örüntüdür: @deLosReyes2015, ebeveyn ile çocuk bildirimleri arasındaki uyumun tipik olarak düşük-orta düzeyde kaldığını ve bu ayrışmanın ölçüm hatasından çok, her bilgi vericinin farklı bağlam ve bakış açısını yansıtan **anlamlı bir sinyal** olarak yorumlanması gerektiğini vurgular (Operations Triad modeli). Dolayısıyla düşük anne–çocuk uyumu, tek bir "doğru" bildirime indirgenemeyen, aile içi algı çeşitliliğinin bir göstergesi olarak okunmalıdır. Bununla birlikte mevcut yorum keşifsel düzeyde tutulmakta ve replikasyon gerektirmektedir.
 
 \newpage
 
@@ -2935,7 +2949,7 @@ Aşağıdaki üç panel, birincil bulguları klinisyen gözüyle tek bakışta �
 #| out-width: 100%
 h1h5_card <- tibble::tribble(
   ~ord, ~hip, ~baslik,             ~karar,             ~es,                                  ~grp,
-  5L, "H1", "Çocuk algısı: reddetme",  "Doğrulandı",       "β = 0,16 SD [0,05; 0,26] · BF₁₀ = 10,55", "olumlu",
+  5L, "H1", "Çocuk algısı: reddetme",  "Doğrulandı",       "β = 0,16 SD [0,06; 0,26] · BF₁₀ = 9,13", "olumlu",
   4L, "H2", "Kardeş çatışması (SRQ)",  "Belirsiz",         "Fark için kanıt yetersiz (4 boyut)",     "belirsiz",
   3L, "H3", "Anne öz-bildirimi",       "Negatif kanıt",    "|d| < 0,17 · BF₁₀ = 0,17–0,23 · ROPE %93","olumsuz",
   2L, "H4", "Beck → ebeveynlik (SEM)", "Kısmen doğrulandı","|std. β| = 0,28–0,33 (3/4 yol)",         "kismi",
@@ -4035,7 +4049,7 @@ print(p_negctrl)
 
 | Hipotez | Posterior medyan β | %95 güvenilir aralık | pd | ROPE içi pay | BF₁₀ | Bayesçi yorum |
 |---|---|---|---|---|---|---|
-| H1 reddetme (DM-İndeks vs Kontrol-İndeks) | 0,16 | [0,05; 0,26] | 0,999 | %12,8 | **10,55** | Güçlü H1 lehine |
+| H1 reddetme (DM-İndeks vs Kontrol-İndeks) | 0,16 | [0,06; 0,26] | 0,999 | %13,2 | **9,13** | Orta düzey H1 lehine |
 | H1 sıcaklık | 0,09 | [−0,05; 0,23] | 0,89 | %57 | 0,29 | Orta düzey H0 lehine |
 | H3 sıcaklık | 0,07 | [−0,06; 0,20] | 0,84 | %68 | 0,23 | Orta düzey H0 lehine |
 | H3 aşırı koruma | 0,07 | [−0,11; 0,24] | 0,78 | %61 | 0,23 | Orta düzey H0 lehine |
@@ -4049,26 +4063,50 @@ print(p_negctrl)
 #| fig-width: 9
 #| fig-height: 4.5
 #| out-width: 100%
-bayes_h1_posterior <- tibble::tribble(
-  ~outcome, ~estimate, ~ci_lo, ~ci_hi, ~bf_class,
-  "embu_c_sicaklik_mean", 0.0869788201523446, -0.0520229566822494, 0.228546943782145, "Moderate H0",
-  "embu_c_reddetme_mean", 0.157549396111601, 0.0598386181400161, 0.259520454914412, "Strong H1"
+bayes_h1_posterior <- utils::read.csv(
+  file.path("..", "outputs", "tables", "bayes_h1_posterior.csv"),
+  stringsAsFactors = FALSE
 )
+bayes_h1_posterior <- bayes_h1_posterior[
+  match(
+    c(
+      "embu_c_sicaklik_mean",
+      "embu_c_asiri_koruma_mean",
+      "embu_c_reddetme_mean",
+      "embu_c_karsilastirma_mean"
+    ),
+    bayes_h1_posterior$outcome
+  ),
+  c("outcome", "estimate", "ci_lo", "ci_hi", "bf_class"),
+  drop = FALSE
+]
+stopifnot(!anyNA(bayes_h1_posterior$outcome))
 
-bayes_h3_posterior <- tibble::tribble(
-  ~outcome, ~estimate, ~ci_lo, ~ci_hi, ~bf_class,
-  "embu_p_sicaklik_mean", 0.0669856051021822, -0.0641669812405486, 0.199766516600458, "Moderate H0",
-  "embu_p_asiri_koruma_mean", 0.0674971329142443, -0.108495723542555, 0.24236592951873, "Moderate H0",
-  "embu_p_reddetme_mean", -0.0467016597956039, -0.117448905264413, 0.0242965660388642, "Moderate H0",
-  "embu_p_karsilastirma_mean", 0.0624702763442445, -0.0768233584797864, 0.201350175732446, "Moderate H0"
+bayes_h3_posterior <- utils::read.csv(
+  file.path("..", "outputs", "tables", "bayes_h3_posterior.csv"),
+  stringsAsFactors = FALSE
 )
+bayes_h3_posterior <- bayes_h3_posterior[
+  match(
+    c(
+      "embu_p_sicaklik_mean",
+      "embu_p_asiri_koruma_mean",
+      "embu_p_reddetme_mean",
+      "embu_p_karsilastirma_mean"
+    ),
+    bayes_h3_posterior$outcome
+  ),
+  c("outcome", "estimate", "ci_lo", "ci_hi", "bf_class"),
+  drop = FALSE
+]
+stopifnot(!anyNA(bayes_h3_posterior$outcome))
 
 print(apa_plot_bayesian_forest(bayes_h1_posterior, bayes_h3_posterior))
 ```
 
-**Şekil 14.1. Birincil etkiler için Bayesçi posterior medyan, %95 güvenilir aralık, ROPE ve Bayes faktörü.** Yorum: H1 reddetme için güçlü kanıt (BF₁₀=10,55); H3 için null lehine kanıt (BF₁₀=0,17, ROPE-içi %93).
+**Şekil 14.1. Birincil etkiler için Bayesçi posterior medyan, %95 güvenilir aralık, ROPE ve Bayes faktörü.** Yorum: H1 reddetme için orta düzeyde kanıt (BF₁₀=9,13); H3 için null lehine kanıt (BF₁₀=0,17, ROPE-içi %93).
 
-**Klinik yorum:** Bayesçi paralel raporlama, birincil boyutlar içinde yalnızca çocuğun algıladığı reddetme için etki-var yönünde anlamlı kanıt üretmektedir (H1 reddetme posterior medyan β=0,16 [%95 GA 0,05; 0,26]; pd=0,999; BF₁₀=10,55 "güçlü H1 lehine"), buna karşın anne öz-bildirimli ebeveynlik boyutları (H3 reddetme β=−0,05, ROPE-içi %93, BF₁₀=0,17; aşırı koruma β=0,07, BF₁₀=0,23; sıcaklık β=0,07, BF₁₀=0,23) tutarlı biçimde sıfır lehine eğilmektedir; bu örüntü ROPE'nin "aktif sıfır kanıtı" ile "kanıt yetersizliği" ayrımını mümkün kıldığı Bayesçi tahmin çerçevesiyle uyumludur [@kruschke2017bayesian]. Kronik fiziksel hastalığı olan çocuklarda ebeveyn-çocuk ilişkisi ve ebeveynlik davranışlarının çoğunlukla küçük, heterojen ve yalnızca sınırlı sayıda tanıda anlamlı farklar gösterdiği; sıcaklık/duyarlılık (g=−0,22), aşırı koruma (g=0,39) ve ilişki niteliği (g=−0,16) etkilerinin hastalığa göre değiştiği büyük meta-analizde de gösterilmiştir [@pinquart2013] — dolayısıyla T1DM anne raporlarında aşırı koruma ve sıcaklık boyutlarında sıfır lehine bulgumuz, bu tanının parenting farklarının sağlam olduğu grup dışında kalabileceğine işaret eder ve bulgunun genellenmesi diğer kronik hastalık gruplarına doğrudan taşınamaz. Bilgi-veren ayrışması klinik olarak kritiktir: çocuk reddetme sinyalini bildirirken annenin öz-raporunun aktif olarak sıfıra oturması, tarama ve psikososyal değerlendirmede yalnız ebeveyn beyanına güvenmek yerine çocuğun kendi algısının doğrudan alınmasını gerektirir. Eylem düzeyinde, T1DM'de aile-odaklı psikoeğitimin ebeveyn katılımını aile-içi çatışmayı artırmadan koruyabildiği randomize kanıt [@katz2014t1dmFamily], reddetme algısına yönelik dyadik-iletişim temelli desteğin uygulanabilir bir hedef olduğunu düşündürür; ancak kesitsel tasarım nedeniyle β=0,16'lık ilişki nedensel bir etki olarak yorumlanmamalı, hipotez düzeyinde bir ilişki olarak ele alınmalıdır.
+**Klinik yorum:** Bayesçi paralel raporlama, çocuk algısındaki reddetme ve aşırı koruma için etki-var yönünde orta düzeyde kanıt üretmektedir (reddetme posterior medyan β=0,16 [%95 GA 0,06; 0,26], pd=0,999; BF₁₀=9,13; aşırı koruma β=0,21 [%95 GA 0,06; 0,36], BF₁₀=5,42). Buna karşın anne öz-bildirimli ebeveynlik boyutları (H3 reddetme β=−0,05, ROPE-içi %93, BF₁₀=0,17; aşırı koruma β=0,07, BF₁₀=0,23; sıcaklık β=0,07, BF₁₀=0,23) tutarlı biçimde sıfır lehine eğilmektedir; bu örüntü ROPE'nin "aktif sıfır kanıtı" ile "kanıt yetersizliği" ayrımını mümkün kıldığı Bayesçi tahmin çerçevesiyle uyumludur [@kruschke2017bayesian]. Kronik fiziksel hastalığı olan çocuklarda ebeveyn-çocuk ilişkisi ve ebeveynlik davranışlarının çoğunlukla küçük, heterojen ve yalnızca sınırlı sayıda tanıda anlamlı farklar gösterdiği; sıcaklık/duyarlılık (g=−0,22), aşırı koruma (g=0,39) ve ilişki niteliği (g=−0,16) etkilerinin hastalığa göre değiştiği büyük meta-analizde de gösterilmiştir [@pinquart2013] — dolayısıyla T1DM anne raporlarında aşırı koruma ve sıcaklık boyutlarında sıfır lehine bulgumuz, bu tanının parenting farklarının sağlam olduğu grup dışında kalabileceğine işaret eder ve bulgunun genellenmesi diğer kronik hastalık gruplarına doğrudan taşınamaz. Bilgi-veren ayrışması klinik olarak kritiktir: çocuk reddetme ve aşırı koruma sinyallerini bildirirken annenin öz-raporunun aktif olarak sıfıra oturması, tarama ve psikososyal değerlendirmede yalnız ebeveyn beyanına güvenmek yerine çocuğun kendi algısının doğrudan alınmasını gerektirir. Eylem düzeyinde, T1DM'de aile-odaklı psikoeğitimin ebeveyn katılımını aile-içi çatışmayı artırmadan koruyabildiği randomize kanıt [@katz2014t1dmFamily], reddetme algısına yönelik dyadik-iletişim temelli desteğin uygulanabilir bir hedef olduğunu düşündürür; ancak kesitsel tasarım nedeniyle β=0,16'lık ilişki nedensel bir etki olarak yorumlanmamalı, hipotez düzeyinde bir ilişki olarak ele alınmalıdır.
 
 ## 14.2 MCMC Yakınsama Tanıları
 
@@ -4083,7 +4121,7 @@ Tüm modellerde:
 
 Bayesçi sonuçlar frequentist analizlerle genel olarak hizalanmakta ve **yorum belirsizliklerini** tamamlayıcı bir kanıt katmanıyla netleştirmektedir. Bu katman, kullanılan prior, model ailesi ve ROPE bandına bağlıdır; Bayes faktörü veya ROPE, NHST ya da TOST kararlarının yerine geçen mutlak hüküm olarak okunmamıştır [@makowski2019bayestestr].
 
-- **H1 reddetme** için BF₁₀ = 10,55 ("güçlü H1 lehine kanıt") frequentist sonuçla (FDR p < 0,01) aynı yöne işaret etmektedir.
+- **H1 reddetme** için BF₁₀ = 9,13 ("orta düzey H1 lehine kanıt") frequentist sonuçla (FDR p < 0,01) aynı yöne işaret etmektedir.
 - **H3 reddetme** için BF₁₀ = 0,17 ve ROPE içi pay %93, klasik testin "anlamsız" sonucunu **"bu model ve prior altında sıfır lehine güçlü kanıt"** olarak yeniden yorumlamayı mümkün kılmaktadır. Böylece bu boyutta "kanıt yetersizliği" ile "aktif sıfır kanıtı" ayrımı daha açık kurulabilmektedir.
 
 \newpage
@@ -6808,7 +6846,7 @@ H1 reddetme alt ölçeğinde elde edilen β = 0,16 SD (%95 GA [0,05; 0,26]) etki
 
 Bağlam açısından H1, @pinquart2013 kronik hastalık ailelerinde ebeveyn-çocuk ilişkisi ve aşırı koruma alanında bildirdiği özet düzeyli meta-analitik örüntüyle yön bakımından uyumludur. Ancak mevcut çalışmadaki reddetme algısı etkisi, Pinquart'ın özet aşırı koruma etkisinden belirgin biçimde daha küçüktür. Bu nedenle bulgu, kronik hastalık literatüründeki genel örüntüyü güçlü biçimde tekrarlayan bir sonuç olarak değil, Türk T1DM örnekleminde çocuk algısı düzleminde beliren küçük ve bağlam-koşullu bir sinyal olarak yorumlanmalıdır.
 
-Bu sinyalin asıl yorumu H3 ile birlikte belirginleşmektedir: çocuk algısında reddetme yükselmesi varken (BF₁₀ = 10,55), anne öz-bildirimi düzeyinde aynı boyutta fark yoktur (BF₁₀ = 0,17, ROPE içi pay %93). Karşıtlık bu nedenle tek başına "yüksek reddetme" bulgusu değil, Diverging Operations deseninin somut bir örneği olarak okunmaktadır. T1DM çocukları annelerinin ebeveynlik tutumlarını anneleriyle aynı biçimde değerlendirmemekte; hastalık deneyimi, reddetme boyutunda farklı bir algısal alımlamaya eşlik ediyor olabilir.
+Bu sinyalin asıl yorumu H3 ile birlikte belirginleşmektedir: çocuk algısında reddetme yükselmesi varken (BF₁₀ = 9,13), anne öz-bildirimi düzeyinde aynı boyutta fark yoktur (BF₁₀ = 0,17, ROPE içi pay %93). Karşıtlık bu nedenle tek başına "yüksek reddetme" bulgusu değil, Diverging Operations deseninin somut bir örneği olarak okunmaktadır. T1DM çocukları annelerinin ebeveynlik tutumlarını anneleriyle aynı biçimde değerlendirmemekte; hastalık deneyimi, reddetme boyutunda farklı bir algısal alımlamaya eşlik ediyor olabilir.
 
 Bu yorum, psikometrik duyarlılık kontrolleriyle ayrıca sınanmıştır. EMBU-C reddetme alt ölçeğinin iç tutarlılığı bu örneklemde sınırda gözlemlenmiş; bu nedenle H1 bulgusu madde-yanıt teorisi latent θ skorlarıyla yeniden tahmin edilmiştir. Yeniden tahmin edilen β = 0,14 SD değeri, temel kovaryans analizi tahmininin yaklaşık %88'ini koruyarak bulgunun yalnız manifest ölçek puanına bağlı olmadığını göstermiştir.
 
@@ -6950,7 +6988,7 @@ Bu çalışma, Tip 1 Diabetes Mellitus tanılı 7-17 yaş çocukların ve annele
 
 ## 19.2 Hipotez Düzeyinde Özet Çıkarımlar {#sec-genel-hipotez-ozet}
 
-**H1 — Çocuk-algısı reddetme (DM > Kontrol):** Sıklıkçı ve Bayesçi çerçeveler birlikte değerlendirildiğinde, β = 0,16 SD (BF₁₀ = 10,55) düzeyinde küçük ama tutarlı yön kanıtı elde edilmiştir. Aynı etki anne öz-bildirimi reddetme boyutunda gözlenmediği için bulgu, genel bir ebeveynlik farkından çok bilgi-veren düzeyinde ayrışma olarak yorumlanmaktadır. Bu ayrışma savunmacı raporlama olasılığıyla uyumlu olabilir; ancak savunmacılık doğrudan ölçülmediğinden sonuç mekanizma kanıtı sağlamaz ve yalnızca ileri araştırma gerektiren spekülatif bir yorum düzeyinde kalır.
+**H1 — Çocuk-algısı reddetme (DM > Kontrol):** Sıklıkçı ve Bayesçi çerçeveler birlikte değerlendirildiğinde, β = 0,16 SD (BF₁₀ = 9,13) düzeyinde küçük ama tutarlı yön kanıtı elde edilmiştir. Aynı etki anne öz-bildirimi reddetme boyutunda gözlenmediği için bulgu, genel bir ebeveynlik farkından çok bilgi-veren düzeyinde ayrışma olarak yorumlanmaktadır. Bu ayrışma savunmacı raporlama olasılığıyla uyumlu olabilir; ancak savunmacılık doğrudan ölçülmediğinden sonuç mekanizma kanıtı sağlamaz ve yalnızca ileri araştırma gerektiren spekülatif bir yorum düzeyinde kalır.
 
 **H2 — Çocuk-algısı SRQ kardeş ilişki (DM ≠ Kontrol):** Dört alt boyutta da |d| < 0,20 ve FDR-düzeltilmiş p > 0,35 bulunmuştur. Bayesçi BF dahil edilmemiş ve TOST eşdeğerlik testi uygulanmamıştır; bu nedenle bulgu "**fark yoktur**" değil "**kanıt yetersizdir**" olarak konumlandırılmaktadır.
 

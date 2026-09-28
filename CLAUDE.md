@@ -36,7 +36,23 @@ python3 scripts/util/coauthor_docx_roundtrip.py import --edited inbox/donen.docx
 # Paket yönetimi
 Rscript -e 'renv::status()'
 Rscript -e 'renv::restore()'
+
+# Secret'ları Doppler'dan enjekte ederek komut çalıştır
+scripts/util/doppler_run.sh <command> [args...]
 ```
+
+## Secret yönetimi
+
+- Birincil runtime secret kaynağı Doppler'dır: `scripts/util/doppler_run.sh`
+  varsayılan olarak `cureohub/dev_personal` bağlamını `--no-fallback` ile
+  enjekte eder. `DOPPLER_PROJECT` ve `DOPPLER_CONFIG` yalnız açık bir bağlam
+  değişikliği gerektiğinde kullanılmalıdır.
+- Kod içindeki `.env` yükleyicileri yalnız süreç ortamında bulunmayan anahtarlar
+  için migration/fallback davranışıdır. Böylece Doppler ile enjekte edilen bir
+  değer yerel `.env` değeriyle değiştirilemez.
+- Secret adı veya değeri log, rapor, Git, Docker build context ya da tez
+  çıktısına taşınmaz. Yeni/eksik secret eklemek için Doppler'da ilgili config
+  üzerinde yazma yetkisi gerekir.
 
 ## Mimari
 
@@ -64,6 +80,7 @@ Rscript -e 'renv::restore()'
 ## Aktif analiz durumu (2026-08-01 itibarıyla)
 
 - **Kanonik analiz baz kilidi yürürlükte.** Final CSV üzerinde herhangi bir değişiklikten önce [`data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock`](data/processed/FINAL_REFERENCE__CANONICAL_ANALYSIS_BASE.lock), kanonik P/C formları ve [`docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md`](docs/protokol/FINAL_REFERENCE_VERI_HARITASI.md) okunmalıdır.
+- **Bulgular düzenleme otoritesi:** `chapters/04_bulgular.qmd` Quarto üretim kaynağıdır; başlık, tablo/şekil seçimi ve sırası için tek başına kanonik kabul edilmez. Kullanıcının onaylı Word düzeni editoryal referanstır; sayısal değerlerin doğruluk kaynağı ise daima kilitli analiz tabanı ve `targets` ile üretilen aggregate artefaktlardır. Word düzeni ile QMD uyuşmazlığında önce başlık/yerleşim eşleştirilir, sonra `tar_make()` ve render ile sayısal mutabakat yeniden kurulur.
 - Kanonik form öncesi dokümantasyon aktif karar kaynağı değildir; yalnız karar geçmişi olarak arşivde tutulur.
 - **Faz I (H1-H5 + KISIM VI-XVIII) yürürlükte; Faz II-VI SAP (KISIM XIX-LI, `R/32-65`) keşifsel/post-hoc katman olarak işaretlidir** (Faz II: `R/32-62`; Faz III-IV: OSF Layer 5; Faz V `R/64` §136-141; Faz VI `R/65` §142-151 — faz sınırları için bkz. `_targets.R`). Beck Depresyon ve KİA analizleri ana hatta entegredir (H4 Beck-parenting SEM `R/19`, ağ analizi `R/26`, klinik tanı uzantısı `R/46`).
 - **Nitel kol tek repoda:** karma tezin niteliksel kolu artık ayrı repo değil; içerik kök `niteliksel/` alt-ağacına taşınmıştır (bkz. [`niteliksel/CLAUDE.md`](niteliksel/CLAUDE.md)). Bu kök nicel koldur.

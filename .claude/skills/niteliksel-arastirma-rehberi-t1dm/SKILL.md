@@ -40,8 +40,9 @@ Niteliksel kolun kanonik gerçeği şu sırayla bağlayıcıdır:
    4 makro / 17 alt-tema + 8-eksen Rosetta). Tüm tema sayıları ve mimarisi buradan alınır.
 2. `niteliksel/03_analysis/codebook/codebook_v3.md` — **kanonik codebook** (v3.0, 24 kod × 8
    triadik eksen × 4 makro tema). Sayılar, kod kimlikleri ve eksen hizalaması buradan alınır.
-3. `niteliksel/new/triadik_matris_extracted.csv` — **triadik verbatim kanıt tabanı** (KVKK sınırı
-   içinde; yalnız aile no + rol ile referans ver; verbatim metin repo dışına çıkmaz).
+3. Korumalı triadik verbatim kanıt girdisi — Git dışındadır; public klonda yalnız
+   `niteliksel/03_analysis/public_canonical_manifest.json` ile commitli v3
+   artefakt bütünlüğü doğrulanır. Verbatim metin repo dışına çıkmaz.
 4. `niteliksel/03_analysis/methodology/*` — COREQ, audit trail, positionality (OM/BA), LLM beyanı
    (v2.0'dan korundu; v3.0 tarafından geçersiz kılınmadı).
 5. `niteliksel/CLAUDE.md` + repo kökü `tez-yazim/README.md` / `docs/tez-kilavuz/` (format).

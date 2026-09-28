@@ -644,6 +644,7 @@ apa_table_h4_sem <- function(h4_latent_sem_fit_measures_table, h4_latent_sem_str
   )
   paths$Bolum <- "Yapısal yol"
   names(paths)[names(paths) == "Sonuc"] <- "Parametre"
+  names(paths)[names(paths) == "p"] <- "q_FDR"
   fit <- h4_latent_sem_fit_measures_table
   fit_keep <- fit[fit$measure %in% c("cfi.scaled", "tli.scaled", "rmsea.scaled", "srmr", "chisq.scaled", "df.scaled"), , drop = FALSE]
   fit_out <- data.frame(
@@ -651,13 +652,13 @@ apa_table_h4_sem <- function(h4_latent_sem_fit_measures_table, h4_latent_sem_str
     Terim = "Uyum",
     Tahmin = apa_fmt_num(fit_keep$value, 3L),
     GA95 = "",
-    p = "",
+    q_FDR = "",
     n = "",
     Bolum = "Model uyumu",
     stringsAsFactors = FALSE
   )
   out <- rbind(paths[, names(fit_out), drop = FALSE], fit_out)
-  apa_table_info(out, "Tablo 12. H4 Beck → EMBU-P latent SEM", "Yapısal yollar standardize katsayı ve FDR p-değeri ile raporlanır.")
+  apa_table_info(out, "Tablo 12. H4 Beck → EMBU-P latent SEM", "Yapısal yollar standardize katsayı ve BH-FDR ile düzeltilmiş q değeri ile raporlanır.")
 }
 
 apa_table_h4_multigroup_invariance <- function(h4_multigroup_fit_measures_table,

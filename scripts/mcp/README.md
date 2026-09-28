@@ -20,8 +20,15 @@ echo '<json_args>' | python3 scripts/mcp/mcp_tool_call.py <köprü> <araç> -
 ```
 
 `<köprü>` bir kısayol (`minerva`, `galileo`, `zotero`) ya da doğrudan script
-yolu olabilir. `.env` otomatik yüklenir (değer basılmaz); interaktif-olmayan
-çağrılarda `.bashrc` auto-load devreye girmediği için bu gereklidir.
+yolu olabilir. Birincil çalışma yolu Doppler'dır; örneğin:
+
+```bash
+scripts/util/doppler_run.sh python3 scripts/mcp/mcp_tool_call.py <köprü> --list
+```
+
+Köprüler süreç ortamındaki değerleri önce kullanır. `.env` yalnız eksik anahtar
+için migration/fallback olarak otomatik yüklenir (değer basılmaz); bu davranış
+interaktif-olmayan çağrılarda `.bashrc` auto-load'a bağımlılığı kaldırır.
 
 ## Köprüler ve araçları
 
@@ -62,5 +69,5 @@ Kademe eşikleri: sci-audit (HARD) override edilemez; galileo (SOFT-block)
 Tüm yığının erişilebilirliğini tek komutta doğrulamak için:
 
 ```bash
-python3 scripts/mcp/audit_stack_healthcheck.py
+scripts/util/doppler_run.sh python3 scripts/mcp/audit_stack_healthcheck.py
 ```

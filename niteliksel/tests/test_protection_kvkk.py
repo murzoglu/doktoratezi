@@ -19,7 +19,12 @@ class ProtectedPathTests(unittest.TestCase):
 
     def test_transcripts_sequence_under_02_processed_is_protected(self):
         self.assertTrue(
-            is_protected_path(Path("02_processed") / "transcripts" / "aile_011.md")
+            is_protected_path(Path("02_processed") / "transcripts" / "family_test.md")
+        )
+
+    def test_v3_incoming_under_raw_data_is_protected(self):
+        self.assertTrue(
+            is_protected_path(Path("01_raw_data") / "v3_incoming" / "source.docx")
         )
 
     def test_cleaned_text_under_02_processed_is_not_protected(self):

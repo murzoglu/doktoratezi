@@ -11,9 +11,8 @@ project:
   # render'ında hem bölüm-izole render'da (quarto render chapters/04_bulgular.qmd)
   # outputs/tables ve docs/assets göreli yolları tutarlı çözülür.
   execute-dir: project
-  # Marmara §5: LOF/LOT dizin basliklarini buyuk harfe cevirir. Quarto docx
-  # yazicisi crossref-lof/lot-title ezimini onurlandirmadigindan render sonrasi
-  # docx icinde "Şekil Listesi"/"Tablo Listesi" -> "ŞEKİLLER/TABLOLAR DİZİNİ".
+  # Enstitü teslim düzeltmesi: LOF/LOT başlıkları yalnız "ŞEKİLLER" ve
+  # "TABLOLAR" olarak kullanılır.
   post-render:
     - scripts/util/docx_marmara_dizin_basliklari.py
 
@@ -23,12 +22,14 @@ csl: references/marmara-ama11.csl
 
 
 
-# Marmara §1.6/§1.7: tablo/sekil basligi "Tablo 1." / "Şekil 1." (nokta ayirici).
+# Enstitü teslim düzeltmesi: tablo/şekil başlığı "Tablo 1:" / "Şekil 1:".
 crossref:
-  title-delim: "."
+  title-delim: ":"
+  fig-title: "Şekil"
+  fig-prefix: "Şekil"
 
 # "quarto" sentinel'inden SONRA calisan Marmara caption filtresi: etiketi
-# ("Tablo 1.") kalinlastirir (§1.7 "etiket kalin, devami normal").
+# ("Tablo 1:") kalinlastirir (§1.7 "etiket kalin, devami normal").
 filters:
   - quarto
   - tez-yazim/02_sablonlar/docx/marmara-caption-bold.lua
@@ -52,9 +53,8 @@ format:
     # reference-doc. Uretim: tez-yazim/02_sablonlar/docx/ (bkz. patch_ref).
     reference-doc: tez-yazim/02_sablonlar/docx/marmara-reference.docx
   pdf:
-    # Marmara Tez Yazim Kilavuzu 2025 (PDF hatti). XeLaTeX + TeX Gyre Termes,
-    # Times New Roman ile metrik-uyumlu serif (sistemde TNR yok). Turkce
-    # heceleme ve karakter destegi polyglossia/babel-turkish ile saglanir.
+    # Marmara Tez Yazim Kilavuzu 2025 (PDF hatti). XeLaTeX + Times New Roman.
+    # Turkce karakterler Unicode yazı tipi ile doğrudan işlenir.
     documentclass: report
     keep-tex: true
     pdf-engine: xelatex
@@ -84,31 +84,120 @@ format:
       - bottom=2cm
       - left=2.5cm
       - right=2.5cm
-    # §1.2 Times New Roman 12 punto (metrik-uyumlu TeX Gyre Termes)
-    mainfont: "TeX Gyre Termes"
+    # §1.2 Times New Roman 12 punto
+    mainfont: "Times New Roman"
     fontsize: 12pt
     # §5 dizin basliklari buyuk harf (LaTeX'te dogrudan ezilebilir; docx'ten
     # farkli olarak PDF hatti bu ezmeyi onurlandirir). toc/lof/lot otomatik
     # uretimi kapali oldugundan bu adlar 00a/00b icindeki ham LaTeX dizin
     # cagrilarinda kullanilir.
-    lof-title: "ŞEKİLLER DİZİNİ"
-    lot-title: "TABLOLAR DİZİNİ"
+    lof-title: "ŞEKİLLER"
+    lot-title: "TABLOLAR"
     include-in-header:
       - text: |
           % --- Marmara §1.2: 1,5 satir araligi + paragraf 6 nk + girinti yok ---
           \usepackage{setspace}
           \onehalfspacing
           \usepackage{parskip}
+          \usepackage{tabularx}
+          \usepackage{newunicodechar}
+          \newunicodechar{₀}{\textsubscript{0}}
+          \newunicodechar{₁}{\textsubscript{1}}
+          \newunicodechar{✓}{\ensuremath{\checkmark}}
+          \newunicodechar{⚠}{\textbf{!}}
           \setlength{\parindent}{0pt}
           \setlength{\parskip}{6pt plus 1pt}
+          % --- Govde listelerinde madde isaretleri normal yazi agirliginda ---
+          \renewcommand{\labelitemi}{{\normalfont\textbullet}}
+          \renewcommand{\labelitemii}{{\normalfont\textendash}}
+          \renewcommand{\labelitemiii}{{\normalfont\textasteriskcentered}}
+          \renewcommand{\labelitemiv}{{\normalfont\textperiodcentered}}
+          % --- §1.6-1.7: sekil/tablo etiketi kalin, baslik metni normal ---
+          \usepackage{caption}
+          \captionsetup{font=normalsize,labelfont=bf,textfont=normalfont,justification=raggedright,singlelinecheck=false}
+          % --- §5: ICINDEKILER/SEKILLER/TABLOLAR dizinlerinde nokta lideri yok ---
+          \makeatletter
+          \renewcommand{\@dotsep}{10000}
+          \newcommand{\MarmaraListOfFigures}{%
+            \begingroup
+            \renewcommand{\@tocrmarg}{4em}%
+            \renewcommand{\@pnumwidth}{2.2em}%
+            \renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{6.5em}}%
+            \let\MarmaraOriginalNumberline\numberline
+            \renewcommand{\numberline}[1]{\MarmaraOriginalNumberline{\textbf{Şekil ##1:}}}%
+            \listoffigures
+            \endgroup
+          }
+          \newcommand{\MarmaraListOfTables}{%
+            \begingroup
+            \renewcommand{\@tocrmarg}{4em}%
+            \renewcommand{\@pnumwidth}{2.2em}%
+            \renewcommand*\l@table{\@dottedtocline{1}{1.5em}{6.5em}}%
+            \let\MarmaraOriginalNumberline\numberline
+            \renewcommand{\numberline}[1]{\MarmaraOriginalNumberline{\textbf{Tablo ##1:}}}%
+            \listoftables
+            \endgroup
+          }
+          \makeatother
+          % --- §1.6-1.7: şekil/tablo sayımı tez boyunca tek ve sıralı ---
+          % `report` varsayılanı sayacı bölümde sıfırlar (6.1, 11.1); Marmara
+          % kılavuzu geçiş sırasına göre Arap rakamı (Şekil 1, Tablo 1) ister.
+          \makeatletter
+          \@removefromreset{figure}{chapter}
+          \@removefromreset{table}{chapter}
+          \makeatother
+          \renewcommand{\thefigure}{\arabic{figure}}
+          \renewcommand{\thetable}{\arabic{table}}
+          % Baslikli longtable'larda altyazi sayfa sonunda tek basina kalmasin.
+          % Bir altyazi ve tablo basligi icin yeterli alan yoksa ikisini birlikte
+          % sonraki sayfaya tasir; dis paket gerektirmez.
+          \newcommand{\MarmaraKeepTableCaption}{%
+            \par
+            \ifdim\pagegoal<\maxdimen
+              \dimen0=\pagegoal
+              \advance\dimen0 by-\pagetotal
+              \ifdim\dimen0<8\baselineskip
+                \newpage
+              \fi
+            \fi
+          }
+          \makeatletter
+          % İlk caption'in tam metnini (başındaki \label dahilse onu atarak)
+          % sakla; böylece R/kableExtra ve Pandoc longtable'lari aynı biçimde
+          % "Tablo N: Tam başlık (Devam)" üstbilgisi üretir.
+          \newcommand{\MarmaraCurrentTableCaption}{}
+          \long\def\MarmaraStoreTableCaption#1{%
+            \begingroup
+            \def\label##1{}%
+            \protected@xdef\MarmaraCurrentTableCaption{#1}%
+            \endgroup
+          }
+          \let\MarmaraOriginalLTCaption\LT@c@ption
+          \long\def\LT@c@ption#1[#2]#3{%
+            \noalign{%
+              \def\MarmaraShortTableCaption{#2}%
+              \ifx\MarmaraShortTableCaption\@empty\else
+                \MarmaraStoreTableCaption{#3}%
+              \fi
+            }%
+            \MarmaraOriginalLTCaption#1[#2]{#3}%
+          }
+          \let\MarmaraOriginalEndfirsthead\endfirsthead
+          \renewcommand{\endfirsthead}{%
+            \MarmaraOriginalEndfirsthead
+            \caption[]{\MarmaraCurrentTableCaption\space (Devam)}\tabularnewline
+          }
+          \let\MarmaraOriginalLongtable\longtable
+          \renewcommand{\longtable}{%
+            \MarmaraKeepTableCaption
+            \MarmaraOriginalLongtable
+          }
+          \makeatother
           % --- §1.2: iki yana yasli, satir sonunda kelime bolme yok ---
-          \usepackage[none]{hyphenat}
           \sloppy
           \hyphenpenalty=10000
           \exhyphenpenalty=10000
-          % --- Turkce heceleme/karakter (polyglossia XeLaTeX icin) ---
-          \usepackage{polyglossia}
-          \setmainlanguage{turkish}
+          % --- Turkce karakterler XeLaTeX + Unicode yazı tipi ile doğrudan işlenir ---
           % --- §5 dizin basligi ezimi include-before-body'de yapilir; Quarto
           % kendi \AtBeginDocument ezimini enjekte ettiginden (ve o bizimkinden
           % sonra calistigindan) yeniden-adlandirma \listoffigures'tan hemen
@@ -148,8 +237,8 @@ format:
           % §5: Quarto'nun Turkce LOF/LOT ad ezimi \AtBeginDocument ile bizim
           % header ezimimizi geciyor; govde basinda (tum \AtBeginDocument
           % hook'lari calistiktan SONRA) yeniden adlandirarak sabitliyoruz.
-          \renewcommand{\listfigurename}{ŞEKİLLER DİZİNİ}
-          \renewcommand{\listtablename}{TABLOLAR DİZİNİ}
+          \renewcommand{\listfigurename}{ŞEKİLLER}
+          \renewcommand{\listtablename}{TABLOLAR}
 
 execute:
   echo: false

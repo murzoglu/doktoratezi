@@ -50,9 +50,9 @@ class PreToolUsePolicyTests(unittest.TestCase):
 
     def test_denies_sensitive_data_display(self):
         for cmd in (
-            "cat 01_raw_data/interviews_docx/aile_011.docx",
+            "cat 01_raw_data/interviews_docx/family_test.docx",
             "grep anne 02_processed/transcripts/all_transcripts_merged.md",
-            "head 01_deidentified/family_011.md",
+            "head 01_deidentified/family_test.md",
             "rg 'kod' 00_raw_locked/x.md",
         ):
             self.assertIn("sensitive study data", self.deny_reason(cmd), cmd)

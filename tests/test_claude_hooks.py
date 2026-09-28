@@ -400,21 +400,23 @@ class CopilotSurfaceParityTests(unittest.TestCase):
         if not (cli_path.is_file() and chat_path.is_file()):
             self.skipTest("MCP yapılandırmaları bu ağaçta yok (gitignore).")
 
-        def names(path: Path, key: str) -> set:
+        def names(path: Path) -> set:
             raw = "\n".join(
                 line
                 for line in path.read_text(encoding="utf-8").split("\n")
                 if not line.lstrip().startswith("//")
             )
-            return {k for k in json.loads(raw)[key] if not k.startswith("_")}
+            config = json.loads(raw)
+            servers = config.get("mcpServers", config.get("servers"))
+            self.assertIsInstance(servers, dict, f"MCP sunucu bloğu yok: {path}")
+            return {k for k in servers if not k.startswith("_")}
 
         self.assertEqual(
-            names(cli_path, "mcpServers"),
-            names(chat_path, "servers"),
+            names(cli_path),
+            names(chat_path),
             "MCP roster drift: yeni sunucu her iki dosyaya da eklenmeli.",
         )
 
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
-

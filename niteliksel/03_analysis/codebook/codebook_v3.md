@@ -5,7 +5,8 @@
 **Gibi dosyalar:**
 - Tüketir: `theme_architecture_v3.md` (4 makro/17 alt-tema + 8-eksen Rosetta)
 - Tüketir: `codebook_v2.md` (kod adları ve tanımlar temeli)
-- Tüketir: `niteliksel/new/triadik_matris_extracted.csv` (eksen doluluk doğrulaması)
+- Doğrulama: korumalı triadik kaynakta eksen doluluğu denetlenmiştir; public
+  klon kaynaktan yeniden türetme yapmaz.
 - Üretir: ch07 kod ağacı ekinin kaynağı
 
 > **KVKK (sert sınır):** Bu belgede gerçek ad, doğum tarihi veya adres yer almaz.
@@ -43,7 +44,7 @@ Her giriş:
 - **Kısa ad**
 - **Tanım** — çalışma tanımı (RTA'da iteratif; v1 tabanından genişletildi)
 - **Dahil et / Hariç tut** — kodlama sınırı
-- **Baskın triadik eksen** — `new/triadik_matris_extracted.csv` ile doğrulanmış birincil eksen (ve ikincil varsa)
+- **Baskın triadik eksen** — korumalı kaynak denetiminde doğrulanmış birincil eksen (ve ikincil varsa)
 - **Birincil makro tema** — alt-tema bağlamıyla; çoklu eşleşme mümkün, birincil kalın
 - **Perspektif** — kodun ağırlıklı görüldüğü bilgi verici(ler)
 - **Örnek quote_id** — KVKK-uyumlu referans (anonimleştirilmiş; verbatim alıntı değil)
@@ -545,7 +546,7 @@ Her giriş:
 | `codebook_v2.md` | Temel kod tanımları + journal-thesis hibrit haritalama (geçerli) |
 | `theme_architecture_v3.md` | 4 makro tema × 17 alt-tema + 8-eksen Rosetta tablosu (bu v3'ün girdi belgesi) |
 | `codebook_draft_v1.md` | Orijinal kod tanımları (arşiv; referans) |
-| `niteliksel/new/triadik_matris_extracted.csv` | Eksen doluluk doğrulama kaynağı (110 alıntı, 8 eksen) |
+| `03_analysis/public_canonical_manifest.json` | Commitli v3 artefaktlarının public bütünlük sözleşmesi; korumalı kaynak türetimi kapsam dışıdır |
 | `niteliksel/03_analysis/methodology/` | COREQ, audit trail, positionality (OM/BA) |
 | `t1dm-tez-rehberi/references/karma-yontem.md` | T4 → joint display karma yöntem köprüsü |
 

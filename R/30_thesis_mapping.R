@@ -8,14 +8,14 @@ thesis_chapter_mapping <- function() {
       "Kuramsal gerekçe ve hipotez çerçevesi",
       "Kavramsal ve klinik arka plan",
       "Açık bilim, veri katmanı ve analiz protokolü",
-      "H1-H5 + KISIM VI-XII bulgu, figür ve APA tabloları",
+      "Word-onaylı H1-H5, seçilmiş keşifsel bulgular ve karma sentez",
       "Tartışma, sınırlılıklar, sonuç ve gelecek faz önerileri"
     ),
     required_artifact = c(
       "Hipotez metni",
       "Genel bilgiler metni",
       "Yöntem protokolü",
-      "24 figür + 25 APA tablo",
+      "7 seçilmiş şekil + 6 kaynak-okumalı sayısal tablo + 2 sentez tablosu",
       "Tartışma/sınırlılık/sonuç metni"
     ),
     stringsAsFactors = FALSE
@@ -29,21 +29,14 @@ thesis_mapping_checks <- function(chapter_mapping, figure_manifest, table_manife
   html <- if (html_exists) paste(readLines(thesis_html, warn = FALSE, encoding = "UTF-8"), collapse = "\n") else ""
 
   html_figure_ids <- c(
-    "fig-strobe-flow", "fig-causal-dag", "fig-propensity-overlap",
-    "fig-ses-correlation", "fig-h5-bland-altman", "fig-h5-rsa-surface",
-    "fig-lpa-fit-indices", "fig-network-graph", "fig-network-nct",
-    "fig-clinical-roc", "fig-clinical-dca", "fig-clinical-calibration",
-    "fig-clinical-cart-rf", "fig-specification-curve", "fig-sensemakr-contour"
+    "fig-strobe-flow", "fig-causal-dag", "fig-h1-forest",
+    "fig-h5-bland-altman", "fig-h5-rsa-surface", "fig-network-graph",
+    "fig-clinical-roc"
   )
   table_ids <- c(
-    "tbl-apa-sample-characteristics", "tbl-apa-covariate-balance", "tbl-apa-missing-data",
-    "tbl-apa-propensity-model", "tbl-apa-ses-composite", "tbl-apa-h1-primary",
-    "tbl-apa-h1-bayesian", "tbl-apa-h2-family-mean", "tbl-apa-h2-apim",
-    "tbl-apa-h3-primary-iptw", "tbl-apa-h3-sensitivity", "tbl-apa-h4-sem",
-    "tbl-apa-h5-concordance", "tbl-apa-mediation", "tbl-apa-lpa-bifactor",
-    "tbl-apa-network", "tbl-apa-clinical", "tbl-apa-dm-clinical",
-    "tbl-apa-robustness", "tbl-apa-sensitivity", "tbl-apa-bayesian-global",
-    "tbl-apa-result-synthesis"
+    "tbl-apa-sample-characteristics", "tbl-apa-h1-group",
+    "tbl-apa-h2-family-mean", "tbl-apa-h2-apim", "tbl-apa-h3-primary-iptw",
+    "tbl-apa-h4-sem", "tbl-nitel-tema-ayrisma", "tbl-apa-result-synthesis"
   )
 
   checks <- data.frame(
@@ -58,7 +51,7 @@ thesis_mapping_checks <- function(chapter_mapping, figure_manifest, table_manife
     expected = c(
       nrow(chapter_mapping),
       24L,
-      25L,
+      26L,
       1L,
       length(html_figure_ids),
       length(table_ids)

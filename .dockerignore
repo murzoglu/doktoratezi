@@ -1,24 +1,50 @@
 .git/
 .github/
 .vscode/
+.venv/
+.mypy_cache/
+.playwright-cli/
+.serena/
 .remember/
 .quarto/
 _freeze/
 _targets/
 _targets.RDS
+_targets.yaml
 
 .env
 .env.*
+**/.env
+**/.env.*
 credentials/
 *.json
+!renv/settings.json
 dr-murzoglu-*.json
 
 data/raw/
 data/cleaned/
 data/identified/
 data/backup/
+data/*.csv
 data/processed/*
 !data/processed/.gitkeep
+
+# Protected qualitative source material and row-level derivatives stay local.
+niteliksel/00_raw_locked/
+niteliksel/01_raw_data/
+niteliksel/01_deidentified/
+niteliksel/02_processed/
+niteliksel/03_analysis/spreadsheets/
+niteliksel/03_analysis/thematic_memos/
+niteliksel/03_analysis/triadic_matrices/
+niteliksel/04_triadic_matrices/
+niteliksel/new/
+niteliksel/00_context/file_manifest_*.tsv
+niteliksel/00_context/reorg_move_log.tsv
+# Only the canonical manuscript include is needed by the Quarto thesis render.
+niteliksel/*
+!niteliksel/06_manuscript_outputs/
+!niteliksel/06_manuscript_outputs/**
 
 outputs/*
 !outputs/.gitkeep
@@ -35,7 +61,12 @@ outputs/models/*
 docs/books/
 tmp/
 archive/
+plugins/
+CSR-FINAL-render_cache/
+CSR-FINAL-render_files/
 carbon-html-report.zip
+*.zip
+docs/**/*_files/
 
 renv/library/
 renv/staging/

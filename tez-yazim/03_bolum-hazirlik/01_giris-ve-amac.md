@@ -64,7 +64,7 @@ dated Uygulama Notlarında (2026-07-02, 2026-07-05) belgelidir.
 
 ## Uygulama Notu - 2026-07-01
 
-- `chapters/01_giris.qmd` resmi `# GİRİŞ ve AMAÇ` başlığıyla alt başlıksız
+- `chapters/01_giris_ve_amac.qmd` resmi `# GİRİŞ ve AMAÇ` başlığıyla alt başlıksız
   altı-paragraf akışına dönüştürüldü.
 - Doğrudan yazımda kullanılan dış kaynak seti:
   `whittemore2012`, `crandell2017`, `lummerAikey2021`, `deLosReyes2015`.

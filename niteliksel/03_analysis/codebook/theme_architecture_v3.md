@@ -1,7 +1,11 @@
 # Tema Mimarisi v3 — Kanonik Tez (4 Makro / 17 Alt-Tema + 8-Eksen Rosetta)
 
 **Versiyon:** 3.0 | **Tarih:** 2026-07-29 | **Durum:** Kanonik Draft (Task 1.2 çıktısı)
-**Girdi kaynakları:** `niteliksel/new/triadik_matris_extracted.csv` · `niteliksel/new/_extracted/nitel ana.txt`
+**Provenans:** v3 tema mimarisi korumalı triadik nitel kaynak girdilerden
+türetilmiştir. Public klonda yalnız commitli kanonik artefaktların bütünlüğü
+`03_analysis/public_canonical_manifest.json` ve
+`scripts/util/verify_public_canonical_bundle.py` ile doğrulanır; kaynaktan
+yeniden türetme yetkili maintainer denetimidir.
 
 > **KVKK:** Bu belgede gerçek ad, doğum tarihi veya adres yer almaz. Triadik kanıt
 > yalnız aile no + rol etiketiyle (örn. `Aile 019 / kardeş`) ya da `quote_id`

@@ -14,33 +14,33 @@
 
 | Boyut | Değer | Kaynak |
 | --- | --- | --- |
-| Tasarım | Niteliksel tanımlayıcı + fenomenolojik duyarlılık + multi-informant family | `02_processed/cleaned_text/thesis_qualitative_cleaned_current.md` |
+| Tasarım | Niteliksel tanımlayıcı + fenomenolojik duyarlılık + multi-informant family | Korumalı yerel çalışma kaynağı |
 | Birim | **Triad** (anne + T1DM çocuk + sağlıklı kardeş) — *dyad değil* | Aynı |
 | Örneklem | 7 aile × 3 katılımcı = **21 görüşme** | Aynı |
-| Aile kodları | 011, 014, 019, 020, 026, 201, 202 (tümü DM; "kontrol" niteliksel kolda yok) | `01_raw_data/interviews_docx/` |
+| Aile kodları | Korumalı yerel envanterde; niteliksel kolda kontrol grubu yok | `PROTECTED_SOURCE_INVENTORY.md` |
 | Saha | Marmara Üniv. Hastanesi Çocuk Endokrinoloji polikliniği | Method metni |
 | Görüşme süresi | 20-40 dk/birey, 60-90 dk/aile | Method metni |
 | Analiz çerçevesi | Braun-Clarke refleksif tematik analiz | Method metni |
 | Yazılım | Manuel — MS Word + Excel (renk kodlama) | Method metni |
 | Analist | OM (birinci) + BA (gözlemci + critical friend) | Method metni |
-| Etik onay | DM Parenting Attitudes Ethics Protocol 2023-02 | `01_raw_data/ethics_protocol/` |
-| Tema mimarisi | 6 tema (journal yapısı) / 4 makro tema (tez yapısı) | `03_analysis/triadic_matrices/` + cleaned text |
+| Etik onay | DM Parenting Attitudes Ethics Protocol 2023-02 | Korumalı yerel kaynak |
+| Tema mimarisi | 6 tema (journal yapısı) / 4 makro tema (tez yapısı) | Redakte edilmiş kanonik analiz belgeleri |
 
 ### A.2 Tamamlanmış işler ✅
 
 | # | Çıktı | Yer | Durum |
 | --- | --- | --- | --- |
-| 1 | Etik protokol (2023-02) | `01_raw_data/ethics_protocol/` | Onaylı |
-| 2 | Görüşme rehberi (anne/hasta/kardeş) | `01_raw_data/interview_guides/` | Tamam |
-| 3 | Demografik form | `01_raw_data/demographics/` | Tamam |
-| 4 | 21 görüşme transkripti (DOCX) | `01_raw_data/interviews_docx/family_*/` | Tamam |
-| 5 | Birleştirilmiş transkript (Markdown) | `02_processed/transcripts/all_transcripts_merged.md` | Tamam |
-| 6 | Cleaned thesis text (~12k kelime) | `02_processed/cleaned_text/thesis_qualitative_cleaned_current.md` | YÖNTEM bölümü ileri taslak |
+| 1 | Etik protokol (2023-02) | Korumalı yerel kaynak | Onaylı |
+| 2 | Görüşme rehberi (anne/hasta/kardeş) | Korumalı yerel kaynak | Tamam |
+| 3 | Demografik form | Korumalı yerel kaynak | Tamam |
+| 4 | Görüşme transkriptleri (DOCX) | Korumalı yerel kaynak | Tamam |
+| 5 | Birleştirilmiş transkript (Markdown) | Korumalı yerel türev | Tamam |
+| 6 | Cleaned thesis text | Korumalı yerel çalışma metni | YÖNTEM bölümü ileri taslak |
 | 7 | Codebook v1 (24 kod, 5 kategori) | `03_analysis/codebook/codebook_draft_v1.md` | İlk geçiş |
 | 8 | COREQ-uyumlu Method iskeleti | `03_analysis/methodology/methodology_skeleton_coreq.md` | Skeleton — doldurulmamış |
-| 9 | 6 tema triadic matrix v3 | `03_analysis/triadic_matrices/theme_0[1-6]_*.docx` | Tamam |
-| 10 | Theme comparison spreadsheet | `03_analysis/spreadsheets/` | Tamam |
-| 11 | Mother thematic memo | `03_analysis/thematic_memos/mother_theme_memo.docx` | Tamam |
+| 9 | 6 tema triadic matrix v3 | Korumalı yerel analitik çalışma alanı | Tamam |
+| 10 | Theme comparison spreadsheet | Korumalı yerel analitik çalışma alanı | Tamam |
+| 11 | Mother thematic memo | Korumalı yerel analitik çalışma alanı | Tamam |
 | 12 | Pediatric Diabetes manuscript v2 (Results+Discussion) | `04_manuscripts/journal_pediatric_diabetes/` | Journal-ready |
 | 13 | Refleksif notlar | Method metninde *anılıyor* | Ayrı dosya yok ⚠️ |
 | 14 | Critical friend (BA) süreci | Method metninde *uygulanmış* | Audit trail yok ⚠️ |
@@ -101,7 +101,7 @@
 | A.4 | Refleksif günlük örnekleri (n=3-5 örnek girdi) | `03_analysis/reflexive/journal_excerpts.md` (anonim) | `assets/refleksif-gunluk-sablonu-tr.md` |
 | A.5 | Audit trail tablosu (codebook tarihi, kararlar, OM-BA tartışmaları) | `03_analysis/methodology/audit_trail.md` | `assets/audit-trail-log-tr.md` |
 | A.6 | Codebook v2 (kategori birleştirme + tema-kod haritası) | `99_archive/2026-07-29_pre_new_canon/codebook_v2.md` | `04-rta-6-faz-derinlemesine.md` |
-| A.7 | KVKK Veri Yönetim Planı | `01_raw_data/ethics_protocol/kvkk_data_management_plan.md` | `09-etik-kvkk-refleksivite.md` |
+| A.7 | KVKK Veri Yönetim Planı | Korumalı yerel kaynak | `09-etik-kvkk-refleksivite.md` |
 | A.8 | LLM kullanım beyanı (kullanıldıysa) | `03_analysis/methodology/llm_use_statement.md` | `assets/llm-kullanim-beyani-tr.md` + `06-llm-destekli-kodlama.md` |
 | A.9 | Triadic methodology literatür ekleme | YÖNTEM'e Vaughn, Marshall, Pyett atıfları | `12-t1dm-tezi-spesifik-uyarlamalar.md` |
 | A.10 | Jüri savunma argüman dosyası (taslak) | `03_analysis/methodology/defense_arguments.md` | `11-yazim-ve-jurinin-soracaklari.md` |

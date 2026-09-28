@@ -11,70 +11,79 @@ KVKK gereği teze aktarılmaz.
 # ÖZGEÇMİŞ
 
 ```{=latex}
-\begingroup\singlespacing
-\setlength{\parskip}{2pt}
-\renewcommand{\arraystretch}{0.95}
-\setlength{\aboverulesep}{0pt}\setlength{\belowrulesep}{0pt}
-\setlength{\defaultaddspace}{2pt}
-\setlength{\LTpre}{4pt}\setlength{\LTpost}{2pt}
-```
+\begingroup
+\singlespacing
+\fontsize{9.5}{10.5}\selectfont
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\tabcolsep}{3.2pt}
+\setlength{\arrayrulewidth}{0.45pt}
+\renewcommand{\arraystretch}{1.08}
+\vspace{-12pt}
 
-|            |                       |              |                   |
-|:-----------|:----------------------|:-------------|:------------------|
-| **Adı** | Özlem | **Soyadı** | Murzoğlu Kurt |
-| **Doğum Yeri** | Rize | **Doğum Tarihi** | 21.12.1982 |
-| **Uyruğu** | T.C. | **Tel** | 0535 988 15 20 |
-| **E-mail** | ozlem.murzoglu@gmail.com | | |
+\noindent\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{2.15cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{2.45cm}|>{\raggedright\arraybackslash}X|}
+\hline
+Adı & Özlem & Soyadı & Murzoğlu Kurt \\ \hline
+Doğum Yeri & Rize & Doğum Tarihi & 21.12.1982 \\ \hline
+Uyruğu & T.C. & Tel & 0535 988 15 20 \\ \hline
+E-mail & \multicolumn{3}{l|}{ozlem.murzoglu@gmail.com} \\ \hline
+\end{tabularx}
 
-**Eğitim Düzeyi**
+\vspace{3pt}\noindent\textbf{Eğitim Düzeyi}\par\vspace{1pt}
+\noindent\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{2.55cm}|>{\raggedright\arraybackslash}X|>{\centering\arraybackslash}p{3.05cm}|}
+\hline
+ & \multicolumn{1}{c|}{\textbf{Mezun Olduğu Kurumun Adı}} & \textbf{Mezuniyet Yılı} \\ \hline
+Doktora & Marmara Üniv. Sağlık Bilimleri Enstitüsü, Sosyal Pediatri Programı & Devam ediyor (2019 --) \\ \hline
+Tıpta Uzmanlık & Marmara Üniv. Tıp Fakültesi, Çocuk Sağlığı ve Hastalıkları & 2017 \\ \hline
+Lisans & İstanbul Üniv., Çocuk Gelişimi & 2023 \\ \hline
+Lisans (Tıp) & İstanbul Üniv. İstanbul Tıp Fakültesi, Tıp Doktorluğu & 2007 \\ \hline
+\end{tabularx}
 
-|                |  Mezun Olduğu Kurumun Adı                  | Mezuniyet Yılı |
-|:---------------|:-------------------------------------------|:---------------|
-| Doktora | Marmara Üniv. Sağlık Bilimleri Enstitüsü, Sosyal Pediatri Programı | Devam ediyor (2019 –) |
-| Tıpta Uzmanlık | Marmara Üniv. Tıp Fakültesi, Çocuk Sağlığı ve Hastalıkları | 2017 |
-| Lisans | İstanbul Üniv., Çocuk Gelişimi | 2023 |
-| Lisans (Tıp) | İstanbul Üniv. İstanbul Tıp Fakültesi, Tıp Doktorluğu | 2007 |
+\vspace{3pt}\noindent\textbf{İş Deneyimi}\par\vspace{1pt}
+\noindent\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{5.0cm}|>{\raggedright\arraybackslash}X|>{\centering\arraybackslash}p{2.75cm}|}
+\hline
+\textbf{Görevi} & \textbf{Kurum} & \textbf{Süre (Yıl - Yıl)} \\ \hline
+1\quad Kurucu ve Sorumlu Hekim & Bağımsız Pediatri Muayenehanesi, Ataşehir/İstanbul & 2022 -- hâlen \\ \hline
+2\quad Uzman Hekim, Çocuk Acil Birim Sorumlusu & Marmara Üniv. Pendik Eğitim ve Araştırma Hastanesi, İstanbul & 2017 -- 2022 \\ \hline
+3\quad Uzman Hekim (Devlet Hizmet Yükümlülüğü) & Iğdır Tuzluca Devlet Hastanesi, Iğdır & 2017 -- 2017 \\ \hline
+\end{tabularx}
 
-**İş Deneyimi**
+\vspace{3pt}\noindent\textbf{Yabancı Dil Bilgisi}\par\vspace{1pt}
+\noindent\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{3.25cm}|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+\hline
+\textbf{Yabancı Dil} & \textbf{Okuduğunu Anlama*} & \textbf{Konuşma*} & \textbf{Yazma*} \\ \hline
+İngilizce & Çok iyi & Çok iyi & Çok iyi \\ \hline
+\end{tabularx}
 
-|   | Görevi                  | Kurum                              | Süre (Yıl – Yıl) |
-|:--|:------------------------|:-----------------------------------|:-----------------|
-| 1 | Kurucu ve Sorumlu Hekim | Bağımsız Pediatri Muayenehanesi, Ataşehir/İstanbul | 2022 – hâlen |
-| 2 | Uzman Hekim, Çocuk Acil Birim Sorumlusu | Marmara Üniv. Pendik Eğitim ve Araştırma Hastanesi, İstanbul | 2017 – 2022 |
-| 3 | Uzman Hekim (Devlet Hizmet Yükümlülüğü) | Iğdır Tuzluca Devlet Hastanesi, Iğdır | 2017 – 2017 |
+\vspace{3pt}
+\noindent\begin{tabularx}{\linewidth}{|*{9}{>{\centering\arraybackslash}X|}}
+\hline
+\multicolumn{9}{|c|}{\textbf{Yabancı Dil Sınav Notu}} \\ \hline
+\textbf{YDS} & \textbf{ÜDS} & \textbf{IELTS} & \textbf{TOEFL IBT} & \textbf{TOEFL PBT} & \textbf{TOEFL CBT} & \textbf{FCE} & \textbf{CAE} & \textbf{CPE} \\ \hline
+68,75 & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} \\ \hline
+\end{tabularx}
 
-**Yabancı Dil Bilgisi**
+\vspace{3pt}\noindent\textbf{Akademik/Lisansüstü Giriş Sınav Performansı}\par\vspace{1pt}
+\noindent\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{3.0cm}|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
+\hline
+ & \textbf{Sayısal} & \textbf{Eşit Ağırlık} & \textbf{Sözel} \\ \hline
+ALES Puanı & 77,07364 & 78,74596 & 79,31171 \\ \hline
+(Diğer) Puanı & \textemdash{} & \textemdash{} & \textemdash{} \\ \hline
+\end{tabularx}
 
-| Yabancı Dil | Okuduğunu Anlama\* | Konuşma\* | Yazma\* |
-|:-----------------------------|:--------------------------|:----------------------|:----------------------|
-| İngilizce | Çok iyi | Çok iyi | Çok iyi |
+\vspace{3pt}\noindent\textbf{Program/Yazılım Bilgisi}\par\vspace{1pt}
+\noindent\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
+\hline
+\textbf{Program/Yazılım} & \textbf{Kullanma Becerisi*} \\ \hline
+Microsoft 365 & İyi \\ \hline
+Google Workspace & İyi \\ \hline
+Visual Studio & İyi \\ \hline
+Claude Code & İyi \\ \hline
+R & İyi \\ \hline
+\end{tabularx}
 
-**Yabancı Dil Sınav Notu**
+\vspace{3pt}\noindent\textit{* Çok iyi, iyi, orta, zayıf olarak değerlendiriniz.}
 
-| YDS | ÜDS | IELTS | TOEFL IBT | TOEFL PBT | TOEFL CBT | FCE | CAE | CPE |
-|:--------|:--------|:--------|:--------|:--------|:--------|:--------|:--------|:--------|
-| 68,75 | — | — | — | — | — | — | — | — |
-
-**Akademik/Lisansüstü Giriş Sınav Performansı**
-
-|                                    | Sayısal              | Eşit Ağırlık         | Sözel                |
-|:-----------------------------------|:---------------------|:---------------------|:---------------------|
-| ALES Puanı | 77,07364 | 78,74596 | 79,31171 |
-| (Diğer) Puanı | — | — | — |
-
-**Program/Yazılım Bilgisi**
-
-| Program/Yazılım | Kullanma Becerisi\* |
-|:--------------------------------------------|:---------------------------------|
-| Microsoft 365 | İyi |
-| Google Workspace | İyi |
-| Visual Studio | İyi |
-| Claude Code | İyi |
-| R | İyi |
-
-\* Çok iyi, iyi, orta, zayıf olarak değerlendiriniz.
-
-```{=latex}
 \endgroup
 ```
 
@@ -82,31 +91,26 @@ KVKK gereği teze aktarılmaz.
 
 # BİLİMSEL FAALİYETLER
 
-Aşağıda, tez konusuyla ilişkili ve doktora kayıt tarihinden itibaren gerçekleştirilen bilimsel faaliyetler kaynak yazım biçiminde listelenmiştir. Mezuniyet koşulunu sağlayan yayın ve sunumların tam metinleri teze eklenmemiş, ayrı portfolyo dosyası olarak Enstitüye teslim edilmiştir.
+İpar N, Alper EN, Aydın NE, Aktaş Ö, Murzoğlu Kurt Ö, Baygül A. From attachment to well-being: An examination of father-infant attachment, parental mental health, and relationship satisfaction. Gulhane Medical Journal. 2025;67(2):77–84.
 
-## Makaleler {.unnumbered}
+Şenkal E, Kurt ÖM, Yalçın SS, Koller D, Boran P. Seeing the pandemic through children's eyes: Exploring Turkish children's views on COVID-19 pandemic by focus-group discussions. Child: Care, Health and Development. 2023;49(5):816–824.
 
-1. İpar N, Alper EN, Aydın NE, Aktaş Ö, Murzoğlu Kurt Ö, Baygül A. From attachment to well-being: An examination of father-infant attachment, parental mental health, and relationship satisfaction. Gulhane Medical Journal. 2025;67(2):77–84.
-2. Şenkal E, Kurt ÖM, Yalçın SS, Koller D, Boran P. Seeing the pandemic through children's eyes: Exploring Turkish children's views on COVID-19 pandemic by focus-group discussions. Child: Care, Health and Development. 2023;49(5):816–824.
+Murzoğlu Kurt Ö, Boran P. Peripartum ruh sağlığı ve anne sütü \[Kitap bölümü\]. In: Karabeyir N, ed. Her Hekimin Anne Sütü ve Emzirme Konusunda Bilmesi Gerekenler. 1. baskı. Türkiye Klinikleri; 2021. p. 133–139.
 
-## Kitap Bölümü {.unnumbered}
+Murzoğlu Kurt Ö, Aygün B, Yorgancı B, Ergenekon P, Gökdemir Y, Erdem-Eralp E, Karadağ B, Boran P. Vaccination coverage in cystic fibrosis patients: a tertiary cystic fibrosis center experience. 2. Uluslararası Avrasya Sosyal Pediatri Kongresi & 6. Ulusal Sosyal Pediatri Kongresi; 26–29 Kasım 2020; Sosyal Pediatri Derneği, çevrim içi (sanal kongre).
 
-1. Murzoğlu Kurt Ö, Boran P. Peripartum ruh sağlığı ve anne sütü \[Kitap bölümü\]. In: Karabeyir N, ed. Her Hekimin Anne Sütü ve Emzirme Konusunda Bilmesi Gerekenler. 1. baskı. Türkiye Klinikleri; 2021. p. 133–139.
+Triple P (Olumlu Ebeveynlik Programı) — Düzey 2, 4, Grup ve Ergen Grup, University of Queensland (2022–2023).
 
-## Bildiriler {.unnumbered}
+Bayley III Gelişimsel Değerlendirme, Developmental Child Neurology Association (2021).
 
-1. Murzoğlu Kurt Ö, Aygün B, Yorgancı B, Ergenekon P, Gökdemir Y, Erdem-Eralp E, Karadağ B, Boran P. Vaccination coverage in cystic fibrosis patients: a tertiary cystic fibrosis center experience. 2. Uluslararası Avrasya Sosyal Pediatri Kongresi & 6. Ulusal Sosyal Pediatri Kongresi; 26–29 Kasım 2020; Sosyal Pediatri Derneği, çevrim içi (sanal kongre).
+Denver II Gelişimsel Tarama, Kim Psikoloji (2022).
 
-## Sertifikalar ve Mesleki Eğitimler {.unnumbered}
+SOS Approach to Feeding (Hibrit + İleri Düzey), SOS Approach to Feeding (2025).
 
-- Triple P (Olumlu Ebeveynlik Programı) — Düzey 2, 4, Grup ve Ergen Grup, University of Queensland (2022–2023)
-- Bayley III Gelişimsel Değerlendirme, Developmental Child Neurology Association (2021)
-- Denver II Gelişimsel Tarama, Kim Psikoloji (2022)
-- SOS Approach to Feeding (Hibrit + İleri Düzey), SOS Approach to Feeding (2025)
-- Etkileşim Temelli Erken Çocukluk Müdahalesi (ETÇEP), Pilumunus Danışmanlık (2022)
-- İleri Emzirme Danışmanlığı, İstanbul Üniv. Çocuk Sağlığı Enstitüsü (2021)
-- Gelişimin İzlenmesi ve Desteklenmesi Rehberi (GİDR), Ankara Üniv. Tıp Fakültesi (2018)
+Etkileşim Temelli Erken Çocukluk Müdahalesi (ETÇEP), Pilumunus Danışmanlık (2022).
 
-## Projeler {.unnumbered}
+İleri Emzirme Danışmanlığı, İstanbul Üniv. Çocuk Sağlığı Enstitüsü (2021).
+
+Gelişimin İzlenmesi ve Desteklenmesi Rehberi (GİDR), Ankara Üniv. Tıp Fakültesi (2018).
 
 Tez çalışması dış kaynaklı bir proje kapsamında desteklenmemiştir.

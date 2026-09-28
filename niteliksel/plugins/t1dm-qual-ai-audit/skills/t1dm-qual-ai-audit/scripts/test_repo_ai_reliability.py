@@ -159,7 +159,7 @@ def test_user_prompt_submit(repo: Path) -> list[Result]:
 def test_pre_tool_use(repo: Path) -> list[Result]:
     script = repo / '.codex/hooks/pre_tool_use_policy.py'
     denied = [
-        ('raw interview display', {'tool_input': {'command': 'cat 01_raw_data/interviews_docx/family_011/a.docx'}}),
+        ('raw interview display', {'tool_input': {'command': 'cat 01_raw_data/interviews_docx/family_test/a.docx'}}),
         ('merged transcript search', {'tool_input': {'command': 'rg adalet 02_processed/transcripts/all_transcripts_merged.md'}}),
         ('remember display', {'tool_input': {'command': 'sed -n 1,10p .remember/remember.md'}}),
         ('raw mcp list', {'tool_input': {'command': 'codex mcp list'}}),

@@ -351,7 +351,7 @@ svg_text <- function(x, y, label, size = 16, weight = 400, fill = "#161616",
     )
   }, character(1))
   sprintf(
-    '<text%s x="%.1f" y="%.1f" font-family="IBM Plex Sans, Arial, sans-serif" font-size="%s" font-weight="%s" fill="%s" text-anchor="%s" %s>%s</text>',
+    '<text%s x="%.1f" y="%.1f" font-family="Times New Roman, Times, serif" font-size="%s" font-weight="%s" fill="%s" text-anchor="%s" %s>%s</text>',
     class_attr, x, y, size, weight, fill, anchor, extra, paste(tspans, collapse = "")
   )
 }
@@ -975,7 +975,7 @@ demo_render <- render_quarto_svg(
   list(
     list(pattern = 'dev: "png"', replacement = 'dev: "svg"'),
     list(pattern = "embed-resources: true", replacement = "embed-resources: false"),
-    list(pattern = 'theme_minimal\\(base_size = base_size\\)', replacement = 'theme_minimal(base_size = base_size, base_family = "IBM Plex Sans")'),
+    list(pattern = 'theme_minimal\\(base_size = base_size\\)', replacement = 'theme_minimal(base_size = base_size, base_family = "Times New Roman")'),
     # project_root tanimini (find_project_root() cagrisi veya duz normalizePath
     # olabilir) repo_root'a mutlak olarak sabitle. Belge proje agaci disindaki
     # tempdir'den render edildiginden goreli/yukari-arama cozumu _targets store'u
@@ -995,7 +995,7 @@ psych_render <- render_quarto_svg(
   "psikometrik_validasyon_svg.qmd",
   list(
     list(pattern = 'dev = "ragg_png"', replacement = 'dev = "svg"'),
-    list(pattern = 'theme_minimal\\(base_family = "Fraunces 9pt", base_size = 10\\)', replacement = 'theme_minimal(base_family = "IBM Plex Sans", base_size = 10)'),
+    list(pattern = 'theme_minimal\\(base_family = "Fraunces 9pt", base_size = 10\\)', replacement = 'theme_minimal(base_family = "Times New Roman", base_size = 10)'),
     # Once cok-satirli base_dir/project_root kesif blogunu tek mutlak atamaya
     # indir (varsa), ardindan kalan herhangi bir project_root tanimini repo_root'a
     # sabitle. Ikinci kural, belgenin kok-kesif kodu ileride degisse de saglamdir.

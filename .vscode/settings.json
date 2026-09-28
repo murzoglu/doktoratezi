@@ -22,7 +22,6 @@
     "renv",
     "targets"
   ],
-  "ltex.language": "tr-TR",
   "chat.promptFiles": true,
   "chat.mcp.discovery.enabled": {
     "claude-desktop": true,

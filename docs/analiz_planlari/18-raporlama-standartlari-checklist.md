@@ -29,9 +29,9 @@ Bu çalışma gözlemsel, aile-eşleşmeli ikincil nicel veri analizidir. Niteli
 
 | Çerçeve | Zorunlu domain | Tez/artefakt konumu | İlk durum |
 |---|---|---|---|
-| STROBE | Tasarım, örneklem, değişkenler, bias, istatistiksel yöntem, katılımcı akışı, ana sonuçlar, sınırlılıklar | `chapters/02_yontem.qmd`, `chapters/03_bulgular.qmd`, `chapters/04_tartisma.qmd` | `drafted`/`implemented` |
-| JARS-Quant | Tasarım, katılımcı rolleri, ölçüm araçları, ön-kayıt, etik, açık bilim, sapma raporlaması | `chapters/02_yontem.qmd`, `chapters/04_tartisma.qmd`, `docs/analiz_planlari/` | `drafted`/`implemented` |
-| TRIPOD | Risk skor geliştirme, internal validation, calibration, sensitivity, dış validasyon notu | `outputs/tables/clinical_*.csv`, `chapters/03_bulgular.qmd` (KISIM IX) | `implemented` |
+| STROBE | Tasarım, örneklem, değişkenler, bias, istatistiksel yöntem, katılımcı akışı, ana sonuçlar, sınırlılıklar | `chapters/03_gerec_ve_yontem.qmd`, `chapters/04_bulgular.qmd`, `chapters/05_tartisma_ve_sonuc.qmd` | `drafted`/`implemented` |
+| JARS-Quant | Tasarım, katılımcı rolleri, ölçüm araçları, ön-kayıt, etik, açık bilim, sapma raporlaması | `chapters/03_gerec_ve_yontem.qmd`, `chapters/05_tartisma_ve_sonuc.qmd`, `docs/analiz_planlari/` | `drafted`/`implemented` |
+| TRIPOD | Risk skor geliştirme, internal validation, calibration, sensitivity, dış validasyon notu | `outputs/tables/clinical_*.csv`, `chapters/04_bulgular.qmd` (KISIM IX) | `implemented` |
 
 Makine-okunur ayrıntılı liste `R/09_reporting_standards.R` içindeki `reporting_standards_checklist()` fonksiyonunda tutulur.
 

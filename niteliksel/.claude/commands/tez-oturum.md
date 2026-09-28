@@ -24,9 +24,9 @@ bu oturumda bağlayıcıdır. Sırasıyla:
    **yerel nitel** (dmnitel/RTA/COREQ/alıntı), **dış kanıt** (Evidentia v1.7.0
    `medical-research` v8.5 native-first hattı, no-web-tier, Anna's/full-text kapısı)
    veya **nicel/karma** (paired `doktoratezi` + `t1dm-tez-rehberi`).
-2. Tez yazımı/format/bölüm işiyse ana operasyon merkezinin
-   `/workspaces/T1DM-Tez/tez-yazim` olduğunu doğrula; oradaki
-   `README.md` + `06_kritik-kaynaklar/README.md` + resmi `docs/tez-kilavuz` üst kuraldır.
+2. Tez yazımı/format/bölüm işiyse ana operasyon merkezinin repo kökündeki
+   `tez-yazim/` olduğunu doğrula; `tez-yazim/README.md` +
+   `tez-yazim/06_kritik-kaynaklar/README.md` + resmi `docs/tez-kilavuz/` üst kuraldır.
 3. Ham veri sınırını hatırla: `01_raw_data/`, `02_processed/transcripts/`,
    `01_deidentified/`, `00_raw_locked/` açılmaz; alıntı işi `./dmnitel check-quotes` ile yapılır.
 4. Route çıktısına göre ilk somut adımı öner ve uygula. Evidentia kullanırsan

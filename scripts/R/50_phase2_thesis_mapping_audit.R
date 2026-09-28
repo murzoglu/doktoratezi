@@ -7,7 +7,7 @@ result <- run_phase2_thesis_mapping_pipeline()
 dir.create("outputs/tables", recursive = TRUE, showWarnings = FALSE)
 
 utils::write.csv(result$chapter_mapping,
-  "outputs/tables/phase2_thesis_chapter06_mapping.csv",
+  "outputs/tables/phase2_thesis_results_mapping.csv",
   row.names = FALSE, fileEncoding = "UTF-8")
 utils::write.csv(result$publication_plan,
   "outputs/tables/phase2_thesis_publication_plan.csv",
@@ -19,7 +19,7 @@ utils::write.csv(result$target_summary,
   "outputs/tables/phase2_thesis_target_summary.csv",
   row.names = FALSE, fileEncoding = "UTF-8")
 
-cat(sprintf("[Faz II/KISIM XXXII/94] Bolum 6 chapter mapping: %d alt-bolum\n",
+cat(sprintf("[Faz II/KISIM XXXII/94] Bulgular bolumu mapping: %d alt-bolum\n",
   nrow(result$chapter_mapping)))
 cat(sprintf("[Faz II/KISIM XXXII/95] Yayin plan: %d makale\n",
   nrow(result$publication_plan)))

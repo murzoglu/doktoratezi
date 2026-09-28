@@ -1,6 +1,6 @@
 # EKLER
 
-Bu bölüm, tez metninde atıf sırasına göre Ek 1, Ek 2, Ek 3 … biçiminde, her biri ayrı sayfada sunulan belgeleri içerir. Ek 1 etik kurul onayını, Ek 2 ölçek kullanım izinleri ile veri toplama araçlarının asıllarını; Ek 3–Ek 7 nicel kolun ayrıntılı yöntem ve duyarlılık çıktılarını; Ek 8–Ek 11 nitel kolun katılımcı künyesi, raporlama uyumu ve görüşme materyallerini kapsar.
+Bu bölüm, tez metninde atıf sırasına göre Ek 1, Ek 2, Ek 3 … biçiminde, her biri ayrı sayfada sunulan belgeleri içerir. Ek 1 etik kurul onayını, Ek 2 ölçek kullanım izinleri ile veri toplama araçlarının asıllarını; Ek 3–Ek 10 nicel kolun ayrıntılı yöntem, psikometri, yazılım ve duyarlılık çıktılarını; Ek 11–Ek 14 ise nitel kolun katılımcı künyesi, raporlama uyumu ve görüşme materyallerini kapsar.
 
 {{< pagebreak >}}
 
@@ -11,7 +11,7 @@ Bu bölüm, tez metninde atıf sırasına göre Ek 1, Ek 2, Ek 3 … biçiminde,
      çözünürlük ve kırpma kutusu betiğin MANIFEST tablosundadır. Görsel
      bilinçli olarak altyazısızdır; böylece ŞEKİLLER DİZİNİ'ne (LOF) girmez. -->
 
-Çalışmanın etik kurul onayı, Marmara Üniversitesi Tıp Fakültesi Klinik Araştırmalar Etik Kurulu'nun **06.01.2023** tarihli kararıyla **09.2023.201** protokol kodu altında oy birliğiyle verilmiştir (bkz. Gereç ve Yöntem, Etik Hususlar). Belgede yer alan proje adı, tezin kapak başlığının daha uzun bir varyantıdır; kapak başlığı enstitü yönetim kurulunca kabul edilen tez önerisi başlığıdır ve her iki belge aynı çalışmayı tanımlar. Onay belgesinin aslı aşağıda sunulmuştur.
+Çalışmanın etik kurul onayı, Marmara Üniversitesi Tıp Fakültesi Klinik Araştırmalar Etik Kurulu'nun **06.01.2023** tarihli ve **09.2023.201** protokol kodlu kararıyla oy birliğiyle verilmiştir (bkz. Gereç ve Yöntem, Etik Hususlar). Belgede yer alan proje adı, tezin kapak başlığının daha uzun bir varyantıdır; kapak başlığı enstitü yönetim kurulunca kabul edilen tez önerisi başlığıdır ve her iki belge aynı çalışmayı tanımlar. Onay belgesinin aslı aşağıda sunulmuştur.
 
 ![](docs/assets/ekler/ek1-etik-kurul-onayi-s01.png){width="88%" fig-align="center" fig-alt="Marmara Üniversitesi Tıp Fakültesi Klinik Araştırmalar Etik Kurulu onay belgesi; 09.2023.201 protokol kodu, 06.01.2023 tarihi, proje adı, sorumlu araştırıcı ve kurul üyelerinin karar/imza çizelgesi."}
 
@@ -32,11 +32,9 @@ Formlar, katılımcı verisi içermeyecek biçimde boş (doldurulmamış) asıll
 
 ### Ek 2a. Kısaltılmış Algılanan Ebeveyn Tutumları Ölçeği – Çocuk Formu (s-EMBU-C) kullanım izni {.unnumbered}
 
-Ölçeğin Türkçe geçerlik ve güvenirlik çalışmasını yürüten araştırmacıdan [@dirik2015sEmbuTurkish] alınan yazılı kullanım izni. Belgenin yalnız izin beyanını ve gönderilen ek dosyaların kaydını taşıyan sayfaları alınmış; içerik taşımayan boş sayfalar ile kurumsal e-posta feragatnamesi sayfası dışarıda bırakılmıştır.
+Ölçeğin Türkçe geçerlik ve güvenirlik çalışmasını yürüten araştırmacıdan [@dirik2015sEmbuTurkish] alınan yazılı kullanım izni. Belgenin yalnız izin beyanını taşıyan sayfası alınmış; içerik taşımayan boş sayfalar, ek dosya listesi ve kurumsal e-posta feragatnamesi sayfası dışarıda bırakılmıştır.
 
-![](docs/assets/ekler/ek2a-embu-kullanim-izni-s01.png){width="92%" fig-align="center" fig-alt="s-EMBU-C ölçek kullanım izni yazışmasının izin beyanını içeren sayfası; e-posta adresleri maskelenmiştir."}
-
-![](docs/assets/ekler/ek2a-embu-kullanim-izni-s02.png){width="92%" fig-align="center" fig-alt="s-EMBU-C kullanım izni yazışmasına iliştirilen ölçek ve makale dosyalarının kaydı."}
+![](docs/assets/ekler/ek2a-embu-kullanim-izni-s01-masked.png){width="92%" fig-align="center" fig-alt="s-EMBU-C ölçek kullanım izni yazışmasının izin beyanını içeren sayfası; e-posta adresleri maskelenmiştir."}
 
 {{< pagebreak >}}
 
@@ -120,48 +118,84 @@ Anneye uygulanan 21 maddelik envanter; her madde 0–3 arasında puanlanır ve t
 
 ## Ek 3. Ölçüm Değişmezliği Uyum Ölçütleri {#sec-ek-invariance .unnumbered}
 
-Aşağıdaki tablo, EMBU-P ve EMBU-C formlarında dört eksende (tanı grubu, bilgi verici rolü, yaş, cinsiyet) yapılandırmasal, metrik ve skalar ölçüm değişmezliği taramasının WLSMV uyum ölçütlerini gösterir. Kaynak artefakt: `outputs/tables/psychval_measurement_invariance.csv` (`scripts/R/05_psychometric_validation.R`). Sıralı (dört düzeyli) maddelerde bazı gruplarda boş yanıt kategorileri bulunduğunda tam-kategori model yakınsamamış; bu durumda değişmezlik yalnız ikiye indirgenmiş (1 vs. >1) duyarlılık çözümüyle değerlendirilebilmiştir. Δ ölçütleri için önerilen eşikler ΔCFI ≥ −0,010 ve ΔRMSEA ≤ 0,015'tir [@cheungRensvold2002invariance; @chen2007invariance].
+Aşağıdaki tablo, EMBU-P ve EMBU-C formlarında dört eksende (tanı grubu, bilgi verici rolü, yaş, cinsiyet) yapılandırmasal, metrik ve skalar ölçüm değişmezliği taramasının WLSMV uyum ölçütlerini gösterir. Sıralı (dört düzeyli) maddelerde bazı gruplarda boş yanıt kategorileri bulunduğunda tam-kategori model yakınsamamış; bu durumda değişmezlik yalnız ikiye indirgenmiş (1 vs. >1) duyarlılık çözümüyle değerlendirilebilmiştir. Δ ölçütleri için önerilen eşikler ΔCFI ≥ −0,010 ve ΔRMSEA ≤ 0,015'tir [@cheungRensvold2002invariance; @chen2007invariance].
+Tanı grubu, bilgi verici rolü, yaş ve cinsiyet eksenlerinin ayrıntılı uyum ölçütleri sırasıyla
+@tbl-apa-invariance-group, @tbl-apa-invariance-role, @tbl-apa-invariance-age ve
+@tbl-apa-invariance-sex içinde sunulmuştur.
 
 ```{r}
-#| label: tbl-apa-invariance
-#| tbl-cap: "Ölçüm değişmezliği eksen-bazlı uyum ölçütleri (WLSMV). Her eksen ayrı alt tablodadır; yakınsamayan modeller '—' ile gösterilir."
-#| echo: false
-#| results: asis
+#| label: ek3-invariance-setup
+#| include: false
 .inv_path <- "outputs/tables/psychval_measurement_invariance.csv"
 if (file.exists(.inv_path)) {
   .d <- utils::read.csv(.inv_path, stringsAsFactors = FALSE)
   .axis <- c(group = "Tanı grubu", family_role = "Bilgi verici rolü",
              age_cat = "Yaş", sex_group = "Cinsiyet")
-  .axis_tag <- c(group = "5.2a", family_role = "5.2b", age_cat = "5.2c", sex_group = "5.2d")
   .lvl <- c(configural = "Yapılandırmasal", metric = "Metrik", scalar = "Skalar")
   .fmt <- function(x) {
     x <- suppressWarnings(as.numeric(x))
     ifelse(is.na(x), "—", sub("\\.", ",", formatC(x, format = "f", digits = 3)))
   }
-  .conv <- ifelse(is.na(.d$cfi_scaled) | .d$cfi_scaled == "" ,
-                  "yakınsamadı", "yakınsadı")
+  .col <- function(name, default = NA_character_) {
+    if (name %in% names(.d)) .d[[name]] else rep(default, nrow(.d))
+  }
+  .tli <- .col("tli_scaled")
+  .decision <- .col("decision", "")
+  .conv <- ifelse(is.na(.d$cfi_scaled) | .d$cfi_scaled == "", "Hayır", "Evet")
   .dec <- c(baseline = "temel", invaryan = "invaryan", `non-invaryan` = "non-invaryan")
-  .karar <- ifelse(!is.na(.d$decision) & .d$decision %in% names(.dec), .dec[.d$decision],
-                   ifelse(is.na(.d$decision) | .d$decision == "", "—", .d$decision))
+  .karar <- ifelse(!is.na(.decision) & .decision %in% names(.dec), .dec[.decision],
+                   ifelse(is.na(.decision) | .decision == "", "—", .decision))
   .full <- data.frame(
     group_var = .d$group_var,
     Form = .d$form,
     Düzey = ifelse(.d$level %in% names(.lvl), .lvl[.d$level], .d$level),
-    CFI = .fmt(.d$cfi_scaled), TLI = .fmt(.d$tli_scaled), RMSEA = .fmt(.d$rmsea_scaled),
+    CFI = .fmt(.d$cfi_scaled), TLI = .fmt(.tli), RMSEA = .fmt(.d$rmsea_scaled),
     SRMR = .fmt(.d$srmr), `ΔCFI` = .fmt(.d$delta_cfi), `ΔRMSEA` = .fmt(.d$delta_rmsea),
     Karar = .karar, Durum = .conv, check.names = FALSE, stringsAsFactors = FALSE
   )
-  for (.ax in names(.axis)) {
-    .sub <- .full[.full$group_var == .ax, setdiff(names(.full), "group_var"), drop = FALSE]
-    if (nrow(.sub) == 0L) next
-    .tag <- .axis_tag[[.ax]]
-    cat("\n**Tablo ", .tag, ". ", .axis[[.ax]], " ekseni.**\n\n", sep = "")
-    print(knitr::kable(.sub, align = "llrrrrrrll", row.names = FALSE))
-    cat("\n")
+  .ek3_axis_table <- function(axis) {
+    .keep <- c("Form", "Düzey", "CFI", "RMSEA", "SRMR", "ΔCFI", "ΔRMSEA", "Durum")
+    .out <- .full[.full$group_var == axis, .keep, drop = FALSE]
+    names(.out)[names(.out) == "Durum"] <- "Yak."
+    knitr::kable(.out, align = "llrrrrrl", row.names = FALSE)
   }
 } else {
-  cat("Ölçüm değişmezliği artefaktı bulunamadı; `scripts/R/05_psychometric_validation.R` çalıştırılmalıdır.")
+  .ek3_axis_table <- function(axis) {
+    "*Bu tablo için doğrulanmış analiz sonucu bu sürümde mevcut değildir.*"
+  }
 }
+```
+
+```{r}
+#| label: tbl-apa-invariance-group
+#| tbl-cap: "Tanı grubu ekseninde ölçüm değişmezliği uyum ölçütleri (WLSMV)."
+#| echo: false
+#| results: asis
+.ek3_axis_table("group")
+```
+
+```{r}
+#| label: tbl-apa-invariance-role
+#| tbl-cap: "Bilgi verici rolü ekseninde ölçüm değişmezliği uyum ölçütleri (WLSMV)."
+#| echo: false
+#| results: asis
+.ek3_axis_table("family_role")
+```
+
+```{r}
+#| label: tbl-apa-invariance-age
+#| tbl-cap: "Yaş ekseninde ölçüm değişmezliği uyum ölçütleri (WLSMV)."
+#| echo: false
+#| results: asis
+.ek3_axis_table("age_cat")
+```
+
+```{r}
+#| label: tbl-apa-invariance-sex
+#| tbl-cap: "Cinsiyet ekseninde ölçüm değişmezliği uyum ölçütleri (WLSMV)."
+#| echo: false
+#| results: asis
+.ek3_axis_table("sex_group")
 ```
 
 Özetle, EMBU-C tanı grubu ekseninde yapılandırmasaldan metriğe ve metrikten skalara geçişler önerilen eşiklerin içinde kalmış (ΔCFI mutlak değerleri < 0,010); bilgi verici rolü ekseninde de Δ ölçütleri eşik-içidir, ancak temel (yapılandırmasal) model uyumu görece zayıftır (CFI < 0,90), dolayısıyla skalar sonuç temkinli okunmalıdır. EMBU-P tanı grubu ekseninde tam-kategori model, birkaç maddede (ör. q12, q16) gruba özgü boş yanıt kategorileri nedeniyle yakınsamamış; yalnız ikiye indirgenmiş reddetme-maddesi duyarlılığı kestirilebilmiştir. Yaş ve cinsiyet eksenlerinde de tam model yakınsamamış, yalnız ikiye indirgenmiş çözümler raporlanabilmiştir. Bu yakınsama sınırlılıkları, skalar-düzey non-invaryans yorumunun (gerçek algı ayrışması) tek başına kesin kanıt sayılamayacağını; ölçüm eşitsizliği (eşik/kategori işleyişi) alternatifinin açık tutulması gerektiğini pekiştirir.
@@ -188,12 +222,11 @@ $X$ ve $Y$, ham 1–4 Likert alt ölçek ortalama biriminde, merkezlenmeden/öl�
 
 ## Ek 5. Eşdeğerlik Sınırı (TOST) Duyarlılık Çözümlemesi {#sec-ek-tost .unnumbered}
 
-H3 (anne öz-bildirimi) alt ölçeklerinde iki tek-yönlü test (TOST) eşdeğerlik kararının, önceden belirlenen eşdeğerlik sınırına (SESOI) duyarlılığı ±0,20, ±0,25 ve ±0,30 SMD bantlarında yeniden hesaplanmıştır. Kaynak artefakt: `outputs/tables/tost_sensitivity.csv` (üretici çalıştırıcı `scripts/R/25_bayes_prior_center_sensitivity.R`; hesap `R/21_robustness_sensitivity.R`, `robust_tost`).
+H3 (anne öz-bildirimi) alt ölçeklerinde iki tek-yönlü test (TOST) eşdeğerlik kararının, önceden belirlenen eşdeğerlik sınırına (SESOI) duyarlılığı ±0,20, ±0,25 ve ±0,30 SMD bantlarında yeniden değerlendirilmiştir.
 
 ```{r}
-#| label: tbl-apa-tost-sensitivity
-#| tbl-cap: "H3 eşdeğerlik (TOST) kararının SESOI sınırına duyarlılığı (±0,20 / ±0,25 / ±0,30 SMD). Ham iki-grup standardize fark üzerinde."
-#| echo: false
+#| label: ek5-tost-sensitivity-cache
+#| include: false
 .tp <- "outputs/tables/tost_sensitivity.csv"
 if (file.exists(.tp)) {
   .d <- utils::read.csv(.tp, stringsAsFactors = FALSE)
@@ -213,7 +246,7 @@ if (file.exists(.tp)) {
   )
   knitr::kable(.out, align = "llrrrl")
 } else {
-  cat("TOST duyarlılık artefaktı bulunamadı; `R/21` üzerinden yeniden üretilmelidir.")
+  cat("*Bu tablo için doğrulanmış analiz sonucu bu sürümde mevcut değildir; ilgili bulgu yorumlanmamalıdır.*")
 }
 ```
 
@@ -224,12 +257,11 @@ Eşdeğerlik kararı SESOI seçimine duyarlıdır: yalnızca en geniş ±0,30 SM
 
 ## Ek 6. Bayesçi Önsel Merkez Duyarlılık Çözümlemesi {#sec-ek-prior-center .unnumbered}
 
-Grup katsayısı önselinin MERKEZİNE duyarlılık, birincil H1 bulgusu (çocuk reddetme) ve önsel yönü tartışmalı olan H3 alt ölçekleri (sıcaklık, reddetme) için üç merkezde (skeptik sıfır; literatür/mevcut yön; ters yön) yeniden hesaplanmıştır (önsel SS tümünde 0,50). Kaynak artefakt: `outputs/tables/bayes_prior_center_sensitivity.csv` (`scripts/R/25_bayes_prior_center_sensitivity.R`; brms/rstan, 4 zincir × 4000 yineleme).
+Grup katsayısı önselinin merkezine duyarlılık, birincil H1 bulgusu (çocuk reddetme) ve önsel yönü tartışmalı olan H3 alt ölçekleri (sıcaklık, reddetme) için üç merkezde (skeptik sıfır; literatür/mevcut yön; ters yön) yeniden hesaplanmıştır; önsel SS tümünde 0,50 olarak tutulmuştur.
 
 ```{r}
-#| label: tbl-apa-prior-center
-#| tbl-cap: "Bayesçi grup etkisi: önsel merkezine duyarlılık (BF₁₀, sonsal ortalama, yön olasılığı pd). Önsel SS = 0,50."
-#| echo: false
+#| label: ek6-prior-center-cache
+#| include: false
 .pp <- "outputs/tables/bayes_prior_center_sensitivity.csv"
 if (file.exists(.pp)) {
   .d <- utils::read.csv(.pp, stringsAsFactors = FALSE)
@@ -250,17 +282,15 @@ if (file.exists(.pp)) {
   )
   knitr::kable(.out, align = "lrrrrl")
 } else {
-  cat("Önsel-merkez duyarlılık artefaktı bulunamadı; `scripts/R/25_bayes_prior_center_sensitivity.R` çalıştırılmalıdır.")
+  cat("*Bu tablo için doğrulanmış analiz sonucu bu sürümde mevcut değildir; ilgili bulgu yorumlanmamalıdır.*")
 }
 ```
 
-Sonuçlar önsel merkezine kararlıdır. Birincil H1 çocuk-reddetme bulgusu üç merkezde de H1 lehine kanıt vermiştir (BF₁₀ ≈ 6–13; yön olasılığı pd ≈ 0,999). H3 sıcaklık ve H3 reddetme ise, önsel literatür yönünde, sıfırda veya ters yönde merkezlense de, tutarlı biçimde H0 lehine orta düzey kanıt üretmiştir (BF₁₀ ≈ 0,16–0,23). Özellikle H3 sıcaklık için önsel merkez, @pinquart2013'ün negatif sıcaklık yönüne (−0,20) çevrildiğinde dahi sonuç değişmemektedir; bu, sıcaklık önselinin yön seçiminin (metinde tartışılan telafi edici çıpa) H3 sonucunu yönlendirmediğini gösterir. Tüm modellerde R̂ ≤ 1,003 ve ıraksayan geçiş sayısı sıfırdır.
+Sonuçlar önsel merkezine kararlıdır. Birincil H1 çocuk-reddetme bulgusu üç merkezde de H1 lehine kanıt vermiştir (BF₁₀ ≈ 6–13; yön olasılığı pd ≈ 0,999). H3 sıcaklık ve H3 reddetme ise, önsel literatür yönünde, sıfırda veya ters yönde merkezlense de, tutarlı biçimde H0 lehine orta düzey kanıt üretmiştir (BF₁₀ ≈ 0,16–0,23). Özellikle H3 sıcaklık için önsel merkez, @pinquart2013'ün negatif sıcaklık yönüne (−0,20) çevrildiğinde dahi sonuç değişmemektedir; bu, sıcaklık önselinin yön seçiminin (metinde tartışılan telafi edici çıpa) H3 sonucunu yönlendirmediğini gösterir. Tüm modellerde $\hat{R}$ ≤ 1,003 ve ıraksayan geçiş sayısı sıfırdır.
 
 {{< pagebreak >}}
 
 ## Ek 7. Ölçme Araçlarının Ayrıntılı Psikometrik Değerlendirmesi {#sec-ek-psikometri .unnumbered}
-
-<!-- kaynak: outputs/tables/psychval_*.csv (üretici: scripts/R/05_psychometric_validation.R; kütüphane: R/06_psychometric_validation.R). Bu ekteki her sayısal değer render anında ilgili artefakt dosyasından okunur; hiçbir istatistik değeri metne gömülü sabit olarak taşınmaz. -->
 
 ```{r}
 #| label: ek7-setup
@@ -335,45 +365,44 @@ Sonuçlar önsel merkezine kararlıdır. Birincil H1 çocuk-reddetme bulgusu ü�
                 second_order = "İkinci düzey", bifactor = "Bifaktör")
 
 .ek7_absent <- function(file) {
-  cat(sprintf(
-    "*Kaynak artefakt bulunamadı (`outputs/tables/%s`); `scripts/R/05_psychometric_validation.R` yeniden çalıştırılmalıdır.*",
-    file
-  ))
+  cat("*Bu tablo için doğrulanmış analiz sonucu bu sürümde mevcut değildir; ilgili bulgu yorumlanmamalıdır.*")
 }
 
 .ek7_kable <- function(df, align) {
   knitr::kable(df, align = align, row.names = FALSE)
 }
+
+.ek7_break_code <- function(x) {
+  gsub("_", paste0("_", intToUtf8(0x200B)), x, fixed = TRUE)
+}
 ```
 
-Bu ek, ölçme araçlarının bu örneklemdeki psikometrik özelliklerini, birincil hipotez sınamalarından önce yürütülen çalışma-içi psikometrik değerlendirme hattının ayrıntılı bulgularıyla sunar (özet için bkz. Bulgular, "Ölçek ve Veri Kalitesi"). Değerlendirme, ölçme özelliklerinin çalışma örnekleminde yeniden gösterilmesini gerektiren COSMIN çerçevesiyle uyumlu biçimde yedi eksende yürütülmüştür [@mokkink2018cosmin; @prinsen2018cosminGuideline]: (i) madde düzeyi dağılım ve taban/tavan etkisi, (ii) iç tutarlılık, (iii) madde-toplam ilişkisi ve madde arıtma, (iv) faktör yapısı (açımlayıcı ve doğrulayıcı), (v) ölçüm değişmezliği, (vi) aile içi bağımlılık ile kardeşler arası uyum ve (vii) ölçüt/nomolojik geçerlik. Ek olarak, güvenirliği en sınırlı alt ölçek için puanlama kararlarının bulguyu ne ölçüde belirlediği çoklu evren (multiverse) ve eşdeğerlik çözümlemesiyle sınanmıştır.
+Bu ek, ölçme araçlarının bu örneklemdeki psikometrik özelliklerini, birincil hipotez sınamalarından önce yürütülen çalışma-içi psikometrik değerlendirme hattının ayrıntılı bulgularıyla sunar (ana metindeki karar çerçevesi için bkz. Gereç ve Yöntem, "Ölçme Araçlarının Psikometrik Değerlendirmesi"). Değerlendirme, ölçme özelliklerinin çalışma örnekleminde yeniden gösterilmesini gerektiren COSMIN çerçevesiyle uyumlu biçimde yedi eksende yürütülmüştür [@mokkink2018cosmin; @prinsen2018cosminGuideline]: (i) madde düzeyi dağılım ve taban/tavan etkisi, (ii) iç tutarlılık, (iii) madde-toplam ilişkisi ve madde arıtma, (iv) faktör yapısı (açımlayıcı ve doğrulayıcı), (v) ölçüm değişmezliği, (vi) aile içi bağımlılık ile kardeşler arası uyum ve (vii) ölçüt/nomolojik geçerlik. Ek olarak, güvenirliği en sınırlı alt ölçek için puanlama kararlarının bulguyu ne ölçüde belirlediği çoklu evren (multiverse) ve eşdeğerlik çözümlemesiyle sınanmıştır.
 
-### Kapsam, analiz tabanı ve kaynak artefakt haritası
+### Kapsam, analiz tabanı ve çözümleme haritası {.unnumbered}
 
 Değerlendirme, kilitli kanonik analiz bazı üzerinde yürütülmüştür: aile düzeyi dosyada 241 aile satırı (anne EMBU-P, Beck Depresyon Envanteri ve indeks/kardeş ayrımlı KİA blokları), uzun formatta ise 482 çocuk satırı (241 aile × 2 çocuk) yer alır. Anne formu (EMBU-P) ve Beck Depresyon Envanteri aile düzeyinde tek kez doldurulduğundan bu araçların psikometrik çözümlemeleri 241 aile satırı üzerinde; çocuk formu (EMBU-C) ve Kardeş İlişkileri Anketi (KİA/SRQ) çözümlemeleri ise 482 çocuk satırı üzerinde yapılmıştır. Beck bloğu uzun formatta kardeş satırlarında tasarım gereği yapısal olarak boştur; bu nedenle hiçbir Beck çözümlemesi çocuk satırlarına genişletilmemiştir.
 
 Ölçek maddeleri dört (EMBU-P/EMBU-C), beş (KİA/SRQ) ve dört (Beck; 0–3) sıralı yanıt kategorisi taşıdığından, faktör yapısı çözümlemelerinde maddeler sürekli değil **sıralı (ordinal)** değişken olarak ele alınmış ve WLSMV kestiricisi kullanılmıştır; beşten az kategori taşıyan maddelerde sürekli-varsayımlı kestiricilerin yük ve uyum ölçütlerini yanlı kestirdiği gösterilmiştir [@rhemtulla2012categoricalSem]. Aile içi bağımlılık, uygulanabilir olan her yerde `aile_no` kümesiyle modele bildirilmiştir [@hox2017multilevel].
 
-Bu ekteki her sayısal değer, aşağıdaki üretilmiş artefaktlardan render anında okunur; metne gömülü sabit istatistik değeri yoktur.
+Bu ekteki sayısal değerler, doğrulanmış analiz sonuçlarından alınmış; metne elle girilmiş sabitler kullanılmamıştır.
 
-| Alt bölüm | Kaynak artefakt (`outputs/tables/`) |
+| Alt bölüm | Sunulan değerlendirme |
 |---|---|
-| Madde düzeyi dağılımlar | `psychval_item_descriptives_embu_p.csv`, `psychval_item_descriptives_embu_c.csv` |
-| Alt ölçek skor dağılımları | `psychval_score_distributions.csv` |
-| İç tutarlılık (EMBU) | `psychval_reliability.csv` |
-| İç tutarlılık (KİA/SRQ, Beck) | `psychval_reliability_srq_beck.csv` |
-| Madde-toplam korelasyonları | `psychval_item_total.csv` |
-| Açımlayıcı faktör analizi | `psychval_efa_summary.csv`, `psychval_efa_loadings.csv` |
-| Doğrulayıcı faktör analizi | `psychval_cfa_fit.csv`, `psychval_cfa_loadings.csv`, `psychval_modification_indices.csv` |
-| Aile kümelenmesi duyarlılığı | `psychval_multilevel_cfa_fit.csv`, `psychval_cluster_cfa_sensitivity.csv` |
-| Ölçüm değişmezliği | `psychval_measurement_invariance.csv`, `psychval_invariance_category_audit.csv` |
-| Aile içi ICC ve kardeş uyumu | `psychval_icc_embu_c.csv`, `psychval_within_family_concordance.csv` |
-| Ölçüt geçerliği | `psychval_validity_correlations.csv` |
-| Reddetme çoklu evreni | `psychval_rejection_multiverse.csv`, `psychval_rejection_tost.csv`, `psychval_bsem_status.csv` |
+| Madde düzeyi dağılımlar | Dağılım, taban/tavan etkisi ve yanıt yüzeyi |
+| Alt ölçek skor dağılımları | Konum, yayılım ve dağılım biçimi |
+| İç tutarlılık | Cronbach α, McDonald ω ve madde-arası korelasyon |
+| Madde-toplam korelasyonları | Madde ayırt ediciliği ve madde arıtma değerlendirmesi |
+| Faktör yapısı | Açımlayıcı ve doğrulayıcı faktör çözümlemeleri |
+| Aile kümelenmesi duyarlılığı | Kümelenmeye dayanıklı alternatif çözümlemeler |
+| Ölçüm değişmezliği | Grup, bilgi verici rolü, yaş ve cinsiyet eksenleri |
+| Aile içi benzerlik | Sınıf içi korelasyon ve kardeşler arası uyum |
+| Ölçüt geçerliği | Kuramsal olarak ilişkili değişkenlerle yön ve büyüklük örüntüsü |
+| Reddetme alt ölçeği | Çoklu puanlama yolları, eşdeğerlik ve Bayesçi durum değerlendirmesi |
 
-: Ek 7 alt bölümlerinin üretilmiş kaynak artefakt haritası. Tüm dosyaların tek üreticisi `scripts/R/05_psychometric_validation.R`, saf hesap katmanı `R/06_psychometric_validation.R`'dir. {#tbl-ek7-artefakt-haritasi}
+: Ek 7'de sunulan psikometrik değerlendirme bileşenleri. {#tbl-ek7-artefakt-haritasi}
 
-### Değerlendirme çerçevesi ve karar eşikleri
+### Değerlendirme çerçevesi ve karar eşikleri {.unnumbered}
 
 Psikometrik sonuçların yorumunda kullanılan eşikler, sonuçlar görüldükten sonra değil önceden sabitlenmiş ve tüm ölçeklere aynı biçimde uygulanmıştır. İç tutarlılıkta Cronbach α ile McDonald ω birlikte raporlanmıştır; α, maddelerin eşit yük (tau-eşdeğerlik) varsayımı karşılanmadığında güvenirliği sistematik olarak eksik kestirdiğinden ω tercih edilen ölçüttür ve her iki katsayı da madde sayısına duyarlıdır [@dunn2014alphaOmega; @tavakolDennick2011alpha]. Kısa formlarda az sayıda maddeyle ölçülen dar yapılarda düşük α, otomatik olarak "geçersiz ölçüm" anlamına gelmediğinden madde-arası ortalama korelasyon ($\bar{r}$) tamamlayıcı ölçüt olarak birlikte okunmuştur; dar kapsamlı yapılar için önerilen aralık 0,15–0,50'dir [@clarkWatson1995validity].
 
@@ -393,13 +422,13 @@ Psikometrik sonuçların yorumunda kullanılan eşikler, sonuçlar görüldükte
 
 Uyum eşiklerinin katı geçer/kalır sınırları olarak değil, model-veri uyumuna ilişkin kanıtın derecesini gösteren ölçütler olarak kullanıldığı vurgulanmalıdır; simülasyon koşullarından türetilen bu değerlerin sıralı maddeli, kısa formlu ve yuvalanmış örneklemlere doğrudan aktarımı sınırlıdır [@marshHauWen2004goldenRules].
 
-### Madde düzeyi dağılımlar ve taban/tavan etkisi
+### Madde düzeyi dağılımlar ve taban/tavan etkisi {.unnumbered}
 
 Her iki EMBU formunun 29 maddesi için ortalama, standart sapma, ortanca, çeyrekler arası genişlik, çarpıklık, basıklık ile taban (en düşük kategori) ve tavan (en yüksek kategori) oranları hesaplanmıştır (@tbl-ek7-item-desc-p, @tbl-ek7-item-desc-c). Olumsuz ebeveynlik içeriği taşıyan maddelerde beklenen yönde belirgin sağa çarpıklık ve taban yığılması gözlenmiştir; bu örüntü, ölçme hatasından çok popülasyon temelli bir dağılım özelliğidir (toplum örnekleminde şiddetli reddedici tutum bildirimi seyrektir) ancak varyansı daralttığı için hem güvenirlik hem de kovaryans-temelli model uyumu üzerinde doğrudan sonuç doğurur.
 
 ```{r}
 #| label: tbl-ek7-item-desc-p
-#| tbl-cap: "EMBU-P (anne formu) 29 maddesinin madde düzeyi betimsel istatistikleri: dağılım konumu, yayılımı, biçimi ve uç kategori yığılması. Taban sütunu en düşük (1) kategoride, tavan sütunu en yüksek (4) kategoride yanıt veren katılımcı yüzdesini gösterir. Okuma anahtarı: taban oranı %15'i aştığında o maddede alt uç yığılması (taban etkisi) vardır ve madde ayırt ediciliği azalır."
+#| tbl-cap: "EMBU-P (anne formu) madde düzeyi betimsel istatistikleri."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_item_descriptives_embu_p.csv")
@@ -428,7 +457,7 @@ if (is.null(.d)) {
 
 ```{r}
 #| label: tbl-ek7-item-desc-c
-#| tbl-cap: "EMBU-C (çocuk formu) 29 maddesinin madde düzeyi betimsel istatistikleri. Satırlar 482 çocuk gözlemi (indeks çocuk + sağlıklı kardeş) üzerinden hesaplanmıştır. Okuma anahtarı: EMBU-P ile karşılaştırıldığında daha düşük taban oranları, çocuk formundaki maddelerin yanıt yelpazesini daha geniş kullandığını gösterir."
+#| tbl-cap: "EMBU-C (çocuk formu) madde düzeyi betimsel istatistikleri."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_item_descriptives_embu_c.csv")
@@ -459,7 +488,7 @@ Madde düzeyindeki bu örüntünün alt ölçek puanlarına nasıl yansıdığı
 
 ```{r}
 #| label: tbl-ek7-score-dist
-#| tbl-cap: "Dört ölçme aracının alt ölçek/toplam puan düzeyindeki dağılım özellikleri. EMBU alt ölçekleri 1–4, KİA/SRQ alt ölçekleri 1–5 madde ortalaması; Beck Depresyon Envanteri 0–63 toplam puan birimindedir. Taban/tavan sütunları, puanı teorik en düşük veya en yüksek değere tam olarak eşit olan katılımcı yüzdesini verir. Okuma anahtarı: çarpıklık pozitif ve taban yüzdesi yüksek olan satırlarda dağılım alt uca yaslanmıştır."
+#| tbl-cap: "Ölçme araçlarının alt ölçek ve toplam puan dağılım özellikleri."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_score_distributions.csv")
@@ -485,7 +514,7 @@ if (is.null(.d)) {
 }
 ```
 
-### İç tutarlılık ve taban etkisi
+### İç tutarlılık ve taban etkisi {.unnumbered}
 
 EMBU-P reddetme alt ölçeğinde iç tutarlılık α = 0,45'tir (%95 GA [0,34; 0,55]; McDonald ω = 0,48; madde-arası ortalama r = 0,10; n = 241); EMBU-C reddetme alt ölçeğinde α = 0,72'dir (%95 GA [0,68; 0,75]; ω = 0,75; r = 0,27; n = 479). Diğer alt ölçeklerde iç tutarlılık şöyledir: EMBU-P sıcaklık α = 0,68 (ω = 0,69), aşırı koruma α = 0,75 (ω = 0,75) ve karşılaştırma α = 0,66 (ω = 0,72); EMBU-C sıcaklık α = 0,81 (ω = 0,81), aşırı koruma α = 0,61 (ω = 0,64) ve karşılaştırma α = 0,79 (ω = 0,80). EMBU-P reddetme alt ölçeğinin 8 maddesinden 7'sinde %80'in üzerinde taban etkisi gözlenmiştir (madde düzeyi taban aralığı %62,2–%95,9); EMBU-C reddetme alt ölçeğinde 8 maddenin 3'ünde %80'in üzerinde taban etkisi bulunmuştur (%39,8–%84,4). Kardeş İlişkileri Anketi (KİA/SRQ) alt ölçeklerinde bu örneklemdeki (çocuk düzeyi) iç tutarlılık şöyledir: Sıcaklık/Yakınlık α = 0,94 (%95 GA [0,93; 0,95]; ω = 0,94) ve Çatışma α = 0,90 ([0,88; 0,91]; ω = 0,90); Statü/Güç α = 0,66 ([0,62; 0,71]; ω = 0,69) ve Rekabet α = 0,59 ([0,53; 0,64]; ω = 0,61). Beck Depresyon Envanteri toplam puanında iç tutarlılık α = 0,83'tür (%95 GA [0,79; 0,86]; ω = 0,84; n = 238). Alt ölçek düzeyi ham (raw) güvenirlik katsayıları @fig-psychval-reliability, reddetme maddelerindeki madde düzeyi taban etkisi oranları @fig-psychval-floor içinde gösterilmiştir.
 
@@ -493,7 +522,7 @@ Alt ölçek düzeyindeki tam güvenirlik kestirimleri, güven aralıkları ve ma
 
 ```{r}
 #| label: tbl-ek7-reliability-embu
-#| tbl-cap: "EMBU-P ve EMBU-C alt ölçeklerinde iç tutarlılık kestirimleri. α ham (raw) Cronbach katsayısı, GA Feldt yöntemiyle kurulmuş %95 güven aralığı, ω McDonald toplam güvenirliği, ω_h hiyerarşik omega, r̄ madde-arası ortalama korelasyondur. Son iki blok, ölçüm özelliklerinin bilgi-verici rolüne duyarlılığını göstermek için EMBU-C'nin indeks çocuk ve kardeş alt örneklemlerinde yeniden hesaplanmış değerleridir. Okuma anahtarı: α ile ω yakınsa maddeler benzer yük taşır; r̄ 0,15'in altındayken düşük α, madde sayısından çok maddeler arası ortak varyansın gerçekten düşük olmasından kaynaklanır."
+#| tbl-cap: "EMBU-P ve EMBU-C alt ölçeklerinde iç tutarlılık kestirimleri."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_reliability.csv")
@@ -513,18 +542,18 @@ if (is.null(.d)) {
     `α (std.)` = .ek7_num(.d$alpha_std, 2),
     `ω` = .ek7_num(.d$omega_total, 2),
     `ω_h` = .ek7_num(.d$omega_h, 2),
-    `r̄` = .ek7_num(.d$mean_interitem_r, 2),
+    `Ort. r` = .ek7_num(.d$mean_interitem_r, 2),
     check.names = FALSE, stringsAsFactors = FALSE
   )
   print(.ek7_kable(.out, "llrrrcrrrr"))
 }
 ```
 
-![EMBU-P ve EMBU-C alt ölçeklerinde ham (raw) Cronbach α ve McDonald ω güvenirlik katsayıları. Nokta kestirimleri sütun olarak gösterilmiştir; sayısal %95 güven aralıkları güvenirlik tablosunda raporlanmıştır.](docs/assets/figures/carbon/psychometric/psychval-01-reliability.svg){#fig-psychval-reliability width="84%" fig-align="center"}
+![EMBU-P ve EMBU-C alt ölçeklerinde Cronbach α ve McDonald ω güvenirlik katsayıları.](docs/assets/figures/carbon/psychometric/psychval-01-reliability.svg){#fig-psychval-reliability width="84%" fig-align="center"}
 
 ```{r}
 #| label: tbl-ek7-reliability-srq-beck
-#| tbl-cap: "Kardeş İlişkileri Anketi (KİA/SRQ) alt ölçekleri ile Beck Depresyon Envanteri bloklarında iç tutarlılık kestirimleri. KİA değerleri 482 çocuk gözlemi, Beck değerleri 241 anne satırı üzerinden hesaplanmıştır. Beck bloklarında bilişsel-duygulanımsal küme 1–13, somatik küme 14–21. maddelerden oluşur ve iki blok kesişmez. Okuma anahtarı: madde sayısı düştükçe aynı ortak varyans düzeyi daha düşük α üretir; bu nedenle kısa alt ölçeklerde r̄ sütunu belirleyicidir."
+#| tbl-cap: "KİA/SRQ ve Beck Depresyon Envanterinde iç tutarlılık kestirimleri."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_reliability_srq_beck.csv")
@@ -541,7 +570,7 @@ if (is.null(.d)) {
     `α (std.)` = .ek7_num(.d$alpha_std, 2),
     `ω` = .ek7_num(.d$omega_total, 2),
     `ω_h` = .ek7_num(.d$omega_h, 2),
-    `r̄` = .ek7_num(.d$mean_interitem_r, 2),
+    `Ort. r` = .ek7_num(.d$mean_interitem_r, 2),
     check.names = FALSE, stringsAsFactors = FALSE
   )
   print(.ek7_kable(.out, "llrrrcrrrr"))
@@ -552,9 +581,9 @@ Güvenirlik örüntüsünün iki yorum sonucu vardır. Birincisi, düşük katsa
 
 Taban etkisinin madde düzeyindeki dağılımı @fig-psychval-floor içinde gösterilmiştir. Terwee ve arkadaşlarının [-@terwee2007qualityCriteria] ölçütüne göre yanıtların %15'inden fazlasının en düşük kategoride toplanması taban etkisi sayılır; EMBU-P reddetme maddelerinde gözlenen %62–%96 aralığı bu eşiğin çok üzerindedir ve maddelerin örneklemin alt ucunda ayırt edicilik üretemediği anlamına gelir. Bu, ölçeğin kendisinin kusuru olmaktan çok toplum örnekleminde ağır reddedici tutumun seyrek bildirilmesinin ölçme sonucudur; ancak sonuçları bakımından bir ölçme sınırlılığı olarak ele alınmış, reddetme temelli her birincil çıkarım bu ekin son alt bölümündeki çoklu evren çözümlemesiyle desteklenmiştir.
 
-![EMBU-P ve EMBU-C dört alt ölçeğinde (sıcaklık, aşırı koruma, reddetme, karşılaştırma) madde düzeyi taban etkisi oranları; alt ölçekler ayrı renklerle gösterilmiştir.](docs/assets/figures/carbon/psychometric/psychval-02-floor.svg){#fig-psychval-floor width="80%" fig-align="center"}
+![EMBU-P ve EMBU-C alt ölçeklerinde madde düzeyi taban etkisi oranları.](docs/assets/figures/carbon/psychometric/psychval-02-floor.svg){#fig-psychval-floor width="80%" fig-align="center"}
 
-### Madde-toplam korelasyonları ve madde arıtma
+### Madde-toplam korelasyonları ve madde arıtma {.unnumbered}
 
 Her madde için düzeltilmiş madde-toplam korelasyonu (r_drop; maddenin kendisi toplamdan çıkarılarak), düzeltilmemiş madde-ölçek korelasyonu (r_cor) ve madde silindiğinde alt ölçeğin ulaşacağı α değeri hesaplanmıştır (@tbl-ek7-item-total-p, @tbl-ek7-item-total-c). Karar ölçütü r_drop ≥ 0,30'dur; bu eşiğin altındaki maddeler ait oldukları boyutu güvenilir biçimde temsil etmemektedir [@clarkWatson1995validity].
 
@@ -562,7 +591,7 @@ Madde arıtma sonuçları **raporlanmış, uygulanmamıştır**: hiçbir madde k
 
 ```{r}
 #| label: tbl-ek7-item-total-p
-#| tbl-cap: "EMBU-P maddelerinin düzeltilmiş madde-toplam korelasyonları ve madde silindiğinde beklenen alt ölçek α değeri. r_drop maddenin kendisi toplam puandan çıkarılarak hesaplanan korelasyon, r_cor düzeltilmemiş madde-ölçek korelasyonudur. Okuma anahtarı: r_drop < 0,30 olan maddeler ait oldukları boyutla zayıf ilişkilidir; α (madde silinirse) sütunu mevcut α'dan belirgin biçimde yüksekse madde alt ölçeğin tutarlılığını düşürüyor demektir."
+#| tbl-cap: "EMBU-P maddelerinin madde-toplam korelasyonları."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_item_total.csv")
@@ -588,7 +617,7 @@ if (is.null(.d)) {
 
 ```{r}
 #| label: tbl-ek7-item-total-c
-#| tbl-cap: "EMBU-C maddelerinin düzeltilmiş madde-toplam korelasyonları ve madde silindiğinde beklenen alt ölçek α değeri. Değerler 482 çocuk gözlemi üzerinden hesaplanmıştır. Okuma anahtarı: aynı madde numarasının EMBU-P'de ölçütü karşılamayıp EMBU-C'de karşılaması, sorunun madde içeriğinden çok anne formundaki yanıt yığılmasından kaynaklandığına işaret eder."
+#| tbl-cap: "EMBU-C maddelerinin madde-toplam korelasyonları."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_item_total.csv")
@@ -612,7 +641,7 @@ if (is.null(.d)) {
 }
 ```
 
-### Faktör yapısı: açımlayıcı çözüm
+### Faktör yapısı: açımlayıcı çözüm {.unnumbered}
 
 Dört-faktör çözümü EMBU ölçeklerinin kuramsal olarak öngördüğü dört boyutu veride ayırt etmiştir. Modelin veriye uyumunu ölçen Hu ve Bentler'in birleşik ölçütü [@huBentler1999cutoff] (CFI ≥ 0,95 ve SRMR ≤ 0,08) her iki form için de karşılanmamıştır. Yapının kaynağını ve sınırlarını görebilmek için faktör yapısı üç aşamada incelenmiştir: önce veriden geriye doğru açımlayıcı çözüm, ardından kuramsal modelin doğrulayıcı sınaması, son olarak da aile kümelenmesi ve model kurgusu denetimleri.
 
@@ -620,7 +649,7 @@ Yapının veriden geriye doğru da desteklenip desteklenmediğini görmek için 
 
 ```{r}
 #| label: tbl-ek7-efa-summary
-#| tbl-cap: "EMBU-P ve EMBU-C için dört faktörlü açımlayıcı faktör analizinin örneklem yeterliliği, küresellik testi ve uyum ölçütleri. KMO 0,80'in üzerinde olduğunda örneklem faktör analizi için 'iyi', 0,90'ın üzerinde 'mükemmel' kabul edilir; Bartlett testinin anlamlı çıkması korelasyon matrisinin birim matristen farklı olduğunu, yani faktörleştirilebilir ortak varyans bulunduğunu gösterir."
+#| tbl-cap: "EMBU-P ve EMBU-C açımlayıcı faktör analizi uyum ölçütleri."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_efa_summary.csv")
@@ -646,7 +675,7 @@ Döndürülmüş örüntü matrisleri @tbl-ek7-efa-loadings-p ve @tbl-ek7-efa-lo
 
 ```{r}
 #| label: tbl-ek7-efa-loadings-p
-#| tbl-cap: "EMBU-P dört faktörlü açımlayıcı çözümün eğik (oblimin) döndürülmüş örüntü matrisi. Mutlak değeri 0,30'un altındaki yükler gösterilmemiştir. 'Kuramsal alt ölçek' sütunu maddenin ölçek el kitabındaki boyutunu verir; bir maddenin en yüksek yükünün kendi kuramsal boyutuyla aynı faktörde toplanması yapısal desteği gösterir."
+#| tbl-cap: "EMBU-P açımlayıcı faktör çözümünün örüntü matrisi."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_efa_loadings.csv")
@@ -677,7 +706,7 @@ if (is.null(.d)) {
 
 ```{r}
 #| label: tbl-ek7-efa-loadings-c
-#| tbl-cap: "EMBU-C dört faktörlü açımlayıcı çözümün eğik (oblimin) döndürülmüş örüntü matrisi. Mutlak değeri 0,30'un altındaki yükler gösterilmemiştir. Okuma anahtarı: hiçbir faktörde 0,30 eşiğini aşamayan madde satırları (tümüyle boş satırlar) o maddenin ortak varyansa katkısının düşük olduğunu gösterir."
+#| tbl-cap: "EMBU-C açımlayıcı faktör çözümünün örüntü matrisi."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_efa_loadings.csv")
@@ -706,13 +735,13 @@ if (is.null(.d)) {
 }
 ```
 
-### Faktör yapısı: doğrulayıcı rakip modeller
+### Faktör yapısı: doğrulayıcı rakip modeller {.unnumbered}
 
 Kuramsal yapının sınanması için her iki formda dört rakip ölçme modeli, sıralı maddeler için ortalama ve varyans düzeltmeli ağırlıklı en küçük kareler (WLSMV) kestiricisiyle karşılaştırılmıştır: (i) tüm maddelerin tek bir genel ebeveynlik boyutuna yüklendiği **tek faktörlü** model, (ii) kuramsal dört boyutun ilişkili latent değişkenler olarak modellendiği **dört faktörlü** model, (iii) dört boyutun üstünde tek bir üst düzey ebeveynlik faktörü bulunduğu **ikinci düzey** model ve (iv) her maddenin hem genel bir faktöre hem de kendi boyutuna yüklendiği **bifaktör** model. Bifaktör modelin daha esnek yapısı nedeniyle neredeyse her zaman daha iyi uyum vermeye eğilimli olduğu ve bunun tek başına yapısal üstünlük kanıtı sayılamayacağı bilinmektedir [@reise2012bifactor]; bu nedenle karar yalnız uyum ölçütlerine değil, yüklerin yorumlanabilirliğine de dayandırılmıştır (@tbl-ek7-cfa-fit, @fig-psychval-cfa).
 
 ```{r}
 #| label: tbl-ek7-cfa-fit
-#| tbl-cap: "EMBU-P ve EMBU-C için dört rakip ölçme modelinin WLSMV uyum ölçütleri. χ², sd ve p ölçekli (scaled) değerlerdir; RMSEA için %90 güven aralığı raporlanmıştır. Karar ölçütü CFI ≥ 0,95 ve SRMR ≤ 0,08'in birlikte karşılanmasıdır. Okuma anahtarı: 'Birleşik ölçüt' sütunu bu iki koşulun aynı anda sağlanıp sağlanmadığını özetler; χ² testinin anlamlı çıkması büyük örneklemlerde beklendiğinden tek başına ret gerekçesi sayılmaz."
+#| tbl-cap: "EMBU-P ve EMBU-C rakip ölçme modellerinin WLSMV uyum ölçütleri."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_cfa_fit.csv")
@@ -721,36 +750,35 @@ if (is.null(.d)) {
 } else {
   .d <- .d[order(match(.d$form, c("EMBU-P", "EMBU-C")),
                  match(.d$model, names(.ek7_model))), , drop = FALSE]
-  .cfi <- suppressWarnings(as.numeric(.d$cfi_scaled))
-  .srmr <- suppressWarnings(as.numeric(.d$srmr))
   .out <- data.frame(
     Form = .ek7_map(.d$form, .ek7_form),
     Model = .ek7_map(.d$model, .ek7_model),
-    Yakınsadı = .ek7_yesno(.d$converged),
     `χ²` = .ek7_num(.d$chisq_scaled, 1),
     sd = .ek7_int(.d$df_scaled),
     p = .ek7_p(.d$pvalue_scaled),
-    CFI = .ek7_num(.d$cfi_scaled, 3),
-    TLI = .ek7_num(.d$tli_scaled, 3),
-    RMSEA = .ek7_num(.d$rmsea_scaled, 3),
-    `RMSEA %90 GA` = .ek7_ci(.d$rmsea_ci_lower, .d$rmsea_ci_upper, 3),
-    SRMR = .ek7_num(.d$srmr, 3),
-    `Birleşik ölçüt` = ifelse(is.na(.cfi) | is.na(.srmr), "—",
-                              ifelse(.cfi >= 0.95 & .srmr <= 0.08,
-                                     "karşılandı", "karşılanmadı")),
+    `CFI / SRMR` = paste(
+      .ek7_num(.d$cfi_scaled, 3),
+      .ek7_num(.d$srmr, 3),
+      sep = " / "
+    ),
+    `RMSEA (%90 GA)` = paste(
+      .ek7_num(.d$rmsea_scaled, 3),
+      .ek7_ci(.d$rmsea_ci_lower, .d$rmsea_ci_upper, 3)
+    ),
     check.names = FALSE, stringsAsFactors = FALSE
   )
-  print(.ek7_kable(.out, "lllrrrrrrcrl"))
+  print(.ek7_kable(.out, "llrrrcc"))
 }
 ```
 
-![EMBU-P ve EMBU-C rakip doğrulayıcı faktör modellerinin uyum ölçütleri (CFI, RMSEA, SRMR) ve EMBU-C için aile kümelenmesini dikkate alan duyarlılık kestirimi. Panellerdeki sütunlar model başına uyum değerini, kesikli çizgiler önceden sabitlenmiş karar eşiklerini gösterir.](docs/assets/figures/carbon/psychometric/psychval-03-cfa.svg){#fig-psychval-cfa width="88%" fig-align="center"}
+
+![EMBU-P ve EMBU-C rakip doğrulayıcı faktör modellerinin uyum ölçütleri.](docs/assets/figures/carbon/psychometric/psychval-03-cfa.svg){#fig-psychval-cfa width="88%" fig-align="center"}
 
 Dört faktörlü modelin standardize yükleri @tbl-ek7-cfa-loadings-p ve @tbl-ek7-cfa-loadings-c içinde tam olarak verilmiştir. Standardize yükün 0,40'ın altında kalması maddenin latent değişkenle paylaştığı varyansın %16'nın altında olduğu anlamına gelir ve o maddenin boyutu zayıf temsil ettiğini gösterir.
 
 ```{r}
 #| label: tbl-ek7-cfa-loadings-p
-#| tbl-cap: "EMBU-P dört faktörlü doğrulayıcı modelde standardize madde yükleri, standart hataları ve anlamlılık değerleri. λ maddenin latent boyutla ilişkisinin gücünü, λ² ise latent boyutun madde varyansında açıkladığı oranı verir. Okuma anahtarı: λ ≥ 0,40 kabul edilebilir temsil; λ < 0,40 olan maddeler boyutu zayıf ölçmektedir."
+#| tbl-cap: "EMBU-P doğrulayıcı modelinin standardize madde yükleri."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_cfa_loadings.csv")
@@ -780,7 +808,7 @@ if (is.null(.d)) {
 
 ```{r}
 #| label: tbl-ek7-cfa-loadings-c
-#| tbl-cap: "EMBU-C dört faktörlü doğrulayıcı modelde standardize madde yükleri, standart hataları ve anlamlılık değerleri. Değerler 482 çocuk gözlemi üzerinden kestirilmiştir. Okuma anahtarı: aynı maddenin çocuk formundaki yükünün anne formundakinden yüksek olması, yapının çocuk bildiriminde daha net ayrıştığına işaret eder."
+#| tbl-cap: "EMBU-C doğrulayıcı modelinin standardize madde yükleri."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_cfa_loadings.csv")
@@ -808,13 +836,13 @@ if (is.null(.d)) {
 }
 ```
 
-### Modifikasyon indeksleri ve uygulanmayan model iyileştirmeleri
+### Modifikasyon indeksleri ve uygulanmayan model iyileştirmeleri {.unnumbered}
 
 Uyumun neden sınırlı kaldığını tanılamak için dört faktörlü modelde en büyük modifikasyon indeksleri incelenmiştir (@tbl-ek7-mi). Bu değerler **yalnız tanılayıcı amaçla** raporlanmıştır; hiçbir artık kovaryans veya çapraz yük modele eklenmemiştir. Veriye bakarak model serbestleştirmek, uyumu aynı örneklemde yapay biçimde iyileştirir ve elde edilen modelin yeni bir örneklemde tekrarlanabilirliğini düşürür; bu nedenle model kuramsal biçimiyle korunmuş, sınırlılık gizlenmeden raporlanmıştır.
 
 ```{r}
 #| label: tbl-ek7-mi
-#| tbl-cap: "EMBU-P ve EMBU-C dört faktörlü modellerinde en yüksek 10 modifikasyon indeksi. MI, ilgili parametre serbest bırakılırsa ki-kare değerinde beklenen düşüşü; EPC ise parametrenin kestirilen (standardize edilmemiş) büyüklüğünü verir. Parametre sütununda çift tilde iki madde artığı arasındaki kovaryansı, tilde-eşittir bir faktörden maddeye çapraz yükü gösterir. Bu parametrelerin hiçbiri modele eklenmemiştir."
+#| tbl-cap: "Dört faktörlü modellerde en yüksek modifikasyon indeksleri."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_modification_indices.csv")
@@ -842,13 +870,15 @@ if (is.null(.d)) {
 }
 ```
 
-### Aile kümelenmesinin uyum ölçütlerine etkisi
+{{< pagebreak >}}
 
-EMBU-C gözlemleri bağımsız değildir: her ailede iki çocuk aynı anneyi, aynı aile ortamını ve aynı sosyoekonomik bağlamı paylaşır. Kümelenmenin göz ardı edilmesi standart hataları küçültüp uyum ölçütlerini iyimser gösterebileceğinden [@hox2017multilevel], dört faktörlü model iki ek biçimde yeniden kestirilmiş ve kümelenmeyi hiç dikkate almayan çözümle birlikte sunulmuştur (@tbl-ek7-cluster): (i) maddeleri sıralı kabul eden WLSMV kestirimine `aile_no` kümesi bildirilerek ve (ii) maddeleri sürekli varsayan, küme-dayanıklı standart hata üreten sağlam maksimum olabilirlik (MLR) kestirimiyle. İkinci kol, sıralı WLSMV kestiriminde küme-düzeltmeli standart hata desteğinin sınırlı olması nedeniyle eklenmiştir; bu nedenle MLR satırının mutlak uyum değerleri WLSMV satırlarıyla doğrudan değil, yalnız kendi içinde bir dayanıklılık göstergesi olarak okunmalıdır. Artefaktın çekince alanı bu kısıtı açıkça taşır.
+### Aile kümelenmesinin uyum ölçütlerine etkisi {.unnumbered}
+
+EMBU-C gözlemleri bağımsız değildir: her ailede iki çocuk aynı anneyi, aynı aile ortamını ve aynı sosyoekonomik bağlamı paylaşır. Kümelenmenin göz ardı edilmesi standart hataları küçültüp uyum ölçütlerini iyimser gösterebileceğinden [@hox2017multilevel], dört faktörlü model iki ek biçimde yeniden kestirilmiş ve kümelenmeyi hiç dikkate almayan çözümle birlikte sunulmuştur (@tbl-ek7-cluster): (i) maddeleri sıralı kabul eden WLSMV kestirimine aile kümesi bildirilerek ve (ii) maddeleri sürekli varsayan, küme-dayanıklı standart hata üreten sağlam maksimum olabilirlik (MLR) kestirimiyle. İkinci kol, sıralı WLSMV kestiriminde küme-düzeltmeli standart hata desteğinin sınırlı olması nedeniyle eklenmiştir; bu nedenle MLR satırının mutlak uyum değerleri WLSMV satırlarıyla doğrudan değil, yalnız kendi içinde bir dayanıklılık göstergesi olarak okunmalıdır. Bu çözümleme, söz konusu metodolojik kısıtı dikkate alacak biçimde yorumlanmıştır.
 
 ```{r}
 #| label: tbl-ek7-cluster
-#| tbl-cap: "EMBU-C dört faktörlü ölçme modelinin aile kümelenmesi dikkate alınmadan ve alınarak elde edilen uyum ölçütleri. İlk satır kümelenmeyi hiç modellemeyen sıralı (WLSMV) çözümü, ikinci satır aynı kestiriciye aile kümesinin bildirildiği çözümü, üçüncü satır ise maddeleri sürekli varsayan küme-dayanıklı (MLR) duyarlılık çözümünü gösterir. Okuma anahtarı: ilk iki satır arasındaki fark küçükse dört faktörlü yapıya ilişkin sonuç aile içi bağımlılığa dayanıklıdır; üçüncü satır farklı bir ölçme varsayımı altında aynı sonucun tekrarlanıp tekrarlanmadığını gösterir ve mutlak değerleri ilk iki satırla kıyaslanmamalıdır."
+#| tbl-cap: "EMBU-C modelinde aile kümelenmesi duyarlılığı."
 #| echo: false
 #| results: asis
 .base <- .ek7_read("psychval_cfa_fit.csv")
@@ -901,17 +931,23 @@ if (!is.null(.cl)) {
 if (length(.rows) == 0L) {
   .ek7_absent("psychval_cluster_cfa_sensitivity.csv")
 } else {
-  print(.ek7_kable(do.call(rbind, .rows), "lllrrrrr"))
+  .out <- do.call(rbind, .rows)
+  .out <- .out[c("Kestirim", "Küme sayısı", "CFI", "RMSEA", "SRMR")]
+  .out$`RMSEA / SRMR` <- paste(.out$RMSEA, .out$SRMR, sep = " / ")
+  .out$RMSEA <- NULL
+  .out$SRMR <- NULL
+  names(.out)[names(.out) == "Küme sayısı"] <- "n aile"
+  print(.ek7_kable(.out, "llrc"))
 }
 ```
 
-### Tek faktörlü model anomali denetimi
+### Tek faktörlü model anomali denetimi {.unnumbered}
 
-Uyum ölçütlerinin iki bağımsız form için birebir aynı değere düşmesi, çoğunlukla model kurgusunda veya veri aktarımında bir hata işaretidir. Bu tür sessiz hataların gözden kaçmaması için tek faktörlü modellerin CFI ve TLI değerleri formlar arasında otomatik olarak karşılaştırılmış ve sonuç ayrı bir denetim artefaktına yazılmıştır (@tbl-ek7-anomali). Denetim, sonucun yorumunu değiştirmez; yalnız "iki formda birebir aynı uyum" durumunun fark edilmeden geçmesini engeller.
+Uyum ölçütlerinin iki bağımsız form için birebir aynı değere düşmesi, çoğunlukla model kurgusunda veya veri aktarımında bir hata işaretidir. Bu tür sessiz hataların gözden kaçmaması için tek faktörlü modellerin CFI ve TLI değerleri formlar arasında otomatik olarak karşılaştırılmıştır (@tbl-ek7-anomali). Bu denetim, sonucun yorumunu değiştirmez; yalnız "iki formda birebir aynı uyum" durumunun fark edilmeden geçmesini engeller.
 
 ```{r}
 #| label: tbl-ek7-anomali
-#| tbl-cap: "Tek faktörlü modellerin formlar arası uyum denetimi. Son sütun, CFI ve TLI değerlerinin iki formda birebir aynı olup olmadığını gösterir; 'evet' değeri bir kurgu veya aktarım hatası şüphesi doğurur ve elle incelemeyi gerektirir."
+#| tbl-cap: "Tek faktörlü modellerin formlar arası uyum denetimi."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_one_factor_anomaly_check.csv")
@@ -932,19 +968,19 @@ if (is.null(.d)) {
 }
 ```
 
-### Ölçüm değişmezliği
+### Ölçüm değişmezliği {.unnumbered}
 
-Ölçüm değişmezliği taramasında elde edilen kanıt form ve eksene göre türdeş değildir: EMBU-C tanı grubu ve bilgi-verici rolü karşılaştırmalarında değişim indeksleri önerilen eşikler içinde kalmış [@cheungRensvold2002invariance] (ΔCFI < 0,010, ΔRMSEA < 0,015); mutlak uyum ise özellikle bilgi-verici rolü ekseninde sınırlı bulunmuştur. EMBU-P tanı grubu ile EMBU-C yaş ve cinsiyet eksenlerinde tam sıralı modeller yakınsamamış, yalnız kategori-daraltılmış duyarlılık çözümleri elde edilebilmiştir; bu nedenle tam veya skalar değişmezlik ölçeklerin genel bir özelliği olarak gösterilememiştir (eksen-bazlı uyum ölçütleri ve yakınsama durumu için bkz. Ek 3, @tbl-apa-invariance).
+Ölçüm değişmezliği taramasında elde edilen kanıt form ve eksene göre türdeş değildir: EMBU-C tanı grubu ve bilgi-verici rolü karşılaştırmalarında değişim indeksleri önerilen eşikler içinde kalmış [@cheungRensvold2002invariance] (ΔCFI < 0,010, ΔRMSEA < 0,015); mutlak uyum ise özellikle bilgi-verici rolü ekseninde sınırlı bulunmuştur. EMBU-P tanı grubu ile EMBU-C yaş ve cinsiyet eksenlerinde tam sıralı modeller yakınsamamış, yalnız kategori-daraltılmış duyarlılık çözümleri elde edilebilmiştir; bu nedenle tam veya skalar değişmezlik ölçeklerin genel bir özelliği olarak gösterilememiştir (eksen-bazlı uyum ölçütleri ve yakınsama durumu için bkz. Ek 3'teki dört tablo).
 
 Değişmezlik, gruplar arasında gözlenen ortalama farklarının gerçek yapı farkı mı yoksa ölçme davranışı farkı mı olduğunu ayırt etmenin ön koşuludur; skalar düzey sağlanmadan grup ortalamalarının doğrudan karşılaştırılması yanıltıcı olabilir [@putnickBornstein2016measurementInvariance]. Bu çalışmada değişmezlik hiyerarşisi yapılandırmasal (configural) → metrik → skalar sırasıyla kurulmuş ve karar, ki-kare fark testinin örneklem büyüklüğüne aşırı duyarlı olması nedeniyle ΔCFI ve ΔRMSEA ölçütlerine dayandırılmıştır [@cheungRensvold2002invariance; @chen2007invariance]. Skalar düzeyde ulaşılan uyum, eksenler arası karşılaştırılabilir biçimde @fig-psychval-invariance içinde özetlenmiştir.
 
-![Ölçüm değişmezliği taramasında skalar düzeyde elde edilen CFI değerleri; form, gruplama ekseni ve madde kümesi kombinasyonlarına göre azalan sırada gösterilmiştir. Yakınsamayan modeller şekilde yer almaz; tam liste ve değişim indeksleri için bkz. Ek 3.](docs/assets/figures/carbon/psychometric/psychval-04-invariance.svg){#fig-psychval-invariance width="86%" fig-align="center"}
+![Ölçüm değişmezliği taramasında skalar düzeyde elde edilen CFI değerleri.](docs/assets/figures/carbon/psychometric/psychval-04-invariance.svg){#fig-psychval-invariance width="86%" fig-align="center"}
 
 Yakınsama sorunlarının kaynağını belgelemek için, her değişmezlik ekseninde madde × grup çapraz tablolarındaki kategori doluluğu ayrıca denetlenmiştir (@tbl-ek7-kategori-denetimi). Sıralı WLSMV kestiriminde bir maddenin herhangi bir grupta boş yanıt kategorisi bulunması eşik (threshold) parametresinin kestirilememesine ve modelin yakınsamamasına yol açar. Denetim, boş hücre taşıyan eksenlerde tam dört kategorili modelin neden kurulamadığını ve kategori-daraltılmış duyarlılık çözümüne neden geçildiğini nesnel olarak gösterir.
 
 ```{r}
 #| label: tbl-ek7-kategori-denetimi
-#| tbl-cap: "Ölçüm değişmezliği eksenlerinde madde-grup kategori doluluk denetimi özeti. 'Boş hücreli madde' sütunu, en az bir grupta hiç yanıt almayan kategoriye sahip madde sayısını; 'En küçük hücre' sütunu ilgili eksendeki en seyrek gözlenen madde-grup-kategori hücresinin gözlem sayısını verir. Okuma anahtarı: boş hücreli madde sayısı sıfırdan büyük olduğunda tam kategorili sıralı model kestirilemez; bu satırlar kategori daraltma kararının gerekçesidir."
+#| tbl-cap: "Ölçüm değişmezliği eksenlerinde kategori doluluk denetimi."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_invariance_category_audit.csv")
@@ -956,9 +992,9 @@ if (is.null(.d)) {
     z <- .d[idx, , drop = FALSE]
     has_empty <- z$has_empty_cell %in% c(TRUE, "TRUE", "True", "true")
     data.frame(
-      `Gruplama ekseni` = z$group_var[1],
-      `Madde kümesi` = z$item_set[1],
-      `Kategori şeması` = z$scheme[1],
+      `Gruplama ekseni` = .ek7_break_code(z$group_var[1]),
+      `Madde kümesi` = .ek7_break_code(z$item_set[1]),
+      `Kategori şeması` = .ek7_break_code(z$scheme[1]),
       `Madde sayısı` = format(nrow(z)),
       `Grup sayısı` = .ek7_int(suppressWarnings(max(as.numeric(z$n_groups), na.rm = TRUE))),
       `Boş hücreli madde` = format(sum(has_empty)),
@@ -973,13 +1009,13 @@ if (is.null(.d)) {
 }
 ```
 
-### Aile içi bağımlılık ve kardeşler arası uyum
+### Aile içi bağımlılık ve kardeşler arası uyum {.unnumbered}
 
 Bu çalışmanın veri yapısı, her aileden iki çocuk içerdiği için gözlemleri bağımsız kabul etmeye izin vermez. Bağımlılığın büyüklüğünü nicelleştirmek üzere EMBU-C alt ölçek puanlarında aile düzeyi sınıf içi korelasyon (ICC) hesaplanmış (@tbl-ek7-icc), ayrıca indeks çocuk ile kardeşin aynı aileye ilişkin bildirimlerinin ne ölçüde örtüştüğü mutlak uyum ICC(2,1) ve Bland-Altman uyum sınırlarıyla değerlendirilmiştir (@tbl-ek7-kardes-uyum). İki büyüklük farklı sorulara yanıt verir: aile düzeyi ICC "toplam varyansın ne kadarı aileler arası farktan geliyor?" sorusuna, ICC(2,1) ise "aynı ailenin iki çocuğu birbirinin yerine geçebilir mi?" sorusuna karşılık gelir [@koo2016iccGuideline; @blandAltman1986].
 
 ```{r}
 #| label: tbl-ek7-icc
-#| tbl-cap: "EMBU-C alt ölçek puanlarında aile düzeyi sınıf içi korelasyon (ICC). Düzeltilmiş ICC yalnız rastgele aile etkisini, düzeltilmemiş ICC ise sabit etkilerin açıkladığı varyansı da toplam varyansa katarak hesaplanır. Okuma anahtarı: ICC 0,05'in üzerindeyse aile içi bağımlılık ihmal edilemez ve analizler çok düzeyli model veya aile-kümelenmiş standart hata gerektirir."
+#| tbl-cap: "EMBU-C puanlarında aile düzeyi sınıf içi korelasyon."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_icc_embu_c.csv")
@@ -1000,7 +1036,7 @@ if (is.null(.d)) {
 
 ```{r}
 #| label: tbl-ek7-kardes-uyum
-#| tbl-cap: "İndeks çocuk ile kardeşin EMBU-C bildirimleri arasındaki mutlak uyum. ICC(2,1) iki bildirimin birbirinin yerine geçebilirliğini; ortalama fark sistematik sapmayı (indeks eksi kardeş); Bland-Altman uyum sınırları ise bireysel çiftlerin yaklaşık %95'inin içine düştüğü fark aralığını verir. Okuma anahtarı: ICC(2,1) 0,50'nin altındayken uyum zayıftır ve iki çocuğun aynı aile ortamını farklı algıladığını gösterir; uyum sınırlarının genişliği bu farklılaşmanın büyüklüğünü ölçek biriminde ifade eder."
+#| tbl-cap: "İndeks çocuk ve kardeş EMBU-C bildirimleri arasındaki mutlak uyum."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_within_family_concordance.csv")
@@ -1021,21 +1057,21 @@ if (is.null(.d)) {
 }
 ```
 
-![EMBU-C alt ölçeklerinde aile düzeyi sınıf içi korelasyon (sol panel) ve indeks çocuk ile kardeş bildirimleri arasındaki mutlak uyum ICC(2,1) değerleri (sağ panel). İki panelin ölçekleri farklıdır; sağ panelde düşük değerler kardeşlerin aynı aile ortamını farklı algıladığını gösterir.](docs/assets/figures/carbon/psychometric/psychval-05-icc.svg){#fig-psychval-icc width="86%" fig-align="center"}
+![EMBU-C alt ölçeklerinde aile düzeyi sınıf içi korelasyon ve kardeşler arası mutlak uyum.](docs/assets/figures/carbon/psychometric/psychval-05-icc.svg){#fig-psychval-icc width="86%" fig-align="center"}
 
 Bu iki bulgu birlikte okunmalıdır. Sıfırdan belirgin biçimde farklı aile düzeyi ICC değerleri, gözlemlerin bağımsız kabul edilemeyeceğini ve her birincil modelin aile düzeyinde rastgele etki ya da kümelenmiş standart hata içermesi gerektiğini doğrular [@hox2017multilevel]. Buna karşılık kardeşler arası mutlak uyumun sınırlı kalması ölçme hatası olarak değil, çok bilgi-vericili araştırmalarda beklenen bir olgu olarak yorumlanmıştır: aynı ailedeki çocukların ebeveyn tutumuna ilişkin bildirimleri arasındaki uyuşmazlık, bilgi-vericilerin farklı bağlamlarda farklı davranış örüntülerine tanık olmasının ve paylaşılmayan aile deneyiminin sistematik sonucudur [@achenbach1987crossinformant]. Bu nedenle indeks ve kardeş bildirimleri birbirinin yerine geçen ölçümler olarak birleştirilmemiş, ayırt edilebilir (distinguishable) diyadik yapı korunmuştur [@olsenKenny2006interchangeableDyads; @kennyKashyCook2006].
 
-### Ölçüt geçerliği
+### Ölçüt geçerliği {.unnumbered}
 
 EMBU-P/C alt ölçekleri ile Beck total ve SRQ alt ölçekleri arasında 14 paralel Spearman korelasyonu, çoklu karşılaştırma düzeltmesiyle (FDR) test edilmiştir. Anlamlı bulunan ilişkiler beklenen yöndedir: anne depresyonu arttıkça anne sıcaklığı azalmakta (sıcaklık(P)×Beck ρ = −0,22, FDR p = 0,003), reddetme ve karşılaştırma ise artmaktadır (reddetme(P)×Beck ρ = 0,17, FDR p = 0,019; karşılaştırma(P)×Beck ρ = 0,26, FDR p < 0,001). Çocuğun bildirdiği karşılaştırma tutumu kardeş çatışması ve rekabetiyle olumlu, kardeş sıcaklığıyla olumsuz ilişkilidir (karşılaştırma(C)×SRQ çatışma ρ = 0,30, FDR p < 0,001; karşılaştırma(C)×SRQ sıcaklık ρ = −0,16, FDR p = 0,002; karşılaştırma(C)×SRQ rekabet ρ = 0,14, FDR p = 0,005). Beklenen yönlü geçerlik korelasyonlarının tümü @fig-psychval-validity içinde gösterilmiştir.
 
-![EMBU alt ölçekleri ile Beck Depresyon toplam puanı ve Kardeş İlişkileri Anketi (KİA/SRQ) alt ölçekleri arasındaki beklenen yönlü ölçüt geçerliği (Spearman ρ) korelasyonları. Noktaların sıfır çizgisinden uzaklığı ilişkinin büyüklüğünü, dolu noktalar çoklu karşılaştırma düzeltmesi (FDR) sonrası anlamlı sonuçları gösterir; EMBU-P ve EMBU-C ayrı renklerle işaretlenmiştir.](docs/assets/figures/carbon/psychometric/psychval-06-validity.svg){#fig-psychval-validity width="82%" fig-align="center"}
+![EMBU alt ölçeklerinin Beck Depresyon ve KİA/SRQ ile ölçüt geçerliği korelasyonları.](docs/assets/figures/carbon/psychometric/psychval-06-validity.svg){#fig-psychval-validity width="82%" fig-align="center"}
 
 Korelasyon ailesinin tamamı, anlamlı bulunmayanlar da dâhil olmak üzere @tbl-ek7-validity içinde verilmiştir. İlişkiler Pearson yerine Spearman sırasal korelasyonuyla kestirilmiştir; alt ölçek puanlarının bir bölümünde gözlenen çarpıklık ve taban yığılması, doğrusal ilişki ile normallik varsayımına dayanan katsayıyı yanlı kılabilir. On dört korelasyonun tümü tek bir aile olarak ele alınmış ve yanlış-keşif oranı Benjamini-Hochberg yordamıyla denetlenmiştir; bu yordam, aile-bilgeli hata oranını sabitleyen düzeltmelere göre daha az tutucudur ve keşfedici geçerlik taramalarında güç kaybını sınırlar [@benjaminiHochberg1995fdr]. Ham ve düzeltilmiş olasılık değerleri birlikte raporlanmıştır.
 
 ```{r}
 #| label: tbl-ek7-validity
-#| tbl-cap: "Ölçüt ve nomolojik geçerlik korelasyonlarının tamamı (14 karşılaştırma). ρ Spearman sırasal korelasyonu, p ham olasılık değeri, FDR p ise Benjamini-Hochberg düzeltmesi sonrası değerdir. 'Beklenen yön' sütunu kuramsal olarak öngörülen işareti, 'Sonuç' sütunu ise düzeltme sonrası anlamlılık ile yönün öngörüyle uyuşup uyuşmadığını özetler. Okuma anahtarı: anlamlı olmayan satırlar 'ilişki yok' kanıtı değil, mevcut örneklem büyüklüğünde saptanamamış ilişki anlamına gelir."
+#| tbl-cap: "Ölçüt ve nomolojik geçerlik korelasyonları."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_validity_correlations.csv")
@@ -1054,7 +1090,12 @@ if (is.null(.d)) {
   .pos_y <- c("sicaklik_yakinlik_mean", "srq_total_mean")
   .exp_sign <- ifelse((.d$x %in% .pos_x) != (.d$y %in% .pos_y), "negatif", "pozitif")
   .rho <- suppressWarnings(as.numeric(.d$spearman_rho))
-  .fdr <- suppressWarnings(as.numeric(.d$p_adjusted))
+  .p_value <- suppressWarnings(as.numeric(.d$p_value))
+  .fdr <- if ("p_adjusted" %in% names(.d)) {
+    suppressWarnings(as.numeric(.d$p_adjusted))
+  } else {
+    stats::p.adjust(.p_value, method = "BH")
+  }
   .sig <- !is.na(.fdr) & .fdr < 0.05
   .dir_ok <- (.exp_sign == "negatif" & .rho < 0) | (.exp_sign == "pozitif" & .rho > 0)
   .out <- data.frame(
@@ -1063,8 +1104,8 @@ if (is.null(.d)) {
     `Ölçüt değişkeni` = .ek7_map(.d$y, .ylab),
     n = .ek7_int(.d$n),
     `ρ` = .ek7_num(.rho, 2),
-    p = .ek7_p(.d$p_value),
-    `FDR p` = .ek7_p(.d$p_adjusted),
+    p = .ek7_p(.p_value),
+    `FDR p` = .ek7_p(.fdr),
     `Beklenen yön` = .exp_sign,
     Sonuç = ifelse(is.na(.rho), "hesaplanamadı",
                    ifelse(.sig & .dir_ok, "anlamlı, beklenen yönde",
@@ -1075,7 +1116,7 @@ if (is.null(.d)) {
 }
 ```
 
-### Reddetme alt ölçeği: puanlama kararlarının çoklu evreni
+### Reddetme alt ölçeği: puanlama kararlarının çoklu evreni {.unnumbered}
 
 Yukarıda gösterildiği gibi güvenirliği ve madde dağılımı en sorunlu yapı EMBU-P reddetme alt ölçeğidir. Bu alt ölçek aynı zamanda tezin birincil karşılaştırmalarından birinde (diyabetli çocuk aileleri ile kontrol aileleri arasındaki fark) bağımlı değişken olarak yer aldığından, elde edilen sonucun ölçme kararlarına ne kadar bağımlı olduğu ayrıca sınanmıştır. Tek bir puanlama yolu seçip raporlamak yerine, savunulabilir dört analiz yolu önceden tanımlanmış ve hepsi birlikte raporlanmıştır; böylece çatallanan yollar bahçesinde yalnız uygun sonucu seçme riski ortadan kaldırılmıştır [@simonsohn2020specificationCurve].
 
@@ -1083,7 +1124,7 @@ Tanımlanan yollar şunlardır: (S1) tüm 8 maddenin dört kategorili özgün bi
 
 ```{r}
 #| label: tbl-ek7-multiverse
-#| tbl-cap: "EMBU-P reddetme alt ölçeğinde grup farkının (diyabet eksi kontrol) dört farklı puanlama yoluna göre kestirimi. Kestirim sütunu ölçek birimindeki ham farkı, Cohen's d ise standartlaştırılmış etki büyüklüğünü verir. Okuma anahtarı: yolların işaret ve büyüklük bakımından birbirine yakın kalması, sonucun puanlama kararına dayanıklı olduğunu gösterir; yollar arasında işaret değişmesi ise bulgunun ölçme kararına bağımlı olduğu anlamına gelir."
+#| tbl-cap: "EMBU-P reddetme alt ölçeğinde çoklu puanlama yolu kestirimleri."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_rejection_multiverse.csv")
@@ -1097,24 +1138,26 @@ if (is.null(.d)) {
   .out <- data.frame(
     Yol = .ek7_map(.d$strategy, .slab),
     n = .ek7_int(.d$n),
-    `Kestirim (DM − Kontrol)` = .ek7_num(.d$estimate_dm_minus_kontrol, 3),
+    `b (DM − K)` = .ek7_num(.d$estimate_dm_minus_kontrol, 3),
     SH = .ek7_num(.d$se, 3),
     t = .ek7_num(.d$t, 2),
     p = .ek7_p(.d$p_value),
-    `Cohen's d` = .ek7_num(.d$cohens_d_dm_minus_kontrol, 2),
+    d = .ek7_num(.d$cohens_d_dm_minus_kontrol, 2),
     check.names = FALSE, stringsAsFactors = FALSE
   )
   print(.ek7_kable(.out, "lrrrrrr"))
 }
 ```
 
-![EMBU-P reddetme alt ölçeğinde grup farkının dört farklı puanlama yoluna göre kestirimi ve belirsizlik aralıkları. Sıfır çizgisini kesen aralıklar, ilgili puanlama yolunda gruplar arası farkın istatistiksel olarak ayırt edilemediğini gösterir.](docs/assets/figures/carbon/psychometric/psychval-07-multiverse.svg){#fig-psychval-multiverse width="82%" fig-align="center"}
+*Not. b: diyabet grubu eksi kontrol grubu ham farkı.*
+
+![EMBU-P reddetme alt ölçeğinde çoklu puanlama yolu kestirimleri.](docs/assets/figures/carbon/psychometric/psychval-07-multiverse.svg){#fig-psychval-multiverse width="82%" fig-align="center"}
 
 Anlamlı fark bulunamaması tek başına "fark yoktur" anlamına gelmez; bu ayrımı yapabilmek için sıklıkçı puanlama yollarının her birinde ayrıca eşdeğerlik sınaması (TOST) yürütülmüştür (@tbl-ek7-tost). Sınamada en küçük ilgi çekici etki büyüklüğü ±0,30 standartlaştırılmış ortalama fark olarak önceden sabitlenmiştir; bu değer, gelişim ve ebeveynlik yazınında küçük-orta etkilerin alt sınırına karşılık gelir. İki tek-yanlı sınamanın ikisi de anlamlıysa gözlenen fark, kuramsal olarak önemsiz kabul edilen bandın içinde demektir; hiçbiri anlamlı değilse sonuç belirsizdir ve daha büyük örneklem gerektirir [@lakens2017equivalence; @lakens2018esdegerlik].
 
 ```{r}
 #| label: tbl-ek7-tost
-#| tbl-cap: "EMBU-P reddetme alt ölçeğinde grup farkı için iki tek-yanlı sınama (TOST) temelli eşdeğerlik değerlendirmesi. Eşdeğerlik sınırı ±0,30 standartlaştırılmış ortalama fark olarak önceden sabitlenmiştir. Hedges g yanlılık düzeltilmiş etki büyüklüğü, %90 GA ise eşdeğerlik sınamasıyla uyumlu güven aralığıdır. Okuma anahtarı: 'Karar' sütunundaki 'eşdeğer', farkın önemsiz olduğunun gösterildiği; 'belirsiz' ise ne anlamlı fark ne de eşdeğerlik gösterilebildiği anlamına gelir."
+#| tbl-cap: "EMBU-P reddetme alt ölçeğinde TOST eşdeğerlik değerlendirmesi."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_rejection_tost.csv")
@@ -1128,45 +1171,53 @@ if (is.null(.d)) {
   .eq <- .d$equivalent_at_smd_030
   .out <- data.frame(
     Yol = .ek7_map(.d$strategy, .slab),
-    `n (DM)` = .ek7_int(.d$n_dm),
-    `n (Kontrol)` = .ek7_int(.d$n_kontrol),
+    `n (DM/K)` = paste(.ek7_int(.d$n_dm), .ek7_int(.d$n_kontrol), sep = "/"),
     `Ort. (DM)` = .ek7_num(.d$mean_dm, 2),
     `Ort. (Kontrol)` = .ek7_num(.d$mean_kontrol, 2),
     `Hedges g` = .ek7_num(.d$hedges_g, 2),
     `%90 GA` = .ek7_ci(.d$g_ci_lower_90, .d$g_ci_upper_90, 2),
-    `TOST p (alt)` = .ek7_p(.d$tost_lower_p),
-    `TOST p (üst)` = .ek7_p(.d$tost_upper_p),
-    Karar = ifelse(is.na(.eq) | .eq == "", "—",
-                   ifelse(.eq %in% c(TRUE, "TRUE", "True", "true"),
-                          "eşdeğer (|SMD| < 0,30)", "belirsiz")),
+    `TOST p` = paste(.ek7_p(.d$tost_lower_p), .ek7_p(.d$tost_upper_p), sep = " / "),
+    `K.` = ifelse(is.na(.eq) | .eq == "", "—",
+                  ifelse(.eq %in% c(TRUE, "TRUE", "True", "true"), "Eşd.", "Bel.")),
     check.names = FALSE, stringsAsFactors = FALSE
   )
-  print(.ek7_kable(.out, "lrrrrrcrrl"))
+  print(.ek7_kable(.out, "llrrrccl"))
 }
 ```
 
-Bayesçi latent değişken kolunun yürütme durumu, kısmen tamamlanmış bir çözümün tamamlanmış gibi sunulmasını önlemek için ayrı bir durum artefaktında izlenmektedir (@tbl-ek7-bsem-durum). Bu kolun durumu "beklemede" olduğu sürece, reddetme alt ölçeğine ilişkin çıkarım üç sıklıkçı yola dayandırılmış ve latent değişken temelli sonuç kesinleşmiş bulgu olarak sunulmamıştır.
+*Not. n (DM/K): sırasıyla diyabet ve kontrol grupları; TOST p: alt/üst tek-yönlü sınamaların p değerleri; K.: karar; Eşd.: eşdeğer; Bel.: belirsiz.*
+
+Bayesçi latent değişken çözümlemesinin durumu, tamamlanmamış bir çözümün tamamlanmış gibi sunulmasını önlemek için ayrıca değerlendirilmiştir (@tbl-ek7-bsem-durum). Tamamlanmamış veya hata veren bir çözüm bulunduğunda, ilgili latent değişken temelli sonuç kesinleşmiş bulgu olarak sunulmaz.
 
 ```{r}
 #| label: tbl-ek7-bsem-durum
-#| tbl-cap: "Bayesçi latent değişken (BSEM) kolunun yürütme durumu ve gerekçesi. Durum alanı 'beklemede' olduğunda ilgili kolun sayısal sonuçları bu ekte raporlanmaz; bu kayıt, tamamlanmamış bir çözümün tamamlanmış gibi yorumlanmasını engellemek için tutulur."
+#| tbl-cap: "Bayesçi latent değişken çözümlemesinin durumu."
 #| echo: false
 #| results: asis
 .d <- .ek7_read("psychval_bsem_status.csv")
 if (is.null(.d)) {
   .ek7_absent("psychval_bsem_status.csv")
 } else {
+  .reason <- if ("reason" %in% names(.d)) {
+    .d$reason
+  } else if ("error" %in% names(.d)) {
+    ifelse(is.na(.d$error) | .d$error == "", "—", .d$error)
+  } else if ("target" %in% names(.d)) {
+    rep("Belirtilmemiş", nrow(.d))
+  } else {
+    rep("—", nrow(.d))
+  }
   .out <- data.frame(
     Çözümleme = .d$analysis,
     Durum = .d$status,
-    Gerekçe = .d$reason,
+    Gerekçe = .reason,
     check.names = FALSE, stringsAsFactors = FALSE
   )
   print(.ek7_kable(.out, "lll"))
 }
 ```
 
-### Sentez: ölçme kalitesinin bulgulara yansıması
+### Sentez: ölçme kalitesinin bulgulara yansıması {.unnumbered}
 
 Psikometrik değerlendirme, ölçeklerin bu örneklemde türdeş bir kalite düzeyi göstermediğini ortaya koymaktadır. Kanıtın gücü üç kademeye ayrılabilir. **Güçlü kanıt:** KİA Sıcaklık/Yakınlık ve Çatışma alt ölçekleri ile EMBU-C sıcaklık ve karşılaştırma alt ölçekleri yüksek iç tutarlılık, kabul edilebilir madde-toplam ilişkileri ve beklenen yönlü geçerlik korelasyonları göstermiştir; bu boyutlara dayalı çıkarımlar ölçme açısından güvenle yorumlanabilir. **Orta düzey kanıt:** EMBU-P sıcaklık, aşırı koruma ve karşılaştırma ile EMBU-C aşırı koruma alt ölçekleri sınırda güvenirlik değerleri taşır; bu boyutlara ilişkin sonuçlar yorumlanabilir, ancak etki büyüklükleri ölçme hatası nedeniyle olduğundan küçük kestiriliyor olabilir. **Sınırlı kanıt:** EMBU-P reddetme alt ölçeği hem düşük iç tutarlılık hem de aşırı taban yığılması nedeniyle bu örneklemde zayıf ölçme özellikleri sergilemiştir.
 
@@ -1174,11 +1225,268 @@ Bu tablonun tez bulgularına dört doğrudan yansıması olmuştur. Birincisi, E
 
 Sınırlılıklar açıkça belirtilmelidir. Çalışma kesitseldir; bu nedenle zaman içi kararlılık (test-tekrar test güvenirliği) değerlendirilememiştir. Ölçme değişmezliği bazı eksenlerde yakınsama sorunları nedeniyle tam olarak sınanamamış, kategori-daraltılmış duyarlılık çözümleriyle sınırlı kalmıştır. Doğrulayıcı modellerde uyum ölçütlerinin önceden sabitlenmiş eşikleri karşılamaması, kuramsal yapının tümüyle reddedildiği anlamına gelmez; bu eşikler sürekli göstergeli ve büyük örneklemli koşullardan türetilmiştir ve sıralı maddeli kısa formlara doğrudan aktarımı sınırlıdır [@marshHauWen2004goldenRules]. Son olarak, madde arıtma önerileri raporlanmış ancak uygulanmamıştır; ölçeklerin özgün madde bileşimi korunarak elde edilen sonuçların Türkçe geçerlik çalışmalarıyla karşılaştırılabilirliği önceliklendirilmiştir [@dirik2015sEmbuTurkish; @caliskanSari2018embuC].
 
-Bu ekte raporlanan tüm değerler, `scripts/R/05_psychometric_validation.R` çalıştırıldığında `outputs/tables/` altına yazılan artefaktlardan render anında okunur; hiçbir istatistik değeri metne elle girilmemiştir. Böylece veri veya model değiştiğinde ekteki tüm sayılar tek bir çalıştırmayla eşzamanlı olarak güncellenir ve metin ile üretilmiş çıktı arasında sapma oluşamaz.
+Bu ekte raporlanan sayısal değerler, doğrulanmış analiz zincirinden alınmış; hiçbir istatistik değeri metne elle girilmemiştir. Böylece veri veya model değiştiğinde tablolardaki değerlerin metinle uyumu korunur.
 
 {{< pagebreak >}}
 
-## Ek 8. Niteliksel Kol Katılımcı Künyesi {#sec-ek-nitel-kunye .unnumbered}
+## Ek 8. Keşifsel Bağlamsal ve Psikometrik Çözümlemeler {#sec-ek-kesifsel .unnumbered}
+
+Bu ekte, Bulgular bölümündeki ileri psikometrik ve bağlamsal katmanda özetlenen çözümlemelerin ayrıntıları sunulmuştur. Analizlerin tümü keşifsel veya post-hoc niteliktedir; aksi belirtilmedikçe çoklu karşılaştırma kararları Holm ya da BH-FDR ile düzeltilmiş değerler üzerinden verilmiştir. Çözümlemelerin kapsamı ve ana metrikleri @tbl-ek8-phase2-summary içinde özetlenmiştir.
+
+### Ek 8.1. Diferansiyel ebeveynlik ve kayırma {.unnumbered}
+
+Aynı evde yaşayan iki çocuğun algıladığı ebeveyn davranışları arasındaki farkları inceleyen diferansiyel ebeveynlik çözümlemelerinde, çoklu karşılaştırma düzeltmesi sonrasında sistematik bir kayırma örüntüsü saptanmamıştır. Ham düzeyde görülen tekil sinyaller, düzeltilmiş kararın yerine geçirilmemiş ve yalnız replikasyon gerektiren bulgular olarak ele alınmıştır.
+
+### Ek 8.2. Sosyal tabakalaşma {.unnumbered}
+
+ISEI, SIOPS, EGP ve maddi varlık göstergeleri birbiriyle ilişkili SES bileşenleridir. Tek gösterge ve alternatif bileşik puan modelleri, ana çıkarımların tek bir SES tanımına bağlı olup olmadığını incelemek için kullanılmış; düzeltilmiş düzeyde güçlü bir sınıf gradyanı gösterilmemiştir. Bu değerlendirme, Ek 7'deki latent SES modelinin ölçüm bulgularıyla birlikte okunmalıdır.
+
+### Ek 8.3. Anne komorbiditesi ve antidepresan kullanımı {.unnumbered}
+
+Anne komorbiditesi ile depresif belirti yükü arasındaki ve antidepresan kullanımıyla tanı grubu arasındaki ilişkiler bağlamsal olarak incelenmiştir. Tedavinin başlama zamanı ve endikasyonu bilinmediğinden, antidepresan kullanımı nedensel bir açıklama değil psikiyatrik bakım gereksinimi ve ruhsal yük için betimleyici bir gösterge olarak yorumlanmıştır.
+
+### Ek 8.4. Aile yapısı ve maruziyet yoğunluğu {.unnumbered}
+
+Kardeşler arası karşılıklılık ve diyabete özgü maruziyet yoğunluğu farklı operasyonel tanımlarla değerlendirilmiştir. Düzeltme sonrasında kalan tekil bulgular, doğrulanmış bir birincil kanıt olarak değil; veri tanımı ve örneklem kısıtlarına duyarlı, hipotez-üretici sinyaller olarak raporlanmıştır.
+
+### Ek 8.5. Anne mental sağlığı ile çocuk algısı {.unnumbered}
+
+Yüksek güncel depresif belirti düzeyi ile çocuğun reddetme ve karşılaştırma algısı arasındaki ilişkiler, tanı grubu ve antidepresan kullanımından bağımsız bağlamsal modellerde incelenmiştir. Bu kesitsel ilişkiler zaman sıralaması ya da nedensel aktarım kanıtı olarak yorumlanmamıştır.
+
+### Ek 8.6. Kardeş-kardeş ve anne-çocuk uyum çözümlemeleri {.unnumbered}
+
+Kardeş-kardeş uyumu ile anne-çocuk uyumu farklı estimand'larla değerlendirilmiştir. Manifest ICC, latent konkordans, yanıt yüzeyi ve ortak yazgı modelleri aynı büyüklüğü ölçmediğinden, sonuçlar tek bir ortalama altında havuzlanmamış; yön ayrışması belirsiz kanıt olarak korunmuştur.
+
+### Ek 8.7. Psikometrik ölçüm kalitesi: trifaktör ve taban etkisi {.unnumbered}
+
+Trifaktör modeller, anne, indeks çocuk ve sağlıklı kardeş yanıtlarında ortak trait ile bilgi verene özgü yöntem varyansını ayırmıştır. Taban etkisine duyarlı IRT kestirimleri ise çocuk bildirimindeki farkların düşük uçta yığılmadan ne ölçüde etkilenebileceğini sınamıştır. Bu duyarlılık analizleri manifest puanla yürütülen birincil modellerin yerine geçmez.
+
+```{r}
+#| label: tbl-ek8-phase2-summary
+#| tbl-cap: "Keşifsel psikometrik ve bağlamsal çözümlemelerin özeti."
+#| echo: false
+#| results: asis
+.d <- .ek7_read("phase2_apa_summary_table.csv")
+if (is.null(.d)) {
+  .ek7_absent("phase2_apa_summary_table.csv")
+} else {
+  .out <- data.frame(
+    `Analiz` = .d$analiz,
+    `Ana metrik` = .d$ana_metrik,
+    `Yorum` = .d$yorum,
+    check.names = FALSE,
+    stringsAsFactors = FALSE
+  )
+  print(.ek7_kable(.out, "lll"))
+}
+```
+
+![Trifaktör T-CFA yükleme mimarisi.](docs/assets/figures/carbon/phase2/phase2_f01_trifactor.svg){#fig-ek8-trifactor width="82%" fig-align="center"}
+
+![Taban etkisine duyarlı IRT grup farkları.](docs/assets/figures/carbon/phase2/phase2_f03_floor_irt.svg){#fig-ek8-floor-irt width="82%" fig-align="center"}
+
+### Ek 8.8. Sağlamlık, literatür kalibrasyonu ve klinik model {.unnumbered}
+
+H1 çoklu evreni, dış literatürle boyutsal etki büyüklüğü kalibrasyonu ve eşzamanlı klinik ayırt etme modeli ayrı keşifsel hatlardır. Literatür kalibrasyonu farklı kuramsal yapıları aynı estimand altında birleştiren doğrulayıcı bir meta-analiz değildir; klinik model de dış doğrulama olmadan tarama aracı olarak değerlendirilmez.
+
+![H1 çoklu evren spesifikasyon eğrisi.](docs/assets/figures/carbon/phase2/phase2_f05_h1_spec_curve.svg){#fig-ek8-h1-multiverse width="82%" fig-align="center"}
+
+![Tez bulgularının dış literatürle boyutsal etki büyüklüğü karşılaştırması.](docs/assets/figures/carbon/phase2/phase2_f06_meta_forest.svg){#fig-ek8-meta-calibration width="82%" fig-align="center"}
+
+![Klinik net faydanın eşik ve maliyet oranına duyarlılığı.](docs/assets/figures/carbon/phase2/phase2_f12_dca_heatmap.svg){#fig-ek8-clinical-net-benefit width="82%" fig-align="center"}
+
+### Ek 8.9. Dönem ve alt örneklem duyarlılığı {.unnumbered}
+
+Birincil H1 estimandı, her iki grubun ortak dönem desteğine sahip olduğu 2023 alt örnekleminde yeniden kestirilmiştir. Bu alt örneklemde grup farklarının BH-FDR sonrasında korunmaması, grup ile alım döneminin güçlü biçimde karışması ve azalan istatistiksel güç birlikte değerlendirilmelidir. Tam örneklem bulgusu bu nedenle dönem etkisinden bağımsız bir sonuç olarak yorumlanmamıştır.
+
+### Ek 8.10. Çocuk moderatörleri {.unnumbered}
+
+Çocuk cinsiyeti, yaş, anne yaşı ve alım dönemi ile ilişkili etkileşimler ek modellerde incelenmiştir. Düzeltme sonrası desteklenmeyen etkileşimler ana bulgu olarak kullanılmamış; özellikle alım dönemi ile tanı grubunun örtüşmesi, dönem duyarlılığının tasarım bağlamı olarak açıkça raporlanmıştır.
+
+{{< pagebreak >}}
+
+## Ek 9. İstatistiksel Analizlerde Kullanılan R Paketleri {#sec-ek-r-paketleri .unnumbered}
+
+*lavaan*, *brms*, *mice* ve *WeightIt*, R programlama ortamına ayrıca kurulan ve belirli istatistiksel yöntemlerin uygulanmasını sağlayan paketlerdir. Paket adı ile istatistiksel yöntem aynı kavram değildir: yöntem, analitik yaklaşımı; paket ise bu yaklaşımın R ortamında tanımlanmasını, hesaplanmasını ve denetlenmesini sağlayan yazılımı ifade eder. Bu ekte dört paketin yalnızca bu tezdeki kullanım alanları, uygulandıkları veri düzeyi, ürettikleri temel hesaplamalar ve tercih gerekçeleri açıklanmıştır [@rosseel2012lavaan; @burkner2017brms; @vanBuuren2011mice; @greifer2024weightit].
+
+> *Not: Paket sürümleri ana analiz hattında sabitlenmiştir. Bu ek yeni bir analiz tanımlamamakta; Gereç ve Yöntem bölümünde bildirilen analizlerin yazılımsal karşılığını açıklamaktadır.*
+
+### Ek 9.1. Paketlerin tezdeki işlevlerinin özeti {.unnumbered}
+
+| Paket | Tezdeki temel işlev | Uygulandığı veri/örneklem düzeyi |
+|:---|:---|:---|
+| *lavaan* | Doğrulayıcı faktör analizi, ölçüm değişmezliği, yapısal eşitlik ve diadik gizil değişken modelleri | Çocuk, anne, kardeş çifti ve anne-çocuk çifti; modele göre tam örneklem veya ilgili alt örneklem |
+| *brms* | Ana karşılaştırmaların Bayesçi tamamlayıcı olarak yinelenmesi ve belirsizliğin olasılık dağılımıyla gösterilmesi | Karşılık gelen birincil/sağlamlık modelinin aynı analitik örneklemi |
+| *mice* | Eksik aile ISEI kovaryatı için 50 çoklu atanmış veri seti oluşturulması | H3; aile/anne düzeyi, her aileden tek anne bildirimi |
+| *WeightIt* | T1DM ve kontrol grupları için aile düzeyinde IPTW dengeleme ağırlıklarının hesaplanması | Aile düzeyi; H3'te her aileden tek anne bildirimiyle yürütülen ağırlıklı model |
+
+: Paketlerin tezdeki işlevlerinin özeti. {#tbl-ek9-r-paketleri}
+
+### Ek 9.2. lavaan {.unnumbered}
+
+**Kullanım amacı:** Doğrudan gözlenemeyen ebeveynlik boyutlarını ölçek maddeleri üzerinden tanımlamak ve bu boyutlar arasındaki ilişkileri aynı model içinde incelemek için kullanılmıştır. Bu kapsamda doğrulayıcı faktör analizi, ölçüm değişmezliği, yapısal eşitlik modeli, Olsen-Kenny diadik faktör analizi ve ortak yazgı modeli uygulanmıştır [@rosseel2012lavaan].
+
+**Örneklem ve veri birimi:** Psikometrik analizlerde ilgili formu dolduran T1DM ve kontrol grubundaki çocuklar, sağlıklı kardeşler ve anneler değerlendirilmiştir. H2'de veri birimi aynı ailedeki kardeş çifti; H4'te her aileden tek anne bildirimi; H5'te ise anne-çocuk çifti olmuştur. Analiz örneklemi her model için ilgili maddeleri ve değişkenleri bulunan katılımcılardan oluşmuştur.
+
+**Yapılan hesaplamalar:** Dört boyutlu ölçüm yapısına ait faktör yükleri ve boyutlar arası ilişkiler hesaplanmış; modelin veriyi temsil gücü CFI, TLI, RMSEA ve SRMR ile değerlendirilmiştir. Sıralı madde yanıtlarında WLSMV kullanılmıştır. H2'de kardeş bağımlılığını gözeten Olsen-Kenny faktör analizinde, H5'te ortak aile örüntüsünü inceleyen ortak yazgı modelinde eksik veriler FIML ile ele alınmıştır. H4'te anne depresif belirtileri ile dört ebeveynlik boyutu aynı yapısal model içinde incelenmiştir.
+
+**Tercih edilme nedeni:** Ölçek puanlarını hatasız gözlenen değişkenler gibi ele almak yerine maddeler ile gizil boyutlar arasındaki ilişkiyi açıkça modelleyebilmesi; aynı ailedeki iki kişinin yanıt bağımlılığını ve birbiriyle ilişkili birden fazla sonucu tek modelde değerlendirebilmesi nedeniyle tercih edilmiştir.
+
+**Yorum sınırı:** İyi model uyumu ölçüm yapısının veriyle uyumlu olduğunu destekler; ölçeğin kusursuz olduğunu veya değişkenler arasında nedensellik bulunduğunu göstermez. Model uyumu yetersiz olduğunda katsayılar yalnız kurulan modele bağlı ilişkiler olarak yorumlanmıştır.
+
+### Ek 9.3. brms {.unnumbered}
+
+**Kullanım amacı:** Ana karşılaştırmaları Bayesçi çerçevede tamamlayıcı olarak yinelemek; verinin farkın varlığına, yokluğuna veya uygulamada önemsiz sayılabilecek kadar küçük olmasına verdiği desteği değerlendirmek için kullanılmıştır [@burkner2017brms].
+
+**Örneklem ve veri birimi:** Her Bayesçi model, karşılık geldiği ana karşılaştırmanın analitik örneklemini kullanmıştır. H1'in birincil karşılaştırmasında 2023 alt örneklemindeki 108 T1DM ve 40 kontrol ailesi, iki çocuk rolüyle 296 çocuk gözlemi olarak değerlendirilmiştir. Diğer Bayesçi tekrarlar, karşılık gelen ana modelin uygun katılımcı veya aile çiftleriyle yürütülmüştür.
+
+**Yapılan hesaplamalar:** Model katsayılarının tek bir nokta tahmini yerine olası değer dağılımları hesaplanmış; özetlerde %95 Bayesçi güvenilir aralıklar kullanılmıştır. Bayes faktörü hipotezlere verilen göreli desteği, pratik eşdeğerlik bölgesi (ROPE) ise katsayının önemsiz kabul edilen aralıkta kalma oranını göstermiştir. Markov Zinciri Monte Carlo örneklemesinin yeterliliği R-hat, etkin örneklem büyüklüğü ve ıraksayan geçişlerle denetlenmiştir.
+
+**Tercih edilme nedeni:** Yalnız p<0,05 kararına dayanmadan etkinin hangi değerlerde bulunmasının daha olası olduğunu, tahmin belirsizliğini ve verinin ihmal edilebilir bir etkiyle ne ölçüde uyumlu olduğunu gösterebildiği için tercih edilmiştir. Önsel dağılımlar Ek 6'da sunulmuştur.
+
+**Yorum sınırı:** Sonuçlar kullanılan önsel dağılımlara, modele ve veriye bağlıdır. Bayesçi analiz kesitsel tasarımın sınırlılıklarını ortadan kaldırmaz ve nedensellik sağlamaz; birincil analizlerin yerine değil, onları tamamlamak amacıyla kullanılmıştır.
+
+### Ek 9.4. mice {.unnumbered}
+
+**Kullanım amacı:** H3 modellerinde bazı ailelerde eksik olan ISEI kovaryatının sonuçlar üzerindeki etkisini değerlendirmek ve eksik değeri tek bir tahminle doldurmak yerine eksikliğe ilişkin belirsizliği korumak için kullanılmıştır [@vanBuuren2011mice].
+
+**Örneklem ve veri birimi:** Uygulama H3'te, her aileden tek anne bildiriminin yer aldığı aile/anne düzeyindeki analitik örneklemde yapılmıştır. Çoklu atama yalnız eksik aile ISEI kovaryatı için değerlendirilmiştir.
+
+**Yapılan hesaplamalar:** Gözlenen değişkenler arasındaki ilişkilerden yararlanılarak 50 farklı, makul tamamlanmış veri seti oluşturulmuştur. H3 modeli bu veri setlerinde yinelenmiş; elde edilen sonuçlar tam olgu ve FIML sonuçlarıyla karşılaştırılarak bulgunun eksik veri yaklaşımına duyarlılığı değerlendirilmiştir.
+
+**Tercih edilme nedeni:** Yalnız eksiksiz kayıtları kullanmanın örneklem kaybına ve seçilime yol açabilmesi; tek değerle doldurmanın ise eksik veriye bağlı belirsizliği olduğundan küçük göstermesi nedeniyle çoklu atama tercih edilmiştir.
+
+**Sınırlandırmalar:** Atanmış Beck Depresyon Envanteri puanları ana modellere alınmamış; tanı yaşı ve hastalık süresi için atama yapılmamıştır. Çoklu atama gözlenmemiş gerçek değerleri bilmez; sonuçların geçerliliği atama modelinin uygunluğuna ve eksikliğin gözlenen bilgilerle yeterince açıklanabilmesine bağlıdır.
+
+### Ek 9.5. WeightIt {.unnumbered}
+
+**Kullanım amacı:** T1DM ve kontrol gruplarını ölçülen başlangıç özellikleri bakımından daha karşılaştırılabilir hâle getiren eğilim skoru temelli ters olasılık ağırlıklarını (IPTW) hesaplamak için kullanılmıştır [@greifer2024weightit].
+
+**Örneklem ve veri birimi:** Ağırlıklar aile düzeyinde hesaplanmıştır. Her ailenin ölçülen özelliklerine göre T1DM veya kontrol grubunda bulunma olasılığı tahmin edilmiştir. Belgede ağırlıklı modelin açıkça belirtildiği H3 analizinde her aileden tek anne bildirimi kullanılmıştır.
+
+**Yapılan hesaplamalar:** Önceden belirlenen ayarlama değişkenleri kullanılarak her aile için grup üyeliği olasılığı ve bu olasılıktan türetilen istatistiksel ağırlık hesaplanmıştır. Kendi grubunda az temsil edilen özelliklere sahip aileler daha yüksek, sık temsil edilenler daha düşük ağırlık almıştır. Denge, standartlaştırılmış ortalama farklarla değerlendirilmiş ve mutlak SMD<0,10 referans alınmıştır.
+
+**Tercih edilme nedeni:** Çalışma rastgele atamalı olmadığı ve gruplar bazı sosyodemografik özelliklerde farklılaşabildiği için, ölçülen özelliklerden kaynaklanan karşılaştırma yanlılığını azaltmak amacıyla tercih edilmiştir. H3'te IPTW-ağırlıklı sonuçlar, kovaryans ayarlamalı ana sonuçların sağlamlık denetimini sağlamıştır.
+
+**Yorum sınırı:** Ağırlıklandırma yalnız ölçülmüş ve modele alınmış özellikleri dengeleyebilir; ölçülmemiş farklılıkları gidermez, rastgele atama oluşturmaz ve nedensel etki kanıtı sağlamaz. Bu nedenle bulgular, ölçülen özellikler hesaba katıldıktan sonra gruplar arasında kalan ayarlanmış farklar olarak yorumlanmıştır.
+
+### Ek 9.6. Paketler arasındaki görev ayrımı {.unnumbered}
+
+Dört paket aynı analizi tekrar etmemiş, analiz hattının farklı sorunlarına yanıt vermiştir. *lavaan* ölçüm yapısı ve aynı model içindeki ilişkiler için; *brms* bulguların Bayesçi olasılık ve belirsizlik çerçevesinde tamamlanması için; *mice* eksik kovaryatın oluşturduğu belirsizliğin korunması için; *WeightIt* ise gözlenen grup farklılıklarının ağırlıklandırmayla dengelenmesi için kullanılmıştır. Bu nedenle paketler birbirinin alternatifi değil, farklı yöntemsel gereksinimlere karşılık veren tamamlayıcı araçlardır.
+
+{{< pagebreak >}}
+
+## Ek 10. Sağlamlık ve Bayesçi Doğrulama Tabloları {#sec-ek-saglamlik .unnumbered}
+
+Bu ekte, Bulgular bölümündeki sağlamlık ve Bayesçi doğrulama başlığının ayrıntıları sunulmuştur. H3 duyarlılık üçlüsü ile H1 keşifsel çoklu evreni farklı hipotez ailelerine aittir; sonuçları birbirinin yerine kullanılmamıştır.
+
+### Ek 10.1. Çoklu evren ve eşdeğerlik (TOST) {.unnumbered}
+
+Anne öz-bildirimi için çoklu evren dağılımı, makul analiz kararları altındaki kestirimlerin özetidir ve tek başına hipotez testi değildir. TOST kararı, önceden belirlenen en küçük anlamlı etki büyüklüğü sınırına koşulludur; eşdeğerlik sonucu, seçilen SESOI dışındaki etkilerin yokluğunu göstermez (@tbl-ek10-multiverse-tost).
+
+```{r}
+#| label: tbl-ek10-multiverse-tost
+#| tbl-cap: "H3 anne öz-bildirimi için çoklu evren ve TOST kararları."
+#| echo: false
+#| results: asis
+.mv <- .ek7_read("robust_multiverse_summary.csv")
+.tost <- .ek7_read("robust_tost_equivalence.csv")
+if (is.null(.mv) || is.null(.tost)) {
+  .ek7_absent(if (is.null(.mv)) "robust_multiverse_summary.csv" else "robust_tost_equivalence.csv")
+} else {
+  .name <- function(x) .ek7_map(sub("_mean$", "", sub("^embu_p_", "", x)), .ek7_sub)
+  .idx <- match(.mv$outcome, .tost$outcome)
+  .out <- data.frame(
+    `EMBU-P alt ölçeği` = .name(.mv$outcome),
+    `Geçerli spesifikasyon` = .ek7_int(.mv$n_specs),
+    `Medyan d` = .ek7_num(.mv$median_d, 2),
+    `%5-%95 d` = .ek7_ci(.mv$d_q05, .mv$d_q95, 2),
+    `p < 0,05 oranı` = paste0(.ek7_num(100 * .mv$pct_p_lt_05, 0), "%"),
+    `TOST p` = .ek7_p(.tost$tost_p[.idx]),
+    `Karar` = ifelse(.tost$decision[.idx] %in% c("Equivalent", "Eşdeğer"), "Eşdeğer",
+                     ifelse(.tost$decision[.idx] %in% c("Indeterminate", "Belirsiz"), "Belirsiz",
+                            .tost$decision[.idx])),
+    check.names = FALSE,
+    stringsAsFactors = FALSE
+  )
+  print(.ek7_kable(.out, "lrrrrrl"))
+}
+```
+
+![Anne öz-bildirimi için çoklu evren spesifikasyon eğrisi.](docs/assets/figures/carbon/primary/fig-22-specification-curve.svg){#fig-ek10-h3-multiverse width="82%" fig-align="center"}
+
+### Ek 10.2. Ölçülmemiş karıştırıcı ve falsifikasyon {.unnumbered}
+
+Ölçülmemiş karıştırıcı duyarlılığı, gözlenen H3 etkisini açıklamak için gerekli karıştırma gücünü niceler; güven aralığı sıfırla uyumlu olduğunda yüksek dayanıklılık iddiası kurulmaz. Negatif kontrol ve falsifikasyon sonuçları da olası sahte sinyalleri denetlemek için tamamlayıcı olarak değerlendirilmiştir (@tbl-ek10-unmeasured-confounding).
+
+```{r}
+#| label: tbl-ek10-unmeasured-confounding
+#| tbl-cap: "H3 için ölçülmemiş karıştırıcı duyarlılığı ve negatif kontrol özeti."
+#| echo: false
+#| results: asis
+.s <- .ek7_read("robust_sensemakr_evalue.csv")
+.n <- .ek7_read("robust_negative_control.csv")
+if (is.null(.s) || is.null(.n)) {
+  .ek7_absent(if (is.null(.s)) "robust_sensemakr_evalue.csv" else "robust_negative_control.csv")
+} else {
+  .name <- function(x) .ek7_map(sub("_mean$", "", sub("^embu_p_", "", x)), .ek7_sub)
+  .out <- data.frame(
+    `EMBU-P alt ölçeği` = .name(.s$outcome),
+    `RV_q` = .ek7_num(.s$RV_q, 3),
+    `Nokta E-değeri` = .ek7_num(.s$evalue_point, 2),
+    `GA E-değeri` = .ek7_num(.s$evalue_ci, 2),
+    check.names = FALSE,
+    stringsAsFactors = FALSE
+  )
+  .flagged <- sum(.n$suspicious %in% c(TRUE, "TRUE", "True", "true"), na.rm = TRUE)
+  cat(sprintf("*Negatif kontrol denetiminde %d/%d eşleşme şüpheli olarak işaretlenmiştir.*\n\n", .flagged, nrow(.n)))
+  print(.ek7_kable(.out, "lrrr"))
+}
+```
+
+![H3 için ölçülmemiş karıştırıcı duyarlılık konturu.](docs/assets/figures/carbon/primary/fig-23-sensemakr-contour.svg){#fig-ek10-sensemakr width="82%" fig-align="center"}
+
+### Ek 10.3. Bayesçi paralel hat {.unnumbered}
+
+Bayesçi paralel raporlama H1 çocuk algısı ve H3 anne öz-bildirimi modellerini kapsamaktadır. BF₁₀, alternatif hipotez lehine kanıt oranını gösterir; BF₁₀<1, sıfır hipotezi lehine kanıt anlamına gelir. Önsel merkez ve genişlik duyarlılıkları, posterior yön, ROPE oranı ve MCMC tanıları birlikte değerlendirilmiştir (@tbl-ek10-bayesian-parallel). Küçük etkiler için sınırlı güç, sıfırla uyumlu veya belirsiz modellerin kesin yokluk kanıtı olarak yorumlanmasını engeller.
+
+```{r}
+#| label: tbl-ek10-bayesian-parallel
+#| tbl-cap: "H1 ve H3 Bayesçi paralel modellerinin posterior özetleri."
+#| echo: false
+#| results: asis
+.h1 <- .ek7_read("bayes_h1_posterior.csv")
+.h3 <- .ek7_read("bayes_h3_posterior.csv")
+if (is.null(.h1) || is.null(.h3)) {
+  .ek7_absent(if (is.null(.h1)) "bayes_h1_posterior.csv" else "bayes_h3_posterior.csv")
+} else {
+  .to_out <- function(d, hypothesis) {
+    .name <- .ek7_map(sub("_mean$", "", sub("^embu_[cp]_", "", d$outcome)), .ek7_sub)
+    data.frame(
+      Hipotez = hypothesis,
+      `Alt ölçek` = .name,
+      `Posterior b` = .ek7_num(d$estimate, 2),
+      `%95 güvenilir aralık` = .ek7_ci(d$ci_lo, d$ci_hi, 2),
+      pd = .ek7_num(d$pd, 3),
+      `ROPE içi` = paste0(.ek7_num(100 * d$rope_pct, 1), "%"),
+      BF10 = .ek7_num(d$bf10, 2),
+      `Kanıt sınıfı` = d$bf_class,
+      check.names = FALSE,
+      stringsAsFactors = FALSE
+    )
+  }
+  .out <- rbind(.to_out(.h1, "H1"), .to_out(.h3, "H3"))
+  print(.ek7_kable(.out, "llrrrrrl"))
+}
+```
+
+![H1 ve H3 Bayesçi posterior etki dağılımları.](docs/assets/figures/carbon/primary/fig-24-bayesian-forest.svg){#fig-ek10-bayesian-forest width="82%" fig-align="center"}
+
+![Bayesçi MCMC tanı paneli.](docs/assets/figures/carbon/primary/fig-25-bayesian-diagnostics.svg){#fig-ek10-bayesian-diagnostics width="82%" fig-align="center"}
+
+{{< pagebreak >}}
+
+## Ek 11. Niteliksel Kol Katılımcı Künyesi {#sec-ek-nitel-kunye .unnumbered}
 
 Niteliksel kol örneklemi yedi aile triadından (anne + T1DM tanılı çocuk + sağlıklı
 kardeş = 21 katılımcı) oluşmaktadır. Aşağıdaki künye, katılımcı mahremiyetini korumak
@@ -1204,7 +1512,7 @@ ve yerleşik evrelerindeki aile deneyimlerinin birlikte temsil edilmesini sağla
 
 {{< pagebreak >}}
 
-## Ek 9. COREQ-32 Kontrol Listesi {#sec-ek-coreq .unnumbered}
+## Ek 12. COREQ-32 Kontrol Listesi {#sec-ek-coreq .unnumbered}
 
 Bu çalışmanın niteliksel kolu, niteliksel araştırma raporlamasına yönelik COREQ
 (*Consolidated criteria for reporting qualitative research*) 32 maddelik kontrol
@@ -1212,10 +1520,13 @@ listesiyle değerlendirilmiştir [@tong2007coreq]. Otuz madde tam, iki madde (Ma
 transkript iadesi ve Madde 23 kodlayıcılar arası uyum katsayısı) bilinçli tasarım
 kararı olarak kısmen karşılanmış ve gerekçesiyle şeffaf biçimde raporlanmıştır;
 karşılanmayan madde yoktur.
+Kontrol listesinin araştırma ekibi/refleksivite, çalışma tasarımı, çözümleme ve raporlama
+blokları sırasıyla @tbl-coreq32-team, @tbl-coreq32-design, @tbl-coreq32-analysis ve
+@tbl-coreq32-reporting içinde sunulmuştur.
 
 | # | Madde | Durum | Açıklama |
 |---|---|---|---|
-| 1 | Görüşmeci/kolaylaştırıcı | ✓ | OM birinci görüşmeci; BA saha gözlemcisi (paralinguistik kayıt) |
+| 1 | Görüşmeci/&#8203;kolaylaştırıcı | ✓ | OM birinci görüşmeci; BA saha gözlemcisi (paralinguistik kayıt) |
 | 2 | Kimlik bilgileri | ✓ | OM ve BA: pediatrist (MD) + sosyal pediatri doktora araştırmacısı |
 | 3 | Cinsiyet | ✓ | Her iki araştırmacı da kadın |
 | 4 | Deneyim ve eğitim | ✓ | Klinik pediatri + nitel yöntem eğitimi; gelişimsel değerlendirme sertifikaları |
@@ -1223,36 +1534,57 @@ karşılanmayan madde yoktur.
 | 6 | Görüşmeci hakkında bilgi | ✓ | Rol, kimlik ve anonimlik güvencesi görüşme öncesi açıklandı |
 | 7 | Araştırmacı özellikleri | ✓ | Ayrıntılı positionality beyanı + refleksif notlar |
 | 8 | Metodolojik yönelim | ✓ | Nitel tanımlayıcı + fenomenolojik duyarlılık + refleksif tematik analiz |
+
+: COREQ-32: araştırma ekibi ve refleksivite (Maddeler 1–8). {#tbl-coreq32-team}
+
+{{< pagebreak >}}
+
+| # | Madde | Durum | Açıklama |
+|---|---|---|---|
 | 9 | Örnekleme | ✓ | Amaçlı örnekleme; tanı süresinde çeşitlilik ölçütü |
 | 10 | Erişim | ✓ | Poliklinik arşivi → telefon → randevu |
 | 11 | Örneklem büyüklüğü | ✓ | 7 aile triadı = 21 katılımcı |
 | 12 | Katılım göstermeyen | ✓ | 14 aile katılmadı (zaman kısıtı/isteksizlik); red gerekçeleri etik nedenle zorlanmadı |
 | 13 | Veri toplama yeri | ✓ | Hastane çocuk endokrinoloji polikliniğinde mahremiyeti sağlanmış oda; şifreli saklama |
 | 14 | Mevcut kişiler | ✓ | Yalnız OM, BA ve katılımcı |
-| 15 | Örneklem tanımı | ✓ | De-identifiye künye (Ek 8) |
+| 15 | Örneklem tanımı | ✓ | De-identifiye künye (Ek 11) |
 | 16 | Görüşme rehberi | ✓ | Uzman paneliyle geliştirildi (uzmanlık triangülasyonu); yansıtmalı senaryo sorusu eklendi |
 | 17 | Tekrarlı görüşme | ✓ | Hayır; tek seferlik görüşme |
 | 18 | Ses/görüntü kaydı | ✓ | Dijital ses kaydı (görüntü yok) |
 | 19 | Saha notları | ✓ | Eşzamanlı saha + paralinguistik notlar (BA) |
 | 20 | Süre | ✓ | Bireysel 20–40 dk; triad toplam 60–90 dk |
+
+: COREQ-32: çalışma tasarımı (Maddeler 9–20). {#tbl-coreq32-design}
+
+{{< pagebreak >}}
+
+| # | Madde | Durum | Açıklama |
+|---|---|---|---|
 | 21 | Veri doygunluğu | ✓ | "Doygunluk" yerine bilgi gücü (information power) çerçevesi |
 | 22 | Transkript iadesi | ⚠ Kısmen | Yazılı iade yapılmadı; görüşme-içi özetleme/teyit uygulandı (şeffaf raporlandı) |
 | 23 | Veri kodlayan kişi | ⚠ Kısmen | Birinci kodlayıcı OM; BA eleştirel dost; kappa hesaplanmadı (RTA epistemolojisi) |
-| 24 | Kod ağacı | ✓ | 24 kod × 8 triadik eksen × 4 makro tema (Ek 10; codebook v3) |
+| 24 | Kod ağacı | ✓ | 24 kod × 8 triadik eksen × 4 makro tema (Ek 13; codebook v3) |
 | 25 | Kodların türetilmesi | ✓ | İndüktif (veriden); literatürle bilgilendirilmiş, önceden belirlenmemiş |
 | 26 | Yazılım | ✓ | Word + Excel; manuel kodlama (veriye yakınlık gerekçesi) |
 | 27 | Katılımcı kontrolü | ✓ | Görüşme-içi teyit; formal post-hoc member checking yapılmadı (şeffaf) |
 | 28 | Alıntılar | ✓ | Yoğun alıntı; her biri rol + aile kodu ile tanımlandı |
 | 29 | Veri-bulgu tutarlılığı | ✓ | Her tema için ≥3 aileden alıntı; paralinguistik kayıt entegre |
+
+: COREQ-32: çözümleme (Maddeler 21–29). {#tbl-coreq32-analysis}
+
+{{< pagebreak >}}
+
+| # | Madde | Durum | Açıklama |
+|---|---|---|---|
 | 30 | Ana temaların sunumu | ✓ | 4 makro tema (tez) / 6 tema (dergi) açıkça sunuldu |
 | 31 | Küçük/minör temalar | ✓ | Triadik ayrışma + negatif vaka + eleştirel dost alternatif okumaları |
 | 32 | Açıklayıcı tartışma | ✓ | Tartışma bölümünde temalar literatürle yorumlandı |
 
-: COREQ-32 uyum tablosu (30 tam · 2 kısmi · 0 karşılanmayan). {#tbl-coreq32}
+: COREQ-32: raporlama (Maddeler 30–32). {#tbl-coreq32-reporting}
 
 {{< pagebreak >}}
 
-## Ek 10. Niteliksel Kod Ağacı (Codebook v3 Özeti) {#sec-ek-kod-agaci .unnumbered}
+## Ek 13. Niteliksel Kod Ağacı (Codebook v3 Özeti) {#sec-ek-kod-agaci .unnumbered}
 
 Niteliksel çözümlemede kullanılan kanonik kod kitabı (codebook v3) 24 açık kodu, sekiz
 triadik ekseni ve dört makro temayı (17 alt-tema) kapsar. Kodlar indüktif olarak veriden
@@ -1291,12 +1623,12 @@ etme/hariç tutma ölçütleri ve örnek alıntı bağlantıları kanonik codebo
 
 {{< pagebreak >}}
 
-## Ek 11. Yarı Yapılandırılmış Görüşme Rehberi {#sec-ek-gorusme-rehberi .unnumbered}
+## Ek 14. Yarı Yapılandırılmış Görüşme Rehberi {#sec-ek-gorusme-rehberi .unnumbered}
 
 Görüşmeler, aşağıdaki ana soru ve rol-başı açık uçlu sorulardan oluşan yarı
 yapılandırılmış rehber doğrultusunda yürütülmüş; sorular esnek biçimde derinleştirici
 alt sorularla (*prompts*) genişletilebilmiştir. Rehber, uzman panelinin katkısıyla
-geliştirilmiştir (bkz. Ek 9, Madde 16).
+geliştirilmiştir (bkz. Ek 12, Madde 16).
 
 **Ana soru:** Tip 1 diyabet hayatına giren anne, T1DM tanılı çocuk ve sağlıklı kardeşin
 ilişkileri nasıl etkilendi?

@@ -322,7 +322,7 @@ uygundur. **Ancak madde 19 (kilo kaybı)** kategoriler arasında tek-yönde sır
   tarar; ihlal → `assert_no_score_range_violations()` hata fırlatır.
 
 **Sonuç:** Türetilmiş skorlar kanonik CSV'ye yazılmaz; her yüklemede yeniden üretilir
-(tez Yöntem bölümü kararı, `chapters/02_yontem.qmd`).
+(tez Yöntem bölümü kararı, `chapters/03_gerec_ve_yontem.qmd`).
 
 ---
 

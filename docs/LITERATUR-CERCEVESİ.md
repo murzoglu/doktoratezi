@@ -2,7 +2,7 @@
 
 ## Giriş ve Raporun Kapsamı
 
-Bu rapor, 241 aile (DM indeks n = 120 + Kontrol indeks n = 121) × 2 katılımcı = 482 kilitli satırdan oluşan vaka–kontrol tasarımına dayalı doktora tezinin **chapters/03_bulgular.qmd** ve **chapters/04_tartisma.qmd** bölümleri için literatür çerçevesini sağlamak üzere derlenmiştir. Çalışmanın hipotez yapısı; küçük etki büyüklükleri (örn. EMBU-P alt ölçeklerinde |d| < 0,17), seçici desteklenen H1 sonuçları (çocuk algısında reddetme BF₁₀ = 8,12), zayıf-orta dyadic eşleşme (Olsen-Kenny latent r: Kontrol = 0,17, DM = 0,29), TOST eşdeğerlik testlerinde "Indeterminate" sonuçlar, RV_q = 0,04–0,08 ve E-değer = 1,36–1,59 düzeyinde zayıf-orta gözlemlenmemiş karıştırıcı dayanıklılığı ile karakterize edilmektedir. Aşağıdaki yirmi başlıkta her bir konu için (a) en güncel ve etkili kaynaklar (DOI ile), (b) bulgulara uygulanabilirlik özeti ve (c) tartışma bölümü için çerçeveleme önerisi sunulmaktadır.
+Bu rapor, 241 aile (DM indeks n = 120 + Kontrol indeks n = 121) × 2 katılımcı = 482 kilitli satırdan oluşan vaka–kontrol tasarımına dayalı doktora tezinin **chapters/04_bulgular.qmd** ve **chapters/05_tartisma_ve_sonuc.qmd** bölümleri için literatür çerçevesini sağlamak üzere derlenmiştir. Çalışmanın hipotez yapısı; küçük etki büyüklükleri (örn. EMBU-P alt ölçeklerinde |d| < 0,17), seçici desteklenen H1 sonuçları (çocuk algısında reddetme BF₁₀ = 8,12), zayıf-orta dyadic eşleşme (Olsen-Kenny latent r: Kontrol = 0,17, DM = 0,29), TOST eşdeğerlik testlerinde "Indeterminate" sonuçlar, RV_q = 0,04–0,08 ve E-değer = 1,36–1,59 düzeyinde zayıf-orta gözlemlenmemiş karıştırıcı dayanıklılığı ile karakterize edilmektedir. Aşağıdaki yirmi başlıkta her bir konu için (a) en güncel ve etkili kaynaklar (DOI ile), (b) bulgulara uygulanabilirlik özeti ve (c) tartışma bölümü için çerçeveleme önerisi sunulmaktadır.
 
 ---
 
@@ -328,7 +328,7 @@ Bu rapor, 241 aile (DM indeks n = 120 + Kontrol indeks n = 121) × 2 katılımc�
 
 ## Bütünleştirici Sentez ve Tartışma Çerçevelemesi İçin Genel Önerme
 
-Bu literatür çerçevesi, doktora tezinin **chapters/04_tartisma.qmd** bölümünde aşağıdaki *narrative arc* çevresinde örgütlenebilir:
+Bu literatür çerçevesi, doktora tezinin **chapters/05_tartisma_ve_sonuc.qmd** bölümünde aşağıdaki *narrative arc* çevresinde örgütlenebilir:
 
 **(i) Açılış konumu:** Pinquart (2013) meta-analizinin havuzlanmış aşırı koruma etkisi (g = 0,39) için kuramsal beklenti zemini kurulur; ISPAD/ADA/NICE klinik kılavuzlarının çoklu-informant psikososyal değerlendirme önerileri operasyonel zemini sağlar.
 

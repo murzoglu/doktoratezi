@@ -423,22 +423,76 @@ list(
   # KISIM XIII / 40 — APA tablo + sekil paketi, Sprint A paketleri
   # Bayes CSV girdileri format="file" ile izlenir: dosya icerigi (hash)
   # degisince targets asagi-akis APA tablolarini otomatik gecersizler.
-  # ONCEKI KOK-NEDEN (denetim P0-1): dosya-izleme olmadan read.csv kullanildigi
-  # icin model yeniden calisinca (BF 5,68 -> 10,55) tar_outdated() bunu
-  # goremiyor, turev CSV'ler bayat kaliyordu.
-  tar_target(bayes_h1_posterior_path, "outputs/tables/bayes_h1_posterior.csv", format = "file"),
-  tar_target(bayes_h3_posterior_path, "outputs/tables/bayes_h3_posterior.csv", format = "file"),
-  tar_target(bayes_h1_diagnostics_path, "outputs/tables/bayes_h1_diagnostics.csv", format = "file"),
-  tar_target(bayes_h3_diagnostics_path, "outputs/tables/bayes_h3_diagnostics.csv", format = "file"),
-  tar_target(bayes_loo_waic_path, "outputs/tables/bayes_loo_waic.csv", format = "file"),
-  tar_target(bayes_h1_prior_sensitivity_path, "outputs/tables/bayes_h1_prior_sensitivity.csv", format = "file"),
+  # Hesaplama da target DAG icindedir; temiz bir outputs/ dizini artik harici
+  # bir audit runner'i calistirilmadan yeniden uretilebilir.
+  tar_target(
+    bayesian_parallel_results,
+    run_bayesian_parallel_pipeline(
+      df_family_ses,
+      df_long_scored,
+      run_h1 = TRUE,
+      run_h3 = TRUE,
+      iter = 4000L,
+      warmup = 1500L,
+      chains = 4L,
+      seed = 20260428L
+    )
+  ),
+  tar_target(
+    bayes_priors_path,
+    save_apa_table_csv(bayesian_parallel_results$priors_table,
+      "outputs/tables/bayes_priors.csv"),
+    format = "file"
+  ),
+  tar_target(
+    bayes_h1_posterior_path,
+    save_apa_table_csv(bayesian_parallel_results$h1_posterior_table,
+      "outputs/tables/bayes_h1_posterior.csv"),
+    format = "file"
+  ),
+  tar_target(
+    bayes_h3_posterior_path,
+    save_apa_table_csv(bayesian_parallel_results$h3_posterior_table,
+      "outputs/tables/bayes_h3_posterior.csv"),
+    format = "file"
+  ),
+  tar_target(
+    bayes_h1_diagnostics_path,
+    save_apa_table_csv(bayesian_parallel_results$h1_diagnostics_table,
+      "outputs/tables/bayes_h1_diagnostics.csv"),
+    format = "file"
+  ),
+  tar_target(
+    bayes_h3_diagnostics_path,
+    save_apa_table_csv(bayesian_parallel_results$h3_diagnostics_table,
+      "outputs/tables/bayes_h3_diagnostics.csv"),
+    format = "file"
+  ),
+  tar_target(
+    bayes_loo_waic_path,
+    save_apa_table_csv(bayesian_parallel_results$loo_waic_table,
+      "outputs/tables/bayes_loo_waic.csv"),
+    format = "file"
+  ),
+  tar_target(
+    bayes_h1_prior_sensitivity_path,
+    save_apa_table_csv(bayesian_parallel_results$h1_prior_sensitivity_table,
+      "outputs/tables/bayes_h1_prior_sensitivity.csv"),
+    format = "file"
+  ),
+  tar_target(
+    bayes_target_summary_path,
+    save_apa_table_csv(bayesian_parallel_results$target_summary,
+      "outputs/tables/bayes_target_summary.csv"),
+    format = "file"
+  ),
   tar_target(bayes_h1_posterior_table, utils::read.csv(bayes_h1_posterior_path, fileEncoding = "UTF-8")),
   tar_target(bayes_h3_posterior_table, utils::read.csv(bayes_h3_posterior_path, fileEncoding = "UTF-8")),
   tar_target(bayes_h1_diagnostics_table, utils::read.csv(bayes_h1_diagnostics_path, fileEncoding = "UTF-8")),
   tar_target(bayes_h3_diagnostics_table, utils::read.csv(bayes_h3_diagnostics_path, fileEncoding = "UTF-8")),
   tar_target(bayes_loo_waic_table, utils::read.csv(bayes_loo_waic_path, fileEncoding = "UTF-8")),
   tar_target(bayes_h1_prior_sensitivity_table, utils::read.csv(bayes_h1_prior_sensitivity_path, fileEncoding = "UTF-8")),
-  tar_target(apa_h1_forest_plot, apa_plot_h1_forest(h1_primary_fixed_effects_table)),
+  tar_target(apa_h1_forest_plot, apa_plot_h1_forest(h1_primary_period2023_group_main_effect_table)),
   tar_target(apa_h4_sem_path_plot, apa_plot_h4_sem_path(h4_latent_sem_structural_paths_table)),
   tar_target(apa_h5_bland_altman_plot, apa_plot_h5_bland_altman(df_family_ses)),
   tar_target(apa_h5_rsa_surface_plot, apa_plot_h5_rsa_surface(h5_rsa_parameters_table, df_family_ses)),
@@ -1678,7 +1732,7 @@ list(
     format = "file"
   ),
 
-  # KISIM XXXII/94, 95 — Tez Bolum 6 + Makale 4-6 yayin plan
+  # KISIM XXXII/94, 95 — Tez bulgular bolumu + Makale 4-6 yayin plan
   tar_target(phase2_thesis_results, run_phase2_thesis_mapping_pipeline(bayes_h1_posterior_table)),
   tar_target(phase2_thesis_chapter_mapping_table,
     phase2_thesis_results$chapter_mapping),
@@ -1691,7 +1745,7 @@ list(
   tar_target(
     phase2_thesis_chapter_mapping_csv,
     save_apa_table_csv(phase2_thesis_chapter_mapping_table,
-      "outputs/tables/phase2_thesis_chapter06_mapping.csv"),
+      "outputs/tables/phase2_thesis_results_mapping.csv"),
     format = "file"
   ),
   tar_target(

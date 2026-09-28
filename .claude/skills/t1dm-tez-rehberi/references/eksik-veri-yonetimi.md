@@ -256,7 +256,7 @@ m_total <- lmer(outcome ~ group_dm + ses_latent_z + age_gap_z + (1 | aile_no_f),
                  data = df_family_ses)
 ```
 
-**Bu kararın gerekçesi `chapters/02_yontem.qmd` içinde belgelenir; ön-kayıt referansı
+**Bu kararın gerekçesi `chapters/03_gerec_ve_yontem.qmd` içinde belgelenir; ön-kayıt referansı
 `osf.io/pytfe`.**
 
 ### Klinik Sensitivity MI

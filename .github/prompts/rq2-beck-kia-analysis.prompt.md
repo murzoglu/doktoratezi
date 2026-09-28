@@ -13,7 +13,7 @@ First read:
 - [AGENTS.md](../../AGENTS.md)
 - [CLAUDE.md](../../CLAUDE.md)
 - Relevant code in [R/](../../R/) and [scripts/R/](../../scripts/R/)
-- Current thesis result text in [chapters/03_bulgular.qmd](../../chapters/03_bulgular.qmd), if the task touches reporting
+- Current thesis result text in [chapters/04_bulgular.qmd](../../chapters/04_bulgular.qmd), if the task touches reporting
 
 User focus: `${input:focus:What RQ2 analysis or output should be planned/drafted?}`
 

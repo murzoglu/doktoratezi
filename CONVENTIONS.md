@@ -61,7 +61,8 @@ after the scaffold is materialized into the repo.
    or mechanistic T1DM biology; `zotero` is for Zotero Web API search/export
    through `scripts/util/zotero_env_bridge.py`, local Zotero library work,
    citation insertion, BibTeX export/sync, and reference-library reconciliation.
-   Load `ZOTERO_API_KEY` from `.env`; never print the key. Zotero library writes
+   Load `ZOTERO_API_KEY` through Doppler (`scripts/util/doppler_run.sh`); a local
+   `.env` is migration/fallback only. Never print the key. Zotero library writes
    or imports require explicit confirmation unless the user directly asked to
    add/import records.
    In-session `zotero-refs` MCP (gitignored bridge `scripts/mcp/zotero_refs_bridge.py`,

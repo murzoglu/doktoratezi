@@ -14,6 +14,6 @@ allowed-tools: Bash(./dmnitel *), Read
 2. Kanıt ayrımı disiplinini uygula: nitel tema ≠ nicel estimate; nicel sonuç nitel
    bulgunun nedensel kanıtı olarak sunulmaz; joint display katmanı iki kolu yan yana
    getirir ve kanıt türlerini açıkça ayırır.
-3. Tez bölümü yazımına geçilecekse ana merkezin
-   `/workspaces/T1DM-Tez/tez-yazim` olduğunu ve oradaki bölüm
-   briefinin (`03_bolum-hazirlik/`) açılması gerektiğini belirt.
+3. Tez bölümü yazımına geçilecekse ana merkezin repo kökündeki
+   `tez-yazim/` olduğunu ve oradaki bölüm briefinin
+   (`03_bolum-hazirlik/`) açılması gerektiğini belirt.

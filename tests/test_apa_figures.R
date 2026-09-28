@@ -9,10 +9,13 @@ outcomes <- c(
   "embu_c_reddetme_mean",
   "embu_c_karsilastirma_mean"
 )
-terms <- c("role_fKontrol_Kardes", "role_fDM_Hasta_Indeks", "role_fDM_Hasta_Kardes")
-
-h1_rows <- expand.grid(outcome = outcomes, term = terms, stringsAsFactors = FALSE)
-h1_rows$model_type <- "primary_multilevel_ancova"
+h1_rows <- data.frame(
+  outcome = outcomes,
+  contrast = "DM_vs_Kontrol_rol_ortalamasi",
+  subsample_year = 2023L,
+  stringsAsFactors = FALSE
+)
+h1_rows$model_type <- "primary_period2023_multilevel_ancova"
 h1_rows$estimate <- stats::rnorm(nrow(h1_rows), 0, 0.15)
 h1_rows$std_error <- 0.05
 h1_rows$df <- 220
@@ -20,6 +23,7 @@ h1_rows$statistic <- h1_rows$estimate / h1_rows$std_error
 h1_rows$p_value <- 0.2
 h1_rows$ci_low <- h1_rows$estimate - 1.96 * h1_rows$std_error
 h1_rows$ci_high <- h1_rows$estimate + 1.96 * h1_rows$std_error
+h1_rows$p_fdr_across_h1_group <- 0.4
 
 h4 <- data.frame(
   model_type = "latent_sem_wlsmv",
@@ -316,7 +320,9 @@ stopifnot(inherits(p21, "ggplot"))
 stopifnot(inherits(p22, "ggplot"))
 stopifnot(inherits(p23, "ggplot"))
 stopifnot(inherits(p24, "ggplot"))
-stopifnot(nrow(apa_h1_forest_data(h1_rows)) == 12L)
+stopifnot(nrow(apa_h1_forest_data(h1_rows)) == 4L)
+stopifnot(identical(p1$labels$title, "H1 çocuk algısı: 2023 birincil grup etkisi"))
+stopifnot(inherits(try(apa_h1_forest_data(transform(h1_rows, subsample_year = 2022L)), silent = TRUE), "try-error"))
 stopifnot(nrow(apa_h4_path_data(h4)) == 4L)
 stopifnot(nrow(apa_h5_bland_altman_data(family)) == n * 4L * 3L)
 stopifnot(nrow(apa_h2_apim_path_data(h2)) == 16L)

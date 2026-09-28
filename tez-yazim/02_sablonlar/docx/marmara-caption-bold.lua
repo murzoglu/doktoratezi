@@ -2,7 +2,7 @@
   marmara-caption-bold.lua
 
   Marmara Tez Formati Talimatnamesi §1.6/§1.7 geregi tablo ve sekil
-  basliklarinda etiket ("Tablo 1.", "Sekil 2a.") KALIN, devami normal olmalidir.
+  basliklarinda etiket ("Tablo 1:", "Sekil 2a:") KALIN, devami normal olmalidir.
 
   Quarto DOCX hattinda crossref filtresi ("quarto") caption'i bagimsiz bir
   Para blogu olarak birakir. Bu blogun yapisi:
@@ -10,15 +10,22 @@
      [2] Str "Tablo" | "Şekil"
      [3] Str " "
      [4] Str "1"        (numara; alt-grup icin "1a" olabilir)
-     [5] Str "."
+     [5] Str ":"
      [6..] Space + baslik metni
   Bu filtre 2..5 arasindaki etiket token'larini Strong (bold) ile sarar.
+  Enstitu teslim duzeltmesi geregi basliklar haricindeki kullanici kaynakli
+  Strong bicimleri ciktida normal yaziya cevrilir; tablo/sekil etiket kalinligi
+  bu temizlikten sonra yeniden yalniz caption etiketi icin uygulanir.
 
   ÖNEMLI: Bu filtre "quarto" filtresinden SONRA calismali (bkz. _quarto.yml
   filters listesinde "quarto" sentinel'inden sonra gelir). Ayrica dogrudan
   Para/Plain element fonksiyonu Quarto AST'sinde tetiklenmedigi icin
   Pandoc(doc) icinde walk ile uygulanir.
 ]]
+
+local function strip_strong(inline)
+  return inline.content
+end
 
 -- inlines listesinde etiketi bulup Strong ile sarar; degistiyse yeni liste,
 -- degilse nil doner.
@@ -36,11 +43,12 @@ local function bolden_caption_inlines(inlines)
   end
   if not start then return nil end
 
-  -- Etiketin sonu: "." ile biten (veya "." olan) ilk Str token'i
+  -- Etiketin sonu: ":" ile biten ilk Str token'i. Nokta, eski DOCX
+  -- girdileriyle uyumluluk için de kabul edilir.
   local label_end = nil
   for i = start, math.min(#inlines, start + 5) do
     local el = inlines[i]
-    if el.t == "Str" and el.text:match("%.$") then
+    if el.t == "Str" and el.text:match("[%.:]$") then
       label_end = i
       break
     end
@@ -69,10 +77,54 @@ local function process_block(b)
   return b
 end
 
+-- Marmara §2.5: kısaltma, ayraç ve açıklama aynı satırda hizalı kalmalıdır.
+-- İlk satırdaki "ABD" ile bu tek tabloyu tanır ve kaynak metindeki kısa
+-- ayraç çizgilerinden bağımsız, PDF/DOCX ortak kolon genişliği uygular.
+local function size_abbreviation_table(tbl)
+  if #tbl.bodies == 0 or #tbl.bodies[1].body == 0 then return nil end
+  local first_row = tbl.bodies[1].body[1]
+  if #first_row.cells == 0 then return nil end
+  if pandoc.utils.stringify(first_row.cells[1].contents) ~= "ABD" then return nil end
+
+  tbl.colspecs = {
+    {pandoc.AlignLeft, 0.17},
+    {pandoc.AlignCenter, 0.03},
+    {pandoc.AlignLeft, 0.80},
+  }
+  return tbl
+end
+
+local function has_caption(tbl)
+  if not tbl.caption then return false end
+  if tbl.caption.short and #tbl.caption.short > 0 then return true end
+  return tbl.caption.long and #tbl.caption.long > 0
+end
+
+-- LaTeX longtable ortami, altyazisi olmasa da `table` sayacini artirir.
+-- Bu tur yapisal tablolar (onay, kisaltmalar, ozgecmis) dizinde gorunur
+-- bir tez tablosu olmadigindan sonraki baslikli tablonun sayisini koruruz.
+local function preserve_unnumbered_table_counter(blocks)
+  local out = {}
+  for _, block in ipairs(blocks) do
+    table.insert(out, block)
+    if block.t == "Table" and not has_caption(block) then
+      table.insert(out, pandoc.RawBlock("latex", "\\addtocounter{table}{-1}"))
+    end
+  end
+  return out
+end
+
 function Pandoc(doc)
+  doc.blocks = doc.blocks:walk({
+    Strong = strip_strong,
+  })
   doc.blocks = doc.blocks:walk({
     Para = process_block,
     Plain = process_block,
+    Table = size_abbreviation_table,
+  })
+  doc.blocks = doc.blocks:walk({
+    Blocks = preserve_unnumbered_table_counter,
   })
   return doc
 end

@@ -48,7 +48,8 @@ stopifnot(
 # Önceki audit run çıktıları olmalı (outputs/tables)
 expected_csvs <- c("bayes_priors.csv", "bayes_h1_posterior.csv", "bayes_h3_posterior.csv",
                    "bayes_h1_diagnostics.csv", "bayes_h3_diagnostics.csv",
-                   "bayes_loo_waic.csv", "bayes_target_summary.csv")
+                   "bayes_loo_waic.csv", "bayes_h1_prior_sensitivity.csv",
+                   "bayes_target_summary.csv")
 out_dir <- file.path(thesis_paths()$outputs_dir, "tables")
 missing_csvs <- setdiff(expected_csvs, list.files(out_dir))
 stopifnot(length(missing_csvs) == 0L)
@@ -81,6 +82,18 @@ for (df_bf in list(post_h1, post_h3)) {
   ))
 }
 
+# Önsel-genişlik duyarlılığı her standard önsel için üretilmeli ve BF etiketi
+# sayısal değerle aynı Jeffreys sınıfında kalmalıdır.
+prior_sensitivity <- read.csv(file.path(out_dir, "bayes_h1_prior_sensitivity.csv"))
+stopifnot(
+  nrow(prior_sensitivity) == 3L,
+  all(c("prior_sd", "bf10", "bf_class", "status") %in% names(prior_sensitivity)),
+  all(prior_sensitivity$status == "ok"),
+  all(is.finite(prior_sensitivity$bf10)),
+  all(mapply(function(v, lbl) identical(bayes_bf_classify(v), lbl),
+             prior_sensitivity$bf10, prior_sensitivity$bf_class))
+)
+
 # Diagnostics — R̂ < 1.01 eşiği
 diag_h3 <- read.csv(file.path(out_dir, "bayes_h3_diagnostics.csv"))
 stopifnot(
@@ -89,4 +102,4 @@ stopifnot(
   all(diag_h3$n_divergent == 0L)
 )
 
-cat("[PASS] KISIM XII Bayesian parallel (priors + frame prep + BF classifier + audit CSV smoke)\n")
+cat("[PASS] KISIM XII Bayesian parallel (priors + frame prep + BF classifier + prior sensitivity + audit CSV smoke)\n")

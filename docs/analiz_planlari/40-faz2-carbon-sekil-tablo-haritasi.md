@@ -4,10 +4,10 @@
 
 Kaynaklar:
 
-- Faz II aktif tez bölümü: `chapters/06_post_hoc_genisleme.qmd`
+- Faz II aktif tez bölümü: `chapters/04_bulgular.qmd` (`#sec-kesifsel-genisletme`)
 - Faz II SAP: `docs/analiz_planlari/04-sap-faz2-posthoc.md`
 - Faz II figür üretimi: `R/48_phase2_apa_outputs.R`
-- Tez Bölüm 6 eşlemesi: `R/49_phase2_thesis_mapping.R`
+- Tez bulgular bölümü eşlemesi: `R/49_phase2_thesis_mapping.R`
 - Rapor/tezde kullanılan tracked figürler: `docs/assets/figures/carbon/phase2/phase2_f*.svg`
 - Generated kaynak figürler: `outputs/figures/phase2_f*.{png,svg}` (git-dışı, yeniden üretilebilir)
 - Gerçekleşen tablolar: `outputs/tables/phase2_*.csv`
@@ -35,17 +35,17 @@ SAP Bölüm 93.2 başlangıçta sekiz figür planladı; Carbon revizyonu sonras�
 
 | Gerçekleşen ID | SAP/Tracker karşılığı | Kaynak tablo | Çıktı | Carbon/Figma revizyonu | Tez/rapor yeri | Ana mesaj |
 |---|---|---|---|---|---|---|
-| F2-F01 | SAP F2-F01, tracker F2-02 | `phase2_trifactor_loadings.csv`, `phase2_trifactor_fit_indices.csv` | `docs/assets/figures/carbon/phase2/phase2_f01_trifactor.svg` (`outputs/figures/phase2_f01_trifactor.{png,svg}` generated) | Carbon Charts 1-3; SVG metadata eklendi | `chapters/06_post_hoc_genisleme.qmd` 6.2 | Trait, indeks-method ve kardeş-method yükleri aynı madde yüzeyinde ayrışıyor |
-| F2-F02 | SAP F2-F02, tracker F2-05 | `phase2_xinfo_summary.csv`, `phase2_xinfo_edges.csv`, `phase2_xinfo_nodes.csv` | `docs/assets/figures/carbon/phase2/phase2_f02_xinfo.svg` (`outputs/figures/phase2_f02_xinfo.{png,svg}` generated) | Carbon categorical + redundant stack labels; SVG metadata eklendi | 25.1; Bölüm 6.2 | Pooled ağda cross-informant kenar oranı düşük, yapı bilgi-veren içinde kapanıyor |
-| F2-F03 | SAP F2-F03, tracker F2-06 | `phase2_floor_irt_group_delta.csv`, `phase2_floor_irt_theta_comparison.csv` | `docs/assets/figures/carbon/phase2/phase2_f03_floor_irt.svg` (`outputs/figures/phase2_f03_floor_irt.{png,svg}` generated) | Diverging yön kodu; gri eşik çizgileri; SVG metadata eklendi | 25.2; Bölüm 6.3 | Floor-aware theta H1 reddetme/aşırı koruma farkını büyütüyor |
-| F2-F04 | SAP F2-F04, tracker F2-14/XXIII | `phase2_ad_moderation_h5_stratified_correlations.csv` | `docs/assets/figures/carbon/phase2/phase2_f04_h5_strat.svg` (`outputs/figures/phase2_f04_h5_strat.{png,svg}` generated) | Renk + şekil ile redundant encoding; SVG metadata eklendi | 25.3 ve 25.4; Bölüm 6.4-6.5 | H5 diadik korelasyonları grup ve AD strata düzeyinde ayrışıyor; grup farkı kesin değil |
-| F2-F05 | SAP F2-F07, tracker F2-28/31 | `phase2_multi_h1_spec_results.csv`, `phase2_multi_h1_curve_summary.csv`, `phase2_multi_sca_inferential.csv` | `docs/assets/figures/carbon/phase2/phase2_f05_h1_spec_curve.svg` (`outputs/figures/phase2_f05_h1_spec_curve.{png,svg}` generated) | Specification curve tarifi; median çizgisi; SVG metadata eklendi | 25.8; Bölüm 6.9 | 120/120 başarılı specification içinde H1 yönü pozitif kalıyor |
-| F2-F06 | SAP F2-F08, tracker F2-32 | `phase2_meta_combined_studies.csv`, `phase2_meta_pooling_summary.csv` | `docs/assets/figures/carbon/phase2/phase2_f06_meta_forest.svg` (`outputs/figures/phase2_f06_meta_forest.{png,svg}` generated) | Forest plot istisnası: nötr CI + mavi pooled işaret; SVG metadata eklendi | 25.9; Bölüm 6.10 | Pooled etki `0.139 [0.049, 0.230]`, çalışma etkileri literatür merkezine yakın |
-| F2-F07 | Tracker F2-05 ayrıntı | `phase2_xinfo_edges.csv`, `phase2_xinfo_centrality.csv` | `docs/assets/figures/carbon/phase2/phase2_f07_xinfo_network.svg` (`outputs/figures/phase2_f07_xinfo_network.{png,svg}` generated) | Carbon Charts categorical + cross-informant shape encoding; SVG metadata eklendi | 25.1; Bölüm 6.2 | Cross-informant ağ, edge ağırlığı ve bilgi-veren kapanmasını ayrıntılı gösteriyor |
-| F2-F09 | SAP F2-F06, tracker F2-21 | `phase2_imai_sensitivity_grid.csv`, `phase2_imai_summary.csv` | `docs/assets/figures/carbon/phase2/phase2_f09_imai_sensitivity.svg` (`outputs/figures/phase2_f09_imai_sensitivity.{png,svg}` generated) | Rho x adjusted ACME küçük çoklu panel; critical rho kesikli çizgi; SVG metadata eklendi | 25.6; Bölüm 6.7 | Dolaylı etkiler ölçülmemiş karıştırıcıya karşı çok kırılgan |
-| F2-F10 | Tracker F2-22/F2-24 | `phase2_dag_ci_tests.csv`, `phase2_dag_three_level.csv` | `docs/assets/figures/carbon/phase2/phase2_f10_dag_validation.svg` (`outputs/figures/phase2_f10_dag_validation.{png,svg}` generated) | Carbon tile/technical validation paneli; Technical Diagram metadata eklendi | 25.6; Bölüm 6.7 | DAG implied CI 12/12 tutarlı; yıl kümelenmesi alt ölçeğe göre değişiyor |
-| F2-F11 | Tracker F2-33 | `phase2_meta_ppc_summary.csv` | `docs/assets/figures/carbon/phase2/phase2_f11_ppc_replication.svg` (`outputs/figures/phase2_f11_ppc_replication.{png,svg}` generated) | PPC interval + observed marker; SVG metadata eklendi | 25.9; Bölüm 6.10 | 4/4 outcome posterior predictive replication ile uyumlu |
-| F2-F12 | Tracker F2-37 | `phase2_clinical_dca_heatmap.csv` | `docs/assets/figures/carbon/phase2/phase2_f12_dca_heatmap.svg` (`outputs/figures/phase2_f12_dca_heatmap.{png,svg}` generated) | Diverging heatmap; sampled value labels; SVG metadata eklendi | 25.10; Bölüm 6.11 | Net benefit threshold ve cost-ratio arttıkça hızlı azalıyor |
+| F2-F01 | SAP F2-F01, tracker F2-02 | `phase2_trifactor_loadings.csv`, `phase2_trifactor_fit_indices.csv` | `docs/assets/figures/carbon/phase2/phase2_f01_trifactor.svg` (`outputs/figures/phase2_f01_trifactor.{png,svg}` generated) | Carbon Charts 1-3; SVG metadata eklendi | `chapters/04_bulgular.qmd#sec-kesifsel-genisletme` | Trait, indeks-method ve kardeş-method yükleri aynı madde yüzeyinde ayrışıyor |
+| F2-F02 | SAP F2-F02, tracker F2-05 | `phase2_xinfo_summary.csv`, `phase2_xinfo_edges.csv`, `phase2_xinfo_nodes.csv` | `docs/assets/figures/carbon/phase2/phase2_f02_xinfo.svg` (`outputs/figures/phase2_f02_xinfo.{png,svg}` generated) | Carbon categorical + redundant stack labels; SVG metadata eklendi | Bulgular / ileri psikometrik katman | Pooled ağda cross-informant kenar oranı düşük, yapı bilgi-veren içinde kapanıyor |
+| F2-F03 | SAP F2-F03, tracker F2-06 | `phase2_floor_irt_group_delta.csv`, `phase2_floor_irt_theta_comparison.csv` | `docs/assets/figures/carbon/phase2/phase2_f03_floor_irt.svg` (`outputs/figures/phase2_f03_floor_irt.{png,svg}` generated) | Diverging yön kodu; gri eşik çizgileri; SVG metadata eklendi | Bulgular / ileri psikometrik katman | Floor-aware theta H1 reddetme/aşırı koruma farkını büyütüyor |
+| F2-F04 | SAP F2-F04, tracker F2-14/XXIII | `phase2_ad_moderation_h5_stratified_correlations.csv` | `docs/assets/figures/carbon/phase2/phase2_f04_h5_strat.svg` (`outputs/figures/phase2_f04_h5_strat.{png,svg}` generated) | Renk + şekil ile redundant encoding; SVG metadata eklendi | Bulgular / keşifsel H5 genişletmesi | H5 diadik korelasyonları grup ve AD strata düzeyinde ayrışıyor; grup farkı kesin değil |
+| F2-F05 | SAP F2-F07, tracker F2-28/31 | `phase2_multi_h1_spec_results.csv`, `phase2_multi_h1_curve_summary.csv`, `phase2_multi_sca_inferential.csv` | `docs/assets/figures/carbon/phase2/phase2_f05_h1_spec_curve.svg` (`outputs/figures/phase2_f05_h1_spec_curve.{png,svg}` generated) | Specification curve tarifi; median çizgisi; SVG metadata eklendi | Bulgular / keşifsel multiverse | 120/120 başarılı specification içinde H1 yönü pozitif kalıyor |
+| F2-F06 | SAP F2-F08, tracker F2-32 | `phase2_meta_combined_studies.csv`, `phase2_meta_pooling_summary.csv` | `docs/assets/figures/carbon/phase2/phase2_f06_meta_forest.svg` (`outputs/figures/phase2_f06_meta_forest.{png,svg}` generated) | Forest plot istisnası: nötr CI + mavi pooled işaret; SVG metadata eklendi | Bulgular / keşifsel meta-analitik katman | Pooled etki `0.139 [0.049, 0.230]`, çalışma etkileri literatür merkezine yakın |
+| F2-F07 | Tracker F2-05 ayrıntı | `phase2_xinfo_edges.csv`, `phase2_xinfo_centrality.csv` | `docs/assets/figures/carbon/phase2/phase2_f07_xinfo_network.svg` (`outputs/figures/phase2_f07_xinfo_network.{png,svg}` generated) | Carbon Charts categorical + cross-informant shape encoding; SVG metadata eklendi | Bulgular / ileri psikometrik katman | Cross-informant ağ, edge ağırlığı ve bilgi-veren kapanmasını ayrıntılı gösteriyor |
+| F2-F09 | SAP F2-F06, tracker F2-21 | `phase2_imai_sensitivity_grid.csv`, `phase2_imai_summary.csv` | `docs/assets/figures/carbon/phase2/phase2_f09_imai_sensitivity.svg` (`outputs/figures/phase2_f09_imai_sensitivity.{png,svg}` generated) | Rho x adjusted ACME küçük çoklu panel; critical rho kesikli çizgi; SVG metadata eklendi | Bulgular / keşifsel aracılık duyarlılığı | Dolaylı etkiler ölçülmemiş karıştırıcıya karşı çok kırılgan |
+| F2-F10 | Tracker F2-22/F2-24 | `phase2_dag_ci_tests.csv`, `phase2_dag_three_level.csv` | `docs/assets/figures/carbon/phase2/phase2_f10_dag_validation.svg` (`outputs/figures/phase2_f10_dag_validation.{png,svg}` generated) | Carbon tile/technical validation paneli; Technical Diagram metadata eklendi | Bulgular / keşifsel aracılık duyarlılığı | DAG implied CI 12/12 tutarlı; yıl kümelenmesi alt ölçeğe göre değişiyor |
+| F2-F11 | Tracker F2-33 | `phase2_meta_ppc_summary.csv` | `docs/assets/figures/carbon/phase2/phase2_f11_ppc_replication.svg` (`outputs/figures/phase2_f11_ppc_replication.{png,svg}` generated) | PPC interval + observed marker; SVG metadata eklendi | Bulgular / keşifsel meta-analitik katman | 4/4 outcome posterior predictive replication ile uyumlu |
+| F2-F12 | Tracker F2-37 | `phase2_clinical_dca_heatmap.csv` | `docs/assets/figures/carbon/phase2/phase2_f12_dca_heatmap.svg` (`outputs/figures/phase2_f12_dca_heatmap.{png,svg}` generated) | Diverging heatmap; sampled value labels; SVG metadata eklendi | Bulgular / keşifsel klinik fayda | Net benefit threshold ve cost-ratio arttıkça hızlı azalıyor |
 
 ## 3. Daha Önce Eksik Olan ve Bu Revizyonda Üretilen Görseller
 
@@ -92,7 +92,7 @@ SAP Bölüm 93.2 başlangıçta sekiz figür planladı; Carbon revizyonu sonras�
 | `phase2_power_*` | 4 | Multilevel power, APIM, Bayesian SSD | Replikasyon gücü |
 | `phase2_dag_*` | 4 | DAG implied CI ve üç düzeyli model | F2-T10 |
 | `phase2_imai_*` | 4 | Imai-Keele duyarlılık | F2-T10 |
-| `phase2_thesis_*` | 4 | Bölüm 6 mapping, yayın planı, paragraf seed | Tez entegrasyonu |
+| `phase2_thesis_*` | 4 | Bulgular bölümü mapping, yayın planı, paragraf seed | Tez entegrasyonu |
 | `phase2_apa_*` | 2 | Çekirdek APA özet ve target summary | Faz II yönetici özeti |
 | `phase2_cprime_triangulation.csv` | 1 | c' direct-effect triangulation | F2-T10 ek kanıt |
 
@@ -127,4 +127,4 @@ Toplam gerçekleşen Phase 2 tablo artefaktı: `113` CSV.
 
 ## 8. Kanonik Karar
 
-Faz II raporu ve tez Bölüm 6 için kanonik görsel paket artık `F2-F01` ile `F2-F12` arasındaki 12 Carbon figürdür. Yeni eklenen `F2-F07`-`F2-F12` çıktıları ana sonuç iddiasını değiştirmez; daha önce tablo/özet düzeyinde kalan ağ ayrıntısı, tanı yaşı spline, Imai-Keele duyarlılık, DAG doğrulama, PPC ve DCA yüzeylerini tez/CSR içinde görsel olarak izlenebilir hale getirir.
+Faz II raporu ve tez bulgular bölümündeki keşifsel katman için kanonik görsel paket artık `F2-F01` ile `F2-F12` arasındaki 12 Carbon figürdür. Yeni eklenen `F2-F07`-`F2-F12` çıktıları ana sonuç iddiasını değiştirmez; daha önce tablo/özet düzeyinde kalan ağ ayrıntısı, tanı yaşı spline, Imai-Keele duyarlılık, DAG doğrulama, PPC ve DCA yüzeylerini tez/CSR içinde görsel olarak izlenebilir hale getirir.

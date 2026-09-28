@@ -229,5 +229,16 @@ class TestLockConstants(unittest.TestCase):
         self.assertEqual(entries, [])
 
 
+class TestAuditArtifactExclusion(unittest.TestCase):
+    def test_trace_outputs_are_not_numeric_sources(self):
+        root = pathlib.Path("/project")
+        self.assertTrue(nt.is_audit_artifact(
+            root / "outputs/tables/ch05_numeric_trace_numbers.csv", root))
+        self.assertTrue(nt.is_audit_artifact(
+            root / "outputs/tables/csr_numeric_trace_claims.csv", root))
+        self.assertFalse(nt.is_audit_artifact(
+            root / "outputs/tables/apa_t07_h1_bayesian.csv", root))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

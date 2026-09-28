@@ -504,8 +504,8 @@ Her evidentia koşumu bir tez çıktısına **bağlanır**. "Araştırdım" yetm
 
 | Literatür ihtiyacı | evidentia girişi | Beslediği tez artefaktı | t1dm reference |
 |--------------------|------------------|--------------------------|----------------|
-| Giriş literatür temeli | `evidence-synthesizer` (ağır) | `chapters/01_giris.qmd` + `references/references.bib` | `tez-yazim-rehberi.md` |
-| Tartışma — bulgu konumlandırma | `/evidentia` (bulgu başına) | `chapters/05_tartisma.qmd` | `raporlama-sablonlari.md` |
+| Giriş literatür temeli | `evidence-synthesizer` (ağır) | `chapters/01_giris_ve_amac.qmd` + `references/references.bib` | `tez-yazim-rehberi.md` |
+| Tartışma — bulgu konumlandırma | `/evidentia` (bulgu başına) | `chapters/05_tartisma_ve_sonuc.qmd` | `raporlama-sablonlari.md` |
 | Pinquart 2013 benchmark doğrula/güncelle | `/evidentia` (hedefli meta-analiz) | `etki-buyuklugu-ve-guc.md` benchmark tablosu | `etki-buyuklugu-ve-guc.md` |
 | Bayesian prior türetimi (Pinquart-temelli) | `/evidentia` → etki-büyüklüğü dağılımı | brms prior + `bayesci-paralel-hat.md` | `bayesci-paralel-hat.md` |
 | H5 beklenen diadik örüntü (Streisand & Monaghan) | `/evidentia` (diadik uyum lit.) | `h5-diadik-tutarlilik.md` beklenen-örüntü | `h5-diadik-tutarlilik.md` |
@@ -685,7 +685,7 @@ gerçek bir PMID/DOI/NCT/YÖK-ID'ye iz sürmelidir. evidentia bir künyeyi doğr
 2. Çerçeve: psikososyal (§2); akademik/RAG/tam-metin çekirdeği çalışır, koşullu connector'lar
    yalnız açık sinyal varsa eklenir.
 3. Dönen sentez + provenance → tedbir denetimi (§4-E).
-4. APA 7'ye çevir, `references.bib` doldur, `chapters/01_giris.qmd` yaz.
+4. APA 7'ye çevir, `references.bib` doldur, `chapters/01_giris_ve_amac.qmd` yaz.
 
 **Senaryo 2 — Pinquart benchmark doğrulama:**
 > "Pinquart 2013 r ≈ .19 hâlâ en iyi benchmark mı?"

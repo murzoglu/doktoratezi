@@ -51,11 +51,11 @@ book:
   language: tr
   chapters:
     - index.qmd
-    - chapters/01_giris.qmd
-    - chapters/02_yontem.qmd
-    - chapters/03_bulgular.qmd
-    - chapters/04_tartisma.qmd
-    - chapters/05_sonuc.qmd
+    - chapters/01_giris_ve_amac.qmd
+    - chapters/03_gerec_ve_yontem.qmd
+    - chapters/04_bulgular.qmd
+    - chapters/05_tartisma_ve_sonuc.qmd
+    - chapters/05_tartisma_ve_sonuc.qmd
 
 bibliography: references/references.bib
 csl: references/apa.csl
@@ -98,15 +98,15 @@ zaman tasarrufu.
 title: "Tip 1 Diyabet & Ebeveynlik Tezi"
 ---
 
-{{< include chapters/01_giris.qmd >}}
+{{< include chapters/01_giris_ve_amac.qmd >}}
 
-{{< include chapters/02_yontem.qmd >}}
+{{< include chapters/03_gerec_ve_yontem.qmd >}}
 
-{{< include chapters/03_bulgular.qmd >}}
+{{< include chapters/04_bulgular.qmd >}}
 
-{{< include chapters/04_tartisma.qmd >}}
+{{< include chapters/05_tartisma_ve_sonuc.qmd >}}
 
-{{< include chapters/05_sonuc.qmd >}}
+{{< include chapters/05_tartisma_ve_sonuc.qmd >}}
 
 # Kaynaklar
 ::: {#refs}
@@ -228,7 +228,7 @@ JARS-Mixed başlıkları:
 - Veri analizi (FIML/MI, multilevel, SEM, IPTW, sensitivity)
 - Etik onay + bilgilendirilmiş onam
 
-Mevcut `chapters/02_yontem.qmd` bu yapıdadır.
+Mevcut `chapters/03_gerec_ve_yontem.qmd` bu yapıdadır.
 
 ### Bulgular (`03_bulgular.qmd`)
 
@@ -516,7 +516,7 @@ quarto render thesis.qmd                        # Tüm tez render
 quarto preview thesis.qmd                       # Canlı preview
 
 # Sadece bir bölüm
-quarto render chapters/03_bulgular.qmd
+quarto render chapters/04_bulgular.qmd
 
 # Word çıktısı (jüri için)
 quarto render thesis.qmd --to docx

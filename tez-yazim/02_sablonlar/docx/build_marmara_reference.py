@@ -14,10 +14,10 @@ Talimatnamesi degerlerini enjekte eder:
    SEKILLER DIZINI, TABLOLAR DIZINI) de §1.3'te "ana baslik" sayilir; bu
    nedenle Heading1'i devralir (Pandoc varsayilaninin bold-kapali/mavi/
    tema-fontlu TOCHeading tanimi kaldirilir).
- - §1.2 Dizin girdileri (TOC1-TOC9) ve kopruler siyah TNR; resmi sablonun
-   TOC1 stiline (TNR bold, 11 pt, 1,5 aralik) uyar.
+ - §1.2 Dizin girdileri (TOC1-TOC9) ve kopruler siyah TNR; sayfa numarası
+   sağ sekmeye yaslanır, nokta lideri kullanılmaz.
  - §1.6/§1.7 Sekil/tablo basliklari (Caption/ImageCaption/TableCaption):
-   TNR 12 pt, tek satir araligi.
+   TNR 12 pt, tek satir araligi ve izleyen nesneyle ayni sayfada kalma.
 
 Kaynak: docs/tez-kilavuz/TEZ YAZIM KLAVUZU-2025.pdf +
         tez-yazim/00_kaynak-kurallari/marmara-tez-formati-talimatnamesi.md
@@ -100,8 +100,9 @@ def patch_styles(styles):
                 '<w:szCs w:val="24"/><w:lang w:val="tr-TR"/></w:rPr>')
         styles = replace_style(styles, hid, hppr, hrpr)
 
-    # Caption / ImageCaption / TableCaption: TNR 12pt, tek satir araligi
-    cap_ppr = ('<w:pPr><w:spacing w:before="120" w:after="120" w:line="240" '
+    # Caption / ImageCaption / TableCaption: TNR 12pt, tek satir araligi;
+    # baslik sayfa sonunda tek basina kalmaz.
+    cap_ppr = ('<w:pPr><w:keepNext/><w:keepLines/><w:spacing w:before="120" w:after="120" w:line="240" '
                'w:lineRule="auto"/><w:jc w:val="both"/></w:pPr>')
     cap_rpr = ('<w:rPr>' + TNR + '<w:sz w:val="24"/><w:szCs w:val="24"/>'
                '<w:lang w:val="tr-TR"/></w:rPr>')
@@ -165,8 +166,8 @@ def add_style(xml, style_xml):
 
 
 # Metin genisligi (twip): A4 11906 - sol 1417 - sag 1417 = 9072.
-# Dizin girdilerinde sayfa numarasi bu konumdaki nokta-onculu sag sekmeye yaslanir.
-TOC_TAB = ('<w:tabs><w:tab w:val="right" w:leader="dot" w:pos="9072"/></w:tabs>')
+# Dizin girdilerinde sayfa numarasi bu konumdaki lidersiz sag sekmeye yaslanir.
+TOC_TAB = ('<w:tabs><w:tab w:val="right" w:pos="9072"/></w:tabs>')
 
 
 def patch_toc_styles(styles):
@@ -189,8 +190,8 @@ def patch_toc_styles(styles):
 
     # TOC1-TOC9: Pandoc varsayilan reference.docx'inde tanimli degildir; alan
     # (field) guncellenince Word kendi yerlesik mavi/tema varsayilanlarini
-    # uretir. Resmi Marmara sablonunun TOC1 stili (TNR, bold, 11 pt, 1,5
-    # aralik) esas alinarak acikca tanimlanir.
+    # uretir. Sayfa numarasi sag sekmeye yaslanir; enstitu duzeltmesi geregi
+    # nokta lideri kullanilmaz.
     styles = add_style(styles,
                        '<w:style w:type="paragraph" w:styleId="TOC1">'
                        '<w:name w:val="toc 1"/><w:basedOn w:val="Normal"/>'

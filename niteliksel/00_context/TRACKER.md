@@ -49,7 +49,7 @@
 | A.4 | Refleksif günlük örnekleri (n=3-5 anonim girdi) | ✅ | — | `assets/refleksif-gunluk-sablonu-tr.md` | **Tamamlandı:** [`journal_excerpts.md`](../03_analysis/reflexive/journal_excerpts.md) — şablon + 3 örnek girdi (post-interview / post-coding / critical-friend) + Durum Beyanı (formel günlük yok, mental+memo+ekip tartışması var; A.5 audit trail'a referans + sınırlılık raporlama önerisi) |
 | A.5 | Audit trail tablosu (codebook revizyon + OM-BA tartışma) | ✅ | A.6 | `assets/audit-trail-log-tr.md` | **Tamamlandı:** [`audit_trail.md`](../03_analysis/methodology/audit_trail.md) — 15 metodolojik karar (MK.01-15) + codebook v1→v2 sürüm geçmişi + 4 critical friend tartışma özeti (CF.01-04) + 10 açık konu (AÇ.01-10) + güncelleme protokolü |
 | A.6 | Codebook v2 + tema-kod-aile haritası (hibrit 6↔4 mapping) | ✅ | — | `04-rta-6-faz-derinlemesine.md` | **Tamamlandı:** [`codebook_v2.md`](../99_archive/2026-07-29_pre_new_canon/codebook_v2.md) — 23 kod × 6 journal tema × 4 thesis makro tema mapping + 22 alt-tema Rosetta + aile×tema odak matrisi + B.4 yazım yönergesi |
-| A.7 | KVKK Veri Yönetim Planı | ✅ | — | `09-etik-kvkk-refleksivite.md` | **Tamamlandı:** [`kvkk_data_management_plan.md`](../01_raw_data/ethics_protocol/kvkk_data_management_plan.md) — özel nitelikli sağlık + çocuk verisi için 9 bölümlü DMP (yaşam döngüsü, anonimleştirme, k-anonymity, erişim kontrolü, breach response, çocuk için ek korumalar, onam uyumu, sürüm) |
+| A.7 | KVKK Veri Yönetim Planı | ✅ | — | `09-etik-kvkk-refleksivite.md` | **Tamamlandı:** [korumalı kaynak envanteri](PROTECTED_SOURCE_INVENTORY.md) altında tutulan 9 bölümlü DMP — yaşam döngüsü, anonimleştirme, k-anonymity, erişim kontrolü, breach response, çocuk için ek korumalar, onam uyumu ve sürüm kapsanır. |
 | A.8 | LLM kullanım beyanı (yazım için) | ✅ | — | `assets/llm-kullanim-beyani-tr.md` + `06-llm-destekli-kodlama.md` | **Tamamlandı:** [`llm_use_statement.md`](../03_analysis/methodology/llm_use_statement.md) — TR+EN açık beyan, kapsam (yazım yardımcısı, ham veri yok), KVKK uyum, halüsinasyon kontrol protokolü, OSF prompt log mimarisi, APA/COPE uyumluluk |
 | A.9 | Triadic methodology literatürü ekleme | ✅ | — | `12-t1dm-tezi-spesifik-uyarlamalar.md` | **Tamamlandı:** [`A9_triadic_methodology_literature.md`](../03_analysis/methodology/A9_triadic_methodology_literature.md) — 14 atıf (Eisikovits & Koren, Morgan, Taylor & de Vocht, Patton, Carter, Sullivan-Bolyai, Smaldone, Whittemore, Streisand, Loeb, Voltelen, Phelps & Mok, Braun & Clarke, Flick). Cleaned thesis text'te 2 paragraf güncellendi (Araştırma Tasarımı + Veri Analizi) |
 | A.10 | Jüri savunma argümanları taslağı | ✅ | A.1 + A.2 | `11-yazim-ve-jurinin-soracaklari.md` | **Tamamlandı:** [`defense_arguments.md`](../03_analysis/methodology/defense_arguments.md) — 15 olası soru × çekirdek argüman + 3-slayt savunma haritası + tonlama stratejisi + Boyatzis-tipi karşı argüman + pre-savunma kontrol listesi |
@@ -105,7 +105,7 @@
 4. [`positionality_BA.md`](../03_analysis/methodology/positionality_BA.md) — TR+EN
 5. [`journal_excerpts.md`](../03_analysis/reflexive/journal_excerpts.md) — şablon + 3 örnek + Durum Beyanı
 6. [`A9_triadic_methodology_literature.md`](../03_analysis/methodology/A9_triadic_methodology_literature.md) — 14 atıf, 4 grup
-7. [`kvkk_data_management_plan.md`](../01_raw_data/ethics_protocol/kvkk_data_management_plan.md) — 9 bölüm DMP
+7. [Korumalı kaynak envanteri](PROTECTED_SOURCE_INVENTORY.md) — yerel 9 bölüm DMP
 8. [`llm_use_statement.md`](../03_analysis/methodology/llm_use_statement.md) — TR+EN açık beyan
 9. [`coreq_32_completed.md`](../03_analysis/methodology/coreq_32_completed.md) — 30/32 tam + 2 kısmi
 10. [`audit_trail.md`](../03_analysis/methodology/audit_trail.md) — 15 MK + sürüm + 4 CF + 10 AÇ
@@ -128,19 +128,19 @@
 
 | # | Çıktı | Konum |
 |---|---|---|
-| ✅1 | Etik protokol (DM Parenting Attitudes 2023-02) | `01_raw_data/ethics_protocol/dm_parenting_attitudes_ethics_protocol_2023_02.docx` |
-| ✅2 | Görüşme rehberi (anne/hasta/kardeş) | `01_raw_data/interview_guides/qualitative_interview_questions.docx` |
-| ✅3 | Demografik form | `01_raw_data/demographics/qualitative_demographics.docx` |
-| ✅4 | 21 görüşme transkripti (DOCX) | `01_raw_data/interviews_docx/family_{011,014,019,020,026,201,202}/` |
-| ✅5 | Birleştirilmiş transkript (Markdown) | `02_processed/transcripts/all_transcripts_merged.md` |
-| ✅6 | Cleaned thesis YÖNTEM taslağı (~12k kelime) | `02_processed/cleaned_text/thesis_qualitative_cleaned_current.md` |
+| ✅1 | Etik protokol (DM Parenting Attitudes 2023-02) | Korumalı yerel kaynak |
+| ✅2 | Görüşme rehberi (anne/hasta/kardeş) | Korumalı yerel kaynak |
+| ✅3 | Demografik form | Korumalı yerel kaynak |
+| ✅4 | Görüşme transkriptleri (DOCX) | Korumalı yerel kaynak |
+| ✅5 | Birleştirilmiş transkript (Markdown) | Korumalı yerel türev |
+| ✅6 | Cleaned thesis YÖNTEM taslağı | Korumalı yerel çalışma metni |
 | ✅7 | Codebook v1 (24 kod, 5 kategori) | `03_analysis/codebook/codebook_draft_v1.md` |
 | ✅8 | COREQ-uyumlu Method iskeleti (skeleton) | `03_analysis/methodology/methodology_skeleton_coreq.md` |
-| ✅9 | 6 tema triadic matrix v3 (theme_01-06) | `03_analysis/triadic_matrices/` |
-| ✅10 | Theme comparison spreadsheet | `03_analysis/spreadsheets/theme_comparison.ods` + `triadic_table.xlsx` |
-| ✅11 | Mother thematic memo | `03_analysis/thematic_memos/mother_theme_memo.docx` |
+| ✅9 | 6 tema triadic matrix v3 | Korumalı yerel analitik çalışma alanı |
+| ✅10 | Theme comparison spreadsheet | Korumalı yerel analitik çalışma alanı |
+| ✅11 | Mother thematic memo | Korumalı yerel analitik çalışma alanı |
 | ✅12 | Pediatric Diabetes manuscript v2 (Results+Discussion, journal-ready) | `04_manuscripts/journal_pediatric_diabetes/pediatric_diabetes_results_discussion_draft_v2_journal_ready.docx` |
-| ✅13 | Refleksif notlar (Method metninde gömülü) | `02_processed/cleaned_text/...` (ayrı dosya yok ⚠️) |
+| ✅13 | Refleksif notlar (Method metninde gömülü) | Korumalı yerel çalışma metni (ayrı dosya yok ⚠️) |
 | ✅14 | Critical friend süreci (BA) | Method metninde belgelenmiş; tarihli audit trail yok ⚠️ |
 
 ---
@@ -153,4 +153,4 @@
 - **2026-05-04 v4** — **A.6 ✅** — `codebook_v2.md` üretildi: 23 kod (v1'de 24 sayım hatası düzeltildi) × 6 journal tema × 4 thesis makro tema hibrit master mapping. Triadic matrices'ten 6 journal tema + 22 alt-tema isimleri çıkarıldı. Journal-Thesis "Rosetta" tablosu (alt-tema karşılığı) + Aile×Tema odak matrisi (A11/A14/A19/A20/A26/A201/A202) eklendi. Bilinen düzelti: `AILE_ICI_ADELET` → `AILE_ICI_ADALET` (v3'te uygulanacak). 4 odak ailenin belirsiz olduğu sub-temalar (J2.1, J2.2, J3.3, J5.4) A.5 audit trail için flag'lendi. **A.3 başlatıldı (🔄 WIP)** — OM ve BA için positionality statement (TR+EN).
 - **2026-05-04 v5** — **A.3 ✅** — `positionality_OM.md` ve `positionality_BA.md` üretildi (TR+EN paralel). OM: hekim+sosyal pediatri doktora, klinik bakış açısı, empatik aşırı-yorum, kuramsal yatkınlıklar (Bowen+pediatrik kronik hastalık), önlüksüz görüşme stratejisi. BA: gözlemci+critical friend ikili rolü, disiplin-içi paylaşılan kör nokta riski, paralinguistik kayıt seçim etkisi, eleştirel arkadaş yorumlarının ikincilliği. Her iki belgede `{KÖŞELİ AYRAÇ}` ile kişiselleştirme alanları işaretlendi (yıl, doğum/anne durumu, danışman ismi vb. kullanıcı tarafından doldurulacak). **A.4 başlatıldı (🔄 WIP)** — refleksif günlük örnekleri (n=3-5 anonim girdi).
 - **2026-05-04 v6** — **A.4 ✅ + A.9 ✅** — A.4: `journal_excerpts.md` üretildi (şablon + 3 örnek girdi + Durum Beyanı; formel tarihli günlük tutulmamış olduğunu dürüst raporlama önerisi A.5 ve B.5'e bağlandı). A.9: `A9_triadic_methodology_literature.md` üretildi (14 atıf 4 grupta: multi-informant family / triadic-dyadic interview / triangulation / pediatrik T1DM literatürü); cleaned thesis text'te 2 paragraf güncellendi (Araştırma Tasarımı'na Eisikovits-Morgan-Taylor-Sullivan-Bolyai-Whittemore atıfları + Veri Analizi'na Patton-Carter-Braun&Clarke atıfları + RTA-uyumlu triangulation çerçevesi). **A.7 başlatıldı (🔄 WIP)** — KVKK Veri Yönetim Planı.
-- **2026-05-04 v7** — **🎯 FAZ A TAMAMLANDI** — A.7 (KVKK DMP, 9 bölüm), A.8 (LLM beyan TR+EN), A.2 (COREQ 30/32+2 kısmi), A.5 (audit trail: 15 MK + codebook geçmişi + 4 CF + 10 AÇ), A.10 (15 olası soru + 3 slayt + tonlama). **Tüm 10 Faz A paketi ✅**. Faz A sentezi: niteliksel kolun metodolojik altyapısı (örneklem yeterliliği gerekçesi, hibrit tema yapısı, refleksivite belgeleri, etik+KVKK uyumu, raporlama standartları, savunma hazırlığı) tamamen kuruldu. Cleaned thesis text 4 noktada güncellendi (A.1: 2 paragraf, A.9: 2 paragraf). 9 yeni belge `03_analysis/methodology/` ve `01_raw_data/ethics_protocol/` ve `03_analysis/codebook/` ve `03_analysis/reflexive/` altında. **Faz B (Tez Bölüm Yazımı, ~4-6 hafta) için zemin hazır.**
+- **2026-05-04 v7** — **🎯 FAZ A TAMAMLANDI** — A.7 (KVKK DMP, 9 bölüm), A.8 (LLM beyan TR+EN), A.2 (COREQ 30/32+2 kısmi), A.5 (audit trail: 15 MK + codebook geçmişi + 4 CF + 10 AÇ), A.10 (15 olası soru + 3 slayt + tonlama). **Tüm 10 Faz A paketi ✅**. Faz A sentezi: niteliksel kolun metodolojik altyapısı (örneklem yeterliliği gerekçesi, hibrit tema yapısı, refleksivite belgeleri, etik+KVKK uyumu, raporlama standartları, savunma hazırlığı) tamamen kuruldu. Korumalı local çalışma metninde dört hedefli güncelleme yapıldı; public ağaçta yalnız redakte edilmiş metodoloji ve sonuç belgeleri tutulur. **Faz B (Tez Bölüm Yazımı, ~4-6 hafta) için zemin hazır.**

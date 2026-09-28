@@ -1,0 +1,36 @@
+---
+title: "Diyabetik Çocuklar, Sağlıklı Kardeşleri ve Annelerinin Ebeveynlik Tutumlarına Yönelik Algılarının ve Kardeşler Arası İlişkilerin Sağlıklı Kontrol Grubu ile Karşılaştırılarak İncelenmesi"
+author: "Özlem Murzoğlu Kurt"
+suppress-bibliography: true
+---
+
+<!--
+İntihal raporu yüklemesi için seçilmiş tez gövdesi.
+Kapsam: kapak, Özet/Summary, Giriş ve Amaç, Genel Bilgiler, Bulgular,
+Tartışma ve Sonuç. Yöntem, ön/arka bölümler, kaynakça, özgeçmiş ve ekler
+bilinçli olarak dışarıda bırakılmıştır.
+-->
+
+{{< include chapters/00_kapak.qmd >}}
+
+{{< include chapters/00c_ozet_summary.qmd >}}
+
+{{< include chapters/01_giris_ve_amac.qmd >}}
+
+{{< pagebreak >}}
+
+{{< include chapters/02_genel_bilgiler.qmd >}}
+
+{{< pagebreak >}}
+
+```{=latex}
+% Gereç ve Yöntem intihal dosyasına dahil edilmez; sonraki iki bölümün
+% tam tezdeki 6 ve 7 numaralarını koru.
+\setcounter{chapter}{5}
+```
+
+{{< include chapters/04_bulgular.qmd >}}
+
+{{< pagebreak >}}
+
+{{< include chapters/05_tartisma_ve_sonuc.qmd >}}
